@@ -1,5 +1,3 @@
-http://pancakeawesome.ink/a.html
-http://pancakeawesome.ink/hello-world.html
 http://pancakeawesome.ink/yeoman+bower+gulp-grunt构建现代化前端项目.html
 http://pancakeawesome.ink/前端必备技能之compass.html
 http://pancakeawesome.ink/hexo+githubio+material搭建你的个人博客网站(优化篇).html
