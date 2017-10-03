@@ -32,20 +32,17 @@
 <h2 id="compass的安装-amp-amp-项目的构建"><a href="#compass的安装-amp-amp-项目的构建" class="headerlink" title="compass的安装&amp;&amp;项目的构建"></a>compass的安装&amp;&amp;项目的构建</h2><h3 id="compass的安装"><a href="#compass的安装" class="headerlink" title="compass的安装"></a>compass的安装</h3><p>如果你是<code>Mac os</code>系统，那么你的电脑预装了ruby的环境，那么就会有<code>gem</code>这个ruby的包管理器。如果你的电脑是windows的，那么请先安装<code>ruby</code>，具体安装方法我就不赘述了，请大家自行谷歌。</p>
 <pre><code>gem install compass
 </code></pre><p><em>如果大家在gem install过程中发现速度很慢，甚至卡住了</em>，请谷歌：<strong>gem源</strong>，具体原因我就不说了=,=</p>
-<h3 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h3><p>下面通过compass搭建你的项目：</p>
-<pre><code>compass create &lt;project name&gt;
-</code></pre><p>成功之后你会在命令行中查看到compass项目成功搭建的提示：<br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fk0rttcy1sj30z70k4ack.jpg" alt=""><br>看一下项目的目录:<br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fk0rv00m1dj308b04t0sk.jpg" alt=""><br>这就是compass构建的项目初始目录</p>
-<h2 id="compass的各大模块"><a href="#compass的各大模块" class="headerlink" title="compass的各大模块"></a>compass的各大模块</h2><p>compass中有各个功能不一的模块，每个模块都封装了大量的minxin和function。<br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fk0s3r3nlpj30ry0dfjrx.jpg" alt=""><br><strong>其中reset模块和layout模块是特殊的核心模块，需要单独制定引入</strong>，<strong>而其他五大模块则只需要引入compass，就自动引入了</strong></p>
-<pre><code>@import &#39;compass&#39;;
-</code></pre><p><em>下面就分别介绍一下各个核心模块，但是由于精力有限，每个模块我只会介绍一些项目开发过程中常见的功能函数，其他的函数，请直接移步compass的 api <a href="http://compass-style.org/reference/compass/css3/" target="_blank" rel="external">doc</a></em></p>
-<h2 id="reset模块"><a href="#reset模块" class="headerlink" title="reset模块"></a>reset模块</h2><p>reset模块是负责将浏览器默认样式统一，以减少浏览器之间差异性。</p>
-<h3 id="reset模块引入"><a href="#reset模块引入" class="headerlink" title="reset模块引入"></a>reset模块引入</h3><p>/sass/screen.ccss文件中：<br><strong>screen.scss文件负责站点主体的样式</strong></p>
-<pre><code>@import &quot;compass/reset&quot;;
-</code></pre><h3 id="css样式效果展示"><a href="#css样式效果展示" class="headerlink" title="css样式效果展示"></a>css样式效果展示</h3><p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fk0sic433gj30vb0izwg9.jpg" alt=""></p>
-<h3 id="normalize模块"><a href="#normalize模块" class="headerlink" title="normalize模块"></a>normalize模块</h3><p><strong>用normalize模块来代替compass默认的reset模块</strong><br>其实可以看出reset模块很粗暴，它会把所有浏览器默认属性重置，这样在实际工程中回造成很多麻烦，我们可以很方便的normalize模块来替代reset,normalize模块会将大多数常用到的标签属性重置。</p>
-<h4 id="normalize模块-1"><a href="#normalize模块-1" class="headerlink" title="normalize模块"></a>normalize模块</h4><p>normalize常用的子模块有：</p>
-<ul>
-<li><h4 id="normalize的安装"><a href="#normalize的安装" class="headerlink" title="normalize的安装"></a>normalize的安装</h4><pre><code>gem install normalize
+<h3 id="compass项目的运行"><a href="#compass项目的运行" class="headerlink" title="compass项目的运行"></a>compass项目的运行</h3><ul>
+<li>正式编译，<strong>会将项目目录下的<code>scss</code>文件编译成<code>css</code>文件并执行scss文件中的函数在</strong>命令行环境下：<pre><code>compass compile
+</code></pre><em>加上<code>--force</code>会强制编译</em></li>
+<li>自动编译，会自动监听文件的更改而随之编译文件。<pre><code>compass watch
+</code></pre><h3 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h3>下面通过compass搭建你的项目：<pre><code>compass create &lt;project name&gt;
+</code></pre>成功之后你会在命令行中查看到compass项目成功搭建的提示：<br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fk0rttcy1sj30z70k4ack.jpg" alt=""><br>看一下项目的目录:<br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fk0rv00m1dj308b04t0sk.jpg" alt=""><br>这就是compass构建的项目初始目录<h2 id="compass的各大模块"><a href="#compass的各大模块" class="headerlink" title="compass的各大模块"></a>compass的各大模块</h2>compass中有各个功能不一的模块，每个模块都封装了大量的minxin和function。<br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fk0s3r3nlpj30ry0dfjrx.jpg" alt=""><br><strong>其中reset模块和layout模块是特殊的核心模块，需要单独制定引入</strong>，<strong>而其他五大模块则只需要引入compass，就自动引入了</strong><pre><code>@import &#39;compass&#39;;
+</code></pre><em>下面就分别介绍一下各个核心模块，但是由于精力有限，每个模块我只会介绍一些项目开发过程中常见的功能函数，其他的函数，请直接移步compass的 api <a href="http://compass-style.org/reference/compass/css3/" target="_blank" rel="external">doc</a></em><h2 id="reset模块"><a href="#reset模块" class="headerlink" title="reset模块"></a>reset模块</h2>reset模块是负责将浏览器默认样式统一，以减少浏览器之间差异性。<h3 id="reset模块引入"><a href="#reset模块引入" class="headerlink" title="reset模块引入"></a>reset模块引入</h3>/sass/screen.ccss文件中：<br><strong>screen.scss文件负责站点主体的样式</strong><pre><code>@import &quot;compass/reset&quot;;
+</code></pre><h3 id="css样式效果展示"><a href="#css样式效果展示" class="headerlink" title="css样式效果展示"></a>css样式效果展示</h3><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fk0sic433gj30vb0izwg9.jpg" alt=""><h3 id="normalize模块"><a href="#normalize模块" class="headerlink" title="normalize模块"></a>normalize模块</h3><strong>用normalize模块来代替compass默认的reset模块</strong><br>其实可以看出reset模块很粗暴，它会把所有浏览器默认属性重置，这样在实际工程中回造成很多麻烦，我们可以很方便的normalize模块来替代reset,normalize模块会将大多数常用到的标签属性重置。<h4 id="normalize模块-1"><a href="#normalize模块-1" class="headerlink" title="normalize模块"></a>normalize模块</h4>normalize常用的子模块有：</li>
+<li>html5模块：用来统一html5属性</li>
+<li>base：用来统一一般的html属性</li>
+<li>links:用来统一<code>&lt;a&gt;</code>标签相关的属性<h4 id="normalize的安装"><a href="#normalize的安装" class="headerlink" title="normalize的安装"></a>normalize的安装</h4><pre><code>gem install normalize
 </code></pre><em>用homebrew，npm也可以安装</em></li>
 </ul>
 <h4 id="normalize的引入"><a href="#normalize的引入" class="headerlink" title="normalize的引入"></a>normalize的引入</h4><ul>
@@ -71,8 +68,139 @@
   normalize子模块三
 */
 @import &quot;normalize/links&quot;;
-</code></pre>具体这些子模块的作用可以去去normalize的官网去查看<a href="https://necolas.github.io/normalize.css/" target="_blank" rel="external">doc</a><br><code>screen.css</code>文件的显示效果:(以html5模块举例)<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fk0tb4jv4lj30vi0ie0tp.jpg" alt=""></li>
+</code></pre>具体这些子模块的作用可以去去normalize的官网去查看<a href="https://necolas.github.io/normalize.css/" target="_blank" rel="external">doc</a><br><code>screen.css</code>文件的显示效果:(以html5模块举例)<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fk0tb4jv4lj30vi0ie0tp.jpg" alt=""><h2 id="layout模块"><a href="#layout模块" class="headerlink" title="layout模块"></a>layout模块</h2>如果说reset模块事使用起来最简单的模块（因为只需引进来即可，不需要多余操作），那么layout模块就是使用率最低的模块。layout模块提供页面的布局控制能力。<br><strong>layout模块不属于compass自带的模块，需要在scss文件中单独引入</strong><br>layout模块又分为三个子模块：</li>
+<li>grid-background</li>
+<li>sticky-footer</li>
+<li>stretching<h3 id="grid-background模块："><a href="#grid-background模块：" class="headerlink" title="grid-background模块："></a>grid-background模块：</h3>提供为元素提供定宽定高或者自适应格式宽高的背景的功能。<br><strong>这个功能不常用，在webapp电子书在线阅读等场景需求下可以用到，有需要的去doc仔细看看</strong></li>
+<li>引入：<pre><code>@import &#39;compass/layout/grid-background&#39;;
+</code></pre></li>
+<li>相关mixin：<ul>
+<li>grid-background($total, $column, $gutter, $baseline, $offset, $column-color, $gutter-color, $baseline-color, $force-fluid)<ul>
+<li>功能：提供为元素提供定宽定高或者自适应格式宽高的背景的功能</li>
+<li>参数：</li>
+<li>示例：<pre><code>screen.scss文件:
+/*
+grid-background模块
+*/
+#root {
+@include grid-background();
+}
+</code></pre>screen.css文件中:<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fk5dydolwaj30tu0gugoy.jpg" alt=""><h3 id="stretching模块："><a href="#stretching模块：" class="headerlink" title="stretching模块："></a>stretching模块：</h3>提供子元素拉伸填满整个父元素的能力。</li>
 </ul>
+</li>
+</ul>
+</li>
+<li>引入：<pre><code>@import &#39;compass/layout/stetching&#39;;
+</code></pre></li>
+<li>相关mixin：<ul>
+<li>stretch($offset-top, $offset-right, $offset-bottom, $offset-left)<ul>
+<li>功能：将子元素填满父元素</li>
+<li>参数：绝对定位上右下左的位置</li>
+<li>示例：<pre><code>screen.scss文件:
+/*
+stretching模块
+*/
+.stretch-full {
+@include stretch();
+}
+screen.css文件中:
+/* line 119, ../sass/screen.scss */
+.stretch-full {
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+}
+</code></pre><h3 id="sticky-footer模块"><a href="#sticky-footer模块" class="headerlink" title="sticky-footer模块"></a>sticky-footer模块</h3>提供页面中的页脚始终在页面最底部的功能：<br>提供子元素拉伸填满整个父元素的能力。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>引入：<ul>
+<li>在html文件中引入以下标签：<pre><code>&lt;body&gt;
+&lt;div id=&quot;root&quot;&gt;
+&lt;div id=&quot;root_footer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;footer&quot;&gt;
+Footer content goes here.
+&lt;/div&gt;
+&lt;/body&gt;
+</code></pre></li>
+<li>在screen.scss文件中引入footer模块<pre><code>@import &#39;compass/layout/sticky-footer&#39;;
+</code></pre></li>
+</ul>
+</li>
+<li>相关mixin：<ul>
+<li>sticky-footer($footer-height, $root-selector, $root-footer-selector, $footer-selector)<ul>
+<li>功能：当主体内容不超过浏览器窗口大小时，页脚始终在窗口底部；当主体内容超过浏览器窗口大小时，页脚将随浏览器内容在页面底部</li>
+<li>参数：footer的高度</li>
+<li>示例：<br>```<br>screen.scss文件:<br>/<em><br>sticky-footer模块
+</em>/<br>@include sticky-footer(30px);</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>screen.css文件中:<br>html, body {<br>  height: 100%;<br>}</p>
+<p>#root {<br>  clear: both;<br>  min-height: 100%;<br>  height: auto !important;<br>  height: 100%;<br>  margin-bottom: -30px;<br>}</p>
+<p>#root #root_footer {<br>  height: 30px;<br>}</p>
+<p>#footer {<br>  clear: both;<br>  position: relative;<br>  height: 30px;<br>}</p>
+<pre><code>## css3&amp;&amp;browser support模块
+css3模块:提供css3特性的一些功能函数，support模块提供规定compass支持哪些浏览器的功能。如果说layout模块使用率最低，那么css3一定是主动使用率最高的模块，因为我们在使用css特性时，都会用到browser support模块来做浏览器的兼容,配置compass模块默认支持哪些浏览器。
+引入css3模块：
+</code></pre><p>@import “compass/css3”;</p>
+<pre><code>引入browser support模块：
+*其实可以不用引入，因为css3模块自动引入support模块*
+</code></pre><p>@import “compass/support”;</p>
+<pre><code>### 常用的browser support子功能：
+**介绍一些常用的，其他的请看官网的doc**
+- browsers()
+    - 返回值是compass目前版本支持的浏览器list
+- $supported-browsers: chrome,ie
+    - 功能：声明compass支持的浏览器list
+    - 参数：浏览器的list（逗号分隔）
+- $browser-minimum-versions: (&quot;ie&quot;: &quot;8&quot;);
+    - 功能：声明compass支持的最低浏览器版本
+    - 参数：浏览器和版本号对应的键值对（map形式）
+### 常用的css3子功能：
+**介绍一些常用的，其他的请看官网的doc**
+**所有的css属性的编译结果（css文件中）都是依照support模块设置的浏览器版本**
+*我的实例结果都是在没有设置support中的功能前提下而得出的*
+- box-shadow
+    - box-shadow()
+        -     功能：添加元素的box-shadow样式，并自动根据browsersupport中的浏览器，添加浏览器前缀
+        -     参数：上右下左边框阴影样式的高度和颜色
+        -     示例：
+</code></pre><p>screen.scss文件:<br>.webdemo-sec {<br>@include box-shadow(1px 2px 3px 4px #cfcecf);<br>}</p>
+<p>screen.css文件中:<br>.webdemo-sec {<br>-moz-box-shadow: 1px 2px 3px 4px #cfcecf;<br>-webkit-box-shadow: 1px 2px 3px 4px #cfcecf;<br>box-shadow: 1px 2px 3px 4px #cfcecf;<br>}</p>
+<pre><code>- opacity
+    - opacity($opacity)
+        -     功能：提供元素透明度样式的功能
+        -     参数：透明度
+        -     示例：
+</code></pre><p>screen.scss文件:<br>.opacity-test {<br>    @include opacity(.5);<br>}</p>
+<p>screen.css文件中:<br>.opacity-test {<br>  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);<br>  opacity: 0.5;<br>}</p>
+<pre><code>- inline-block
+    - inline-block($alignment, $ie-alignment)
+        -     功能：提供元素display是inline-block的功能（兼容）
+        -     参数：
+        -     示例：
+</code></pre><p>screen.scss文件:<br>.inlineblock-test {<br>    @include inline-block();<br>}</p>
+<p>screen.css文件中:<br>.inlineblock-test {<br>  display: inline-block;<br>  vertical-align: middle;<br>  <em>vertical-align: auto;
+  </em>zoom: 1;<br>  *display: inline;<br>}</p>
+<pre><code>- flex
+**提供相关flexbox布局特性的功能并做浏览器兼容，这个我经常用到很好用**
+    - 相关mixin
+        - display-flex($display)
+        - flex-direction($direction)
+        - justify-content($justify-content)
+        - align-items($align-items)
+        -     功能：提供相关flexbox布局特性的功能并做浏览器兼容
+        -     参数：
+        -     示例：
+</code></pre><p>screen.scss文件:<br>.flex-test {<br>    @include display-flex();<br>    @include flex-direction(row);<br>    @include justify-content(center);<br>    @include align-items(center);<br>}</p>
+<p>screen.css文件中:<br>.flex-test {<br>  display: -webkit-flex;<br>  display: flex;<br>  -webkit-flex-direction: row;<br>  flex-direction: row;<br>  -webkit-justify-content: center;<br>  justify-content: center;<br>  -webkit-align-items: center;<br>  align-items: center;<br>}<br>```</p>
 ]]></content>
       
         <categories>
@@ -116,7 +244,8 @@
 <pre><code> npm i hexo-generator-sitemap hexo-generator-baidu-sitemap -S
 </code></pre><p> 再在你的站点配置文件中修改 URL 为你的站点地址<br> <img src="https://ws2.sinaimg.cn/large/006tNc79gy1fjtqfn861bj30mk0953z5.jpg" alt=""></p>
 <p> 当你在 <code>hexo g</code> 时,会在<code>public</code>文件夹中生成<code>sitemap.xml</code> 和<code>baidusitemap.xml</code> 两个文件,如果你已经提前将你的 hexo 部署到网上,这是可以直接打开<code>http://yoururl/sitemap.xml</code>和<code>http://yoururl/baidusitemap.xml</code>来查看.(这两者的区别在于 <code>baidusitemap.xml</code>        是百度搜索引擎的专用文件,另一个是通用).</p>
-<h3 id="向百度提交链接"><a href="#向百度提交链接" class="headerlink" title="向百度提交链接"></a>向百度提交链接</h3><blockquote>
+<h3 id="向百度提交链接"><a href="#向百度提交链接" class="headerlink" title="向百度提交链接"></a>向百度提交链接</h3><p><strong>现在百度好像不能抓去github上面的数据了</strong><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fk3qrgy8egj30oy0233yi.jpg" alt=""></p>
+<blockquote>
 <p>如何选择链接提交方式</p>
 <p>   1、主动推送：最为快速的提交方式，推荐您将站点当天新产出链接立即通过此方式推送给百度，以保证新链接可以及时被百度收录。</p>
 <p>   2、自动推送：最为便捷的提交方式，请将自动推送的JS代码部署在站点的每一个页面源代码中，部署代码的页面在每次被浏览时，链接会被自动推送给百度。可以与主动推送配合使用。</p>
