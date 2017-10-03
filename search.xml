@@ -85,11 +85,14 @@ grid-background模块
 #root {
 @include grid-background();
 }
-</code></pre>screen.css文件中:<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fk5dydolwaj30tu0gugoy.jpg" alt=""><h3 id="stretching模块："><a href="#stretching模块：" class="headerlink" title="stretching模块："></a>stretching模块：</h3>提供子元素拉伸填满整个父元素的能力。</li>
+</code></pre>screen.css文件中:<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fk5dydolwaj30tu0gugoy.jpg" alt=""></li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="stretching模块："><a href="#stretching模块：" class="headerlink" title="stretching模块："></a>stretching模块：</h3><p>提供子元素拉伸填满整个父元素的能力。</p>
+<ul>
 <li>引入：<pre><code>@import &#39;compass/layout/stetching&#39;;
 </code></pre></li>
 <li>相关mixin：<ul>
@@ -112,11 +115,14 @@ bottom: 0;
 left: 0;
 right: 0;
 }
-</code></pre><h3 id="sticky-footer模块"><a href="#sticky-footer模块" class="headerlink" title="sticky-footer模块"></a>sticky-footer模块</h3>提供页面中的页脚始终在页面最底部的功能：<br>提供子元素拉伸填满整个父元素的能力。</li>
+</code></pre></li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="sticky-footer模块"><a href="#sticky-footer模块" class="headerlink" title="sticky-footer模块"></a>sticky-footer模块</h3><p>提供页面中的页脚始终在页面最底部的功能：<br>提供子元素拉伸填满整个父元素的能力。</p>
+<ul>
 <li>引入：<ul>
 <li>在html文件中引入以下标签：<pre><code>&lt;body&gt;
 &lt;div id=&quot;root&quot;&gt;
@@ -135,61 +141,113 @@ Footer content goes here.
 <li>sticky-footer($footer-height, $root-selector, $root-footer-selector, $footer-selector)<ul>
 <li>功能：当主体内容不超过浏览器窗口大小时，页脚始终在窗口底部；当主体内容超过浏览器窗口大小时，页脚将随浏览器内容在页面底部</li>
 <li>参数：footer的高度</li>
-<li>示例：<br>```<br>screen.scss文件:<br>/<em><br>sticky-footer模块
-</em>/<br>@include sticky-footer(30px);</li>
+<li>示例：<pre><code>screen.scss文件:
+/*
+sticky-footer模块
+*/
+@include sticky-footer(30px);
+screen.css文件中:
+html, body {
+height: 100%;
+}
+#root {
+clear: both;
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin-bottom: -30px;
+}
+#root #root_footer {
+height: 30px;
+}
+#footer {
+clear: both;
+position: relative;
+height: 30px;
+}
+</code></pre></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p>screen.css文件中:<br>html, body {<br>  height: 100%;<br>}</p>
-<p>#root {<br>  clear: both;<br>  min-height: 100%;<br>  height: auto !important;<br>  height: 100%;<br>  margin-bottom: -30px;<br>}</p>
-<p>#root #root_footer {<br>  height: 30px;<br>}</p>
-<p>#footer {<br>  clear: both;<br>  position: relative;<br>  height: 30px;<br>}</p>
-<pre><code>## css3&amp;&amp;browser support模块
-css3模块:提供css3特性的一些功能函数，support模块提供规定compass支持哪些浏览器的功能。如果说layout模块使用率最低，那么css3一定是主动使用率最高的模块，因为我们在使用css特性时，都会用到browser support模块来做浏览器的兼容,配置compass模块默认支持哪些浏览器。
-引入css3模块：
-</code></pre><p>@import “compass/css3”;</p>
-<pre><code>引入browser support模块：
-*其实可以不用引入，因为css3模块自动引入support模块*
-</code></pre><p>@import “compass/support”;</p>
-<pre><code>### 常用的browser support子功能：
-**介绍一些常用的，其他的请看官网的doc**
-- browsers()
-    - 返回值是compass目前版本支持的浏览器list
-- $supported-browsers: chrome,ie
-    - 功能：声明compass支持的浏览器list
-    - 参数：浏览器的list（逗号分隔）
-- $browser-minimum-versions: (&quot;ie&quot;: &quot;8&quot;);
-    - 功能：声明compass支持的最低浏览器版本
-    - 参数：浏览器和版本号对应的键值对（map形式）
-### 常用的css3子功能：
-**介绍一些常用的，其他的请看官网的doc**
-**所有的css属性的编译结果（css文件中）都是依照support模块设置的浏览器版本**
-*我的实例结果都是在没有设置support中的功能前提下而得出的*
-- box-shadow
-    - box-shadow()
-        -     功能：添加元素的box-shadow样式，并自动根据browsersupport中的浏览器，添加浏览器前缀
-        -     参数：上右下左边框阴影样式的高度和颜色
-        -     示例：
-</code></pre><p>screen.scss文件:<br>.webdemo-sec {<br>@include box-shadow(1px 2px 3px 4px #cfcecf);<br>}</p>
-<p>screen.css文件中:<br>.webdemo-sec {<br>-moz-box-shadow: 1px 2px 3px 4px #cfcecf;<br>-webkit-box-shadow: 1px 2px 3px 4px #cfcecf;<br>box-shadow: 1px 2px 3px 4px #cfcecf;<br>}</p>
-<pre><code>- opacity
-    - opacity($opacity)
-        -     功能：提供元素透明度样式的功能
-        -     参数：透明度
-        -     示例：
-</code></pre><p>screen.scss文件:<br>.opacity-test {<br>    @include opacity(.5);<br>}</p>
-<p>screen.css文件中:<br>.opacity-test {<br>  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);<br>  opacity: 0.5;<br>}</p>
-<pre><code>- inline-block
-    - inline-block($alignment, $ie-alignment)
-        -     功能：提供元素display是inline-block的功能（兼容）
-        -     参数：
-        -     示例：
-</code></pre><p>screen.scss文件:<br>.inlineblock-test {<br>    @include inline-block();<br>}</p>
+<h2 id="css3-amp-amp-browser-support模块"><a href="#css3-amp-amp-browser-support模块" class="headerlink" title="css3&amp;&amp;browser support模块"></a>css3&amp;&amp;browser support模块</h2><p>css3模块:提供css3特性的一些功能函数，support模块提供规定compass支持哪些浏览器的功能。如果说layout模块使用率最低，那么css3一定是主动使用率最高的模块，因为我们在使用css特性时，都会用到browser support模块来做浏览器的兼容,配置compass模块默认支持哪些浏览器。<br>引入css3模块：</p>
+<pre><code>@import &quot;compass/css3&quot;;
+</code></pre><p>引入browser support模块：<br><em>其实可以不用引入，因为css3模块自动引入support模块</em></p>
+<pre><code>@import &quot;compass/support&quot;;
+</code></pre><h3 id="常用的browser-support子功能："><a href="#常用的browser-support子功能：" class="headerlink" title="常用的browser support子功能："></a>常用的browser support子功能：</h3><p><strong>介绍一些常用的，其他的请看官网的doc</strong></p>
+<ul>
+<li>browsers()<ul>
+<li>返回值是compass目前版本支持的浏览器list</li>
+</ul>
+</li>
+<li>$supported-browsers: chrome,ie<ul>
+<li>功能：声明compass支持的浏览器list</li>
+<li>参数：浏览器的list（逗号分隔）</li>
+</ul>
+</li>
+<li>$browser-minimum-versions: (“ie”: “8”);<ul>
+<li>功能：声明compass支持的最低浏览器版本</li>
+<li>参数：浏览器和版本号对应的键值对（map形式）</li>
+</ul>
+</li>
+</ul>
+<h3 id="常用的css3子功能："><a href="#常用的css3子功能：" class="headerlink" title="常用的css3子功能："></a>常用的css3子功能：</h3><p><strong>介绍一些常用的，其他的请看官网的doc</strong><br><strong>所有的css属性的编译结果（css文件中）都是依照support模块设置的浏览器版本</strong><br><em>我的实例结果都是在没有设置support中的功能前提下而得出的</em></p>
+<ul>
+<li><p>box-shadow</p>
+<ul>
+<li>box-shadow()<ul>
+<li>功能：添加元素的box-shadow样式，并自动根据browsersupport中的浏览器，添加浏览器前缀</li>
+<li>参数：上右下左边框阴影样式的高度和颜色</li>
+<li>示例：<pre><code>screen.scss文件:
+.webdemo-sec {
+@include box-shadow(1px 2px 3px 4px #cfcecf);
+}
+screen.css文件中:
+.webdemo-sec {
+-moz-box-shadow: 1px 2px 3px 4px #cfcecf;
+-webkit-box-shadow: 1px 2px 3px 4px #cfcecf;
+box-shadow: 1px 2px 3px 4px #cfcecf;
+}
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>opacity</p>
+<ul>
+<li>opacity($opacity)<ul>
+<li>功能：提供元素透明度样式的功能</li>
+<li>参数：透明度</li>
+<li>示例：<pre><code>screen.scss文件:
+.opacity-test {
+@include opacity(.5);
+}
+screen.css文件中:
+.opacity-test {
+filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+opacity: 0.5;
+}
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>inline-block</p>
+<ul>
+<li>inline-block($alignment, $ie-alignment)<ul>
+<li>功能：提供元素display是inline-block的功能（兼容）</li>
+<li>参数：</li>
+<li>示例：<br>```<br>screen.scss文件:<br>.inlineblock-test {<br>@include inline-block();<br>}</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <p>screen.css文件中:<br>.inlineblock-test {<br>  display: inline-block;<br>  vertical-align: middle;<br>  <em>vertical-align: auto;
   </em>zoom: 1;<br>  *display: inline;<br>}</p>
-<pre><code>- flex
+<pre><code>
+- flex
 **提供相关flexbox布局特性的功能并做浏览器兼容，这个我经常用到很好用**
     - 相关mixin
         - display-flex($display)
