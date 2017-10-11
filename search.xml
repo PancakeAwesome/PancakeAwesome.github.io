@@ -324,17 +324,34 @@ align-items: center;
 <pre><code>@import &quot;compass/typography&quot;;
 </code></pre><h3 id="links子模块："><a href="#links子模块：" class="headerlink" title="links子模块："></a>links子模块：</h3><p>修饰<code>&lt;a&gt;</code>标签超链接的样式。<br>我们对<code>&lt;a&gt;</code>标签通常有两种场景修饰它的样式：</p>
 <ul>
-<li><p><strong>hover-link()</strong></p>
-<ul>
+<li><strong>hover-link()</strong><ul>
 <li>功能：正常状态下掉下划线，hover和focus状态下才显示a标签的下划线<ul>
 <li>参数：</li>
-<li>示例：<br>```<br>screen.scss文件:<br>/*</li>
+<li>示例：</li>
 </ul>
 </li>
 </ul>
-<hr>
-<p>  typography模块<br><em>/<br>/</em><br>  links子模块<br>*/<br>a {<br>  @include hover-link();<br>}<br>screen.css文件中:<br>a {<br>text-decoration: none;<br>}<br>a:hover, a:focus {<br>text-decoration: underline;<br>}<br>```</p>
 </li>
+</ul>
+<pre><code>screen.scss文件:
+/*
+    ----------------------
+    typography模块
+ */
+/*
+    links子模块
+ */
+a {
+    @include hover-link(); 
+}
+screen.css文件中:
+a {
+  text-decoration: none;
+}
+a:hover, a:focus {
+  text-decoration: underline;
+}
+</code></pre><ul>
 <li><p>不同状态下改变a标签的颜色</p>
 <ul>
 <li><strong>link-colors($normal, $hover, $active, $visited, $focus)</strong><ul>
