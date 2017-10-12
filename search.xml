@@ -3,6 +3,39 @@
   
     
     <entry>
+      <title><![CDATA[react实战--打造画廊项目]]></title>
+      <url>/2017/10/12/react%E5%AE%9E%E6%88%98-%E6%89%93%E9%80%A0%E7%94%BB%E5%BB%8A%E9%A1%B9%E7%9B%AE/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>使用yeoman+bower+gulp+webpack等前端自动化解决方案来构建react+sass的前端画廊应用。<br><em>这是画廊项目的效果图，点击相应的图片，图片会居中显示</em></p>
+<h2 id="yeoman脚手架生成项目初始的代码结构"><a href="#yeoman脚手架生成项目初始的代码结构" class="headerlink" title="yeoman脚手架生成项目初始的代码结构"></a>yeoman脚手架生成项目初始的代码结构</h2><ul>
+<li>首先安装nodejs环境，请自行百度～ </li>
+<li>安装yeoman<pre><code>npm install yo -g
+</code></pre>如果有童鞋对yeoman不是很了解，请看我以前的博客<a href="http://pancakeawesome.ink/2017/09/29/yeoman+bower+gulp-grunt%E6%9E%84%E5%BB%BA%E7%8E%B0%E4%BB%A3%E5%8C%96%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE/">yeoman+bower+gulp-grunt构建现代化前端项目</a></li>
+<li>去yeoman官网去搜寻基于webpack的react的项目生成器（generator）<br>安装generator:<pre><code>npm install -g generator-react-webpack
+</code></pre><strong>TIPS：如何查看全局环境下npm安装的模块</strong><pre><code>npm ls -g --depth=1
+</code></pre><em>depth=1：因为npm中各个模块都是有依赖关系的，所以npm会以树状图的形式显示所有模块</em></li>
+</ul>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+      
+        <categories>
+            
+            <category> react </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端技术 </tag>
+            
+            <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[compass重要功能之精灵图合图]]></title>
       <url>/2017/10/10/compass%E9%87%8D%E8%A6%81%E5%8A%9F%E8%83%BD%E4%B9%8B%E7%B2%BE%E7%81%B5%E5%9B%BE%E5%90%88%E5%9B%BE/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>精灵图合图相关功能集合。可以说是compass在日常工程中的最佳实践，非常实用也非常重要。<br><strong>想象一下设计人员（通常是漂亮的小姐姐们～不好意思责怪人家呀=。=）将sprites图中的一个图标，并且很有可能影响到了其他的图标，开发人员就要吐血地在项目中修改所有被影响的样式代码，这真的是巨痛苦无比呀</strong><br><strong>而有了compass的精灵图合图功能，我们只需要将项目中用想要合图的图片文件（现在只支持png格式的文件）放到一个相应的目录下，compass将会自动帮我们把图片文件生成为一个雪碧图，无论这些文件怎么变化，我们都不需要再去更改代码中的内容！</strong><br>精灵图合图可以说是compass的最重要的功能模块，我这里说下我的理解。<br>compass相关的知识请进<a href="http://pancakeawesome.ink/2017/09/28/%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8Bcompass/">传送门</a></p>
@@ -2662,7 +2695,7 @@ $ hexo d
     <entry>
       <title><![CDATA[入门Webpack，看这篇就够了]]></title>
       <url>/2017/09/12/%E5%85%A5%E9%97%A8Webpack%EF%BC%8C%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>webpack是现在一款非常流行的模块化管理工具🔧</strong><br><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是webpack的<strong>代码分割</strong>特性～<br><strong>注意：本文的webpack环境是<code>3.5.5</code>由于webpack的更新很快，每次更新都会更新新的语法，所以学习webpack的本质就可以</strong>，具体语法可以看webpack官网：<strong><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></strong><br>那么让我们快速开始吧～</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>webpack是现在一款非常流行的模块化管理工具🔧</strong><br>webpack会将有依赖关系的文件都视为一个模块，比如scss,sass,less,css结尾的文件，这样会产生一个模块群，微博爬出坑处理过后会产生可以被浏览器识别的一些文件，比如Js,css,html等。<br><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是webpack的<strong>代码分割</strong>特性～<br><strong>webpack的模块热更新特性的：当项目文件发生变化时，不需要开发人员手动刷新浏览器，webpack会自动刷新页面，极大地提高了开发效率，是不是很神奇！</strong><br><strong>注意：本文的webpack环境是<code>3.5.5</code>由于webpack的更新很快，每次更新都会更新新的语法，所以学习webpack的本质就可以</strong>，具体语法可以看webpack官网：<strong><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></strong><br>那么让我们快速开始吧～</p>
 <h2 id="如何在terminal中安装webpack"><a href="#如何在terminal中安装webpack" class="headerlink" title="如何在terminal中安装webpack"></a>如何在terminal中安装webpack</h2><ul>
 <li>新建project目录</li>
 <li>初始化npm:<pre><code>npm init
