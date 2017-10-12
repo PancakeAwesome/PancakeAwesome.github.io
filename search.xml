@@ -3,6 +3,57 @@
   
     
     <entry>
+      <title><![CDATA[compass重要功能之精灵图合图]]></title>
+      <url>/2017/10/10/compass%E9%87%8D%E8%A6%81%E5%8A%9F%E8%83%BD%E4%B9%8B%E7%B2%BE%E7%81%B5%E5%9B%BE%E5%90%88%E5%9B%BE/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>精灵图合图相关功能集合。可以说是compass在日常工程中的最佳实践，非常实用也非常重要。<br><strong>想象一下设计人员（通常是漂亮的小姐姐们～不好意思责怪人家呀=。=）将sprites图中的一个图标，并且很有可能影响到了其他的图标，开发人员就要吐血地在项目中修改所有被影响的样式代码，这真的是巨痛苦无比呀</strong><br><strong>而有了compass的精灵图合图功能，我们只需要将项目中用想要合图的图片文件（现在只支持png格式的文件）放到一个相应的目录下，compass将会自动帮我们把图片文件生成为一个雪碧图，无论这些文件怎么变化，我们都不需要再去更改代码中的内容！</strong><br>精灵图合图可以说是compass的最重要的功能模块，我这里说下我的理解。<br>compass相关的知识请进<a href="http://pancakeawesome.ink/2017/09/28/%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8Bcompass/">传送门</a></p>
+<h2 id="在compass项目中使用精灵合图功能"><a href="#在compass项目中使用精灵合图功能" class="headerlink" title="在compass项目中使用精灵合图功能"></a>在compass项目中使用精灵合图功能</h2><h3 id="在项目中引入sprites模块"><a href="#在项目中引入sprites模块" class="headerlink" title="在项目中引入sprites模块"></a>在项目中引入sprites模块</h3><ul>
+<li>在scss目录下新建一个_icons.scss文件来专门处理项目的雪碧图（个人习惯，也可以写在screen.scss中）</li>
+<li>在screen.scss文件中引入_icons.scss，不知道screen.scss文件作用的同学请看我的上一篇<a href="http://pancakeawesome.ink/2017/09/28/%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8Bcompass/">博客</a><br>引入sprites模块<pre><code>_icons.scss文件中：
+@import &#39;compass/utilities/sprites&#39;;
+</code></pre></li>
+<li>将一些logo文件放入images文件夹下的logo文件夹，用来作为合图的资源。并在_icons.scss文件中引入。<br><strong>compass会在合图文件夹下生成一个不被写入硬盘的隐藏SCss文件</strong>引这种入方式在compass中被称为<strong>compass import</strong><pre><code>@import &quot;logo/*.png&quot;;
+</code></pre><em>意思是引入logo文件夹下的所有格式是png的图片文件，后面字符是compass为合图文件添加的cache-buster</em><br>编译项目，可以看见images文件夹下生成了一张合图文件。<br><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fkfqhk9vakj306w04zmx5.jpg" alt=""></li>
+<li>调用all-<code>合图文件的最后一级目录名</code>-sprites这个mixin<pre><code>@include all-logo-sprites()
+</code></pre>编译之后，我们会发现相应的css文件中会自动根据合图文件生成一个一个对应的样式类。<br><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fkfqmypiezj30nh0hzaat.jpg" alt=""><br><strong>那么这个mixin是从哪来的呢？</strong><br>其实就是在上面那句<strong>magic import生成的隐藏scss文件中</strong><h3 id="使用合图"><a href="#使用合图" class="headerlink" title="使用合图"></a>使用合图</h3>在index文件中给元素添加生成的相应的css样式即可。<h4 id="其他样式类的元素应用特定的图片样式？"><a href="#其他样式类的元素应用特定的图片样式？" class="headerlink" title="其他样式类的元素应用特定的图片样式？"></a>其他样式类的元素应用特定的图片样式？</h4>只需给相应的样式引入logo-sprite(<code>$图片名</code>)<pre><code>/*
+  其余类想使用某张图片，可以不使用这个类名，直接引入图片类即可
+*/
+.main-logo {
+  @include logo-sprite(&#39;btn&#39;);
+}
+</code></pre><h4 id="元素不同状态下显示不同的图片？"><a href="#元素不同状态下显示不同的图片？" class="headerlink" title="元素不同状态下显示不同的图片？"></a>元素不同状态下显示不同的图片？</h4>只要将合图资源文件命名为<code>文件名_hover</code>的格式（或者<code>active</code>），compass就会自动生成图片设置为<code>文件名</code>样式的不同状态的css。<br><strong><code>-</code>也可以</strong><br><strong>以下代码可以消除以上伪类形容不同状态样式的功能</strong><pre><code>/*
+  是否关闭精灵图合图模块默认的伪类样式
+*/
+$disable-magic-sprite-selectors: true;
+</code></pre><h4 id="设置精灵合的排列布局"><a href="#设置精灵合的排列布局" class="headerlink" title="设置精灵合的排列布局"></a>设置精灵合的排列布局</h4>设置<code>logo-layout</code>变量</li>
+<li>vertical(垂直（默认布局方式）)</li>
+<li>horizontal(水平)</li>
+<li>diagonal(斜对角线)</li>
+<li>smart(最节省空间的布局方式)<pre><code>/*
+  精灵合图的默认排列方式
+*/
+$logo-layout: smart;
+</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>compass的精灵图合图功能在实际项目过程中时非常有用的功能，希望大家都能掌握这种技能～谢谢🙏观看～</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> css </tag>
+            
+            <tag> 前端工具，前端技术 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[yeoman+bower+gulp/grunt构建现代化前端项目]]></title>
       <url>/2017/09/29/yeoman+bower+gulp-grunt%E6%9E%84%E5%BB%BA%E7%8E%B0%E4%BB%A3%E5%8C%96%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE/</url>
       <content type="html"><![CDATA[<p><del>待更新</del></p>
@@ -985,11 +1036,11 @@ screen.css文件中:
         
         <tags>
             
+            <tag> css </tag>
+            
             <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
-            
-            <tag> css </tag>
             
         </tags>
         
@@ -1953,9 +2004,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -2201,9 +2252,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
