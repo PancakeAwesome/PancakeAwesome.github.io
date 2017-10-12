@@ -3,31 +3,6 @@
   
     
     <entry>
-      <title><![CDATA[compass重要功能之精灵图合图]]></title>
-      <url>/2017/10/10/compass%E9%87%8D%E8%A6%81%E5%8A%9F%E8%83%BD%E4%B9%8B%E7%B2%BE%E7%81%B5%E5%9B%BE%E5%90%88%E5%9B%BE/</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><pre><code>精灵图合图可以说是compass的最重要的功能模块，我这里说下我的理解。
-compass相关的知识请进[传送门](http://pancakeawesome.ink/2017/09/28/%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8Bcompass/)
-</code></pre><h2 id="在compass项目中使用精灵合图功能"><a href="#在compass项目中使用精灵合图功能" class="headerlink" title="在compass项目中使用精灵合图功能"></a>在compass项目中使用精灵合图功能</h2><p><del>待更新</del></p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
-      
-        <categories>
-            
-            <category> 前端技术 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> css </tag>
-            
-            <tag> 前端工具，前端技术 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[yeoman+bower+gulp/grunt构建现代化前端项目]]></title>
       <url>/2017/09/29/yeoman+bower+gulp-grunt%E6%9E%84%E5%BB%BA%E7%8E%B0%E4%BB%A3%E5%8C%96%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE/</url>
       <content type="html"><![CDATA[<p><del>待更新</del></p>
@@ -997,7 +972,7 @@ screen.css文件中:
 }
 </code></pre><p><strong>在index.html文件中不同的标签加上不同的类，从而实现一个简单的标签云，效果如下：</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkdj3zidjrj316c0qp0uz.jpg" alt="index.html"></p>
 <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkdj344tjyj30lp017q2v.jpg" alt="标签云效果demo"></p>
-<h2 id="sprites模块"><a href="#sprites模块" class="headerlink" title="sprites模块"></a>sprites模块</h2><p>精灵图合图相关功能集合。可以说是compass在日常工程中的最佳实践，非常实用也非常重要。<br><strong>想象一下设计人员（通常是漂亮的小姐姐们～不好意思责怪人家呀=。=）将sprites图中的一个图标，并且很有可能影响到了其他的图标，开发人员就要吐血地在项目中修改所有被影响的样式代码，这真的是巨痛苦无比呀</strong><br>由于sprites模块很重要，我将它放到了另外一个博客中，以便详细讲解～传送门</p>
+<h2 id="sprites模块"><a href="#sprites模块" class="headerlink" title="sprites模块"></a>sprites模块</h2><p>精灵图合图相关功能集合。可以说是compass在日常工程中的最佳实践，非常实用也非常重要。<br><strong>想象一下设计人员（通常是漂亮的小姐姐们～不好意思责怪人家呀=。=）将sprites图中的一个图标，并且很有可能影响到了其他的图标，开发人员就要吐血地在项目中修改所有被影响的样式代码，这真的是巨痛苦无比呀</strong><br>由于sprites模块很重要，我将它放到了另外一个博客中，以便详细讲解～<a href="http://pancakeawesome.ink/2017/10/10/compass%E9%87%8D%E8%A6%81%E5%8A%9F%E8%83%BD%E4%B9%8B%E7%B2%BE%E7%81%B5%E5%9B%BE%E5%90%88%E5%9B%BE/">传送门</a></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>compass是一个很好用的前端自动化工具，它给sass插上了一双翅膀，极大地提高了我们的开发效率！<br><strong>这里是我写的一个compass的demo，可以对照着看</strong></p>
 ]]></content>
       
@@ -1010,11 +985,11 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -1978,9 +1953,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -2226,9 +2201,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
