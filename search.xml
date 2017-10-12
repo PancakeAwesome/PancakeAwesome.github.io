@@ -324,34 +324,26 @@ align-items: center;
 <pre><code>@import &quot;compass/typography&quot;;
 </code></pre><h3 id="links子模块："><a href="#links子模块：" class="headerlink" title="links子模块："></a>links子模块：</h3><p>修饰<code>&lt;a&gt;</code>标签超链接的样式。<br>我们对<code>&lt;a&gt;</code>标签通常有两种场景修饰它的样式：</p>
 <ul>
-<li><strong>hover-link()</strong><ul>
+<li><p><strong>hover-link()</strong></p>
+<ul>
 <li>功能：正常状态下掉下划线，hover和focus状态下才显示a标签的下划线<ul>
 <li>参数：</li>
-<li>示例：</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>screen.scss文件:
-/*
-    ----------------------
-    typography模块
- */
-/*
-    links子模块
- */
+<li>示例：<pre><code>screen.scss文件:
 a {
-    @include hover-link(); 
+@include hover-link(); 
 }
 screen.css文件中:
 a {
-  text-decoration: none;
+text-decoration: none;
 }
 a:hover, a:focus {
-  text-decoration: underline;
+text-decoration: underline;
 }
-</code></pre><ul>
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>不同状态下改变a标签的颜色</p>
 <ul>
 <li><strong>link-colors($normal, $hover, $active, $visited, $focus)</strong><ul>
@@ -458,245 +450,552 @@ display: inline;
 <pre><code>  -     功能：相比于上例，我们要实现横向list时，由于上例的li都是inline的样式，所有没有高度，这样我们想给li设置一些必须有高度的样式修饰时，就会出现麻烦，horizontal-list()这个mixin可以通过浮动的方式实现横向list且每个li都有高度。
   -     参数：第一个参数时li元素padding的值，第二个元素浮动的方向，设置成false，不设置padding值以兼容ie
   -     示例：
-</code></pre><p>```<br>screen.scss文件:<br>/<em><br>  实现横向导航条的样式且每个li都有自己的高度 不同于上例,无法撑起导航条
-</em>/</p>
+</code></pre><pre><code>screen.scss文件:
+.list-horizontal {
+  @include horizontal-list(0, right);
+}
+screen.css文件中:
+.list-horizontal {
+margin: 0;
+padding: 0;
+border: 0;
+overflow: hidden;
+*zoom: 1;
+}
+.list-horizontal li {
+list-style-image: none;
+list-style-type: none;
+margin-left: 0;
+white-space: nowrap;
+float: right;
+display: inline;
+padding-left: 0;
+padding-right: 0;
+}
+.list-horizontal li:first-child, .list-horizontal li.first {
+padding-right: 0;
+}
+.list-horizontal li:last-child {
+padding-left: 0;
+}
+.list-horizontal li.last {
+padding-left: 0;
+}
+</code></pre></li>
+<li><p><strong>horizontal-list(0, right)</strong></p>
+<pre><code>  -     功能：通过设置li元素为的display属性为inline-block来实现横向list。
+  -     参数：li的padding值
+  -     示例：
+</code></pre><pre><code>screen.scss文件:
+.list-inline-block {
+  @include inline-block(7px);
+}
+screen.css文件中:
+.list-inline-block {
+display: inline-block;
+vertical-align: 7px;
+*vertical-align: auto;
+*zoom: 1;
+*display: inline;
+}
+</code></pre></li>
+</ul>
+<h3 id="text子模块"><a href="#text子模块" class="headerlink" title="text子模块"></a>text子模块</h3><p>文本操作，操作过长文本的样式。</p>
+<ul>
+<li><p><strong>force-wrap()</strong></p>
+<pre><code>  -     功能：强行使长文本换行。
+  -     参数：
+  -     示例：
+</code></pre><pre><code>screen.scss文件:
+.wrap-text {
+  @include force-wrap();
+}
+screen.css文件中:
+.wrap-text {
+white-space: pre;
+white-space: pre-wrap;
+white-space: pre-line;
+white-space: -pre-wrap;
+white-space: -o-pre-wrap;
+white-space: -moz-pre-wrap;
+white-space: -hp-pre-wrap;
+word-wrap: break-word;
+}
+</code></pre></li>
+<li><p><strong>nowrap()</strong></p>
+<pre><code>  -     功能：无论何时都不换行。
+  -     参数：
+  -     示例：
+</code></pre><pre><code>screen.scss文件:
+.nowrap-text {
+  @include nowrap();
+}
+screen.css文件中:
+.nowrap-text {
+white-space: nowrap;
+}
+</code></pre></li>
+<li><p><strong>ellipsis()</strong></p>
+<pre><code>  -     功能：不换行的时候文本超出容器的宽度，出现省略号。
+</code></pre><ul>
+<li>引入： firefox不能很好的支持text-overflow属性，所以需要相关的xml文件来hack，compass已经封装好了，直接引用就好</li>
+</ul>
 </li>
 </ul>
-<p>.list-horizontal {<br>    @include horizontal-list(0, right);<br>}<br>screen.css文件中:<br>.list-horizontal {<br>  margin: 0;<br>  padding: 0;<br>  border: 0;<br>  overflow: hidden;<br>  *zoom: 1;<br>}<br>.list-horizontal li {<br>  list-style-image: none;<br>  list-style-type: none;<br>  margin-left: 0;<br>  white-space: nowrap;<br>  float: right;<br>  display: inline;<br>  padding-left: 0;<br>  padding-right: 0;<br>}<br>.list-horizontal li:first-child, .list-horizontal li.first {<br>  padding-right: 0;<br>}<br>.list-horizontal li:last-child {<br>  padding-left: 0;<br>}<br>.list-horizontal li.last {<br>  padding-left: 0;<br>}</p>
-<pre><code>
-- **horizontal-list(0, right)**
-        -     功能：通过设置li元素为的display属性为inline-block来实现横向list。
-        -     参数：li的padding值
-        -     示例：
-</code></pre><p>screen.scss文件:<br>.list-inline-block {<br>    @include inline-block(7px);<br>}<br>screen.css文件中:<br>.list-inline-block {<br>  display: inline-block;<br>  vertical-align: 7px;<br>  <em>vertical-align: auto;
-  </em>zoom: 1;<br>  *display: inline;<br>}</p>
-<pre><code>
-### text子模块
-文本操作，操作过长文本的样式。
-- **force-wrap()**
-        -     功能：强行使长文本换行。
-        -     参数：
-        -     示例：
-</code></pre><p>screen.scss文件:<br>/<em><br>    强制长文本换行
- </em>/<br>.wrap-text {<br>    @include force-wrap();<br>}<br>screen.css文件中:<br>.wrap-text {<br>  white-space: pre;<br>  white-space: pre-wrap;<br>  white-space: pre-line;<br>  white-space: -pre-wrap;<br>  white-space: -o-pre-wrap;<br>  white-space: -moz-pre-wrap;<br>  white-space: -hp-pre-wrap;<br>  word-wrap: break-word;<br>}</p>
-<pre><code>
-- **nowrap()**
-        -     功能：无论何时都不换行。
-        -     参数：
-        -     示例：
-</code></pre><p>screen.scss文件:<br>.nowrap-text {<br>    @include nowrap();<br>}<br>screen.css文件中:<br>.nowrap-text {<br>  white-space: nowrap;<br>}</p>
-<pre><code>
-- **ellipsis()**
-        -     功能：不换行的时候文本超出容器的宽度，出现省略号。
-    - 引入： firefox不能很好的支持text-overflow属性，所以需要相关的xml文件来hack，compass已经封装好了，直接引用就好
-</code></pre><p>compass install compass/ellipsis        </p>
-<pre><code>
-        -     参数：
-        -     示例：
-</code></pre><p>screen.scss文件:<br>/<em><br>    超长出现省略号<br>    开启firefox对ellipsis的能力支持<br>    需要xml支持<br>    compass install compass/ellipsis
- </em>/<br>$use-mozilla-ellipsis-binding: true;<br>.text-ellipsis {<br>    @include ellipsis();<br>}<br>screen.css文件中:<br>.text-ellipsis {<br>  white-space: nowrap;<br>  overflow: hidden;<br>  -ms-text-overflow: ellipsis;<br>  -o-text-overflow: ellipsis;<br>  text-overflow: ellipsis;<br>  -moz-binding: url(‘xml/ellipsis.xml#ellipsis’);<br>}</p>
-<pre><code>
-- **hide-text()**
-        -     功能：背景图片和标签文本重复时，隐藏标签文本，用图片替换文本内容，这个mixin用来隐藏文字。
-        -     参数：
-        -     示例：
-</code></pre><p>screen.scss文件:<br>/<em><br>  背景图片和标签文本重复时，隐藏标签文本<br>  两种方法
- </em>/<br>.text-hide {<br>    @include hide-text();<br>}<br>screen.css文件中:<br>.text-hide {<br>  text-indent: -119988px;<br>  overflow: hidden;<br>  text-align: left;<br>  text-transform: capitalize;<br>}</p>
-<pre><code>
-- **squish-text()**
-        -     功能：功能同上，字体设置为透明，来隐藏文字。
-        -     参数：
-        -     示例：
-</code></pre><p>screen.scss文件:<br>/<em><br>  背景图片和标签文本重复时，隐藏标签文本<br>  两种方法
- </em>/<br>.text-hide {<br>    @include squish-text();<br>}<br>screen.css文件中:<br>.text-hide {<br>  font: 0/0 serif;<br>  text-shadow: none;<br>  color: transparent;<br>}</p>
-<pre><code>
-- **replace-text()**
-        -     功能：隐藏文字后，添加背景图片。
-        -     参数：第一个参数是图片的url地址（可以使服务器资源的地址也可以是本地图片的地址），第二个和第三个参数是图片的background-position的值。
-        -     示例：
-</code></pre><p>screen.scss文件:<br>/<em><br>    添加背景图片
- </em>/</p>
-<p>.bind-img {<br>    @include replace-text(“<a href="http://img3.mukewang.com/5452ffeb0001b82401000100-40-40.jpg" target="_blank" rel="external">http://img3.mukewang.com/5452ffeb0001b82401000100-40-40.jpg</a>“, 50%, .50%);<br>}<br>screen.css文件中:<br>.bind-img {<br>  text-indent: -119988px;<br>  overflow: hidden;<br>  text-align: left;<br>  text-transform: capitalize;<br>  background-image: url(<a href="http://img3.mukewang.com/5452ffeb0001b82401000100-40-40.jpg" target="_blank" rel="external">http://img3.mukewang.com/5452ffeb0001b82401000100-40-40.jpg</a>);<br>  background-repeat: no-repeat;<br>  background-position: 50% 0.5%;<br>}</p>
-<pre><code>
-- **replace-text-with-dimensions()**
-        -     功能：功能同上，但是会自动隐藏超出容器的多余图片的边框。
-        -     参数：第一个参数是图片的url地址（可以使服务器资源的地址也可以是本地图片的地址）
-        -     示例：
-</code></pre><p>screen.scss文件:<br>/<em><br>    添加背景图片
- </em>/</p>
-<p>.bind-img {<br>    @include replace-text-with-dimensions(image-url(‘1503616769997479025.jpg’));<br>}<br>screen.css文件中:<br>.bind-img {<br>  text-indent: -119988px;<br>  overflow: hidden;<br>  text-align: left;<br>  text-transform: capitalize;<br>  background-image: url(<a href="http://img3.mukewang.com/5452ffeb0001b82401000100-40-40.jpg" target="_blank" rel="external">http://img3.mukewang.com/5452ffeb0001b82401000100-40-40.jpg</a>);<br>  background-repeat: no-repeat;<br>  background-position: 50% 0.5%;<br>}</p>
-<pre><code>
-### vertical rythm子模块
-修饰文本的垂直韵律。修饰文本行与行之间的样式。
-*这个功能不是很长用到，如果做页面大段文本布局的童鞋可以深入理解一下，请入doc [api](http://compass-style.org/reference/compass/typography/)*
+<pre><code>compass install compass/ellipsis
+</code></pre><pre><code>    -     参数：
+    -     示例：
+</code></pre><pre><code>screen.scss文件:
+$use-mozilla-ellipsis-binding: true;
+.text-ellipsis {
+    @include ellipsis();
+}
+screen.css文件中:
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  -moz-binding: url(&#39;xml/ellipsis.xml#ellipsis&#39;);
+}
+</code></pre><ul>
+<li><p><strong>hide-text()</strong></p>
+<pre><code>  -     功能：背景图片和标签文本重复时，隐藏标签文本，用图片替换文本内容，这个mixin用来隐藏文字。
+  -     参数：
+  -     示例：
+</code></pre><pre><code>screen.scss文件:
+.text-hide {
+  @include hide-text();
+}
+screen.css文件中:
+.text-hide {
+text-indent: -119988px;
+overflow: hidden;
+text-align: left;
+text-transform: capitalize;
+}
+</code></pre></li>
+<li><p><strong>squish-text()</strong></p>
+<pre><code>  -     功能：功能同上，字体设置为透明，来隐藏文字。
+  -     参数：
+  -     示例：
+</code></pre><pre><code>screen.scss文件:
+.text-hide {
+  @include squish-text();
+}
+screen.css文件中:
+.text-hide {
+font: 0/0 serif;
+text-shadow: none;
+color: transparent;
+}
+</code></pre></li>
+<li><p><strong>replace-text()</strong></p>
+<pre><code>  -     功能：隐藏文字后，添加背景图片。
+  -     参数：第一个参数是图片的url地址（可以使服务器资源的地址也可以是本地图片的地址），第二个和第三个参数是图片的background-position的值。
+  -     示例：
+</code></pre><pre><code>screen.scss文件:
+.bind-img {
+  @include replace-text(&quot;http://img3.mukewang.com/5452ffeb0001b82401000100-40-40.jpg&quot;, 50%, .50%);
+}
+screen.css文件中:
+.bind-img {
+text-indent: -119988px;
+overflow: hidden;
+text-align: left;
+text-transform: capitalize;
+background-image: url(http://img3.mukewang.com/5452ffeb0001b82401000100-40-40.jpg);
+background-repeat: no-repeat;
+background-position: 50% 0.5%;
+}
+</code></pre></li>
+<li><p><strong>replace-text-with-dimensions()</strong></p>
+<pre><code>  -     功能：功能同上，但是会自动隐藏超出容器的多余图片的边框。
+  -     参数：第一个参数是图片的url地址（可以使服务器资源的地址也可以是本地图片的地址）
+  -     示例：
+</code></pre><pre><code>screen.scss文件:
+.bind-img {
+  @include replace-text-with-dimensions(image-url(&#39;1503616769997479025.jpg&#39;));
+}
+screen.css文件中:
+.bind-img {
+text-indent: -119988px;
+overflow: hidden;
+text-align: left;
+text-transform: capitalize;
+background-image: url(http://img3.mukewang.com/5452ffeb0001b82401000100-40-40.jpg);
+background-repeat: no-repeat;
+background-position: 50% 0.5%;
+}
+</code></pre></li>
+</ul>
+<h3 id="vertical-rythm子模块"><a href="#vertical-rythm子模块" class="headerlink" title="vertical rythm子模块"></a>vertical rythm子模块</h3><p>修饰文本的垂直韵律。修饰文本行与行之间的样式。<br><em>这个功能不是很长用到，如果做页面大段文本布局的童鞋可以深入理解一下，请入doc <a href="http://compass-style.org/reference/compass/typography/" target="_blank" rel="external">api</a></em></p>
+<h2 id="helpers模块"><a href="#helpers模块" class="headerlink" title="helpers模块"></a>helpers模块</h2><p>helpers模块是用来提供许多工具function的内部模块。<br><strong>helpers模块中有很多不适很常用的function，这里不多讲，如果有需要的童鞋请进入doc <a href="http://compass-style.org/reference/compass/typography/" target="_blank" rel="external">api</a></strong><br><strong>这里只介绍常用的功能</strong><br><strong>安装</strong>：</p>
+<pre><code>compass install helpers
+</code></pre><p><strong>引入</strong>：</p>
+<pre><code>@import &#39;compass/helpers&#39;;
+</code></pre><h3 id="inline-image"><a href="#inline-image" class="headerlink" title="inline-image()"></a>inline-image()</h3><pre><code>    -     功能：将图片base64编码压缩。
+    -     参数：图片本地地址
+    -     示例：
+</code></pre><pre><code>screen.scss文件:
+.analyze-logo {    
+    background-image: inline-image(&#39;1503616769997479025.jpg&#39;);
+}
+</code></pre><p><em>screen.css</em>文件中:<br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkdgggqdmxj30zk0ewn0k.jpg" alt=""><br><strong>这种方法会很消耗内存，在项目中不适很常用到，compass的另一个比较常用的模块–精灵合图绘很适合这样的场景，大力推荐！</strong></p>
+<h3 id="image-url"><a href="#image-url" class="headerlink" title="image-url()"></a>image-url()</h3><pre><code>    -     功能：直接使用文件的名称来代替文件的本地路径，compass会直接根据config.rb文件中配置来寻路，并且可以给生成css文件中图片地址加上cache-buster（时间戳和版本号，通常在图片路径中问号的后面。图片每次更新都会更改这个值。会造成大量的缓存垃圾。）
+    -     参数：图片本地地址
+    -     注意：这里的参数直接使用了图片的文件名称，相对路径图片的引用自动根据图片改变而改变,URL后面的cache会据config中的httppath配置项去自动加上http域名,config文件中的relative-assets配置项来配置是否使用相对路径来引用资源文件。
+</code></pre><p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkdgorxruoj30ma07eq3c.jpg" alt=""></p>
+<pre><code>    -     示例：
+</code></pre><pre><code>screen.scss文件:
+.analyze-logo {
+    background-image: image-url(&#39;1503616769997479025.jpg&#39;);
+}
+screen.css文件中:
+.analyze-logo {
+  background-image: url(&#39;../images/1503616769997479025.jpg?1506223791&#39;);
+}
+</code></pre><p><strong>功能类似的还有stylesheet-url和font-url用来指向css目录和font目录，可以查询doc api</strong></p>
+<h3 id="font-files"><a href="#font-files" class="headerlink" title="font-files()"></a>font-files()</h3><pre><code>    -     功能：在项目目录中寻路font字体文件，并加上cache-buster
+    -     参数：font字体文件的文件名列表
+    -     注意：**在config.rb文件中配置font字体文件的路径。**
+</code></pre><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkdh3hrs8kj309u0drjrq.jpg" alt=""></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkdgorxruoj30ma07eq3c.jpg" alt=""></p>
+<pre><code>    -     示例：
+</code></pre><pre><code>screen.scss文件:
+@debug font-files(&quot;fontawesome-webfont.eot&quot;, &quot;fontawesome-webfont.ttf&quot;, &quot;fontawesome-webfont.svg&quot;, &quot;fontawesome-webfont.woff&quot;, &quot;FontAwesome.otf&quot;);
+</code></pre><p>命令行中：<br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkdgzlxvuaj313h046t9h.jpg" alt=""></p>
+<h3 id="font-face"><a href="#font-face" class="headerlink" title="font-face()"></a>font-face()</h3><pre><code>    -     功能：相比于font-url，font-face会额外根据字体文件帮我们生成对应的format的值
+    -     参数：字体文件的url，可以和font-files配合
+    -     示例：
+</code></pre><pre><code>screen.scss文件:
+@include font-face(&quot;FontAwesome&quot;,
+font-files(&quot;fontawesome-webfont.eot&quot;, &quot;fontawesome-webfont.ttf&quot;, &quot;fontawesome-webfont.svg&quot;, &quot;fontawesome-webfont.woff&quot;, &quot;FontAwesome.otf&quot;));
+screen.css文件中:
+@font-face {
+  font-family: &quot;FontAwesome&quot;;
+  src: url(&#39;../fonts/fontawesome-webfont.eot?1478142484&#39;) format(&#39;embedded-opentype&#39;), url(&#39;../fonts/fontawesome-webfont.ttf?1478142484&#39;) format(&#39;truetype&#39;), url(&#39;../fonts/fontawesome-webfont.svg?1478142484&#39;) format(&#39;svg&#39;), url(&#39;../fonts/fontawesome-webfont.woff?1478142484&#39;) format(&#39;woff&#39;), url(&#39;../fonts/FontAwesome.otf?1478142484&#39;) format(&#39;opentype&#39;);
+}
+</code></pre><p>命令行中：<br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkdgzlxvuaj313h046t9h.jpg" alt="3123"></p>
+<h3 id="append-selector"><a href="#append-selector" class="headerlink" title="append-selector()"></a>append-selector()</h3><pre><code>    -     功能：将选择器嵌套起来
+    -     参数： 将第二个选择弃嵌套到第一个参数的选择器中
+    -     注意：**在选择器里面要引用sass的变量需要加上#{}sass的变量包裹器**
+    -     示例：
+</code></pre><pre><code>screen.scss文件:
+#{append-selector(&#39;p, span, div&#39;, &#39;.bar&#39;)} {
+    color: #000;
+}
+screen.css文件中:
+p.bar, span.bar, div.bar {
+  color: #000;
+}
+</code></pre><h2 id="utilities模块"><a href="#utilities模块" class="headerlink" title="utilities模块"></a>utilities模块</h2><p>辅助工具类🔧的模块。与helpers模块不同的是，utilities模块都是mixin。<br><em>引入：</em></p>
+<pre><code>@import &#39;compass/utilities&#39;;
+</code></pre><p>utilities模块又分为以下5个子模块：</p>
+<ul>
+<li>color</li>
+<li>generak</li>
+<li>print</li>
+<li>tables</li>
+<li><strong>sprites</strong>（精灵图合图相关工具的集合,<strong>这个功能模块是使用compass的重中之重！</strong>详见我的另一篇博客）</li>
+</ul>
+<h3 id="color子模块"><a href="#color子模块" class="headerlink" title="color子模块"></a>color子模块</h3><p>颜色相关的模块。</p>
+<ul>
+<li><strong>brightness()</strong><pre><code>  -     功能：返回相关颜色的亮度值，计算hsl的亮度值（l）
+  -     参数：色值
+</code></pre></li>
+</ul>
+<h3 id="print子模块"><a href="#print子模块" class="headerlink" title="print子模块"></a>print子模块</h3><p>打印场景下相关功能的模块。这个场景很少见，估计是打印页面相关的样式。</p>
+<ul>
+<li><strong>print-utilities();</strong><pre><code>  -     功能：适配打印页面。产生打印页面才显示的样式。
+  -     参数：media文件，默认print.
+  -     注意：**需要print.scss中做适配**
+</code></pre><ul>
+<li>引入    ：</li>
+</ul>
+</li>
+</ul>
+<pre><code>index.html文件中：
+&lt;link href=&quot;stylesheets/print.css&quot; media=&quot;print&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+</code></pre><pre><code>-     示例
+</code></pre><pre><code>print.scss文件中：
+@import &quot;compass/utilities/print&quot;;
 
-## helpers模块
-helpers模块是用来提供许多工具function的内部模块。
-**helpers模块中有很多不适很常用的function，这里不多讲，如果有需要的童鞋请进入doc [api](http://compass-style.org/reference/compass/typography/)**
-**这里只介绍常用的功能**
-**安装**：
-</code></pre><p>compass install helpers</p>
-<pre><code>
-**引入**：
-</code></pre><p>@import ‘compass/helpers’;</p>
-<pre><code>
-### inline-image()
-        -     功能：将图片base64编码压缩。
-        -     参数：图片本地地址
-        -     示例：
-</code></pre><p>screen.scss文件:<br>.analyze-logo {<br>    background-image: inline-image(‘1503616769997479025.jpg’);<br>}</p>
-<pre><code>*screen.css*文件中:
-![](https://ws2.sinaimg.cn/large/006tKfTcgy1fkdgggqdmxj30zk0ewn0k.jpg)
-**这种方法会很消耗内存，在项目中不适很常用到，compass的另一个比较常用的模块--精灵合图绘很适合这样的场景，大力推荐！**
+@include print-utilities();
+screen.scss文件:
+@include print-utilities(screen);
+screen.css文件中:
+.print-only {
+  display: none;
+}
+</code></pre><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkdhvt5ihdj31240lemzn.jpg" alt="print.css文件"></p>
+<h3 id="tables子模块"><a href="#tables子模块" class="headerlink" title="tables子模块"></a>tables子模块</h3><p>table样式的相关样式集合。<br><em>用一个实例来说明这些mixin</em><br><strong>需要在index.html文件中引入相关格式的html代码：</strong></p>
+<pre><code>index.html文件中：
+&lt;div class=&#39;example&#39;&gt;
+    &lt;table class=&quot;good-price&quot; cellspacing=&#39;0&#39;&gt;
+        &lt;thead&gt;
+            &lt;tr class=&#39;odd&#39;&gt;
+                &lt;th&gt;Title&lt;/th&gt;
+                &lt;th&gt;One&lt;/th&gt;
+                &lt;th&gt;Two&lt;/th&gt;
+                &lt;th&gt;Three&lt;/th&gt;
+                &lt;th&gt;Four&lt;/th&gt;
+                &lt;th&gt;Row Total&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr class=&#39;even&#39;&gt;
+                &lt;th&gt;Single&lt;/th&gt;
+                &lt;td class=&#39;numeric&#39;&gt;1.0&lt;/td&gt;
+                &lt;td class=&#39;numeric&#39;&gt;2.0&lt;/td&gt;
+                &lt;td class=&#39;numeric&#39;&gt;3.0&lt;/td&gt;
+                &lt;td class=&#39;numeric&#39;&gt;4.0&lt;/td&gt;
+                &lt;td class=&#39;numeric&#39;&gt;10.0&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr class=&#39;odd&#39;&gt;
+                &lt;th&gt;Tens&lt;/th&gt;
+                &lt;td class=&#39;numeric&#39;&gt;10.0&lt;/td&gt;
+                &lt;td class=&#39;numeric&#39;&gt;20.0&lt;/td&gt;
+                &lt;td class=&#39;numeric&#39;&gt;30.0&lt;/td&gt;
+                &lt;td class=&#39;numeric&#39;&gt;40.0&lt;/td&gt;
+                &lt;td class=&#39;numeric&#39;&gt;100.0&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+        &lt;tfoot&gt;
+            &lt;tr class=&#39;even&#39;&gt;
+                &lt;th&gt;Total&lt;/th&gt;
+                &lt;td class=&#39;numeric&#39;&gt;11.0&lt;/td&gt;
+                &lt;td class=&#39;numeric&#39;&gt;22.0&lt;/td&gt;
+                &lt;td class=&#39;numeric&#39;&gt;33.0&lt;/td&gt;
+                &lt;td class=&#39;numeric&#39;&gt;44.0&lt;/td&gt;
+                &lt;td class=&#39;numeric&#39;&gt;110.0&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tfoot&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+</code></pre><pre><code>screen.scss文件中：
+.good-price {
+    $table-color: #7a98c6;
 
-### image-url()
-        -     功能：直接使用文件的名称来代替文件的本地路径，compass会直接根据config.rb文件中配置来寻路，并且可以给生成css文件中图片地址加上cache-buster（时间戳和版本号，通常在图片路径中问号的后面。图片每次更新都会更改这个值。会造成大量的缓存垃圾。）
-        -     参数：图片本地地址
-        -     注意：这里的参数直接使用了图片的文件名称，相对路径图片的引用自动根据图片改变而改变,URL后面的cache会据config中的httppath配置项去自动加上http域名,config文件中的relative-assets配置项来配置是否使用相对路径来引用资源文件。
-![](https://ws2.sinaimg.cn/large/006tKfTcgy1fkdgorxruoj30ma07eq3c.jpg)
-        -     示例：
-</code></pre><p>screen.scss文件:<br>.analyze-logo {<br>    background-image: image-url(‘1503616769997479025.jpg’);<br>}<br>screen.css文件中:<br>.analyze-logo {<br>  background-image: url(‘../images/1503616769997479025.jpg?1506223791’);<br>}</p>
-<pre><code>
-**功能类似的还有stylesheet-url和font-url用来指向css目录和font目录，可以查询doc api**
-
-### font-files()
-        -     功能：在项目目录中寻路font字体文件，并加上cache-buster
-        -     参数：font字体文件的文件名列表
-        -     注意：**在config.rb文件中配置font字体文件的路径。**
-![](https://ws1.sinaimg.cn/large/006tKfTcgy1fkdh3hrs8kj309u0drjrq.jpg)
-
-![](https://ws2.sinaimg.cn/large/006tKfTcgy1fkdgorxruoj30ma07eq3c.jpg)
-        -     示例：
-</code></pre><p>screen.scss文件:<br>@debug font-files(“fontawesome-webfont.eot”, “fontawesome-webfont.ttf”, “fontawesome-webfont.svg”, “fontawesome-webfont.woff”, “FontAwesome.otf”);</p>
-<pre><code>
-命令行中：
-![](https://ws4.sinaimg.cn/large/006tKfTcgy1fkdgzlxvuaj313h046t9h.jpg)
-
-### font-face()
-        -     功能：相比于font-url，font-face会额外根据字体文件帮我们生成对应的format的值
-        -     参数：字体文件的url，可以和font-files配合
-        -     示例：
-</code></pre><p>screen.scss文件:<br>@include font-face(“FontAwesome”,<br>font-files(“fontawesome-webfont.eot”, “fontawesome-webfont.ttf”, “fontawesome-webfont.svg”, “fontawesome-webfont.woff”, “FontAwesome.otf”));<br>screen.css文件中:<br>@font-face {<br>  font-family: “FontAwesome”;<br>  src: url(‘../fonts/fontawesome-webfont.eot?1478142484’) format(‘embedded-opentype’), url(‘../fonts/fontawesome-webfont.ttf?1478142484’) format(‘truetype’), url(‘../fonts/fontawesome-webfont.svg?1478142484’) format(‘svg’), url(‘../fonts/fontawesome-webfont.woff?1478142484’) format(‘woff’), url(‘../fonts/FontAwesome.otf?1478142484’) format(‘opentype’);<br>}</p>
-<pre><code>
-命令行中：
-![3123](https://ws4.sinaimg.cn/large/006tKfTcgy1fkdgzlxvuaj313h046t9h.jpg)
-
-### append-selector()
-        -     功能：将选择器嵌套起来
-        -     参数： 将第二个选择弃嵌套到第一个参数的选择器中
-        -     注意：**在选择器里面要引用sass的变量需要加上#{}sass的变量包裹器**
-        -     示例：
-</code></pre><p>screen.scss文件:</p>
-<p>#{append-selector(‘p, span, div’, ‘.bar’)} {<br>    color: #000;<br>}<br>screen.css文件中:<br>p.bar, span.bar, div.bar {<br>  color: #000;<br>}</p>
-<pre><code>
-## utilities模块
-辅助工具类🔧的模块。与helpers模块不同的是，utilities模块都是mixin。
-*引入：*
-</code></pre><p>@import ‘compass/utilities’;</p>
-<pre><code>utilities模块又分为以下5个子模块：
-- color
-- generak
-- print
-- tables
-- **sprites**（精灵图合图相关工具的集合,**这个功能模块是使用compass的重中之重！**详见我的另一篇博客）
-
-### color子模块
-颜色相关的模块。
-- **brightness()**
-        -     功能：返回相关颜色的亮度值，计算hsl的亮度值（l）
-        -     参数：色值
-
-### print子模块
-打印场景下相关功能的模块。这个场景很少见，估计是打印页面相关的样式。
-- **print-utilities();**
-        -     功能：适配打印页面。产生打印页面才显示的样式。
-        -     参数：media文件，默认print.
-        -     注意：**需要print.scss中做适配**
-    - 引入    ：
-</code></pre><p>index.html文件中：</p>
-<p><link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css"></p>
-<pre><code>
+    @include outer-table-borders();
+    @include inner-table-borders(1px,darken($table-color, 40%)); 
+    // th标题居中对齐，普通文本左对齐，竖直右对齐，并填充padding
+    @include table-scaffolding(); 
+    // 奇偶行不同色，相邻纵列不同色
+    @include alternating-rows-and-columns($table-color,adjust-hue($table-color, -120deg),#222222);
+}
+screen.css文件中：
+.good-price {
+  border: 2px solid black;
+}
+.good-price thead th {
+  border-bottom: 2px solid black;
+}
+.good-price tfoot th, .good-price tfoot td {
+  border-top: 2px solid black;
+}
+.good-price th:first-child, .good-price th.first {
+  border-right: 2px solid black;
+}
+.good-price th, .good-price td {
+  border-right: 1px solid #233551;
+  border-bottom: 1px solid #233551;
+  border-left-width: 0;
+  border-top-width: 0;
+}
+.good-price th:last-child, .good-price td:last-child {
+  border-right-width: 0;
+}
+.good-price th.last, .good-price td.last {
+  border-right-width: 0;
+}
+.good-price tbody tr:last-child th, .good-price tbody tr:last-child td, .good-price tfoot tr:last-child th, .good-price tfoot tr:last-child td {
+  border-bottom-width: 0;
+}
+.good-price tbody tr.last th, .good-price tbody tr.last td, .good-price tfoot tr.last th, .good-price tfoot tr.last td {
+  border-bottom-width: 0;
+}
+.good-price th {
+  text-align: center;
+  font-weight: bold;
+}
+.good-price td,
+.good-price th {
+  padding: 2px;
+}
+.good-price td.numeric,
+.good-price th.numeric {
+  text-align: right;
+}
+.good-price th {
+  background-color: white;
+}
+.good-price th.even, .good-price th:nth-child(2n) {
+  background-color: #dddddd;
+}
+.good-price tr.odd td, .good-price tr:nth-child(2n+1) td {
+  background-color: #98c67a;
+}
+.good-price tr.odd td.even, .good-price tr.odd td:nth-child(2n), .good-price tr:nth-child(2n+1) td.even, .good-price tr:nth-child(2n+1) td:nth-child(2n) {
+  background-color: #76a458;
+}
+.good-price tr.even td {
+  background-color: #7a98c6;
+}
+.good-price tr.even td.even, .good-price tr.even td:nth-child(2n) {
+  background-color: #5876a4;
+}
+.good-price tfoot th, .good-price tfoot td {
+  background-color: white;
+}
+.good-price tfoot th.even, .good-price tfoot th:nth-child(2n), .good-price tfoot td.even, .good-price tfoot td:nth-child(2n) {
+  background-color: #dddddd;
+}
+</code></pre><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkdic3j8rmj30cp04iq34.jpg" alt="table样式"></p>
+<h3 id="general子模块"><a href="#general子模块" class="headerlink" title="general子模块"></a>general子模块</h3><p>一些常见的样式的相关样式集合。</p>
+<ul>
+<li><p><strong>clearfix()</strong></p>
+<pre><code>  -     功能：overflow:hidden的方法清除浮动。
+  -     示例
+</code></pre><pre><code>screen.scss文件:
+.clearfix {
+  @include pie-clearfix();
+}
+screen.css文件中:
+.clearfix {
+  /*
+      子元素超出父元素会overflow: hidden
+   */
+overflow: hidden;
+*zoom: 1;
+}
+</code></pre></li>
+<li><p><strong>pie-clearfix()</strong></p>
+<pre><code>  -     功能：伪类的方法清除浮动。
+  -     示例
+</code></pre><pre><code>screen.scss文件:
+.clearfix {
+  @include pie-clearfix();
+}
+screen.css文件中:
+.clearfix {
+*zoom: 1;
+}
+.clearfix:after {
+content: &quot;&quot;;
+display: table;
+clear: both;
+}
+</code></pre></li>
+<li><p><strong>float()</strong></p>
+<pre><code>  -     功能：根据你在browser support中配置的浏览器环境，兼容ie6浮动布局。
+</code></pre><ul>
+<li>注意：需要在browser support中配置</li>
+</ul>
+</li>
+</ul>
+<pre><code>$browser-minimum-versions: (&quot;ie&quot;: &quot;6&quot;);
+</code></pre><pre><code>- 参数：浮动的方向
     -     示例
-</code></pre><p>print.scss文件中：<br>@import “compass/utilities/print”;</p>
-<p>@include print-utilities();<br>screen.scss文件:</p>
-<h2 id=""><a href="#" class="headerlink" title="/*"></a>/*</h2><pre><code>print子模块
-需要print.scss中做适配
-</code></pre><p> */</p>
-<p>@include print-utilities(screen);<br>screen.css文件中:<br>.print-only {<br>  display: none;<br>}</p>
-<pre><code>
-![print.css文件](https://ws3.sinaimg.cn/large/006tKfTcgy1fkdhvt5ihdj31240lemzn.jpg)
-
-### tables子模块
-table样式的相关样式集合。
-*用一个实例来说明这些mixin*
-**需要在index.html文件中引入相关格式的html代码：**
-</code></pre><p>index.html文件中：</p>
-<p><div class="example"><br>    <table class="good-price" cellspacing="0"><br>        <thead><br>            <tr class="odd"><br>                <th>Title</th><br>                <th>One</th><br>                <th>Two</th><br>                <th>Three</th><br>                <th>Four</th><br>                <th>Row Total</th><br>            </tr><br>        </thead><br>        <tbody><br>            <tr class="even"><br>                <th>Single</th><br>                <td class="numeric">1.0</td><br>                <td class="numeric">2.0</td><br>                <td class="numeric">3.0</td><br>                <td class="numeric">4.0</td><br>                <td class="numeric">10.0</td><br>            </tr><br>            <tr class="odd"><br>                <th>Tens</th><br>                <td class="numeric">10.0</td><br>                <td class="numeric">20.0</td><br>                <td class="numeric">30.0</td><br>                <td class="numeric">40.0</td><br>                <td class="numeric">100.0</td><br>            </tr><br>        </tbody><br>        <tfoot><br>            <tr class="even"><br>                <th>Total</th><br>                <td class="numeric">11.0</td><br>                <td class="numeric">22.0</td><br>                <td class="numeric">33.0</td><br>                <td class="numeric">44.0</td><br>                <td class="numeric">110.0</td><br>            </tr><br>        </tfoot><br>    </table><br></div></p>
-<pre><code>
-</code></pre><p>screen.scss文件中：<br>.good-price {<br>    $table-color: #7a98c6;</p>
-<pre><code>@include outer-table-borders();
-@include inner-table-borders(1px,darken($table-color, 40%)); 
-// th标题居中对齐，普通文本左对齐，竖直右对齐，并填充padding
-@include table-scaffolding(); 
-// 奇偶行不同色，相邻纵列不同色
-@include alternating-rows-and-columns($table-color,adjust-hue($table-color, -120deg),#222222);
-</code></pre><p>}<br>screen.css文件中：<br>.good-price {<br>  border: 2px solid black;<br>}<br>.good-price thead th {<br>  border-bottom: 2px solid black;<br>}<br>.good-price tfoot th, .good-price tfoot td {<br>  border-top: 2px solid black;<br>}<br>.good-price th:first-child, .good-price th.first {<br>  border-right: 2px solid black;<br>}<br>.good-price th, .good-price td {<br>  border-right: 1px solid #233551;<br>  border-bottom: 1px solid #233551;<br>  border-left-width: 0;<br>  border-top-width: 0;<br>}<br>.good-price th:last-child, .good-price td:last-child {<br>  border-right-width: 0;<br>}<br>.good-price th.last, .good-price td.last {<br>  border-right-width: 0;<br>}<br>.good-price tbody tr:last-child th, .good-price tbody tr:last-child td, .good-price tfoot tr:last-child th, .good-price tfoot tr:last-child td {<br>  border-bottom-width: 0;<br>}<br>.good-price tbody tr.last th, .good-price tbody tr.last td, .good-price tfoot tr.last th, .good-price tfoot tr.last td {<br>  border-bottom-width: 0;<br>}<br>.good-price th {<br>  text-align: center;<br>  font-weight: bold;<br>}<br>.good-price td,<br>.good-price th {<br>  padding: 2px;<br>}<br>.good-price td.numeric,<br>.good-price th.numeric {<br>  text-align: right;<br>}<br>.good-price th {<br>  background-color: white;<br>}<br>.good-price th.even, .good-price th:nth-child(2n) {<br>  background-color: #dddddd;<br>}<br>.good-price tr.odd td, .good-price tr:nth-child(2n+1) td {<br>  background-color: #98c67a;<br>}<br>.good-price tr.odd td.even, .good-price tr.odd td:nth-child(2n), .good-price tr:nth-child(2n+1) td.even, .good-price tr:nth-child(2n+1) td:nth-child(2n) {<br>  background-color: #76a458;<br>}<br>.good-price tr.even td {<br>  background-color: #7a98c6;<br>}<br>.good-price tr.even td.even, .good-price tr.even td:nth-child(2n) {<br>  background-color: #5876a4;<br>}<br>.good-price tfoot th, .good-price tfoot td {<br>  background-color: white;<br>}<br>.good-price tfoot th.even, .good-price tfoot th:nth-child(2n), .good-price tfoot td.even, .good-price tfoot td:nth-child(2n) {<br>  background-color: #dddddd;<br>}</p>
-<pre><code>
-![table样式](https://ws1.sinaimg.cn/large/006tKfTcgy1fkdic3j8rmj30cp04iq34.jpg)
-
-### general子模块
-一些常见的样式的相关样式集合。
-
-- **clearfix()**
-        -     功能：overflow:hidden的方法清除浮动。
-        -     示例
-</code></pre><p>screen.scss文件:<br>.clearfix {<br>    /<em><br>        支持子元素浮动在父元素之外
-     </em>/<br>    @include pie-clearfix();<br>}<br>screen.css文件中:<br>.clearfix {<br>    /<em><br>        子元素超出父元素会overflow: hidden
-     </em>/<br>  overflow: hidden;<br>  *zoom: 1;<br>}</p>
-<pre><code>
-- **pie-clearfix()**
-        -     功能：伪类的方法清除浮动。
-        -     示例
-</code></pre><p>screen.scss文件:<br>.clearfix {<br>    /<em><br>        支持子元素浮动在父元素之外
-     </em>/<br>    @include pie-clearfix();<br>}<br>screen.css文件中:<br>.clearfix {<br>    /<em><br>        支持子元素浮动在父元素之外
-     </em>/<br>  *zoom: 1;<br>}<br>.clearfix:after {<br>  content: “”;<br>  display: table;<br>  clear: both;<br>}</p>
-<pre><code>
-- **float()**
-        -     功能：根据你在browser support中配置的浏览器环境，兼容ie6浮动布局。
-    - 注意：需要在browser support中配置
-</code></pre><p>$browser-minimum-versions: (“ie”: “6”);</p>
-<pre><code>
-    - 参数：浮动的方向
-        -     示例
-</code></pre><p>screen.scss文件:<br>/<em><br>    支持子元素浮动在父元素之外<br>    兼容ie6
- </em>/<br>.pull-left {<br>    @include float(left);<br>}<br>screen.css文件中:<br>.pull-left {<br>  float: left;<br>  display: inline;<br>}</p>
-<pre><code>
-#### hacks子模块
-很多兼容ie的hack集合。
-- **has-layout()**
-        -     功能：激活兼容ie属性。
-    - 参数：激活ie的方式，推荐zoom         
-        -     示例
-</code></pre><p>screen.scss文件:<br>.need-has-layout {<br>    @include has-layout();<br>}<br>screen.css文件中:<br>.need-has-layout {<br>  *zoom: 1;<br>}</p>
-<pre><code>
-- **underscore-hack()**
-        -     功能：正常情况下属性是某种值，ie下hack成另一种值。
-    - 参数：第一个参数是属性的key，第二个是正常情况下的value，第三个是hack情况下的value        
-        -     示例：
-</code></pre><p>screen.scss文件:<br>.underscore-hack-display {<br>    @include underscore-hack(display,block,inline);<br>}<br>screen.css文件中:<br>.underscore-hack-display {<br>  display: block;<br>  _display: inline;<br>}</p>
-<pre><code>
-- **min-height()**
-        -     功能：下划线的方式hack min-height和min-width属性。
-    - 参数：相应的height或者width值
-        -     示例：
-</code></pre><p>screen.scss文件:<br>.test-min-height {<br>    @include min-height(10px);<br>}<br>screen.css文件中:<br>.test-min-height {<br>  min-height: 10px;<br>  height: auto;<br>  _height: 10px;<br>}</p>
-<pre><code>
-#### 标签云模块
-compass封装了一个简单的标签云功能模块，以一个例子来说明：
-</code></pre><p>screen.scss文件:<br>/<em><br>    标签云
- </em>/</p>
-<p>.tag-cloud-container {<br>    @include tag-cloud(24px);<br>}<br>screen.css文件中:<br>.tag-cloud-container {<br>  font-size: 24px;<br>  line-height: 28.8px;<br>}<br>.tag-cloud-container .xxs, .tag-cloud-container .xs, .tag-cloud-container .s, .tag-cloud-container .l, .tag-cloud-container .xl, .tag-cloud-container .xxl {<br>  line-height: 28.8px;<br>}<br>.tag-cloud-container .xxs {<br>  font-size: 12px;<br>}<br>.tag-cloud-container .xs {<br>  font-size: 16px;<br>}<br>.tag-cloud-container .s {<br>  font-size: 18px;<br>}<br>.tag-cloud-container .l {<br>  font-size: 32px;<br>}<br>.tag-cloud-container .xl {<br>  font-size: 36px;<br>}<br>.tag-cloud-container .xxl {<br>  font-size: 48px;<br>}<br>```</p>
-<p><strong>在index.html文件中不同的标签加上不同的类，从而实现一个简单的标签云，效果如下：</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkdj3zidjrj316c0qp0uz.jpg" alt="index.html"></p>
+</code></pre><pre><code>screen.scss文件:
+.pull-left {
+    @include float(left);
+}
+screen.css文件中:
+.pull-left {
+  float: left;
+  display: inline;
+}
+</code></pre><h4 id="hacks子模块"><a href="#hacks子模块" class="headerlink" title="hacks子模块"></a>hacks子模块</h4><p>很多兼容ie的hack集合。</p>
+<ul>
+<li><p><strong>has-layout()</strong></p>
+<pre><code>  -     功能：激活兼容ie属性。
+</code></pre><ul>
+<li>参数：激活ie的方式，推荐zoom         <ul>
+<li>示例<pre><code>screen.scss文件:
+.need-has-layout {
+@include has-layout();
+}
+screen.css文件中:
+.need-has-layout {
+*zoom: 1;
+}
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>underscore-hack()</strong></p>
+<pre><code>  -     功能：正常情况下属性是某种值，ie下hack成另一种值。
+</code></pre><ul>
+<li>参数：第一个参数是属性的key，第二个是正常情况下的value，第三个是hack情况下的value        <ul>
+<li>示例：<pre><code>screen.scss文件:
+.underscore-hack-display {
+@include underscore-hack(display,block,inline);
+}
+screen.css文件中:
+.underscore-hack-display {
+display: block;
+_display: inline;
+}
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>min-height()</strong></p>
+<pre><code>  -     功能：下划线的方式hack min-height和min-width属性。
+</code></pre><ul>
+<li>参数：相应的height或者width值<ul>
+<li>示例：<pre><code>screen.scss文件:
+.test-min-height {
+@include min-height(10px);
+}
+screen.css文件中:
+.test-min-height {
+min-height: 10px;
+height: auto;
+_height: 10px;
+}
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="标签云模块"><a href="#标签云模块" class="headerlink" title="标签云模块"></a>标签云模块</h4><p>compass封装了一个简单的标签云功能模块，以一个例子来说明：</p>
+<pre><code>screen.scss文件:
+.tag-cloud-container {
+    @include tag-cloud(24px);
+}
+screen.css文件中:
+.tag-cloud-container {
+  font-size: 24px;
+  line-height: 28.8px;
+}
+.tag-cloud-container .xxs, .tag-cloud-container .xs, .tag-cloud-container .s, .tag-cloud-container .l, .tag-cloud-container .xl, .tag-cloud-container .xxl {
+  line-height: 28.8px;
+}
+.tag-cloud-container .xxs {
+  font-size: 12px;
+}
+.tag-cloud-container .xs {
+  font-size: 16px;
+}
+.tag-cloud-container .s {
+  font-size: 18px;
+}
+.tag-cloud-container .l {
+  font-size: 32px;
+}
+.tag-cloud-container .xl {
+  font-size: 36px;
+}
+.tag-cloud-container .xxl {
+  font-size: 48px;
+}
+</code></pre><p><strong>在index.html文件中不同的标签加上不同的类，从而实现一个简单的标签云，效果如下：</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkdj3zidjrj316c0qp0uz.jpg" alt="index.html"></p>
 <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkdj344tjyj30lp017q2v.jpg" alt="标签云效果demo"></p>
 <h2 id="sprites模块"><a href="#sprites模块" class="headerlink" title="sprites模块"></a>sprites模块</h2><p>精灵图合图相关功能集合。可以说是compass在日常工程中的最佳实践，非常实用也非常重要。<br><strong>想象一下设计人员（通常是漂亮的小姐姐们～不好意思责怪人家呀=。=）将sprites图中的一个图标，并且很有可能影响到了其他的图标，开发人员就要吐血地在项目中修改所有被影响的样式代码，这真的是巨痛苦无比呀</strong><br>由于sprites模块很重要，我将它放到了另外一个博客中，以便详细讲解～传送门</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>compass是一个很好用的前端自动化工具，它给sass插上了一双翅膀，极大地提高了我们的开发效率！<br><strong>这里是我写的一个compass的demo，可以对照着看</strong></p>
