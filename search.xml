@@ -3,6 +3,14 @@
   
     
     <entry>
+      <title><![CDATA[nodejs初级教程]]></title>
+      <url>/2017/10/16/nodejs%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[RESTful API设计最佳实践]]></title>
       <url>/2017/10/16/RESTful-API%E8%AE%BE%E8%AE%A1%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="RESTful-API-设计最佳实践"><a href="#RESTful-API-设计最佳实践" class="headerlink" title="RESTful API 设计最佳实践"></a>RESTful API 设计最佳实践</h2><p>项目资源的URL应该如何设计？用名词复数还是用名词单数？一个资源需要多少个URL？用哪种HTTP方法来创建一个新的资源？可选参数应该放在哪里？那些不涉及资源操作的URL呢？实现分页和版本控制的最好方法是什么？因为有太多的疑问，设计RESTful API变得很棘手。</p>
@@ -340,39 +348,6 @@ GET /employees?offset=20&amp;limit=10
         <tags>
             
             <tag> 前端技术 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[react实战--打造画廊项目]]></title>
-      <url>/2017/10/12/react%E5%AE%9E%E6%88%98-%E6%89%93%E9%80%A0%E7%94%BB%E5%BB%8A%E9%A1%B9%E7%9B%AE/</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>使用yeoman+bower+gulp+webpack等前端自动化解决方案来构建react+sass的前端画廊应用。<br><em>这是画廊项目的效果图，点击相应的图片，图片会居中显示</em></p>
-<h2 id="yeoman脚手架生成项目初始的代码结构"><a href="#yeoman脚手架生成项目初始的代码结构" class="headerlink" title="yeoman脚手架生成项目初始的代码结构"></a>yeoman脚手架生成项目初始的代码结构</h2><ul>
-<li>首先安装nodejs环境，请自行百度～ </li>
-<li>安装yeoman<pre><code>npm install yo -g
-</code></pre>如果有童鞋对yeoman不是很了解，请看我以前的博客<a href="http://pancakeawesome.ink/2017/09/29/yeoman+bower+gulp-grunt%E6%9E%84%E5%BB%BA%E7%8E%B0%E4%BB%A3%E5%8C%96%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE/">yeoman+bower+gulp-grunt构建现代化前端项目</a></li>
-<li>去yeoman官网去搜寻基于webpack的react的项目生成器（generator）<br>安装generator:<pre><code>npm install -g generator-react-webpack
-</code></pre><strong>TIPS：如何查看全局环境下npm安装的模块</strong><pre><code>npm ls -g --depth=1
-</code></pre><em>depth=1：因为npm中各个模块都是有依赖关系的，所以npm会以树状图的形式显示所有模块</em></li>
-</ul>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
-      
-        <categories>
-            
-            <category> react </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 前端技术 </tag>
-            
-            <tag> 前端工具 </tag>
-            
-            <tag> react </tag>
             
         </tags>
         

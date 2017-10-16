@@ -3,6 +3,21 @@
 
     
   <url>
+    <loc>http://pancakeawesome.ink/2017/10/16/nodejs%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2017-10-16T14:35:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>nodejs初级教程</title>
+        <pubTime>2017-10-16T14:35:09.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://pancakeawesome.ink/2017/10/16/RESTful-API%E8%AE%BE%E8%AE%A1%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
     <lastmod>2017-10-16T13:03:20.000Z</lastmod>
     <data>
@@ -38,30 +53,6 @@
            
              
               <breadCrumb title="前端技术" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://pancakeawesome.ink/2017/10/12/react%E5%AE%9E%E6%88%98-%E6%89%93%E9%80%A0%E7%94%BB%E5%BB%8A%E9%A1%B9%E7%9B%AE/</loc>
-    <lastmod>2017-10-12T14:32:35.000Z</lastmod>
-    <data>
-        <display>
-        <title>react实战--打造画廊项目</title>
-        <pubTime>2017-10-12T13:41:18.000Z</pubTime>
-        
-        <tag>前端技术 </tag>
-         
-        <tag>前端工具 </tag>
-         
-        <tag>react </tag>
-         
-         
-           
-             
-              <breadCrumb title="react" url="http://pancakeawesome.ink/categories/react/"/>
           
         </display>
     </data>
