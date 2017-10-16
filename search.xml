@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[RESTful API设计最佳实践]]></title>
       <url>/2017/10/16/RESTful-API%E8%AE%BE%E8%AE%A1%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="RESTful-API-设计最佳实践"><a href="#RESTful-API-设计最佳实践" class="headerlink" title="RESTful API 设计最佳实践"></a>RESTful API 设计最佳实践</h2><p>项目资源的URL应该如何设计？用名词复数还是用名词单数？一个资源需要多少个URL？用哪种HTTP方法来创建一个新的资源？可选参数应该放在哪里？那些不涉及资源操作的URL呢？实现分页和版本控制的最好方法是什么？因为有太多的疑问，设计RESTful API变得很棘手。在这篇文章中，我们来看一下RESTful API设计，并给出一个最佳实践方案。</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="RESTful-API-设计最佳实践"><a href="#RESTful-API-设计最佳实践" class="headerlink" title="RESTful API 设计最佳实践"></a>RESTful API 设计最佳实践</h2><p>项目资源的URL应该如何设计？用名词复数还是用名词单数？一个资源需要多少个URL？用哪种HTTP方法来创建一个新的资源？可选参数应该放在哪里？那些不涉及资源操作的URL呢？实现分页和版本控制的最好方法是什么？因为有太多的疑问，设计RESTful API变得很棘手。</p>
 <h3 id="每个资源使用两个URL"><a href="#每个资源使用两个URL" class="headerlink" title="每个资源使用两个URL"></a>每个资源使用两个URL</h3><p>资源集合用一个URL，具体某个资源用一个URL：</p>
 <pre><code>
 /employees         #资源集合的URL
@@ -230,7 +230,8 @@ GET /employees?offset=20&amp;limit=10
   ]
 
 }
-</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>RESTful api设计可以极大地提高项目管理效率，提高开发</p>
+]]></content>
       
         <categories>
             
@@ -1413,9 +1414,9 @@ screen.css文件中:
             
             <tag> 前端技术 </tag>
             
-            <tag> 前端工具 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端工具 </tag>
             
         </tags>
         
