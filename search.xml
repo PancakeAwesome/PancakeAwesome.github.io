@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[nodejs初级教程]]></title>
-      <url>/2017/10/16/nodejs%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B/</url>
+      <url>/nodejs%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
       
         
@@ -12,7 +12,7 @@
     
     <entry>
       <title><![CDATA[RESTful API设计最佳实践]]></title>
-      <url>/2017/10/16/RESTful-API%E8%AE%BE%E8%AE%A1%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</url>
+      <url>/RESTful-API%E8%AE%BE%E8%AE%A1%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="RESTful-API-设计最佳实践"><a href="#RESTful-API-设计最佳实践" class="headerlink" title="RESTful API 设计最佳实践"></a>RESTful API 设计最佳实践</h2><p>项目资源的URL应该如何设计？用名词复数还是用名词单数？一个资源需要多少个URL？用哪种HTTP方法来创建一个新的资源？可选参数应该放在哪里？那些不涉及资源操作的URL呢？实现分页和版本控制的最好方法是什么？因为有太多的疑问，设计RESTful API变得很棘手。</p>
 <h3 id="每个资源使用两个URL"><a href="#每个资源使用两个URL" class="headerlink" title="每个资源使用两个URL"></a>每个资源使用两个URL</h3><p>资源集合用一个URL，具体某个资源用一个URL：</p>
 <pre><code>
@@ -260,7 +260,7 @@ GET /employees?offset=20&amp;limit=10
     
     <entry>
       <title><![CDATA[三种web会话管理的方式]]></title>
-      <url>/2017/10/16/%E4%B8%89%E7%A7%8Dweb%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
+      <url>/%E4%B8%89%E7%A7%8Dweb%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86%E7%9A%84%E6%96%B9%E5%BC%8F.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="3-种-web-会话管理的方式"><a href="#3-种-web-会话管理的方式" class="headerlink" title="3 种 web 会话管理的方式"></a>3 种 web 会话管理的方式</h2><p>http是无状态的，一次请求结束，连接断开，下次服务器再收到请求，它就不知道这个请求是哪个用户发过来的。当然它知道是哪个客户端地址发过来的，但是对于我们的应用来说，我们是靠用户来管理，而不是靠客户端。所以对我们的应用而言，它是需要有状态管理的，以便服务端能够准确的知道http请求是哪个用户发起的，从而判断他是否有权限继续这个请求。这个过程就是常说的会话管理。它也可以简单理解为一个用户从登录到退出应用的一段期间。本文总结了3种常见的实现web应用会话管理的方式：</p>
 <ol>
 <li><p>基于server端session的管理方式</p>
@@ -355,7 +355,7 @@ GET /employees?offset=20&amp;limit=10
     
     <entry>
       <title><![CDATA[compass重要功能之精灵图合图]]></title>
-      <url>/2017/10/10/compass%E9%87%8D%E8%A6%81%E5%8A%9F%E8%83%BD%E4%B9%8B%E7%B2%BE%E7%81%B5%E5%9B%BE%E5%90%88%E5%9B%BE/</url>
+      <url>/compass%E9%87%8D%E8%A6%81%E5%8A%9F%E8%83%BD%E4%B9%8B%E7%B2%BE%E7%81%B5%E5%9B%BE%E5%90%88%E5%9B%BE.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>精灵图合图相关功能集合。可以说是compass在日常工程中的最佳实践，非常实用也非常重要。<br><strong>想象一下设计人员（通常是漂亮的小姐姐们～不好意思责怪人家呀=。=）将sprites图中的一个图标，并且很有可能影响到了其他的图标，开发人员就要吐血地在项目中修改所有被影响的样式代码，这真的是巨痛苦无比呀</strong><br><strong>而有了compass的精灵图合图功能，我们只需要将项目中用想要合图的图片文件（现在只支持png格式的文件）放到一个相应的目录下，compass将会自动帮我们把图片文件生成为一个雪碧图，无论这些文件怎么变化，我们都不需要再去更改代码中的内容！</strong><br>精灵图合图可以说是compass的最重要的功能模块，我这里说下我的理解。<br>compass相关的知识请进<a href="http://pancakeawesome.ink/2017/09/28/%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8Bcompass/">传送门</a></p>
 <h2 id="在compass项目中使用精灵合图功能"><a href="#在compass项目中使用精灵合图功能" class="headerlink" title="在compass项目中使用精灵合图功能"></a>在compass项目中使用精灵合图功能</h2><h3 id="在项目中引入sprites模块"><a href="#在项目中引入sprites模块" class="headerlink" title="在项目中引入sprites模块"></a>在项目中引入sprites模块</h3><ul>
 <li>在scss目录下新建一个_icons.scss文件来专门处理项目的雪碧图（个人习惯，也可以写在screen.scss中）</li>
@@ -406,7 +406,7 @@ $logo-layout: smart;
     
     <entry>
       <title><![CDATA[yeoman+bower+gulp/grunt构建现代化前端项目]]></title>
-      <url>/2017/09/29/yeoman+bower+gulp-grunt%E6%9E%84%E5%BB%BA%E7%8E%B0%E4%BB%A3%E5%8C%96%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE/</url>
+      <url>/yeoman+bower+gulp-grunt%E6%9E%84%E5%BB%BA%E7%8E%B0%E4%BB%A3%E5%8C%96%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE.html</url>
       <content type="html"><![CDATA[<p><del>待更新</del></p>
 ]]></content>
       
@@ -429,7 +429,7 @@ $logo-layout: smart;
     
     <entry>
       <title><![CDATA[前端必备技能之compass]]></title>
-      <url>/2017/09/28/%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8Bcompass/</url>
+      <url>/%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8Bcompass.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先介绍下<a href="http://compass-style.org/" target="_blank" rel="external">compass</a>，compass是一款优秀的开源的<strong>css书写框架</strong>，什么叫书写框架呢？众所周知，<code>sass</code>中有很多便捷的语法特性，比如<code>mixin</code>,<code>function</code>等，<code>compass</code>正是一个强大的函数仓库，compass封装了很多在平常工程过程中能用到的css效果的函数，比如清楚浮动，设置表格样式等等。<br><em>至于sass和css之间的关系请看我的上篇<a href="http://pancakeawesome.ink/2017/09/18/%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8sass/">博客</a></em>，讲的很详细。<br><strong>这里是我写的一个compass的demo，可以对照着看</strong><br><strong>如果把<code>sass</code>必做钉子，那么<code>compass</code>就是一个锤子🔨，可以方便快捷地构建你的<code>css</code>工程化代码</strong></p>
 <h2 id="compass的安装-amp-amp-项目的构建"><a href="#compass的安装-amp-amp-项目的构建" class="headerlink" title="compass的安装&amp;&amp;项目的构建"></a>compass的安装&amp;&amp;项目的构建</h2><h3 id="compass的安装"><a href="#compass的安装" class="headerlink" title="compass的安装"></a>compass的安装</h3><p>如果你是<code>Mac os</code>系统，那么你的电脑预装了ruby的环境，那么就会有<code>gem</code>这个ruby的包管理器。如果你的电脑是windows的，那么请先安装<code>ruby</code>，具体安装方法我就不赘述了，请大家自行谷歌。</p>
 <pre><code>gem install compass
@@ -1387,11 +1387,11 @@ screen.css文件中:
         
         <tags>
             
+            <tag> css </tag>
+            
             <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
-            
-            <tag> css </tag>
             
         </tags>
         
@@ -1399,7 +1399,7 @@ screen.css文件中:
     
     <entry>
       <title><![CDATA[hexo+githubio+material搭建你的个人博客网站（优化篇）]]></title>
-      <url>/2017/09/23/hexo+githubio+material%E6%90%AD%E5%BB%BA%E4%BD%A0%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99(%E4%BC%98%E5%8C%96%E7%AF%87)/</url>
+      <url>/hexo+githubio+material%E6%90%AD%E5%BB%BA%E4%BD%A0%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99(%E4%BC%98%E5%8C%96%E7%AF%87).html</url>
       <content type="html"><![CDATA[<h2 id="网站-SEO-优化—如何让你的博客在搜索结果中排名第一"><a href="#网站-SEO-优化—如何让你的博客在搜索结果中排名第一" class="headerlink" title="网站 SEO 优化—如何让你的博客在搜索结果中排名第一"></a>网站 SEO 优化—如何让你的博客在搜索结果中排名第一</h2><p>关于网站 SEO 这一块我主要参考了这位小姐姐的<a href="https://link.juejin.im?target=https%3A%2F%2Fjuejin.im%2Fpost%2F590b451a0ce46300588c43a0" target="_blank" rel="external">这篇文章</a>,但是有些发现她有些地方写的不是很清楚,自己也在这一块设置时也摸索了半天,所以直接像大家分享一下我的踩坑经验.</p>
 <h3 id="让百度收录你的站点"><a href="#让百度收录你的站点" class="headerlink" title="让百度收录你的站点"></a>让百度收录你的站点</h3><p>我们直接在百度中搜索<code>site:你的域名</code>就可以查看百度是否已经收录你的网站,如果没有收录的话,你就要去去登录<a href="https://link.juejin.im?target=http%3A%2F%2Fzhanzhang.baidu.com" target="_blank" rel="external">百度站长平台</a>在站点管理中点击添加网站,然后输入你的站点地址, 注意,这里需要输入我们自己购买的域名,不能使用<code>xxx.github.io</code>之类域名.</p>
 <p>步骤如下:</p>
@@ -1617,7 +1617,7 @@ coding: https://crown3:BBB@git.coding.net/crown3/仓库名.git
     
     <entry>
       <title><![CDATA[hexo+githubio+material搭建你的个人博客网站（主题篇）]]></title>
-      <url>/2017/09/20/hexo+githubio+material%E6%90%AD%E5%BB%BA%E4%BD%A0%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99(%E4%B8%BB%E9%A2%98%E7%AF%87)/</url>
+      <url>/hexo+githubio+material%E6%90%AD%E5%BB%BA%E4%BD%A0%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99(%E4%B8%BB%E9%A2%98%E7%AF%87).html</url>
       <content type="html"><![CDATA[<h1 id="Hexo博客搭建详细教程-从搭建-SEO-国内外分流到部署"><a href="#Hexo博客搭建详细教程-从搭建-SEO-国内外分流到部署" class="headerlink" title="Hexo博客搭建详细教程 : 从搭建 , SEO , 国内外分流到部署"></a>Hexo博客搭建详细教程 : 从搭建 , SEO , 国内外分流到部署</h1><blockquote>
 <p>本文主要包括以下内容:</p>
 <ul>
@@ -2127,7 +2127,7 @@ baidusitemap:
     
     <entry>
       <title><![CDATA[系统入门sass（语法篇）]]></title>
-      <url>/2017/09/19/%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8sass(%E8%AF%AD%E6%B3%95%E7%AF%87)/</url>
+      <url>/%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8sass(%E8%AF%AD%E6%B3%95%E7%AF%87).html</url>
       <content type="html"><![CDATA[<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h3><p>定义变量的语法：<br>在有些编程语言中（如，JavaScript）声明变量都是使用关键词“var”开头，但是在 Sass 不使用这个关键词，而是使用大家都喜欢的美元符号<code>“$”</code>开头。我想用一张图来解释，我一直坚信，一图胜千言万语：<br><img src="http://img.mukewang.com/551e065c0001435e07870307.jpg" alt=""><br>上图非常清楚告诉了大家，Sass 的变量包括三个部分：</p>
 <ul>
 <li>声明变量的符号“$”</li>
@@ -2355,9 +2355,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -2365,7 +2365,7 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
     
     <entry>
       <title><![CDATA[系统入门sass（基础篇）]]></title>
-      <url>/2017/09/18/%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8sass/</url>
+      <url>/%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8sass.html</url>
       <content type="html"><![CDATA[<h2 id="什么是-CSS-预处理器？"><a href="#什么是-CSS-预处理器？" class="headerlink" title="什么是 CSS 预处理器？"></a>什么是 CSS 预处理器？</h2><p>定义：<br>CSS 预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为 CSS 增加了一些编程的特性，将 CSS 作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。<br>通俗的说，“CSS 预处理器用一种专门的编程语言，进行 Web 页面样式设计，然后再编译成正常的 CSS 文件，以供项目使用。CSS 预处理器为 CSS 增加一些编程的特性，无需考虑浏览器的兼容性问题”，例如你可以在 <strong>CSS 中使用变量、简单的逻辑程序、函数</strong>（如右侧代码编辑器中就使用了变量<code>$color</code>）等等在编程语言中的一些基本特性，<strong>可以让你的 CSS 更加简洁、适应性更强、可读性更佳，更易于代码的维护等诸多好处</strong>。<br>其它 CSS 预处理器语言：<br>CSS 预处理器技术已经非常的成熟，而且也涌现出了很多种不同的 <strong>CSS 预处理器语言</strong>，比如说：</p>
 <ul>
 <li>Sass（SCSS）</li>
@@ -2603,9 +2603,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -2613,7 +2613,7 @@ write style.css.map
     
     <entry>
       <title><![CDATA[三分钟入门markdown]]></title>
-      <url>/2017/09/18/%E4%B8%89%E5%88%86%E9%92%9F%E5%85%A5%E9%97%A8markdown/</url>
+      <url>/%E4%B8%89%E5%88%86%E9%92%9F%E5%85%A5%E9%97%A8markdown.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>经常会用markdown来编写博客，这些语法你需要知道</strong></p>
 <h2 id="Markdown简介"><a href="#Markdown简介" class="headerlink" title="Markdown简介"></a>Markdown简介</h2><p><code>wiki释义:</code></p>
 <blockquote>
@@ -2802,7 +2802,7 @@ $$
     
     <entry>
       <title><![CDATA[hexo+githubio+material搭建你的个人博客（基础篇）]]></title>
-      <url>/2017/09/15/hexo+githubio+material%E6%90%AD%E5%BB%BA%E4%BD%A0%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2(%E5%9F%BA%E7%A1%80%E7%AF%87)/</url>
+      <url>/hexo+githubio+material%E6%90%AD%E5%BB%BA%E4%BD%A0%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2(%E5%9F%BA%E7%A1%80%E7%AF%87).html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><del><em>本帖为更新贴</em></del><br>之前用的是csdn的blog，经常写一些学习笔记📒和it相关的技术，但是总觉得自己是做前端的，总用第三方的blog平台感觉不是很合适。于是狠下心来花了两三天终于通过githubio和hexo把静态博客网站给搭起来了，参照了一些网上blog的教程，但是因为环境和版本的愿意还是有很多坑，走了很多弯路，但还好最终都一步一步淌过来了，今天才把blog给完善好，但是收获很多：资源部署，域名解析，seo，资源打包📦压缩等等技术，让我受益匪浅。<br><del><strong>今天实在太累，加上还在公司实习，没时间把blog相关的技术分享给大家，之后两三天之类会发出来～</strong></del><br><img src="https://raw.githubusercontent.com/jeasonstudio/images/8b550fd8d102bf7625f47511b35489612626636d/20160526/gitlogo.jpg" alt="GitHub Logo"></p>
 <p><img src="https://raw.githubusercontent.com/jeasonstudio/images/8b550fd8d102bf7625f47511b35489612626636d/20160526/Hexologo.gif" alt="Hexo Logo"></p>
 <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a><a href="#环境配置" title="环境配置"></a><strong>环境配置</strong></h2><p><a href="https://hexo.io/docs" target="_blank" rel="external">Hexo官网</a>上本就有对Hexo安装及使用的详细介绍，墙裂推荐。这里来讲述自己安装的亲身步骤，或有区别。</p>
@@ -2952,7 +2952,7 @@ $ hexo d
     
     <entry>
       <title><![CDATA[动态规划迷思]]></title>
-      <url>/2017/09/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%BF%B7%E6%80%9D/</url>
+      <url>/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%BF%B7%E6%80%9D.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在刷leetcode发现很多线性表的算法题都都可以用<strong><code>dp（dynamic programming）</code></strong>去做，如果你了解dp的思想，其实很多复杂的问题都能化为简单的问题，非常棒～<br><em>let’s start~</em></p>
 <h2 id="动态规划中递推式的求解方法不是动态规划的本质。"><a href="#动态规划中递推式的求解方法不是动态规划的本质。" class="headerlink" title="动态规划中递推式的求解方法不是动态规划的本质。"></a>动态规划中递推式的求解方法不是动态规划的本质。</h2><ol>
 <li>动态规划的本质，是对问题<strong><em>状态的定义</em></strong>和<strong><em>状态转移方程</em>的定义</strong>。<br>引自维基百科<blockquote>
@@ -3012,7 +3012,7 @@ $ hexo d
     
     <entry>
       <title><![CDATA[入门Webpack，看这篇就够了]]></title>
-      <url>/2017/09/12/%E5%85%A5%E9%97%A8Webpack%EF%BC%8C%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/</url>
+      <url>/%E5%85%A5%E9%97%A8Webpack%EF%BC%8C%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>webpack是现在一款非常流行的模块化管理工具🔧</strong><br>webpack会将有依赖关系的文件都视为一个模块，比如scss,sass,less,css结尾的文件，这样会产生一个模块群，微博爬出坑处理过后会产生可以被浏览器识别的一些文件，比如Js,css,html等。<br><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是webpack的<strong>代码分割</strong>特性～<br><strong>webpack的模块热更新特性的：当项目文件发生变化时，不需要开发人员手动刷新浏览器，webpack会自动刷新页面，极大地提高了开发效率，是不是很神奇！</strong><br><strong>注意：本文的webpack环境是<code>3.5.5</code>由于webpack的更新很快，每次更新都会更新新的语法，所以学习webpack的本质就可以</strong>，具体语法可以看webpack官网：<strong><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></strong><br>那么让我们快速开始吧～</p>
 <h2 id="如何在terminal中安装webpack"><a href="#如何在terminal中安装webpack" class="headerlink" title="如何在terminal中安装webpack"></a>如何在terminal中安装webpack</h2><ul>
 <li>新建project目录</li>

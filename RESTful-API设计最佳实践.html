@@ -1,0 +1,237 @@
+<!DOCTYPE html><html style="display:none" lang="zh"><head><meta charset="utf-8"><script>window.materialVersion="1.5.0",window.oldVersion=["codestartv1","1.3.4","1.4.0","1.4.0b1"]</script><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://busuanzi.ibruce.info"><link rel="dns-prefetch" href="https://changyan.sohu.com"><title> RESTful API设计最佳实践 | Edward&#39;s Blog</title><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0097A7"><meta name="author" content="Edward Guan"><meta name="description" itemprop="description" content="RESTful API设计最佳实践"><meta name="keywords" content="前端,node,react,js,java,自学编程,学习分享,UESTC,前端架构设计,前端技术"><script>window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}},lsloader.removeLS=function(e){try{localStorage.removeItem(e)}catch(e){}},lsloader.setLS=function(e,t){try{localStorage.setItem(e,t)}catch(e){}},lsloader.getLS=function(e){var t="";try{t=localStorage.getItem(e)}catch(e){t=""}return t},versionString="/*"+(window.materialVersion||"unknownVersion")+"*/",lsloader.clean=function(){try{for(var e=[],t=0;t<localStorage.length;t++)e.push(localStorage.key(t));e.forEach(function(e){var t=lsloader.getLS(e);window.oldVersion&&window.oldVersion.reduce(function(e,n){return e||-1!==t.indexOf("/*"+n+"*/")},!1)&&lsloader.removeLS(e)})}catch(e){}},lsloader.clean(),lsloader.load=function(e,t,n,s){"boolean"==typeof n&&(s=n,n=void 0),s=s||!1,n=n||function(){};var a;if((a=this.getLS(e))&&-1===a.indexOf(versionString))return this.removeLS(e),void this.requestResource(e,t,n,s);if(a){if(a.split(versionString)[0]!=t)return console.log("reload:"+t),this.removeLS(e),void this.requestResource(e,t,n,s);a=a.split(versionString)[1],s?(this.jsRunSequence.push({name:e,code:a}),this.runjs(t,e,a)):(document.getElementById(e).appendChild(document.createTextNode(a)),n())}else this.requestResource(e,t,n,s)},lsloader.requestResource=function(e,t,n,s){var a=this;s?this.iojs(t,e,function(e,t,n){a.setLS(t,e+versionString+n),a.runjs(e,t,n)}):this.iocss(t,e,function(n){document.getElementById(e).appendChild(document.createTextNode(n)),a.setLS(e,t+versionString+n)},n)},lsloader.iojs=function(e,t,n){var s=this;s.jsRunSequence.push({name:t,code:""});try{var a=new XMLHttpRequest;a.open("get",e,!0),a.onreadystatechange=function(){if(4==a.readyState){if((a.status>=200&&a.status<300||304==a.status)&&""!=a.response)return void n(e,t,a.response);s.jsfallback(e,t)}},a.send(null)}catch(n){s.jsfallback(e,t)}},lsloader.iocss=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.iofonts=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.runjs=function(e,t,n){if(t&&n)for(var s in this.jsRunSequence)this.jsRunSequence[s].name==t&&(this.jsRunSequence[s].code=n);if(this.jsRunSequence[0]&&this.jsRunSequence[0].code&&"failed"!=this.jsRunSequence[0].status)(o=document.createElement("script")).appendChild(document.createTextNode(this.jsRunSequence[0].code)),o.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(o),this.jsRunSequence.shift(),this.jsRunSequence.length>0&&this.runjs();else if(this.jsRunSequence[0]&&"failed"==this.jsRunSequence[0].status){var a=this,o=document.createElement("script");o.src=this.jsRunSequence[0].path,o.type="text/javascript",this.jsRunSequence[0].status="loading",o.onload=function(){a.jsRunSequence.shift(),a.jsRunSequence.length>0&&a.runjs()},document.body.appendChild(o)}},lsloader.tagLoad=function(e,t){this.jsRunSequence.push({name:t,code:"",path:e,status:"failed"}),this.runjs()},lsloader.jsfallback=function(e,t){if(!this.jsnamemap[t]){this.jsnamemap[t]=t;for(var n in this.jsRunSequence)this.jsRunSequence[n].name==t&&(this.jsRunSequence[n].code="",this.jsRunSequence[n].status="failed",this.jsRunSequence[n].path=e);this.runjs()}},lsloader.cssfallback=function(e,t,n){if(!this.cssnamemap[t]){this.cssnamemap[t]=1;var s=document.createElement("link");s.type="text/css",s.href=e,s.rel="stylesheet",s.onload=s.onerror=n;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(s,a)}},lsloader.runInlineScript=function(e,t){var n=document.getElementById(t).innerText;this.jsRunSequence.push({name:e,code:n}),this.runjs()},lsloader.loadCombo=function(e){var t="",n={};for(var s in e){var a=this.getLS(e[s].name);if(a)var o=a.split(versionString)[0],i=a.split(versionString)[1];else o="";o==e[s].path?this.jsRunSequence.push({name:e[s].name,code:i,path:e[s].path}):(this.jsRunSequence.push({name:e[s].name,code:null,path:e[s].path,status:"comboloading"}),n[e[s].name]=!0,t+=(""==t?"":";")+e[s].path)}var u=this;if(t){var r=new XMLHttpRequest;r.open("get",combo+t,!0),r.onreadystatechange=function(){if(4==r.readyState)if(r.status>=200&&r.status<300||304==r.status){if(""!=r.response)return void u.runCombo(r.response,n)}else{for(var e in u.jsRunSequence)n[u.jsRunSequence[e].name]&&(u.jsRunSequence[e].status="failed");u.runjs()}},r.send(null)}this.runjs()},lsloader.runCombo=function(e,t){(e=e.split("/*combojs*/")).shift();for(var n in this.jsRunSequence)t[this.jsRunSequence[n].name]&&e[0]&&(this.jsRunSequence[n].status="comboJS",this.jsRunSequence[n].code=e[0],this.setLS(this.jsRunSequence[n].name,this.jsRunSequence[n].path+versionString+e[0]),e.shift());this.runjs()}</script><script>function Queue(){this.dataStore=[],this.offer=function(e){this.debug&&console.log("Offered a Queued Function."),"function"==typeof e?this.dataStore.push(e):console.log("You must offer a function.")},this.poll=function(){return this.debug&&console.log("Polled a Queued Function."),this.dataStore.shift()},this.execNext=function(){var e=this.poll();void 0!==e&&(this.debug&&console.log("Run a Queued Function."),e())},this.debug=!1,this.startDebug=function(){this.debug=!0}}var queue=new Queue</script><link rel="icon shortcut" type="image/ico" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="icon" sizes="192x192" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="apple-touch-icon" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="apple-mobile-web-app-title" content="Title"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="480"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Edward&#39;s Blog"> <!--[if lte IE 9]><link rel="stylesheet" href="/css/ie-blocker.css"><script src="/js/ie-blocker.zhCN.js"></script><![endif]--><style id="material_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="style_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style>body,html{font-family:Roboto,"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;overflow-x:hidden!important}code{font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace}a{color:#00838f}#scheme-Paradox .hot_tags-count,#scheme-Paradox .sidebar-colored .sidebar-badge,#scheme-Paradox .sidebar-colored .sidebar-header,#scheme-Paradox .sidebar_archives-count,#search-form-label:after,#search-label,.mdl-card__media{background-color:#0097a7!important}#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus,#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover{color:#0097a7!important}#ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a,#post_entry-right-info,.sidebar-colored .sidebar-nav li:hover>a,.sidebar-colored .sidebar-nav li:hover>a i,.sidebar-colored .sidebar-nav li>a:focus i,.sidebar-colored .sidebar-nav li>a:hover,.sidebar-colored .sidebar-nav li>a:hover i,.sidebar-colored .sidebar-nav>.open>a,.sidebar-colored .sidebar-nav>.open>a:focus,.sidebar-colored .sidebar-nav>.open>a:hover{color:#0097a7!important}.toTop{background:#757575!important}.material-layout .material-index>.material-nav,.material-layout .material-post>.material-nav,.material-nav a{color:#757575}#scheme-Paradox .MD-burger-layer{background-color:#757575}#scheme-Paradox #post-toc-trigger-btn{color:#757575}.post-toc a:hover{color:#00838f;text-decoration:underline}</style><style>body{background-color:#f5f5f5}#scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{background-color:#fff}</style><style>.fade{transition:all .8s linear;-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0);opacity:1}.fade.out{opacity:0}</style><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==",!0)</script><meta property="og:url" content="http://pancakeawesome.ink"><meta property="og:type" content="blog"><meta property="og:title" content="RESTful API设计最佳实践 | Edward&#39;s Blog"><meta property="og:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta property="og:description" content="RESTful API设计最佳实践"><meta property="og:article:tag" content="前端架构设计"><meta property="og:article:tag" content="前端技术"><meta property="article:published_time" content="Mon Oct 16 2017 16:08:39 GMT+0800"><meta property="article:modified_time" content="Mon Oct 16 2017 21:03:20 GMT+0800"><meta name="twitter:title" content="RESTful API设计最佳实践 | Edward&#39;s Blog"><meta name="twitter:description" content="RESTful API设计最佳实践"><meta name="twitter:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:url" content="http://pancakeawesome.ink"><link rel="canonical" href="http://pancakeawesome.ink/RESTful-API设计最佳实践.html"><script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://pancakeawesome.ink/RESTful-API设计最佳实践.html",
+    "headline": "RESTful API设计最佳实践",
+    "datePublished": "Mon Oct 16 2017 16:08:39 GMT+0800",
+    "dateModified": "Mon Oct 16 2017 21:03:20 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Edward Guan",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/rip.jpeg"
+        },
+        "description": "你说人生艳丽我没有异议，你说人生忧郁我不言语"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Edward&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"
+        }
+    },
+    "keywords": ",前端架构设计,前端技术前端,node,react,js,java,自学编程,学习分享,UESTC",
+    "description": "RESTful API设计最佳实践",
+}
+</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?0c041dca6f79c4e40fb45d1283e327e7";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body id="scheme-Paradox" class="lazy"><div class="material-layout mdl-js-layout has-drawer is-upgraded"><main class="material-layout__content" id="main"><div id="top"></div> <button class="MD-burger-icon sidebar-toggle"><span class="MD-burger-layer"></span></button> <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon"> <i class="material-icons">format_list_numbered</i></button><ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh;overflow-y:scroll"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RESTful-API-设计最佳实践"><span class="post-toc-number">2.</span> <span class="post-toc-text">RESTful API 设计最佳实践</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#每个资源使用两个URL"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">每个资源使用两个URL</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用名词代替动词表示资源"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">用名词代替动词表示资源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用HTTP方法操作资源"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">用HTTP方法操作资源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对资源集合的URL使用POST方法，创建新资源"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">对资源集合的URL使用POST方法，创建新资源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对具体资源的URL使用PUT方法，来更新资源"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">对具体资源的URL使用PUT方法，来更新资源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#推荐用复数名词"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">推荐用复数名词</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用HTTP状态码"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">使用HTTP状态码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用小驼峰命名法"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">使用小驼峰命名法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在URL中强制加入版本号"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">在URL中强制加入版本号</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#非资源请求用动词"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">非资源请求用动词</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#考虑特定资源搜索和跨资源搜索"><span class="post-toc-number">2.11.</span> <span class="post-toc-text">考虑特定资源搜索和跨资源搜索</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在响应参数中添加浏览其它API的链接"><span class="post-toc-number">2.12.</span> <span class="post-toc-text">在响应参数中添加浏览其它API的链接</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-number">3.</span> <span class="post-toc-text">后记</span></a></li></ol></ul><div class="material-post_container"><div class="material-post mdl-grid"><div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col"><div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50"><script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 30 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script><p class="article-headline-p"> RESTful API设计最佳实践</p></div><div class="mdl-color-text--grey-700 mdl-card__supporting-text meta"><div id="author-avatar"> <img src="/img/rip.jpeg" width="44px" height="44px" alt="Author Avatar"></div><div> <strong>Edward Guan</strong> <span>10月 16, 2017</span></div><div class="section-spacer"></div> <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">devices other</i> <span class="visuallyhidden">devices other</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button"><li class="mdl-menu__item">在其它设备中阅读本文章</li> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACXElEQVR42u3aQXLCMBAEQP7/6eQBSSUzK7MGqn1KGceodZCW0T6+Pvp64OHh4eHh4eHhvRjvEV+/vOjHp8mT+bcM/wsPDw9vhffPUhsAkmHlg56NDQ8PD2+fl3/NyVLeTkQ9Njw8PLyX5M0wyTaDh4eH93m8fNs4eR4PDw/vXXjFD/5yEG1pflvWgoeHhxfzZtHqzt+r53t4eHh4Ae+CJqeDTWJ26LXaU4aHh4cXhBF52HqybeRld1LW4+Hh4W3yZgf5eVybbAz58Vj0Bjw8PLxFXs6+ahFvY+LoUzw8PLwn85LYtA0j/p6OfEvIkXh4eHibvL+L1JM752V6Hhnj4eHhbfLatqerqO37i4gZDw8Pb4XXNgTkUWwearTUoqcMDw8P71JeGzScD6gttetJxMPDw1vhtUt53gRw0lKQF/p4eHh4d/Hyo698Os7x9bTi4eHhPZk3W4iLUDVoPmgPuuqsBQ8PD+9SXr4cnyOTg//Z83h4eHh38WaMvPBNCu58i6o3Bjw8PLxLedce8BeRaxBV5Hfw8PDwdnht6ZwPOimOc8BlPWV4eHh4x7w2VihK2+N2q3xDwsPDw9vk5UFDEaTGW8tsG/gnsMDDw8N7Mm92qN8OK5+CusWqzVrw8PDwjnnDH/yj+7OJaw/e8PDw8HZ4bYncFtNt7NtuSHh4eHh38ZJodRa8noe8eHh4eO/Li4racqHPy/dhGIGHh4d3K69epg+C3VlzAx4eHt4m7zxiyAvxWbtAMnI8PDy8HV4bAeQhxWyIbTmOh4eHt8n7vAsPDw8PDw8PD+8Frm80F4GlYR6f2QAAAABJRU5ErkJggg=="></ul> <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">bookmark</i> <span class="visuallyhidden">bookmark</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button"><li class="mdl-menu__item"> <a class="post_tag-link" href="/tags/前端技术/">前端技术</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端架构设计/">前端架构设计</a></li></ul> <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">share</i> <span class="visuallyhidden">share</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button"><a class="post_share-link" href="#"><li class="mdl-menu__item"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> &nbsp;浏览量</span></li></a><a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=RESTful API设计最佳实践&url=http://pancakeawesome.ink/RESTful-API设计最佳实践.html&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank"><li class="mdl-menu__item"> 分享到微博</li></a><a class="post_share-link" href="https://twitter.com/intent/tweet?text=RESTful API设计最佳实践&url=http://pancakeawesome.ink/RESTful-API设计最佳实践.html&via=Edward Guan" target="_blank"><li class="mdl-menu__item"> 分享到 Twitter</li></a><a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/RESTful-API设计最佳实践.html" target="_blank"><li class="mdl-menu__item"> 分享到 Facebook</li></a><a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/RESTful-API设计最佳实践.html" target="_blank"><li class="mdl-menu__item"> 分享到 Google+</li></a><a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/RESTful-API设计最佳实践.html&title=RESTful API设计最佳实践" target="_blank"><li class="mdl-menu__item"> 分享到 LinkedIn</li></a><a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=RESTful API设计最佳实践&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/RESTful-API设计最佳实践.html" target="_blank"><li class="mdl-menu__item"> 分享到 QQ</li></a></ul></div><div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="RESTful-API-设计最佳实践"><a href="#RESTful-API-设计最佳实践" class="headerlink" title="RESTful API 设计最佳实践"></a>RESTful API 设计最佳实践</h2><p>项目资源的URL应该如何设计？用名词复数还是用名词单数？一个资源需要多少个URL？用哪种HTTP方法来创建一个新的资源？可选参数应该放在哪里？那些不涉及资源操作的URL呢？实现分页和版本控制的最好方法是什么？因为有太多的疑问，设计RESTful API变得很棘手。</p><h3 id="每个资源使用两个URL"><a href="#每个资源使用两个URL" class="headerlink" title="每个资源使用两个URL"></a>每个资源使用两个URL</h3><p>资源集合用一个URL，具体某个资源用一个URL：</p><pre><code>
+/employees         #资源集合的URL
+
+/employees/56      #具体某个资源的URL
+</code></pre><h3 id="用名词代替动词表示资源"><a href="#用名词代替动词表示资源" class="headerlink" title="用名词代替动词表示资源"></a>用名词代替动词表示资源</h3><p>这让你的API更简洁，URL数目更少。不要这么设计：</p><pre><code>
+/getAllEmployees
+
+/getAllExternalEmployees
+
+/createEmployee
+
+/updateEmployee
+</code></pre><p>更好的设计：</p><pre><code>
+GET /employees
+
+GET /employees?state=external
+
+POST /employees
+
+PUT /employees/56
+</code></pre><h3 id="用HTTP方法操作资源"><a href="#用HTTP方法操作资源" class="headerlink" title="用HTTP方法操作资源"></a>用HTTP方法操作资源</h3><p>使用URL指定你要用的资源。使用HTTP方法来指定怎么处理这个资源。使用四种HTTP方法POST，GET，PUT，DELETE可以提供CRUD功能（创建，获取，更新，删除）。</p><ul><li><p>获取：使用GET方法获取资源。GET请求从不改变资源的状态。无副作用。GET方法是幂等的。GET方法具有只读的含义。因此，你可以完美的使用缓存。</p></li><li><p>创建：使用POST创建新的资源。</p></li><li><p>更新：使用PUT更新现有资源。</p></li><li><p>删除：使用DELETE删除现有资源。</p></li></ul><p>2个URL乘以4个HTTP方法就是一组很好的功能。看看这个表格：<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fkkbpxeexvj30j803cdfw.jpg" alt=""></p><h3 id="对资源集合的URL使用POST方法，创建新资源"><a href="#对资源集合的URL使用POST方法，创建新资源" class="headerlink" title="对资源集合的URL使用POST方法，创建新资源"></a>对资源集合的URL使用POST方法，创建新资源</h3><p>创建一个新资源的时，客户端与服务器是怎么交互的呢？</p><p>在资源集合URL上使用POST来创建新的资源过程：</p><p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fkkbsd2qs5j30gh0akt90.jpg" alt=""></p><ol><li><p>客户端向资源集合URL<code>/employees</code>发送POST请求。HTTP body 包含新资源的属性 “Albert Stark”。</p></li><li><p>RESTful Web服务器为新员工生成ID，在其内部模型中创建员工，并向客户端发送响应。这个响应的HTTP头部包含一个Location字段，指示创建资源可访问的URL。</p></li></ol><h3 id="对具体资源的URL使用PUT方法，来更新资源"><a href="#对具体资源的URL使用PUT方法，来更新资源" class="headerlink" title="对具体资源的URL使用PUT方法，来更新资源"></a>对具体资源的URL使用PUT方法，来更新资源</h3><p>使用PUT更新已有资源：</p><p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fkkbt00kzkj30gp0ao74j.jpg" alt=""></p><ol><li><p>客户端向具体资源的URL发送PUT请求<code>/employee/21</code>。请求的HTTP body中包含要更新的属性值（21号员工的新名称“Bruce Wayne”）。</p></li><li><p>REST服务器更新ID为21的员工名称，并使用HTTP状态码200表示更改成功。</p></li></ol><h3 id="推荐用复数名词"><a href="#推荐用复数名词" class="headerlink" title="推荐用复数名词"></a>推荐用复数名词</h3><p>推荐：</p><pre><code>
+/employees
+
+/employees/21
+</code></pre><p>不推荐：</p><pre><code>
+/employee
+
+/employee/21
+</code></pre><p>事实上，这是个人爱好问题，但复数形式更为常见。此外，在资源集合URL上用GET方法，它更直观，特别是<code>GET /employees?state=external</code>、<code>POST /employees</code>、<code>PUT /employees/56</code>。但最重要的是：避免复数和单数名词混合使用，这显得非常混乱且容易出错。</p><p>对可选的、复杂的参数，使用查询字符串（？）。</p><p>不推荐做法：</p><pre><code>
+GET /employees
+
+GET /externalEmployees
+
+GET /internalEmployees
+
+GET /internalAndSeniorEmployees
+</code></pre><p>为了让你的URL更小、更简洁。为资源设置一个基本URL，将可选的、复杂的参数用查询字符串表示。</p><pre><code>
+GET /employees?state=internal&amp;maturity=senior
+</code></pre><h3 id="使用HTTP状态码"><a href="#使用HTTP状态码" class="headerlink" title="使用HTTP状态码"></a>使用HTTP状态码</h3><p>RESTful Web服务应使用合适的HTTP状态码来响应客户端请求</p><ul><li><p>2xx - 成功 - 一切都很好</p></li><li><p>4xx - 客户端错误 - 如果客户端发生错误（例如客户端发送无效请求或未被授权）</p></li><li><p>5xx – 服务器错误 - 如果服务器发生错误（例如，尝试处理请求时出错）<br>参考维基百科上的HTTP状态代码。但是，其中的大部分HTTP状态码都不会被用到，只会用其中的一小部分。通常会用到一下几个：</p></li></ul><p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fkkbtr8ez8j30ir0503ym.jpg" alt=""></p><p>除了合适的状态码之外，还应该在HTTP响应正文中提供有用的错误提示和详细的描述。这是一个例子。<br>请求：</p><pre><code>
+GET /employees?state=super
+</code></pre><p>响应：</p><pre><code>
+// 400 Bad Request
+
+{
+
+    &quot;message&quot;: &quot;You submitted an invalid state. Valid state values are &#39;internal&#39; or &#39;external&#39;&quot;,
+
+    &quot;errorCode&quot;: 352,
+
+    &quot;additionalInformation&quot; : 
+
+    &quot;http://www.domain.com/rest/errorcode/352&quot;
+
+}
+</code></pre><h3 id="使用小驼峰命名法"><a href="#使用小驼峰命名法" class="headerlink" title="使用小驼峰命名法"></a>使用小驼峰命名法</h3><p>使用小驼峰命名法作为属性标识符。</p><pre><code>
+{&quot;yearOfBirth&quot;:1982}
+</code></pre><p>不要使用下划线（<code>year_of_birth</code>）或大驼峰命名法（<code>YearOfBirth</code>）。通常，RESTful Web服务将被JavaScript编写的客户端使用。客户端会将JSON响应转换为JavaScript对象（通过调用<code>var person = JSON.parse(response)</code>），然后调用其属性。因此，最好遵循JavaScript代码通用规范。<br>对比：</p><pre><code>
+person.year_of_birth // 不推荐，违反JavaScript代码通用规范
+
+person.YearOfBirth // 不推荐，JavaScript构造方法命名
+
+person.yearOfBirth // 推荐
+</code></pre><h3 id="在URL中强制加入版本号"><a href="#在URL中强制加入版本号" class="headerlink" title="在URL中强制加入版本号"></a>在URL中强制加入版本号</h3><p>从始至终，都使用版本号发布您的RESTful API。将版本号放在URL中以是必需的。如果您有不兼容和破坏性的更改，版本号将让你能更容易的发布API。发布新API时，只需在增加版本号中的数字。这样的话，客户端可以自如的迁移到新API，不会因调用完全不同的新API而陷入困境。<br>使用直观的 “v” 前缀来表示后面的数字是版本号。</p><pre><code>
+/v1/employees
+</code></pre><p>你不需要使用次级版本号（“v1.2”），因为你不应该频繁的去发布API版本。</p><p>提供分页信息</p><p>一次性返回数据库所有资源不是一个好主意。因此，需要提供分页机制。通常使用数据库中众所周知的参数offset和limit。</p><pre><code>
+/employees?offset=30&amp;limit=15       #返回30 到 45的员工
+</code></pre><p>如果客户端没有传这些参数，则应使用默认值。通常默认值是<code>offset = 0</code>和<code>limit = 10</code>。如果数据库检索很慢，应当减小<code>limit</code>值。</p><pre><code>
+/employees       #返回0 到 10的员工
+</code></pre><p>此外，如果您使用分页，客户端需要知道资源总数。例：<br>请求：</p><pre><code>
+GET /employees
+</code></pre><p>响应：</p><pre><code>
+{
+
+  &quot;offset&quot;:0,
+
+  &quot;limit&quot;:10,
+
+  &quot;total&quot;:3465,
+
+  &quot;employees&quot;:[
+
+    //...
+
+  ]
+
+}
+</code></pre><h3 id="非资源请求用动词"><a href="#非资源请求用动词" class="headerlink" title="非资源请求用动词"></a>非资源请求用动词</h3><p>有时API调用并不涉及资源（如计算，翻译或转换）。例：</p><pre><code>
+GET /translate?from=de_DE&amp;to=en_US&amp;text=Hallo
+
+GET/calculate?para2=23&amp;para2=432
+</code></pre><p>在这种情况下，API响应不会返回任何资源。而是执行一个操作并将结果返回给客户端。因此，您应该在URL中使用动词而不是名词，来清楚的区分资源请求和非资源请求。</p><h3 id="考虑特定资源搜索和跨资源搜索"><a href="#考虑特定资源搜索和跨资源搜索" class="headerlink" title="考虑特定资源搜索和跨资源搜索"></a>考虑特定资源搜索和跨资源搜索</h3><p>提供对特定资源的搜索很容易。只需使用相应的资源集合URL，并将搜索字符串附加到查询参数中即可。</p><pre><code>
+GET /employees?query=Paul
+</code></pre><p>如果要对所有资源提供全局搜索，则需要用其他方法。前文提到，对于非资源请求URL，使用动词而不是名词。因此，您的搜索网址可能如下所示：</p><pre><code>
+GET /search?query=Paul   //返回 employees, customers, suppliers 等等.
+</code></pre><h3 id="在响应参数中添加浏览其它API的链接"><a href="#在响应参数中添加浏览其它API的链接" class="headerlink" title="在响应参数中添加浏览其它API的链接"></a>在响应参数中添加浏览其它API的链接</h3><p>理想情况下，不会让客户端自己构造使用REST API的URL。让我们思考一个例子。<br>客户端想要访问员工的薪酬表。为此，他必须知道他可以通过在员工URL（例如<code>/employees/21/salaryStatements</code>）中附加字符串“salaryStatements”来访问薪酬表。这个字符串连接很容易出错，且难以维护。如果你更改了访问薪水表的REST API的方式（例如变成了<code>/employees/21/salary-statement</code>或<code>/employees/21/paySlips</code>），所有客户端都将中断。<br>更好的方案是在响应参数中添加一个<code>links</code>字段，让客户端可以自动变更。<br>请求：</p><pre><code>
+GET /employees/
+</code></pre><p>响应：</p><pre><code>
+//...
+
+   {
+
+      &quot;id&quot;:1,
+
+      &quot;name&quot;:&quot;Paul&quot;,
+
+      &quot;links&quot;: [
+
+         {
+
+            &quot;rel&quot;: &quot;salary&quot;,
+
+            &quot;href&quot;: &quot;/employees/1/salaryStatements&quot;
+
+         }
+
+      ]
+
+   },
+
+//...
+</code></pre><p>如果客户端完全依靠<code>links</code>中的字段获得薪资表，你更改了API，客户端将始终获得一个有效的URL（只要你更改了<code>link</code>字段，请求的URL会自动更改），不会中断。另一个好处是，你的API变得可以自我描述，需要写的文档更少。<br>在分页时，您还可以添加获取下一页或上一页的链接示例。只需提供适当的偏移和限制的链接示例。</p><pre><code>
+GET /employees?offset=20&amp;limit=10
+</code></pre><pre><code>
+{
+
+  &quot;offset&quot;:20,
+
+  &quot;limit&quot;:10,
+
+  &quot;total&quot;:3465,
+
+  &quot;employees&quot;:[
+
+    //...
+
+  ],
+
+  &quot;links&quot;: [
+
+     {
+
+        &quot;rel&quot;: &quot;nextPage&quot;,
+
+        &quot;href&quot;: &quot;/employees?offset=30&amp;limit=10&quot;
+
+     },
+
+     {
+
+        &quot;rel&quot;: &quot;previousPage&quot;,
+
+        &quot;href&quot;: &quot;/employees?offset=10&amp;limit=10&quot;
+
+     }
+
+  ]
+
+}
+</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>RESTful api设计可以极大地提高项目管理效率，提高开发</p><blockquote style="margin:2em 0 0;padding:.5em 1em;border-left:3px solid #f44336;background-color:#f5f5f5;list-style:none"><p> <strong>This blog is under a <a href="https://pancakeawesome.ink/" target="_blank">CC BY-NC-SA 3.0 Unported License</a></strong><br> <strong>本文链接：</strong><a href="http://pancakeawesome.ink/RESTful-API设计最佳实践.html">http://pancakeawesome.ink/RESTful-API设计最佳实践.html</a></p></blockquote></div><div id="changyan-comment"><div id="SOHUCS" sid="RESTful-API设计最佳实践.html"></div><script type="text/javascript">!function(){var t="da223e602e0abf03eded8d4c19e7d862";if((window.innerWidth||document.documentElement.clientWidth)<960)window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cytdf2o7Q&conf='+t+'"><\/script>');else{!function(t,e){var n=document.getElementsByTagName("head")[0]||document.head||document.documentElement,a=document.createElement("script");a.setAttribute("type","text/javascript"),a.setAttribute("charset","UTF-8"),a.setAttribute("src",t),"function"==typeof e&&(window.attachEvent?a.onreadystatechange=function(){var t=a.readyState;"loaded"!==t&&"complete"!==t||(a.onreadystatechange=null,e())}:a.onload=e),n.appendChild(a)}("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:"cytdf2o7Q",conf:t})})}}()</script></div><style>#changyan-comment{background-color:#eee;padding:2pc}</style></div><nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col"> <a href="/nodejs初级教程.html" id="post_nav-newer" class="prev-content"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation"> <i class="material-icons">arrow_back</i></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 新篇</a><div class="section-spacer"></div> <a href="/三种web会话管理的方式.html" id="post_nav-older" class="next-content">旧篇 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation"> <i class="material-icons">arrow_forward</i></button></a></nav></div></div><div class="sidebar-overlay"></div><aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation"><div id="sidebar-main"><div class="sidebar-header header-cover" style="background-image:url(/img/thumbnail/sidebar_header.jpg)"><div class="top-bar"></div> <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display:initial" data-upgraded=",MaterialButton,MaterialRipple"> <i class="material-icons">clear_all</i><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button><div class="sidebar-image"> <img src="/img/rip.jpeg" alt="Edward Guan's avatar"></div> <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">guanchao930908@163.com<b class="caret"></b></a></div><ul class="nav sidebar-nav"><li class="dropdown"><ul id="settings-dropdown" class="dropdown-menu"><li> <a href="mailto:guanchao930908@163.com" target="_blank" title="Email Me"><i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i> Email Me</a></li></ul></li><li id="sidebar-first-li"> <a href="/"><i class="material-icons sidebar-material-icons">home</i> 主页</a></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">timeline</i> 归档<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">10</span></a></li></ul></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">chrome_reader_mode</i> 分类<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/categories/blog/">blog<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端工具/">前端工具<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端技术/">前端技术<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端架构设计/">前端架构设计<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法思想/">算法思想<span class="sidebar_archives-count">1</span></a></li></ul></li><li> <a href="/tags" title="标签云"><i class="material-icons sidebar-material-icons">cloud_circle</i> 标签云</a></li><li class="divider"></li><li> <a href="/timeline" title="Timeline"><i class="material-icons sidebar-material-icons">send</i> Timeline</a></li><li> <a href="/gallery" title="Gallery"><i class="material-icons sidebar-material-icons">photo_library</i> Gallery</a></li><li> <a href="/aboutMe" title="About Me"><i class="material-icons sidebar-material-icons">person_pin</i> About Me</a></li><li class="divider"></li><li> <a href="/archives">文章总数 <span class="sidebar-badge">14</span></a></li></ul></div></aside><div id="back-to-top" class="toTop-wrap"> <a href="#top" class="toTop"><i class="material-icons footer_top-i">expand_less</i></a></div><footer class="mdl-mini-footer" id="bottom"><div class="mdl-mini-footer--left-section sns-list"> <a href="https://twitter.com/591153977" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter"> <span class="visuallyhidden">Twitter</span></button></a> <a href="https://www.facebook.com/profile.php?id=100011433530812" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook"> <span class="visuallyhidden">Facebook</span></button></a> <a href="https://www.instagram.com/edward930908/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-instagram"> <span class="visuallyhidden">Instagram</span></button></a> <a href="https://github.com/PancakeAwesome" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-github"> <span class="visuallyhidden">Github</span></button></a> <a href="https://www.linkedin.com/in/%E8%B6%85-%E7%AE%A1-89495a145/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin"> <span class="visuallyhidden">LinkedIn</span></button></a></div><div id="copyright"> Copyright&nbsp;©<script type="text/javascript">var fd=new Date;document.write("&nbsp;"+fd.getFullYear()+"&nbsp;")</script>Edward's Blog<br><p>Hosted by <a href="https://pages.coding.me" style="font-weight:700">Coding Pages</a></p></div><div class="mdl-mini-footer--right-section"><div><div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div><div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div></div></div></footer><script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==",!0)</script><script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==",!0)</script><script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==",!0)</script><script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytdf2o7Q"></script><script>var agent=navigator.userAgent.toLowerCase();agent.indexOf("ucbrowser")>0&&(document.write('<link rel="stylesheet" href="/css/uc.css">'),alert("由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。"))</script><script>lsloader.load("hanabi","/js/hanabi-browser-bundle.js?Pki5+pzkluqu53g+ouMWpA==",!0)</script><script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+    
+        
+        
+        HanabiBrowser.start('pre code',true);
+    
+</script><script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script><script>!function(){for(var e=document.querySelectorAll('script[type="text/ls-javascript"]'),r=0;r<e.length;++r){var o=e[r];lsloader.runInlineScript(o.id,o.id)}}(),console.log("\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;")</script></main></div></body></html>
