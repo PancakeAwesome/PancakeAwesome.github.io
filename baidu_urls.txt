@@ -1,6 +1,7 @@
 http://pancakeawesome.ink/nodejs初级教程.html
 http://pancakeawesome.ink/RESTful-API设计最佳实践.html
 http://pancakeawesome.ink/三种web会话管理的方式.html
+http://pancakeawesome.ink/react实战-打造画廊项目.html
 http://pancakeawesome.ink/compass重要功能之精灵图合图.html
 http://pancakeawesome.ink/yeoman+bower+gulp-grunt构建现代化前端项目.html
 http://pancakeawesome.ink/前端必备技能之compass.html
