@@ -357,6 +357,7 @@ GET /employees?offset=20&amp;limit=10
       <title><![CDATA[react实战--打造画廊项目]]></title>
       <url>/react%E5%AE%9E%E6%88%98-%E6%89%93%E9%80%A0%E7%94%BB%E5%BB%8A%E9%A1%B9%E7%9B%AE.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>使用yeoman+bower+gulp+webpack等前端自动化解决方案来构建react+sass的前端画廊应用。<br><em>这是画廊项目的效果图，点击相应的图片，图片会居中显示</em></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkncvudbztj30zb0jpac2.jpg" alt=""></p>
 <h2 id="yeoman脚手架生成项目初始的代码结构"><a href="#yeoman脚手架生成项目初始的代码结构" class="headerlink" title="yeoman脚手架生成项目初始的代码结构"></a>yeoman脚手架生成项目初始的代码结构</h2><ul>
 <li>首先安装nodejs环境，请自行百度～ </li>
 <li>安装yeoman<pre><code>npm install yo -g
@@ -421,7 +422,7 @@ npm run serve
 <p><strong>而react developer tools的工作原理是页面加载的时候，通过<code>__REACT_DEVTOOLS_GLOBAL_HOOK__</code>这个全局变量和页面通信。而我们项目的真实代码其实是写在一个yeoman自带的框架页面之中，也就是一个iframe，这个<code>__REACT_DEVTOOLS_GLOBAL_HOOK__</code>变量其实是存在顶层的框架页面中，如果我们需要在我们的iframe页面中使用这个这个插件，就得重新取得这个全局变量，以供插件来通信。</strong></p>
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkmhtkh4kuj30mc07bglx.jpg" alt=""></p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkkhieotwnj30mh01zt8p.jpg" alt="这里的parent代表的顶层页面window变量"></p>
-<h3 id="webpack配置详解"><a href="#webpack配置详解" class="headerlink" title="webpack配置详解"></a>webpack配置详解</h3><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+<h3 id="webpack配置详解"><a href="#webpack配置详解" class="headerlink" title="webpack配置详解"></a>webpack配置详解</h3><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><iframe height="500" width="500" src="http://ww4.sinaimg.cn/mw690/e75a115bgw1f3rrbzv1m8g209v0diqv7.gif"></iframe>]]></content>
       
         <categories>
             
@@ -1478,9 +1479,9 @@ screen.css文件中:
             
             <tag> 前端技术 </tag>
             
-            <tag> css </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
