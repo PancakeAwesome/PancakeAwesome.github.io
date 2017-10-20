@@ -250,9 +250,9 @@ GET /employees?offset=20&amp;limit=10
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> 前端架构设计 </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -366,10 +366,13 @@ GET /employees?offset=20&amp;limit=10
 </code></pre><strong>TIPS：如何查看全局环境下npm安装的模块</strong><pre><code>npm ls -g --depth=1 2&gt;/dev/null | grep generator-
 </code></pre><em>depth=1：因为npm中各个模块都是有依赖关系的，所以npm会以树状图的形式显示所有模块</em><br><em>2&gt;/dev/null:表示将执行bash命令过程中的错误输出到null设备中，<strong>注意：npm经常会报错。</strong>这里的设备是null，也就是空设备，意思是错误将不会展现出来。</em><br><em>grep generator：表示输出的内容仅显示generator开头的内容</em></li>
 <li>在github等代码托管平台中生成一个仓库，将项目down下来。</li>
+</ul>
+<pre><code>git clone &lt;你的远程代码仓库的地址&gt;
+</code></pre><ul>
 <li>进入项目的文件夹，用yeoman生成react的初始项目结构：</li>
 </ul>
 <pre><code>yo react-webpack &lt;项目名称&gt;
-</code></pre><p><em>国内使用npm下载包实在太慢，建议使用淘宝源下载软件</em><br><strong>使用cnpm替换npm下载包：</strong></p>
+</code></pre><p><em>国内使用npm下载包实在太慢，建议使用淘宝源下载软件：<strong>使用cnpm替换npm下载包：</strong></em></p>
 <pre><code>$ npm install -g cnpm --registry=https://registry.npm.taobao.org
 </code></pre><p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkkfh53akkj31340k3jt2.jpg" alt=""></p>
 <p><strong>通常生成项目初始结构很慢，耐心等待</strong></p>
