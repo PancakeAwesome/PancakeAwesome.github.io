@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/数据可视化研究笔记.html
 http://pancakeawesome.ink/nodejs初级教程.html
 http://pancakeawesome.ink/RESTful-API设计最佳实践.html
 http://pancakeawesome.ink/三种web会话管理的方式.html
