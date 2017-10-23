@@ -36,7 +36,7 @@
 <li>Review Meeting（Sprint评审会）<br>Sprint结束时召开；由开发团队展示这个Sprint中完成的功能；长度为两个小时左右；不需要PPT；一般是已完成的功能的Demo； 谁都可以参加：客户、管理层、Product Owner、其他开发人员等等。</li>
 <li>Sprint Retrospective（sprint回顾会）<br>也就是一个sprint做完了，大家坐在一起聊一聊，总结一下这个迭代过程中有什么问题，有什么可以值得后续开发借鉴的啊。blabla～</li>
 </ul>
-<h3 id="backlog具体分析"><a href="#backlog具体分析" class="headerlink" title="backlog具体分析"></a>backlog具体分析</h3><h3 id="user-story-format"><a href="#user-story-format" class="headerlink" title="user story    format"></a>user story    format</h3><p>format:</p>
+<h2 id="backlog具体分析"><a href="#backlog具体分析" class="headerlink" title="backlog具体分析"></a>backlog具体分析</h2><h3 id="user-story-format"><a href="#user-story-format" class="headerlink" title="user story     format"></a>user story     format</h3><p>name and summary text format:</p>
 <pre><code>as a/an &lt;type of user&gt;
 i want &lt;some goal&gt;
 so that &lt;some reason&gt;
@@ -56,6 +56,23 @@ so that &lt;some reason&gt;
 <li>in progress： 正在做的任务</li>
 <li>test in progress: 正在测试的任务</li>
 <li>done: 已经完成测试的任务</li>
+</ul>
+<h3 id="scrum的三大神器"><a href="#scrum的三大神器" class="headerlink" title="scrum的三大神器"></a>scrum的三大神器</h3><p>production backlog, sprint backlog and burn down chart。</p>
+<ul>
+<li>production backlog:(产品代办事项)<br>是量化的用户需求，条目化地表达实际需要开发的需求。由po分化产品的backlog，比较详细。</li>
+<li>sprint backlog:<br>是一次迭代中需要完成的任务，也是开发过程用得最多的Backlog，非常细化。将上面所生成的backlog，由开发人员再次细分，生成一个比较详细的backlog。</li>
+<li>burn down chart:<br>用来统计每个sprint过程中，每天统计所有item的剩余时间，可以生成两种曲线，一种是现实的消耗，一种是项目预计的消耗，形成一个数据表格的形式。</li>
+</ul>
+<h3 id="scrum的四个计划会议"><a href="#scrum的四个计划会议" class="headerlink" title="scrum的四个计划会议"></a>scrum的四个计划会议</h3><ul>
+<li>sprint planning meeting（迭代计划会）<br>在每个Sprint开始之前，需要召开Sprint计划会议，一般为4至8个小时。参加人员有产品责任人、Scrum Master、Scrum团队和其他感兴趣的人，比如管理层人员和客户代表。Product Owner从产品Backlog中挑选优先度高的任务，并与Scrum团队一起决定在这个Sprint中需要完成多少功能；Scrum团队将这些任务分解成小的功能模块； Scrum团队成员详细讨论如何能按需求完成这些功能模块，并估计完成每个功能模块所需的大概时间。</li>
+<li>Daily Stand-up Meeting（每日立会）<br>即团队每日例会，条件允许的话，每天都应该在同样的时间和地点，所有成员站立着举行。由于是站立的状态开会，因此时间比较短，一般为15分钟左右。这个会议最好是在每天的早晨开，有利于团队成员们安排好当天的工作计划。只有团队成员可以在每日Scrum会议上发言，其他人员如果对项目进度有兴趣也可以参加，但只能旁听而不能发言。<br>  会议由Scrum Master（backlog owner）主持，Scrum团队的所有成员轮流回答上图中的三个问题，即：<ul>
+<li>昨天我完成了什么工作；</li>
+<li>今天我打算做什么；</li>
+<li>我遇到了什么障碍。</li>
+</ul>
+</li>
+<li>Review Meeting（Sprint评审会）<br>Sprint结束时召开；由开发团队展示这个Sprint中完成的功能；长度为两个小时左右；不需要PPT；一般是已完成的功能的Demo； 谁都可以参加：客户、管理层、Product Owner、其他开发人员等等。</li>
+<li>Sprint Retrospective（sprint回顾会）<br>也就是一个sprint做完了，大家坐在一起聊一聊，总结一下这个迭代过程中有什么问题，有什么可以值得后续开发借鉴的啊。blabla～</li>
 </ul>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
       
@@ -99,7 +116,8 @@ so that &lt;some reason&gt;
     <entry>
       <title><![CDATA[数据可视化研究笔记]]></title>
       <url>/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%A0%94%E7%A9%B6%E7%AC%94%E8%AE%B0.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p><strong>数据是符号的集合</strong>，是表达客观事物的未加工过的原始素材，。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
       
         <categories>
             
@@ -2348,51 +2366,51 @@ $btn-primary-bg : $brand-primary !default;
 $btn-primary-border : darken($btn-primary-bg, 5%) !default;
 </code></pre>如果值后面加上!default则表示默认值。<br>注：了解 Bootstrap 的 Sass 版本的同学，就一眼能看出，上面的示例代码是 Bootstrap 定义 primarybutton 的颜色。</li>
 </ul>
-<h4 id="如果变量需要镶嵌在字符串之中，就必须需要写在-之中。"><a href="#如果变量需要镶嵌在字符串之中，就必须需要写在-之中。" class="headerlink" title="如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。"></a>如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。</h4><pre><code>&gt; $side : left;
-&gt; 
-&gt; 　　.rounded {
-&gt; 
-&gt; 　　　　border-#{$side}-radius: 5px;
-&gt; 
-&gt; 　　}
+<h4 id="如果变量需要镶嵌在字符串之中，就必须需要写在-之中。"><a href="#如果变量需要镶嵌在字符串之中，就必须需要写在-之中。" class="headerlink" title="如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。"></a>如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。</h4><pre><code> $side : left;
+
+ 　　.rounded {
+
+ 　　　　border-#{$side}-radius: 5px;
+
+ 　　}
 </code></pre><h3 id="计算功能"><a href="#计算功能" class="headerlink" title="计算功能"></a>计算功能</h3><p>SASS允许在代码中使用算式：</p>
-<pre><code>&gt; body {
-&gt; 
-&gt; 　　　　margin: (14px/2);
-&gt; 
-&gt; 　　　　top: 50px + 100px;
-&gt; 
-&gt; 　　　　right: $var  * 10%;
-&gt; 
-&gt; 　　}
+<pre><code> body {
+
+ 　　　　margin: (14px/2);
+
+ 　　　　top: 50px + 100px;
+
+ 　　　　right: $var  * 10%;
+
+ 　　}
 </code></pre><h3 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a><strong>嵌套</strong></h3><p>SASS允许选择器嵌套。比如，下面的CSS代码：</p>
-<pre><code>&gt; div h1 {
-&gt; 
-&gt; 　　　　color : red;
-&gt; 
-&gt; 　　}
+<pre><code> div h1 {
+
+ 　　　　color : red;
+
+ 　　}
 </code></pre><p>可以写成：</p>
-<pre><code>&gt; div {
-&gt; 
-&gt; 　　　　hi {
-&gt; 
-&gt; 　　　　　　color:red;
-&gt; 
-&gt; 　　　　}
-&gt; 
-&gt; 　　}
+<pre><code> div {
+
+ 　　　　hi {
+
+ 　　　　　　color:red;
+
+ 　　　　}
+
+ 　　}
 </code></pre><p>属性也可以嵌套，比如border-color属性，可以写成：</p>
-<pre><code>&gt; p {
-&gt; 
-&gt; 　　　　border: {
-&gt; 
-&gt; 　　　　　　color: red;
-&gt; 
-&gt; 　　　　}
-&gt; 
-&gt; 　　}
+<pre><code> p {
+
+ 　　　　border: {
+
+ 　　　　　　color: red;
+
+ 　　　　}
+
+ 　　}
 </code></pre><p><strong>注意，border后面必须加上冒号。</strong></p>
-<p>在嵌套的代码块内，可以使用&amp;引用父元素。比如<code>a:hover</code>伪类，可以写成：</p>
+<p>在嵌套的代码块内，可以使用<code>&amp;</code>引用父元素。比如<code>a:hover</code>伪类，可以写成：</p>
 <pre><code> a {
 
 　&amp;:hover { color: #ffb3ff; }
@@ -2405,156 +2423,132 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
 <li>单行注释<code>// comment</code>，只保留在<code>SASS源文件</code>中，编译后被省略。</li>
 </ul>
 <p>在<code>/*</code>后面加一个感叹号，表示这是”重要注释”。即使是压缩模式编译，也会保留这行注释，通常可以用于声明版权信息。</p>
-<pre><code>&gt; /*! 
-&gt; 
-&gt; 　　　　重要注释！
-&gt; 
-&gt; 　　*/
+<pre><code> /*! 
+
+ 　　　　重要注释！
+
+ 　　*/
 </code></pre><h2 id="代码的重用"><a href="#代码的重用" class="headerlink" title="代码的重用"></a><strong>代码的重用</strong></h2><h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a><strong>继承</strong></h3><p>SASS允许一个选择器，继承另一个选择器。比如，现有<code>class1</code>：</p>
-<pre><code>&gt; .class1 {
-&gt; 
-&gt; 　　　　border: 1px solid #ddd;
-&gt; 
-&gt; 　　}
+<pre><code> .class1 {
+
+ 　　　　border: 1px solid #ddd;
+
+ 　　}
 </code></pre><p>class2要继承class1，就要使用<code>@extend</code>命令：</p>
-<pre><code>&gt; .class2 {
-&gt; 
-&gt; 　　　　@extend .class1;
-&gt; 
-&gt; 　　　　font-size:120%;
-&gt; 
-&gt; 　　}
+<pre><code> .class2 {
+
+ 　　　　@extend .class1;
+
+ 　　　　font-size:120%;
+
+ 　　}
 </code></pre><p><strong>注意：</strong></p>
 <ul>
-<li><strong>sass不支持嵌套选择器的继承，比如：</strong><br>```sass<br>.b .c {<br>  color: red;<br>}</li>
+<li>sass不支持嵌套选择器的继承，比如:</li>
 </ul>
-<p>.a {<br>    @extend .b .c;<br>}</p>
-<pre><code>**这样写是错误的❌,sass不会编译成功**
-- **如果你只想让某个样式只用来继承给别的样式，而不想让这个样式输出到css文件中（就像接口一样），可以使用%去修饰样式，这样这个样式就只能用来继承，不能输出到css文件中**
-```sass
-%error {
+<pre><code>.b .c {
     color: red;
 }
 
-.serious-error {
-    @extend %error;
+.a {
+    @extend .b .c;
 }
-</code></pre><h3 id="Mixin"><a href="#Mixin" class="headerlink" title="Mixin"></a><strong>Mixin</strong></h3><p>Mixin有点像C语言的宏<code>（macro）</code>，是可以重用的代码块。</p>
-<p>使用<code>@mixin</code>命令，定义一个代码块。</p>
-<pre><code>&gt; @mixin left {
-&gt; 
-&gt; 　　　　float: left;
-&gt; 
-&gt; 　　　　margin-left: 10px;
-&gt; 
-&gt; 　　}
-</code></pre><p>使用<code>@include</code>命令，调用这个mixin。</p>
-<pre><code>&gt; div {
-&gt; 
-&gt; 　　　　@include left;
-&gt; 
-&gt; 　　}
-</code></pre><p>mixin的强大之处，在于可以指定参数和缺省值。</p>
-<pre><code>&gt; @mixin left($value: 10px) {
-&gt; 
-&gt; 　　　　float: left;
-&gt; 
-&gt; 　　　　margin-right: $value;
-&gt; 
-&gt; 　　}
-</code></pre><p>使用的时候，根据需要加入参数：</p>
-<pre><code>&gt; div {
-&gt; 
-&gt; 　　　　@include left(20px);
-&gt; 
-&gt; 　　}
-</code></pre><p>下面是一个mixin的实例，用来生成浏览器前缀。</p>
-<pre><code>&gt; @mixin rounded($vert, $horz, $radius: 10px) {
-&gt; 
-&gt; 　　　　border-#{$vert}-#{$horz}-radius: $radius;
-&gt; 
-&gt; 　　　　-moz-border-radius-#{$vert}#{$horz}: $radius;
-&gt; 
-&gt; 　　　　-webkit-border-#{$vert}-#{$horz}-radius: $radius;
-&gt; 
-&gt; 　　}
-</code></pre><p>使用的时候，可以像下面这样调用：</p>
-<pre><code>&gt; #navbar li { @include rounded(top, left); }
-&gt; 
-&gt; 　　#footer { @include rounded(top, left, 5px); }
-</code></pre><h3 id="颜色函数"><a href="#颜色函数" class="headerlink" title="颜色函数"></a><strong>颜色函数</strong></h3><p>SASS提供了一些内置的颜色函数，以便生成系列颜色。</p>
-<pre><code>&gt; lighten(#cc3, 10%)  // #d6d65c
-&gt; 
-&gt; 　　darken(#cc3, 10%)  //  #a3a329
-&gt; 
-&gt; 　　grayscale(#cc3) // #808080
-&gt; 
-&gt; 　　complement(#cc3) // #33c
-</code></pre><h3 id="插入文件"><a href="#插入文件" class="headerlink" title="插入文件"></a><strong>插入文件</strong></h3><p><code>@import</code>命令，用来插入外部文件。</p>
-<pre><code>&gt; @import &quot;path/filename.scss&quot;;
-</code></pre><p>如果插入的是<code>.css</code>文件，则等同于css的<code>import</code>命令。</p>
-<pre><code>&gt; @import &quot;foo.css&quot;;
-</code></pre><h2 id="五、高级用法"><a href="#五、高级用法" class="headerlink" title="五、高级用法"></a><strong>五、高级用法</strong></h2><h3 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a><strong>条件语句</strong></h3><p><code>@if</code>可以用来判断：</p>
-<pre><code>&gt; p {
-&gt; 
-&gt; 　　　　@if 1 + 1 == 2 { border: 1px solid; }
-&gt; 
-&gt; 　　　　@if 5 &amp;lt; 3 { border: 2px dotted; }
-&gt; 
-&gt; 　　}
-</code></pre><p>配套的还有<code>@else</code>命令：</p>
-<pre><code>&gt; @if lightness($color) &amp;gt; 30% {
-&gt; 
-&gt; 　　　　background-color: #000;
-&gt; 
-&gt; 　　} @else {
-&gt; 
-&gt; 　　　　background-color: #fff;
-&gt; 
-&gt; 　　}
-</code></pre><h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a><strong>循环语句</strong></h3><p>SASS支持<code>for循环</code>：</p>
-<pre><code>&gt; @for $i from 1 to 10 {
-&gt; 
-&gt; 　　　　.border-#{$i} {
-&gt; 
-&gt; 　　　　　　border: #{$i}px solid blue;
-&gt; 
-&gt; 　　　　}
-&gt; 
-&gt; 　　}
-</code></pre><p>也支持<code>while循环</code>：</p>
-<pre><code>&gt; $i: 6;
-&gt; 
-&gt; 　　@while $i &amp;gt; 0 {
-&gt; 
-&gt; 　　　　.item-#{$i} { width: 2em * $i; }
-&gt; 
-&gt; 　　　　$i: $i - 2;
-&gt; 
-&gt; 　　}
-</code></pre><p><code>each</code>命令，作用与<code>for</code>类似：</p>
-<pre><code>&gt; @each $member in a, b, c, d {
-&gt; 
-&gt; 　　　　.#{$member} {
-&gt; 
-&gt; 　　　　　　background-image: url(&quot;/image/#{$member}.jpg&quot;);
-&gt; 
-&gt; 　　　　}
-&gt; 
-&gt; 　　}
-</code></pre><h3 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a><strong>自定义函数</strong></h3><p>SASS允许用户编写自己的函数。</p>
-<pre><code>&gt; @function double($n) {
-&gt; 
-&gt; 　　　　@return $n * 2;
-&gt; 
-&gt; 　　}
-&gt; 
-&gt; 　　#sidebar {
-&gt; 
-&gt; 　　　　width: double(5px);
-&gt; 
-&gt; 　　}
-</code></pre>]]></content>
+</code></pre><p><strong>这样写是错误的❌,sass不会编译成功</strong></p>
+<ul>
+<li>如果你只想让某个样式只用来继承给别的样式，而不想让这个样式输出到css文件中（就像接口一样），可以使用%去修饰样式，这样这个样式就只能用来继承，不能输出到css文件中</li>
+<li>```<br>%error {<br>  color: red;<br>}</li>
+</ul>
+<p>.serious-error {<br>    @extend %error;<br>}</p>
+<pre><code>
+### Mixin
+
+Mixin有点像C语言的宏`（macro）`，是可以重用的代码块。
+
+使用`@mixin`命令，定义一个代码块。
+</code></pre><p> @mixin left {</p>
+<p> 　　　　float: left;</p>
+<p> 　　　　margin-left: 10px;</p>
+<p> 　　}</p>
+<pre><code>使用`@include`命令，调用这个mixin。
+</code></pre><p> div {</p>
+<p> 　　　　@include left;</p>
+<p> 　　}</p>
+<pre><code>mixin的强大之处，在于可以指定参数和缺省值。
+</code></pre><p> @mixin left($value: 10px) {</p>
+<p> 　　　　float: left;</p>
+<p> 　　　　margin-right: $value;</p>
+<p> 　　}</p>
+<pre><code>使用的时候，根据需要加入参数：
+</code></pre><p> div {</p>
+<p> 　　　　@include left(20px);</p>
+<p> 　　}</p>
+<pre><code>下面是一个mixin的实例，用来生成浏览器前缀。
+</code></pre><p> @mixin rounded($vert, $horz, $radius: 10px) {</p>
+<p> 　　　　border-#{$vert}-#{$horz}-radius: $radius;</p>
+<p> 　　　　-moz-border-radius-#{$vert}#{$horz}: $radius;</p>
+<p> 　　　　-webkit-border-#{$vert}-#{$horz}-radius: $radius;</p>
+<p> 　　}</p>
+<pre><code>使用的时候，可以像下面这样调用：
+</code></pre><p> #navbar li { @include rounded(top, left); }</p>
+<p> 　　#footer { @include rounded(top, left, 5px); }</p>
+<pre><code>### **颜色函数**
+
+SASS提供了一些内置的颜色函数，以便生成系列颜色。
+</code></pre><p> lighten(#cc3, 10%)  // #d6d65c</p>
+<p> 　　darken(#cc3, 10%)  //  #a3a329</p>
+<p> 　　grayscale(#cc3) // #808080</p>
+<p> 　　complement(#cc3) // #33c</p>
+<pre><code>### **插入文件**
+
+`@import`命令，用来插入外部文件。
+</code></pre><p> @import “path/filename.scss”;</p>
+<pre><code>如果插入的是`.css`文件，则等同于css的`import`命令。
+</code></pre><p> @import “foo.css”;</p>
+<pre><code>## **五、高级用法**
+
+### **条件语句**
+
+`@if`可以用来判断：
+</code></pre><p> p {</p>
+<p> 　　　　@if 1 + 1 == 2 { border: 1px solid; }</p>
+<p> 　　　　@if 5 &lt; 3 { border: 2px dotted; }</p>
+<p> 　　}</p>
+<pre><code>配套的还有`@else`命令：
+</code></pre><p> @if lightness($color) &gt; 30% {</p>
+<p> 　　　　background-color: #000;</p>
+<p> 　　} @else {</p>
+<p> 　　　　background-color: #fff;</p>
+<p> 　　}</p>
+<pre><code>### **循环语句**
+
+SASS支持`for循环`：
+</code></pre><p> @for $i from 1 to 10 {</p>
+<p> 　　　　.border-#{$i} {</p>
+<p> 　　　　　　border: #{$i}px solid blue;</p>
+<p> 　　　　}</p>
+<p> 　　}</p>
+<pre><code>也支持`while循环`：
+</code></pre><p> $i: 6;</p>
+<p> 　　@while $i &gt; 0 {</p>
+<p> 　　　　.item-#{$i} { width: 2em * $i; }</p>
+<p> 　　　　$i: $i - 2;</p>
+<p> 　　}</p>
+<pre><code>`each`命令，作用与`for`类似：
+</code></pre><p> @each $member in a, b, c, d {</p>
+<p> 　　　　.#{$member} {</p>
+<p> 　　　　　　background-image: url(“/image/#{$member}.jpg”);</p>
+<p> 　　　　}</p>
+<p> 　　}</p>
+<pre><code>### **自定义函数**
+
+SASS允许用户编写自己的函数。
+</code></pre><p> @function double($n) {</p>
+<p> 　　　　@return $n * 2;</p>
+<p> 　　}</p>
+<p> 　　#sidebar {</p>
+<p> 　　　　width: double(5px);</p>
+<p> 　　}<br>```</p>
+]]></content>
       
         <categories>
             
@@ -2575,7 +2569,7 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
     
     <entry>
       <title><![CDATA[系统入门sass（基础篇）]]></title>
-      <url>/%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8sass.html</url>
+      <url>/%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8sass(%E5%9F%BA%E7%A1%80%E7%AF%87).html</url>
       <content type="html"><![CDATA[<h2 id="什么是-CSS-预处理器？"><a href="#什么是-CSS-预处理器？" class="headerlink" title="什么是 CSS 预处理器？"></a>什么是 CSS 预处理器？</h2><p>定义：<br>CSS 预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为 CSS 增加了一些编程的特性，将 CSS 作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。<br>通俗的说，“CSS 预处理器用一种专门的编程语言，进行 Web 页面样式设计，然后再编译成正常的 CSS 文件，以供项目使用。CSS 预处理器为 CSS 增加一些编程的特性，无需考虑浏览器的兼容性问题”，例如你可以在 <strong>CSS 中使用变量、简单的逻辑程序、函数</strong>（如右侧代码编辑器中就使用了变量<code>$color</code>）等等在编程语言中的一些基本特性，<strong>可以让你的 CSS 更加简洁、适应性更强、可读性更佳，更易于代码的维护等诸多好处</strong>。<br>其它 CSS 预处理器语言：<br>CSS 预处理器技术已经非常的成熟，而且也涌现出了很多种不同的 <strong>CSS 预处理器语言</strong>，比如说：</p>
 <ul>
 <li>Sass（SCSS）</li>
@@ -2597,15 +2591,16 @@ $primary-color: #333 //定义变量
 
 body
   font: 100% $font-stack
-  color: $primary-color&lt;/pre&gt;
+  color: $primary-color
 </code></pre>
 <p><strong>SCSS 语法</strong></p>
 <pre><code class="scss">$font-stack: Helvetica, sans-serif;
 $primary-color: #333;
 
-body &lt;span style=&quot;color:#B22222;&quot;&gt;{&lt;/span&gt;
+body {
   font: 100% $font-stack;
   color: $primary-color;
+  }
 </code></pre>
 <p><strong>编译出来的 CSS</strong></p>
 <pre><code class="css">body {
@@ -3223,7 +3218,7 @@ $ hexo d
     <entry>
       <title><![CDATA[入门Webpack，看这篇就够了]]></title>
       <url>/%E5%85%A5%E9%97%A8Webpack%EF%BC%8C%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>webpack是现在一款非常流行的模块化管理工具🔧，react+webpack+es6是很火的项目构建组合</strong><br>webpack会将有依赖关系的文件都视为一个模块，比如scss,sass,less,css结尾的文件，这样会产生一个模块群，webpack处理过后会产生可以被浏览器识别的一些文件，比如Js,css,html等。<br><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是webpack的<strong>代码分割</strong>特性～<br><strong>webpack的模块热更新特性的：当项目文件发生变化时，不需要开发人员手动刷新浏览器，webpack会自动刷新页面，极大地提高了开发效率，是不是很神奇！</strong><br><strong>注意：本文的webpack环境是<code>3.5.5</code>由于webpack的更新很快，每次更新都会更新新的语法，所以学习webpack的本质就可以</strong>，具体语法可以看webpack官网：<strong><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></strong><br>那么让我们快速开始吧～</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>webpack是现在一款非常流行的模块化管理工具🔧，react+webpack+es6是很火的项目构建组合</strong><br>webpack会将有依赖关系的文件都视为一个模块，比如scss,sass,less,css结尾的文件，这样会产生一个模块群，webpack处理过后会产生可以被浏览器识别的一些文件，比如Js,css,html等。<br><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是webpack的<strong>代码分割</strong>特性～<br><strong>webpack的模块热更新特性的：当项目文件发生变化时，不需要开发人员手动刷新浏览器，webpack会自动刷新页面，极大地提高了开发效率，是不是很神奇！</strong><br><strong>注意：本文的webpack环境是<code>3.5.5</code>由于webpack的更新很快，每次更新都会更新新的语法，所以学习webpack的本质就可以</strong>，具体语法可以看webpack官网：<strong><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></strong><br>那么让我们快速以一个webpack demo的形式开始我们的webpack的学习吧～</p>
 <h2 id="webpack处理资源文件：webpack版本：3-5-5"><a href="#webpack处理资源文件：webpack版本：3-5-5" class="headerlink" title="webpack处理资源文件：webpack版本：3.5.5"></a>webpack处理资源文件：webpack版本：3.5.5</h2><p><strong>因为每个版本的文档都会变化所以坑很多，请注意自己的版本</strong></p>
 <h2 id="如何在terminal中安装webpack"><a href="#如何在terminal中安装webpack" class="headerlink" title="如何在terminal中安装webpack"></a>如何在terminal中安装webpack</h2><ul>
 <li>新建project目录</li>
@@ -3335,7 +3330,7 @@ output: {
 <h2 id="Webpack如何在项目自动生成html文件"><a href="#Webpack如何在项目自动生成html文件" class="headerlink" title="Webpack如何在项目自动生成html文件"></a>Webpack如何在项目自动生成html文件</h2><p>由于我们index页面中1引用的js文件有可能会带hash（每次打包都会变化）。这样我们每次都得手动改变INDEX页面中引用js的代码，非常麻烦。</p>
 <p>那么如何在html中使用动态生成的打包后的文件呢？</p>
 <ul>
-<li>通过<code>html-webpack-plugin</code>自定义<code>html</code>，并且通过模版和其参数，使用外联的方式传入<code>scirpt</code>动态文件；<ul>
+<li>通过<code>html-webpack-plugin</code>这个插件自定义<code>html</code>，并且通过模版和其参数，使用外联的方式传入<code>scirpt</code>动态文件；<ul>
 <li>我们可以使用WEbpakc的另一个核心的功能：<strong><code>plugins</code></strong><br>在webpack配置文件中配置<code>plugins</code>参数：</li>
 </ul>
 </li>
@@ -3345,7 +3340,7 @@ output: {
     ]
 </code></pre><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkp2oj1rzvj30oi03474i.jpg" alt="打包效果：生成了相应的INDEX.html"><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkp2pvnon8j30v801tq2y.jpg" alt="dist打包目录下index页面中引入了相应的出口文件:bundle.js"></p>
 <ul>
-<li><p>多页面时，通过向上述插件的模版中传入参数：</p>
+<li><p>通过向上述插件的模版中传入参数：</p>
 <ul>
 <li>一个对象：<ul>
 <li><code>filename</code>:生成html文件的名称</li>
@@ -3384,224 +3379,444 @@ minify: {
           date: new Date(),
       })
   ]
-</code></pre><p>在模版文件中加入下列测试代码来引用传入的title和date变量：<br>```</p>
-<title>&lt;%= htmlWebpackPlugin.options.title%&gt;</title>
-</li>
+</code></pre><p>在模版文件中加入下列测试代码来引用传入的title和date变量：</p>
+<pre><code>&lt;title&gt;&lt;%= htmlWebpackPlugin.options.title%&gt;&lt;/title&gt;
+</code></pre></li>
 </ul>
-<hr>
-<p>&lt;% for(var k in htmlWebpackPlugin.files.chunks) { %&gt;<br>        &lt;% if(k != ‘main’) { %&gt;<br>            <script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks[k].entry%>"></script><br>        &lt;% }%&gt;<br>    &lt;% }%&gt;</p>
-<pre><code>
-* 如何通过上述插件`inline`的形式引用出口`js`文件：
-    - 我们可以通过将插件参数中的inject参数设为FAlse，并手动在html模版文件中通过变量获取的方式去得到相应的html文件。
-</code></pre><p><script type="text/javascript"><br>        &lt;%= compilation.assets[htmlWebpackPlugin.files.chunks.main.entry.substr(htmlWebpackPlugin.files.publicPath.length)].source() %&gt;<br>    </script></p>
-<pre><code>![](https://ws1.sinaimg.cn/large/006tKfTcgy1fkp41iss8ej30v80ifwg3.jpg)
-    - 通过内联的方式引入出口文件，我们可以方便的在html文件中的各个位置引用出口文件。
-![这样也会将相应的出口打包js文件引入进html文件中](https://ws2.sinaimg.cn/large/006tKfTcgy1fkp48exje5j30ni0cc74p.jpg)
-
-### 如何在js中引用css，并使css代码在html中生效
-* 在require是加入css-loader&amp;&amp;style-loader
-</code></pre><p>npm install –save-dev css-loader style-loader</p>
-<pre><code>* 在webpack.config.js中加入配置信息
-</code></pre><p>{<br>    test: /.css$/,<br>    use: [<br>        {<br>              loader:’style-loader’<br>          },<br>          {<br>            loader:’css-loader’<br>          },<br>          {<br>              loader: ‘postcss-loader’,<br>              // some plugins of postcss-loader:some options<br>              options: {<br>                  plugins: function () {<br>                      return [<br>                          require(‘postcss-import’)({<br>                              root:this.resourcePath<br>                          }),<br>                          require(‘autoprefixer’)({<br>                              broswers: [‘last 5 versions’]<br>                          })<br>                        ]<br>                  }<br>                }<br>            }<br>        ]<br>    }</p>
-<pre><code>*注意postcss-loader预处理器的配置*
-**`css-loader`保证webpack可以打包css模块**
-**`style-loader`保证`js`中的`css`代码以`&lt;style&gt;`标签的形式加入到`html`中并显示其效果**
-
-### 使用loader
-- 直接在require的声明中添加loader命令；
-- 在webpack命令行中使用loader参数；
-- 在webpack的配置文件中设置loader的配置参数（使用正则匹配）；
-- 装babel转换器 将js结尾的文件用babel转换器（es6）转换
-</code></pre><p>npm install babel-loader babel-core –save-dev</p>
-<pre><code>- 安装preset插件以支持最新的es6语法
-</code></pre><p>npm install babel-preset-latest</p>
-<pre><code>
-</code></pre><p>Webpack.config.js:<br>// js loader<br>            {<br>                test: /.js$/,<br>                loader: ‘babel-loader’,<br>                include: path.resolve(<strong>dirname,’src’),<br>                // exclude: </strong>dirname + ‘./node_modules/‘,<br>                exclude: path.resolve(__dirname,’node_modules’),<br>                // param of loader<br>                options: {<br>                    presets: [‘env’]<br>                }<br>            },</p>
-<pre><code>**一定要使用绝对路径去指定path或者其他相似参数的值**
-**输入输出的参数 `__dirname `+ `&#39;/path&#39;`:绝对路径**
-**其他路径参数` __dirname` + `&#39;./path&#39;`:相对路径**
-### 安装一些loaders去转换css文件
-</code></pre><p>// css loader : postcss-loader,css-loader,style-loader<br>            {<br>        test: /.css$/,<br>        use: [<br>            {<br>                  loader:’style-loader’<br>              },<br>              {<br>                loader:’css-loader’<br>              },<br>              {<br>                  loader: ‘postcss-loader’,<br>                  // some plugins of postcss-loader:some options<br>                  options: {<br>                      plugins: function () {<br>                          return [<br>                              require(‘postcss-import’)({<br>                                  root:this.resourcePath<br>                              }),<br>                              require(‘autoprefixer’)({<br>                                  broswers: [‘last 5 versions’]<br>                              })<br>                          ]<br>                      }<br>                    }<br>                }<br>            ]<br>      }</p>
-<pre><code>
-### 使用less-loader，sass-loader去处理css易处理语言
-**步骤是**：先用less-loader去处理less文件转换成css文件，再将css文件用postcss-loader预处理css文件，加上前缀等之类的功能，再用css-loader和style-loader去处理css文件，具体loader的配置如下:
-</code></pre><p>// less loader<br>      {<br>        test: /.less$/,<br>        use: [<br>            {<br>            loader: “style-loader” // creates style nodes from JS strings<br>          },<br>          {<br>              loader: “css-loader” // translates CSS into CommonJS<br>                },<br>                {<br>                  loader: ‘postcss-loader’,<br>                  // some plugins of postcss-loader:some options<br>                  options: {<br>                      plugins: function () {<br>                          return [<br>                              require(‘postcss-import’)({<br>                                  root:this.resourcePath<br>                              }),<br>                              require(‘autoprefixer’)({<br>                                  broswers: [‘last 5 versions’]<br>                              })<br>                          ]<br>                      }<br>                    }<br>                },<br>                {<br>                 loader: “less-loader” // compiles Less to CSS<br>               }<br>           ]<br>      },<br>      // sass loader<br>      {<br>        test: /.scss$/,<br>        use: [<br>            {<br>            loader: “style-loader” // creates style nodes from JS strings<br>          },<br>          {<br>              loader: “css-loader” // translates CSS into CommonJS<br>                },<br>                {<br>                  loader: ‘postcss-loader’,<br>                  // some plugins of postcss-loader:some options<br>                  options: {<br>                      plugins: function () {<br>                          return [<br>                              require(‘postcss-import’)({<br>                                  root:this.resourcePath<br>                              }),<br>                              require(‘autoprefixer’)({<br>                                  broswers: [‘last 5 versions’]<br>                              })<br>                          ]<br>                      }<br>                    }<br>                },<br>                {<br>                 loader: “sass-loader” // compiles Less to CSS<br>               }<br>           ]<br>      }</p>
-<pre><code>
-## 使用`html-loader`或者其他的模版引擎loader去处理html或者模版文件：
-* 使用`html-loader`去把htnl文件处理成字符串的形式引入到其他模块中；
-**装`html-loader`之前要转`node-sass`**
-* 使用模版引擎模块将模版文件比如说`ejs，jsx`等等模版文件引入到其他模块中。
-*下面是`webpack.config.js`的配置代码*
-</code></pre><p>// html loader<br>    rules:[<br>    {<br>        test: /.html$/,<br>        loader: ‘html-loader’<br>    }<br>    ]<br>    //html plugin<br>    plugins: [<br>            new htmlWebpackPlugin({<br>                filename: ‘index.html’,<br>                template: ‘index.html’,<br>                injecet: ‘body’<br>            })<br>        ]</p>
-<pre><code>## 处理图片资源文件
-* 重复性大的图片通过http请求会缓存，使用file-loader去处理
-* 小的图片重复性不大的图片可以用base64编码，使用url-loader去处理
-### 三个地方会用到图片
-* 根目录的index.html里使用；
-* less，sass,css文件中引用图片；
-* 模版文件中引用；** 注意 **如果使用相对路径需要用require引用文件
-</code></pre><pre><code>  &lt;img src=&quot;${ require(&#39;../../assets/logo36x36.png&#39;) }&quot;&gt;
-</code></pre><pre><code>- 使用image-webpack-loader去压缩http请求的图片大小!
-</code></pre><p>// picture loader<br>    {<br>        test: /.(png|jpg|gif|svg)$/,<br>        loaders: [<br>            // ‘file-loader?name=assets/[name]-[hash:5].[ext]’,<br>            ‘url-loader?limit=20&amp;name=assets/[name]-[hash:5].[ext]’,<br>            ‘image-webpack-loader’<br>        ]<br>    }    </p>
-<pre><code>## 写在最后
-### 整个webpack的demo工程我都亲自在Mac环境下测试并运行成功，上传到了github，这里是地址：https://github.com/PancakeAwesome/PancakeAwesome.github.io
-### 下面贴下我完整的`webpack.config.js`和`pacakge.json`的代码：**由于webpack版本更新很快情注意自己的版本，最新语法去[官网查看](https://webpack.github.io/)**
-
-`webpack.config.js`
-</code></pre><p>var htmlWebpackPlugin = require(‘html-webpack-plugin’);<br>var path = require(‘path’);</p>
-<p>module.exports = {<br>    // the door file of webpack packaging<br>    // entry: ‘./src/script/main.js’,<br>    // entry: [‘./src/script/main.js’,’./src/script/a.js’],<br>    entry: __dirname + ‘/src/app.js’,<br>    output: {<br>        /**</p>
-<pre><code>     * __dirname: absolute file path
-     * @type {[type]}
-     */
-    path:__dirname + &#39;/dist&#39;,
-    /**
-     * [name]: entry&#39;s chunck&#39;s key
-     * [chunkhash]: file&#39;s md5 value(file version)
-     * @type {String}
-     */
-    filename: &#39;js/[name].bundle.js&#39;,
-},
-/**
- * webpack loader param
- * @type {Object}
- */
-module: {
-    rules: [
-        // html loader
-        {
-            test: /\.html$/,
-            loader: &#39;html-loader&#39;
-        },
-        // ejs loader (template loader)
-        {
-            test: /\.tpl$/,
-            loader: &#39;ejs-loader&#39;
-        },
-        // js loader
-        {
-            test: /\.js$/,
-            loader: &#39;babel-loader&#39;,
-            include: path.resolve(__dirname,&#39;src&#39;),
-            // exclude: __dirname + &#39;./node_modules/&#39;,
-            exclude: path.resolve(__dirname,&#39;node_modules&#39;),
-            // param of loader
-            options: {
-                presets: [&#39;env&#39;]
-            }
-        },
-        // css loader : postcss-loader,css-loader,style-loader
-        {
-    test: /\.css$/,
-    use: [
-        {
-              loader:&#39;style-loader&#39;
-          },
-          {
-            loader:&#39;css-loader&#39;
-          },
-          { 
-              loader: &#39;postcss-loader&#39;,
-              // some plugins of postcss-loader:some options
-              options: {
-                  plugins: function () {
-                      return [
-                          require(&#39;postcss-import&#39;)({
-                              root:this.resourcePath
-                          }),
-                          require(&#39;autoprefixer&#39;)({
-                              broswers: [&#39;last 5 versions&#39;]
-                          })
-                      ]
-                  }
-                }
-            }
-        ]    
-  },
-  // less loader
-  {
-    test: /\.less$/,
-    use: [
-        {
-        loader: &quot;style-loader&quot; // creates style nodes from JS strings 
-      }, 
-      {
-          loader: &quot;css-loader&quot; // translates CSS into CommonJS 
-            },
-            { 
-              loader: &#39;postcss-loader&#39;,
-              // some plugins of postcss-loader:some options
-              options: {
-                  plugins: function () {
-                      return [
-                          require(&#39;postcss-import&#39;)({
-                              root:this.resourcePath
-                          }),
-                          require(&#39;autoprefixer&#39;)({
-                              broswers: [&#39;last 5 versions&#39;]
-                          })
-                      ]
-                  }
-                }
-            },
-            {
-             loader: &quot;less-loader&quot; // compiles Less to CSS 
-           }
-       ]
-  },
-  // sass loader
-  {
-    test: /\.scss$/,
-    use: [
-        {
-        loader: &quot;style-loader&quot; // creates style nodes from JS strings 
-      }, 
-      {
-          loader: &quot;css-loader&quot; // translates CSS into CommonJS 
-            },
-            { 
-              loader: &#39;postcss-loader&#39;,
-              // some plugins of postcss-loader:some options
-              options: {
-                  plugins: function () {
-                      return [
-                          require(&#39;postcss-import&#39;)({
-                              root:this.resourcePath
-                          }),
-                          require(&#39;autoprefixer&#39;)({
-                              broswers: [&#39;last 5 versions&#39;]
-                          })
-                      ]
-                  }
-                }
-            },
-            {
-             loader: &quot;sass-loader&quot; // compiles sess to CSS 
-           }
-       ]
-  },
-        // picture loader
-        {
-            test: /\.(png|jpg|gif|svg)$/,
-            loaders: [
-                // &#39;file-loader?name=assets/[name]-[hash:5].[ext]&#39;,
-                &#39;url-loader?limit=200000&amp;name=assets/[name]-[hash:5].[ext]&#39;,
-                &#39;image-webpack-loader&#39;
-            ]
-        },
+<ul>
+<li>如何通过上述插件<code>inline</code>的形式引用出口<code>js</code>文件：<ul>
+<li>我们可以通过webpack暴露给我们的引用变量去获取相应的js文件。<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+  &lt;%= compilation.assets[htmlWebpackPlugin.files.chunks.main.entry.substr(htmlWebpackPlugin.files.publicPath.length)].source() %&gt;
+&lt;/script&gt;
+</code></pre><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkp41iss8ej30v80ifwg3.jpg" alt=""><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkp48exje5j30ni0cc74p.jpg" alt="这样也会将相应的出口打包js文件引入进html文件中"></li>
+</ul>
+</li>
+<li>我们也可以通过外链的形式在模版文件中自定义引入特定的js文件。<pre><code>&lt;% for(var k in htmlWebpackPlugin.files.chunks) { %&gt;
+      &lt;% if(k != &#39;main&#39;) { %&gt;
+          &lt;script type=&quot;text/javascript&quot; src=&#39;&lt;%= htmlWebpackPlugin.files.chunks[k].entry%&gt;&#39;&gt;&lt;/script&gt;
+      &lt;% }%&gt;
+  &lt;% }%&gt;
+</code></pre><strong>以上代码可以实现main的js文件以内联的形式引入到html文件中，而其他js文件以外链的形式引入到html文件。</strong></li>
+</ul>
+<h3 id="多页面应用的配置"><a href="#多页面应用的配置" class="headerlink" title="多页面应用的配置"></a>多页面应用的配置</h3><p>多页面应用环境下，需要配置多个入口文件，配置多个htmlwebpackplugin插件从而生成多个html文件。<br>配置如下：</p>
+<pre><code>module.exports = {
+    entry: {
+        main: &#39;./src/script/main.js&#39;,
+        a: &#39;./src/script/a.js&#39;,
+        b: &#39;./src/script/b.js&#39;,
+        c: &#39;./src/script/c.js&#39;,
+    },
+    plugins: [
+        new htmlWebpackPlugin({
+            filename: &#39;a.html&#39;,
+            template: &#39;index.html&#39;,
+            // the position of script file to the html
+            inject: false,
+            title: &#39;this is a.html&#39;,
+            // param can be got in html
+            date: new Date(),
+            chunks: [&#39;main&#39;,&#39;a&#39;]
+        }),
+        new htmlWebpackPlugin({
+            filename: &#39;b.html&#39;,
+            template: &#39;index.html&#39;,
+            // the position of script file to the html
+            inject: false,
+            title: &#39;this is b.html&#39;,
+            date: new Date(),
+            chunks: [&#39;b&#39;]
+        }),
+        new htmlWebpackPlugin({
+            filename: &#39;c.html&#39;,
+            template: &#39;index.html&#39;,
+            // the position of script file to the html
+            inject: false,
+            title: &#39;this is c.html&#39;,
+            date: new Date(),
+            excludeChunks: [&#39;c&#39;]
+        })
     ]
-},
-plugins: [
-    new htmlWebpackPlugin({
-        filename: &#39;index.html&#39;,
-        template: &#39;index.html&#39;,
-        injecet: &#39;body&#39;
-    })
-]
-</code></pre><p>}</p>
-<pre><code>
-`pacage.json`
-</code></pre><p>{<br>  “name”: “webpack-demo”,<br>  “version”: “1.0.0”,<br>  “description”: “”,<br>  “main”: “index.js”,<br>  “scripts”: {<br>    “test”: “echo \”Error: no test specified\” &amp;&amp; exit 1”,<br>    “webpack”: “webpack –config webpack.config.js –progress  –colors”<br>  },<br>  “author”: “”,<br>  “license”: “ISC”,<br>  “devDependencies”: {<br>    “autoprefix”: “^1.0.1”,<br>    “babel-core”: “^6.26.0”,<br>    “babel-loader”: “^7.1.2”,<br>    “babel-preset-env”: “^1.6.0”,<br>    “babel-preset-latest”: “^6.24.1”,<br>    “css-loader”: “^0.28.7”,<br>    “ejs-loader”: “^0.3.0”,<br>    “file-loader”: “^0.11.2”,<br>    “html-loader”: “^0.5.1”,<br>    “html-webpack-plugin”: “^2.30.1”,<br>    “image-webpack-loader”: “^3.4.2”,<br>    “less”: “^2.7.2”,<br>    “less-loader”: “^4.0.5”,<br>    “node-sass”: “^4.5.3”,<br>    “postcss-import”: “^10.0.0”,<br>    “postcss-loader”: “^2.0.6”,<br>    “sass”: “^1.0.0-beta.2”,<br>    “sass-loader”: “^6.0.6”,<br>    “style-loader”: “^0.18.2”,<br>    “url-loader”: “^0.5.9”,<br>    “webpack”: “^3.5.5”<br>  }<br>}<br>```</p>
-]]></content>
+}
+</code></pre><p><em><code>chunks</code>:定义引入的chunk文件。</em><br><em><code>excludeChunks</code>:定义不引入的chunk文件。</em></p>
+<h2 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h2><p>loader和plugins无疑是webpack最重要的两个概念。</p>
+<h3 id="什么是Loader？"><a href="#什么是Loader？" class="headerlink" title="什么是Loader？"></a>什么是Loader？</h3><p> loader可以用来处理资源文件，接受资源文件作为参数，loader处理之后返回一个新的文件。</p>
+<h3 id="Loader的特性"><a href="#Loader的特性" class="headerlink" title="Loader的特性"></a>Loader的特性</h3><ul>
+<li>可串联</li>
+<li>同步和异步的</li>
+<li>可以接受参数</li>
+<li>可以根据文件的正则表达式来处理特定文件</li>
+<li>可以根据<code>npm</code>安装</li>
+<li>获取webpack config的配置</li>
+<li>loader可以生成额外的文件</li>
+</ul>
+<h3 id="使用loader的方式"><a href="#使用loader的方式" class="headerlink" title="使用loader的方式"></a>使用loader的方式</h3><ul>
+<li>在require声明的路径前面配置。</li>
+<li><strong>配置文件中配置（webpack.config.js）</strong></li>
+<li>cli：在命令行中通过参数指定loader。</li>
+</ul>
+<h3 id="如何在js中引用css，并使css代码在html中生效"><a href="#如何在js中引用css，并使css代码在html中生效" class="headerlink" title="如何在js中引用css，并使css代码在html中生效"></a>如何在js中引用css，并使css代码在html中生效</h3><ul>
+<li>在require是加入css-loader&amp;&amp;style-loader<pre><code>npm install --save-dev css-loader style-loader
+</code></pre></li>
+<li>在webpack.config.js中加入配置信息<pre><code>{
+  test: /\.css$/,
+  use: [
+      {
+            loader:&#39;style-loader&#39;
+        },
+        {
+          loader:&#39;css-loader&#39;
+        },
+        { 
+            loader: &#39;postcss-loader&#39;,
+            // some plugins of postcss-loader:some options
+            options: {
+                plugins: function () {
+                    return [
+                        require(&#39;postcss-import&#39;)({
+                            root:this.resourcePath
+                        }),
+                        require(&#39;autoprefixer&#39;)({
+                            broswers: [&#39;last 5 versions&#39;]
+                        })
+                      ]
+                }
+              }
+          }
+      ]    
+  }
+</code></pre><em>注意postcss-loader预处理器的配置</em><br><strong><code>css-loader</code>保证webpack可以打包css模块</strong><br><strong><code>style-loader</code>保证<code>js</code>中的<code>css</code>代码以<code>&lt;style&gt;</code>标签的形式加入到<code>html</code>中并显示其效果</strong></li>
+</ul>
+<h4 id="使用loader"><a href="#使用loader" class="headerlink" title="使用loader"></a>使用loader</h4><ul>
+<li>直接在require的声明中添加loader命令；</li>
+<li>在webpack命令行中使用loader参数；</li>
+<li>在webpack的配置文件中设置loader的配置参数（使用正则匹配）；</li>
+<li>装babel转换器 将js结尾的文件用babel转换器（es6）转换<pre><code>npm install babel-loader babel-core --save-dev
+</code></pre></li>
+<li>安装preset插件以支持最新的es6语法<pre><code>npm install babel-preset-latest
+</code></pre></li>
+</ul>
+<pre><code>Webpack.config.js:
+// js loader
+            {
+                test: /\.js$/,
+                loader: &#39;babel-loader&#39;,
+                include: path.resolve(__dirname,&#39;src&#39;),
+                // exclude: __dirname + &#39;./node_modules/&#39;,
+                exclude: path.resolve(__dirname,&#39;node_modules&#39;),
+                // param of loader
+                options: {
+                    presets: [&#39;env&#39;]
+                }
+            },
+</code></pre><p><strong>一定要使用绝对路径去指定path或者其他相似参数的值</strong><br><strong>输入输出的参数 <code>__dirname</code>+ <code>&#39;/path&#39;</code>:绝对路径</strong><br><strong>其他路径参数<code>__dirname</code> + <code>&#39;./path&#39;</code>:相对路径</strong></p>
+<h4 id="安装一些loaders去转换css文件"><a href="#安装一些loaders去转换css文件" class="headerlink" title="安装一些loaders去转换css文件"></a>安装一些loaders去转换css文件</h4><pre><code>// css loader : postcss-loader,css-loader,style-loader
+            {
+        test: /\.css$/,
+        use: [
+            {
+                  loader:&#39;style-loader&#39;
+              },
+              {
+                loader:&#39;css-loader&#39;
+              },
+              { 
+                  loader: &#39;postcss-loader&#39;,
+                  // some plugins of postcss-loader:some options
+                  options: {
+                      plugins: function () {
+                          return [
+                              require(&#39;postcss-import&#39;)({
+                                  root:this.resourcePath
+                              }),
+                              require(&#39;autoprefixer&#39;)({
+                                  broswers: [&#39;last 5 versions&#39;]
+                              })
+                          ]
+                      }
+                    }
+                }
+            ]    
+      }
+</code></pre><h4 id="使用less-loader，sass-loader去处理css易处理语言"><a href="#使用less-loader，sass-loader去处理css易处理语言" class="headerlink" title="使用less-loader，sass-loader去处理css易处理语言"></a>使用less-loader，sass-loader去处理css易处理语言</h4><p><strong>步骤是</strong>：先用less-loader去处理less文件转换成css文件，再将css文件用postcss-loader预处理css文件，加上前缀等之类的功能，再用css-loader和style-loader去处理css文件，具体loader的配置如下:</p>
+<pre><code>// less loader
+      {
+        test: /\.less$/,
+        use: [
+            {
+            loader: &quot;style-loader&quot; // creates style nodes from JS strings 
+          }, 
+          {
+              loader: &quot;css-loader&quot; // translates CSS into CommonJS 
+                },
+                { 
+                  loader: &#39;postcss-loader&#39;,
+                  // some plugins of postcss-loader:some options
+                  options: {
+                      plugins: function () {
+                          return [
+                              require(&#39;postcss-import&#39;)({
+                                  root:this.resourcePath
+                              }),
+                              require(&#39;autoprefixer&#39;)({
+                                  broswers: [&#39;last 5 versions&#39;]
+                              })
+                          ]
+                      }
+                    }
+                },
+                {
+                 loader: &quot;less-loader&quot; // compiles Less to CSS 
+               }
+           ]
+      },
+      // sass loader
+      {
+        test: /\.scss$/,
+        use: [
+            {
+            loader: &quot;style-loader&quot; // creates style nodes from JS strings 
+          }, 
+          {
+              loader: &quot;css-loader&quot; // translates CSS into CommonJS 
+                },
+                { 
+                  loader: &#39;postcss-loader&#39;,
+                  // some plugins of postcss-loader:some options
+                  options: {
+                      plugins: function () {
+                          return [
+                              require(&#39;postcss-import&#39;)({
+                                  root:this.resourcePath
+                              }),
+                              require(&#39;autoprefixer&#39;)({
+                                  broswers: [&#39;last 5 versions&#39;]
+                              })
+                          ]
+                      }
+                    }
+                },
+                {
+                 loader: &quot;sass-loader&quot; // compiles Less to CSS 
+               }
+           ]
+      }
+</code></pre><h3 id="处理图片资源文件"><a href="#处理图片资源文件" class="headerlink" title="处理图片资源文件"></a>处理图片资源文件</h3><ul>
+<li>重复性大的图片通过http请求会缓存，使用file-loader去处理</li>
+<li>小的图片重复性不大的图片可以用base64编码，使用url-loader去处理<h4 id="三个地方会用到图片"><a href="#三个地方会用到图片" class="headerlink" title="三个地方会用到图片"></a>三个地方会用到图片</h4></li>
+<li>根目录的index.html里使用；</li>
+<li>less，sass,css文件中引用图片；</li>
+<li>模版文件中引用；<strong> 注意 </strong>如果使用相对路径需要用require引用文件<pre><code>    &lt;img src=&quot;${ require(&#39;../../assets/logo36x36.png&#39;) }&quot;&gt;
+</code></pre></li>
+</ul>
+<ul>
+<li>使用image-webpack-loader去压缩http请求的图片大小!<pre><code>// picture loader
+  {
+      test: /\.(png|jpg|gif|svg)$/,
+      loaders: [
+          // &#39;file-loader?name=assets/[name]-[hash:5].[ext]&#39;,
+          &#39;url-loader?limit=20&amp;name=assets/[name]-[hash:5].[ext]&#39;,
+          &#39;image-webpack-loader&#39;
+      ]
+  }
+</code></pre></li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>整个webpack的demo工程我都亲自在Mac环境下测试并运行成功，上传到了github，这里是地址：<a href="https://github.com/PancakeAwesome/PancakeAwesome.github.io" target="_blank" rel="external">https://github.com/PancakeAwesome/PancakeAwesome.github.io</a><br>下面贴下我完整的<code>webpack.config.js</code>和<code>pacakge.json</code>的代码：<strong>由于webpack版本更新很快情注意自己的版本，最新语法去<a href="https://webpack.github.io/" target="_blank" rel="external">官网查看</a></strong></p>
+<p><code>webpack.config.js</code></p>
+<pre><code>var htmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+var path = require(&#39;path&#39;);
+
+module.exports = {    
+    // the door file of webpack packaging
+    // entry: &#39;./src/script/main.js&#39;,
+    // entry: [&#39;./src/script/main.js&#39;,&#39;./src/script/a.js&#39;],
+    entry: __dirname + &#39;/src/app.js&#39;,
+    output: {
+        /**
+         * __dirname: absolute file path
+         * @type {[type]}
+         */
+        path:__dirname + &#39;/dist&#39;,
+        /**
+         * [name]: entry&#39;s chunck&#39;s key
+         * [chunkhash]: file&#39;s md5 value(file version)
+         * @type {String}
+         */
+        filename: &#39;js/[name].bundle.js&#39;,
+    },
+    /**
+     * webpack loader param
+     * @type {Object}
+     */
+    module: {
+        rules: [
+            // html loader
+            {
+                test: /\.html$/,
+                loader: &#39;html-loader&#39;
+            },
+            // ejs loader (template loader)
+            {
+                test: /\.tpl$/,
+                loader: &#39;ejs-loader&#39;
+            },
+            // js loader
+            {
+                test: /\.js$/,
+                loader: &#39;babel-loader&#39;,
+                include: path.resolve(__dirname,&#39;src&#39;),
+                // exclude: __dirname + &#39;./node_modules/&#39;,
+                exclude: path.resolve(__dirname,&#39;node_modules&#39;),
+                // param of loader
+                options: {
+                    presets: [&#39;env&#39;]
+                }
+            },
+            // css loader : postcss-loader,css-loader,style-loader
+            {
+        test: /\.css$/,
+        use: [
+            {
+                  loader:&#39;style-loader&#39;
+              },
+              {
+                loader:&#39;css-loader&#39;
+              },
+              { 
+                  loader: &#39;postcss-loader&#39;,
+                  // some plugins of postcss-loader:some options
+                  options: {
+                      plugins: function () {
+                          return [
+                              require(&#39;postcss-import&#39;)({
+                                  root:this.resourcePath
+                              }),
+                              require(&#39;autoprefixer&#39;)({
+                                  broswers: [&#39;last 5 versions&#39;]
+                              })
+                          ]
+                      }
+                    }
+                }
+            ]    
+      },
+      // less loader
+      {
+        test: /\.less$/,
+        use: [
+            {
+            loader: &quot;style-loader&quot; // creates style nodes from JS strings 
+          }, 
+          {
+              loader: &quot;css-loader&quot; // translates CSS into CommonJS 
+                },
+                { 
+                  loader: &#39;postcss-loader&#39;,
+                  // some plugins of postcss-loader:some options
+                  options: {
+                      plugins: function () {
+                          return [
+                              require(&#39;postcss-import&#39;)({
+                                  root:this.resourcePath
+                              }),
+                              require(&#39;autoprefixer&#39;)({
+                                  broswers: [&#39;last 5 versions&#39;]
+                              })
+                          ]
+                      }
+                    }
+                },
+                {
+                 loader: &quot;less-loader&quot; // compiles Less to CSS 
+               }
+           ]
+      },
+      // sass loader
+      {
+        test: /\.scss$/,
+        use: [
+            {
+            loader: &quot;style-loader&quot; // creates style nodes from JS strings 
+          }, 
+          {
+              loader: &quot;css-loader&quot; // translates CSS into CommonJS 
+                },
+                { 
+                  loader: &#39;postcss-loader&#39;,
+                  // some plugins of postcss-loader:some options
+                  options: {
+                      plugins: function () {
+                          return [
+                              require(&#39;postcss-import&#39;)({
+                                  root:this.resourcePath
+                              }),
+                              require(&#39;autoprefixer&#39;)({
+                                  broswers: [&#39;last 5 versions&#39;]
+                              })
+                          ]
+                      }
+                    }
+                },
+                {
+                 loader: &quot;sass-loader&quot; // compiles sess to CSS 
+               }
+           ]
+      },
+            // picture loader
+            {
+                test: /\.(png|jpg|gif|svg)$/,
+                loaders: [
+                    // &#39;file-loader?name=assets/[name]-[hash:5].[ext]&#39;,
+                    &#39;url-loader?limit=200000&amp;name=assets/[name]-[hash:5].[ext]&#39;,
+                    &#39;image-webpack-loader&#39;
+                ]
+            },
+        ]
+    },
+    plugins: [
+        new htmlWebpackPlugin({
+            filename: &#39;index.html&#39;,
+            template: &#39;index.html&#39;,
+            injecet: &#39;body&#39;
+        })
+    ]
+}
+</code></pre><p><code>pacage.json</code></p>
+<pre><code>{
+  &quot;name&quot;: &quot;webpack-demo&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+    &quot;webpack&quot;: &quot;webpack --config webpack.config.js --progress  --colors&quot;
+  },
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;devDependencies&quot;: {
+    &quot;autoprefix&quot;: &quot;^1.0.1&quot;,
+    &quot;babel-core&quot;: &quot;^6.26.0&quot;,
+    &quot;babel-loader&quot;: &quot;^7.1.2&quot;,
+    &quot;babel-preset-env&quot;: &quot;^1.6.0&quot;,
+    &quot;babel-preset-latest&quot;: &quot;^6.24.1&quot;,
+    &quot;css-loader&quot;: &quot;^0.28.7&quot;,
+    &quot;ejs-loader&quot;: &quot;^0.3.0&quot;,
+    &quot;file-loader&quot;: &quot;^0.11.2&quot;,
+    &quot;html-loader&quot;: &quot;^0.5.1&quot;,
+    &quot;html-webpack-plugin&quot;: &quot;^2.30.1&quot;,
+    &quot;image-webpack-loader&quot;: &quot;^3.4.2&quot;,
+    &quot;less&quot;: &quot;^2.7.2&quot;,
+    &quot;less-loader&quot;: &quot;^4.0.5&quot;,
+    &quot;node-sass&quot;: &quot;^4.5.3&quot;,
+    &quot;postcss-import&quot;: &quot;^10.0.0&quot;,
+    &quot;postcss-loader&quot;: &quot;^2.0.6&quot;,
+    &quot;sass&quot;: &quot;^1.0.0-beta.2&quot;,
+    &quot;sass-loader&quot;: &quot;^6.0.6&quot;,
+    &quot;style-loader&quot;: &quot;^0.18.2&quot;,
+    &quot;url-loader&quot;: &quot;^0.5.9&quot;,
+    &quot;webpack&quot;: &quot;^3.5.5&quot;
+  }
+}
+</code></pre>]]></content>
       
         <categories>
             
