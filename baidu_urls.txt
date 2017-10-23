@@ -14,3 +14,4 @@ http://pancakeawesome.ink/系统入门sass.html
 http://pancakeawesome.ink/三分钟入门markdown.html
 http://pancakeawesome.ink/hexo+githubio+material搭建你的个人博客(基础篇).html
 http://pancakeawesome.ink/动态规划迷思.html
+http://pancakeawesome.ink/入门Webpack，看这篇就够了.html

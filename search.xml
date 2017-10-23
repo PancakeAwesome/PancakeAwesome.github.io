@@ -7,6 +7,20 @@
       <url>/%E6%B5%85%E6%9E%90react.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
       
+        <categories>
+            
+            <category> 前端框架 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端技术 </tag>
+            
+            <tag> 前端框架 </tag>
+            
+        </tags>
         
     </entry>
     
@@ -3129,6 +3143,406 @@ $ hexo d
             <tag> 算法思想 </tag>
             
             <tag> 知乎 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[入门Webpack，看这篇就够了]]></title>
+      <url>/%E5%85%A5%E9%97%A8Webpack%EF%BC%8C%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>webpack是现在一款非常流行的模块化管理工具🔧，react+webpack+es6是很火的项目构建组合</strong><br>webpack会将有依赖关系的文件都视为一个模块，比如scss,sass,less,css结尾的文件，这样会产生一个模块群，webpack处理过后会产生可以被浏览器识别的一些文件，比如Js,css,html等。<br><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是webpack的<strong>代码分割</strong>特性～<br><strong>webpack的模块热更新特性的：当项目文件发生变化时，不需要开发人员手动刷新浏览器，webpack会自动刷新页面，极大地提高了开发效率，是不是很神奇！</strong><br><strong>注意：本文的webpack环境是<code>3.5.5</code>由于webpack的更新很快，每次更新都会更新新的语法，所以学习webpack的本质就可以</strong>，具体语法可以看webpack官网：<strong><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></strong><br>那么让我们快速开始吧～</p>
+<h2 id="webpack处理资源文件：webpack版本：3-5-5"><a href="#webpack处理资源文件：webpack版本：3-5-5" class="headerlink" title="webpack处理资源文件：webpack版本：3.5.5"></a>webpack处理资源文件：webpack版本：3.5.5</h2><p><strong>因为每个版本的文档都会变化所以坑很多，请注意自己的版本</strong></p>
+<h2 id="如何在terminal中安装webpack"><a href="#如何在terminal中安装webpack" class="headerlink" title="如何在terminal中安装webpack"></a>如何在terminal中安装webpack</h2><ul>
+<li>新建project目录</li>
+<li>初始化npm:<pre><code>npm init
+</code></pre></li>
+<li>安装webpack<pre><code>npm install webpack --save-dev
+</code></pre></li>
+<li>注意:dev参数是安装到本地项目文件夹下，并将webpack写入到package.json配置文件中的devdependecies参数中。</li>
+</ul>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fkp0uuy0zxj30di04vwek.jpg" alt=""></p>
+<ul>
+<li>直接对js文件执行打包：<pre><code>webpack [source.file] [target.file]
+</code></pre></li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fkp16i9tk2j30l905u74n.jpg" alt=""></p>
+<p><strong>打包执行结果在命令行中的参数：</strong></p>
+<ul>
+<li><code>hash</code>:这次打包结果文件的hash值。</li>
+<li><code>version</code>:webpack的版本。</li>
+<li><code>time</code>：这次打包的所耗时间。</li>
+<li><code>asset</code>：打包的结果文件。</li>
+<li><code>size</code>：打包文件的大小。</li>
+<li><code>chunks</code>：打包的入口文件的分块。</li>
+<li><code>chunk names</code>：分块的名称。</li>
+</ul>
+<p>看一下打包结果文件hello.bundle.js的结构：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkp19bxi7uj30s40bb3yt.jpg" alt=""></p>
+<pre><code>/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+</code></pre><p>这段代码其实是webpack利用内置的<code>__webpack_require__</code>函数来代替源代码中的require方法来引用相关的文件并插入到bundle文件中：</p>
+<p>hello.js入口文件：</p>
+<pre><code>require(&#39;./world.js&#39;);
+require(&#39;./style.css&#39;);
+
+function function_name(argument) {
+    // body...
+    alert(argument);
+}
+
+function_name(&#39;hello!&#39;);
+</code></pre><h2 id="建立项目的webpack配置文件"><a href="#建立项目的webpack配置文件" class="headerlink" title="建立项目的webpack配置文件"></a>建立项目的webpack配置文件</h2><p>新建项目初始目录：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkp1lrxcrkj304d084glk.jpg" alt=""></p>
+<ul>
+<li>src：项目源代码目录。<ul>
+<li>app.js:打包的入口文件。</li>
+<li>components：项目组件目录。</li>
+<li>assets:静态资源（图片）目录。</li>
+<li>css：css资源目录。</li>
+</ul>
+</li>
+<li>dist：打包后的静态资源目录。</li>
+<li><strong>webpack.config.js:webpack的配置文件。</strong><br>以commonjs的模块化方式建立配置文件的框架,添加入口出口文件：</li>
+</ul>
+<pre><code>module.exports = {
+  entry: __dirname + &#39;/src/app.js&#39;;
+  output: {
+      path: __dirname + &#39;/dist&#39;,
+      filename: &#39;js/[name].bundle.js&#39;
+  }
+}
+</code></pre><h3 id="webpack命令方式"><a href="#webpack命令方式" class="headerlink" title="webpack命令方式"></a>webpack命令方式</h3><p><code>npm run webpack</code>命令行运行参数：<br><code>npm run webpack --config webpack.config.js --progress  --colors --display-reasons --watch</code><br><em>这些参数具体的作用后文有写</em></p>
+<h3 id="npm脚本执行方式"><a href="#npm脚本执行方式" class="headerlink" title="npm脚本执行方式"></a>npm脚本执行方式</h3><p>在npm的配置文件package.json中的scripts参数配置webpack：</p>
+<pre><code>&quot;scripts&quot;: {
+    &quot;webpack&quot;: &quot;webpack --config webpack.config.js --progress --colors&quot;
+  }
+</code></pre><p><em>常用的webpack执行参数：</em></p>
+<pre><code>webpack --config webpack.config.js --progress  --colors --display-reasons --watch
+</code></pre><ul>
+<li><code>--config &lt;指定的webpack配置文件名称&gt;</code>: 指定webpack配置文件来执行webpack命令。</li>
+<li><code>progress</code>:打包的过程。</li>
+<li><code>--colors</code>:结果输出在命令行是彩色的。</li>
+<li><code>--display-reasons</code>:打包的原因。</li>
+<li><code>--watch</code>:自动监听项目代码文件的变化，自动执行webpack命令。</li>
+</ul>
+<h2 id="webpack的打包入口和出口文件配置"><a href="#webpack的打包入口和出口文件配置" class="headerlink" title="webpack的打包入口和出口文件配置"></a>webpack的打包入口和出口文件配置</h2><p>打包文件的路径设置在<em>webpack.config.js</em>文件中的output参数。</p>
+<ul>
+<li>entry:打包入口文件；<ul>
+<li>string:单个入口文件路径。</li>
+<li>array:多个入口文件路径。</li>
+<li>object:多页面应用中的多个入口文件<ul>
+<li>key: 不同页面的代号。</li>
+<li>value: 和上面的value规定一样，可以是数组也可以是string。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>output:打包出口文件。<ul>
+<li><code>path</code>:生成出口文件的存储路径。</li>
+<li><code>filename</code>:打包文件的名称（使用相对路径，不要使用绝对路径）</li>
+<li><code>publicPath</code>:上线之后的项目路径。一旦配置了这个路径，所有路径都以这种路径为主。<br>具体配置如下：<pre><code>entry: __dirname + &#39;src/app.js&#39;,
+output: {
+  /**
+   * __dirname: absolute file path
+   * @type {[type]}
+   */
+  path:__dirname + &#39;/dist&#39;,
+  /**
+   * [name]: entry&#39;s chunck&#39;s key
+   * [chunkhash]: file&#39;s md5 value(file version)
+   * @type {String}
+   */
+  filename: &#39;js/[name].bundle.js&#39;,
+  publicPath: &#39;http://cdn.com/&#39;
+}
+</code></pre><strong><code>path</code>之前要加<code>__dirname</code>，否则会报错，这是个坑，<code>__dirname</code>在nodejs语法中代表文件所在目录的绝对路径。</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="Webpack如何在项目自动生成html文件"><a href="#Webpack如何在项目自动生成html文件" class="headerlink" title="Webpack如何在项目自动生成html文件"></a>Webpack如何在项目自动生成html文件</h2><p>由于我们index页面中1引用的js文件有可能会带hash（每次打包都会变化）。这样我们每次都得手动改变INDEX页面中引用js的代码，非常麻烦。</p>
+<p>那么如何在html中使用动态生成的打包后的文件呢？</p>
+<ul>
+<li>通过<code>html-webpack-plugin</code>自定义<code>html</code>，并且通过模版和其参数，使用外联的方式传入<code>scirpt</code>动态文件；<ul>
+<li>我们可以使用WEbpakc的另一个核心的功能：<strong><code>plugins</code></strong><br>在webpack配置文件中配置<code>plugins</code>参数：</li>
+</ul>
+</li>
+</ul>
+<pre><code>plugins: [
+        new htmlWebpackPlugin()
+    ]
+</code></pre><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkp2oj1rzvj30oi03474i.jpg" alt="打包效果：生成了相应的INDEX.html"><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkp2pvnon8j30v801tq2y.jpg" alt="dist打包目录下index页面中引入了相应的出口文件:bundle.js"></p>
+<ul>
+<li><p>多页面时，通过向上述插件的模版中传入参数：</p>
+<ul>
+<li>一个对象：<ul>
+<li><code>filename</code>:生成html文件的名称</li>
+<li><code>template</code>:模版文件的相对路径（<strong>上下文环境是webpack.config.js文件的路径</strong>）</li>
+<li><code>injecet</code>:script文件嵌入到html文件的哪个部分。</li>
+<li><code>chunks</code>:</li>
+<li><code>minify</code>:压缩选项。<ul>
+<li><code>removeComments</code>:删除注释</li>
+<li><code>collapseWhitespace</code>：删除空格<pre><code>plugins: [
+new htmlWebpackPlugin({
+filename: &#39;index.html&#39;,
+template: &#39;index.html&#39;,
+injecet: &#39;body&#39;,
+chunks: [&#39;main&#39;],
+minify: {
+  removeComments: true,
+  collapseWhitespace: true
+}
+})
+]
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>同时htmlwebpackplugin也支持从WEbpack.config.js文件中向html页面中传入参数，支持ejs的语法形式，比如我们在htmlwebpackplugin传入相应参数：</p>
+<pre><code>plugins: [
+      new htmlWebpackPlugin({
+          filename: &#39;index.html&#39;,
+          template: &#39;index.html&#39;,
+          // the position of script file to the html
+          inject: &#39;body&#39;,
+          title: &#39;this is c.html&#39;,
+          date: new Date(),
+      })
+  ]
+</code></pre><p>在模版文件中加入下列测试代码来引用传入的title和date变量：<br>```</p>
+<title>&lt;%= htmlWebpackPlugin.options.title%&gt;</title>
+</li>
+</ul>
+<hr>
+<p>&lt;% for(var k in htmlWebpackPlugin.files.chunks) { %&gt;<br>        &lt;% if(k != ‘main’) { %&gt;<br>            <script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks[k].entry%>"></script><br>        &lt;% }%&gt;<br>    &lt;% }%&gt;</p>
+<pre><code>
+* 如何通过上述插件`inline`的形式引用出口`js`文件：
+    - 我们可以通过将插件参数中的inject参数设为FAlse，并手动在html模版文件中通过变量获取的方式去得到相应的html文件。
+</code></pre><p><script type="text/javascript"><br>        &lt;%= compilation.assets[htmlWebpackPlugin.files.chunks.main.entry.substr(htmlWebpackPlugin.files.publicPath.length)].source() %&gt;<br>    </script></p>
+<pre><code>![](https://ws1.sinaimg.cn/large/006tKfTcgy1fkp41iss8ej30v80ifwg3.jpg)
+    - 通过内联的方式引入出口文件，我们可以方便的在html文件中的各个位置引用出口文件。
+![这样也会将相应的出口打包js文件引入进html文件中](https://ws2.sinaimg.cn/large/006tKfTcgy1fkp48exje5j30ni0cc74p.jpg)
+
+### 如何在js中引用css，并使css代码在html中生效
+* 在require是加入css-loader&amp;&amp;style-loader
+</code></pre><p>npm install –save-dev css-loader style-loader</p>
+<pre><code>* 在webpack.config.js中加入配置信息
+</code></pre><p>{<br>    test: /.css$/,<br>    use: [<br>        {<br>              loader:’style-loader’<br>          },<br>          {<br>            loader:’css-loader’<br>          },<br>          {<br>              loader: ‘postcss-loader’,<br>              // some plugins of postcss-loader:some options<br>              options: {<br>                  plugins: function () {<br>                      return [<br>                          require(‘postcss-import’)({<br>                              root:this.resourcePath<br>                          }),<br>                          require(‘autoprefixer’)({<br>                              broswers: [‘last 5 versions’]<br>                          })<br>                        ]<br>                  }<br>                }<br>            }<br>        ]<br>    }</p>
+<pre><code>*注意postcss-loader预处理器的配置*
+**`css-loader`保证webpack可以打包css模块**
+**`style-loader`保证`js`中的`css`代码以`&lt;style&gt;`标签的形式加入到`html`中并显示其效果**
+
+### 使用loader
+- 直接在require的声明中添加loader命令；
+- 在webpack命令行中使用loader参数；
+- 在webpack的配置文件中设置loader的配置参数（使用正则匹配）；
+- 装babel转换器 将js结尾的文件用babel转换器（es6）转换
+</code></pre><p>npm install babel-loader babel-core –save-dev</p>
+<pre><code>- 安装preset插件以支持最新的es6语法
+</code></pre><p>npm install babel-preset-latest</p>
+<pre><code>
+</code></pre><p>Webpack.config.js:<br>// js loader<br>            {<br>                test: /.js$/,<br>                loader: ‘babel-loader’,<br>                include: path.resolve(<strong>dirname,’src’),<br>                // exclude: </strong>dirname + ‘./node_modules/‘,<br>                exclude: path.resolve(__dirname,’node_modules’),<br>                // param of loader<br>                options: {<br>                    presets: [‘env’]<br>                }<br>            },</p>
+<pre><code>**一定要使用绝对路径去指定path或者其他相似参数的值**
+**输入输出的参数 `__dirname `+ `&#39;/path&#39;`:绝对路径**
+**其他路径参数` __dirname` + `&#39;./path&#39;`:相对路径**
+### 安装一些loaders去转换css文件
+</code></pre><p>// css loader : postcss-loader,css-loader,style-loader<br>            {<br>        test: /.css$/,<br>        use: [<br>            {<br>                  loader:’style-loader’<br>              },<br>              {<br>                loader:’css-loader’<br>              },<br>              {<br>                  loader: ‘postcss-loader’,<br>                  // some plugins of postcss-loader:some options<br>                  options: {<br>                      plugins: function () {<br>                          return [<br>                              require(‘postcss-import’)({<br>                                  root:this.resourcePath<br>                              }),<br>                              require(‘autoprefixer’)({<br>                                  broswers: [‘last 5 versions’]<br>                              })<br>                          ]<br>                      }<br>                    }<br>                }<br>            ]<br>      }</p>
+<pre><code>
+### 使用less-loader，sass-loader去处理css易处理语言
+**步骤是**：先用less-loader去处理less文件转换成css文件，再将css文件用postcss-loader预处理css文件，加上前缀等之类的功能，再用css-loader和style-loader去处理css文件，具体loader的配置如下:
+</code></pre><p>// less loader<br>      {<br>        test: /.less$/,<br>        use: [<br>            {<br>            loader: “style-loader” // creates style nodes from JS strings<br>          },<br>          {<br>              loader: “css-loader” // translates CSS into CommonJS<br>                },<br>                {<br>                  loader: ‘postcss-loader’,<br>                  // some plugins of postcss-loader:some options<br>                  options: {<br>                      plugins: function () {<br>                          return [<br>                              require(‘postcss-import’)({<br>                                  root:this.resourcePath<br>                              }),<br>                              require(‘autoprefixer’)({<br>                                  broswers: [‘last 5 versions’]<br>                              })<br>                          ]<br>                      }<br>                    }<br>                },<br>                {<br>                 loader: “less-loader” // compiles Less to CSS<br>               }<br>           ]<br>      },<br>      // sass loader<br>      {<br>        test: /.scss$/,<br>        use: [<br>            {<br>            loader: “style-loader” // creates style nodes from JS strings<br>          },<br>          {<br>              loader: “css-loader” // translates CSS into CommonJS<br>                },<br>                {<br>                  loader: ‘postcss-loader’,<br>                  // some plugins of postcss-loader:some options<br>                  options: {<br>                      plugins: function () {<br>                          return [<br>                              require(‘postcss-import’)({<br>                                  root:this.resourcePath<br>                              }),<br>                              require(‘autoprefixer’)({<br>                                  broswers: [‘last 5 versions’]<br>                              })<br>                          ]<br>                      }<br>                    }<br>                },<br>                {<br>                 loader: “sass-loader” // compiles Less to CSS<br>               }<br>           ]<br>      }</p>
+<pre><code>
+## 使用`html-loader`或者其他的模版引擎loader去处理html或者模版文件：
+* 使用`html-loader`去把htnl文件处理成字符串的形式引入到其他模块中；
+**装`html-loader`之前要转`node-sass`**
+* 使用模版引擎模块将模版文件比如说`ejs，jsx`等等模版文件引入到其他模块中。
+*下面是`webpack.config.js`的配置代码*
+</code></pre><p>// html loader<br>    rules:[<br>    {<br>        test: /.html$/,<br>        loader: ‘html-loader’<br>    }<br>    ]<br>    //html plugin<br>    plugins: [<br>            new htmlWebpackPlugin({<br>                filename: ‘index.html’,<br>                template: ‘index.html’,<br>                injecet: ‘body’<br>            })<br>        ]</p>
+<pre><code>## 处理图片资源文件
+* 重复性大的图片通过http请求会缓存，使用file-loader去处理
+* 小的图片重复性不大的图片可以用base64编码，使用url-loader去处理
+### 三个地方会用到图片
+* 根目录的index.html里使用；
+* less，sass,css文件中引用图片；
+* 模版文件中引用；** 注意 **如果使用相对路径需要用require引用文件
+</code></pre><pre><code>  &lt;img src=&quot;${ require(&#39;../../assets/logo36x36.png&#39;) }&quot;&gt;
+</code></pre><pre><code>- 使用image-webpack-loader去压缩http请求的图片大小!
+</code></pre><p>// picture loader<br>    {<br>        test: /.(png|jpg|gif|svg)$/,<br>        loaders: [<br>            // ‘file-loader?name=assets/[name]-[hash:5].[ext]’,<br>            ‘url-loader?limit=20&amp;name=assets/[name]-[hash:5].[ext]’,<br>            ‘image-webpack-loader’<br>        ]<br>    }    </p>
+<pre><code>## 写在最后
+### 整个webpack的demo工程我都亲自在Mac环境下测试并运行成功，上传到了github，这里是地址：https://github.com/PancakeAwesome/PancakeAwesome.github.io
+### 下面贴下我完整的`webpack.config.js`和`pacakge.json`的代码：**由于webpack版本更新很快情注意自己的版本，最新语法去[官网查看](https://webpack.github.io/)**
+
+`webpack.config.js`
+</code></pre><p>var htmlWebpackPlugin = require(‘html-webpack-plugin’);<br>var path = require(‘path’);</p>
+<p>module.exports = {<br>    // the door file of webpack packaging<br>    // entry: ‘./src/script/main.js’,<br>    // entry: [‘./src/script/main.js’,’./src/script/a.js’],<br>    entry: __dirname + ‘/src/app.js’,<br>    output: {<br>        /**</p>
+<pre><code>     * __dirname: absolute file path
+     * @type {[type]}
+     */
+    path:__dirname + &#39;/dist&#39;,
+    /**
+     * [name]: entry&#39;s chunck&#39;s key
+     * [chunkhash]: file&#39;s md5 value(file version)
+     * @type {String}
+     */
+    filename: &#39;js/[name].bundle.js&#39;,
+},
+/**
+ * webpack loader param
+ * @type {Object}
+ */
+module: {
+    rules: [
+        // html loader
+        {
+            test: /\.html$/,
+            loader: &#39;html-loader&#39;
+        },
+        // ejs loader (template loader)
+        {
+            test: /\.tpl$/,
+            loader: &#39;ejs-loader&#39;
+        },
+        // js loader
+        {
+            test: /\.js$/,
+            loader: &#39;babel-loader&#39;,
+            include: path.resolve(__dirname,&#39;src&#39;),
+            // exclude: __dirname + &#39;./node_modules/&#39;,
+            exclude: path.resolve(__dirname,&#39;node_modules&#39;),
+            // param of loader
+            options: {
+                presets: [&#39;env&#39;]
+            }
+        },
+        // css loader : postcss-loader,css-loader,style-loader
+        {
+    test: /\.css$/,
+    use: [
+        {
+              loader:&#39;style-loader&#39;
+          },
+          {
+            loader:&#39;css-loader&#39;
+          },
+          { 
+              loader: &#39;postcss-loader&#39;,
+              // some plugins of postcss-loader:some options
+              options: {
+                  plugins: function () {
+                      return [
+                          require(&#39;postcss-import&#39;)({
+                              root:this.resourcePath
+                          }),
+                          require(&#39;autoprefixer&#39;)({
+                              broswers: [&#39;last 5 versions&#39;]
+                          })
+                      ]
+                  }
+                }
+            }
+        ]    
+  },
+  // less loader
+  {
+    test: /\.less$/,
+    use: [
+        {
+        loader: &quot;style-loader&quot; // creates style nodes from JS strings 
+      }, 
+      {
+          loader: &quot;css-loader&quot; // translates CSS into CommonJS 
+            },
+            { 
+              loader: &#39;postcss-loader&#39;,
+              // some plugins of postcss-loader:some options
+              options: {
+                  plugins: function () {
+                      return [
+                          require(&#39;postcss-import&#39;)({
+                              root:this.resourcePath
+                          }),
+                          require(&#39;autoprefixer&#39;)({
+                              broswers: [&#39;last 5 versions&#39;]
+                          })
+                      ]
+                  }
+                }
+            },
+            {
+             loader: &quot;less-loader&quot; // compiles Less to CSS 
+           }
+       ]
+  },
+  // sass loader
+  {
+    test: /\.scss$/,
+    use: [
+        {
+        loader: &quot;style-loader&quot; // creates style nodes from JS strings 
+      }, 
+      {
+          loader: &quot;css-loader&quot; // translates CSS into CommonJS 
+            },
+            { 
+              loader: &#39;postcss-loader&#39;,
+              // some plugins of postcss-loader:some options
+              options: {
+                  plugins: function () {
+                      return [
+                          require(&#39;postcss-import&#39;)({
+                              root:this.resourcePath
+                          }),
+                          require(&#39;autoprefixer&#39;)({
+                              broswers: [&#39;last 5 versions&#39;]
+                          })
+                      ]
+                  }
+                }
+            },
+            {
+             loader: &quot;sass-loader&quot; // compiles sess to CSS 
+           }
+       ]
+  },
+        // picture loader
+        {
+            test: /\.(png|jpg|gif|svg)$/,
+            loaders: [
+                // &#39;file-loader?name=assets/[name]-[hash:5].[ext]&#39;,
+                &#39;url-loader?limit=200000&amp;name=assets/[name]-[hash:5].[ext]&#39;,
+                &#39;image-webpack-loader&#39;
+            ]
+        },
+    ]
+},
+plugins: [
+    new htmlWebpackPlugin({
+        filename: &#39;index.html&#39;,
+        template: &#39;index.html&#39;,
+        injecet: &#39;body&#39;
+    })
+]
+</code></pre><p>}</p>
+<pre><code>
+`pacage.json`
+</code></pre><p>{<br>  “name”: “webpack-demo”,<br>  “version”: “1.0.0”,<br>  “description”: “”,<br>  “main”: “index.js”,<br>  “scripts”: {<br>    “test”: “echo \”Error: no test specified\” &amp;&amp; exit 1”,<br>    “webpack”: “webpack –config webpack.config.js –progress  –colors”<br>  },<br>  “author”: “”,<br>  “license”: “ISC”,<br>  “devDependencies”: {<br>    “autoprefix”: “^1.0.1”,<br>    “babel-core”: “^6.26.0”,<br>    “babel-loader”: “^7.1.2”,<br>    “babel-preset-env”: “^1.6.0”,<br>    “babel-preset-latest”: “^6.24.1”,<br>    “css-loader”: “^0.28.7”,<br>    “ejs-loader”: “^0.3.0”,<br>    “file-loader”: “^0.11.2”,<br>    “html-loader”: “^0.5.1”,<br>    “html-webpack-plugin”: “^2.30.1”,<br>    “image-webpack-loader”: “^3.4.2”,<br>    “less”: “^2.7.2”,<br>    “less-loader”: “^4.0.5”,<br>    “node-sass”: “^4.5.3”,<br>    “postcss-import”: “^10.0.0”,<br>    “postcss-loader”: “^2.0.6”,<br>    “sass”: “^1.0.0-beta.2”,<br>    “sass-loader”: “^6.0.6”,<br>    “style-loader”: “^0.18.2”,<br>    “url-loader”: “^0.5.9”,<br>    “webpack”: “^3.5.5”<br>  }<br>}<br>```</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端工具 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端技术 </tag>
+            
+            <tag> 前端工具 </tag>
             
         </tags>
         

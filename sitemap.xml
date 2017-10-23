@@ -4,14 +4,43 @@
     
   <url>
     <loc>http://pancakeawesome.ink/%E6%B5%85%E6%9E%90react.html</loc>
-    <lastmod>2017-10-20T14:36:42.000Z</lastmod>
+    <lastmod>2017-10-23T02:17:47.000Z</lastmod>
     <data>
         <display>
         <title>浅析react</title>
         <pubTime>2017-10-20T14:36:42.000Z</pubTime>
         
+        <tag>前端技术 </tag>
+         
+        <tag>前端框架 </tag>
+         
          
            
+             
+              <breadCrumb title="前端框架" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://pancakeawesome.ink/%E5%85%A5%E9%97%A8Webpack%EF%BC%8C%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86.html</loc>
+    <lastmod>2017-10-23T02:16:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>入门Webpack，看这篇就够了</title>
+        <pubTime>2017-09-12T11:15:16.000Z</pubTime>
+        
+        <tag>前端技术 </tag>
+         
+        <tag>前端工具 </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端工具" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
+          
         </display>
     </data>
     </url>
