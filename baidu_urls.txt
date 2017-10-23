@@ -1,5 +1,4 @@
 http://pancakeawesome.ink/scrum敏捷开发.html
-http://pancakeawesome.ink/scrum学习.html
 http://pancakeawesome.ink/浅析react.html
 http://pancakeawesome.ink/数据可视化研究笔记.html
 http://pancakeawesome.ink/nodejs初级教程.html
