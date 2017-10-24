@@ -1617,9 +1617,9 @@ screen.css文件中:
             
             <tag> 前端技术 </tag>
             
-            <tag> 前端工具 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端工具 </tag>
             
         </tags>
         
@@ -3589,13 +3589,17 @@ plugins: function () {
   &lt;div&gt;this is html template file&lt;/div&gt;
 &lt;/div&gt;
 </code></pre></li>
-<li>在js文件中引入tpl模版文件。<br>```<br>import tpl from ‘./layer.tpl’;</li>
+<li>在js文件中引入tpl模版文件<pre><code>import tpl from &#39;./layer.tpl&#39;;
+function layer() {
+  return {
+      name: &#39;layer&#39;,
+      tpl: tpl 
+  }
+}
+export default layer;
+</code></pre><em>layer.js</em></li>
+<li>在入口文件中引用<br>```<br>import Layer from ‘./components/layer/layer.js’;</li>
 </ul>
-<p>function layer() {<br>    return {<br>        name: ‘layer’,<br>        tpl: tpl<br>    }<br>}</p>
-<p>export default layer;</p>
-<pre><code>*layer.js*
-- 在入口文件中引用
-</code></pre><p>import Layer from ‘./components/layer/layer.js’;</p>
 <p>const App = function () {<br>    let dom = document.getElementById(‘app’);<br>    let layer = Layer();<br>    // layer is a function<br>    dom.innerHTML = layer.tpl;<br>}</p>
 <p>new App();</p>
 <pre><code>*app.js*
@@ -3604,14 +3608,11 @@ plugins: function () {
 - 用ejs语法编写tpl文件
 </code></pre><p><div class="layer"><br>    <div>this is &lt;%= name%&gt; layer</div><br>    &lt;% for(let i = 0;i &lt; arr.length; i ++) { %&gt;<br>        &lt;%= arr[i] %&gt;<br>    &lt;% }%&gt;<br></div></p>
 <pre><code>- 在js文件中引入tpl模版文件。
-</code></pre><p>import tpl from ‘./layer.tpl’;</p>
-<p>function layer() {<br>    return {<br>        name: ‘layer’,<br>        tpl: tpl<br>    }<br>}</p>
-<p>export default layer;</p>
+</code></pre><p>import tpl from ‘./layer.tpl’;<br>function layer() {<br>    return {<br>        name: ‘layer’,<br>        tpl: tpl<br>    }<br>}<br>export default layer;</p>
 <pre><code>*layer.js*
+
 - 在入口文件中引用
-</code></pre><p>import Layer from ‘./components/layer/layer.js’;</p>
-<p>const App = function () {<br>    let dom = document.getElementById(‘app’);<br>    let layer = Layer();<br>    // layer is a function<br>    dom.innerHTML = layer.tpl({<br>        name: ‘Jobs’,<br>        arr: [‘apple’,’xiaomi’,’oppo’]<br>    });<br>}</p>
-<p>new App();</p>
+</code></pre><p>import Layer from ‘./components/layer/layer.js’;<br>const App = function () {<br>    let dom = document.getElementById(‘app’);<br>    let layer = Layer();<br>    // layer is a function<br>    dom.innerHTML = layer.tpl({<br>        name: ‘Jobs’,<br>        arr: [‘apple’,’xiaomi’,’oppo’]<br>    });<br>}<br>new App();</p>
 <pre><code>*`app.js`*
 
 ### loader处理图片资源文件
