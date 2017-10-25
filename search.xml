@@ -384,9 +384,9 @@ GET /employees?offset=20&amp;limit=10
         
         <tags>
             
-            <tag> 前端架构设计 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 前端架构设计 </tag>
             
         </tags>
         
@@ -545,7 +545,7 @@ module.exports = buildConfig(env);
 <li>package.json:node项目的配置文件，声明当前的项目的信息，依赖了哪些npm包等等。</li>
 <li>webpack.config.js：webpack的配置文件。</li>
 </ul>
-<h3 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h3><p>在pacakge.json文件中已经配置好了：</p>
+<h2 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h2><p>在pacakge.json文件中已经配置好了：</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fkkh9uo9w3j30ka03bt8u.jpg" alt=""></p>
 <pre><code>npm start 或者
 npm run serve
@@ -559,7 +559,180 @@ npm run serve
 <p><strong>而react developer tools的工作原理是页面加载的时候，通过<code>__REACT_DEVTOOLS_GLOBAL_HOOK__</code>这个全局变量和页面通信。而我们项目的真实代码其实是写在一个yeoman自带的框架页面之中，也就是一个iframe，这个<code>__REACT_DEVTOOLS_GLOBAL_HOOK__</code>变量其实是存在顶层的框架页面中，如果我们需要在我们的iframe页面中使用这个这个插件，就得重新取得这个全局变量，以供插件来通信。</strong></p>
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkmhtkh4kuj30mc07bglx.jpg" alt=""></p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkkhieotwnj30mh01zt8p.jpg" alt="这里的parent代表的顶层页面window变量"></p>
-<h3 id="webpack配置详解"><a href="#webpack配置详解" class="headerlink" title="webpack配置详解"></a>webpack配置详解</h3><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p><img src="http://ww4.sinaimg.cn/mw690/e75a115bgw1f3rrbzv1m8g209v0diqv7.gif" alt=""></p>
+<h2 id="webpack配置详解"><a href="#webpack配置详解" class="headerlink" title="webpack配置详解"></a><code>webpack</code>配置详解</h2><p><code>webpack</code>配置代码在<code>cfg/default.js</code>中。</p>
+<p><em>目录结构：</em></p>
+<ul>
+<li><code>default.js</code>:相关<code>loader</code>配置</li>
+<li><code>base.js</code>:<code>webpack</code>基本配置。</li>
+<li><code>dev.js</code>:本地环境<code>webpack</code>配置。</li>
+<li><code>dist.js</code>:正式环境<code>webpack</code>配置。</li>
+<li><code>test.js</code>:测试环境<code>webpack</code>配置。</li>
+</ul>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkukr0hwrkj307p04da9w.jpg" alt=""></p>
+<h3 id="dev环境配置"><a href="#dev环境配置" class="headerlink" title="dev环境配置"></a>dev环境配置</h3><p>dev环境是项目本地调试所需的代码目录。在cfg/dev.js文件中配置相关webpack配置。</p>
+<h4 id="plugins参数"><a href="#plugins参数" class="headerlink" title="plugins参数"></a>plugins参数</h4><ul>
+<li>webpack.HotModuleReplacementPlugin：用来实现在本地调试项目时的模块热更新的功能</li>
+<li>webpack.NoErrorsPlugin：保证编译过程不能出错。</li>
+</ul>
+<h3 id="dist环境配置"><a href="#dist环境配置" class="headerlink" title="dist环境配置"></a>dist环境配置</h3><p>dist环境是项目正式上线所需的代码目录。在cfg/dist.js文件中配置相关webpack配置。</p>
+<h4 id="plugins参数-1"><a href="#plugins参数-1" class="headerlink" title="plugins参数"></a>plugins参数</h4><ul>
+<li><code>webpack.optimize.DedupePlugin</code>：用来检测相似的文件，去除输出的<code>js</code>文件中冗余的代码。</li>
+<li><code>webpack.optimize.UglifyJsPlugin</code>：压缩输出的<code>js</code>代码。</li>
+<li><code>webpack.optimize.OccurenceOrderPlugin</code>：按照引用频度来排序各个模块bundle的id，引用频度越高，id值越短，达到见效文件大小的效果。</li>
+<li><code>webpack.optimize.AggressiveMergingPlugin</code>：合并相似的chunk，提取公共部分。</li>
+<li><code>webpack.NoErrorsPlugin</code>：保证编译过程不能出错。</li>
+</ul>
+<h2 id="舞台构建"><a href="#舞台构建" class="headerlink" title="舞台构建"></a>舞台构建</h2><p>开始基于脚手架项目骨架快速搭建项目环境。</p>
+<h3 id="autoprefixer-loader"><a href="#autoprefixer-loader" class="headerlink" title="autoprefixer-loader"></a><code>autoprefixer-loader</code></h3><p><code>autoprefixer-loader</code>可以为css表达式自动添加一些浏览器前缀，来达到浏览器兼容的效果。</p>
+<ul>
+<li>安装loader,并将包写入到项目<code>package.json</code>中的本地依赖中（devDependencies）<ul>
+<li>安装<code>autoprefixer-loader</code><pre><code>npm install autoprefixer-loader --save-dev
+</code></pre></li>
+<li>安装<code>sass-loader</code><br>由于yeoman并没有为我们自动安装处理sass文件相关的loader，我们得手动安装依赖包。<pre><code>npm install sass-loader node-sass webpack --save-dev
+</code></pre></li>
+</ul>
+</li>
+<li>修改loader配置<pre><code>{
+      test: /\.scss/,
+      loader: &#39;style-loader!css-loader!autoprefixer-loader?{browsers:[\&quot;last 2 version\&quot;]}!sass-loader?outputStyle=expanded&#39;
+    },
+</code></pre></li>
+</ul>
+<h3 id="引入图片资源"><a href="#引入图片资源" class="headerlink" title="引入图片资源"></a>引入图片资源</h3><ul>
+<li>根据<code>VCD</code>原则（<code>V:view, C:controller, D:data</code>），在项目跟目录新建一个data目录存放项目所需的数据文件。<br>新建<code>imageDatas.json</code>文件存放图片文件的信息。<pre><code>[
+  {
+      &quot;fileName&quot;: &quot;1.jpg&quot;,
+      &quot;title&quot;: &quot;heaven of time&quot;,
+      &quot;desc&quot;: &quot;here is the heaven of time&quot;
+  }
+]
+</code></pre></li>
+<li><code>json-loader</code>处理<code>json</code>文件。<ul>
+<li>安装<code>json-loader</code><pre><code>npm install --save-dev json-loader
+</code></pre></li>
+<li>配置<code>json-loader</code><pre><code>      {
+  test: /\.json$/,
+  loader: &#39;json-loader&#39;
+},
+</code></pre></li>
+</ul>
+</li>
+<li><p>入口文件中处理图片信息。<br><strong>构建出的工作环境<code>webpack</code>默认版本为1.x，不包含<code>json-loader</code>.</strong><br><strong>解析<code>.json</code>文件一种解决办法是安装<code>json-loader</code>，并在<code>default.js</code>中配置。<code>json-loader</code></strong><br><strong>另一种解决办法是全局安装webpack2.x及以上版本，自带有<code>json-loader</code></strong></p>
+<pre><code>npm install -g webpack@2.x
+</code></pre><p>注：require时都必须加上json!前缀</p>
+<pre><code>let imageDatas = require(&#39;json!../data/imageDatas.json&#39;);
+// 利用自执行函数，将图片名信息转成图片URL路径信息
+imageDatas = (function genImageURL(imageDatasArr) {
+  for (var i = imageDatasArr.length - 1; i &gt;= 0; i--) {
+      let singleImageData = imageDatasArr[i];
+
+      singleImageData.imageURL = require(&#39;../images/&#39; + singleImageData.fileName);
+
+      imageDatasArr[i] = singleImageData;
+  }
+
+  return imageDatasArr;
+})(imageDatas);
+</code></pre></li>
+<li>构建页面框架（html， css）<br><em>入口文件</em><pre><code>class AppComponent extends React.Component {
+render() {
+  return (
+    &lt;section className=&quot;stage&quot;&gt;
+        &lt;section className=&quot;image-sec&quot;&gt;&lt;/section&gt;
+        &lt;nav className=&quot;controller-nav&quot;&gt;&lt;/nav&gt;
+    &lt;/section&gt;
+  );
+}
+}
+</code></pre><strong>这里创建组件的方式是react最新的语法，支持了es6的class和extend语法。</strong></li>
+</ul>
+<h2 id="构建图片组件"><a href="#构建图片组件" class="headerlink" title="构建图片组件"></a>构建图片组件</h2><h3 id="构建单个图片组件"><a href="#构建单个图片组件" class="headerlink" title="构建单个图片组件"></a>构建单个图片组件</h3><p>可以看出我们的画廊应用是由一些重复的单个图片组件形成，所以我们可以单独建立单个图片的组件，然后复用这个组件，形成多张图片的样式。</p>
+<ul>
+<li>创建单个图片组件<pre><code>// 构建单幅画的组件
+class ImgFigure extends React.Component {
+  render() {
+      return (
+          &lt;figure className=&#39;img-figure&#39;&gt;
+            &lt;img src={this.props.data.imageURL} alt={this.props.data.title} /&gt;
+            &lt;figcaption&gt;
+              &lt;h2 className=&quot;img-title&quot;&gt;{this.props.data.title}&lt;/h2&gt;
+              &lt;div className=&quot;img-back&quot;&gt;
+                &lt;p&gt;&lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/figcaption&gt;
+          &lt;/figure&gt;
+      );
+  }
+}
+</code></pre></li>
+<li><p>通过管家<code>APPComponent</code>管理数据和数据交换，将组件插入到<code>APPComponent</code>中。</p>
+<pre><code>// “大管家”：掌握一切的数据和数据之间的切换
+class AppComponent extends React.Component {
+render() {
+    let controllerUnits = [],
+            imgFigures = [];
+
+    imageDatas.forEach( function(value, index) {
+        // 用图片数据填充imageFigure组件
+        imgFigures.push(&lt;ImgFigure data={value} key={index} ref={&#39;imgFigure&#39; + index}&gt;&lt;/ImgFigure&gt;);
+    });
+
+  return (
+    &lt;section className=&quot;stage&quot;&gt;
+        &lt;section className=&quot;image-sec&quot;&gt;
+            {imgFigures}
+        &lt;/section&gt;
+        &lt;nav className=&quot;controller-nav&quot;&gt;&lt;/nav&gt;
+    &lt;/section&gt;
+  );
+}
+}
+</code></pre><p><strong>注意：⚠️通过require <code>json</code>文件得到的<code>imageDatas</code>是一个数组对象，react需更新组件时是通过DOM与virtual DOM的对比来实现，如果有变化就重新渲染，因此在每次forEach循环添加节点都应给组件添加一个key，<code>&lt;ImgFigure data={value} key={index} ref={&#39;imgFigure&#39; + index}&gt;&lt;/ImgFigure&gt;)</code>以优化对比</strong><br><strong>REACTC自定义的组件命名必须是大写字母开头，笔者当初被坑了好久。怪我粗心了～</strong></p>
+</li>
+<li><p>定义组件的样式：</p>
+<pre><code>/* image --- start */
+.image-sec {
+position: relative;
+
+width: 100%;
+height: 100%;
+overflow: hidden;
+
+background-color: #ddd;
+
+@at-root {
+  // at-root 系统mixin会在编译css文件时将内部的选择器放到最外层
+  .img-figure {
+    position: absolute;
+
+    width: 320px;
+    height: 360px;
+    margin: 0;
+    padding: 40px;
+
+    background-color: #fff;
+
+    box-sizing: border-box;
+  }
+
+  figcaption {
+    text-align: center;
+
+    .img-title {
+      margin-top: 20px;
+
+      color: #a7a0a7;
+
+      font-size: 16px;
+    }
+  }
+}
+}
+/* image --- end */
+</code></pre><p><strong><code>at-root 系统mixin</code>会在编译css文件时将内部的选择器放到最外层,以防止选择器嵌套过深。</strong></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2></li>
+</ul>
+<p><img src="http://ww4.sinaimg.cn/mw690/e75a115bgw1f3rrbzv1m8g209v0diqv7.gif" alt=""></p>
 ]]></content>
       
         <categories>
@@ -1615,9 +1788,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -2559,9 +2732,9 @@ SASS允许用户编写自己的函数。
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -2808,9 +2981,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3513,7 +3686,7 @@ plugins: function () {
 </li>
 </ul>
 <p><em>注意postcss-loader预处理器的配置</em><br><strong><code>css-loader</code>保证webpack可以打包css模块</strong><br><strong><code>style-loader</code>保证可以在<code>js</code>文件中引入<code>css</code>代码，以<code>&lt;style&gt;</code>标签的形式加入到<code>html</code>中并显示其效果</strong></p>
-<h3 id="使用less-loader，sass-loader处理css易处理语言"><a href="#使用less-loader，sass-loader处理css易处理语言" class="headerlink" title="使用less-loader，sass-loader处理css易处理语言"></a>使用less-loader，sass-loader处理css易处理语言</h3><p><strong>步骤</strong>：先用<code>less-loader</code>去处理<code>less</code>文件转换成<code>css</code>文件，再将<code>css</code>文件用<code>postcss-loader</code>预处理<code>css</code>文件，加上前缀等之类的功能，再用<code>css-loader</code>和<code>style-loader</code>去处理<code>css</code>文件。</p>
+<h3 id="使用less-loader，sass-loader处理css易处理语言"><a href="#使用less-loader，sass-loader处理css易处理语言" class="headerlink" title="使用less-loader，sass-loader处理css易处理语言"></a>使用less-loader，sass-loader处理css易处理语言</h3><p><strong>步骤</strong>：先用<code>less-loader</code>去处理<code>less</code>文件转换成<code>css</code>文件，再将<code>css</code>文件用<code>postcss-loader</code>预处理<code>css</code>文件，加上前缀等之类的功能，再用<code>css-loader</code>处理<code>css</code>文件中的<code>url</code>引用表达式，然后解析相关引用资源，最后使用<code>style-loader</code>处理<code>css</code>文件，将<code>css</code>代码插入到页面上。</p>
 <ul>
 <li>安装<code>less-loader</code>和<code>sass-loader</code><pre><code>npm install --save-dev less-loader sass-loader
 </code></pre></li>
