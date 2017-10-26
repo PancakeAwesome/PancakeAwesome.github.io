@@ -658,8 +658,8 @@ class ImgFigure extends React.Component {
       );
   }
 }
-</code></pre></li>
-<li><p>通过管家<code>APPComponent</code>管理数据和数据交换，将组件插入到<code>APPComponent</code>中。</p>
+</code></pre><strong><code>figure</code>是h5语义化标签，标签内建议存放<code>自包含</code>（单独拿出也能有意义）的内容</strong></li>
+<li><p>通过管理者<code>APPComponent</code>管理数据和数据交换，将组件插入到<code>APPComponent</code>中。</p>
 <pre><code>// “大管家”：掌握一切的数据和数据之间的切换
 class AppComponent extends React.Component {
 render() {
@@ -721,9 +721,13 @@ background-color: #ddd;
 }
 /* image --- end */
 </code></pre><p><strong><code>at-root 系统mixin</code>会在编译css文件时将内部的选择器放到最外层,以防止选择器嵌套过深。</strong></p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2></li>
+</li>
 </ul>
-<p><img src="http://ww4.sinaimg.cn/mw690/e75a115bgw1f3rrbzv1m8g209v0diqv7.gif" alt=""></p>
+<h3 id="划分舞台区域"><a href="#划分舞台区域" class="headerlink" title="划分舞台区域"></a>划分舞台区域</h3><p>将舞台粗略划分为五个区域，左侧区域，右侧区域，上侧区域，下侧区域，中心区域。为了不影响控制组件，图片只显示在左中右三个区域。</p>
+<ul>
+<li>计算各个区域的范围。<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2></li>
+</ul>
+<p><a href="http://ww4.sinaimg.cn/mw690/e75a115bgw1f3rrbzv1m8g209v0diqv7.gif" target="_blank" rel="external"></a></p>
 ]]></content>
       
         <categories>
