@@ -3,6 +3,193 @@
   
     
     <entry>
+      <title><![CDATA[基于ES6语法的React重构]]></title>
+      <url>/%E5%9F%BA%E4%BA%8EES6%E8%AF%AD%E6%B3%95%E7%9A%84React%E9%87%8D%E6%9E%84.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>ES6</code>语法规范已经日渐被大家所接受，而且在开发过程中，这些新的语法特性，都很方便，一些开源框架和项目都已经使用了最新的<code>ES6</code>语法，比如<code>react</code>，一些老的语法已经逐渐被淘汰，为了跟上时代潮流，我们应该努力接受新的知识。</p>
+<h2 id="React-js中常用的ES6写法总结"><a href="#React-js中常用的ES6写法总结" class="headerlink" title="React.js中常用的ES6写法总结"></a><code>React.js</code>中常用的<code>ES6</code>写法总结</h2><h3 id="一-模块"><a href="#一-模块" class="headerlink" title="一 模块"></a>一 模块</h3><h4 id="1-引入模块以便使用"><a href="#1-引入模块以便使用" class="headerlink" title="1 引入模块以便使用"></a>1 引入模块以便使用</h4><p>用import实现：</p>
+<pre><code>import &#39;模块文件地址&#39;
+import 组件 from &#39;模块文件地址&#39;
+</code></pre><h4 id="2-导出模块"><a href="#2-导出模块" class="headerlink" title="2 导出模块"></a>2 导出模块</h4><p>用export default实现：</p>
+<pre><code>export defaultclass MyComponent extends Component{
+    ...
+}
+</code></pre><p>引用：</p>
+<pre><code>import MyComponent from &#39;./MyComponent&#39;;
+</code></pre><h3 id="二-组件"><a href="#二-组件" class="headerlink" title="二 组件"></a>二 组件</h3><h4 id="1-定义组件"><a href="#1-定义组件" class="headerlink" title="1 定义组件"></a>1 定义组件</h4><p>通过定义一个继承自React.Component的class来定义一个组件类：</p>
+<pre><code>class Photo extends React.Component {
+    render() {
+       ...
+    }
+}
+</code></pre><h4 id="2-定义组件方法"><a href="#2-定义组件方法" class="headerlink" title="2 定义组件方法"></a>2 定义组件方法</h4><p>直接用名字(){},很像java定义类方法的写法：</p>
+<pre><code>class Photo extends React.Component {
+    componentWillMount() {
+
+    }
+    render() {
+        return (
+            &lt;Imagesource={this.props.source} /&gt;
+        );
+    }
+}
+</code></pre><h4 id="3-定义组件的属性类型和默认属性"><a href="#3-定义组件的属性类型和默认属性" class="headerlink" title="3 定义组件的属性类型和默认属性"></a>3 定义组件的属性类型和默认属性</h4><p>统一使用static成员来实现：</p>
+<pre><code>class Video extends React.Component {
+    static defaultProps = {
+        autoPlay: false,
+        maxLoops: 10,
+    };  // 注意这里有分号
+    static propTypes = {
+        autoPlay: React.PropTypes.bool.isRequired,
+        maxLoops: React.PropTypes.number.isRequired,
+        posterFrameSrc: React.PropTypes.string.isRequired,
+        videoSrc: React.PropTypes.string.isRequired,
+    };  // 注意这里有分号
+    render() {
+        return (
+            &lt;View /&gt;
+        );
+    } // 注意这里既没有分号也没有逗号
+}
+</code></pre><p><strong>注意: 对React而言，static成员在IE10及之前版本不能被继承，而在IE11和其它浏览器上可以，有时会带来一些问题。React Native则不用担心这个问题。</strong></p>
+<h4 id="4-初始化STATE"><a href="#4-初始化STATE" class="headerlink" title="4 初始化STATE"></a>4 初始化STATE</h4><p>在构造函数中初始化（这样可以根据需要做一些计算）：</p>
+<pre><code>class Video extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            loopsRemaining: this.props.maxLoops,
+        };
+    }
+}
+</code></pre><h4 id="5-把方法作为回调提供并使用"><a href="#5-把方法作为回调提供并使用" class="headerlink" title="5 把方法作为回调提供并使用"></a>5 把方法作为回调提供并使用</h4><p>ES5下可以这么做：</p>
+<pre><code>//ES5var PostInfo = React.createClass({
+    handleOptionsButtonClick: function(e) {// Here, &#39;this&#39; refers to the component instance.this.setState({showOptionsModal: true});
+    },
+    render: function(){return (
+            &lt;TouchableHighlightonPress={this.handleOptionsButtonClick}&gt;&lt;Text&gt;{this.props.label}&lt;/Text&gt;&lt;/TouchableHighlight&gt;
+        )
+    },
+});
+</code></pre><p>在ES5下，<code>React.createClass</code>会把所有的方法都bind一遍，这样可以提交到任意的地方作为回调函数，而this不会变化。但官方现在认为这是不标准、不易理解的。</p>
+<p>ES6下，需要通过bind来绑定this引用，或者使用箭头函数（它会绑定当前scope的this引用）来调用：</p>
+<pre><code>//ES6class PostInfo extends React.Component
+{
+    handleOptionsButtonClick(e){
+        this.setState({showOptionsModal: true});
+    }
+    render(){
+        return (
+            &lt;TouchableHighlightonPress={this.handleOptionsButtonClick.bind(this)}onPress={e=&gt;this.handleOptionsButtonClick(e)}
+                &gt;
+                &lt;Text&gt;{this.props.label}&lt;/Text&gt;&lt;/TouchableHighlight&gt;
+        )
+    },
+}
+</code></pre><p><em>箭头函数是在这里定义了一个临时的函数，箭头函数的箭头=&gt;之前是一个空括号、单个的参数名、或用括号括起的多个参数名，而箭头之后可以是一个表达式（作为函数的返回值），或者是用花括号括起的函数体（需要自行通过return来返回值，否则返回的是undefined）。</em></p>
+<p>即：箭头函数箭头前是参数，箭头后是函数体或返回值。</p>
+<p>注意：</p>
+<p><strong>不论是bind还是箭头函数，每次被执行都返回的是一个新的函数引用，因此如果你还需要函数的引用去做一些别的事情（譬如卸载监听器），那么必须自己保存这个引用：</strong></p>
+<pre><code>// 错误的做法
+class PauseMenu extends React.Component{
+    componentWillMount(){
+        AppStateIOS.addEventListener(&#39;change&#39;, this.onAppPaused.bind(this));
+    }
+    componentDidUnmount(){
+        AppStateIOS.removeEventListener(&#39;change&#39;, this.onAppPaused.bind(this));
+    }
+    onAppPaused(event){
+    }
+}
+</code></pre><pre><code>// 正确的做法
+class PauseMenu extends React.Component{
+    constructor(props){
+        super(props);
+        this._onAppPaused = this.onAppPaused.bind(this);//注意这里
+    }
+    componentWillMount(){
+        AppStateIOS.addEventListener(&#39;change&#39;, this._onAppPaused); //还有这里
+    }
+    componentDidUnmount(){
+        AppStateIOS.removeEventListener(&#39;change&#39;, this._onAppPaused);
+    }
+    onAppPaused(event){
+    }
+}
+</code></pre><h3 id="三-Mixins"><a href="#三-Mixins" class="headerlink" title="三 Mixins"></a>三 Mixins</h3><p>ES5下，经常使用<code>mixin</code>来为类添加一些新的方法，如<code>PureRenderMixin</code>:</p>
+<pre><code>var PureRenderMixin = require(&#39;react-addons-pure-render-mixin&#39;);
+React.createClass({
+  mixins: [PureRenderMixin],
+
+  render: function() {return&lt;divclassName={this.props.className}&gt;foo&lt;/div&gt;;
+  }
+});
+</code></pre><p>但React官方已经不再打算在ES6里继续推行Mixin,官方推荐，对于库编写者而言，应尽快放弃Mixin的编写方式，推荐一种新的编码方式：</p>
+<pre><code>//Enhance.js
+import { Component } from &quot;React&quot;;
+
+export var Enhance = ComposedComponent =&gt; class extends Component {
+    constructor() {
+        this.state = { data: null };
+    }
+    componentDidMount() {
+        this.setState({ data: &#39;Hello&#39; });
+    }
+    render() {
+        return&lt;ComposedComponent {...this.props} data={this.state.data} /&gt;;
+    }
+};
+//HigherOrderComponent.js
+import { Enhance } from &quot;./Enhance&quot;;
+
+class MyComponent {
+    render() {
+        if (!this.data) return&lt;div&gt;Waiting...&lt;/div&gt;;return&lt;div&gt;{this.data}&lt;/div&gt;;
+    }
+}
+
+export default Enhance(MyComponent); // Enhanced component
+</code></pre><p>用一个“增强函数”，来为某个类增加一些方法，并且返回一个新类，这无疑能实现mixin所实现的大部分需求。</p>
+<h3 id="四-解构与属性延展"><a href="#四-解构与属性延展" class="headerlink" title="四 解构与属性延展"></a>四 解构与属性延展</h3><p>结合使用ES6+的解构和属性延展，在给子组件传递一批属性更为方便了。下面的例子把className以外的所有属性传递给div标签：</p>
+<pre><code>class AutoloadingPostsGrid extends React.Component {
+    render() {
+        var {
+            className,
+            ...others,  // contains all properties of this.props except for className
+        } = this.props;
+        return (
+            &lt;divclassName={className}&gt;&lt;PostsGrid {...others} /&gt;&lt;buttononClick={this.handleLoadMoreClick}&gt;Load more&lt;/button&gt;&lt;/div&gt;
+        );
+    }
+}
+</code></pre><p>下面这种写法，则是传递所有属性的同时，用新的<code>className</code>值进行覆盖（<code>{…this.props}</code>写在前边）：</p>
+<pre><code>&lt;div {...this.props} className=&quot;override&quot;&gt;
+    …
+&lt;/div&gt;
+</code></pre><p>这个例子则相反，如果属性中没有包含<code>className</code>，则提供默认的值，而如果属性中已经包含了，则使用属性中的值（<code>{…this.props}</code>写在后边）</p>
+<pre><code>&lt;div className=&quot;base&quot; {...this.props}&gt;
+    …
+&lt;/div&gt;
+</code></pre><p>更多ES6的细节可以参考阮一峰前辈的《ECMAScript 6入门》： <a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">http://es6.ruanyifeng.com/</a></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>ES6是大势所趋，建议大家日常使用js的时候逐渐的转到ES6上，适应ES6的新特性，这样才不会落伍哈。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端框架 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> react </tag>
+            
+            <tag> es6 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[scrum敏捷开发]]></title>
       <url>/scrum%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>scrum是一种灵活的敏捷软件开发管理过程。这个名词来源于英式橄榄球。Scrum方法由Ken Schwaber和 Jeff Sutherland 提出，它将软件开发团队比作橄榄球队，全队有明确的最高目标：发布产品的重要性高于一切。团队高度自治，队员们熟悉开发过程中涉及到的各种技术，紧密合作，确保每个迭代都朝着最高目标推进。而且每隔2至6周，每个人都能看到能实际工作的软件，并且据此决定是发布这个版本还是继续开发以加强它的功能。</p>
@@ -116,8 +303,20 @@ so that &lt;some reason&gt;
     <entry>
       <title><![CDATA[数据可视化研究笔记]]></title>
       <url>/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%A0%94%E7%A9%B6%E7%AC%94%E8%AE%B0.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p><strong>数据是符号的集合</strong>，是表达客观事物的未加工过的原始素材，。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="视觉感知与认知"><a href="#视觉感知与认知" class="headerlink" title="视觉感知与认知"></a>视觉感知与认知</h2><h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p><strong>数据是符号的集合</strong>，是表达客观事物的未加工过的原始素材。<strong>数据模型是用来描述数据表达的底层模型</strong>：包含数据的定义和类型，以及对不同数据类型的操作功能。<br><strong>概念模型是对目标事物的状态和行为惊醒抽象的语义描述，并提供构建、推理支持等操作。</strong></p>
+<h3 id="数据基础"><a href="#数据基础" class="headerlink" title="数据基础"></a>数据基础</h3><h4 id="数据分类"><a href="#数据分类" class="headerlink" title="数据分类"></a>数据分类</h4><p>从关系模型的角度来说，数据可以被分为实体和关系两部分。</p>
+<ul>
+<li>实体：被可视化的对象。</li>
+<li>关系：定义了实体与其他实体之间的关系的结构和模型。</li>
+</ul>
+<h4 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h4><p>数据集是数据的实例。常见的数据集的表达方式有三类。</p>
+<h5 id="数据记录集"><a href="#数据记录集" class="headerlink" title="数据记录集"></a>数据记录集</h5><p>数据记录由一组包含固定属性值的数据元素组成。有三种形式：数据矩阵，文档向量表示和事务处理数据。</p>
+<ul>
+<li>数据矩阵：数据对象可视为高维空间的点集，每个维度对应单个属性。这种数据集可以表达为一个mxn的矩阵。其中矩阵的每行对应一个数据对象，每列代表单个属性在数据集中的分布。数据矩阵类似于数据库中表对数据的存储方式。</li>
+<li>文档向量表示：如果统计文档中所有单词出现的频率，则一个文档可以表示为一个向量，其长度是单词集的个数，每个分量记录单词集中每个单词在该文档中的频率。</li>
+<li>事务处理数据：每个记录包含一组数据项。事务处理数据与数据矩阵的差别在于，事务处理数据的每个记录包含的个数和属性不固定，所以不能用矩阵这种大小确定的方式进行表达。</li>
+</ul>
+<h5 id="图数据集"><a href="#图数据集" class="headerlink" title="图数据集"></a>图数据集</h5><h5 id="有序数据集"><a href="#有序数据集" class="headerlink" title="有序数据集"></a>有序数据集</h5><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
       
         <categories>
             
@@ -490,8 +689,10 @@ GET /employees?offset=20&amp;limit=10
     <entry>
       <title><![CDATA[react实战--打造画廊项目]]></title>
       <url>/react%E5%AE%9E%E6%88%98-%E6%89%93%E9%80%A0%E7%94%BB%E5%BB%8A%E9%A1%B9%E7%9B%AE.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>使用yeoman+bower+gulp+webpack等前端自动化解决方案来构建react+sass的前端画廊应用。<br><em>这是画廊项目的效果图，点击相应的图片，图片会居中显示</em></p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>使用<code>yeoman+bower+gulp+webpack</code>等前端自动化解决方案来构建<code>react+sass</code>的前端画廊应用。<br><em>这是画廊项目的效果图，点击相应的图片，图片会居中显示</em></p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkncvudbztj30zb0jpac2.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fl0o41biu3g30ze0ic4r6.gif" alt=""></p>
+<p><strong>注意：此项目的react语法是基于es6的最新语法，如果看到不会的，亲子行REACT官网查看<a href="https://reactjs.org/docs/react-without-es6.html#setting-the-initial-state" target="_blank" rel="external">doc</a></strong></p>
 <h2 id="yeoman脚手架生成项目初始的代码结构"><a href="#yeoman脚手架生成项目初始的代码结构" class="headerlink" title="yeoman脚手架生成项目初始的代码结构"></a>yeoman脚手架生成项目初始的代码结构</h2><ul>
 <li>首先安装nodejs环境，不会的请自行百度～ </li>
 <li>安装yeoman<pre><code>npm install yo -g
@@ -616,7 +817,7 @@ npm run serve
 test: /\.json$/,
 loader: &#39;json-loader&#39;
 },
-</code></pre><strong>注：require时都必须加上json!前缀</strong></li>
+</code></pre>注：require时都必须加上json!前缀</li>
 </ul>
 </li>
 </ul>
@@ -665,7 +866,7 @@ class ImgFigure extends React.Component {
       );
   }
 }
-</code></pre><strong><code>figure</code>是h5语义化标签，标签内建议存放<code>自包含</code>（单独拿出也能有意义）的内容</strong></li>
+</code></pre><strong><code>figure</code>是h5语义化标签，标签内建议存放<code>自包含</code>（单独拿出也能有意义）的内容，而且其中<code>firgcaptiopn</code>标签可以描述<code>figure</code>内容的标题，很适合现在的场景。</strong></li>
 <li><p>通过管理者<code>APPComponent</code>管理数据和数据交换，将组件插入到<code>APPComponent</code>中。</p>
 <pre><code>// “大管家”：掌握一切的数据和数据之间的切换
 class AppComponent extends React.Component {
@@ -736,6 +937,101 @@ background-color: #ddd;
 </ul>
 <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkvzl8mgh0j30pq0dtq50.jpg" alt="左分区和右分区位置排布"></p>
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkvzm1t2m3j30pm0dogn5.jpg" alt="上分区位置排布"></p>
+<ul>
+<li><p>为组件田间表示范围的常量：    </p>
+<pre><code>constructor(props) {
+      super(props);
+
+      // 存储排布的可取范围
+      this.Constant = {
+          // 中心图片的位置点
+          centerPos: {
+              left: 0,
+              right: 0
+          },
+          // 水平方向的取值范围
+          hPosRange: {
+              leftSecX: [0, 0],
+              rightSecX: [0, 0],
+              y: [0, 0]
+          },
+          // 垂直方向的取值范围
+          vPosRange: {
+              x: [0, 0],
+              topY: [0, 0]
+          }
+      };
+  }
+</code></pre><p><strong>注意：这里给组件添加自定义属性使用了es6 class的新语法。</strong></p>
+</li>
+<li>当组件被渲染进页面时，为每张图片计算其范围：</li>
+</ul>
+<pre><code>// 当组件加载进来之后，为每张图片计算其位置的范围
+    componentDidMount() {
+        // 首先拿到舞台的大小
+        let stageDom = ReactDOM.findDOMNode(this.refs.stage),
+            stageW = stageDom.scrollWidth,
+            stageH = stageDom.scrollHeight,
+            halfStageW = Math.ceil(stageW / 2),
+            halfStageH = Math.ceil(stageH / 2);
+
+        // 拿到一个imageFigure的大小
+        let imgFigureDOM = ReactDOM.findDOMNode(this.refs.imgFigure0),
+            imgW = imgFigureDOM.scrollWidth,
+            imgH = imgFigureDOM.scrollHeight,
+            halfImgW = Math.ceil(imgW / 2),
+            halfImgH = Math.ceil(imgH / 2);
+
+        // 计算Constant内的各个位置的值,通过LEFT和top定位图片在舞台的位置
+        // 计算中心图片的位置点
+        this.Constant.centerPos = {
+            left: halfStageW - halfImgW,
+            top: halfStageH - halfImgH,
+        }
+
+        /**
+         * 计算左侧和右侧区域的位置点
+         */
+        this.Constant.hPosRange.leftSecX[0] -= halfImgW;
+        this.Constant.hPosRange.leftSecX[1] = halfStageW - halfImgW * 3;
+        this.Constant.hPosRange.rightSecX[0] = halfStageW + halfImgW;
+        this.Constant.hPosRange.rightSecX[1] = stageW - halfImgW;
+        this.Constant.hPosRange.y[0] -= halfImgH;
+        this.Constant.hPosRange.y[1] = halfStageH - halfImgH;
+
+        /**
+         * 计算上侧区域的位置点
+         */
+        this.Constant.vPosRange.topY[0] -= halfImgH;
+        this.Constant.vPosRange.topY[1] = halfStageH - halfImgH * 3;
+        this.Constant.vPosRange.x[0] = halfStageW - imgW;
+        this.Constant.vPosRange.x[0] = halfStageW;
+    }
+</code></pre><p><strong>注意：<code>ReactDOM.findDOMNode</code>是<code>REACT</code>顶层结构的全局变量<code>ReactDOM</code>的一个辅助方法，需要单独引入。</strong></p>
+<pre><code>- es5写法：
+</code></pre><pre><code>var ReactDOM = require(&#39;react-dom&#39;);
+</code></pre><pre><code>- es6写法：
+</code></pre><pre><code>import ReactDOM from &#39;react-dom&#39;;
+</code></pre><ul>
+<li><p>给imagdatas的毁掉函数绑定组件到<code>this</code>上，并且给每张图片初始化位置信息。</p>
+<pre><code>imageDatas.forEach(function(value, index) {
+          // 判断当前图片的位置信息是否已经初始化，如果没有初始化，则初始化图片的位置信息
+          if (!this.state.imgsArrangeArr[index]) {
+              this.state.imgsArrangeArr[index] = {
+                  pos: {
+                      left: 0,
+                      top: 0
+                  }
+              }
+          }
+
+          // 用图片数据填充imageFigure组件
+          imgFigures.push(
+              &lt;ImgFigure data={value} key={index} ref={&#39;imgFigure&#39; + index}&gt;&lt;/ImgFigure&gt;
+          );
+      }.bind(this));
+</code></pre></li>
+</ul>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p><a href="http://ww4.sinaimg.cn/mw690/e75a115bgw1f3rrbzv1m8g209v0diqv7.gif" target="_blank" rel="external"></a></p>
 ]]></content>
       
@@ -1794,9 +2090,9 @@ screen.css文件中:
             
             <tag> 前端技术 </tag>
             
-            <tag> css </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
