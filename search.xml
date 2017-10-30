@@ -607,27 +607,34 @@ npm run serve
   }
 ]
 </code></pre></li>
-<li><p>入口文件中处理图片信息。<br><strong>构建出的工作环境<code>webpack</code>默认版本为1.x，不包含<code>json-loader</code>.</strong><br><strong>解析<code>.json</code>文件一种解决办法是安装<code>json-loader</code>，并在<code>default.js</code>中配置。<code>json-loader</code></strong><br><strong>另一种解决办法是全局安装webpack2.x及以上版本，自带有<code>json-loader</code></strong></p>
-<pre><code>npm install -g webpack@2.x
+<li>入口文件中处理图片信息。<br><strong>构建出的工作环境<code>webpack</code>默认版本为1.x，不包含<code>json-loader</code>.</strong><br><strong>解析<code>.json</code>文件一种解决办法是安装<code>json-loader</code>，并在<code>default.js</code>中配置。<code>json-loader</code></strong><br><strong>另一种解决办法是全局安装webpack2.x及以上版本，自带有<code>json-loader</code></strong><pre><code>npm install -g webpack@2.x
 </code></pre><ul>
-<li><p><code>json-loader</code>处理<code>json</code>文件。</p>
-<ul>
+<li><code>json-loader</code>处理<code>json</code>文件。<ul>
 <li>安装<code>json-loader</code><pre><code>npm install --save-dev json-loader
 </code></pre></li>
-<li><p>配置<code>json-loader</code></p>
-<pre><code>  {
+<li>配置<code>json-loader</code><pre><code>  {
 test: /\.json$/,
 loader: &#39;json-loader&#39;
 },
-</code></pre><p>注：require时都必须加上json!前缀<br>```<br>let imageDatas = require(‘json!../data/imageDatas.json’);<br>// 利用自执行函数，将图片名信息转成图片URL路径信息<br>imageDatas = (function genImageURL(imageDatasArr) {<br>for (var i = imageDatasArr.length - 1; i &gt;= 0; i–) {<br>let singleImageData = imageDatasArr[i];</p>
-<p>singleImageData.imageURL = require(‘../images/‘ + singleImageData.fileName);</p>
-<p>imageDatasArr[i] = singleImageData;<br>}</p>
-</li>
+</code></pre><strong>注：require时都必须加上json!前缀</strong></li>
 </ul>
-<p>return imageDatasArr;<br>})(imageDatas);<br>```</p>
 </li>
 </ul>
 </li>
+</ul>
+<pre><code>let imageDatas = require(&#39;json!../data/imageDatas.json&#39;);
+// 利用自执行函数，将图片名信息转成图片URL路径信息
+imageDatas = (function genImageURL(imageDatasArr) {
+    for (var i = imageDatasArr.length - 1; i &gt;= 0; i--) {
+        let singleImageData = imageDatasArr[i];
+
+        singleImageData.imageURL = require(&#39;../images/&#39; + singleImageData.fileName);
+
+        imageDatasArr[i] = singleImageData;
+    }
+    return imageDatasArr;
+})(imageDatas);
+</code></pre><ul>
 <li>构建页面框架（<code>html</code>， <code>css</code>）<br><em>入口文件</em><pre><code>class AppComponent extends React.Component {
 render() {
   return (
@@ -725,9 +732,11 @@ background-color: #ddd;
 </ul>
 <h3 id="划分舞台区域"><a href="#划分舞台区域" class="headerlink" title="划分舞台区域"></a>划分舞台区域</h3><p>将舞台粗略划分为五个区域，左侧区域，右侧区域，上侧区域，下侧区域，中心区域。为了不影响控制组件，图片只显示在左中右三个区域。</p>
 <ul>
-<li>计算各个区域的范围。<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2></li>
+<li>计算各个区域的范围。</li>
 </ul>
-<p><a href="http://ww4.sinaimg.cn/mw690/e75a115bgw1f3rrbzv1m8g209v0diqv7.gif" target="_blank" rel="external"></a></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkvzl8mgh0j30pq0dtq50.jpg" alt="左分区和右分区位置排布"></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkvzm1t2m3j30pm0dogn5.jpg" alt="上分区位置排布"></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p><a href="http://ww4.sinaimg.cn/mw690/e75a115bgw1f3rrbzv1m8g209v0diqv7.gif" target="_blank" rel="external"></a></p>
 ]]></content>
       
         <categories>
@@ -1785,9 +1794,9 @@ screen.css文件中:
             
             <tag> 前端技术 </tag>
             
-            <tag> css </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
