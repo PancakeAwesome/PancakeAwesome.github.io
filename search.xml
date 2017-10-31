@@ -3,31 +3,6 @@
   
     
     <entry>
-      <title><![CDATA[react实战--打造画廊项目（二）]]></title>
-      <url>/react%E5%AE%9E%E6%88%98-%E6%89%93%E9%80%A0%E7%94%BB%E5%BB%8A%E9%A1%B9%E7%9B%AE%EF%BC%88%E4%BA%8C%EF%BC%89.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在上一篇博客中，我们把画廊应用的静态框架搭建好了，现在我们为舞台添加动态旋转和移动的效果。</p>
-<h2 id="构建动态图片组件（图片旋转）"><a href="#构建动态图片组件（图片旋转）" class="headerlink" title="构建动态图片组件（图片旋转）"></a>构建动态图片组件（图片旋转）</h2><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
-      
-        <categories>
-            
-            <category> react </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 前端技术 </tag>
-            
-            <tag> 前端工具 </tag>
-            
-            <tag> react </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[基于ES6语法的React重构]]></title>
       <url>/%E5%9F%BA%E4%BA%8EES6%E8%AF%AD%E6%B3%95%E7%9A%84React%E9%87%8D%E6%9E%84.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>ES6</code>语法规范已经日渐被大家所接受，而且在开发过程中，这些新的语法特性，都很方便，一些开源框架和项目都已经使用了最新的<code>ES6</code>语法，比如<code>react</code>，一些老的语法已经逐渐被淘汰，为了跟上时代潮流，我们应该努力接受新的知识。</p>
