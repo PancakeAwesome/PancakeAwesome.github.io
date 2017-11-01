@@ -3,6 +3,28 @@
 
     
   <url>
+    <loc>http://pancakeawesome.ink/webpack%E7%AE%80%E6%98%93%E9%85%8D%E7%BD%AE%E5%85%A5%E9%97%A8.html</loc>
+    <lastmod>2017-11-01T02:16:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>webpack简易配置入门</title>
+        <pubTime>2017-11-01T01:37:52.000Z</pubTime>
+        
+        <tag>前端工具 </tag>
+         
+        <tag>webpack </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端工具" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://pancakeawesome.ink/react%E5%AE%9E%E6%88%98-%E6%89%93%E9%80%A0%E7%94%BB%E5%BB%8A%E9%A1%B9%E7%9B%AE.html</loc>
     <lastmod>2017-10-31T11:48:10.000Z</lastmod>
     <data>
@@ -202,9 +224,9 @@
         <title>RESTful API设计最佳实践</title>
         <pubTime>2017-10-16T08:08:39.000Z</pubTime>
         
-        <tag>前端技术 </tag>
-         
         <tag>前端架构设计 </tag>
+         
+        <tag>前端技术 </tag>
          
          
            
@@ -268,9 +290,9 @@
         
         <tag>前端技术 </tag>
          
-        <tag>前端工具 </tag>
-         
         <tag>css </tag>
+         
+        <tag>前端工具 </tag>
          
          
            
