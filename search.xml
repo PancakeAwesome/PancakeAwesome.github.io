@@ -3,11 +3,224 @@
   
     
     <entry>
+      <title><![CDATA[CSS3 transform特性教程]]></title>
+      <url>/CSS3-transform%E7%89%B9%E6%80%A7%E6%95%99%E7%A8%8B.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面我们一起学习了<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="external">CSS3</a> 中的<strong><a href="http://www.w3cplus.com/node/44" target="_blank" rel="external">渐变</a> </strong>、<strong><a href="http://www.w3cplus.com/node/48" target="_blank" rel="external">圆角</a> </strong>、<strong><a href="http://www.w3cplus.com/content/css3-box-shadow" target="_blank" rel="external">阴影</a> </strong>等几个属性的使用，今天开始我们一起来学习有关于<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="external">CSS3</a> 制作动画的几个属性：<strong><a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">变形(transform)</a> 、<a href="http://www.w3.org/TR/css3-transitions/" target="_blank" rel="external">转换(transition)</a> 和<a href="http://www.w3.org/TR/css3-animations/" target="_blank" rel="external">动画(animation)</a> </strong>等更高级的<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="external">CSS3</a> 技术。本文主要介绍的是这三个属性之中的第一个──<a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">变形transform</a> 。</p>
+<h2 id="CSS3-transform特性教程"><a href="#CSS3-transform特性教程" class="headerlink" title="CSS3 transform特性教程"></a>CSS3 transform特性教程</h2><p><a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">Transform</a> 字面上就是变形，改变的意思。在<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="external">CSS3</a> 中<a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">transform</a> 主要包括以下几种：<strong>旋转rotate</strong>、<strong>扭曲skew</strong>、<strong>缩放scale</strong>和<strong>移动translate</strong>以及<strong>矩阵变形matrix</strong>。下面我们一起来看看CSS3中transform的旋转rotate、扭曲skew、缩放scale和移动translate具体如何实现，老样子，我们就从<a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">transform</a> 的语法开始吧。</p>
+<p><strong>语法：</strong></p>
+<pre><code>   transform ： none | &lt;transform-function&gt; [ &lt;transform-function&gt; ]* 
+   也就是：
+   transform: rotate | scale | skew | translate |matrix;
+</code></pre><p>none:表示不进么变换；<transform-function>表示一个或多个变换函数，以空格分开；换句话说就是我们同时对一个元素进行transform的多种属性操作，例如rotate、scale、translate三种，但这里需要提醒大家的，以往我们叠加效果都是用逗号（“，”）隔开，但transform中使用多个属性时却需要有空格隔开。大家记住了是空格隔开。</transform-function></p>
+<p>取值：</p>
+<p>transform属性实现了一些可用SVG实现的同样的功能。它可用于内联(inline)元素和块级(block)元素。它允许我们旋转、缩放和移动元素 ，他有几个属性值参数：rotate;translate;scale;skew;matrix。下面我们分别来介绍这几个属性值参数的具体使用方法：</p>
+<p><strong>一、旋转rotate</strong></p>
+<p>rotate(<angle>) ：通过指定的角度参数对原元素指定一个<a href="http://www.w3.org/TR/SVG/coords.html#RotationDefined" target="_blank" rel="external">2D rotation</a> （2D 旋转），需先有transform-origin属性的定义。transform-origin定义的是旋转的基点，其中angle是指旋转角度，如果设置的值为正数表示顺时针旋转，如果设置的值为负数，则表示逆时针旋转。如：transform:rotate(30deg):</angle></p>
+<p><img src="http://www.w3cplus.com/sites/default/files/rotate.png" alt=""> (data-pinit=undefined)</p>
+<p><strong>二、移动translate</strong></p>
+<p>移动translate我们分为三种情况：translate(x,y)水平方向和垂直方向同时移动（也就是X轴和Y轴同时移动）；translateX(x)仅水平方向移动（X轴移动）；translateY(Y)仅垂直方向移动（Y轴移动），具体使用方法如下：</p>
+<p>1、translate(<translation-value>[, <translation-value>]) ：通过矢量[tx, ty]指定一个<a href="http://www.w3.org/TR/SVG/coords.html#TranslationDefined" target="_blank" rel="external">2D translation</a> ，tx 是第一个过渡值参数，ty 是第二个过渡值参数选项。如果 未被提供，则ty以 0 作为其值。也就是translate(x,y),它表示对象进行平移，按照设定的x,y参数值,当值为负数时，反方向移动物体，其基点默认为元素 中心点，也可以根据transform-origin进行改变基点。如transform:translate(100px,20px):</translation-value></translation-value></p>
+<p><img src="http://www.w3cplus.com/sites/default/files/translate-x-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p>2、translateX(<translation-value>) ： 通过给定一个X方向上的数目指定一个<a href="http://www.w3.org/TR/SVG/coords.html#TranslationDefined" target="_blank" rel="external">translation</a> 。只向x轴进行移动元素，同样其基点是元素中心点，也可以根据transform-origin改变基点位置。如：transform:translateX(100px):</translation-value></p>
+<p><img src="http://www.w3cplus.com/sites/default/files/translate-x.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p>3、translateY(<translation-value>) ：通过给定Y方向的数目指定一个<a href="http://www.w3.org/TR/SVG/coords.html#TranslationDefined" target="_blank" rel="external">translation</a> 。只向Y轴进行移动，基点在元素心点，可以通过transform-origin改变基点位置。如：transform:translateY(20px):</translation-value></p>
+<p><img src="http://www.w3cplus.com/sites/default/files/translate-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><strong>三、缩放scale</strong></p>
+<p>缩放scale和移动translate是极其相似，他也具有三种情况：scale(x,y)使元素水平方向和垂直方向同时缩放（也就是X轴和Y轴同时缩放）；scaleX(x)元素仅水平方向缩放（X轴缩放）；scaleY(y)元素仅垂直方向缩放（Y轴缩放），但它们具有相同的缩放中心点和基数，其中心点就是元素的中心位置，缩放基数为1，如果其值大于1元素就放大，反之其值小于1，元素缩小。下面我们具体来看看这三种情况具体使用方法：</p>
+<p>1、scale(<number>[, <number>])：提供执行[sx,sy]缩放矢量的两个参数指定一个<a href="http://www.w3.org/TR/SVG/coords.html#ScalingDefined" target="_blank" rel="external">2D scale</a> （2D缩放）。如果第二个参数未提供，则取与第一个参数一样的值。scale(X,Y)是用于对元素进行缩放，可以通过transform-origin对元素的基点进行设置，同样基点在元素中心位置；基中X表示水平方向缩放的倍数，Y表示垂直方向的缩放倍数，而Y是一个可选参数，如果没有设置Y值，则表示X，Y两个方向的缩放倍数是一样的。并以X为准。如：transform:scale(2,1.5):</number></number></p>
+<p><img src="http://www.w3cplus.com/sites/default/files/scale-x-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p>2、scaleX(<number>) ： 使用 [sx,1] 缩放矢量执行缩放操作，sx为所需参数。scaleX表示元素只在X轴(水平方向)缩放元素，他的默认值是(1,1)，其基点一样是在元素的中心位置，我们同样是通过transform-origin来改变元素的基点。如：transform:scaleX(2):</number></p>
+<p><img src="http://www.w3cplus.com/sites/default/files/scale-x.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p>3、scaleY(<number>) ： 使用 [1,sy] 缩放矢量执行缩放操作，sy为所需参数。scaleY表示元素只在Y轴（垂直方向）缩放元素，其基点同样是在元素中心位置，可以通过transform-origin来改变元素的基点。如transform:scaleY(2):</number></p>
+<p><img src="http://www.w3cplus.com/sites/default/files/scale-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><strong>四、扭曲skew</strong></p>
+<p>扭曲skew和translate、scale一样同样具有三种情况：skew(x,y)使元素在水平和垂直方向同时扭曲（X轴和Y轴同时按一定的角度值进行扭曲变形）；skewX(x)仅使元素在水平方向扭曲变形（X轴扭曲变形）；skewY(y)仅使元素在垂直方向扭曲变形（Y轴扭曲变形），具体使用如下：</p>
+<p>1、skew(<angle> [, <angle>]) ：X轴Y轴上的<a href="http://www.w3.org/TR/SVG/coords.html#SkewXDefined" target="_blank" rel="external">skew transformation</a> （斜切变换）。第一个参数对应X轴，第二个参数对应Y轴。如果第二个参数未提供，则值为0，也就是Y轴方向上无斜切。skew是用来对元素进行扭曲变行，第一个参数是水平方向扭曲角度，第二个参数是垂直方向扭曲角度。其中第二个参数是可选参数，如果没有设置第二个参数，那么Y轴为0deg。同样是以元素中心为基点，我们也可以通过transform-origin来改变元素的基点位置。如：transform:skew(30deg,10deg):</angle></angle></p>
+<p><img src="http://www.w3cplus.com/sites/default/files/skew-x-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p>2、skewX(<angle>) ： 按给定的角度沿X轴指定一个<a href="http://www.w3.org/TR/SVG/coords.html#SkewXDefined" target="_blank" rel="external">skew transformation</a> （斜切变换）。skewX是使元素以其中心为基点，并在水平方向（X轴）进行扭曲变行，同样可以通过transform-origin来改变元素的基点。如：transform:skewX(30deg)</angle></p>
+<p><img src="http://www.w3cplus.com/sites/default/files/skew-x.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p>3、skewY(<angle>) ： 按给定的角度沿Y轴指定一个<a href="http://www.w3.org/TR/SVG/coords.html#SkewYDefined" target="_blank" rel="external">skew transformation</a> （斜切变换）。skewY是用来设置元素以其中心为基点并按给定的角度在垂直方向（Y轴）扭曲变形。同样我们可以通过transform-origin来改变元素的基点。如：transform:skewY（10deg）</angle></p>
+<p><img src="http://www.w3cplus.com/sites/default/files/skew-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><strong>五、矩阵matrix</strong></p>
+<p>matrix(<number>, <number>, <number>, <number>, <number>, <number>) ： 以一个含六值的(a,b,c,d,e,f)<a href="http://www.w3.org/TR/SVG/coords.html#TransformMatrixDefined" target="_blank" rel="external">变换矩阵</a> 的形式指定一个2D变换，相当于直接应用一个[a b c d e f]变换矩阵。就是基于水平方向（X轴）和垂直方向（Y轴）重新定位元素,此属性值使用涉及到数学中的矩阵，我在这里只是简单的说一下CSS3中的transform有这么一个属性值，如果有感兴趣的朋友可以去了解更深层次的martix使用方法，这里就不多说了。</number></number></number></number></number></number></p>
+<p><strong>改变元素基点transform-origin</strong></p>
+<p>前面我们多次提到transform-origin这个东东，他的主要作用就是让我们在进行transform动作之前可以改变元素的基点位置，因为我们元素默认基点就是其中心位置，换句话说我们没有使用transform-origin改变元素基点位置的情况下，transform进行的rotate,translate,scale,skew,matrix等操作都是以元素自己中心位置进行变化的。但有时候我们需要在不同的位置对元素进行这些操作，那么我们就可以使用transform-origin来对元素进行基点位置改变，使元素基点不在是中心位置，以达到你需要的基点位置。下面我们主要来看看其使用规则：</p>
+<p>transform-origin(X,Y):用来设置元素的运动的基点（参照点）。默认点是元素的中心点。其中X和Y的值可以是百分值,em,px，其中X也可以是字符参数值left,center,right；Y和X一样除了百分值外还可以设置字符值top,center,bottom，这个看上去有点像我们background-position设置一样；下面我列出他们相对应的写法：</p>
+<p>1、top left | left top 等价于 0 0 | 0% 0%</p>
+<p>2、top | top center | center top 等价于 50% 0</p>
+<p>3、right top | top right 等价于 100% 0</p>
+<p>4、left | left center | center left 等价于 0 50% | 0% 50%</p>
+<p>5、center | center center 等价于 50% 50%（默认值）</p>
+<p>6、right | right center | center right 等价于 100% 50%</p>
+<p>7、bottom left | left bottom 等价于 0 100% | 0% 100%</p>
+<p>8、bottom | bottom center | center bottom 等价于 50% 100%</p>
+<p>9、bottom right | right bottom 等价于 100% 100%</p>
+<p>其中 left,center right是水平方向取值，对应的百分值为left=0%;center=50%;right=100%而top center bottom是垂直方向的取值，其中top=0%;center=50%;bottom=100%;如果只取一个值，表示垂直方向值不变，我们分别来看看以下几个实例</p>
+<p>(1)transform-origin:(left,top):</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/origin-x-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p>(2)transform-origin:right</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/origin-x.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p>(3)transform-origin(25%,75%)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/origin-per.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p>更多的改变中心基点办法，大家可以在本地多测试一下，多体会一下，这里还要提醒大家一点的是，transform-origin并不是transform中的属性值，他具有自己的语法，前面我也说过了，说简单一点就是类似于我们的background-position的用法，但又有其不一样，因为我们background-position不需要区别浏览器内核不同的写法，但transform-origin跟其他的css3属性一样，我们需要在不同的浏览内核中加上相应的前缀，下面列出各种浏览器内核下的语法规则：</p>
+<pre><code>//Mozilla内核浏览器：firefox3.5+
+  -moz-transform-origin: x y;
+  //Webkit内核浏览器：Safari and Chrome
+  -webkit-transform-origin: x y;
+  //Opera
+  -o-transform-origin: x y ;
+  //IE9
+  -ms-transform-origin: x y;
+  //W3C标准
+  transform-origin: x y ;
+</code></pre><p><strong>transform在不同浏览器内核下的书写规则</strong></p>
+<pre><code>//Mozilla内核浏览器：firefox3.5+
+  -moz-transform: rotate | scale | skew | translate ;
+ //Webkit内核浏览器：Safari and Chrome
+  -webkit-transform: rotate | scale | skew | translate ;
+ //Opera
+  -o-transform: rotate | scale | skew | translate ;
+ //IE9
+  -ms-transform: rotate | scale | skew | translate ;
+ //W3C标准
+  transform: rotate | scale | skew | translate ;
+</code></pre><p>上面列出是不同浏览内核transform的书写规则，如果需要兼容各浏览器的话，以上写法都需要调用。</p>
+<p><strong>支持transform浏览器</strong></p>
+<p><img src="http://www.w3cplus.com/sites/default/files/transform-browers.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p>同样的transform在IE9下版本是无法兼容的，之所以有好多朋友说，IE用不了，搞这个做什么？个人认为，CSS3推出来了，他是一门相对前沿的技术，做为Web前端的开发者或者爱好者都有必要了解和掌握的一门新技术，如果要等到所有浏览器兼容，那我们只能对css3说NO，我用不你。因为IE老大是跟不上了，，，，纯属个人观点，不代表任何。还是那句话，感兴趣的朋友跟我一样，不去理会IE，我们继续看下去。</p>
+<p>在上面我们详细介绍了CSS3中transform的各种属性值的设置以及其各自的参数，下面我们通过一个实例来看看每一种属性值的使用，为了节约空间和大家的时间，我们后面的实例都是在这个html基础上实现，主要是我们在下面的菜单中的a:hover中分别使用不同的transform的设置，换句话说，当你移动到链接上时，相应的每一个菜单项有不同的变化，因为我们在每个菜单中使用了transform。具体每一步我们可以看下面的实例：</p>
+<p><strong>HTML Code:</strong></p>
+<pre><code>&lt;divclass=&quot;menu&quot;&gt;&lt;ulclass=&quot;clearfix&quot;&gt;&lt;liclass=&quot;item translate&quot;&gt;&lt;ahref=&quot;#&quot;&gt;Translate&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item translate-x&quot;&gt;&lt;ahref=&quot;#&quot;&gt;TranslateX&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item translate-y&quot;&gt;&lt;ahref=&quot;#&quot;&gt;TranslateY&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item rotate&quot;&gt;&lt;ahref=&quot;#&quot;&gt;Rotate&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item scale&quot;&gt;&lt;ahref=&quot;#&quot;&gt;Scale&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item scale-x&quot;&gt;&lt;ahref=&quot;#&quot;&gt;ScaleX&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item scale-y&quot;&gt;&lt;ahref=&quot;#&quot;&gt;ScaleY&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item skew&quot;&gt;&lt;ahref=&quot;#&quot;&gt;Skew&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item skew-x&quot;&gt;&lt;ahref=&quot;#&quot;&gt;SkewX&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item skew-y&quot;&gt;&lt;ahref=&quot;#&quot;&gt;SkewY&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item matrix&quot;&gt;&lt;ahref=&quot;#&quot;&gt;Matrix&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+</code></pre><p>为了效果更好一点，我们给上面的导航菜单加上一点CSS样式：</p>
+<pre><code>.menuul{
+    border-top:15px solid black;padding:010px;}.menuullia{
+    color:#fff;float: left;margin:05px;font-size:14px;height:50px;line-height:50px;text-align: center;width:65px;padding:10px 5px;background:#151515;-moz-border-radius:005px 5px;-webkit-border-radius:005px 5px;border-radius:005px 5px;-moz-box-shadow:001px #ccc,inset 002px #fff;-webkit-box-shadow:001px #ccc,inset 002px #fff;box-shadow:001px #ccc,inset 002px #fff;text-shadow:01px 1px #686868;text-decoration: none;}.menuulli.translatea{
+    background:#2EC7D2;}.menuulli.translate-xa{
+    background:#8FDD21;}.menuulli.translate-ya{
+    background:#F45917;}.menuulli.rotatea{
+    background:#D50E19;}.menuulli.scalea{
+    background:#cdddf2;}.menuulli.scale-xa{
+   background:#0fDD21;}.menuulli.scale-ya{
+   background:#cd5917;}.menuulli.skewa{
+   background:#519;}.menuulli.skew-xa{
+   background:#D50;}.menuulli.skew-ya{
+   background:#E19;}.menuulli.matrixa{
+   background:#919;}
+</code></pre><p>在这里我们使用了一些前面所进的CSS3的属性制作出来的导航，如果你跟着做的话，在你本地一定能看到一个非常靓丽的导航菜单，这里由于无法链接demo原页面，只好贴上缩略图，让大家有一个初步效果视觉初步的效果如下：</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/transform-menu-dome.png" alt=""> (style=undefined)</p>
+<p>从效果图上我们可以清楚的看到菜单上我们分别对应的是transform中的Translate、TranslateX、TranslateY、Rotate、Scale、ScaleX、ScaleY、Skew、SkewX、SkewY和Matrix，下面我们就在相应的a:hover加上各自的效果：</p>
+<p><strong>1、transform:translate(x,y):</strong></p>
+<pre><code>.menuulli.translatea:hover{
+     -moz-transform:translate(-10px,-10px);-webkit-transform:translate(-10px,-10px);-o-transform:translate(-10px,-10px);-ms-transform:translate(-10px, -10px);transform:translate(-10px,-10px);}
+</code></pre><p>效果：</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-translate-xy.png" alt=""></p>
+<p><strong>2、transform:translateX(x)</strong></p>
+<pre><code>.menuulli.translate-xa:hover{
+    -moz-transform:translateX(-10px);-webkit-transform:translateX(-10px);-o-transform:translateX(-10px);-ms-transform:translateX(-10px);transform:translateX(-10px);}
+</code></pre><p>效果：</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-translatex.png" alt=""></p>
+<p><strong>3、transform:translateY(y)</strong></p>
+<pre><code>.menuulli.translate-ya:hover{
+     -moz-transform:translateY(-10px);-webkit-transform:translateY(-10px);-o-transform:translateY(-10px);-ms-transform:translateY(-10px);transform:translateY(-10px);}
+</code></pre><p>效果：</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-translatey.png" alt=""></p>
+<p><strong>4、transform:rotate(角度值)</strong></p>
+<pre><code>.menuulli.rotatea:hover{
+   -moz-transform:rotate(45deg);-webkit-transform:rotate(45deg);-o-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg);}
+</code></pre><p>效果：</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-rotate.png" alt=""> (data-pinit=undefined)</p>
+<p><strong>5、transform:scale(x,y)</strong></p>
+<pre><code>.menuulli.scalea:hover{
+   -moz-transform:scale(0.8,0.8);-webkit-transform:scale(0.8,0.8);-o-transform:scale(0.8,0.8);-ms-transform:scale(0.8,0.8);transform:scale(0.8,0.8);}
+</code></pre><p>效果：</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-scalexy.png" alt=""> (style=undefined)</p>
+<p><strong>6、transform:scaleX(x)</strong></p>
+<pre><code>.menuulli.scale-xa:hover{
+    -moz-transform:scaleX(0.8);-webkit-transform:scaleX(0.8);-o-transform:scaleX(0.8);-ms-transform:scaleX(0.8);transform:scaleX(0.8);}
+</code></pre><p>效果：</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-scalex.png" alt=""></p>
+<p><strong>7、transform:scaleY(y)</strong></p>
+<pre><code>.menuulli.scale-ya:hover{
+     -moz-transform:scaleY(1.2);-webkit-transform:scaleY(1.2);-o-transform:scaleY(1.2);-ms-transform:scaleY(1.2);transform:scaleY(1.2);}
+</code></pre><p>效果：</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-scaley.png" alt=""></p>
+<p><strong>8、transform:skew(x,y)</strong></p>
+<pre><code>.menuulli.skewa:hover{
+     -moz-transform:skew(45deg,15deg);-webkit-transform:skew(45deg,15deg);-o-transform:skew(45deg,15deg);-ms-transform:skew(45deg,15deg);transform:skew(45deg,15deg);}
+</code></pre><p>效果：</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-skewxy.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><strong>9、transform:skewX(x)</strong></p>
+<pre><code>.menuulli.skew-xa:hover{
+    -moz-transform:skewX(-30deg);-webkit-transform:skewX(-30deg);-o-transform:skewX(-30deg);-ms-transform:skewX(-30deg);transform:skewX(-30deg);}
+</code></pre><p>效果：</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-skewx.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><strong>10、transform:skewY(y)</strong></p>
+<pre><code>.menuulli.skew-ya:hover{
+    -moz-transform:skewY(30deg);-webkit-transform:skewY(30deg);-o-transform:skewY(30deg);-ms-transform:skewY(30deg);transform:skewY(30deg);}
+</code></pre><p>效果：</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-skewy.png" alt=""></p>
+<p><strong>11、transform:matrix(a,b,c,d,e,f)</strong></p>
+<pre><code>.menuulli.matrixa:hover{
+    -moz-transform:matrix(1,1,-1,0,0,0);-webkit-transform:matrix(1,1,-1,0,0,0);-o-transform:matrix(1,1,-1,0,0,0);-ms-transform:matrix(1,1,-1,0,0,0);transform:matrix(1,1,-1,0,0,0);}
+</code></pre><p>效果：</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-matrix.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p>transform中的matrix是相对的复杂，如果感兴趣的朋友可以点<a href="http://www.w3.org/TR/SVG/coords.html#TransformMatrixDefined" target="_blank" rel="external">这里</a> 进去学民更多有关于Matrix的用法，我在这里就不多说了，说了也讲不清楚。</p>
+<p>下面我们来看看最终的效果图，如果你在本地跟着这个实例做了的话，那么你就能看到非常好的效果了。</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/transform-demo-hover.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p>上面的实例效果展示了有关于transform中各种风格效果，这里需要提醒大家，我们上面的效果都是以元素自身的中心点为基点的，下面我们来看一个改变元素基点的实例</p>
+<p>我们在前面的实例基础改变一下所有a标签基点位置为left top（前面默认是center center）</p>
+<pre><code>.menuulli.transform-origina{
+    -moz-transform-origin: left top;-webkit-transform-origin: left top;-o-transform-origin: left top;-ms-transform-origin: left top;transform-origin: left top;}
+</code></pre><p>大家一起看看改变了a标签基点后transform下各种效果有什么样的变化：</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-origin-demo-hover.png" alt=""> (data-pinit=undefined)</p>
+<p>从效果图中大家可以明显的看出，改变元素的基点后。元素进行transform任何属性值的设置都会有影响，换句话说，我们transform进行任何动作变化都是以元素的中心为基点，同时我们可以通过transform-origin来改变任何元素的基点，从而达到不同的效果。感兴趣的朋友可以去了解更多有关这方面的知识。</p>
+<p>最后我们再来看一个transform运用多个属性值的效果实例</p>
+<pre><code>.demoa{
+   width:100px;padding:5px;background: red;display: block;}.demoa:hover{  
+   -moz-transform:rotate(45deg)scale(0.8,1.2)skew(60deg,-30deg);-webkit-transform:rotate(45deg)scale(0.8,1.2)skew(60deg,-30deg);-o-transform:rotate(45deg)scale(0.8,1.2)skew(60deg,-30deg);-ms-transform:rotate(45deg)scale(0.8,1.2)skew(60deg,-30deg);transform:rotate(45deg)scale(0.8,1.2)skew(60deg,-30deg);}
+</code></pre><p>这里需要注意的是使用多个属性值时，其之间不能用逗号（“，”）分隔，必须使用空格分隔，记住了是空格分隔，如上面代码所示。</p>
+<p>那么到这有关于CSS3的transform就介绍完了。那么到目前为止我们一起学习了CSS3中的：渐变<a href="http://www.w3cplus.com/node/44" target="_blank" rel="external">CSS3 Gradient</a> 、透明色<a href="http://www.w3cplus.com/node/45" target="_blank" rel="external">CSS3 RGBA</a> 、圆角<a href="http://www.w3cplus.com/node/48" target="_blank" rel="external">CSS3 Border-radius</a> 、文字阴影<a href="http://www.w3cplus.com/node/52" target="_blank" rel="external">CSS3 Text-shadow</a> 、边框阴影<a href="http://www.w3cplus.com/content/css3-box-shadow" target="_blank" rel="external">CSS3 Box-shadow</a> 和今天的变形transform六个属性的使用方法。那么下一节我们将一起学习CSS3动画中的另一个属性<a href="http://www.w3.org/TR/css3-transitions/" target="_blank" rel="external">Transition</a> 的使用方法，对CSS3感兴趣的朋友，请观注本站的更新。</p>
+<p>下面为了大家更方便学习本站有关于CSS3的知识，特把相关链接列出</p>
+<p>第一节：《<a href="http://www.w3cplus.com/node/44" target="_blank" rel="external">CSS3 Gradient</a> 》</p>
+<p>第二节：《<a href="http://www.w3cplus.com/node/45" target="_blank" rel="external">CSS3 RGBA</a> 》</p>
+<p>第三节：《<a href="http://www.w3cplus.com/node/48" target="_blank" rel="external">CSS3 Border-radius</a> 》</p>
+<p>第四节《<a href="http://www.w3cplus.com/node/52" target="_blank" rel="external">CSS3 Text-shadow</a> 》</p>
+<p>上一节：《<a href="http://www.w3cplus.com/content/css3-box-shadow" target="_blank" rel="external">CSS3 Box-shadow</a> 》</p>
+<p>下一节：《<a href="http://www.w3cplus.com/content/css3-transition" target="_blank" rel="external">CSS3 Transition</a> 》</p>
+<p>第八节：《<a href="http://www.w3cplus.com/content/css3-animation" target="_blank" rel="external">CSS3 Animation</a> 》</p>
+<p>如需转载，请注明出处：<a href="http://www.w3cplus.com" target="_blank" rel="external">W3CPLUS</a> </p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+      
+        <categories>
+            
+            <category> css </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> css </tag>
+            
+            <tag> css3 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[webpack简易配置入门]]></title>
       <url>/webpack%E7%AE%80%E6%98%93%E9%85%8D%E7%BD%AE%E5%85%A5%E9%97%A8.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>WebPack 可以看做是模块打包机：它做的事情是，分析你的项目结构，找到 JavaScript 模块以及其它的一些浏览器不能直接运行的拓展语言（Scss，TypeScript 等），并将其转换和打包为合适的格式供浏览器使用</p>
 <h2 id="webpack-简易配置入门教程"><a href="#webpack-简易配置入门教程" class="headerlink" title="webpack 简易配置入门教程"></a>webpack 简易配置入门教程</h2><p><img src="https://img.funteas.com/e54cfd22c67adc465dff62272b905fc7?imageView2/2/w/800" alt=""></p>
-<p><code>webpack</code>会将有依赖关系的文件都视为一个模块，比如<code>scss</code>,<code>sass</code>,<code>less</code>,<code>css</code>结尾的文件，这样会产生一个模块群，<code>webpack</code>处理过后会产生可以被浏览器识别的一些文件，比如<code>Js</code>,<code>css</code>,<code>html</code>等。<br><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是<code>webpack</code>的<strong>代码分割</strong>特性～<br><strong><code>webpack</code>的模块热更新特性的：当项目文件发生变化时，不需要开发人员手动刷新浏览器，<code>webpack</code>会自动刷新页面，极大地提高了开发效率，是不是很神奇！</strong></p>
+<p><code>webpack</code>是现在一款非常流行的<strong>模块化管理工具🔧</strong>，<strong><code>react+webpack+es6</code></strong>是很火的项目构建组合</p>
+<blockquote>
+<p><code>webpack</code>会将有依赖关系的文件都视为一个模块，比如<code>scss</code>,<code>sass</code>,<code>less</code>,<code>css</code>结尾的文件，这样会产生一个模块群，<code>webpack</code>处理过后会产生可以被浏览器识别的一些文件，比如<code>Js</code>,<code>css</code>,<code>html</code>等。</p>
+<p><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是<code>webpack</code>的<strong>代码分割</strong>特性～</p>
+<p><code>webpack</code>的<strong>模块热更新</strong>特性：当项目文件发生变化时，不需要开发人员手动刷新浏览器，<code>webpack</code>会自动刷新页面，极大地提高了开发效率，是不是很神奇！</p>
+</blockquote>
+<p><strong>注意：本文的webpack环境是<code>3.5.5</code>由于webpack的更新很快，每次更新都会更新新的语法，所以学习webpack的本质就可以</strong>，具体语法可以看webpack官网：<strong><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></strong></p>
+<p>那么让我们快速以一个webpack demo的形式开始我们的webpack的学习吧～</p>
 <h3 id="什么是webpack"><a href="#什么是webpack" class="headerlink" title="什么是webpack"></a>什么是webpack</h3><p>在前端的项目开发中，总有大量的页面和样式需要处理，而维护这些文件也成了头疼的问题。</p>
 <p>为了简化开发，于是就有很多好的开发方式，如：</p>
 <ul>
@@ -2531,9 +2744,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -3329,7 +3542,7 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
 <p>在嵌套的代码块内，可以使用<code>&amp;</code>引用父元素。比如<code>a:hover</code>伪类，可以写成：</p>
 <pre><code> a {
 
-　&amp;:hover { color: #ffb3ff; }
+　\&amp;:hover { color: #ffb3ff; }
 
 　}
 </code></pre><p><strong>注意&amp;后面的<code>:</code>后面不能加空格</strong></p>
@@ -3371,100 +3584,130 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
 }
 </code></pre><p><strong>这样写是错误的❌,sass不会编译成功</strong></p>
 <ul>
-<li>如果你只想让某个样式只用来继承给别的样式，而不想让这个样式输出到css文件中（就像接口一样），可以使用%去修饰样式，这样这个样式就只能用来继承，不能输出到css文件中</li>
-<li>```<br>%error {<br>  color: red;<br>}</li>
+<li>如果你只想让某个样式只用来继承给别的样式，而不想让这个样式输出到css文件中（就像接口一样），可以使用%去修饰样式，这样这个样式就只能用来继承，不能输出到css文件中<pre><code>%error {
+  color: red;
+}
+.serious-error {
+  @extend %error;
+}
+</code></pre></li>
 </ul>
-<p>.serious-error {<br>    @extend %error;<br>}</p>
-<pre><code>
-### Mixin
+<h3 id="Mixin"><a href="#Mixin" class="headerlink" title="Mixin"></a>Mixin</h3><p>Mixin有点像C语言的宏<code>（macro）</code>，是可以重用的代码块。</p>
+<p>使用<code>@mixin</code>命令，定义一个代码块。</p>
+<pre><code> @mixin left {
 
-Mixin有点像C语言的宏`（macro）`，是可以重用的代码块。
+ 　　　　float: left;
 
-使用`@mixin`命令，定义一个代码块。
-</code></pre><p> @mixin left {</p>
-<p> 　　　　float: left;</p>
-<p> 　　　　margin-left: 10px;</p>
-<p> 　　}</p>
-<pre><code>使用`@include`命令，调用这个mixin。
-</code></pre><p> div {</p>
-<p> 　　　　@include left;</p>
-<p> 　　}</p>
-<pre><code>mixin的强大之处，在于可以指定参数和缺省值。
-</code></pre><p> @mixin left($value: 10px) {</p>
-<p> 　　　　float: left;</p>
-<p> 　　　　margin-right: $value;</p>
-<p> 　　}</p>
-<pre><code>使用的时候，根据需要加入参数：
-</code></pre><p> div {</p>
-<p> 　　　　@include left(20px);</p>
-<p> 　　}</p>
-<pre><code>下面是一个mixin的实例，用来生成浏览器前缀。
-</code></pre><p> @mixin rounded($vert, $horz, $radius: 10px) {</p>
-<p> 　　　　border-#{$vert}-#{$horz}-radius: $radius;</p>
-<p> 　　　　-moz-border-radius-#{$vert}#{$horz}: $radius;</p>
-<p> 　　　　-webkit-border-#{$vert}-#{$horz}-radius: $radius;</p>
-<p> 　　}</p>
-<pre><code>使用的时候，可以像下面这样调用：
-</code></pre><p> #navbar li { @include rounded(top, left); }</p>
-<p> 　　#footer { @include rounded(top, left, 5px); }</p>
-<pre><code>### **颜色函数**
+ 　　　　margin-left: 10px;
 
-SASS提供了一些内置的颜色函数，以便生成系列颜色。
-</code></pre><p> lighten(#cc3, 10%)  // #d6d65c</p>
-<p> 　　darken(#cc3, 10%)  //  #a3a329</p>
-<p> 　　grayscale(#cc3) // #808080</p>
-<p> 　　complement(#cc3) // #33c</p>
-<pre><code>### **插入文件**
+ 　　}
+</code></pre><p>使用<code>@include</code>命令，调用这个mixin。</p>
+<pre><code> div {
 
-`@import`命令，用来插入外部文件。
-</code></pre><p> @import “path/filename.scss”;</p>
-<pre><code>如果插入的是`.css`文件，则等同于css的`import`命令。
-</code></pre><p> @import “foo.css”;</p>
-<pre><code>## **五、高级用法**
+ 　　　　@include left;
 
-### **条件语句**
+ 　　}
+</code></pre><p>mixin的强大之处，在于可以指定参数和缺省值。</p>
+<pre><code> @mixin left($value: 10px) {
 
-`@if`可以用来判断：
-</code></pre><p> p {</p>
-<p> 　　　　@if 1 + 1 == 2 { border: 1px solid; }</p>
-<p> 　　　　@if 5 &lt; 3 { border: 2px dotted; }</p>
-<p> 　　}</p>
-<pre><code>配套的还有`@else`命令：
-</code></pre><p> @if lightness($color) &gt; 30% {</p>
-<p> 　　　　background-color: #000;</p>
-<p> 　　} @else {</p>
-<p> 　　　　background-color: #fff;</p>
-<p> 　　}</p>
-<pre><code>### **循环语句**
+ 　　　　float: left;
 
-SASS支持`for循环`：
-</code></pre><p> @for $i from 1 to 10 {</p>
-<p> 　　　　.border-#{$i} {</p>
-<p> 　　　　　　border: #{$i}px solid blue;</p>
-<p> 　　　　}</p>
-<p> 　　}</p>
-<pre><code>也支持`while循环`：
-</code></pre><p> $i: 6;</p>
-<p> 　　@while $i &gt; 0 {</p>
-<p> 　　　　.item-#{$i} { width: 2em * $i; }</p>
-<p> 　　　　$i: $i - 2;</p>
-<p> 　　}</p>
-<pre><code>`each`命令，作用与`for`类似：
-</code></pre><p> @each $member in a, b, c, d {</p>
-<p> 　　　　.#{$member} {</p>
-<p> 　　　　　　background-image: url(“/image/#{$member}.jpg”);</p>
-<p> 　　　　}</p>
-<p> 　　}</p>
-<pre><code>### **自定义函数**
+ 　　　　margin-right: $value;
 
-SASS允许用户编写自己的函数。
-</code></pre><p> @function double($n) {</p>
-<p> 　　　　@return $n * 2;</p>
-<p> 　　}</p>
-<p> 　　#sidebar {</p>
-<p> 　　　　width: double(5px);</p>
-<p> 　　}<br>```</p>
-]]></content>
+ 　　}
+</code></pre><p>使用的时候，根据需要加入参数：</p>
+<pre><code> div {
+
+ 　　　　@include left(20px);
+
+ 　　}
+</code></pre><p>下面是一个mixin的实例，用来生成浏览器前缀。</p>
+<pre><code> @mixin rounded($vert, $horz, $radius: 10px) {
+
+ 　　　　border-#{$vert}-#{$horz}-radius: $radius;
+
+ 　　　　-moz-border-radius-#{$vert}#{$horz}: $radius;
+
+ 　　　　-webkit-border-#{$vert}-#{$horz}-radius: $radius;
+
+ 　　}
+</code></pre><p>使用的时候，可以像下面这样调用：</p>
+<pre><code> #navbar li { @include rounded(top, left); }
+
+ 　　#footer { @include rounded(top, left, 5px); }
+</code></pre><h3 id="颜色函数"><a href="#颜色函数" class="headerlink" title="颜色函数"></a><strong>颜色函数</strong></h3><p>SASS提供了一些内置的颜色函数，以便生成系列颜色。</p>
+<pre><code> lighten(#cc3, 10%)  // #d6d65c
+
+ 　　darken(#cc3, 10%)  //  #a3a329
+
+ 　　grayscale(#cc3) // #808080
+
+ 　　complement(#cc3) // #33c
+</code></pre><h3 id="插入文件"><a href="#插入文件" class="headerlink" title="插入文件"></a><strong>插入文件</strong></h3><p><code>@import</code>命令，用来插入外部文件。</p>
+<pre><code> @import &quot;path/filename.scss&quot;;
+</code></pre><p>如果插入的是<code>.css</code>文件，则等同于css的<code>import</code>命令。</p>
+<pre><code> @import &quot;foo.css&quot;;
+</code></pre><h2 id="五、高级用法"><a href="#五、高级用法" class="headerlink" title="五、高级用法"></a><strong>五、高级用法</strong></h2><h3 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a><strong>条件语句</strong></h3><p><code>@if</code>可以用来判断：</p>
+<pre><code> p {
+
+ 　　　　@if 1 + 1 == 2 { border: 1px solid; }
+
+ 　　　　@if 5 &amp;lt; 3 { border: 2px dotted; }
+
+ 　　}
+</code></pre><p>配套的还有<code>@else</code>命令：</p>
+<pre><code> @if lightness($color) &amp;gt; 30% {
+
+ 　　　　background-color: #000;
+
+ 　　} @else {
+
+ 　　　　background-color: #fff;
+
+ 　　}
+</code></pre><h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a><strong>循环语句</strong></h3><p>SASS支持<code>for循环</code>：</p>
+<pre><code> @for $i from 1 to 10 {
+
+ 　　　　.border-#{$i} {
+
+ 　　　　　　border: #{$i}px solid blue;
+
+ 　　　　}
+
+ 　　}
+</code></pre><p>也支持<code>while循环</code>：</p>
+<pre><code> $i: 6;
+
+ 　　@while $i &amp;gt; 0 {
+
+ 　　　　.item-#{$i} { width: 2em * $i; }
+
+ 　　　　$i: $i - 2;
+
+ 　　}
+</code></pre><p><code>each</code>命令，作用与<code>for</code>类似：</p>
+<pre><code> @each $member in a, b, c, d {
+
+ 　　　　.#{$member} {
+
+ 　　　　　　background-image: url(&quot;/image/#{$member}.jpg&quot;);
+
+ 　　　　}
+
+ 　　}
+</code></pre><h3 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a><strong>自定义函数</strong></h3><p>SASS允许用户编写自己的函数。</p>
+<pre><code> @function double($n) {
+
+ 　　　　@return $n * 2;
+
+ 　　}
+
+ 　　#sidebar {
+
+ 　　　　width: double(5px);
+
+ 　　}
+</code></pre>]]></content>
       
         <categories>
             
@@ -3475,9 +3718,9 @@ SASS允许用户编写自己的函数。
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3724,9 +3967,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -4134,7 +4377,15 @@ $ hexo d
     <entry>
       <title><![CDATA[入门Webpack，看这篇就够了]]></title>
       <url>/%E5%85%A5%E9%97%A8Webpack%EF%BC%8C%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>webpack是现在一款非常流行的模块化管理工具🔧，react+webpack+es6是很火的项目构建组合</strong><br><code>webpack</code>会将有依赖关系的文件都视为一个模块，比如<code>scss</code>,<code>sass</code>,<code>less</code>,<code>css</code>结尾的文件，这样会产生一个模块群，<code>webpack</code>处理过后会产生可以被浏览器识别的一些文件，比如<code>Js</code>,<code>css</code>,<code>html</code>等。<br><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是<code>webpack</code>的<strong>代码分割</strong>特性～<br><strong><code>webpack</code>的模块热更新特性的：当项目文件发生变化时，不需要开发人员手动刷新浏览器，<code>webpack</code>会自动刷新页面，极大地提高了开发效率，是不是很神奇！</strong><br><strong>注意：本文的webpack环境是<code>3.5.5</code>由于webpack的更新很快，每次更新都会更新新的语法，所以学习webpack的本质就可以</strong>，具体语法可以看webpack官网：<strong><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></strong><br>那么让我们快速以一个webpack demo的形式开始我们的webpack的学习吧～</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>webpack</code>是现在一款非常流行的<strong>模块化管理工具🔧</strong>，<strong><code>react+webpack+es6</code></strong>是很火的项目构建组合。</p>
+<p><img src="https://img.funteas.com/e54cfd22c67adc465dff62272b905fc7?imageView2/2/w/800" alt=""></p>
+<blockquote>
+<p><code>webpack</code>会将有依赖关系的文件都视为一个模块，比如<code>scss</code>,<code>sass</code>,<code>less</code>,<code>css</code>结尾的文件，这样会产生一个模块群，<code>webpack</code>处理过后会产生可以被浏览器识别的一些文件，比如<code>Js</code>,<code>css</code>,<code>html</code>等。</p>
+<p><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是<code>webpack</code>的<strong>代码分割</strong>特性～</p>
+<p><code>webpack</code>的<strong>模块热更新</strong>特性：当项目文件发生变化时，不需要开发人员手动刷新浏览器，<code>webpack</code>会自动刷新页面，极大地提高了开发效率，是不是很神奇！</p>
+</blockquote>
+<p><strong>注意：本文的webpack环境是<code>3.5.5</code>由于webpack的更新很快，每次更新都会更新新的语法，所以学习webpack的本质就可以</strong>，具体语法可以看webpack官网：<strong><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></strong></p>
+<p>那么让我们快速以一个webpack demo的形式开始我们的webpack的学习吧～</p>
 <h2 id="webpack处理资源文件：webpack版本：3-5-5"><a href="#webpack处理资源文件：webpack版本：3-5-5" class="headerlink" title="webpack处理资源文件：webpack版本：3.5.5"></a>webpack处理资源文件：webpack版本：3.5.5</h2><p><strong>因为每个版本的文档都会变化所以坑很多，请注意自己的版本</strong></p>
 <h2 id="如何在terminal中安装webpack"><a href="#如何在terminal中安装webpack" class="headerlink" title="如何在terminal中安装webpack"></a>如何在terminal中安装webpack</h2><ul>
 <li>新建project目录</li>
