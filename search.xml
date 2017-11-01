@@ -6,7 +6,7 @@
       <title><![CDATA[CSS3 transform特性教程]]></title>
       <url>/CSS3-transform%E7%89%B9%E6%80%A7%E6%95%99%E7%A8%8B.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面我们一起学习了<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="external">CSS3</a> 中的<strong><a href="http://www.w3cplus.com/node/44" target="_blank" rel="external">渐变</a> </strong>、<strong><a href="http://www.w3cplus.com/node/48" target="_blank" rel="external">圆角</a> </strong>、<strong><a href="http://www.w3cplus.com/content/css3-box-shadow" target="_blank" rel="external">阴影</a> </strong>等几个属性的使用，今天开始我们一起来学习有关于<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="external">CSS3</a> 制作动画的几个属性：<strong><a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">变形(transform)</a> 、<a href="http://www.w3.org/TR/css3-transitions/" target="_blank" rel="external">转换(transition)</a> 和<a href="http://www.w3.org/TR/css3-animations/" target="_blank" rel="external">动画(animation)</a> </strong>等更高级的<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="external">CSS3</a> 技术。本文主要介绍的是这三个属性之中的第一个──<a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">变形transform</a> 。</p>
-<h2 id="CSS3-transform特性教程"><a href="#CSS3-transform特性教程" class="headerlink" title="CSS3 transform特性教程"></a>CSS3 transform特性教程</h2><p><a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">Transform</a> 字面上就是变形，改变的意思。在<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="external">CSS3</a> 中<a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">transform</a> 主要包括以下几种：<strong>旋转rotate</strong>、<strong>扭曲skew</strong>、<strong>缩放scale</strong>和<strong>移动translate</strong>以及<strong>矩阵变形matrix</strong>。下面我们一起来看看CSS3中transform的旋转rotate、扭曲skew、缩放scale和移动translate具体如何实现，老样子，我们就从<a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">transform</a> 的语法开始吧。</p>
+<h2 id="CSS3-transform教程"><a href="#CSS3-transform教程" class="headerlink" title="CSS3 transform教程"></a>CSS3 transform教程</h2><p><a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">Transform</a> 字面上就是变形，改变的意思。在<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="external">CSS3</a> 中<a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">transform</a> 主要包括以下几种：<strong>旋转rotate</strong>、<strong>扭曲skew</strong>、<strong>缩放scale</strong>和<strong>移动translate</strong>以及<strong>矩阵变形matrix</strong>。下面我们一起来看看CSS3中transform的旋转rotate、扭曲skew、缩放scale和移动translate具体如何实现，老样子，我们就从<a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">transform</a> 的语法开始吧。</p>
 <p><strong>语法：</strong></p>
 <pre><code>   transform ： none | &lt;transform-function&gt; [ &lt;transform-function&gt; ]* 
    也就是：
@@ -14,33 +14,31 @@
 </code></pre><p>none:表示不进么变换；<transform-function>表示一个或多个变换函数，以空格分开；换句话说就是我们同时对一个元素进行transform的多种属性操作，例如rotate、scale、translate三种，但这里需要提醒大家的，以往我们叠加效果都是用逗号（“，”）隔开，但transform中使用多个属性时却需要有空格隔开。大家记住了是空格隔开。</transform-function></p>
 <p>取值：</p>
 <p>transform属性实现了一些可用SVG实现的同样的功能。它可用于内联(inline)元素和块级(block)元素。它允许我们旋转、缩放和移动元素 ，他有几个属性值参数：rotate;translate;scale;skew;matrix。下面我们分别来介绍这几个属性值参数的具体使用方法：</p>
-<p><strong>一、旋转rotate</strong></p>
-<p>rotate(<angle>) ：通过指定的角度参数对原元素指定一个<a href="http://www.w3.org/TR/SVG/coords.html#RotationDefined" target="_blank" rel="external">2D rotation</a> （2D 旋转），需先有transform-origin属性的定义。transform-origin定义的是旋转的基点，其中angle是指旋转角度，如果设置的值为正数表示顺时针旋转，如果设置的值为负数，则表示逆时针旋转。如：transform:rotate(30deg):</angle></p>
-<p><img src="http://www.w3cplus.com/sites/default/files/rotate.png" alt=""> (data-pinit=undefined)</p>
-<p><strong>二、移动translate</strong></p>
-<p>移动translate我们分为三种情况：translate(x,y)水平方向和垂直方向同时移动（也就是X轴和Y轴同时移动）；translateX(x)仅水平方向移动（X轴移动）；translateY(Y)仅垂直方向移动（Y轴移动），具体使用方法如下：</p>
+<h3 id="一、旋转rotate"><a href="#一、旋转rotate" class="headerlink" title="一、旋转rotate"></a><strong>一、旋转rotate</strong></h3><p>rotate(<angle>) ：通过指定的角度参数对原元素指定一个<a href="http://www.w3.org/TR/SVG/coords.html#RotationDefined" target="_blank" rel="external">2D rotation</a> （2D 旋转），需先有transform-origin属性的定义。transform-origin定义的是旋转的基点，其中angle是指旋转角度，如果设置的值为正数表示顺时针旋转，如果设置的值为负数，则表示逆时针旋转。如：transform:rotate(30deg):</angle></p>
+<p><img src="http://www.w3cplus.com/sites/default/files/rotate.png" alt=""> </p>
+<h3 id="二、移动translate"><a href="#二、移动translate" class="headerlink" title="二、移动translate"></a><strong>二、移动translate</strong></h3><p>移动translate我们分为三种情况：translate(x,y)水平方向和垂直方向同时移动（也就是X轴和Y轴同时移动）；translateX(x)仅水平方向移动（X轴移动）；translateY(Y)仅垂直方向移动（Y轴移动），具体使用方法如下：</p>
 <p>1、translate(<translation-value>[, <translation-value>]) ：通过矢量[tx, ty]指定一个<a href="http://www.w3.org/TR/SVG/coords.html#TranslationDefined" target="_blank" rel="external">2D translation</a> ，tx 是第一个过渡值参数，ty 是第二个过渡值参数选项。如果 未被提供，则ty以 0 作为其值。也就是translate(x,y),它表示对象进行平移，按照设定的x,y参数值,当值为负数时，反方向移动物体，其基点默认为元素 中心点，也可以根据transform-origin进行改变基点。如transform:translate(100px,20px):</translation-value></translation-value></p>
-<p><img src="http://www.w3cplus.com/sites/default/files/translate-x-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/translate-x-y.png" alt=""> </p>
 <p>2、translateX(<translation-value>) ： 通过给定一个X方向上的数目指定一个<a href="http://www.w3.org/TR/SVG/coords.html#TranslationDefined" target="_blank" rel="external">translation</a> 。只向x轴进行移动元素，同样其基点是元素中心点，也可以根据transform-origin改变基点位置。如：transform:translateX(100px):</translation-value></p>
-<p><img src="http://www.w3cplus.com/sites/default/files/translate-x.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/translate-x.png" alt=""> </p>
 <p>3、translateY(<translation-value>) ：通过给定Y方向的数目指定一个<a href="http://www.w3.org/TR/SVG/coords.html#TranslationDefined" target="_blank" rel="external">translation</a> 。只向Y轴进行移动，基点在元素心点，可以通过transform-origin改变基点位置。如：transform:translateY(20px):</translation-value></p>
-<p><img src="http://www.w3cplus.com/sites/default/files/translate-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/translate-y.png" alt=""> </p>
 <p><strong>三、缩放scale</strong></p>
 <p>缩放scale和移动translate是极其相似，他也具有三种情况：scale(x,y)使元素水平方向和垂直方向同时缩放（也就是X轴和Y轴同时缩放）；scaleX(x)元素仅水平方向缩放（X轴缩放）；scaleY(y)元素仅垂直方向缩放（Y轴缩放），但它们具有相同的缩放中心点和基数，其中心点就是元素的中心位置，缩放基数为1，如果其值大于1元素就放大，反之其值小于1，元素缩小。下面我们具体来看看这三种情况具体使用方法：</p>
 <p>1、scale(<number>[, <number>])：提供执行[sx,sy]缩放矢量的两个参数指定一个<a href="http://www.w3.org/TR/SVG/coords.html#ScalingDefined" target="_blank" rel="external">2D scale</a> （2D缩放）。如果第二个参数未提供，则取与第一个参数一样的值。scale(X,Y)是用于对元素进行缩放，可以通过transform-origin对元素的基点进行设置，同样基点在元素中心位置；基中X表示水平方向缩放的倍数，Y表示垂直方向的缩放倍数，而Y是一个可选参数，如果没有设置Y值，则表示X，Y两个方向的缩放倍数是一样的。并以X为准。如：transform:scale(2,1.5):</number></number></p>
-<p><img src="http://www.w3cplus.com/sites/default/files/scale-x-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/scale-x-y.png" alt=""> </p>
 <p>2、scaleX(<number>) ： 使用 [sx,1] 缩放矢量执行缩放操作，sx为所需参数。scaleX表示元素只在X轴(水平方向)缩放元素，他的默认值是(1,1)，其基点一样是在元素的中心位置，我们同样是通过transform-origin来改变元素的基点。如：transform:scaleX(2):</number></p>
-<p><img src="http://www.w3cplus.com/sites/default/files/scale-x.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/scale-x.png" alt=""> </p>
 <p>3、scaleY(<number>) ： 使用 [1,sy] 缩放矢量执行缩放操作，sy为所需参数。scaleY表示元素只在Y轴（垂直方向）缩放元素，其基点同样是在元素中心位置，可以通过transform-origin来改变元素的基点。如transform:scaleY(2):</number></p>
-<p><img src="http://www.w3cplus.com/sites/default/files/scale-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/scale-y.png" alt=""> </p>
 <p><strong>四、扭曲skew</strong></p>
 <p>扭曲skew和translate、scale一样同样具有三种情况：skew(x,y)使元素在水平和垂直方向同时扭曲（X轴和Y轴同时按一定的角度值进行扭曲变形）；skewX(x)仅使元素在水平方向扭曲变形（X轴扭曲变形）；skewY(y)仅使元素在垂直方向扭曲变形（Y轴扭曲变形），具体使用如下：</p>
 <p>1、skew(<angle> [, <angle>]) ：X轴Y轴上的<a href="http://www.w3.org/TR/SVG/coords.html#SkewXDefined" target="_blank" rel="external">skew transformation</a> （斜切变换）。第一个参数对应X轴，第二个参数对应Y轴。如果第二个参数未提供，则值为0，也就是Y轴方向上无斜切。skew是用来对元素进行扭曲变行，第一个参数是水平方向扭曲角度，第二个参数是垂直方向扭曲角度。其中第二个参数是可选参数，如果没有设置第二个参数，那么Y轴为0deg。同样是以元素中心为基点，我们也可以通过transform-origin来改变元素的基点位置。如：transform:skew(30deg,10deg):</angle></angle></p>
-<p><img src="http://www.w3cplus.com/sites/default/files/skew-x-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/skew-x-y.png" alt=""> </p>
 <p>2、skewX(<angle>) ： 按给定的角度沿X轴指定一个<a href="http://www.w3.org/TR/SVG/coords.html#SkewXDefined" target="_blank" rel="external">skew transformation</a> （斜切变换）。skewX是使元素以其中心为基点，并在水平方向（X轴）进行扭曲变行，同样可以通过transform-origin来改变元素的基点。如：transform:skewX(30deg)</angle></p>
-<p><img src="http://www.w3cplus.com/sites/default/files/skew-x.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/skew-x.png" alt=""> </p>
 <p>3、skewY(<angle>) ： 按给定的角度沿Y轴指定一个<a href="http://www.w3.org/TR/SVG/coords.html#SkewYDefined" target="_blank" rel="external">skew transformation</a> （斜切变换）。skewY是用来设置元素以其中心为基点并按给定的角度在垂直方向（Y轴）扭曲变形。同样我们可以通过transform-origin来改变元素的基点。如：transform:skewY（10deg）</angle></p>
-<p><img src="http://www.w3cplus.com/sites/default/files/skew-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/skew-y.png" alt=""> </p>
 <p><strong>五、矩阵matrix</strong></p>
 <p>matrix(<number>, <number>, <number>, <number>, <number>, <number>) ： 以一个含六值的(a,b,c,d,e,f)<a href="http://www.w3.org/TR/SVG/coords.html#TransformMatrixDefined" target="_blank" rel="external">变换矩阵</a> 的形式指定一个2D变换，相当于直接应用一个[a b c d e f]变换矩阵。就是基于水平方向（X轴）和垂直方向（Y轴）重新定位元素,此属性值使用涉及到数学中的矩阵，我在这里只是简单的说一下CSS3中的transform有这么一个属性值，如果有感兴趣的朋友可以去了解更深层次的martix使用方法，这里就不多说了。</number></number></number></number></number></number></p>
 <p><strong>改变元素基点transform-origin</strong></p>
@@ -57,11 +55,11 @@
 <p>9、bottom right | right bottom 等价于 100% 100%</p>
 <p>其中 left,center right是水平方向取值，对应的百分值为left=0%;center=50%;right=100%而top center bottom是垂直方向的取值，其中top=0%;center=50%;bottom=100%;如果只取一个值，表示垂直方向值不变，我们分别来看看以下几个实例</p>
 <p>(1)transform-origin:(left,top):</p>
-<p><img src="http://www.w3cplus.com/sites/default/files/origin-x-y.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/origin-x-y.png" alt=""> </p>
 <p>(2)transform-origin:right</p>
-<p><img src="http://www.w3cplus.com/sites/default/files/origin-x.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/origin-x.png" alt=""> </p>
 <p>(3)transform-origin(25%,75%)</p>
-<p><img src="http://www.w3cplus.com/sites/default/files/origin-per.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/origin-per.png" alt=""> </p>
 <p>更多的改变中心基点办法，大家可以在本地多测试一下，多体会一下，这里还要提醒大家一点的是，transform-origin并不是transform中的属性值，他具有自己的语法，前面我也说过了，说简单一点就是类似于我们的background-position的用法，但又有其不一样，因为我们background-position不需要区别浏览器内核不同的写法，但transform-origin跟其他的css3属性一样，我们需要在不同的浏览内核中加上相应的前缀，下面列出各种浏览器内核下的语法规则：</p>
 <pre><code>//Mozilla内核浏览器：firefox3.5+
   -moz-transform-origin: x y;
@@ -86,7 +84,7 @@
   transform: rotate | scale | skew | translate ;
 </code></pre><p>上面列出是不同浏览内核transform的书写规则，如果需要兼容各浏览器的话，以上写法都需要调用。</p>
 <p><strong>支持transform浏览器</strong></p>
-<p><img src="http://www.w3cplus.com/sites/default/files/transform-browers.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/transform-browers.png" alt=""> </p>
 <p>同样的transform在IE9下版本是无法兼容的，之所以有好多朋友说，IE用不了，搞这个做什么？个人认为，CSS3推出来了，他是一门相对前沿的技术，做为Web前端的开发者或者爱好者都有必要了解和掌握的一门新技术，如果要等到所有浏览器兼容，那我们只能对css3说NO，我用不你。因为IE老大是跟不上了，，，，纯属个人观点，不代表任何。还是那句话，感兴趣的朋友跟我一样，不去理会IE，我们继续看下去。</p>
 <p>在上面我们详细介绍了CSS3中transform的各种属性值的设置以及其各自的参数，下面我们通过一个实例来看看每一种属性值的使用，为了节约空间和大家的时间，我们后面的实例都是在这个html基础上实现，主要是我们在下面的菜单中的a:hover中分别使用不同的transform的设置，换句话说，当你移动到链接上时，相应的每一个菜单项有不同的变化，因为我们在每个菜单中使用了transform。具体每一步我们可以看下面的实例：</p>
 <p><strong>HTML Code:</strong></p>
@@ -128,7 +126,7 @@
 <pre><code>.menuulli.rotatea:hover{
    -moz-transform:rotate(45deg);-webkit-transform:rotate(45deg);-o-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg);}
 </code></pre><p>效果：</p>
-<p><img src="http://www.w3cplus.com/sites/default/files/Transform-rotate.png" alt=""> (data-pinit=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-rotate.png" alt=""> </p>
 <p><strong>5、transform:scale(x,y)</strong></p>
 <pre><code>.menuulli.scalea:hover{
    -moz-transform:scale(0.8,0.8);-webkit-transform:scale(0.8,0.8);-o-transform:scale(0.8,0.8);-ms-transform:scale(0.8,0.8);transform:scale(0.8,0.8);}
@@ -148,12 +146,12 @@
 <pre><code>.menuulli.skewa:hover{
      -moz-transform:skew(45deg,15deg);-webkit-transform:skew(45deg,15deg);-o-transform:skew(45deg,15deg);-ms-transform:skew(45deg,15deg);transform:skew(45deg,15deg);}
 </code></pre><p>效果：</p>
-<p><img src="http://www.w3cplus.com/sites/default/files/Transform-skewxy.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-skewxy.png" alt=""> </p>
 <p><strong>9、transform:skewX(x)</strong></p>
 <pre><code>.menuulli.skew-xa:hover{
     -moz-transform:skewX(-30deg);-webkit-transform:skewX(-30deg);-o-transform:skewX(-30deg);-ms-transform:skewX(-30deg);transform:skewX(-30deg);}
 </code></pre><p>效果：</p>
-<p><img src="http://www.w3cplus.com/sites/default/files/Transform-skewx.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-skewx.png" alt=""> </p>
 <p><strong>10、transform:skewY(y)</strong></p>
 <pre><code>.menuulli.skew-ya:hover{
     -moz-transform:skewY(30deg);-webkit-transform:skewY(30deg);-o-transform:skewY(30deg);-ms-transform:skewY(30deg);transform:skewY(30deg);}
@@ -163,16 +161,16 @@
 <pre><code>.menuulli.matrixa:hover{
     -moz-transform:matrix(1,1,-1,0,0,0);-webkit-transform:matrix(1,1,-1,0,0,0);-o-transform:matrix(1,1,-1,0,0,0);-ms-transform:matrix(1,1,-1,0,0,0);transform:matrix(1,1,-1,0,0,0);}
 </code></pre><p>效果：</p>
-<p><img src="http://www.w3cplus.com/sites/default/files/Transform-matrix.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-matrix.png" alt=""> </p>
 <p>transform中的matrix是相对的复杂，如果感兴趣的朋友可以点<a href="http://www.w3.org/TR/SVG/coords.html#TransformMatrixDefined" target="_blank" rel="external">这里</a> 进去学民更多有关于Matrix的用法，我在这里就不多说了，说了也讲不清楚。</p>
 <p>下面我们来看看最终的效果图，如果你在本地跟着这个实例做了的话，那么你就能看到非常好的效果了。</p>
-<p><img src="http://www.w3cplus.com/sites/default/files/transform-demo-hover.png" alt=""> (data-pinit=undefined style=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/transform-demo-hover.png" alt=""> </p>
 <p>上面的实例效果展示了有关于transform中各种风格效果，这里需要提醒大家，我们上面的效果都是以元素自身的中心点为基点的，下面我们来看一个改变元素基点的实例</p>
 <p>我们在前面的实例基础改变一下所有a标签基点位置为left top（前面默认是center center）</p>
 <pre><code>.menuulli.transform-origina{
     -moz-transform-origin: left top;-webkit-transform-origin: left top;-o-transform-origin: left top;-ms-transform-origin: left top;transform-origin: left top;}
 </code></pre><p>大家一起看看改变了a标签基点后transform下各种效果有什么样的变化：</p>
-<p><img src="http://www.w3cplus.com/sites/default/files/Transform-origin-demo-hover.png" alt=""> (data-pinit=undefined)</p>
+<p><img src="http://www.w3cplus.com/sites/default/files/Transform-origin-demo-hover.png" alt=""> </p>
 <p>从效果图中大家可以明显的看出，改变元素的基点后。元素进行transform任何属性值的设置都会有影响，换句话说，我们transform进行任何动作变化都是以元素的中心为基点，同时我们可以通过transform-origin来改变任何元素的基点，从而达到不同的效果。感兴趣的朋友可以去了解更多有关这方面的知识。</p>
 <p>最后我们再来看一个transform运用多个属性值的效果实例</p>
 <pre><code>.demoa{
@@ -556,7 +554,133 @@ fi
 </code></pre><strong>注意：<code>transform: rotate(旋转角度deg)</code>可以旋转标签的角度。</strong><br><strong>添加浏览器前缀可以实现低版本浏览器样式兼容的效果。</strong></li>
 </ul>
 <h3 id="旋转控制"><a href="#旋转控制" class="headerlink" title="旋转控制"></a>旋转控制</h3><p>给图片加上点击图片，反转的效果。</p>
-<p><strong>重要：为什么使用闭包函数</strong>，因为调用这个函数所在的作用域(<code>ImgFigure</code>)中没有权限去调用<code>AppComponent</code>里的<code>index</code>变量，这个变量是<code>AppComponent</code>初始化<code>render</code>的时候就固定好的，如果想要调用<code>index</code>这个变量而不是当前<code>ImgFigure</code>组件中的<code>index</code><strong>值</strong>，就必须使用闭包函数作为桥梁连接两个函数作用域，这样<code>ImgFigure</code>就可以使用另外一个作用域中的变量</p>
+<ul>
+<li>为<code>imgsArrangeArr</code>添加表示图片翻转信息的属性<code>isInvers</code>,<code>false</code>表示图片没有翻转。</li>
+<li>添加翻转的样式。</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fl2u0yjtf3j30m906mwei.jpg" alt="给`ImgFigure`添加翻转样式"></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl2u209tkfj30w405ct91.jpg" alt="给图片背面添加样式"></p>
+<blockquote>
+<p><code>transform</code>属性是Css3的新特性，它能够实现一些动态效果，比如rotate（旋转）、scale（缩放）、translate（平移）等。</p>
+</blockquote>
+<p><strong>具体<code>transform</code>属性如何使用呢？请看我的这篇文章<a href="http://pancakeawesome.ink/CSS3-transform%E7%89%B9%E6%80%A7%E6%95%99%E7%A8%8B.html">CSS3-transform特性教程</a></strong></p>
+<ul>
+<li>添加点击图片的处理函数<br>我们在<code>AppComponent</code>组件中添加<code>inverse</code>函数,用来将选定的图片在图片数组中对应的图片信息中的表示图片翻转的属性<code>isInverse</code>改为相应样式。</li>
+</ul>
+<pre><code>/**
+     * 翻转图片
+     * @param {int} index 输入当前被执行inverse操作的图片对应的图片信息数组的index值
+     * @return {Function} 这是一个闭包函数，其内return一个真正待被执行的函数
+     */
+    inverse(index) {
+        return function() {
+            let imgsArrangeArr = this.state.imgsArrangeArr;
+            imgsArrangeArr[index].isInverse = !imgsArrangeArr[index].isInverse;
+
+            this.setState({
+                imgsArrangeArr: imgsArrangeArr
+            });
+        }.bind(this);
+    }
+</code></pre><blockquote>
+<p><strong>重要：为什么使用闭包函数</strong>，因为调用这个函数所在的作用域(<code>ImgFigure</code>)中没有权限去调用<code>AppComponent</code>里的<code>index</code>变量，这个变量是<code>AppComponent</code>初始化<code>render</code>的时候就固定好的，如果想要调用<code>index</code>这个变量而不是当前<code>ImgFigure</code>组件中的<code>index</code><strong>值</strong>，就必须使用闭包函数作为桥梁连接两个函数作用域，这样<code>ImgFigure</code>就可以使用另外一个作用域中的变量。</p>
+<ul>
+<li>给图片信息数组添加表示图片居中的属性，并在<code>AppComponent</code>组件中添加居中函数，处理图片居中效果。<pre><code>/**
+   * 利用rearrange函数，居中对应index的图片
+   * @param {int} index 输入当前被执行inverse操作的图片对应的图片信息数组的index值
+   * @return {Function} 这是一个闭包函数，其内return一个真正待被执行的函数
+   */
+   center(index) {
+       return function() {
+           this.rearrange(index);
+       }.bind(this);
+   }
+</code></pre></li>
+</ul>
+</blockquote>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fl2usbzpg4j30kn0bs0sv.jpg" alt="`AppComponent`组件中"></p>
+<ul>
+<li><p>在<code>ImgFigure</code>组件中添加点击处理函数，<code>handleClick</code>。用来处理所有图片的点击事件，加上处理逻辑，实现点击周围图片，将图片居中，点击居中图片，实现图片翻转的效果。</p>
+<pre><code>constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+    this.center = this.center.bind(this);
+  }
+
+  /**
+   * imgFigure的点击事件
+   */
+  handleClick(e) {
+      if (this.props.arrange.isCenter) {
+          this.props.inverse();
+      }else {
+          this.props.center();
+      }
+
+      e.stopPropagation();
+      e.preventDefault();
+  }
+
+  // 控制反转样式
+  let imgFigureClassName = &#39;img-figure&#39;;
+      imgFigureClassName += this.props.arrange.isInverse ? &#39; is-inverse&#39; : &#39;&#39;;
+</code></pre></li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fl2upt0b7sj30wm0bj74v.jpg" alt="给`ImgFigure`组件加上事件监听器"></p>
+<blockquote>
+<p><strong>注意⚠️：</strong><code>React ES6</code>的写法中，组件的函数不是自动绑定<code>this</code>的，需要在<code>constructor</code>中手动给所有的成员方法绑定<code>this</code>。</p>
+</blockquote>
+<ul>
+<li>给居中图片添加<code>z-index</code>样式，使其在页面的最顶层：<pre><code>// 如果图片居中，则给居中图片添加z-index样式，使其在整个页面的最顶层
+      if (this.props.arrange.isCenter) {
+          styleObj.zIndex = &#39;11&#39;;
+      }
+</code></pre></li>
+</ul>
+<h3 id="给图片加上切换动画"><a href="#给图片加上切换动画" class="headerlink" title="给图片加上切换动画"></a>给图片加上切换动画</h3><p>我们可以使用<code>css3</code>相关的<code>transform</code>样式。</p>
+<ul>
+<li><code>transition</code>:定义了一个元素在两种状态下切换时，显示的过渡动画效果。<br>值：<ul>
+<li><code>transform</code>: 表示在发生<code>transform</code>变化时，发生的动画效果。</li>
+<li><code>left</code>:表示在<code>left</code>值发生变化的时候发生的动画效果。</li>
+<li><code>.6s</code>:动画的时长。</li>
+<li><code>easy-in-out</code>:动画的速度曲线。三次的倍塞尔函数。  </li>
+</ul>
+</li>
+<li><p><code>perspective</code>：景深样式，表示perspective-origin，3D观察点与z轴平面的距离，默认是无限大，类似我们平常2D的效果。值越小，我们能感受到的3D效果越深刻。<br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fl2vorp47uj30hn0brmxy.jpg" alt="3D景深效果"></p>
+</li>
+<li><p><code>transform-origin</code>:表示<code>transform</code>变化的基点，默认是元素的中心点。这个属性很重要，通过这个属性和<code>translate</code>,<code>rotateY</code>结合，我们可以实现元素翻转的真实效果。</p>
+<ul>
+<li><code>rotateY(deg)</code>:表示以Y轴为纬轴旋转元素。</li>
+<li><code>translate(px)</code>:表示以x轴平移元素。</li>
+<li><code>translateZ(px)</code>:表示平移Z轴上的元素。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl2wg3wc33j30c80cjwet.jpg" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl2w5lpavxj30lr03k746.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fl2w541kobj30j3018jr8.jpg" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl2w32yg5ng30m60aywsx.gif" alt=""></p>
+<h3 id="控制组件的构建"><a href="#控制组件的构建" class="headerlink" title="控制组件的构建"></a>控制组件的构建</h3><ul>
+<li>在css文件中声明使用字体文件：<pre><code>@font-face {
+font-family: &quot;icons-turn-arrow&quot;;
+src: url(&quot;../fonts/icons/turn-arrow.eot&quot;);
+src: url(&quot;../fonts/icons/turn-arrow.eot&quot;) format(&quot;embedded-opentype&quot;),
+  url(&quot;../fonts/icons/turn-arrow.woff&quot;) format(&quot;woff&quot;),
+  url(&quot;../fonts/icons/turn-arrow.ttf&quot;) format(&quot;truetype&quot;), 
+  url(&quot;../fonts/icons/turn-arrow.svg&quot;) format(&quot;svg&quot;);
+}
+</code></pre><blockquote>
+<p>icon font的体积比图片小；icon font 是矢量图形，拉伸不变形，支持css对字体的样式修饰。<br>不同格式的字体文件是为了兼容不同浏览器对不同字体文件的支持。</p>
+<ul>
+<li><code>embedded-opentype</code>:ie</li>
+<li><code>woff</code>:chrome,firefox</li>
+<li><code>truetype</code>:chrome,firefox,safari,ios,android4.2以及之后的版本。</li>
+<li><code>svg</code>:android4.1以及之前的版本</li>
+</ul>
+</blockquote>
+</li>
+</ul>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
       
         <categories>
@@ -2744,9 +2868,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -3718,9 +3842,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3967,9 +4091,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
