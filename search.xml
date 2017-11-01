@@ -7,7 +7,7 @@
       <url>/webpack%E7%AE%80%E6%98%93%E9%85%8D%E7%BD%AE%E5%85%A5%E9%97%A8.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>WebPack 可以看做是模块打包机：它做的事情是，分析你的项目结构，找到 JavaScript 模块以及其它的一些浏览器不能直接运行的拓展语言（Scss，TypeScript 等），并将其转换和打包为合适的格式供浏览器使用</p>
 <h2 id="webpack-简易配置入门教程"><a href="#webpack-简易配置入门教程" class="headerlink" title="webpack 简易配置入门教程"></a>webpack 简易配置入门教程</h2><p><img src="https://img.funteas.com/e54cfd22c67adc465dff62272b905fc7?imageView2/2/w/800" alt=""></p>
-<p>最近公司弄了个有150+页面的项目，心想，终于有机会可以去学习webpack了，以前想学却没有实际项目去引导逼迫去学，现在终于领略到了webpack的强大了。</p>
+<p><code>webpack</code>会将有依赖关系的文件都视为一个模块，比如<code>scss</code>,<code>sass</code>,<code>less</code>,<code>css</code>结尾的文件，这样会产生一个模块群，<code>webpack</code>处理过后会产生可以被浏览器识别的一些文件，比如<code>Js</code>,<code>css</code>,<code>html</code>等。<br><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是<code>webpack</code>的<strong>代码分割</strong>特性～<br><strong><code>webpack</code>的模块热更新特性的：当项目文件发生变化时，不需要开发人员手动刷新浏览器，<code>webpack</code>会自动刷新页面，极大地提高了开发效率，是不是很神奇！</strong></p>
 <h3 id="什么是webpack"><a href="#什么是webpack" class="headerlink" title="什么是webpack"></a>什么是webpack</h3><p>在前端的项目开发中，总有大量的页面和样式需要处理，而维护这些文件也成了头疼的问题。</p>
 <p>为了简化开发，于是就有很多好的开发方式，如：</p>
 <ul>
@@ -316,6 +316,50 @@ fi
             <tag> 前端工具 </tag>
             
             <tag> webpack </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[react实战--打造画廊项目（二）]]></title>
+      <url>/react%E5%AE%9E%E6%88%98-%E6%89%93%E9%80%A0%E7%94%BB%E5%BB%8A%E9%A1%B9%E7%9B%AE%EF%BC%88%E4%BA%8C%EF%BC%89.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在上一篇博客中，我们把画廊应用的静态框架搭建好了，现在我们为舞台添加动态旋转和移动的效果。</p>
+<h2 id="构建动态图片组件"><a href="#构建动态图片组件" class="headerlink" title="构建动态图片组件"></a>构建动态图片组件</h2><p>继续控制单个图片组件<code>ImgFigure</code>，为它加上动态效果。</p>
+<h3 id="图片旋转"><a href="#图片旋转" class="headerlink" title="图片旋转"></a>图片旋转</h3><p>给图片加上旋转角度的效果样式。</p>
+<ul>
+<li>首先给存储所有图片样式信息的全局变量<code>imageDatasArr</code>加上<code>rotate</code>属性，用来存储每张图片的旋转信息。<br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fl1qdd8kd2j30w50afaac.jpg" alt=""></li>
+<li>添加<code>get30DegRandom</code>方法用来随机图片旋转的角度：<pre><code>function get30DegRandom() {
+  return (Math.random() &gt; 0.5 ? &#39;&#39; : &#39;-&#39;) + Math.ceil(Math.random() * 30);
+}
+</code></pre><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fl1qhwj5r9j30ox08xmxf.jpg" alt=""></li>
+<li>给每张图片设置随机过后旋转角度样式：<pre><code>// 如果图片的旋转角度有值且不为0则添加旋转角度
+      if (this.props.arrange.rotate) {
+          // 兼容低版本浏览器
+          [&#39;MozTransform&#39;, &#39;msTransform&#39;, &#39;WebkitTransform&#39;, &#39;transform&#39;].forEach(function(value) {
+            styleObj[value] = &#39;rotate(&#39; + this.props.arrange.rotate + &#39;deg)&#39;;
+          }.bind(this));
+      }
+</code></pre><strong>注意：<code>transform: rotate(旋转角度deg)</code>可以旋转标签的角度。</strong><br><strong>添加浏览器前缀可以实现低版本浏览器样式兼容的效果。</strong></li>
+</ul>
+<h3 id="旋转控制"><a href="#旋转控制" class="headerlink" title="旋转控制"></a>旋转控制</h3><p>给图片加上点击图片，反转的效果。</p>
+<p><strong>重要：为什么使用闭包函数</strong>，因为调用这个函数所在的作用域(<code>ImgFigure</code>)中没有权限去调用<code>AppComponent</code>里的<code>index</code>变量，这个变量是<code>AppComponent</code>初始化<code>render</code>的时候就固定好的，如果想要调用<code>index</code>这个变量而不是当前<code>ImgFigure</code>组件中的<code>index</code><strong>值</strong>，就必须使用闭包函数作为桥梁连接两个函数作用域，这样<code>ImgFigure</code>就可以使用另外一个作用域中的变量</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+      
+        <categories>
+            
+            <category> react </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端技术 </tag>
+            
+            <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
@@ -4090,7 +4134,7 @@ $ hexo d
     <entry>
       <title><![CDATA[入门Webpack，看这篇就够了]]></title>
       <url>/%E5%85%A5%E9%97%A8Webpack%EF%BC%8C%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>webpack是现在一款非常流行的模块化管理工具🔧，react+webpack+es6是很火的项目构建组合</strong><br>webpack会将有依赖关系的文件都视为一个模块，比如scss,sass,less,css结尾的文件，这样会产生一个模块群，webpack处理过后会产生可以被浏览器识别的一些文件，比如Js,css,html等。<br><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是webpack的<strong>代码分割</strong>特性～<br><strong>webpack的模块热更新特性的：当项目文件发生变化时，不需要开发人员手动刷新浏览器，webpack会自动刷新页面，极大地提高了开发效率，是不是很神奇！</strong><br><strong>注意：本文的webpack环境是<code>3.5.5</code>由于webpack的更新很快，每次更新都会更新新的语法，所以学习webpack的本质就可以</strong>，具体语法可以看webpack官网：<strong><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></strong><br>那么让我们快速以一个webpack demo的形式开始我们的webpack的学习吧～</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>webpack是现在一款非常流行的模块化管理工具🔧，react+webpack+es6是很火的项目构建组合</strong><br><code>webpack</code>会将有依赖关系的文件都视为一个模块，比如<code>scss</code>,<code>sass</code>,<code>less</code>,<code>css</code>结尾的文件，这样会产生一个模块群，<code>webpack</code>处理过后会产生可以被浏览器识别的一些文件，比如<code>Js</code>,<code>css</code>,<code>html</code>等。<br><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是<code>webpack</code>的<strong>代码分割</strong>特性～<br><strong><code>webpack</code>的模块热更新特性的：当项目文件发生变化时，不需要开发人员手动刷新浏览器，<code>webpack</code>会自动刷新页面，极大地提高了开发效率，是不是很神奇！</strong><br><strong>注意：本文的webpack环境是<code>3.5.5</code>由于webpack的更新很快，每次更新都会更新新的语法，所以学习webpack的本质就可以</strong>，具体语法可以看webpack官网：<strong><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></strong><br>那么让我们快速以一个webpack demo的形式开始我们的webpack的学习吧～</p>
 <h2 id="webpack处理资源文件：webpack版本：3-5-5"><a href="#webpack处理资源文件：webpack版本：3-5-5" class="headerlink" title="webpack处理资源文件：webpack版本：3.5.5"></a>webpack处理资源文件：webpack版本：3.5.5</h2><p><strong>因为每个版本的文档都会变化所以坑很多，请注意自己的版本</strong></p>
 <h2 id="如何在terminal中安装webpack"><a href="#如何在terminal中安装webpack" class="headerlink" title="如何在terminal中安装webpack"></a>如何在terminal中安装webpack</h2><ul>
 <li>新建project目录</li>

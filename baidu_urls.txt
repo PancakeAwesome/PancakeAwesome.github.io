@@ -1,4 +1,5 @@
 http://pancakeawesome.ink/webpack简易配置入门.html
+http://pancakeawesome.ink/react实战-打造画廊项目（二）.html
 http://pancakeawesome.ink/基于ES6语法的React重构.html
 http://pancakeawesome.ink/scrum敏捷开发.html
 http://pancakeawesome.ink/浅析react.html
