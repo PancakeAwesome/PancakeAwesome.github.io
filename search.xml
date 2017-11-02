@@ -1120,60 +1120,115 @@ observal.trigger(&#39;command2&#39;); //一花一世界~ 一码一人生~
 <li>配置webpack。</li>
 </ol>
 <p>新建一个配置文件： <code>$ touch webpack.config.js</code></p>
-<pre><code>var webpack =require(&#39;webpack&#39;);
-var path =require(&#39;path&#39;);varExtractTextPlugin=require(&quot;extract-text-webpack-plugin&quot;);
-var HtmlWebpackPlugin=require(&#39;html-webpack-plugin&#39;);
-var webpackConfig ={// 设置入口文件。
-    entry:&#39;./src/js/index.js&#39;,
-    output:{// 设置输出文件夹
-        path: path.join(__dirname,&#39;dist&#39;),// 设置公用文件夹路径
-        publicPath:&#39;/&#39;,// 设置输出的js文件的名字规则。// [name] 为chunk中的名称// [hash] 为webpack生成的哈希值
-        filename:&quot;js/[name].[hash].bundle.js&quot;},module:{
-        rules:[{// 处理css文件
-            test:/\.css$/,
-            loader:&quot;style-loader!css-loader&quot;},{// 处理html文件，并处理img 中 src 和 data-src 的引入路径
-            test:/\.html$/,
-            loader:&quot;html-loader?attrs=img:src img:data-src&quot;},{// 处理字体文件
-            test:/\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-            loader:&#39;file-loader?name=./fonts/[name].[ext]&#39;},{// 处理图片，并将8k以下的图片转为base64编码
-            test:/\.(png|jpg|gif)$/,
-            loader:&#39;url-loader?limit=8192&amp;name=./img/[hash].[ext]&#39;}]},
-    plugins:[// 公共js提取new webpack.optimize.CommonsChunkPlugin({
-            name:&#39;vendors&#39;,// 将公共模块提取，生成名为`vendors`的chunk// minChunks: 3 // 提取至少3个模块共有的部分}),// 提取公共css样式newExtractTextPlugin(&#39;./css/[name].css&#39;),// 处理html文件。newHtmlWebpackPlugin({
-            filename:&#39;./view/index.html&#39;,//生成的html存放路径，相对于pathtemplate:&#39;./src/view/index.html&#39;,//html模板路径
-            inject:&#39;body&#39;,//js插入的位置，true/&#39;head&#39;/&#39;body&#39;/false
-            hash:true,//为静态资源生成hash值// chunks: [&#39;vendors&#39;, allDirs[i] + &#39;/&#39; + matches[1]], //需要引入的chunk，不配置就会引入所有页面的资源
-            minify:{//压缩HTML文件
-                removeComments:true,//移除HTML中的注释
-                collapseWhitespace:false//删除空白符与换行符}})],// 设置开发服务器
-    devServer:{
-        contentBase: path.join(__dirname,&quot;dist/&quot;),
-        host:&#39;localhost&#39;,
-        port:9090,inline:true}}module.exports = webpackConfig
+<pre><code>var webpack = require(&#39;webpack&#39;);
+var path = require(&#39;path&#39;);
+varExtractTextPlugin = require(&quot;extract-text-webpack-plugin&quot;);
+var HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+var webpackConfig = { // 设置入口文件。
+    entry: &#39;./src/js/index.js&#39;,
+    output: { // 设置输出文件夹
+        path: path.join(__dirname, &#39;dist&#39;), // 设置公用文件夹路径
+        publicPath: &#39;/&#39;, // 设置输出的js文件的名字规则。// [name] 为chunk中的名称// [hash] 为webpack生成的哈希值
+        filename: &quot;js/[name].[hash].bundle.js&quot;
+    },
+    module: {
+        rules: [{ // 处理css文件
+            test: /\.css$/,
+            loader: &quot;style-loader!css-loader&quot;
+        }, { // 处理html文件，并处理img 中 src 和 data-src 的引入路径
+            test: /\.html$/,
+            loader: &quot;html-loader?attrs=img:src img:data-src&quot;
+        }, { // 处理字体文件
+            test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            loader: &#39;file-loader?name=./fonts/[name].[ext]&#39;
+        }, { // 处理图片，并将8k以下的图片转为base64编码
+            test: /\.(png|jpg|gif)$/,
+            loader: &#39;url-loader?limit=8192&amp;name=./img/[hash].[ext]&#39;
+        }]
+    },
+    plugins: [ // 公共js提取
+        new webpack.optimize.CommonsChunkPlugin({
+            name: &#39;vendors&#39;, // 将公共模块提取，生成名为`vendors`的chunk 
+            minChunks: 3 // 提取至少3个模块共有的部分
+        }),
+        // 提取公共css样式
+        newExtractTextPlugin(&#39;./css/[name].css&#39;),
+        // 处理html文件。
+        newHtmlWebpackPlugin({
+            filename: &#39;./view/index.html&#39;, //生成的html存放路径，相对于path
+            template: &#39;./src/view/index.html&#39;, //html模板路径
+            inject: &#39;body&#39;, //js插入的位置，true/&#39;head&#39;/&#39;body&#39;/false
+            hash: true, //为静态资源生成hash值// 
+            chunks: [&#39;vendors&#39;, allDirs[i] + &#39;/&#39; + matches[1]], //需要引入的chunk，不配置就会引入所有页面的资源
+            minify: { //压缩HTML文件
+                removeComments: true, //移除HTML中的注释
+                collapseWhitespace: false //删除空白符与换行符
+            }
+        })
+    ], // 设置开发服务器
+    devServer: {
+        contentBase: path.join(__dirname, &quot;dist/&quot;),
+        host: &#39;localhost&#39;,
+        port: 9090,
+        inline: true
+    }
+}
+module.exports = webpackConfig
 </code></pre><ol>
 <li>测试配置文件：<br>先设置开发文件夹目录：</li>
 </ol>
-<pre><code>-   webpack-demo
-    +   node_modules
-    -   src
-        +   js      // 存放js文件+   css     // 存放css样式+   view    // 存放模板文件
+<ul>
+<li><p>webpack-demo</p>
+<ul>
+<li>node_modules</li>
+</ul>
+<ul>
+<li><p>src</p>
+<ul>
+<li>js      // 存放js文件</li>
+<li>css     // 存放css样式</li>
+<li>view    // 存放模板文件</li>
+</ul>
+</li>
+<li><p>webpack.config.js</p>
+</li>
+<li>package.json</li>
+</ul>
+</li>
+</ul>
+<p>新建一个 html 文件：<br><code>$ touch ./src/view/index.html</code>。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
 
-        webpack.config.js
-        package.json
-</code></pre><p>新建一个 html 文件： <code>$ touch ./src/view/index.html</code>。</p>
-<pre><code>&lt;!DOCTYPE html&gt;&lt;htmllang=&quot;en&quot;&gt;&lt;head&gt;&lt;metacharset=&quot;UTF-8&quot;&gt;&lt;metaname=&quot;viewport&quot;content=&quot;width=device-width, initial-scale=1.0&quot;&gt;&lt;metahttp-equiv=&quot;X-UA-Compatible&quot;content=&quot;ie=edge&quot;&gt;&lt;title&gt;Hello World&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Hello World&lt;/h2&gt;&lt;p&gt;This is from webpack-demo&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+    &lt;head&gt;
+        &lt;metacharset=&quot;UTF-8&quot;&gt;
+            &lt;metaname=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+                &lt;metahttp-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+                    &lt;title&gt;Hello World&lt;/title&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;h2&gt;Hello World&lt;/h2&gt;
+        &lt;p&gt;This is from webpack-demo&lt;/p&gt;
+    &lt;/body&gt;
+
+&lt;/html&gt;
 </code></pre><p>新建css文件： <code>$ touch ./src/css/index.css</code>。</p>
-<pre><code>h2{
+<pre><code>h2 {
     color: red;
-    opacity:0.5;
-    transform: rotateZ(-10deg);}
-p{
-    color: green;}
+    opacity: 0.5;
+    transform: rotateZ(-10 deg);
+}
+p {
+    color: green;
+}
 </code></pre><p>新建js文件： <code>$ touch ./src/js/index.js</code>。</p>
-<pre><code>// 引入css文件。require(&#39;../css/index.css&#39;)
+<pre><code>// 引入css文件。
+require(&#39;../css/index.css&#39;)
 
 console.log(&#39;hello world&#39;);
-</code></pre><p>测试打包： <code>$ webpack</code><br>OK!基本的配置就完成了。<br><img src="https://img.funteas.com/cdd0c8a3c4779a076a4af3de8a38cc86?imageView2/2/w/800" alt=""><br>我们可以看到，在项目中多了一个dist文件夹，里面存放的就是刚刚打包好的文件。打开index.html（需要在服务器中打开，并且服务器根目录为dist）可以看到，生成的html文件，征程显示我们写的内容，css样式则直接写入了style标签当中，而且自动引入了两个js文件，其中，vendors是带有公共部分的js文件，index则是我们一开始写的js逻辑文件。<br><img src="https://img.funteas.com/6b1a1edb6f9d049014899131b37a02b8?imageView2/2/w/800" alt=""></p>
+</code></pre><p>测试打包： <code>$ webpack</code><br>OK!基本的配置就完成了。<br><img src="https://img.funteas.com/cdd0c8a3c4779a076a4af3de8a38cc86?imageView2/2/w/800" alt=""></p>
+<p>我们可以看到，在项目中多了一个dist文件夹，里面存放的就是刚刚打包好的文件。打开index.html（需要在服务器中打开，并且服务器根目录为dist）可以看到，生成的html文件，征程显示我们写的内容，css样式则直接写入了style标签当中，而且自动引入了两个js文件，其中，vendors是带有公共部分的js文件，index则是我们一开始写的js逻辑文件。<br><img src="https://img.funteas.com/6b1a1edb6f9d049014899131b37a02b8?imageView2/2/w/800" alt=""></p>
 <h3 id="处理scss文件。"><a href="#处理scss文件。" class="headerlink" title="处理scss文件。"></a>处理scss文件。</h3><p>既然都用到了webpack自动打包了，那也顺便使用webpack去处理scss文件（个人爱好是scss，less的处理同理），顺便也处理完css中的其他兼容性问题和浏览器前缀问题吧（程序员的思维就是，懒）。</p>
 <p>现在css中需要处理的有：</p>
 <ol>
@@ -1194,25 +1249,44 @@ console.log(&#39;hello world&#39;);
 <p>现在在webpack中处理css的问题，基本都是通过一个 <code>postcss-loader</code> 去完成所有的处理问题。</p>
 <p>先新建一个文件夹，用于存放所有的scss文件： <code>$ mkdir ./src/scss</code></p>
 <p>再新建一个index.scss, <code>$ touch ./src/scss/index.scss</code></p>
-<pre><code>body{
+<pre><code>body {
     background: black;
     color: white;
-    h2{
-        transform: translateX(10px) rotateZ(-10deg);
+    h2 {
+        transform: translateX(10 px) rotateZ(-10 deg);
         color: red;
-        opacity:0.5;}}
+        opacity: 0.5;
+    }
+}
 </code></pre><p>将postcss的加载器中需要的单独提取出来放在一个配置文件中： <code>$ touch postcss.config.js</code></p>
-<pre><code>module.exports ={
-    plugins:[// minify cssrequire(&#39;cssnano&#39;)({
-            preset:&#39;default&#39;}),// 处理css前缀require(&#39;autoprefixer&#39;)({
-            browserslist:[&quot;&gt; 1%&quot;,&quot;last 2 versions&quot;,&quot;Edge&quot;,&quot;ie &gt;= 9&quot;]}),// 处理flex浏览器兼容性require(&#39;postcss-flexibility&#39;),// 处理css中rgba颜色代码require(&#39;postcss-color-rgba-fallback&#39;),// 处理css中opacity的IE兼容性。require(&#39;postcss-opacity&#39;)]}
+<pre><code>module.exports = {
+    plugins: [ // minify css
+        require(&#39;cssnano&#39;)({
+            preset: &#39;default&#39;
+        }), // 处理css前缀
+        require(&#39;autoprefixer&#39;)({
+            browserslist: [&quot;&gt; 1%&quot;, &quot;last 2 versions&quot;, &quot;Edge&quot;, &quot;ie &gt;= 9&quot;]
+        }), // 处理flex浏览器兼容性
+        require(&#39;postcss-flexibility&#39;), // 处理css中rgba颜色代码
+        require(&#39;postcss-color-rgba-fallback&#39;), // 处理css中opacity的IE兼容性。
+        require(&#39;postcss-opacity&#39;)
+    ]
+}
 </code></pre><p>修改 webpack.config.js:</p>
-<pre><code>var webpackConfig ={...module:{
-        rules:[{// 处理css文件
-            test:/\.(scss|sass|css)$/,// loader: &quot;css-loader?importLoaders=1!postcss-loader!sass-loader&quot;,// loader执行顺序是从右到左：sass-loader -&gt; postcss-loader -&gt; css-loaderuse:[&quot;style-loader&quot;,{
-                    loader:&quot;css-loader&quot;,
-                    options:{// // 0 =&gt; no loaders (default); 1 =&gt; postcss-loader; 2 =&gt; postcss-loader, sass-loader
-                        importLoaders:2}},&#39;postcss-loader&#39;,&#39;sass-loader&#39;]},...]}...}module.exports = webpackConfig
+<pre><code>var webpackConfig = { ...module: {
+        rules: [{ // 处理css文件
+            test: /\.(scss|sass|css)$/, // 
+            loader: &quot;css-loader?importLoaders=1!postcss-loader!sass-loader&quot;, // loader执行顺序是从右到左：sass-loader -&gt; postcss-loader -&gt; css-loader
+            use: [&quot;style-loader&quot;, {
+                loader: &quot;css-loader&quot;,
+                options: { // // 0 =&gt; no loaders (default); 1 =&gt; postcss-loader; 2 =&gt; postcss-loader, sass-loader
+                    importLoaders: 2
+                }
+            }, &#39;postcss-loader&#39;, &#39;sass-loader&#39;]
+        }, ...]
+    }...
+}
+module.exports = webpackConfig
 </code></pre><p>修改一下入口文件中的样式引入： <code>$ vim ./src/js/index.js</code></p>
 <pre><code>require(&#39;../scss/index.scss&#39;)
 
@@ -1220,24 +1294,34 @@ console.log(&#39;hello world&#39;);
 </code></pre><p>打包测试：<br><img src="https://img.funteas.com/7161926ef76bbc56cd95b4e8fa3b3043?imageView2/2/w/800" alt=""><img src="https://img.funteas.com/b2ef241cadd633d504099ebfffbe9c57?imageView2/2/w/800" alt=""></p>
 <p>完美通过。</p>
 <h3 id="处理pug-jade文件"><a href="#处理pug-jade文件" class="headerlink" title="处理pug/jade文件"></a>处理pug/jade文件</h3><p>项目有很多的页面，而且页面之间也有很多相同的页面，之前写惯了vue的组件，所以注册我们也引入了pug作为前端模板引擎。 pug 的前身就是 jade ，所以语法什么都得基本都是一致的。具体的看 <a href="http://link.funteas.com/?target=https%3A%2F%2Fpugjs.org%2Fapi%2Fgetting-started.html" target="_blank" rel="external">官网</a>  。</p>
-<p>和处理css的一样，先要安装加载器。 <code>$ npm i -D pug pug-loader</code></p>
-<p>新建一个简单的页面： <code>$ touch ./src/view/index.pug</code></p>
+<p>和处理css的一样，先要安装加载器。<br><code>$ npm i -D pug pug-loader</code></p>
+<p>新建一个简单的页面：<br><code>$ touch ./src/view/index.pug</code></p>
 <pre><code>html
     title   Test.html
 body
     h2  Welcome to pug.
     p   Thisisfrom index.pug
 </code></pre><p>修改一下配置文件中的html模板入口：</p>
-<pre><code>var webpackConfig ={...
-    plugins:[// 公共js提取new webpack.optimize.CommonsChunkPlugin({
-            name:&#39;vendors&#39;,// 将公共模块提取，生成名为`vendors`的chunk}),// 提取公共css样式newExtractTextPlugin(&#39;./css/[name].css&#39;),// 处理html文件。newHtmlWebpackPlugin({
-            filename:&#39;./view/index.html&#39;,//生成的html存放路径，相对于pathtemplate:&#39;./src/view/index.pug&#39;,//html模板路径
-            inject:&#39;body&#39;,//js插入的位置，true/&#39;head&#39;/&#39;body&#39;/false
-            hash:true,//为静态资源生成hash值
-            chunks:[&#39;vendors&#39;,&#39;index&#39;],//需要引入的chunk，不配置就会引入所有页面的资源
-            minify:{//压缩HTML文件
-                removeComments:true,//移除HTML中的注释
-                collapseWhitespace:false//删除空白符与换行符}})],...}module.exports = webpackConfig
+<pre><code>var webpackConfig = { ...
+    plugins: [ // 公共js提取
+        new webpack.optimize.CommonsChunkPlugin({
+            name: &#39;vendors&#39;, // 将公共模块提取，生成名为`vendors`的chunk
+        }), // 提取公共css样式
+        newExtractTextPlugin(&#39;./css/[name].css&#39;), // 处理html文件。
+        newHtmlWebpackPlugin({
+            filename: &#39;./view/index.html&#39;, //生成的html存放路径，相对于pathtemplate:&#39;./src/view/index.pug&#39;,//html模板路径
+            inject: &#39;body&#39;, //js插入的位置，true/&#39;head&#39;/&#39;body&#39;/false
+            hash: true, //为静态资源生成hash值
+            chunks: [&#39;vendors&#39;, &#39;index&#39;], //需要引入的chunk，不配置就会引入所有页面的资源
+            minify: { //压缩HTML文件
+                removeComments: true, //移除HTML中的注释
+                collapseWhitespace: false //删除空白符与换行符
+            }
+        })
+    ],
+    ...
+}
+module.exports = webpackConfig
 </code></pre><p>重新编译打包：<br><img src="https://img.funteas.com/f50d2630c41fc3722fb1e8c594b17df8?imageView2/2/w/800" alt=""><img src="https://img.funteas.com/b9a66e946d63f63b8afe51355f848299?imageView2/2/w/800" alt=""></p>
 <h3 id="使用-babel-来“编译”你的js"><a href="#使用-babel-来“编译”你的js" class="headerlink" title="使用 babel 来“编译”你的js"></a>使用 babel 来“编译”你的js</h3><p>在项目开发中，难免会遇到使用 es6 ，甚至 es7 去编写js。但是大部分浏览器却不支持这些语法，这时候，就需要 <a href="http://link.funteas.com/?target=https%3A%2F%2Fgithub.com%2Fbabel%2Fbabel-loader" target="_blank" rel="external">babel-loader</a>  来处理js，并将其转换为浏览器能识别的 es5 语法。</p>
 <p>还是要安装依赖： <code>$ npm i -D babel-loader babel-core babel-preset-es2015</code></p>
@@ -1249,18 +1333,25 @@ $ npm i -D babel-preset-stage-3
 </code></pre><p>新建一个 <code>.babelrc</code> babel配置文件： <code>$ touch .babelrc</code></p>
 <pre><code>{&quot;presets&quot;:[&quot;es2015&quot;],&quot;plugins&quot;:[]}
 </code></pre><p>修改 webpack 配置文件：</p>
-<pre><code>var webpackConfig ={...module:{
-        rules:[{
-            test:/\.js$/,// 不编译 node_modules 下的文件
-            exclude:/node_modules/,
-            loader:&quot;babel-loader&quot;}]}...}module.exports = webpackConfig
+<pre><code>var webpackConfig = { ...module: {
+        rules: [{
+            test: /\.js$/, // 不编译 node_modules 下的文件
+            exclude: /node_modules/,
+            loader: &quot;babel-loader&quot;
+        }]
+    }...
+}
+module.exports = webpackConfig
 </code></pre><p>在 index.js 中写个 es6 的语法：</p>
 <pre><code>require(&#39;../scss/index.scss&#39;)
 
-console.log(&#39;hello world&#39;);((message)=&gt;{
-    console.log(message);})(&#39;message from es6&#39;)
+console.log(&#39;hello world&#39;);
+((message) =&gt; {
+    console.log(message);
+})(&#39;message from es6&#39;)
 
-let step =2;var add = number =&gt; number*=step
+let step = 2;
+var add = number =&gt; number *= step
 
 console.log(add(2));
 </code></pre><p>来，打包看看：<br><img src="https://img.funteas.com/17f943bb3337dc33beee2c13805be376?imageView2/2/w/800" alt=""><img src="https://img.funteas.com/dcdad593279f1b2192a9f4ba9d5f28ff?imageView2/2/w/800" alt=""><br>完美。</p>
@@ -1268,75 +1359,112 @@ console.log(add(2));
 <p>既然在node中可以访问文件夹并读取其中的文件名，那么我们可以使用node来去循环读取文件夹下的js文件，并自动添加至入口配置中：</p>
 <p>新建一个config 文件夹，以存放webpack可变的配置，方便以后修改： <code>$ mkdir config</code></p>
 <p>因为遍历入口文件都是一样的操作流程，所以先写一个工具包：<code>$ touch config/utils.js</code></p>
-<pre><code>var fs =require(&#39;fs&#39;);// 递归遍历文件夹，获取入口文件function getAllFiles(dirRoot, type){var filterReg =newRegExp(&#39;.&#39;+type+&#39;/div&gt;);
-    function getAllFileFromDir(root) {
-        var res = [], files = fs.readdirSync(root)
-        files.forEach((file) =&gt; {
-            var pathname = root+&#39;/&#39;+file,
-                state = fs.lstatSync(pathname)
-            if (!state.isDirectory()) {
-                // 过滤相对应的文件
-                filterReg.test(pathname) &amp;&amp; res.push(pathname)
-                // res.push(pathname.replace(dir_root+&#39;/&#39;, &#39;&#39;))
-            }else{
-                res = res.concat(getAllFileFromDir(pathname))
+<pre><code>var fs = require(&#39;fs&#39;); // 递归遍历文件夹，获取入口文件
+function getAllFiles(dirRoot, type) {
+    var filterReg = newRegExp(&#39;.&#39; + type + &#39;/div&gt;&#39;);
+        function getAllFileFromDir(root) {
+            var res = [],
+                files = fs.readdirSync(root)
+            files.forEach((file) =&gt; {
+                var pathname = root + &#39;/&#39; + file,
+                    state = fs.lstatSync(pathname)
+                if (!state.isDirectory()) {
+                    // 过滤相对应的文件
+                    filterReg.test(pathname) &amp;&amp; res.push(pathname)
+                    // res.push(pathname.replace(dir_root+&#39;/&#39;, &#39;&#39;))
+                } else {
+                    res = res.concat(getAllFileFromDir(pathname))
+                }
+            })
+            return res
+        }
+        return getAllFileFromDir(dirRoot)
+    }
+
+    function getEntry(files, replaces) {
+        var entry = {}
+        for (var i = 0; i &lt; files.length; i++) {
+            var filename = files[i]
+            replaces.map((replace) =&gt; {
+                filename = filename.replace(replace, &#39;&#39;)
+            })
+            entry[filename] = files[i]
+        }
+        return entry
+    }
+
+    module.exports = {
+        getAllFiles,
+        getEntry
+    }
+</code></pre><p>再新建一个 js 入口文件配置：<br><code>$ touch config/webpack.entry.js</code></p>
+<pre><code>var path = require(&#39;path&#39;);
+var utils = require(&#39;./utils.js&#39;) var dir_root = path.resolve(__dirname, &#39;../src/js&#39;); 
+// console.log(getAllFiles(dir_root));
+var allFiles = utils.getAllFiles(dir_root, &#39;js&#39;) var entry = utils.getEntry(allFiles, [&#39;js&#39;, dir_root + &#39;/&#39;])
+console.log(entry);
+module.exports = entry
+</code></pre><p>同样的，页面入口文件也添加一个：<br> <code>$ touch config/webpack.plugins.js</code></p>
+<pre><code>var webpack = require(&#39;webpack&#39;) var path = require(&#39;path&#39;);
+var utils = require(&#39;./utils.js&#39;) varExtractTextPlugin = require(&quot;extract-text-webpack-plugin&quot;);
+var HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+var entry = require(&#39;./webpack.entry.js&#39;);
+var plugins = [ // 公共js提取
+    new webpack.optimize.CommonsChunkPlugin({
+        name: &#39;vendors&#39;, // 将公共模块提取，生成名为`vendors`的chunk
+        minChunks: 3 // 提取至少3个模块共有的部分
+    }), // 提取公共css样式
+    newExtractTextPlugin(&#39;./css/[name].css&#39;),
+]
+let dir_root = path.resolve(__dirname, &#39;../src/view&#39;);
+var pugFiles = utils.getAllFiles(dir_root, &#39;pug&#39;)
+
+pugFiles = utils.getEntry(pugFiles, [&#39;.pug&#39;, dir_root + &#39;/&#39;]) for (var key in pugFiles) {
+    if (pugFiles.hasOwnProperty(key)) {
+        let opt = {
+            filename: &#39;./view/&#39; + key + &#39;.html&#39;,
+            template: pugFiles[key],
+            hash: true,
+            minify: { //压缩HTML文件
+                removeComments: true, //移除HTML中的注释
+                collapseWhitespace: false //删除空白符与换行符
             }
-        })
-        return res
-    }
-    return getAllFileFromDir(dirRoot)
-}
-
-function getEntry(files, replaces){
-    var entry = {}
-    for (var i = 0; i &lt; files.length; i++) {
-        var filename = files[i]
-        replaces.map((replace) =&gt; {
-            filename = filename.replace(replace, &#39;&#39;)
-        })
-        entry[filename] = files[i]
-    }
-    return entry
-}
-
-module.exports = {
-    getAllFiles,
-    getEntry
-}
-</code></pre><p>再新建一个 js 入口文件配置： <code>$ touch config/webpack.entry.js</code></p>
-<pre><code>var path =require(&#39;path&#39;);var utils =require(&#39;./utils.js&#39;)var dir_root = path.resolve(__dirname,&#39;../src/js&#39;);// console.log(getAllFiles(dir_root));var allFiles = utils.getAllFiles(dir_root,&#39;js&#39;)var entry = utils.getEntry(allFiles,[&#39;js&#39;, dir_root+&#39;/&#39;])
-console.log(entry);module.exports = entry
-</code></pre><p>同样的，页面入口文件也添加一个： <code>$ touch config/webpack.plugins.js</code></p>
-<pre><code>var webpack =require(&#39;webpack&#39;)var path =require(&#39;path&#39;);var utils =require(&#39;./utils.js&#39;)varExtractTextPlugin=require(&quot;extract-text-webpack-plugin&quot;);varHtmlWebpackPlugin=require(&#39;html-webpack-plugin&#39;);var entry =require(&#39;./webpack.entry.js&#39;)var plugins =[// 公共js提取new webpack.optimize.CommonsChunkPlugin({
-        name:&#39;vendors&#39;,// 将公共模块提取，生成名为`vendors`的chunk
-        minChunks:3// 提取至少3个模块共有的部分}),// 提取公共css样式newExtractTextPlugin(&#39;./css/[name].css&#39;),]
-let dir_root = path.resolve(__dirname,&#39;../src/view&#39;);var pugFiles = utils.getAllFiles(dir_root,&#39;pug&#39;)
-
-pugFiles = utils.getEntry(pugFiles,[&#39;.pug&#39;, dir_root+&#39;/&#39;])for(var key in pugFiles){if(pugFiles.hasOwnProperty(key)){
-        let opt ={
-            filename:&#39;./view/&#39;+ key +&#39;.html&#39;,template: pugFiles[key],
-            hash:true,
-            minify:{//压缩HTML文件
-                removeComments:true,//移除HTML中的注释
-                collapseWhitespace:false//删除空白符与换行符}}if(entry.hasOwnProperty(key)){
-            opt[&#39;chunks&#39;]=[&#39;vendors&#39;, key]
-            opt[&#39;inject&#39;]=&#39;body&#39;}
+        }
+        if (entry.hasOwnProperty(key)) {
+            opt[&#39;chunks&#39;] = [&#39;vendors&#39;, key]
+            opt[&#39;inject&#39;] = &#39;body&#39;
+        }
         console.log(opt);
-        plugins.push(newHtmlWebpackPlugin(opt))}}module.exports = plugins
+        plugins.push(newHtmlWebpackPlugin(opt))
+    }
+}
+module.exports = plugins
 </code></pre><p>再次修改webpack的配置：</p>
-<pre><code>var entry =require(&#39;./config/webpack.entry.js&#39;)var plugins =require(&#39;./config/webpack.plugins.js&#39;)var webpackConfig ={
+<pre><code>var entry = require(&#39;./config/webpack.entry.js&#39;) var plugins = require(&#39;./config/webpack.plugins.js&#39;) var webpackConfig = {
     entry,
-    plugins,...}module.exports = webpackConfig
+    plugins,
+    ...
+}
+module.exports = webpackConfig
 </code></pre><p><img src="https://img.funteas.com/281e607088b144d2c458949393222b8c?imageView2/2/w/800" alt=""><img src="https://img.funteas.com/40af51e0f7c22c574ec37d04126dec94?imageView2/2/w/800" alt=""><br>可以看到，dist文件夹下，多了几个html文件和js文件。</p>
 <h3 id="其他处理"><a href="#其他处理" class="headerlink" title="其他处理"></a>其他处理</h3><ul>
 <li>提取css到外部link，而非style标签<br>这个解决办法比较简单，只需要用 <code>extract-text-webpack-plugin</code> 插件将css提取出来即可：</li>
 </ul>
 <pre><code>{
-    test:/\.(scss|sass|css)$/,use:ExtractTextPlugin.extract({
-        fallback:&quot;style-loader&quot;,use:[{
-                loader:&quot;css-loader&quot;,
-                options:{// // 0 =&gt; no loaders (default); 1 =&gt; postcss-loader; 2 =&gt; postcss-loader, sass-loader
-                    importLoaders:2}},&#39;postcss-loader&#39;,&#39;sass-loader&#39;]})}
+    test: /\.(scss|sass|css)$/,
+    use: ExtractTextPlugin.extract(
+    {
+        fallback: &quot;style-loader&quot;,
+        use: [
+        {
+            loader: &quot;css-loader&quot;,
+            options:
+            { // // 0 =&gt; no loaders (default); 1 =&gt; postcss-loader; 2 =&gt; postcss-loader, sass-loader
+                importLoaders: 2
+            }
+        }, &#39;postcss-loader&#39;, &#39;sass-loader&#39;]
+    })
+}
 </code></pre><p>再次打包的结果：<br><img src="https://img.funteas.com/c0d501d1dba2745f1a88a74039e29176?imageView2/2/w/800" alt=""></p>
 <p>列出dis文件夹的目录树可以发现，多了一个css的文件夹。打开页面可以发现，页面中的style标签已经被link替代了。<br><img src="https://img.funteas.com/9b3e582b1d7799c98891be7786f8b751?imageView2/2/w/800" alt=""><img src="https://img.funteas.com/e9c1a1d5a71d0175912b4ad5b53bcd0a?imageView2/2/w/800" alt=""></p>
 <ul>
@@ -1345,9 +1473,18 @@ pugFiles = utils.getEntry(pugFiles,[&#39;.pug&#39;, dir_root+&#39;/&#39;])for(va
 <p>解决办法：</p>
 <p>一是将打包的js文件的hash值去掉，这样就会新的打包js文件，将旧的覆盖。</p>
 <p>二是使用 <a href="http://link.funteas.com/?target=https%3A%2F%2Fgithub.com%2Fjohnagan%2Fclean-webpack-plugin" target="_blank" rel="external">clean-webpack-plugin</a> </p>
-<pre><code>varCleanWebpackPlugin=require(&#39;clean-webpack-plugin&#39;);var plugins =[// 每次打包前都清空dist文件newCleanWebpackPlugin([&#39;dist&#39;],{
-        root: path.resolve(__dirname,&#39;../&#39;)}),// 公共js提取new webpack.optimize.CommonsChunkPlugin({
-        name:&#39;vendors&#39;,// 将公共模块提取，生成名为`vendors`的chunk// minChunks: 3 // 提取至少3个模块共有的部分}),// 提取公共css样式newExtractTextPlugin(&#39;./css/[name].css&#39;),]
+<pre><code>var CleanWebpackPlugin = require(&#39;clean-webpack-plugin&#39;);
+var plugins = [ // 每次打包前都清空dist文件
+    newCleanWebpackPlugin([&#39;dist&#39;], {
+        root: path.resolve(__dirname, &#39;../&#39;)
+    }), // 公共js提取
+    new webpack.optimize.CommonsChunkPlugin({
+        name: &#39;vendors&#39;,
+        // 将公共模块提取，生成名为`vendors`的chunk//
+        minChunks: 3 // 提取至少3个模块共有的部分
+    }), // 提取公共css样式
+    newExtractTextPlugin(&#39;./css/[name].css&#39;),
+]
 </code></pre><ul>
 <li>批量新建文件<br>因为每个页面基本都有3个文件：<code>page.pug</code>, <code>page.js</code>, <code>page.scss</code>，如果每次新加一个页面都要手动新建3个文件的话，效率太低下，能用命令行解决的，当然要用命令行解决啦。</li>
 </ul>
@@ -1364,11 +1501,14 @@ fi
 </code></pre><ul>
 <li>定义路径常量<br>在编写js时，因为有可能js文件是在很多级的目录当中，如果每次都使用 <code>..</code> 来定位上一层目录的话，那么这个定位就会十分繁琐。这时可以使用 webpack 提供的 <a href="http://link.funteas.com/?target=https%3A%2F%2Fwebpack.js.org%2Fconfiguration%2Fresolve%2F%23resolve-alias" target="_blank" rel="external">resolve.alias</a>  配置来使引入文件的时候变得更加方便简单。</li>
 </ul>
-<pre><code>resolve:{alias:{
-        scss: path.resolve(__dirname,&#39;src/scss&#39;),
-        js: path.resolve(__dirname,&#39;src/js&#39;),
-        view: path.resolve(__dirname,&#39;src/view&#39;),
-        assets: path.resolve(__dirname,&#39;src/assets&#39;)}}
+<pre><code>resolve: {
+    alias: {
+        scss: path.resolve(__dirname, &#39;src/scss&#39;),
+        js: path.resolve(__dirname, &#39;src/js&#39;),
+        view: path.resolve(__dirname, &#39;src/view&#39;),
+        assets: path.resolve(__dirname, &#39;src/assets&#39;)
+    }
+}
 </code></pre><p>这样，在 <code>other.js</code> 中，就可以直接使用 <code>require(&#39;scss/about.scss&#39;)</code> 而不需要写繁琐的 <code>require(&#39;../../scss/about.scss&#39;)</code>。这样就方便多了。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>看完这篇文章相信你对<code>webpack</code>的配置已经基本了解了，接下来如果你想了解<code>webpack</code>的更多基础知识，请看我的这篇<a href="http://pancakeawesome.ink/%E5%85%A5%E9%97%A8Webpack%EF%BC%8C%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86.html">文章</a>，并且想实践中使用<code>webpack</code>，请看我的这篇<a href="http://pancakeawesome.ink/react%E5%AE%9E%E6%88%98-%E6%89%93%E9%80%A0%E7%94%BB%E5%BB%8A%E9%A1%B9%E7%9B%AE.html">文章</a></p>
 ]]></content>

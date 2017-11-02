@@ -3,6 +3,28 @@
 
     
   <url>
+    <loc>http://pancakeawesome.ink/webpack%E7%AE%80%E6%98%93%E9%85%8D%E7%BD%AE%E5%85%A5%E9%97%A8.html</loc>
+    <lastmod>2017-11-02T09:05:54.000Z</lastmod>
+    <data>
+        <display>
+        <title>webpack简易配置入门</title>
+        <pubTime>2017-11-01T01:37:52.000Z</pubTime>
+        
+        <tag>前端工具 </tag>
+         
+        <tag>webpack </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端工具" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://pancakeawesome.ink/CSS3-transform%E7%89%B9%E6%80%A7%E6%95%99%E7%A8%8B.html</loc>
     <lastmod>2017-11-02T08:37:32.000Z</lastmod>
     <data>
@@ -126,28 +148,6 @@
            
              
               <breadCrumb title="react" url="http://pancakeawesome.ink/categories/react/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://pancakeawesome.ink/webpack%E7%AE%80%E6%98%93%E9%85%8D%E7%BD%AE%E5%85%A5%E9%97%A8.html</loc>
-    <lastmod>2017-11-01T06:19:47.000Z</lastmod>
-    <data>
-        <display>
-        <title>webpack简易配置入门</title>
-        <pubTime>2017-11-01T01:37:52.000Z</pubTime>
-        
-        <tag>前端工具 </tag>
-         
-        <tag>webpack </tag>
-         
-         
-           
-             
-              <breadCrumb title="前端工具" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
           
         </display>
     </data>
