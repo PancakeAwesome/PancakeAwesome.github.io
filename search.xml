@@ -182,9 +182,9 @@ quoteHandler.confirmCreate().then(createType =&gt; {
         
         <tags>
             
-            <tag> es6 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> es6 </tag>
             
         </tags>
         
@@ -699,9 +699,9 @@ observal.trigger(&#39;command2&#39;); //一花一世界~ 一码一人生~
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 设计模式 </tag>
+            
+            <tag> javascript </tag>
             
         </tags>
         
