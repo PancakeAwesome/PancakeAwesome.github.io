@@ -3,61 +3,76 @@
   
     
     <entry>
-      <title><![CDATA[使用 await 减少回调嵌套]]></title>
+      <title><![CDATA[JavaScript异步编程（一）]]></title>
       <url>/%E4%BD%BF%E7%94%A8-await-%E5%87%8F%E5%B0%91%E5%9B%9E%E8%B0%83%E5%B5%8C%E5%A5%97.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在开发的时候，有时候需要发很多请求，然后经常会面临嵌套回调的问题，即在一个回调里面又嵌了一个回调，导致代码层层缩进得很厉害</p>
 <h2 id="使用-await-减少回调嵌套"><a href="#使用-await-减少回调嵌套" class="headerlink" title="使用 await 减少回调嵌套"></a>使用 await 减少回调嵌套</h2><p>在开发的时候，有时候需要发很多请求，然后经常会面临嵌套回调的问题，即在一个回调里面又嵌了一个回调，导致代码层层缩进得很厉害，如下代码所示：</p>
 <pre><code>ajax({
-    url:&quot;/list&quot;,
-    type:&quot;GET&quot;,
-    success:function(data){
-       appendToDOM(data);
+    url: &quot;/list&quot;,
+    type: &quot;GET&quot;,
+    success: function(data) {
+        appendToDOM(data);
         ajax({
-            url:&quot;/update&quot;,
-            type:&quot;POST&quot;,
-            success:function(data){
-                util.toast(&quot;Success!&quot;);})});}});
+                url: &quot;/update&quot;,
+                type: &quot;POST&quot;,
+                success: function(data) {
+                    util.toast(&quot;Success!&quot;);
+                })
+        });
+}
+});
 </code></pre><p>这样的代码看起来有点吃力，这种异步回调通常可以用Promise优化一下，可以把上面代码改成：</p>
-<pre><code>newPromise(resolve =&gt;{
+<pre><code>newPromise(resolve =&gt; {
+ajax({
+    url: &quot;/list&quot;,
+    type: &quot;GET&quot;,
+    success: data =&gt; resolve(data);
+})
+}).then(data =&gt; {
+    appendToDOM(data);
     ajax({
-        url:&quot;/list&quot;,
-        type:&quot;GET&quot;,
-        success: data =&gt; resolve(data);})}).then(data =&gt;{
-   appendToDOM(data);
-    ajax({
-        url:&quot;/update&quot;,
-        type:&quot;POST&quot;,
-        success:function(data){
-            util.toast(&quot;Successfully!&quot;);})});});
+            url: &quot;/update&quot;,
+            type: &quot;POST&quot;,
+            success: function(data) {
+                util.toast(&quot;Successfully!&quot;);
+            })
+    });
+});
 </code></pre><p>Promise提供了一个resolve，方便通知什么时候异步结束了，不过本质还是一样的，还是使用回调，只是这个回调放在了then里面。</p>
 <p>当需要获取多次异步数据的时候，可以使用Promise.all解决：</p>
-<pre><code>let orderPromise =newPromise(resolve =&gt;{
-    ajax(&quot;/order&quot;,&quot;GET&quot;, data =&gt; resolve(data));});
-let userPromise =newPromise(resolve =&gt;{
-    ajax(&quot;/user&quot;,&quot;GET&quot;, data =&gt; resolve(data));});Promise.all([orderPromise, userPromise]).then(values =&gt;{
+<pre><code>let orderPromise = newPromise(resolve =&gt; {
+    ajax(&quot;/order&quot;, &quot;GET&quot;, data =&gt; resolve(data));
+});
+let userPromise = newPromise(resolve =&gt; {
+    ajax(&quot;/user&quot;, &quot;GET&quot;, data =&gt; resolve(data));
+});
+Promise.all([orderPromise, userPromise]).then(values =&gt; {
     let order = values[0],
-         user = values[1];});
+        user = values[1];
+});
 </code></pre><p>但是这里也是使用了回调，有没有比较优雅的解决方式呢？</p>
 <p>ES7的await/async可以让异步回调的写法跟写同步代码一样。第一个嵌套回调的例子可以用await改成下面的代码：</p>
-<pre><code>
-let leadList = await newPromise(resolve =&gt;{
+<pre><code>let leadList = await newPromise(resolve =&gt; {
     ajax({
-        url:&quot;/list&quot;,
-        type:&quot;GET&quot;,
-        success: data =&gt; resolve(data);});});
+        url: &quot;/list&quot;,
+        type: &quot;GET&quot;,
+        success: data =&gt; resolve(data);
+    });
+});
 
 appendToDom(leadList);
 ajax({
-    url:&quot;/update&quot;,
-    type:&quot;POST&quot;,
-    success:()=&gt; util.toast(&quot;Successfully&quot;);});
+    url: &quot;/update&quot;,
+    type: &quot;POST&quot;,
+    success: () =&gt; util.toast(&quot;Successfully&quot;);
+});
 </code></pre><p>Await让代码可以像瀑布流一样很自然地写下来。</p>
 <p>第二个例子：获取多次异步数据，可以改成这样：</p>
 <pre><code>let order = await newPromise(
-           resolve =&gt; ajax(&quot;/order&quot;, data =&gt; resovle(data))),
+        resolve =&gt; ajax(&quot;/order&quot;, data =&gt; resovle(data))),
 
     user = await newPromise(
-           resolve =&gt; ajax(&quot;/user&quot;, data =&gt; resolve(data)));
+        resolve =&gt; ajax(&quot;/user&quot;, data =&gt; resolve(data)));
 </code></pre><p>这种写法就好像从本地获取数据一样，就不用套回调函数了。</p>
 <p>Await除了用在发请求之外，还适用于其它异步场景，例如我在创建订单前先弹一个小框询问用户是要创建哪种类型的订单，然后再弹具体的设置订单的框，所以按正常思路这里需要传递一个按钮回调的点击函数，如下图所示：</p>
 <p><img src="https://img.funteas.com/7ed628dbfa69b90eb33b6a77ef5efc56?imageView2/2/w/800" alt=""></p>
@@ -66,14 +81,20 @@ ajax({
 
 let createType = await quoteHandler.confirmCreate();
 </code></pre><p>quote里面返回一个Promise，监听点击事件，并传递createType：</p>
-<pre><code>let quoteHandler ={
-    confirmCreate:function(){
+<pre><code>let quoteHandler = {
+    confirmCreate: function() {
         dialog.showDialog({
             contentTpl: tpl,
-            className:&quot;confirm-create-quote&quot;});
-        let $quoteDialog = $(&quot;.confirm-create-quote form&quot;)[0];returnnewPromise(resolve =&gt;{
-            $(form.submit).on(&quot;click&quot;,function(event){
-                resolve(form.createType.value);});});}}
+            className: &quot;confirm-create-quote&quot;
+        });
+        let $quoteDialog = $(&quot;.confirm-create-quote form&quot;)[0];
+        returnnewPromise(resolve =&gt; {
+            $(form.submit).on(&quot;click&quot;, function(event) {
+                resolve(form.createType.value);
+            });
+        });
+    }
+}
 </code></pre><p>这样外部调用者就可以使用await，而不用传递一个点击事件的回调函数了。</p>
 <p>但是需要注意的是await的一次性执行特点。相对于回调函数来说，await的执行是一次性的，例如监听点击事件，然后使用await，那么点击事件只会执行一次，因为代码从上往下执行完了，所以当希望点击之后出错了还能继续修改和提交就不能使用await，另外使用await获取异步数据，如果出错了，那么成功的resolve就不会执行，后续的代码也不会执行，所以请求出错的时候基本逻辑不会有问题。</p>
 <p>要在babel里面使用await，需要：</p>
@@ -85,48 +106,72 @@ let createType = await quoteHandler.confirmCreate();
 <pre><code>require(&quot;babel-polyfill&quot;);
 </code></pre><p>然后就可以愉快地使用ES7的await了。</p>
 <p>使用await的函数前面需要加上async关键字，如下代码：</p>
-<pre><code>async showOrderDialog(){
+<pre><code>async showOrderDialog() {
 
-     let createType = await quoteHandler.confirmCreate();
+    let createType = await quoteHandler.confirmCreate();
 
-     let orderInfo = await orderHandler.getOrderData();}
+    let orderInfo = await orderHandler.getOrderData();
+}
 </code></pre><p>我们再举一个例子：使用await实现JS版的sleep函数，因为原生是没有提供线程休眠函数的，如下代码所示：</p>
-<pre><code>function sleep (time){returnnewPromise(resolve =&gt; 
-                          setTimeout(()=&gt; resolve(), time));}
+<pre><code>function sleep(time) {
+    returnnewPromise(resolve =&gt; setTimeout(() =&gt; resolve(), time));
+}
 
-async function start (){
-    await sleep(1000);}
+async function start() {
+    await sleep(1000);
+}
 
 start();
 </code></pre><p>babel的await实现是转成了ES6的generator，如下关键代码：</p>
-<pre><code>while(1){switch(_context.prev = _context.next){case0:
-            _context.next=2;return sleep(1000);case2:case&quot;end&quot;:return _context.stop();}}
+<pre><code>while (1) {
+    switch (_context.prev = _context.next) {
+        case0: _context.next = 2;
+        return sleep(1000);case2:
+            case &quot;end&quot;:
+            return _context.stop();
+    }
+}
 </code></pre><p>而babel的generator也是要用ES5实现的，什么是generator呢？如下图所示：</p>
 <p><img src="https://img.funteas.com/acefdf462f920886e55556cce745e124?imageView2/2/w/800" alt=""></p>
 <p>生成器用function*定义，每次执行生成器的next函数的时候会返回当前生成器里用yield返回的值，然后生成器的迭代器往后走一步，直到所有yield完了。</p>
 <p>有兴趣的可以继续研究babel是如何把ES7转成ES5的，据说原生的实现还是直接基于Promise.</p>
 <p>使用await还有一个好处，可以直接try-catch捕获异步过程抛出的异常，因为我们是不能直接捕获异步回调里面的异常的，如下代码：</p>
-<pre><code>let quoteHandler ={
-    confirmCreate:function(){
-        $(form.submit).on(&quot;click&quot;,function(event){
+<pre><code>let quoteHandler = {
+    confirmCreate: function() {
+        $(form.submit).on(&quot;click&quot;, function(event) {
 
-            callback(form.notFoundInput.value);});}}try{
+            callback(form.notFoundInput.value);
+        });
+    }
+}
+try {
 
-    quoteHandler.confirmCreate();}catch(e){}
+    quoteHandler.confirmCreate();
+} catch (e) {}
 </code></pre><p>上面的try-catch是没有办法捕获到异常的，因为try里的代码已经执行完了，在它执行的过程中并没有异常，因此无法在这里捕获，如果使用Promise的话一般是使用Promise链的catch：</p>
-<pre><code>let quoteHandler ={
-    confirmCreate:function(){returnnewPromise(resolve =&gt;{
-            $(form.submit).on(&quot;click&quot;,function(event){
+<pre><code>let quoteHandler = {
+    confirmCreate: function() {
+        returnnewPromise(resolve =&gt; {
+            $(form.submit).on(&quot;click&quot;, function(event) {
 
-                resolve(form.notFoundInput.value);});});}}
+                resolve(form.notFoundInput.value);
+            });
+        });
+    }
+}
 
-quoteHandler.confirmCreate().then(createType =&gt;{}).catch(e =&gt;{});
+quoteHandler.confirmCreate().then(createType =&gt; {
+}).catch(e =&gt; {
+});
 </code></pre><p>而使用await，我们可以直接用同步的catch，就好像它真的变成同步执行了：</p>
-<pre><code>try{
-    createType = await quoteHandler.confirmCreate(&quot;order&quot;);}catch(e){
-    console.log(e);return;}
-</code></pre><p>总之使用await让代码少写了很多嵌套，很方便的逻辑处理，纵享丝滑。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+<pre><code>try {
+    createType = await quoteHandler.confirmCreate(&quot;order&quot;);
+} catch (e) {
+    console.log(e);
+    return;
+}
+</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>总之使用await让代码少写了很多嵌套，很方便的逻辑处理，纵享丝滑。</p>
+]]></content>
       
         <categories>
             
@@ -146,23 +191,24 @@ quoteHandler.confirmCreate().then(createType =&gt;{}).catch(e =&gt;{});
     </entry>
     
     <entry>
-      <title><![CDATA[我了解到的JavaScript异步编程]]></title>
+      <title><![CDATA[JavaScript异步编程（一）]]></title>
       <url>/%E6%88%91%E4%BA%86%E8%A7%A3%E5%88%B0%E7%9A%84JavaScript%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="我了解到的JavaScript异步编程-topic-full-title"><a href="#我了解到的JavaScript异步编程-topic-full-title" class="headerlink" title="我了解到的JavaScript异步编程 # (.topic_full_title)"></a>我了解到的JavaScript异步编程 # (.topic_full_title)</h2><p><a href="/user/story"><img src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKLnpmQw7DsxnpkW1MTkz5sR3CHn2A0YkgLTXqO5wTXX8mibmicViatk0tYmlE4DIqvVmQAFQAJ2VCiaA/0" alt="story"> (title=undefined)</a> (.user_avatar)<br><a href="/user/story">story</a> (.dark)</p>
-<pre><code>          10-31
-          阅读 334
-          收藏 1
-</code></pre><p><a href="#myModal">收藏</a> (.mt4 .span-common .span-success .pull-right .collect_btn data-toggle=mt4 span-common span-success pull-right collect_btn rel=mt4 span-common span-success pull-right collect_btn)</p>
-<p>览器的内核是多线程的，他们在内核的控制下互相配合以保持同步，一个浏览器至少实现三个常驻的线程：javascript 引擎线程，GUI 渲染线程，浏览器事件触发线程<br><a href="http://link.funteas.com/?target=https%3A%2F%2Fsegmentfault.com%2Fa%2F1190000010856548%23articleHeader0" target="_blank" rel="external">阅读原文</a> (target=undefined rel=undefined)<a href="折叠收起">折叠收起</a> (.read-beta .pull-right)</p>
-<h3 id="我了解到的JavaScript异步编程"><a href="#我了解到的JavaScript异步编程" class="headerlink" title="我了解到的JavaScript异步编程"></a>我了解到的JavaScript异步编程</h3><p>来源：<a href="http://link.funteas.com/?target=https%3A%2F%2Fsegmentfault.com%2Fa%2F1190000010856548%23articleHeader0" target="_blank" rel="external">segmentfault.com</a> (target=undefined rel=undefined)</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="我了解到的JavaScript异步编程"><a href="#我了解到的JavaScript异步编程" class="headerlink" title="我了解到的JavaScript异步编程"></a>我了解到的JavaScript异步编程</h2><p>浏览器的内核是多线程的，他们在内核的控制下互相配合以保持同步，一个浏览器至少实现三个常驻的线程：javascript 引擎线程，GUI 渲染线程，浏览器事件触发线程</p>
 <h2 id="一、-一道面试题"><a href="#一、-一道面试题" class="headerlink" title="一、 一道面试题"></a>一、 一道面试题</h2><p>前段时间面试，考察比较多的是js异步编程方面的相关知识点，如今，正好轮到自己分享技术，所以想把js异步编程学习下，做个总结。<br>下面这个demo 概括了大多数面试过程中遇到的问题：</p>
-<pre><code>for(var i =0; i &lt;3; i++){
-   setTimeout(function(){
-       console.log(&#39;timeout&#39;+ i);})}newPromise(function(resolve){
-    console.log(&#39;promise1&#39;);for(var i =0; i &lt;1000; i++){
-        i ==99&amp;&amp; resolve();}
-    console.log(&#39;promise2&#39;);}).then(function(){
-    console.log(&#39;then1&#39;);})
+<pre><code>for (var i = 0; i &lt; 3; i++) {
+    setTimeout(function() {
+        console.log(&#39;timeout&#39; + i);
+    })
+}
+newPromise(function(resolve) {
+    console.log(&#39;promise1&#39;);
+    for (var i = 0; i &lt; 1000; i++) {
+        i == 99 &amp;&amp; resolve();
+    }
+    console.log(&#39;promise2&#39;);
+}).then(function() {
+    console.log(&#39;then1&#39;);
+})
 
 console.log(&#39;global1&#39;);
 </code></pre><p>通过验证可以得知这个demo的结果为：</p>
@@ -179,133 +225,253 @@ console.log(&#39;global1&#39;);
 <p>事件循环的顺序，决定了JavaScript代码的执行顺序。它从script(整体代码)开始第一次循环。之后全局上下文进入函数调用栈。直到调用栈清空(只剩全局)，然后执行所有的micro-task。当所有可执行的micro-task执行完毕之后。循环再次从macro-task开始，找到其中一个任务队列执行完毕，然后再执行所有的macro-task，这样一直循环下去。</p>
 <p>通过这个事件循环的顺序，我们就知道，为什么上面提到的面试题为什么是这样的输出结果了。<br>接下来我们看下三类异步编程的实现。</p>
 <h2 id="三、三类异步编程实现"><a href="#三、三类异步编程实现" class="headerlink" title="三、三类异步编程实现"></a>三、三类异步编程实现</h2><h3 id="3-1-回调函数"><a href="#3-1-回调函数" class="headerlink" title="3.1 回调函数"></a>3.1 回调函数</h3><p>demo1:</p>
-<pre><code>// 一个简单的封装function want(){
-    console.log(&#39;这是你想要执行的代码&#39;);}function fn(want){
-    console.log(&#39;这里表示执行了一大堆各种代码&#39;);// 其他代码执行完毕，最后执行回调函数
-    want &amp;&amp; want();}
+<pre><code>// 一个简单的封装
+function want() {
+    console.log(&#39;这是你想要执行的代码&#39;);
+}
+function fn(want) {
+    console.log(&#39;这里表示执行了一大堆各种代码&#39;); // 其他代码执行完毕，最后执行回调函数
+    want &amp;&amp; want();
+}
 
 fn(want);
 </code></pre><p>demo2:</p>
 <pre><code>//callback hell
 
-doSomethingAsync1(function(){
-    doSomethingAsync2(function(){
-        doSomethingAsync3(function(){
-            doSomethingAsync4(function(){
-                doSomethingAsync5(function(){// code...});});});});});
+doSomethingAsync1(function() {
+    doSomethingAsync2(function() {
+        doSomethingAsync3(function() {
+            doSomethingAsync4(function() {
+                doSomethingAsync5(function() { // code...
+                });
+            });
+        });
+    });
+});
 </code></pre><p>可以发现一个问题，在回调函数嵌套层数不深的情况下，代码还算容易理解和维护，一旦嵌套层数加深，就会出现“回调金字塔”的问题，就像demo2那样，如果这里面的每个回调函数中又包含了很多业务逻辑的话，整个代码块就会变得非常复杂。从逻辑正确性的角度来说，上面这几种回调函数的写法没有任何问题，但是随着业务逻辑的增加和趋于复杂，这种写法的缺点马上就会暴露出来，想要维护它们实在是太痛苦了，这就是“回调地狱(callback hell)”。</p>
 <p>回调函数还有一个问题就是我们在回调函数之外无法捕获到回调函数中的异常，一般我们用try catch来捕捉异常，我们尝试下捕捉回调中的异常</p>
 <p><img src="https://img.funteas.com/3ba320fc1acdbda04fdef90394e67e6e.png?imageView2/2/w/800" alt="4.png"><br>可以看到，不能捕捉到callback中的异常。</p>
 <h3 id="3-2-事件监听-事件发布-订阅"><a href="#3-2-事件监听-事件发布-订阅" class="headerlink" title="3.2 事件监听(事件发布/订阅)"></a>3.2 事件监听(事件发布/订阅)</h3><p>事件监听是一种非常常见的异步编程模式，它是一种典型的逻辑分离方式，对代码解耦很有用处。通常情况下，我们需要考虑哪些部分是不变的，哪些是容易变化的，把不变的部分封装在组件内部，供外部调用，需要自定义的部分暴露在外部处理。从某种意义上说，事件的设计就是组件的接口设计。<br>1）jQuery事件监听</p>
-<pre><code>    $(&#39;#btn&#39;).on(&#39;myEvent&#39;,function(e){
-        console.log(&#39;There is my Event&#39;);});
-    $(&#39;#btn&#39;).trigger(&#39;myEvent&#39;);
+<pre><code>    $(&#39;#btn&#39;).on(&#39;myEvent&#39;, function(e) {
+    console.log(&#39;There is my Event&#39;);
+});
+$(&#39;#btn&#39;).trigger(&#39;myEvent&#39;);
 </code></pre><p>2）发布/订阅模式</p>
-<pre><code>varPubSub=function(){this.handlers ={};};PubSub.prototype.subscribe =function(eventType, handler){if(!(eventType inthis.handlers)){this.handlers[eventType]=[];}this.handlers[eventType].push(handler);//添加事件监听器returnthis;//返回上下文环境以实现链式调用};PubSub.prototype.publish =function(eventType){var _args =Array.prototype.slice.call(arguments,1);for(var i =0, _handlers =this.handlers[eventType]; i &lt; _handlers.length; i++){
-            _handlers[i].apply(this, _args);//遍历事件监听器}returnthis;};varevent=newPubSub;//构造PubSub实例event.subscribe(&#39;list&#39;,function(msg){
-        console.log(msg);});event.publish(&#39;list&#39;,{data:[&#39;one,&#39;,&#39;two&#39;]});//Object {data: Array[2]}
+<pre><code>varPubSub = function() { this.handlers = {}; };
+PubSub.prototype.subscribe = function(eventType, handler) {
+    if (!(eventType inthis.handlers)) { this.handlers[eventType] = []; } this.handlers[eventType].push(handler);
+    //添加事件监听器
+    return this;
+    //返回上下文环境以实现链式调用
+};
+PubSub.prototype.publish = function(eventType) {
+    var _args = Array.prototype.slice.call(arguments, 1);
+    for (var i = 0, _handlers = this.handlers[eventType]; i &lt; _handlers.length; i++) {
+        _handlers[i].apply(this, _args); //遍历事件监听器
+    }
+    return this;
+};
+varevent = newPubSub; //构造PubSub实例
+event.subscribe(&#39;list&#39;, function(msg) {
+    console.log(msg);
+});
+event.publish(&#39;list&#39;, { data: [&#39;one,&#39;, &#39;two&#39;] });
+//Object {data: Array[2]}
 </code></pre><p>这种模式实现的异步编程，本质上还是通过回调函数实现的，所以3.1中提到的回调嵌套和无法捕捉异常的问题还是存在的，接下来我们看ES6提供的Promise对象，是否解决这两个问题。</p>
 <h3 id="3-3-Promise对象"><a href="#3-3-Promise对象" class="headerlink" title="3.3 Promise对象"></a>3.3 Promise对象</h3><p>ES 6中原生提供了Promise对象，Promise对象代表了某个未来才会知道结果的事件(一般是一个异步操作)，并且这个事件对外提供了统一的API，可供进一步处理。<br>使用Promise对象可以用同步操作的流程写法来表达异步操作，避免了层层嵌套的异步回调，代码也更加清晰易懂，方便维护，也可以捕捉异常。</p>
 <p>一个简单例子：</p>
-<pre><code>function fn(num){returnnewPromise(function(resolve, reject){if(typeof num ==&#39;number&#39;){
-      resolve();}else{
-      reject();}}).then(function(){
-    console.log(&#39;参数是一个number值&#39;);}).then(null,function(){
-    console.log(&#39;参数不是一个number值&#39;);})}
+<pre><code>function fn(num) {
+    returnnewPromise(function(resolve, reject) {
+        if (typeof num == &#39;number&#39;) {
+            resolve();
+        } else {
+            reject();
+        }
+    }).then(function() {
+        console.log(&#39;参数是一个number值&#39;);
+    }).then(null, function() {
+        console.log(&#39;参数不是一个number值&#39;);
+    })
+}
 fn(&#39;haha&#39;);
 fn(1234);
 </code></pre><p>为什么Promise 可以这样实现异步编程，在这我们简单分析下Promise实现过程：<br>1）极简Promise雏形</p>
-<pre><code>// 极简promise雏形functionPromise(fn){var value =null,
-    callbacks =[];//callbacks为数组，因为可能同时有很多个回调this.then=function(onFulfilled){
-    callbacks.push(onFulfilled);};function resolve(value){
-    callbacks.forEach(function(callback){
-      callback(value);});}
+<pre><code>// 极简promise雏形
+functionPromise(fn) {
+    var value = null,
+        callbacks = []; //callbacks为数组，因为可能同时有很多个回调
+    this.then = function(onFulfilled) {
+        callbacks.push(onFulfilled);
+    };
 
-  fn(resolve);}
+    function resolve(value) {
+        callbacks.forEach(function(callback) {
+            callback(value);
+        });
+    }
+
+    fn(resolve);
+}
 </code></pre><ul>
 <li>如果promise内部的函数是同步函数，我们要加入一些处理，保证在resolve执行之前，then方法已经注册完所有的回调；</li>
 <li>通过setTimeout机制，将resolve中执行回调的逻辑放置到JS任务队列末尾，以保证在resolve执行时，then方法的回调函数已经注册完成.</li>
 </ul>
 <p>2）加入延时处理</p>
-<pre><code>// 极简promise雏形，加入延时处理functionPromise(fn){var value =null,
-    callbacks =[];//callbacks为数组，因为可能同时有很多个回调this.then=function(onFulfilled){
-    callbacks.push(onFulfilled);};function resolve(value){
-    setTimeout(function(){
-        callbacks.forEach(function(callback){
-            callback(value);});},0)}
+<pre><code>// 极简promise雏形，加入延时处理
+functionPromise(fn) {
+    var value = null,
+        callbacks = []; //callbacks为数组，因为可能同时有很多个回调
+    this.then = function(onFulfilled) {
+        callbacks.push(onFulfilled);
+    };
 
-  fn(resolve);}
+    function resolve(value) {
+        setTimeout(function() {
+            callbacks.forEach(function(callback) {
+                callback(value);
+            });
+        }, 0)
+    }
+
+    fn(resolve);
+}
 </code></pre><ul>
 <li>如果Promise异步操作已经成功，这时，在异步操作成功之前注册的回调都会执行，但是在Promise异步操作成功这之后调用的then注册的回调就再也不会执行了，这显然不是我们想要的</li>
 </ul>
 <p>3）加入状态判断</p>
-<pre><code>// 极简promise雏形，加状态判断functionPromise(fn){var state =&#39;pending&#39;,
-      value =null,
-      callbacks =[];this.then=function(onFulfilled){if(state ===&#39;pending&#39;){
-          callbacks.push(onFulfilled);returnthis;}
-      onFulfilled(value);returnthis;};function resolve(newValue){
-      value = newValue;
-      state =&#39;fulfilled&#39;;
-      setTimeout(function(){
-          callbacks.forEach(function(callback){
-              callback(value);});},0);}
+<pre><code>// 极简promise雏形，加状态判断
+functionPromise(fn) {
+    var state = &#39;pending&#39;,
+        value = null,
+        callbacks = [];
+    this.then = function(onFulfilled) {
+        if (state === &#39;pending&#39;) {
+            callbacks.push(onFulfilled);
+            returnthis;
+        }
+        onFulfilled(value);
+        returnthis;
+    };
 
-  fn(resolve);}
+    function resolve(newValue) {
+        value = newValue;
+        state = &#39;fulfilled&#39;;
+        setTimeout(function() {
+            callbacks.forEach(function(callback) {
+                callback(value);
+            });
+        }, 0);
+    }
+
+    fn(resolve);
+}
 </code></pre><p>4）链式promise</p>
-<pre><code>// 极简promise雏形，链式promisefunctionPromise(fn){var state =&#39;pending&#39;,
-      value =null,
-      callbacks =[];this.then=function(onFulfilled){returnnewPromise(function(resolve){
-          handle({
-              onFulfilled: onFulfilled ||null,
-              resolve: resolve
-          });});};function handle(callback){if(state ===&#39;pending&#39;){
-          callbacks.push(callback);return;}//如果then中没有传递任何东西if(!callback.onResolved){
-          callback.resolve(value);return;}var ret = callback.onFulfilled(value);
-      callback.resolve(ret);}function resolve(newValue){if(newValue &amp;&amp;(typeof newValue ===&#39;object&#39;||typeof newValue ===&#39;function&#39;)){varthen= newValue.then;if(typeofthen===&#39;function&#39;){then.call(newValue, resolve);return;}}
-      state =&#39;fulfilled&#39;;
-      value = newValue;
-      setTimeout(function(){
-          callbacks.forEach(function(callback){
-              handle(callback);});},0);}
+<pre><code>// 极简promise雏形，链式promise
+functionPromise(fn) {
+    var state = &#39;pending&#39;,
+        value = null,
+        callbacks = [];
+    this.then = function(onFulfilled) {
+        returnnewPromise(function(resolve) {
+            handle({
+                onFulfilled: onFulfilled || null,
+                resolve: resolve
+            });
+        });
+    };
 
-  fn(resolve);}
+    function handle(callback) {
+        if (state === &#39;pending&#39;) {
+            callbacks.push(callback);
+            return;
+        } //如果then中没有传递任何东西
+        if (!callback.onResolved) {
+            callback.resolve(value);
+            return;
+        }
+        var ret = callback.onFulfilled(value);
+        callback.resolve(ret);
+    }
+
+    function resolve(newValue) {
+        if (newValue &amp;&amp; (typeof newValue === &#39;object&#39; || typeof newValue === &#39;function&#39;)) { varthen = newValue.then; if (typeofthen === &#39;function&#39;) { then.call(newValue, resolve); return; } }
+        state = &#39;fulfilled&#39;;
+        value = newValue;
+        setTimeout(function() {
+            callbacks.forEach(function(callback) {
+                handle(callback);
+            });
+        }, 0);
+    }
+
+    fn(resolve);
+}
 </code></pre><h2 id="四、四个扩展点"><a href="#四、四个扩展点" class="headerlink" title="四、四个扩展点"></a>四、四个扩展点</h2><h3 id="4-1-Promise常用的应用场景：ajax"><a href="#4-1-Promise常用的应用场景：ajax" class="headerlink" title="4.1 Promise常用的应用场景：ajax"></a>4.1 Promise常用的应用场景：ajax</h3><p>利用Promise的知识，对ajax进行一个简单的封装。看看会是什么样子：</p>
-<pre><code>//demo3 promise封装ajaxvar url =&#39;https://hq.tigerbrokers.com/fundamental/finance_calendar/getType/2017-02-26/2017-06-10&#39;;function getJSON(url){returnnewPromise(function(resolve, reject){var XHR =newXMLHttpRequest();
-    XHR.open(&#39;GET&#39;, url,true);
-    XHR.send();
+<pre><code>//demo3 promise封装ajax
+var url =&#39;https://hq.tigerbrokers.com/fundamental/finance_calendar/getType/2017-02-26/2017-06-10&#39;;
+function getJSON(url) {
+    returnnewPromise(function(resolve, reject) {
+        var XHR = newXMLHttpRequest();
+        XHR.open(&#39;GET&#39;, url, true);
+        XHR.send();
 
-    XHR.onreadystatechange =function(){if(XHR.readyState ==4){if(XHR.status ==200){try{var response = JSON.parse(XHR.responseText);
-                    resolve(response);}catch(e){
-                    reject(e);}}else{
-                reject(newError(XHR.statusText));}}}})}
+        XHR.onreadystatechange = function() {
+            if (XHR.readyState == 4) {
+                if (XHR.status == 200) {
+                    try {
+                        var response = JSON.parse(XHR.responseText);
+                        resolve(response);
+                    } catch ( e ) {
+                        reject(e);
+                    }
+                } else {
+                    reject(newError(XHR.statusText));
+                }
+            }
+        }
+    })
+}
 getJSON(url).then(resp =&gt; console.log(resp));
 </code></pre><p>除了串行执行若干异步任务外，Promise还可以并行执行异步任务。</p>
 <p>当有一个ajax请求，它的参数需要另外2个甚至更多请求都有返回结果之后才能确定，那么这个时候，就需要用到Promise.all来帮助我们应对这个场景。</p>
 <h3 id="4-2-Promise-all"><a href="#4-2-Promise-all" class="headerlink" title="4.2 Promise.all"></a>4.2 Promise.all</h3><p>Promise.all接收一个Promise对象组成的数组作为参数，当这个数组所有的Promise对象状态都变成resolved或者rejected的时候，它才会去调用then方法。</p>
-<pre><code>// demo4 promise.allvar url =&#39;https://hq.tigerbrokers.com/fundamental/finance_calendar/getType/2017-02-26/2017-06-10&#39;;var url1 =&#39;https://hq.tigerbrokers.com/fundamental/finance_calendar/getType/2017-03-26/2017-06-10&#39;;function renderAll(){returnPromise.all([getJSON(url), getJSON(url1)]);}
+<pre><code>// demo4 promise.all
+var url = &#39;https://hq.tigerbrokers.com/fundamental/finance_calendar/getType/2017-02-26/2017-06-10&#39;;
+var url1 = &#39;https://hq.tigerbrokers.com/fundamental/finance_calendar/getType/2017-03-26/2017-06-10&#39;;
 
-renderAll().then(function(value){
-  console.log(value);//将得到一个数组，里面是两个接口返回的值})
+function renderAll() { returnPromise.all([getJSON(url), getJSON(url1)]); }
+
+renderAll().then(function(value) {
+            console.log(value); //将得到一个数组，里面是两个接口返回的值})
 </code></pre><p>结果：</p>
 <p><img src="https://img.funteas.com/dc947fc1c210056b601d495a739b3590.png?imageView2/2/w/800" alt="5.png"></p>
 <p>有些时候，多个异步任务是为了容错。比如，同时向两个URL读取用户的个人信息，只需要获得先返回的结果即可。这种情况下，用Promise.race()实现。</p>
 <h3 id="4-3-Promise-race"><a href="#4-3-Promise-race" class="headerlink" title="4.3 Promise.race"></a>4.3 Promise.race</h3><p>与Promise.all相似的是，Promise.race都是以一个Promise对象组成的数组作为参数，不同的是，只要当数组中的其中一个Promsie状态变成resolved或者rejected时，就可以调用.then方法了</p>
-<pre><code>// demo5 promise.racefunction renderRace(){returnPromise.race([getJSON(url), getJSON(url1)]);}
+<pre><code>// demo5 promise.race
+function renderRace() {
+    returnPromise.race([getJSON(url), getJSON(url1)]);
+}
 
-renderRace().then(function(value){
-  console.log(value);})
+renderRace().then(function(value) {
+    console.log(value);
+})
 </code></pre><p>这里then()传的value值将是接口返回比较快的接口数据，另外一个接口仍在继续执行，但执行结果将被丢弃。</p>
 <p>结果：</p>
 <p><img src="https://img.funteas.com/61de25f0a2f0a8ba9216fb4189c1978b.png?imageView2/2/w/800" alt="6.png"></p>
 <h3 id="4-4-Generator-函数"><a href="#4-4-Generator-函数" class="headerlink" title="4.4 Generator 函数"></a>4.4 Generator 函数</h3><p>Generator函数是协程在ES 6中的实现，最大特点就是可以交出函数的执行权（暂停执行）。<br>注意：在node中需要开启–harmony选项来启用Generator函数。<br>整个Generator函数就是一个封装的异步任务，或者说是异步任务的容器。异步操作需要暂停的地方，都用yield语句注明。</p>
 <p>看个简单的例子：</p>
-<pre><code>function* gen(x){var y =yield x +2;return y;}var g = gen(1);var r1 = g.next();// { value: 3, done: false }
-console.log(r1);var r2 = g.next()// { value: undefined, done: true }
+<pre><code>function* gen(x) {
+    var y = yieldx + 2;
+    return y;
+}
+var g = gen(1);
+var r1 = g.next(); // { value: 3, done: false }
+console.log(r1);
+var r2 = g.next() // { value: undefined, done: true }
 console.log(r2);
 </code></pre><p>需要注意的是Generator函数的函数名前面有一个”*”。<br>上述代码中，调用Generator函数，会返回一个内部指针(即遍历器)g，这是Generator函数和一般函数不同的地方，调用它不会返回结果，而是一个指针对象。调用指针g的next方法，会移动内部指针，指向第一个遇到的yield语句，上例就是执行到x+2为止。<br>换言之，next方法的作用是分阶段执行Generator函数。每次调用next方法，会返回一个对象，表示当前阶段的信息（value属性和done属性）。value属性是yield语句后面表达式的值，表示当前阶段的值；done属性是一个布尔值，表示Generator函数是否执行完毕，即是否还有下一个阶段。</p>
-<p>对Generator函数，只有一个感性认知，没有实践过，所以就先介绍到这了，后面还有ES7新的知识点async await，看了下网上的资料，理解得还不够，希望后面自己接触得更多再来这里补上，未完待续…</p>
-<p><a href="/tag/JavaScript">JavaScript</a> (.tag_selectable data-id=tag_selectable)</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>对Generator函数，只有一个感性认知，没有实践过，所以就先介绍到这了，后面还有ES7新的知识点async await，看了下网上的资料，理解得还不够，希望后面自己接触得更多再来这里补上，未完待续…</p>
+]]></content>
       
         <categories>
             
@@ -323,13 +489,18 @@ console.log(r2);
     </entry>
     
     <entry>
-      <title><![CDATA[傻傻分不清的__proto__与prototype]]></title>
+      <title><![CDATA[__proto__与prototype]]></title>
       <url>/%E5%82%BB%E5%82%BB%E5%88%86%E4%B8%8D%E6%B8%85%E7%9A%84-proto-%E4%B8%8Eprototype.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>当创建函数时，JavaScript 会为这个函数自动添加 prototype 属性，这个属性指向的是一个原型对象 Functionname.prototype。我们可以向这个原型对象添加属性或对象，甚至可以指向一个现有的对象</p>
-<h2 id="傻傻分不清的proto与prototype"><a href="#傻傻分不清的proto与prototype" class="headerlink" title="傻傻分不清的proto与prototype"></a>傻傻分不清的<strong>proto</strong>与prototype</h2><p>今天同事小英童鞋问了我一个问题：</p>
-<pre><code>functionFoo(firstName, lastName){this.firstName = firstName;this.lastName = lastName;}Foo.prototype.logName =function(){Foo.combineName();
-    console.log(this.fullName);}Foo.prototype.combineName =function(){this.fullName =`${this.firstName} ${this.lastName}`}var foo =newFoo(&#39;Sanfeng&#39;,&#39;Zhang&#39;);
-foo.logName();// Uncaught TypeError: Foo.combineName is not a function
+<h2 id="傻傻分不清的proto与prototype"><a href="#傻傻分不清的proto与prototype" class="headerlink" title="傻傻分不清的proto与prototype"></a>傻傻分不清的<strong>proto</strong>与prototype</h2><p>今天小英童鞋问了我一个问题：</p>
+<pre><code>functionFoo(firstName, lastName) { this.firstName = firstName;
+    this.lastName = lastName; } Foo.prototype.logName = function() {
+    Foo.combineName();
+    console.log(this.fullName);
+}
+Foo.prototype.combineName = function() { this.fullName = `${this.firstName} ${this.lastName}` }
+var foo = newFoo(&#39;Sanfeng&#39;, &#39;Zhang&#39;);
+foo.logName(); // Uncaught TypeError: Foo.combineName is not a function
 </code></pre><p>小英童鞋认为<code>Foo</code>的原型对象是<code>Foo.prototype</code>，所以<code>Foo</code>会继承<code>Foo.prototype</code>的属性，调用<code>Foo.combineName()</code>相当于调用<code>Foo.prototype.combineName()</code>，但结果<code>Foo.combineName()</code>不是一个方法。</p>
 <p>会造成这个问题的原因一定是因为小英童鞋弄混了原型和继承的一些原理，下面我们来整理一下原型和继承的相关原理，找出问题的根本原因。</p>
 <h2 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a><code>prototype</code></h2><p><code>prototype</code>是一个只有函数才有的属性。</p>
@@ -342,21 +513,28 @@ foo.logName();// Uncaught TypeError: Foo.combineName is not a function
 <p>如果不通过<code>new</code>关键字调用函数，则执行 <strong>[[Call]]</strong> 函数，从而直接执行代码中的函数体。</p>
 <p>当通过<code>new</code>关键字调用函数时，执行的是 <strong>[[Construct]]</strong> 函数，它负责创建一个实例对象，把实例对象的<code>__proto__</code>属性指向构造函数的<code>prototype</code>来实现继承构造函数<code>prototype</code>的所有属性和方法，将<code>this</code>绑定到实例上，然后再执行函数体。</p>
 <p>模拟一个构造函数：</p>
-<pre><code>function createObject(proto){if(!(proto ===null||typeof proto ===&quot;object&quot;||typeof proto ===&quot;function&quot;){throwTypeError(&#39;Argument must be an object, or null&#39;);}var obj =newObject();
-    obj.__proto__ = proto;return obj;}var foo = createObject(Foo.prototype);
+<pre><code>functionFoo(firstName, lastName) { this.firstName = firstName;
+    this.lastName = lastName; } Foo.prototype.logName = function() {
+    Foo.combineName();
+    console.log(this.fullName);
+}
+Foo.prototype.combineName = function() { this.fullName = `${this.firstName} ${this.lastName}` }
+var foo = newFoo(&#39;Sanfeng&#39;, &#39;Zhang&#39;);
+foo.logName(); // Uncaught TypeError: Foo.combineName is not a function
 </code></pre><p>至此我们了解了<code>prototype</code>和<code>__proto__</code>的作用，也了解使用构造函数创建对象实例时这两个属性的指向，以下使用一张图来总结一下如何通过<code>prototype</code>和<code>__proto__</code>实现原型链。</p>
 <p><img src="https://img.funteas.com/12d6bb072d101ff6e1966a63329cf806?imageView2/2/w/800" alt=""></p>
 <p>从上图我们可以找出<code>foo</code>对象和<code>Foo</code>函数的原型链：</p>
-<pre><code>foo.__proto__ =Foo.prototype;
-foo.__proto__.__proto__ =Foo.prototype.__proto__ =Object.prototype;
-foo.__proto__.__proto__.__proto__ =Foo.prototype.__proto__.__proto__ =Object.prototype.__proto__ =null;
+<pre><code>foo.__proto__ = Foo.prototype;
+foo.__proto__.__proto__ = Foo.prototype.__proto__ = Object.prototype;
+foo.__proto__.__proto__.__proto__ = Foo.prototype.__proto__.__proto__ = Object.prototype.__proto__ = null;
 </code></pre><p><img src="https://img.funteas.com/73c4353afa8b74a63baedfc94c583539?imageView2/2/w/800" alt=""></p>
-<pre><code>Foo.__proto__ =Function.prototype;Foo.__proto__.__proto__ =Function.prototype.__proto__;Foo.__proto__.__proto__.__proto__ =Function.prototype.__proto__.__proto__ =Object.prototype.__proto__ =null;
+<pre><code>Foo.__proto__ = Function.prototype;
+Foo.__proto__.__proto__ = Function.prototype.__proto__;
+Foo.__proto__.__proto__.__proto__ = Function.prototype.__proto__.__proto__ = Object.prototype.__proto__ = null;
 </code></pre><p><img src="https://img.funteas.com/aa3de68a5dd2e76120d836d22adeb969?imageView2/2/w/800" alt=""></p>
 <p>构造函数<code>Foo</code>的原型链上没有<code>Foo.prototype</code>，因此无法继承<code>Foo.prototype</code>上的属性和方法。而实例<code>foo</code>的原型链上有<code>Foo.prototype</code>，因此<code>foo</code>可以继承<code>Foo.prototype</code>上的属性和方法。</p>
-<p>到这里，我们可以很简单的解答小英童鞋的问题了，在<code>Foo</code>的原型链上没有<code>Foo.prototype</code>，无法继承<code>Foo.prototype</code>上的<code>combineName</code>方法，因此会抛出<code>Foo.combineName is not a function</code>的异常。要想使用<code>combineName</code>方法，可以这样<code>Foo.prototype.combineName</code>，或者这样<code>this.combineName</code>（<code>this</code>指向实例对象）。</p>
-<p><a href="/tag/原型">原型</a> (.tag_selectable data-id=tag_selectable)</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>到这里，我们可以很简单的解答小英童鞋的问题了，在<code>Foo</code>的原型链上没有<code>Foo.prototype</code>，无法继承<code>Foo.prototype</code>上的<code>combineName</code>方法，因此会抛出<code>Foo.combineName is not a function</code>的异常。要想使用<code>combineName</code>方法，可以这样<code>Foo.prototype.combineName</code>，或者这样<code>this.combineName</code>（<code>this</code>指向实例对象）。</p>
+]]></content>
       
         <categories>
             
@@ -380,28 +558,48 @@ foo.__proto__.__proto__.__proto__ =Foo.prototype.__proto__.__proto__ =Object.pro
 <h2 id="使用合适的设计模式一步步优化前端代码"><a href="#使用合适的设计模式一步步优化前端代码" class="headerlink" title="使用合适的设计模式一步步优化前端代码"></a>使用合适的设计模式一步步优化前端代码</h2><blockquote>
 <p>在后端语言中，设计模式应用的较为广泛。如Spring中常见的工厂模式、装饰者模式、单例模式、迭代器模式。但是在日常的前端开发中，设计模式使用的较少，或者大家的代码已经遵循了某某设计模式但是我们并不知道。常见的设计模式有23种，如果单纯的按照模式名称+名词解释的方式来写这篇文章，可能太枯燥了或者很难理解记忆，所以我打算换一种方式。下面我们以一个例子开始我们今天的文章。</p>
 </blockquote>
-<h5 id="假设我们有一个这样的需求："><a href="#假设我们有一个这样的需求：" class="headerlink" title="假设我们有一个这样的需求："></a>假设我们有一个这样的需求：</h5><pre><code>let page ={
-  init:()=&gt;{//此处(placeA)有很多业务代码或者调用了很多page中的其他初始化函数},....};
+<h5 id="假设我们有一个这样的需求："><a href="#假设我们有一个这样的需求：" class="headerlink" title="假设我们有一个这样的需求："></a>假设我们有一个这样的需求：</h5><pre><code>let page = {
+    init: () =&gt; { //此处(placeA)有很多业务代码或者调用了很多page中的其他初始化函数
+    },
+    ....
+};
 </code></pre><p>现在业务迭代，需要我们在page.init()初始化代码块的最后增加一些功能，同时不影响原先的功能。按照正常的写法，我们可能会像下面这样写：</p>
-<pre><code>let page ={
-  init:()=&gt;{//placeA
-    page.newFunction();},
-  newFunction:()=&gt;{...}};
+<pre><code>let page = {
+    init: () =&gt; { //placeA
+        page.newFunction();
+    },
+    newFunction: () =&gt; { ... }
+};
 </code></pre><p>这样写是可以解决我们的需求，但是这样的代码是具有侵略性的，我们不得不在原先的代码的合适位置新增我们需要的代码。但我们思考一个问题，如果我们用了某个插件或者某个被ungly、minify之后的代码呢，我们怎么在找到合适的位置添加我们需要的功能呢？大家可以先自己思考一下，再看下面的内容。</p>
-<h5 id="首先我们先看解决方案，再思考其背后的东西。"><a href="#首先我们先看解决方案，再思考其背后的东西。" class="headerlink" title="首先我们先看解决方案，再思考其背后的东西。"></a>首先我们先看解决方案，再思考其背后的东西。</h5><pre><code>//我们可以在Function的原型链上定义一个扩展函数，以实现我们的需求。Function.prototype.fnAfter =function(fn){var _self =this;returnfunction(){
-    _self.apply(this, arguments);
-    fn.apply(this, arguments);}};
+<h5 id="首先我们先看解决方案，再思考其背后的东西。"><a href="#首先我们先看解决方案，再思考其背后的东西。" class="headerlink" title="首先我们先看解决方案，再思考其背后的东西。"></a>首先我们先看解决方案，再思考其背后的东西。</h5><pre><code>//我们可以在Function的原型链上定义一个扩展函数，以实现我们的需求。
+Function.prototype.fnAfter = function(fn) {
+    var _self = this;
+    returnfunction() {
+        _self.apply(this, arguments);
+        fn.apply(this, arguments);
+    }
+};
 
-page.init  =(page.init ||function(){}).fnAfter(function(){
-  console.log(&#39;我们要追加的功能成功啦~&#39;);});
+page.init = (page.init || function() {}).fnAfter(function() {
+    console.log(&#39;我们要追加的功能成功啦~&#39;);
+});
 
 page.init();
 </code></pre><p>上面的代码已经能够实现我们的需要了，但是其实还是不够好或者可以写的更灵活一些。因为我希望可以可以做到像jquery的链式调用那样，可以一直往后面追加新的功能。那么我们在上面代码的基础上再扩展下，其实很简单，我们只要再Function.prototype.fnAfter中再返回自身就好了。</p>
-<pre><code>Function.prototype.fnAfter =function(fn){var _self =this;returnfunction(){var fnOrigin = _self.apply(this, arguments);
-    fn.apply(this, arguments);return fnOrigin;}};
+<pre><code>Function.prototype.fnAfter = function(fn) {
+    var _self = this;
+    returnfunction() {
+        var fnOrigin = _self.apply(this, arguments);
+        fn.apply(this, arguments);
+        return fnOrigin;
+    }
+};
 </code></pre><p>其实上面的代码写法还是可以优化的。比如：</p>
 <pre><code>//每次扩展的时候我们都需要这么写
-page.init  =(page.init ||function(){}).fnAfter(function(){//...});//我们能不能再优化下，比如容错代码 || function(){} 在一个地方统一处理  //或者我们新建一个工厂函数来帮我们统一做这样的事情，这里我们就不展开了，文章篇幅有限。
+page.init = (page.init || function() {}).fnAfter(function() { //
+    ...
+}); //我们能不能再优化下，比如容错代码 || function(){} 在一个地方统一处理  
+//或者我们新建一个工厂函数来帮我们统一做这样的事情，这里我们就不展开了，文章篇幅有限。
 </code></pre><h5 id="我们上面的扩展其实就是遵循的是面向对象程序设计中的开放-封闭原则（OCP）。官方对OCP的解释是：软件实体（类、模块、函数…）应该是可以扩展的，但是不可修改。设计模式中有很多模式都遵循了开发-封闭原则，比如：发布-订阅者模式、模板方法模式、策略模式、代理模式。"><a href="#我们上面的扩展其实就是遵循的是面向对象程序设计中的开放-封闭原则（OCP）。官方对OCP的解释是：软件实体（类、模块、函数…）应该是可以扩展的，但是不可修改。设计模式中有很多模式都遵循了开发-封闭原则，比如：发布-订阅者模式、模板方法模式、策略模式、代理模式。" class="headerlink" title="我们上面的扩展其实就是遵循的是面向对象程序设计中的开放-封闭原则（OCP）。官方对OCP的解释是：软件实体（类、模块、函数…）应该是可以扩展的，但是不可修改。设计模式中有很多模式都遵循了开发-封闭原则，比如：发布-订阅者模式、模板方法模式、策略模式、代理模式。"></a>我们上面的扩展其实就是遵循的是面向对象程序设计中的开放-封闭原则（OCP）。官方对OCP的解释是：软件实体（类、模块、函数…）应该是可以扩展的，但是不可修改。设计模式中有很多模式都遵循了开发-封闭原则，比如：发布-订阅者模式、模板方法模式、策略模式、代理模式。</h5><p>有的时候我们通过扩展来提高代码的灵活性并不能解决所有的场景需要，在不可避免发生修改的时候，我们可以通过增加配置文件，让用户修改配置文件以实现个性化需求也是合理的。修改配置远比修改源代码要简单的多。</p>
 <h5 id="有了上面的引入，我们来看几个前端开发中常见的设计模式。"><a href="#有了上面的引入，我们来看几个前端开发中常见的设计模式。" class="headerlink" title="有了上面的引入，我们来看几个前端开发中常见的设计模式。"></a>有了上面的引入，我们来看几个前端开发中常见的设计模式。</h5><ul>
 <li>单例模式</li>
@@ -410,51 +608,87 @@ page.init  =(page.init ||function(){}).fnAfter(function(){//...});//我们能不
 <p>单例模式顾名思义：保证一个类仅有一个实例，并且对外暴露一个能够访问到它的访问点。</p>
 </blockquote>
 <p>实现单例模式的核心就是保证一个类仅有一个实例，那么意思就是当创建一个对象时，我们需要判断下之前有没有创建过该实例，如果创建过则返回之前创建的实例，否则新建。</p>
-<pre><code>var fn =function(){this.instance =null;};
-fn.getInstance =function(){//写法1if(!this.instance){this.instance =new fn();}returnthis.instance;//写法2returnthis.instance ||(this.instance =new fn());};var fnA = fn.getInstance();var fnB = fn.getInstance();
-console.log(fnA === fnB);//true
+<pre><code>var fn = function() { this.instance = null; };
+fn.getInstance = function() { //写法1
+    if (!this.instance) { this.instance = new fn(); }
+    return this.instance; //写法2
+    return this.instance || (this.instance = new fn());
+};
+var fnA = fn.getInstance();
+var fnB = fn.getInstance();
+console.log(fnA === fnB); //true
 </code></pre><p>日常的业务场景中，单例模式也比较常见，比如：一个页面中的模态框只有一个，每次打开与关闭的都应该是同一个，而不是重复新建。而且为了性能优化，我们应该在需要时再创建，而不是页面初始化时就已经存在于dom中，这个就是<em>惰性单例模式</em>。</p>
-<pre><code>//假设我们需要点击某个按钮时就显示出模态框，那么我们可以像下面这么实现。var createModal =(function(){var modal =null;returnfunction(){if(!modal){
-      modal = document.createElement(&#39;div&#39;);//...
-      modal.style.display =&#39;none&#39;;
-      document.getElementById(&#39;container&#39;).append(modal);}return modal;}})();
+<pre><code>//假设我们需要点击某个按钮时就显示出模态框，那么我们可以像下面这么
+var createModal = (function() {
+    var modal = null;
+    returnfunction() {
+        if (!modal) {
+            modal = document.createElement(&#39;div&#39;); //...
+            modal.style.display = &#39;none&#39;;
+            document.getElementById(&#39;container&#39;).append(modal);
+        }
+        return modal;
+    }
+})();
 
-document.getElementById(&#39;showModal&#39;).click(function(){var modal = createModal();
-  modal.style.display =&#39;block&#39;;});
+document.getElementById(&#39;showModal&#39;).click(function() {
+    var modal = createModal();
+    modal.style.display = &#39;block&#39;;
+});
 </code></pre><p>上面的代码中，我们将创建对象和管理实例的逻辑都放在一个地方，违反了单一职责原则，我们应该单独新建一个用于创建单例的方法，这样我们不仅能创建唯一的modal实例，也能创建其他的，职责分开。</p>
-<pre><code>var createSingleInstance =function(fn){var instance =null;returnfunction(){if(!instance){
-      instance = fn.apply(this, arguments);}return instance;}};var createModal =function(){var modal = docuemnt.createElement(&#39;div&#39;);//...
-  modal.style.display =&#39;none&#39;;
-  document.getElementById(&#39;container&#39;).append(modal);return modal;};var modal = createSingleInstance(createModal);
-</code></pre><p>​</p>
-<ul>
+<pre><code>var createSingleInstance = function(fn) {
+    var instance = null;
+    returnfunction() {
+        if (!instance) {
+            instance = fn.apply(this, arguments);
+        }
+        return instance;
+    }
+};
+var createModal = function() {
+    var modal = docuemnt.createElement(&#39;div&#39;); //...
+    modal.style.display = &#39;none&#39;;
+    document.getElementById(&#39;container&#39;).append(modal);
+    return modal;
+};
+var modal = createSingleInstance(createModal);
+</code></pre><ul>
 <li>观察者模式</li>
 </ul>
-<pre><code>定义了对象与其他对象之间的依赖关系，当某个对象发生改变的时候，所有依赖到这个对象的地方都会被通知。
-</code></pre><p>像knockout.js中的ko.compute以及vue中的computed函数其实就是这个模式的实践。实现观察者模式的核心就是我们需要有一个变量来保存所有的依赖，一个listen函数用于向变量中添加依赖，一个trigger函数用于触发通知。</p>
-<pre><code>var observal ={
-  eventObj:{},
-  listen:function(key, fn){this.eventObj[key]=this.eventObj[key]||[];this.eventObj[key].push(fn);},
-  trigger:function(key){var eventList =this.eventObj[key];if(!eventList || eventList.length &lt;1){return;}var length = eventList.length;for(var i =0; i &lt; length; i++){varevent= eventList[i];event.apply(this, arguments);}}};//定义要监听的事件
-observal.listen(&#39;command1&#39;,function(){
-  console.log(&#39;黑夜给了我夜色的眼睛~&#39;);});
-observal.listen(&#39;command1&#39;,function(){
-  console.log(&#39;我却用它寻找光明~&#39;);});
-observal.listen(&#39;command2&#39;,function(){
-  console.log(&#39;一花一世界~&#39;);});
-observal.listen(&#39;command2&#39;,function(){
-  console.log(&#39;一码一人生~&#39;);});//触发某个监听的事件
-observal.trigger(&#39;command1&#39;);//黑夜给了我夜色的眼睛~ 我却用它寻找光明~
-observal.trigger(&#39;command2&#39;);//一花一世界~ 一码一人生~
+<blockquote>
+<p>定义了对象与其他对象之间的依赖关系，当某个对象发生改变的时候，所有依赖到这个对象的地方都会被通知。</p>
+<p>像knockout.js中的ko.compute以及vue中的computed函数其实就是这个模式的实践。实现观察者模式的核心就是我们需要有一个变量来保存所有的依赖，一个listen函数用于向变量中添加依赖，一个trigger函数用于触发通知。</p>
+</blockquote>
+<pre><code>var observal = {
+    eventObj: {},
+    listen: function(key, fn) { this.eventObj[key] = this.eventObj[key] || [];
+        this.eventObj[key].push(fn); },
+    trigger: function(key) { var eventList = this.eventObj[key]; if (!eventList || eventList.length &lt; 1) { return; } var length = eventList.length; for (var i = 0; i &lt; length; i++) { varevent = eventList[i];
+            event.apply(this, arguments); } }
+}; //定义要监听的事件
+observal.listen(&#39;command1&#39;, function() {
+    console.log(&#39;黑夜给了我夜色的眼睛~&#39;);
+});
+observal.listen(&#39;command1&#39;, function() {
+    console.log(&#39;我却用它寻找光明~&#39;);
+});
+observal.listen(&#39;command2&#39;, function() {
+    console.log(&#39;一花一世界~&#39;);
+});
+observal.listen(&#39;command2&#39;, function() {
+    console.log(&#39;一码一人生~&#39;);
+}); //触发某个监听的事件
+observal.trigger(&#39;command1&#39;); //黑夜给了我夜色的眼睛~ 我却用它寻找光明~
+observal.trigger(&#39;command2&#39;); //一花一世界~ 一码一人生~
 </code></pre><p>使用观察者模式（发布-订阅模式）我们可以使得代码更灵活、健壮性更高。订阅者不需要了解消息来自哪一个发布者，发布者也不需要知道消息会发送给哪些订阅者。</p>
 <p>同样的我们可以创建一个公用的函数库，里面存放创建observal的工具方法，需要用到的地方我们就用这个方法创建一个发布订阅对象。</p>
 <ul>
 <li>其他设计模式及设计原则</li>
 </ul>
-<pre><code>设计模式有很多，这里篇幅有限就不再展开。GoF在1995年提出了23种设计模式。诸如策略者模式优化表单验证、代理模式、组合模式、装饰者模式、适配器模式...这些后期可以再简单探讨或者大家后面自己了解。常用的设计模式及设计原则可以参考下面的思维导图。![常用设计模式](https://user-gold-cdn.xitu.io/2017/10/27/f7ab0664b5fd4e34dbb16eaab5813c9d)![六大设计原则](https://user-gold-cdn.xitu.io/2017/10/27/038d561c77aba1ff095fa0c3cfc8c113)
-</code></pre><h5 id="看了上面的文章，相信大家对设计模式的好处有了直观的了解，也大致掌握了单例模式及观察者模式。"><a href="#看了上面的文章，相信大家对设计模式的好处有了直观的了解，也大致掌握了单例模式及观察者模式。" class="headerlink" title="看了上面的文章，相信大家对设计模式的好处有了直观的了解，也大致掌握了单例模式及观察者模式。"></a>看了上面的文章，相信大家对设计模式的好处有了直观的了解，也大致掌握了单例模式及观察者模式。</h5><p>设计模式都是经过了大量的代码、软件实践而总结出来的优秀的组织实践方案。每种设计模式都有它的适应场景，有的场景也会使用多种设计模式。只有了解了更多的设计模式，掌握各个设计模式自己的适应场景，才能更好的为我们所用。</p>
+<p>设计模式有很多，这里篇幅有限就不再展开。GoF在1995年提出了23种设计模式。诸如策略者模式优化表单验证、代理模式、组合模式、装饰者模式、适配器模式…这些后期可以再简单探讨或者大家后面自己了解。常用的设计模式及设计原则可以参考下面的思维导图。<img src="https://user-gold-cdn.xitu.io/2017/10/27/f7ab0664b5fd4e34dbb16eaab5813c9d" alt="常用设计模式"><img src="https://user-gold-cdn.xitu.io/2017/10/27/038d561c77aba1ff095fa0c3cfc8c113" alt="六大设计原则"></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>设计模式都是经过了大量的代码、软件实践而总结出来的优秀的组织实践方案。每种设计模式都有它的适应场景，有的场景也会使用多种设计模式。只有了解了更多的设计模式，掌握各个设计模式自己的适应场景，才能更好的为我们所用。</p>
 <p>但是过早的优化不一定是好事或者不是必须的，有时候我们可以一开始并不去优化，等到某个应用场景下出现了代码组织混乱、需要额外扩展等问题，我们再优化重构，以防过早优化导致的不必要性或者只是增加了代码不必要的复杂性。就像redux，如果一个页面组件与组件之间有数据共享、需要在任意组件内部拿到某个数据、任意一个组件中某个行为导致的数据变化需要通知到所有用到的地方，那么这个时候可以使用redux，一些简单的表单页面或者展示页完全可以不用redux。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+]]></content>
       
         <categories>
             
@@ -476,7 +710,7 @@ observal.trigger(&#39;command2&#39;);//一花一世界~ 一码一人生~
     <entry>
       <title><![CDATA[CSS3 transform特性教程]]></title>
       <url>/CSS3-transform%E7%89%B9%E6%80%A7%E6%95%99%E7%A8%8B.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面我们一起学习了<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="external">CSS3</a> 中的<strong><a href="http://www.w3cplus.com/node/44" target="_blank" rel="external">渐变</a> </strong>、<strong><a href="http://www.w3cplus.com/node/48" target="_blank" rel="external">圆角</a> </strong>、<strong><a href="http://www.w3cplus.com/content/css3-box-shadow" target="_blank" rel="external">阴影</a> </strong>等几个属性的使用，今天开始我们一起来学习有关于<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="external">CSS3</a> 制作动画的几个属性：<strong><a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">变形(transform)</a> 、<a href="http://www.w3.org/TR/css3-transitions/" target="_blank" rel="external">转换(transition)</a> 和<a href="http://www.w3.org/TR/css3-animations/" target="_blank" rel="external">动画(animation)</a> </strong>等更高级的<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="external">CSS3</a> 技术。本文主要介绍的是这三个属性之中的第一个──<a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">变形transform</a> 。</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要介绍的是css3新属性变形transform。</p>
 <h2 id="CSS3-transform教程"><a href="#CSS3-transform教程" class="headerlink" title="CSS3 transform教程"></a>CSS3 transform教程</h2><p><a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">Transform</a> 字面上就是变形，改变的意思。在<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="external">CSS3</a> 中<a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">transform</a> 主要包括以下几种：<strong>旋转rotate</strong>、<strong>扭曲skew</strong>、<strong>缩放scale</strong>和<strong>移动translate</strong>以及<strong>矩阵变形matrix</strong>。下面我们一起来看看CSS3中transform的旋转rotate、扭曲skew、缩放scale和移动translate具体如何实现，老样子，我们就从<a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="external">transform</a> 的语法开始吧。</p>
 <p><strong>语法：</strong></p>
 <pre><code>   transform ： none | &lt;transform-function&gt; [ &lt;transform-function&gt; ]* 
@@ -559,78 +793,224 @@ observal.trigger(&#39;command2&#39;);//一花一世界~ 一码一人生~
 <p>同样的transform在IE9下版本是无法兼容的，之所以有好多朋友说，IE用不了，搞这个做什么？个人认为，CSS3推出来了，他是一门相对前沿的技术，做为Web前端的开发者或者爱好者都有必要了解和掌握的一门新技术，如果要等到所有浏览器兼容，那我们只能对css3说NO，我用不你。因为IE老大是跟不上了，，，，纯属个人观点，不代表任何。还是那句话，感兴趣的朋友跟我一样，不去理会IE，我们继续看下去。</p>
 <p>在上面我们详细介绍了CSS3中transform的各种属性值的设置以及其各自的参数，下面我们通过一个实例来看看每一种属性值的使用，为了节约空间和大家的时间，我们后面的实例都是在这个html基础上实现，主要是我们在下面的菜单中的a:hover中分别使用不同的transform的设置，换句话说，当你移动到链接上时，相应的每一个菜单项有不同的变化，因为我们在每个菜单中使用了transform。具体每一步我们可以看下面的实例：</p>
 <p><strong>HTML Code:</strong></p>
-<pre><code>&lt;divclass=&quot;menu&quot;&gt;&lt;ulclass=&quot;clearfix&quot;&gt;&lt;liclass=&quot;item translate&quot;&gt;&lt;ahref=&quot;#&quot;&gt;Translate&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item translate-x&quot;&gt;&lt;ahref=&quot;#&quot;&gt;TranslateX&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item translate-y&quot;&gt;&lt;ahref=&quot;#&quot;&gt;TranslateY&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item rotate&quot;&gt;&lt;ahref=&quot;#&quot;&gt;Rotate&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item scale&quot;&gt;&lt;ahref=&quot;#&quot;&gt;Scale&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item scale-x&quot;&gt;&lt;ahref=&quot;#&quot;&gt;ScaleX&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item scale-y&quot;&gt;&lt;ahref=&quot;#&quot;&gt;ScaleY&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item skew&quot;&gt;&lt;ahref=&quot;#&quot;&gt;Skew&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item skew-x&quot;&gt;&lt;ahref=&quot;#&quot;&gt;SkewX&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item skew-y&quot;&gt;&lt;ahref=&quot;#&quot;&gt;SkewY&lt;/a&gt;&lt;/li&gt;&lt;liclass=&quot;item matrix&quot;&gt;&lt;ahref=&quot;#&quot;&gt;Matrix&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+<pre><code>&lt;divclass=&quot;menu&quot;&gt;
+    &lt;ulclass=&quot;clearfix&quot;&gt;
+        &lt;liclass=&quot;item translate&quot;&gt;
+            &lt;ahref=&quot;#&quot;&gt;Translate&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;liclass=&quot;item translate-x&quot;&gt;
+                    &lt;ahref=&quot;#&quot;&gt;TranslateX&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;liclass=&quot;item translate-y&quot;&gt;
+                            &lt;ahref=&quot;#&quot;&gt;TranslateY&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;liclass=&quot;item rotate&quot;&gt;
+                                    &lt;ahref=&quot;#&quot;&gt;Rotate&lt;/a&gt;
+                                        &lt;/li&gt;
+                                        &lt;liclass=&quot;item scale&quot;&gt;
+                                            &lt;ahref=&quot;#&quot;&gt;Scale&lt;/a&gt;
+                                                &lt;/li&gt;
+                                                &lt;liclass=&quot;item scale-x&quot;&gt;
+                                                    &lt;ahref=&quot;#&quot;&gt;ScaleX&lt;/a&gt;
+                                                        &lt;/li&gt;
+                                                        &lt;liclass=&quot;item scale-y&quot;&gt;
+                                                            &lt;ahref=&quot;#&quot;&gt;ScaleY&lt;/a&gt;
+                                                                &lt;/li&gt;
+                                                                &lt;liclass=&quot;item skew&quot;&gt;
+                                                                    &lt;ahref=&quot;#&quot;&gt;Skew&lt;/a&gt;
+                                                                        &lt;/li&gt;
+                                                                        &lt;liclass=&quot;item skew-x&quot;&gt;
+                                                                            &lt;ahref=&quot;#&quot;&gt;SkewX&lt;/a&gt;
+                                                                                &lt;/li&gt;
+                                                                                &lt;liclass=&quot;item skew-y&quot;&gt;
+                                                                                    &lt;ahref=&quot;#&quot;&gt;SkewY&lt;/a&gt;
+                                                                                        &lt;/li&gt;
+                                                                                        &lt;liclass=&quot;item matrix&quot;&gt;
+                                                                                            &lt;ahref=&quot;#&quot;&gt;Matrix&lt;/a&gt;
+                                                                                                &lt;/li&gt;
+                                                                                                &lt;/ul&gt;
+                                                                                                &lt;/div&gt;
 </code></pre><p>为了效果更好一点，我们给上面的导航菜单加上一点CSS样式：</p>
-<pre><code>.menuul{
-    border-top:15px solid black;padding:010px;}.menuullia{
-    color:#fff;float: left;margin:05px;font-size:14px;height:50px;line-height:50px;text-align: center;width:65px;padding:10px 5px;background:#151515;-moz-border-radius:005px 5px;-webkit-border-radius:005px 5px;border-radius:005px 5px;-moz-box-shadow:001px #ccc,inset 002px #fff;-webkit-box-shadow:001px #ccc,inset 002px #fff;box-shadow:001px #ccc,inset 002px #fff;text-shadow:01px 1px #686868;text-decoration: none;}.menuulli.translatea{
-    background:#2EC7D2;}.menuulli.translate-xa{
-    background:#8FDD21;}.menuulli.translate-ya{
-    background:#F45917;}.menuulli.rotatea{
-    background:#D50E19;}.menuulli.scalea{
-    background:#cdddf2;}.menuulli.scale-xa{
-   background:#0fDD21;}.menuulli.scale-ya{
-   background:#cd5917;}.menuulli.skewa{
-   background:#519;}.menuulli.skew-xa{
-   background:#D50;}.menuulli.skew-ya{
-   background:#E19;}.menuulli.matrixa{
-   background:#919;}
+<pre><code>.menuul {
+    border-top: 15px solid black;
+    padding: 010px;
+}
+
+.menuullia {
+    color: #fff;
+    float: left;
+    margin: 05px;
+    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 65px;
+    padding: 10px 5px;
+    background: #151515;
+    -moz-border-radius: 005px 5px;
+    -webkit-border-radius: 005px 5px;
+    border-radius: 005px 5px;
+    -moz-box-shadow: 001px #ccc, inset 002px #fff;
+    -webkit-box-shadow: 001px #ccc, inset 002px #fff;
+    box-shadow: 001px #ccc, inset 002px #fff;
+    text-shadow: 01px 1px #686868;
+    text-decoration: none;
+}
+
+.menuulli.translatea {
+    background: #2EC7D2;
+}
+
+.menuulli.translate-xa {
+    background: #8FDD21;
+}
+
+.menuulli.translate-ya {
+    background: #F45917;
+}
+
+.menuulli.rotatea {
+    background: #D50E19;
+}
+
+.menuulli.scalea {
+    background: #cdddf2;
+}
+
+.menuulli.scale-xa {
+    background: #0fDD21;
+}
+
+.menuulli.scale-ya {
+    background: #cd5917;
+}
+
+.menuulli.skewa {
+    background: #519;
+}
+
+.menuulli.skew-xa {
+    background: #D50;
+}
+
+.menuulli.skew-ya {
+    background: #E19;
+}
+
+.menuulli.matrixa {
+    background: #919;
+}
 </code></pre><p>在这里我们使用了一些前面所进的CSS3的属性制作出来的导航，如果你跟着做的话，在你本地一定能看到一个非常靓丽的导航菜单，这里由于无法链接demo原页面，只好贴上缩略图，让大家有一个初步效果视觉初步的效果如下：</p>
 <p><img src="http://www.w3cplus.com/sites/default/files/transform-menu-dome.png" alt=""> (style=undefined)</p>
 <p>从效果图上我们可以清楚的看到菜单上我们分别对应的是transform中的Translate、TranslateX、TranslateY、Rotate、Scale、ScaleX、ScaleY、Skew、SkewX、SkewY和Matrix，下面我们就在相应的a:hover加上各自的效果：</p>
 <p><strong>1、transform:translate(x,y):</strong></p>
-<pre><code>.menuulli.translatea:hover{
-     -moz-transform:translate(-10px,-10px);-webkit-transform:translate(-10px,-10px);-o-transform:translate(-10px,-10px);-ms-transform:translate(-10px, -10px);transform:translate(-10px,-10px);}
+<pre><code>.menuulli.translatea:hover {
+    -moz-transform: translate(-10px, -10px);
+    -webkit-transform: translate(-10px, -10px);
+    -o-transform: translate(-10px, -10px);
+    -ms-transform: translate(-10px, -10px);
+    transform: translate(-10px, -10px);
+}
 </code></pre><p>效果：</p>
 <p><img src="http://www.w3cplus.com/sites/default/files/Transform-translate-xy.png" alt=""></p>
 <p><strong>2、transform:translateX(x)</strong></p>
-<pre><code>.menuulli.translate-xa:hover{
-    -moz-transform:translateX(-10px);-webkit-transform:translateX(-10px);-o-transform:translateX(-10px);-ms-transform:translateX(-10px);transform:translateX(-10px);}
+<pre><code>.menuulli.translate-xa:hover {
+    -moz-transform: translateX(-10px);
+    -webkit-transform: translateX(-10px);
+    -o-transform: translateX(-10px);
+    -ms-transform: translateX(-10px);
+    transform: translateX(-10px);
+}
 </code></pre><p>效果：</p>
 <p><img src="http://www.w3cplus.com/sites/default/files/Transform-translatex.png" alt=""></p>
 <p><strong>3、transform:translateY(y)</strong></p>
-<pre><code>.menuulli.translate-ya:hover{
-     -moz-transform:translateY(-10px);-webkit-transform:translateY(-10px);-o-transform:translateY(-10px);-ms-transform:translateY(-10px);transform:translateY(-10px);}
+<pre><code>.menuulli.translate-ya:hover {
+    -moz-transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+}
 </code></pre><p>效果：</p>
 <p><img src="http://www.w3cplus.com/sites/default/files/Transform-translatey.png" alt=""></p>
 <p><strong>4、transform:rotate(角度值)</strong></p>
-<pre><code>.menuulli.rotatea:hover{
-   -moz-transform:rotate(45deg);-webkit-transform:rotate(45deg);-o-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg);}
+<pre><code>.menuulli.rotatea:hover {
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
 </code></pre><p>效果：</p>
 <p><img src="http://www.w3cplus.com/sites/default/files/Transform-rotate.png" alt=""> </p>
 <p><strong>5、transform:scale(x,y)</strong></p>
-<pre><code>.menuulli.scalea:hover{
-   -moz-transform:scale(0.8,0.8);-webkit-transform:scale(0.8,0.8);-o-transform:scale(0.8,0.8);-ms-transform:scale(0.8,0.8);transform:scale(0.8,0.8);}
+<pre><code>.menuulli.scalea:hover {
+    -moz-transform: scale(0.8, 0.8);
+    -webkit-transform: scale(0.8, 0.8);
+    -o-transform: scale(0.8, 0.8);
+    -ms-transform: scale(0.8, 0.8);
+    transform: scale(0.8, 0.8);
+}
 </code></pre><p>效果：</p>
 <p><img src="http://www.w3cplus.com/sites/default/files/Transform-scalexy.png" alt=""> (style=undefined)</p>
 <p><strong>6、transform:scaleX(x)</strong></p>
-<pre><code>.menuulli.scale-xa:hover{
-    -moz-transform:scaleX(0.8);-webkit-transform:scaleX(0.8);-o-transform:scaleX(0.8);-ms-transform:scaleX(0.8);transform:scaleX(0.8);}
+<pre><code>.menuulli.scale-xa:hover {
+    -moz-transform: scaleX(0.8);
+    -webkit-transform: scaleX(0.8);
+    -o-transform: scaleX(0.8);
+    -ms-transform: scaleX(0.8);
+    transform: scaleX(0.8);
+}
 </code></pre><p>效果：</p>
 <p><img src="http://www.w3cplus.com/sites/default/files/Transform-scalex.png" alt=""></p>
 <p><strong>7、transform:scaleY(y)</strong></p>
-<pre><code>.menuulli.scale-ya:hover{
-     -moz-transform:scaleY(1.2);-webkit-transform:scaleY(1.2);-o-transform:scaleY(1.2);-ms-transform:scaleY(1.2);transform:scaleY(1.2);}
+<pre><code>.menuulli.scale-ya:hover {
+    -moz-transform: scaleY(1.2);
+    -webkit-transform: scaleY(1.2);
+    -o-transform: scaleY(1.2);
+    -ms-transform: scaleY(1.2);
+    transform: scaleY(1.2);
+}
 </code></pre><p>效果：</p>
 <p><img src="http://www.w3cplus.com/sites/default/files/Transform-scaley.png" alt=""></p>
 <p><strong>8、transform:skew(x,y)</strong></p>
-<pre><code>.menuulli.skewa:hover{
-     -moz-transform:skew(45deg,15deg);-webkit-transform:skew(45deg,15deg);-o-transform:skew(45deg,15deg);-ms-transform:skew(45deg,15deg);transform:skew(45deg,15deg);}
+<pre><code>.menuulli.skewa:hover {
+    -moz-transform: skew(45deg, 15deg);
+    -webkit-transform: skew(45deg, 15deg);
+    -o-transform: skew(45deg, 15deg);
+    -ms-transform: skew(45deg, 15deg);
+    transform: skew(45deg, 15deg);
+}
 </code></pre><p>效果：</p>
 <p><img src="http://www.w3cplus.com/sites/default/files/Transform-skewxy.png" alt=""> </p>
 <p><strong>9、transform:skewX(x)</strong></p>
-<pre><code>.menuulli.skew-xa:hover{
-    -moz-transform:skewX(-30deg);-webkit-transform:skewX(-30deg);-o-transform:skewX(-30deg);-ms-transform:skewX(-30deg);transform:skewX(-30deg);}
+<pre><code>.menuulli.skew-xa:hover {
+    -moz-transform: skewX(-30deg);
+    -webkit-transform: skewX(-30deg);
+    -o-transform: skewX(-30deg);
+    -ms-transform: skewX(-30deg);
+    transform: skewX(-30deg);
+}
 </code></pre><p>效果：</p>
 <p><img src="http://www.w3cplus.com/sites/default/files/Transform-skewx.png" alt=""> </p>
 <p><strong>10、transform:skewY(y)</strong></p>
-<pre><code>.menuulli.skew-ya:hover{
-    -moz-transform:skewY(30deg);-webkit-transform:skewY(30deg);-o-transform:skewY(30deg);-ms-transform:skewY(30deg);transform:skewY(30deg);}
+<pre><code>.menuulli.skew-ya:hover {
+    -moz-transform: skewY(30deg);
+    -webkit-transform: skewY(30deg);
+    -o-transform: skewY(30deg);
+    -ms-transform: skewY(30deg);
+    transform: skewY(30deg);
+}
 </code></pre><p>效果：</p>
 <p><img src="http://www.w3cplus.com/sites/default/files/Transform-skewy.png" alt=""></p>
 <p><strong>11、transform:matrix(a,b,c,d,e,f)</strong></p>
-<pre><code>.menuulli.matrixa:hover{
-    -moz-transform:matrix(1,1,-1,0,0,0);-webkit-transform:matrix(1,1,-1,0,0,0);-o-transform:matrix(1,1,-1,0,0,0);-ms-transform:matrix(1,1,-1,0,0,0);transform:matrix(1,1,-1,0,0,0);}
+<pre><code>.menuulli.matrixa:hover {
+    -moz-transform: matrix(1, 1, -1, 0, 0, 0);
+    -webkit-transform: matrix(1, 1, -1, 0, 0, 0);
+    -o-transform: matrix(1, 1, -1, 0, 0, 0);
+    -ms-transform: matrix(1, 1, -1, 0, 0, 0);
+    transform: matrix(1, 1, -1, 0, 0, 0);
+}
 </code></pre><p>效果：</p>
 <p><img src="http://www.w3cplus.com/sites/default/files/Transform-matrix.png" alt=""> </p>
 <p>transform中的matrix是相对的复杂，如果感兴趣的朋友可以点<a href="http://www.w3.org/TR/SVG/coords.html#TransformMatrixDefined" target="_blank" rel="external">这里</a> 进去学民更多有关于Matrix的用法，我在这里就不多说了，说了也讲不清楚。</p>
@@ -638,26 +1018,33 @@ observal.trigger(&#39;command2&#39;);//一花一世界~ 一码一人生~
 <p><img src="http://www.w3cplus.com/sites/default/files/transform-demo-hover.png" alt=""> </p>
 <p>上面的实例效果展示了有关于transform中各种风格效果，这里需要提醒大家，我们上面的效果都是以元素自身的中心点为基点的，下面我们来看一个改变元素基点的实例</p>
 <p>我们在前面的实例基础改变一下所有a标签基点位置为left top（前面默认是center center）</p>
-<pre><code>.menuulli.transform-origina{
-    -moz-transform-origin: left top;-webkit-transform-origin: left top;-o-transform-origin: left top;-ms-transform-origin: left top;transform-origin: left top;}
+<pre><code>.menuulli.transform-origina {
+    -moz-transform-origin: left top;
+    -webkit-transform-origin: left top;
+    -o-transform-origin: left top;
+    -ms-transform-origin: left top;
+    transform-origin: left top;
+}
 </code></pre><p>大家一起看看改变了a标签基点后transform下各种效果有什么样的变化：</p>
 <p><img src="http://www.w3cplus.com/sites/default/files/Transform-origin-demo-hover.png" alt=""> </p>
 <p>从效果图中大家可以明显的看出，改变元素的基点后。元素进行transform任何属性值的设置都会有影响，换句话说，我们transform进行任何动作变化都是以元素的中心为基点，同时我们可以通过transform-origin来改变任何元素的基点，从而达到不同的效果。感兴趣的朋友可以去了解更多有关这方面的知识。</p>
 <p>最后我们再来看一个transform运用多个属性值的效果实例</p>
-<pre><code>.demoa{
-   width:100px;padding:5px;background: red;display: block;}.demoa:hover{  
-   -moz-transform:rotate(45deg)scale(0.8,1.2)skew(60deg,-30deg);-webkit-transform:rotate(45deg)scale(0.8,1.2)skew(60deg,-30deg);-o-transform:rotate(45deg)scale(0.8,1.2)skew(60deg,-30deg);-ms-transform:rotate(45deg)scale(0.8,1.2)skew(60deg,-30deg);transform:rotate(45deg)scale(0.8,1.2)skew(60deg,-30deg);}
+<pre><code>.demoa {
+    width: 100px;
+    padding: 5px;
+    background: red;
+    display: block;
+}
+
+.demoa:hover {
+    -moz-transform: rotate(45deg)scale(0.8, 1.2)skew(60deg, -30deg);
+    -webkit-transform: rotate(45deg)scale(0.8, 1.2)skew(60deg, -30deg);
+    -o-transform: rotate(45deg)scale(0.8, 1.2)skew(60deg, -30deg);
+    -ms-transform: rotate(45deg)scale(0.8, 1.2)skew(60deg, -30deg);
+    transform: rotate(45deg)scale(0.8, 1.2)skew(60deg, -30deg);
+}
 </code></pre><p>这里需要注意的是使用多个属性值时，其之间不能用逗号（“，”）分隔，必须使用空格分隔，记住了是空格分隔，如上面代码所示。</p>
-<p>那么到这有关于CSS3的transform就介绍完了。那么到目前为止我们一起学习了CSS3中的：渐变<a href="http://www.w3cplus.com/node/44" target="_blank" rel="external">CSS3 Gradient</a> 、透明色<a href="http://www.w3cplus.com/node/45" target="_blank" rel="external">CSS3 RGBA</a> 、圆角<a href="http://www.w3cplus.com/node/48" target="_blank" rel="external">CSS3 Border-radius</a> 、文字阴影<a href="http://www.w3cplus.com/node/52" target="_blank" rel="external">CSS3 Text-shadow</a> 、边框阴影<a href="http://www.w3cplus.com/content/css3-box-shadow" target="_blank" rel="external">CSS3 Box-shadow</a> 和今天的变形transform六个属性的使用方法。那么下一节我们将一起学习CSS3动画中的另一个属性<a href="http://www.w3.org/TR/css3-transitions/" target="_blank" rel="external">Transition</a> 的使用方法，对CSS3感兴趣的朋友，请观注本站的更新。</p>
-<p>下面为了大家更方便学习本站有关于CSS3的知识，特把相关链接列出</p>
-<p>第一节：《<a href="http://www.w3cplus.com/node/44" target="_blank" rel="external">CSS3 Gradient</a> 》</p>
-<p>第二节：《<a href="http://www.w3cplus.com/node/45" target="_blank" rel="external">CSS3 RGBA</a> 》</p>
-<p>第三节：《<a href="http://www.w3cplus.com/node/48" target="_blank" rel="external">CSS3 Border-radius</a> 》</p>
-<p>第四节《<a href="http://www.w3cplus.com/node/52" target="_blank" rel="external">CSS3 Text-shadow</a> 》</p>
-<p>上一节：《<a href="http://www.w3cplus.com/content/css3-box-shadow" target="_blank" rel="external">CSS3 Box-shadow</a> 》</p>
-<p>下一节：《<a href="http://www.w3cplus.com/content/css3-transition" target="_blank" rel="external">CSS3 Transition</a> 》</p>
-<p>第八节：《<a href="http://www.w3cplus.com/content/css3-animation" target="_blank" rel="external">CSS3 Animation</a> 》</p>
-<p>如需转载，请注明出处：<a href="http://www.w3cplus.com" target="_blank" rel="external">W3CPLUS</a> </p>
+<p>那么到这有关于CSS3的transform就介绍完了。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
       
         <categories>
