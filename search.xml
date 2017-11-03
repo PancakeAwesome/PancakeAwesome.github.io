@@ -3,7 +3,67 @@
   
     
     <entry>
-      <title><![CDATA[JavaScript异步编程（一）]]></title>
+      <title><![CDATA[初识Pandas]]></title>
+      <url>/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Python</code>有着很多强大的计算库，用来做科学计算非常方便。其中pandas库是一个很有名的库，用来做数据分析非常方便。</p>
+<h2 id="pandas简介"><a href="#pandas简介" class="headerlink" title="pandas简介"></a>pandas简介</h2><p>pandas是一个专门用于数据分析的开源Python库。</p>
+<h3 id="使用Anaconda安装pandas"><a href="#使用Anaconda安装pandas" class="headerlink" title="使用Anaconda安装pandas"></a>使用Anaconda安装pandas</h3><p>安装pandas库最简单和最常用的方法是先安装一个发行版。我们选用先安装Anaconda，再用Anaconda安装pandas。</p>
+<blockquote>
+<p>Anaconda 是一个可用于科学计算的 Python 发行版，支持 Linux、Mac、Windows系统，内置了常用的科学计算包。它解决了官方 Python 的两大痛点。</p>
+<ul>
+<li>第一：提供了包管理功能，Windows 平台安装第三方包经常失败的场景得以解决，</li>
+<li>第二：提供环境管理的功能，功能类似 Virtualenv，解决了多版本Python并存、切换的问题。</li>
+</ul>
+</blockquote>
+<h4 id="安装conda"><a href="#安装conda" class="headerlink" title="安装conda"></a>安装conda</h4><p>conda是Anaconda的包管理器，用来管理各种依赖关系的包。可以通过它下载自己想要的包。</p>
+<p>首先安装Anaconda，在<a href="https://www.anaconda.com/download/#macos" target="_blank" rel="external">官网下载</a>软件包（以mac系统为例），大约需要1.8G的磁盘空间。打开安装包，一路默认配置。这样，conda就会默认加到你的环境变量中。</p>
+<h3 id="使用pypi安装pandas"><a href="#使用pypi安装pandas" class="headerlink" title="使用pypi安装pandas"></a>使用pypi安装pandas</h3><p>pypi是python安装之后自带的包管理器，我们也可以是用pip安装pandas。</p>
+<pre><code>pip install pandas
+</code></pre><h3 id="安装nose"><a href="#安装nose" class="headerlink" title="安装nose"></a>安装nose</h3><blockquote>
+<p>坚持是否成功安装pandas</p>
+</blockquote>
+<pre><code>nosetests pandas
+</code></pre><p>nose是python的测试模块，可以在开发阶段测试python代码。没有安装python发行版的或者没有nose模块的，可以安装nose模块。</p>
+<blockquote>
+<p>检查是否安装过nose模块。</p>
+</blockquote>
+<pre><code>pip list
+</code></pre><blockquote>
+<p>使用pip安装nose</p>
+</blockquote>
+<pre><code>pip install nose
+</code></pre><h3 id="开始pandas之旅"><a href="#开始pandas之旅" class="headerlink" title="开始pandas之旅"></a>开始pandas之旅</h3><p>那么现在我们就可以开始学习我们的pandas了。</p>
+<blockquote>
+<p>命令行模式调试python代码。</p>
+</blockquote>
+<pre><code>python
+</code></pre><p>这样就会进入python的命令行模式。</p>
+<p>引入pandas模块。</p>
+<pre><code>import pandas as pd
+</code></pre><p><em>我们就可以使用pd这个pandas的实例，来调用pandas库一些常用的方法来处理数据。</em><br><em>exit()或者quit()命令：退出python命令行模式。</em></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+      
+        <categories>
+            
+            <category> 数据分析 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 数据分析 </tag>
+            
+            <tag> Python </tag>
+            
+            <tag> 可视化 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[JavaScript异步编程（二）]]></title>
       <url>/%E4%BD%BF%E7%94%A8-await-%E5%87%8F%E5%B0%91%E5%9B%9E%E8%B0%83%E5%B5%8C%E5%A5%97.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在开发的时候，有时候需要发很多请求，然后经常会面临嵌套回调的问题，即在一个回调里面又嵌了一个回调，导致代码层层缩进得很厉害</p>
 <h2 id="使用-await-减少回调嵌套"><a href="#使用-await-减少回调嵌套" class="headerlink" title="使用 await 减少回调嵌套"></a>使用 await 减少回调嵌套</h2><p>在开发的时候，有时候需要发很多请求，然后经常会面临嵌套回调的问题，即在一个回调里面又嵌了一个回调，导致代码层层缩进得很厉害，如下代码所示：</p>
@@ -3967,9 +4027,9 @@ screen.css文件中:
             
             <tag> 前端技术 </tag>
             
-            <tag> 前端工具 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端工具 </tag>
             
         </tags>
         
