@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/Ajax-的全面总结.html
 http://pancakeawesome.ink/Python数据分析.html
 http://pancakeawesome.ink/使用-await-减少回调嵌套.html
 http://pancakeawesome.ink/我了解到的JavaScript异步编程.html
