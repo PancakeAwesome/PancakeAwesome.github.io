@@ -2128,7 +2128,48 @@ class ControllerUnit extends React.Component {
 </ul>
 <pre><code>transform: scale(.5);
       transition: transform .6s ease-in-out, background-color .3s;
-</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+</code></pre><ul>
+<li>关联控制组件和图片组件，给不同状态下的控制组件添加相应的样式</li>
+</ul>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fl8mtfymcnj30yc0fst9f.jpg" alt="ControllerUnit"></p>
+<ul>
+<li>给控制组件添加点击事件，实现控制组件和绑定的图片的动画效果</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fl8mx349tcj30nw0a1aa9.jpg" alt="ControllerUnit"></p>
+<h3 id="收尾项目"><a href="#收尾项目" class="headerlink" title="收尾项目"></a>收尾项目</h3><p>到这里，画廊项目基本已经完成，我们可以检查一下项目的展现效果，找到错误的地方，然后逐一debug。</p>
+<h4 id="测试代码的兼容性"><a href="#测试代码的兼容性" class="headerlink" title="测试代码的兼容性"></a>测试代码的兼容性</h4><p>首先测试代码在firefox下的兼容性（我在firefox15版本下，测试成功）。</p>
+<h4 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h4><blockquote>
+<p>react渲染页面的核心思想是<code>virtual dom</code>:当react将组件插入到html dom文档树前，react会先将代码中的react组件插入到virtual dom中，然后react会检查virtual dom和html文档树中结构是否有不同的地方，如果发现不同，才会去插入virtual dom中的文档树节点，这样会极大地减少浏览器引擎渲染dom节点的速度。</p>
+</blockquote>
+<p>所以，我们在将图片组件和控制组件插入到AppComponent组件中时，可以给每个图片组件和控制组件都加上一个唯一表示的key，这样可以帮助react更好地区分每个<code>virtual dom</code>节点，这样比较两个文档树节点时，会消耗更少的时间。</p>
+<h3 id="部署代码"><a href="#部署代码" class="headerlink" title="部署代码"></a>部署代码</h3><p>dist目录时项目部署到正是环境下的代码，我们在即将把我们代码部署到线上的时候，可以运行Webpack dist环境，将我们的代码以dist环境的参数运行打包，这样所有的代码都会在dist目录下，然后打开8000端口，在浏览器环境下调试dist环境下的代码。</p>
+<p>在<code>package.json</code>配置文件中配置命令，可以在命令行中执行不同的环境的代码。</p>
+<ul>
+<li>执行本地调试(<code>src</code>目录下的代码)命令：</li>
+</ul>
+<pre><code>npm start
+</code></pre><ul>
+<li>执行dist打包，并执行<code>dist</code>环境下的代码：</li>
+</ul>
+<pre><code>// 将dist目录清空
+npm run clean
+</code></pre><pre><code>// 将静态资源文件复制到Dist目录下，并执行webpack打包命令（参数是dist环境）
+npm run dist
+</code></pre><ul>
+<li>部署项目到gitpages上：<ul>
+<li>在<code>cfg/default.js</code>中更改<code>publicPath</code>为相对路径（因为gitpages下的项目url路径是二级目录）</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl8qrgnltzj30kk069mx6.jpg" alt=""></p>
+<pre><code>- 将`src/index.html`中的`js`引用地址改为相对路径
+</code></pre><pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;assets/app.js&quot;&gt;&lt;/script&gt;
+</code></pre><pre><code>- 将`dist`目录上传到`gitpages`(git提供的html页面部署服务)
+</code></pre><pre><code>git subtree push --prefix=dist origin gh-pages
+</code></pre><pre><code>- 在浏览器中地址栏中输入`https://&lt;你的github账户名称&gt;.github.io/&lt;你的项目名称&gt;`
+</code></pre><p>就可以看到你的画廊应用部署到线上了！激动么～</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p><del>待更新</del></p>
+]]></content>
       
         <categories>
             
