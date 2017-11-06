@@ -2168,7 +2168,7 @@ npm run dist
 </code></pre><pre><code>git subtree push --prefix=dist origin gh-pages
 </code></pre><pre><code>- 在浏览器中地址栏中输入`https://&lt;你的github账户名称&gt;.github.io/&lt;你的项目名称&gt;`
 </code></pre><p>就可以看到你的画廊应用部署到线上了！激动么～</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p><del>待更新</del></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl8r55fj7nj30d007xdg0.jpg" alt=""></p>
 ]]></content>
       
         <categories>
@@ -4356,9 +4356,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -5330,9 +5330,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -5579,9 +5579,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
