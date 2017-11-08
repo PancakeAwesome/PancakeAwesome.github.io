@@ -3,6 +3,50 @@
 
     
   <url>
+    <loc>http://pancakeawesome.ink/%E9%87%8D%E6%B8%A9ES6%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95.html</loc>
+    <lastmod>2017-11-08T11:42:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>重温ES6核心概念和基本用法</title>
+        <pubTime>2017-11-08T11:17:15.000Z</pubTime>
+        
+        <tag>javascript </tag>
+         
+        <tag>es6 </tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://pancakeawesome.ink/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://pancakeawesome.ink/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%A0%94%E7%A9%B6%E7%AC%94%E8%AE%B0.html</loc>
+    <lastmod>2017-11-07T06:04:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>数据可视化研究笔记</title>
+        <pubTime>2017-10-20T07:21:09.000Z</pubTime>
+        
+        <tag>数据可视化 </tag>
+         
+        <tag>读书笔记 </tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化" url="http://pancakeawesome.ink/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://pancakeawesome.ink/react%E5%AE%9E%E6%88%98-%E6%89%93%E9%80%A0%E7%94%BB%E5%BB%8A%E9%A1%B9%E7%9B%AE%EF%BC%88%E4%BA%8C%EF%BC%89.html</loc>
     <lastmod>2017-11-06T14:51:28.000Z</lastmod>
     <data>
@@ -289,28 +333,6 @@
 
     
   <url>
-    <loc>http://pancakeawesome.ink/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%A0%94%E7%A9%B6%E7%AC%94%E8%AE%B0.html</loc>
-    <lastmod>2017-10-30T15:44:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>数据可视化研究笔记</title>
-        <pubTime>2017-10-20T07:21:09.000Z</pubTime>
-        
-        <tag>数据可视化 </tag>
-         
-        <tag>读书笔记 </tag>
-         
-         
-           
-             
-              <breadCrumb title="数据可视化" url="http://pancakeawesome.ink/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://pancakeawesome.ink/%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8sass(%E5%9F%BA%E7%A1%80%E7%AF%87).html</loc>
     <lastmod>2017-10-23T12:11:12.000Z</lastmod>
     <data>
@@ -464,9 +486,9 @@
         
         <tag>前端技术 </tag>
          
-        <tag>前端工具 </tag>
-         
         <tag>css </tag>
+         
+        <tag>前端工具 </tag>
          
          
            

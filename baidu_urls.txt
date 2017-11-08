@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/重温ES6核心概念和基本用法.html
 http://pancakeawesome.ink/Ajax-的全面总结.html
 http://pancakeawesome.ink/Python数据分析.html
 http://pancakeawesome.ink/使用-await-减少回调嵌套.html
