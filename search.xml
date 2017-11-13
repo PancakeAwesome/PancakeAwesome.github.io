@@ -89,8 +89,7 @@ fn();
     <entry>
       <title><![CDATA[浅析网站工作原理]]></title>
       <url>/%E6%B5%85%E6%9E%90%E7%BD%91%E7%AB%99%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="http://p0.qhimg.com/t010bc8b64af081ce87.jpg" alt=""></p>
-<p>如果您刚接触Web开发，您认为自己知道网络的工作原理 - 至少在基本层面上。</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>如果您刚接触Web开发，您认为自己知道网络的工作原理 - 至少在基本层面上。</p>
 <p>…但是，当您尝试解释一个网站为什么出现空白。 什么是IP地址？ “客户 - 服务”模型是如何工作的？</p>
 <p>最近开发框架功能很强大。强大到让我们这些新码农忽视了网站工作的基本原理。</p>
 <p>我确实是这样， 没什么不好意思承认的：网络很复杂，只有当您开式编程时，您才意识到这些基础知识有多重要。 （如果您想让你的web app正常工作）</p>
@@ -5089,9 +5088,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -6063,9 +6062,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -6312,9 +6311,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
