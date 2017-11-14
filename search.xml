@@ -3,6 +3,174 @@
   
     
     <entry>
+      <title><![CDATA[JavaScript => TypeScript 入门]]></title>
+      <url>/JavaScript-TypeScript-%E5%85%A5%E9%97%A8.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>ES6 是 ES5 转向主流语规格的一个重要升级，顺着这个角度看，TypeScript 让这门语言披上一层类型的外衣，直接演变成一种强类型的语言；从相反角度看，TypeScript 将编程语言们一些主流的特性引入到了 JS 的世界。</p>
+<h2 id="JavaScript-gt-TypeScript-入门"><a href="#JavaScript-gt-TypeScript-入门" class="headerlink" title="JavaScript =&gt; TypeScript 入门"></a>JavaScript =&gt; TypeScript 入门</h2><p>几个月前把 ES6 的特性都过了一遍，收获颇丰。现在继续来看看 TypesScript（下文简称为 “TS”）。限于经验，本文一些总结如有不当，欢迎指正。</p>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>官网有这样一段描述：</p>
+<blockquote>
+<p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.</p>
+</blockquote>
+<p>说的是 TS 是 JS 的超集，并且可以编译成普通的 JS。</p>
+<p>其中， <strong>超集</strong> 的定义是：</p>
+<blockquote>
+<p>如果一个集合 S2 中的每一个元素都在集合 S1 中，且集合 S1 中可能包含 S2 中没有的元素，则集合 S1 就是 S2 的一个超集，反过来，S2 是 S1 的子集。</p>
+</blockquote>
+<p>而实际上，“超出” 的部分主要就是 “类型系统”。因此可以这样归纳：</p>
+<blockquote>
+<p>TS ≈ ES6 + 类型系统</p>
+</blockquote>
+<p>ES6 是 ES5 转向主流语规格的一个重要升级，顺着这个角度看，TS 让这门语言披上一层类型的外衣，直接演变成一种强类型的语言；从相反角度看，TS 将编程语言们一些主流的特性引入到了 JS 的世界。</p>
+<h3 id="平稳过渡"><a href="#平稳过渡" class="headerlink" title="平稳过渡"></a>平稳过渡</h3><p>TypeScript 设计巧妙，兼具微软工业化的水准。首先，它仅靠一行命令，就融入到了广大前端人的世界：</p>
+<pre><code>npm install -g typescript
+</code></pre><p>然后由你随便挑一个曾编写的 <code>.js</code> 脚本文件（不妨叫做<code>hello.js</code>），不用对内容做任何修改，直接将文件后缀改成 <code>.ts</code>。这样，你就已经完成了一份 TypeScript 脚本的编写！</p>
+<p>然后编译它：</p>
+<pre><code>tsc hello.ts
+</code></pre><p>OK，你已经平滑过渡到了 TS 的世界。就是这么简单！</p>
+<p>当然这只是“一小步”，似乎后边还有无数的坑要填。不用担心，TS 已经填平了大部分的坑！</p>
+<p>比如，时下最流行的 gulp，webpake 工具，只需做一些简单的配置，就能接引入TypeScript 进行编译；同时为了能与 React 完美融合，TS 引入了与 JSX 类似的 TSX 语法。当然，TS 在 Angular、Vue.js 以及 Node.js 中也是畅通的…</p>
+<p>坑都填平了，大家过渡起来自然顺心顺手。</p>
+<h4 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h4><p>与 ES6 一脉相承的，同时也接轨大部分强类型语言，TS 的类型大概有这些：<br>1），<code>Number</code>、<code>Boolean</code>、<code>String</code>、<code>Null</code> 、<code>undefined</code>、<code>Symbol</code><br>2）， <code>Array</code>、<code>Function</code>、<code>Object</code><br>3），<code>Tuple</code>、<code>enum</code>、<code>Void</code>、 <code>Never</code>、<code>Any</code><br>TS 作为 JS 的一个超集，在 JS 的基础上扩展了一些非常有用的类型。第 3）中的类型就是从一些强类型语言引入的类型。</p>
+<p>为了由简入繁，不妨将这些类型划分为：<strong>基本类型</strong>、<strong>复合类型</strong>。<strong>复合类型</strong> 一般由 <strong>基本类型</strong> 构成。以下将渐进式的对 TS 的这些类型进行了解。</p>
+<h3 id="如何做类型声明？"><a href="#如何做类型声明？" class="headerlink" title="如何做类型声明？"></a>如何做类型声明？</h3><p>强类型语言都有一套类型声明的语法规则，TS 也不例外。TS 采用类型注释的写法，像这样<strong>将一个带冒号的注释，置于声明变量名之后，就构成了 TS 类型声明的语法</strong>。</p>
+<pre><code>let str :string=&#39;hello typescript&#39;;
+</code></pre><p>JAVA 的写法是相反的，但无实质差别：</p>
+<pre><code>String str =&#39;hello java&#39;;
+</code></pre><p>这样的注释如同一种补充说明，后文将简称它为 “冒号注释”，熟悉书写规则，有利于快速进入到 TS 的代码世界。</p>
+<p>实际上，ES6 有一种属性描述对象，是通过<code>Object.getOwnPropertyDescriptor(obj, key)</code> 获取的。</p>
+<pre><code>let obj = {
+    set name(val) {}
+}
+Object.getOwnPropertyDescriptor(obj, &#39;name&#39;);
+// {
+//      configurable: true
+//   enumerable: true
+//   get: undefined
+//   set: ƒ a(val)
+// }
+</code></pre><p>如果将 <code>setter</code> 类型的 <code>name</code> 方法适当改写，我们甚至可以实现 <code>obj.name</code> 赋值的类型检查功能，也非常有意思。</p>
+<p>同样的，冒号注释 <code>: string</code> 也可以理解为对一个 <code>str</code> 变量的描述。凭借这个注释的描述，TS 的类型编译器就能进行类型检查了。</p>
+<p>建立了类型的认知后，继续跑马圈地，巩固认知。其中，<code>Function</code>、 <code>Never</code>、<code>Any</code> 规则稍显复杂，但也没有什么特别的，留后细说。</p>
+<h4 id="简单的基本类型"><a href="#简单的基本类型" class="headerlink" title="简单的基本类型"></a>简单的基本类型</h4><pre><code>// boolean 类型
+let isBool: boolean = 1 &lt; 5; 
+// string 类型
+let str: string = &#39;hello world&#39;; 
+// number 类型
+let num: number = 123; 
+// void 类型
+let unusable: void = undefined; 
+// undefined 类型
+let u: undefined = undefined; 
+// null 类型
+let n: null = null; 
+//Symbol 类型
+// 类型 symbol 小写也能编译通过
+let sym: Symbol = Symbol(&#39;hello&#39;);
+</code></pre><h4 id="简单的复合类型。"><a href="#简单的复合类型。" class="headerlink" title="简单的复合类型。"></a>简单的复合类型。</h4><pre><code>// object 类型
+let obj: object = {};
+let arrObj: object = [];
+let funcObj: object = () =&gt; {};
+// array 类型
+let arrNum: number[] = [1, 2, 3]
+let arrStr: string[] = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+let arrObj: object[] = [{}];
+// 元组 类型
+let tup: [number, string] = [1, &#39;hello&#39;];
+// 枚举类型
+enumDays { Sun, Mon, Tue, Wed, Thu, Fri, Sat };
+</code></pre><p>可谓一览无余，类型的语法就是冒号注释，仅凭这一条，60~70% 的情况你都无需担心自己的类型书写有误。</p>
+<h4 id="一个灵活的子类型"><a href="#一个灵活的子类型" class="headerlink" title="一个灵活的子类型"></a>一个灵活的子类型</h4><p>但 JS 的动态类型太灵活了，<code>null</code> 和 <code>undefined</code> 的相似性, <code>Array</code>、<code>Function</code> 和 <code>Object</code>的纠缠不清的关系，仅凭一招恐怕还很难驾驭的住 JS 的 “多动症” 般的类型。比如：</p>
+<pre><code>// boolean 类型接收这样的赋值
+let isBool_n: boolean = null;
+let isBool_u: boolean = undefined;
+// void 类型接收这样的赋值
+let unusable: void = undefined;
+unusable = null;
+// Symbol 类型接收这样的赋值
+let sym: Symbol = Symbol(&#39;hello&#39;);
+sym = null;
+sym = undefined;
+// object 类型接收这样的赋值
+let obj: object = {};
+obj = null;
+obj = undefined;
+</code></pre><p>它们都能编译通过。但是 <code>null</code> 不属于 <code>boolean</code> 类型，<code>undefined</code>也并不属于<code>object</code> 类型，为什么能通过类型检查？</p>
+<p>事实上，<code>undefined</code> 和 <code>null</code> 是所有类型的子类型。也就是说，它们俩可以作为值赋给任何类型的变量。甚至，它们俩可以互相赋值给对方。</p>
+<pre><code>// undefined 类型
+let u:undefined=null;
+// null 类型
+let n:null=undefined;
+</code></pre><p>有了这一条规则，就能解释一些 “复合类型” 中遇到的问题：</p>
+<pre><code>let arrNum: number[]=[];
+let arrStr:string[]=[];
+// undefined 也属于 number 类型
+let arrNum: number[]=[undefined];
+// undefined 也属于 object 类型
+let obj :object=undefined;
+</code></pre><p>有了这条规则，我们可以大胆的写 TS 的类型声明了。</p>
+<p>但太过放开的规则——本文姑且称之为 “混杂模式”，又似乎一下子让 TS 退回到了 JS 的动态类型的原始状态了，让习惯了强类型的同学容易懵掉，也让从 JS 转 TS 的同学体会不到强类型的好处。</p>
+<h4 id="画条界限"><a href="#画条界限" class="headerlink" title="画条界限"></a>画条界限</h4><p>好在，TS 设计了一套巧妙的类型系统，犹如给 JS 披上 了一层强大的盔甲。</p>
+<p>TS 在 “混杂模式” 下，可能存在这样的风险，就是：编译正确，运行出错。比如：</p>
+<pre><code>// 无意获得一个 undefined 作为初始值
+let init_name =undefined;
+let nameList:string[]=[init_name];
+console.log(nameList[0].split(&#39;_&#39;));
+// 运行报错
+</code></pre><p>在非 “严格模式” 下，上述 TS 代码编译无误，但是真正拿到页面去运行编译结果时，出现错误。</p>
+<p>那怎么办呢？要相信 TS 强大的类型系统，只需一项配置，就能将编译切换成 “严格模式”：</p>
+<pre><code>// 在配置文件 tsconfig.json 中增加一项
+&quot;compilerOptions&quot;: {
+    // ...
+    &quot;strictNullChecks&quot;: true
+},
+</code></pre><p>再次执行编译，就会出现错误提示信息：</p>
+<pre><code>error TS2322: Type &#39;undefined[]&#39;
+isnot assignable to type &#39;string[]&#39;.
+</code></pre><p>TypeScript 官方教程鼓励尽可能地使用 <code>--strictNullChecks</code>，因此这里也强烈建议配置该属性再进行编译，这样能很好的发挥 TS 类型检查的作用。</p>
+<h4 id="网开一面和漏网之鱼"><a href="#网开一面和漏网之鱼" class="headerlink" title="网开一面和漏网之鱼"></a>网开一面和漏网之鱼</h4><p>TS 编译通过指的是类型检查符合类型系统的规则，运行 OK 则是编译后的 JS 本身执行无误。编译通过，不等于运行OK，即使在 “严格模式” 下也是这样的，所以千万别以为编译通过了就完事了。</p>
+<p>以 <code>Any</code> 类型为例，在 <code>--strictNullChecks</code> 模式下：</p>
+<pre><code>// TS 代码
+let anyThing: any = &#39;hello&#39;;
+console.log(anyThing.myName);
+// 编译后的 ES6
+let anyThing = &#39;hello&#39;;
+console.log(anyThing.setName(&#39;world&#39;));
+</code></pre><p>很显然，编译后的 <code>anyThing.setName(&#39;world&#39;)</code> 会运行报错。</p>
+<p>当然， <code>Any</code> 类型略有点特殊，因为它可以当做是 TS 平滑退化到 JS 的一个类型，官网教程也有这样解说：</p>
+<p><em>在对现有代码进行改写的时候，any类型是十分有用的，它允许你在编译时可选择地包含或移除类型检查。</em></p>
+<p>那问题又回来了，是否除了 <code>Any</code> 类型，其他编译OK，代码就运行无错呢？鉴于笔者正在入门，经验有限，不敢给这个结论。但无论如何，类型检查是可以排除大部分错误的。</p>
+<p>最后，编译的时候，尽量选择编译成 ES6 （前提是项目是用 ES6 写的）。配置是：</p>
+<pre><code>&quot;compilerOptions&quot;:{&quot;target&quot;:&quot;es6&quot;// &quot;es5&quot;}
+</code></pre><h4 id="只有一条规则"><a href="#只有一条规则" class="headerlink" title="只有一条规则"></a>只有一条规则</h4><p>TS “冒号注释” ——就这一条规则，贯穿始终。在函数的类型声明中，继续来巩固这条规则的写法。</p>
+<p>类型声明只对变量负责，对于函数，需考察输入——函数参数（也是变量）、输出——函数返回值两个要素。</p>
+<p>因为函数的特殊结构，所有 “冒号注释” 规则的写法要特别了解下：</p>
+<pre><code>// 声明函数
+function add(x: number, y: number): number { return x + y; }
+// 函数直接量
+let myAdd = function(x: number, y: number): number { return x + y; };
+</code></pre><p>可以看到，参数的 “冒号注释” 和一般变量没有任何差别。倒是函数输出类型注释有点特别——试想，<code>: number</code> 紧随函数名之后或者 <code>function</code> 关键字之后，是不是容易被误解为函数名的一部分？是不是对编译引擎不太友好？从这个角度看，注释置于<code>)</code> 之后最为合理。</p>
+<p>对了，一个疑问一直从头保留到现在：要是一个变量是 <code>function</code> 类型，那类型注释怎么写，又不能拿 <code>function</code> 关键字去做类型注释？</p>
+<pre><code>let myAdd: (x: number, y: number) =&gt; number = function(x: number, y: number): number { return x + y; };
+</code></pre><p>其中等号前边的 <code>: (x: number, y: number) =&gt; number</code> 就代表了函数类型。它仍然在结构上符合 “冒号注释” 的规则，只不过冒号后边是一串表达式。这样的结构有点像 Python 中的推导式的概念。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>好了，补上这一块重要的缺漏，本文就完成了所有基本类型的类型声明的解释。凭借一条规则，希望在 TS 学习上畅通无阻的敲代码~</p>
+]]></content>
+      
+        <categories>
+            
+            <category> typescript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> typescript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[JavaScript 内存管理及 V8 优化]]></title>
       <url>/JavaScript-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%8F%8A-V8-%E4%BC%98%E5%8C%96.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>JavaScript 具有垃圾自动回收机制（Garbage Collection）简称 GC。垃圾回收机制会中断整个代码执行，释放不可能再被使用的变量，释放内存，这个工作机制是周期性的，我们会在下文详细探讨。</p>
@@ -5088,9 +5256,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -6062,9 +6230,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -6311,9 +6479,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         

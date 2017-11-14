@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/JavaScript-TypeScript-入门.html
 http://pancakeawesome.ink/JavaScript-内存管理及-V8-优化.html
 http://pancakeawesome.ink/浅析网站工作原理.html
 http://pancakeawesome.ink/重温ES6核心概念和基本用法.html
