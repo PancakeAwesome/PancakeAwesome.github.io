@@ -221,7 +221,10 @@ fn();
 <p>增量 GC：把需要长耗时的遍历、回收操作<code>拆分运行</code>，减少中断时间，但是会增大上下文切换开销</p>
 <h4 id="Node-js-中的-GC-表现"><a href="#Node-js-中的-GC-表现" class="headerlink" title="Node.js 中的 GC 表现"></a>Node.js 中的 GC 表现</h4><p>当我们用 Node.js 搭建一个稳定的服务时，就需要考虑服务器内存的开销，下面一个 Node.js 内存回收执行的例子：</p>
 <p>执行代码<code>node --trace_gc --trace_gc_verbose test.js</code>跟踪一个网络服务的 GC。</p>
-<pre><code>[41204: 0x102001c00] Memory reducer: call rate 0.056, low alloc, foreground[41204: 0x102001c00] Memory reducer: started GC #1[41204:0x102001c00]Heap growing factor 1.1 based on mu= 0.970, speed_ratio = 42956(gc = 675253, mutator = 16)[41204: 0x102001c00] Grow: old size: 21382 KB, new limit: 33604 KB(1.1)[41204: 0x102001c00] Memory reducer: finished GC #1 (will do more)[41204:0x102001c00]156410 ms:Mark-sweep 27.7(50.0)-&gt;21.0(30.0) MB,12.4/0.0 ms (+20.4 ms in7 steps since start of marking, biggest step 4.8 ms)[Incremental marking task: finalize incremental marking][GC in old space requested].[41204:0x102001c00]Memory allocator,   used:30756 KB, available:1435612 KB
+<pre><code>[41204: 0x102001c00] Memory reducer: call rate 0.056, low alloc, foreground[41204: 0x102001c00] Memory reducer: started GC #1
+[41204:0x102001c00]Heap growing factor 1.1 based on mu= 0.970, speed_ratio = 42956(gc = 675253, mutator = 16)[41204: 0x102001c00] Grow: old size: 21382 KB, new limit: 33604 KB(1.1)[41204: 0x102001c00] Memory reducer: finished GC #1 (will do more)
+[41204:0x102001c00]156410 ms:Mark-sweep 27.7(50.0)-&gt;21.0(30.0) MB,12.4/0.0 ms (+20.4 ms in7 steps since start of marking, biggest step 4.8 ms)[Incremental marking task: finalize incremental marking][GC in old space requested].
+[41204:0x102001c00]Memory allocator,   used:30756 KB, available:1435612 KB
 [41204:0x102001c00]New space,          used:169 KB, available:838 KB, committed:1024 KB
 [41204:0x102001c00]Old space,          used:16662 KB, available:2417 KB, committed:19412 KB
 [41204:0x102001c00]Code space,         used:4078 KB, available:178 KB, committed:5120 KB
@@ -5256,9 +5259,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -6230,9 +6233,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -6479,9 +6482,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
