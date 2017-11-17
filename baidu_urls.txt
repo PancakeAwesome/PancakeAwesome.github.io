@@ -1,3 +1,5 @@
+http://pancakeawesome.ink/浏览器「内核」都做了些什么？.html
+http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html
 http://pancakeawesome.ink/10大使用Node-js的理由.html
 http://pancakeawesome.ink/JavaScript-TypeScript-入门.html
 http://pancakeawesome.ink/JavaScript-内存管理及-V8-优化.html
