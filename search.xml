@@ -53,7 +53,7 @@
 <p>从以上步骤可以发现，浏览器可能会触发两次重绘，极易产生「白屏」或「页面抖动」现象，为了解决这个问题「中间件直出」的模式应运而生。另外为了扩充大前端的阵营，吸纳 IOS 和 Android，Google 设计了「MNV*模式」，典型代表就是 ReactNative，但此模式已经脱离了浏览器的范畴，此处就不再做扩展。</p>
 <p>以上讨论的渲染过程中使用到了较多的浏览器功能，如用户地址栏输入框、网络请求、浏览器文档解析、渲染引擎渲染网页、 JavaScript 引擎执行 js 脚本、客户端存储等。 接下来我们介绍下浏览器的基本结构组成。</p>
 <h3 id="浏览器的结构组成"><a href="#浏览器的结构组成" class="headerlink" title="浏览器的结构组成"></a>浏览器的结构组成</h3><p>浏览器一般由七个模块组成，User Interface（用户界面）、Browser engine（浏览器引擎）、Rendering engine（渲染引擎）、Networking（网络）、JavaScript Interpreter（js解释器）、UI Backend（UI 后端）、Date Persistence（数据持久化存储） 如下图：</p>
-<p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt=""> </p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fllfkpe04bj30eo09z74c.jpg" alt=""></p>
 <ul>
 <li><p><strong>用户界面</strong> －包括地址栏、后退/前进按钮、书签目录等，也就是你所看到的除了页面显示窗口之外的其他部分</p>
 </li>
@@ -79,19 +79,19 @@
 <p><strong>Webkit</strong>：Safari 内核，也是 Chrome 内核原型，主要是 Safari 浏览器在使用的内核，也是特性上表现较好的浏览器内核。也被大量使用在移动端浏览器上。</p>
 <p><strong>Blink</strong>： 由 Google 和 Opera Software 开发，在Chrome（28及往后版本）、Opera（15及往后版本）和Yandex浏览器中使用。Blink 其实是 Webkit 的一个分支，添加了一些优化的新特性，例如跨进程的 iframe，将 DOM 移入 JavaScript 中来提高 JavaScript 对 DOM 的访问速度等，目前较多的移动端应用内嵌的浏览器内核也渐渐开始采用 Blink。</p>
 <h3 id="渲染引擎的工作流程"><a href="#渲染引擎的工作流程" class="headerlink" title="渲染引擎的工作流程"></a>渲染引擎的工作流程</h3><p>浏览器渲染引擎最重要的工作就是将 HTML 和 CSS 文档解析组合最终渲染到浏览器窗口上。如下图所示，渲染引擎在接受到 HTML 文件后主要进行了以下操作：解析 HTML 构建 DOM 树 -&gt; 构建渲染树 -&gt; 渲染树布局 -&gt; 渲染树绘制。</p>
-<p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt=""> </p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fllfkzy0elj30hr02gmx3.jpg" alt=""></p>
 <p>解析 HTML 构建 DOM 树时渲染引擎会将 HTML 文件的便签元素解析成多个 DOM 元素对象节点，并且将这些节点根据父子关系组成一个树结构。同时 CSS 文件被解析成 CSS 规则表，然后将每条 CSS 规则按照「从右向左」的方式在 DOM 树上进行逆向匹配，生成一个具有样式规则描述的 DOM 渲染树。接下来就是将渲染树进行布局、绘制的过程。首先根据 DOM 渲染树上的样式规则，对 DOM 元素进行大小和位置的定位，关键属性如 <code>position;width;margin;padding;top;border;...</code>，接下来再根据元素样式规则中的 <code>color;background;shadow;...</code>规则进行绘制。</p>
 <p>另外，这个过程是逐步完成的，为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，并不会等到所有的 html 都解析完成之后再去构建和布局 render 树。它是解析完一部分内容就显示一部分内容，同时，可能还在通过网络下载其余内容。</p>
 <p>再者，需要注意的是，在浏览器渲染完首屏页面后，如果对 DOM 进行操作会引起浏览器引擎对 DOM 渲染树的重新布局和重新绘制，我们叫做「重排」和「重绘」，由于重排和重绘是前后依赖的关系，重绘发生时未必会触发渲染引擎的重排，但是如果发生了重排就必然会触发重绘操作，这样带来的性能损害就是巨大的。因此我们在做性能优化的时候应该遵循「避免重排；减少重绘」的原则。</p>
 <h3 id="不同浏览器内核间的差异"><a href="#不同浏览器内核间的差异" class="headerlink" title="不同浏览器内核间的差异"></a>不同浏览器内核间的差异</h3><p>在不同的浏览器内核下， 浏览器页面渲染的流程略有不同</p>
-<p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt=""> </p>
-<p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt=""> </p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fllflc4s2xj30hj08e74d.jpg" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fllfm1l1b1j30hq08f0tj.jpg" alt=""> </p>
 <p>上面两幅图分别是 Webkit 和 Geoko 内核渲染 DOM 的工作流程，对比可以看出，两者的区别主要在于 CSS 样式表的解析时机，Webkit 内核下，HTML 和 CSS 文件的解析是同步的，而 Geoko 内核下，CSS 文件需要等到 HTML 文件解析成内容 Sink 后才进行解析。</p>
 <p>另外描述术语也有不同，除此之外两者的流程就基本相同了，其中最重要的三个部分就是 「HTML 的解析」「CSS 的解析」「渲染树的生成」。这三个部分的原理比较深，会涉及到「词法分析」「语法分析」「转换」「解释」等数据结构的知识，比较枯燥，一般我们了解到这里就够了，想深入了解的同学可以阅读此篇译文，浏览器的工作原理，里面详细的解释了以上三个部分的流程和原理。此处就不再多做赘述了。</p>
 <h3 id="关于-CSS-规则的匹配"><a href="#关于-CSS-规则的匹配" class="headerlink" title="关于 CSS 规则的匹配"></a>关于 CSS 规则的匹配</h3><p>上面我们提到过， CSS 规则是按照「从右向左」的方式在 DOM 树上进行逆向匹配的，最终生成一个具有样式规则描述的 DOM 渲染树。</p>
 <p>但是你知道为什么要「从右向左」做逆向匹配吗？</p>
 <p>我们重新回看【webkit 内核工作流程图】</p>
-<p><img src="http://mmbiz.qpic.cn/mmbiz_png/btsCOHx9LANSCo7tRk0bhhkvYL9jmFG0iakZCSDh7jBKHlNY9V8ibTVnzJ2L1F2ILaJK214vc4IuH0lw4gbupnfQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""> </p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fllfmecm8zj30hs08d74d.jpg" alt=""></p>
 <p>CSS 规则匹配是发生在webkit引擎的「Attachment」过程中，浏览器要为每个 DOM Tree 中的元素扩充 CSS 样式规则（匹配 Style Rules）。对于每个 DOM 元素，必须在所有 Style Rules 中找到符合的 selector 并将对应的规则进行合并。选择器的「解析」实际是在这里执行的，在遍历 DOM Tree 时，从 Style Rules 中去寻找对应的 selector。</p>
 <p>我们来举一个最简单的栗子：</p>
 <pre><code>&lt;template&gt;
@@ -116,7 +116,7 @@ div .t p {
 }
 &lt;/style&gt;
 </code></pre><p>此处我们有一个 html 元素 和一个 style 元素，两者需要做遍历匹配</p>
-<p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt=""> </p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fllfmlb3g2j30hg08xglk.jpg" alt=""></p>
 <p>此处会有 4*3 个匹配项，如果做正向匹配，在遇到 <code>&lt;span&gt;</code> 标签匹配 <code>div .t p{color: red; }</code> 到匹配项时，计算机首先要找到 <code>&lt;span&gt;</code> 标签的父标签和祖父标签，判断他们是否满足 <code>div .t</code>的规则，然后再匹配 <code>&lt;span&gt;</code>是否为 <code>p</code>标签，此处匹配不成功，产生了三次浪费。</p>
 <p>如果时逆向匹配，那么第一次对比是否为p标签便可排除此规则，效率更高。</p>
 <p>如果将 HTML 结构变复杂，CSS 规则表变庞大，那么，「逆向匹配」的优势就远大于「正向匹配」了，因为匹配的情况远远低于不匹配的情况。另外，如果在选择器结尾加上通配符「*」，那么「逆向匹配」的优势就大打折扣了，这也就是很多优化原则提到的「尽量避免在选择器末尾添加通配符」的原因。</p>
@@ -527,9 +527,9 @@ io.on(&#39;connection&#39;, function(socket) {
         
         <tags>
             
-            <tag> node.js </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> node.js </tag>
             
         </tags>
         
@@ -1515,7 +1515,7 @@ function state_Change() //这里是回调函数
 
 }
 </code></pre><h3 id="3-原生写法中的注意点"><a href="#3-原生写法中的注意点" class="headerlink" title="3.原生写法中的注意点"></a>3.原生写法中的注意点</h3><p>(1).open() 的第三个参数中使用了 “true”,该参数规定请求是否异步处理，默认是异步。True 表示脚本会在 send() 方法之后继续执行，而不等待来自服务器的响应。</p>
-<p>(2).关于readyState<img src="http://mmbiz.qpic.cn/mmbiz_png/btsCOHx9LAP4LlocLQthsghfkrKrOsBpJezrISibAmuGdQthvQibZDzS5OXK8wccrXuGMMJESc9DGXUdywrjAPBQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""> </p>
+<p>(2).关于readyState<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fllfps9jy7j30mc05mmxi.jpg" alt=""></p>
 <p>(3).关于status 由服务器返回的 HTTP 状态代码，200 表示成功，而 404 表示 “Not Found” 错误。当 readyState 小于 3 的时候读取这一属性会导致一个异常。(后面会有http状态码的详细解读)</p>
 <h2 id="三-JQuery中的Ajax"><a href="#三-JQuery中的Ajax" class="headerlink" title="三.JQuery中的Ajax"></a>三.JQuery中的Ajax</h2><p>JQuery对原生Ajax做了很好的封装，使用起来非常简单方便,具体的很多方法如 $.ajax，$.post， $.get， $.getJSON等能根据不同需要进行调用，写法更加简洁，但是为了兼顾各个方法在这里我以一个通用的方法 $.ajax为例做一个简单的解析,按照下面的模式写好各个参数,就能成功进行Ajax的请求了,可能在实际中使用 $.post， $.get 这两个方法使用比较多，但是<strong>理**</strong>解$.ajax 这个通用的方法能对封装原理有很好的认识。**</p>
 <pre><code> $.ajax({
@@ -1550,7 +1550,8 @@ function state_Change() //这里是回调函数
 
  })
 </code></pre><h2 id="四-GET-or-POST？"><a href="#四-GET-or-POST？" class="headerlink" title="四.GET or POST？"></a>四.GET or POST？</h2><p>作为Ajax最常用的两种数据提交方式，GET和POST有着自己的特点和适用场景，<strong>正确区分GET和POST的不同并根据实际需要进行选用在开发中十分重要，简单但是关键</strong>！</p>
-<p>先上一张GET 和 POST的比较图，从这张图中可以看出两者之间的差别：<img src="http://mmbiz.qpic.cn/mmbiz_png/btsCOHx9LAP4LlocLQthsghfkrKrOsBpNgR8icmcGtSBTkjOuWSOzRuZTj0gBrYrzFBsuF7nAfNSu9lu1pW8f3w/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""> </p>
+<p>先上一张GET 和 POST的比较图，从这张图中可以看出两者之间的差别：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fllfq8vt89j30m40d3gmt.jpg" alt=""></p>
 <p><strong>从表格中拎出关键点：</strong> 1.传递数据的方式不同：get是直接把请求数据放在url的后面，是可见的，post的请求数据不会显示在url中，是不可见的。 2.数据长度和数据类型的差异：get有数据长度的的限制，且数据类型只允许ASCII字符，post在这两方面都没有限制。 3.安全性的差异：get不安全，post更安全。</p>
 <p><strong>由此得出的两者的使用场景</strong>：get使用较方便，适用于页面之间非敏感数据的简单传值，post使用较为安全，适用于向服务器发送密码、token等敏感数据。</p>
 <h2 id="五-success和complete的区别"><a href="#五-success和complete的区别" class="headerlink" title="五.success和complete的区别"></a>五.success和complete的区别</h2><p>JQuery封装的Ajax回调函数中，success、error、complete是最常用的三个，其中，success和error很好区别，一个是请求成功调用的，另一个是请求失败调用的，从字面上就可以理解。但是success和complete容易混淆，在这里特别做一个说明：</p>
@@ -1567,100 +1568,70 @@ function state_Change() //这里是回调函数
 <h2 id="九-再议HTTP状态码"><a href="#九-再议HTTP状态码" class="headerlink" title="九.再议HTTP状态码"></a>九.再议HTTP状态码</h2><p>前面提到的”200”、”404”只是http状态码中常见的两个，当浏览者访问一个网页时，浏览者的浏览器会向网页所在服务器发出请求。当浏览器接收并显示网页前，此网页所在的服务器会返回一个包含HTTP状态码的信息头（server header）用以响应浏览器的请求。</p>
 <p>需要掌握的常见http状态码大致有以下一些：</p>
 <pre><code>
-1. 
-101：切换协议，服务器根据客户端的请求切换协议
+1. 101：切换协议，服务器根据客户端的请求切换协议
 
-2. 
-**200：请求成功。一般用于GET与POST请求**
+2. **200：请求成功。一般用于GET与POST请求**
 
-3. 
-**301：永久重定向**
+3. **301：永久重定向**
 
-4. 
-**302：临时重定向**
+4. **302：临时重定向**
 
-5. 
-303：与301类似。使用GET和POST请求查看
+5. 303：与301类似。使用GET和POST请求查看
 
-6. 
-**304：请求资源未修改，使用缓存**
+6. **304：请求资源未修改，使用缓存**
 
-7. 
-307：与302类似。使用GET请求重定向
+7. 307：与302类似。使用GET请求重定向
 
-8. 
-**404：客户端请求失败**
+8. **404：客户端请求失败**
 
-9. 
-408：请求超时
+9. 408：请求超时
 
-10. 
-**500：内部服务器错误，无法完成请求**
+10. **500：内部服务器错误，无法完成请求**
 
-11. 
-505:服务器不支持请求的HTTP协议的版本，无法完成处理
+11. 505:服务器不支持请求的HTTP协议的版本，无法完成处理
 </code></pre><h2 id="十-不可忽视的HTTP头文件"><a href="#十-不可忽视的HTTP头文件" class="headerlink" title="十.不可忽视的HTTP头文件"></a>十.不可忽视的HTTP头文件</h2><p>http请求中的一个重要关注点就是请求头和响应头的内容，从这两个头文件中可以看出很多东西，当我们用发送一个ajax请求的时候，如果没有达到预期的效果，那么就需要打开浏览器的调试工具，从NetWork中找到相应的ajax请求，再通过查看请求头和响应头的信息，大体会知道这次请求的结果是怎么样的，结合响应的主体内容，可以很快找到问题。所以学会看http的头文件信息是前端开发中必须掌握的一个技能，下面就来看看具体的头文件信息。</p>
-<p>首先随便上一张sf中的完成一个搜索结果的http请求，可以从图中的右侧清楚看到请求头和响应头的内容，包括了很多个字段信息，这些字段信息就是我们需要掌握的知识点，下面挑出其中的重点字段进行分析。<img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt=""> </p>
+<p>首先随便上一张sf中的完成一个搜索结果的http请求，可以从图中的右侧清楚看到请求头和响应头的内容，包括了很多个字段信息，这些字段信息就是我们需要掌握的知识点，下面挑出其中的重点字段进行分析。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fllfu0gundj30md0cu75k.jpg" alt=""> </p>
 <h3 id="1-请求头信息："><a href="#1-请求头信息：" class="headerlink" title="1.请求头信息："></a>1.请求头信息：</h3><pre><code>
-1. 
-Accept：客户端支持的数据类型
+1. Accept：客户端支持的数据类型
 
-2. 
-Accept-Charset：客户端采用的编码
+2. Accept-Charset：客户端采用的编码
 
-3. 
-Accept-Encoding：客户端支持的数据压缩格式
+3. Accept-Encoding：客户端支持的数据压缩格式
 
-4. 
-Accept-Language：客户端的语言环境
+4. Accept-Language：客户端的语言环境
 
-5. 
-Cookie：客服端的cookie
+5. Cookie：客服端的cookie
 
-6. 
-Host：请求的服务器地址
+6. Host：请求的服务器地址
 
-7. 
-Connection：客户端与服务连接类型
+7. Connection：客户端与服务连接类型
 
-8. 
-If-Modified-Since:上一次请求资源的缓存时间，与Last-Modified对应
+8. If-Modified-Since:上一次请求资源的缓存时间，与Last-Modified对应
 
-9. 
-If-None-Match：客户段缓存数据的唯一标识，与Etag对应
+9. If-None-Match：客户段缓存数据的唯一标识，与Etag对应
 
-10. 
-Referer:发起请求的源地址。
+10. Referer:发起请求的源地址。
 </code></pre><h3 id="2-响应头信息："><a href="#2-响应头信息：" class="headerlink" title="2.响应头信息："></a>2.响应头信息：</h3><pre><code>
-1. 
-content-encoding：响应数据的压缩格式。
+1. content-encoding：响应数据的压缩格式。
 
-2. 
-content-length：响应数据的长度。
+2. content-length：响应数据的长度。
 
-3. 
-content-language：语言环境。
+3. content-language：语言环境。
 
-4. 
-content-type：响应数据的类型。
+4. content-type：响应数据的类型。
 
-5. 
-Date:消息发送的时间
+5. Date:消息发送的时间
 
-6. 
-Age:经过的时间
+6. Age:经过的时间
 
-7. 
-Etag:被请求变量的实体值,用于判断请求的资源是否发生变化
+7. Etag:被请求变量的实体值,用于判断请求的资源是否发生变化
 
-8. 
-Expires：缓存的过期时间
+8. Expires：缓存的过期时间
 
-9. 
-Last-Modified：在服务器端最后被修改的时间
+9. Last-Modified：在服务器端最后被修改的时间
 
-10. 
-server：服务器的型号
+10. server：服务器的型号
 </code></pre><h3 id="3-两者都可能出现的消息"><a href="#3-两者都可能出现的消息" class="headerlink" title="3.两者都可能出现的消息"></a>3.两者都可能出现的消息</h3><p>Pragma：是否缓存(http1.0提出) Cache-Control:是否缓存(http1.1提出)</p>
 <h3 id="4-跟缓存相关的字段"><a href="#4-跟缓存相关的字段" class="headerlink" title="4.跟缓存相关的字段"></a>4.跟缓存相关的字段</h3><p>(1) 强制缓存 expire 和 cache-control</p>
 <p>(2) 对比缓存 Last-Modified 和 If-Modified-Since Etag 和 If-None-Match</p>
@@ -4222,9 +4193,9 @@ GET /employees?offset=20&amp;limit=10
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> 前端架构设计 </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -5807,9 +5778,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -6781,9 +6752,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -7030,9 +7001,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
