@@ -249,20 +249,6 @@ $(&#39;.scroller&#39;).on(&#39;touchmove&#39;,&#39;.btn&#39;,function(e){
 <p>另外，如果你有比较好的优化点想要扩充，欢迎下方评论。</p>
 ]]></content>
       
-        <categories>
-            
-            <category> 前端技术 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 前端技术 </tag>
-            
-            <tag> 前端优化 </tag>
-            
-        </tags>
         
     </entry>
     
