@@ -1,291 +1,776 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
+
+    
   <url>
     <loc>http://pancakeawesome.ink/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9.html</loc>
-    
     <lastmod>2017-11-21T08:27:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>列举一些前端优化点</title>
+        <pubTime>2017-11-21T08:03:55.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/Ajax-%E7%9A%84%E5%85%A8%E9%9D%A2%E6%80%BB%E7%BB%93.html</loc>
-    
     <lastmod>2017-11-17T14:14:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>Ajax 的全面总结</title>
+        <pubTime>2017-11-06T11:19:17.000Z</pubTime>
+        
+        <tag>javascript </tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://pancakeawesome.ink/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E6%B5%8F%E8%A7%88%E5%99%A8%E3%80%8C%E5%86%85%E6%A0%B8%E3%80%8D%E9%83%BD%E5%81%9A%E4%BA%86%E4%BA%9B%E4%BB%80%E4%B9%88%EF%BC%9F.html</loc>
-    
     <lastmod>2017-11-17T14:14:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>浏览器「内核」都做了些什么？</title>
+        <pubTime>2017-11-17T13:11:03.000Z</pubTime>
+        
+        <tag>javascript </tag>
+         
+        <tag>网络 </tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://pancakeawesome.ink/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/JavaScript-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%8F%8A-V8-%E4%BC%98%E5%8C%96.html</loc>
-    
     <lastmod>2017-11-17T13:18:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript 内存管理及 V8 优化</title>
+        <pubTime>2017-11-13T11:44:52.000Z</pubTime>
+        
+        <tag>javascript </tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://pancakeawesome.ink/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E6%88%91%E6%89%80%E8%AE%A4%E8%AF%86%E7%9A%84JavaScript%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html</loc>
-    
     <lastmod>2017-11-17T13:09:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>我所认识的JavaScript正则表达式</title>
+        <pubTime>2017-11-17T12:58:02.000Z</pubTime>
+        
+        <tag>javascript </tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://pancakeawesome.ink/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/10%E5%A4%A7%E4%BD%BF%E7%94%A8Node-js%E7%9A%84%E7%90%86%E7%94%B1.html</loc>
-    
     <lastmod>2017-11-15T13:54:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>10大使用Node.js的理由</title>
+        <pubTime>2017-11-15T11:22:48.000Z</pubTime>
+        
+        <tag>node.js </tag>
+         
+        <tag>javascript </tag>
+         
+         
+           
+             
+              <breadCrumb title="node.js" url="http://pancakeawesome.ink/categories/node-js/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/nodejs%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B.html</loc>
-    
     <lastmod>2017-11-15T11:52:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>nodejs初级教程</title>
+        <pubTime>2017-10-16T14:35:09.000Z</pubTime>
+        
+        <tag>node.js </tag>
+         
+         
+           
+             
+              <breadCrumb title="node.js" url="http://pancakeawesome.ink/categories/node-js/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/JavaScript-TypeScript-%E5%85%A5%E9%97%A8.html</loc>
-    
     <lastmod>2017-11-14T13:05:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript => TypeScript 入门</title>
+        <pubTime>2017-11-14T12:34:11.000Z</pubTime>
+        
+        <tag>typescript </tag>
+         
+         
+           
+             
+              <breadCrumb title="typescript" url="http://pancakeawesome.ink/categories/typescript/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E6%B5%85%E6%9E%90%E7%BD%91%E7%AB%99%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.html</loc>
-    
     <lastmod>2017-11-13T13:03:54.000Z</lastmod>
+    <data>
+        <display>
+        <title>浅析网站工作原理</title>
+        <pubTime>2017-11-13T11:15:35.000Z</pubTime>
+        
+        <tag>网络 </tag>
+         
+        <tag>http协议 </tag>
+         
+         
+           
+             
+              <breadCrumb title="网络" url="http://pancakeawesome.ink/categories/%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E9%87%8D%E6%B8%A9ES6%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95.html</loc>
-    
     <lastmod>2017-11-08T11:42:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>重温ES6核心概念和基本用法</title>
+        <pubTime>2017-11-08T11:17:15.000Z</pubTime>
+        
+        <tag>javascript </tag>
+         
+        <tag>es6 </tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://pancakeawesome.ink/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%A0%94%E7%A9%B6%E7%AC%94%E8%AE%B0.html</loc>
-    
     <lastmod>2017-11-07T06:04:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>数据可视化研究笔记</title>
+        <pubTime>2017-10-20T07:21:09.000Z</pubTime>
+        
+        <tag>数据可视化 </tag>
+         
+        <tag>读书笔记 </tag>
+         
+         
+           
+             
+              <breadCrumb title="数据可视化" url="http://pancakeawesome.ink/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/react%E5%AE%9E%E6%88%98-%E6%89%93%E9%80%A0%E7%94%BB%E5%BB%8A%E9%A1%B9%E7%9B%AE%EF%BC%88%E4%BA%8C%EF%BC%89.html</loc>
-    
     <lastmod>2017-11-06T14:51:28.000Z</lastmod>
+    <data>
+        <display>
+        <title>react实战--打造画廊项目（二）</title>
+        <pubTime>2017-10-31T11:48:05.000Z</pubTime>
+        
+        <tag>前端技术 </tag>
+         
+        <tag>前端工具 </tag>
+         
+        <tag>react </tag>
+         
+         
+           
+             
+              <breadCrumb title="react" url="http://pancakeawesome.ink/categories/react/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html</loc>
-    
     <lastmod>2017-11-03T14:01:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>初识Pandas</title>
+        <pubTime>2017-11-03T12:29:34.000Z</pubTime>
+        
+        <tag>数据分析 </tag>
+         
+        <tag>Python </tag>
+         
+        <tag>可视化 </tag>
+         
+         
+           
+             
+              <breadCrumb title="数据分析" url="http://pancakeawesome.ink/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E4%BD%BF%E7%94%A8-await-%E5%87%8F%E5%B0%91%E5%9B%9E%E8%B0%83%E5%B5%8C%E5%A5%97.html</loc>
-    
     <lastmod>2017-11-03T11:52:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript异步编程（二）</title>
+        <pubTime>2017-11-01T15:40:14.000Z</pubTime>
+        
+        <tag>javascript </tag>
+         
+        <tag>es6 </tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://pancakeawesome.ink/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E5%82%BB%E5%82%BB%E5%88%86%E4%B8%8D%E6%B8%85%E7%9A%84-proto-%E4%B8%8Eprototype.html</loc>
-    
     <lastmod>2017-11-02T09:30:57.000Z</lastmod>
+    <data>
+        <display>
+        <title>__proto__与prototype</title>
+        <pubTime>2017-11-01T15:04:02.000Z</pubTime>
+        
+        <tag>javascript </tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://pancakeawesome.ink/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/webpack%E7%AE%80%E6%98%93%E9%85%8D%E7%BD%AE%E5%85%A5%E9%97%A8.html</loc>
-    
     <lastmod>2017-11-02T09:30:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>webpack简易配置入门</title>
+        <pubTime>2017-11-01T01:37:52.000Z</pubTime>
+        
+        <tag>前端工具 </tag>
+         
+        <tag>webpack </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端工具" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/CSS3-transform%E7%89%B9%E6%80%A7%E6%95%99%E7%A8%8B.html</loc>
-    
     <lastmod>2017-11-02T09:30:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>CSS3 transform特性教程</title>
+        <pubTime>2017-11-01T07:16:54.000Z</pubTime>
+        
+        <tag>css </tag>
+         
+        <tag>css3 </tag>
+         
+         
+           
+             
+              <breadCrumb title="css" url="http://pancakeawesome.ink/categories/css/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E4%BD%BF%E7%94%A8%E5%90%88%E9%80%82%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%80%E6%AD%A5%E6%AD%A5%E4%BC%98%E5%8C%96%E5%89%8D%E7%AB%AF%E4%BB%A3%E7%A0%81.html</loc>
-    
     <lastmod>2017-11-02T09:30:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用合适的设计模式一步步优化前端代码</title>
+        <pubTime>2017-11-01T14:57:57.000Z</pubTime>
+        
+        <tag>javascript </tag>
+         
+        <tag>设计模式 </tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript设计模式" url="http://pancakeawesome.ink/categories/javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E6%88%91%E4%BA%86%E8%A7%A3%E5%88%B0%E7%9A%84JavaScript%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B.html</loc>
-    
     <lastmod>2017-11-02T09:30:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript异步编程（一）</title>
+        <pubTime>2017-11-01T15:39:46.000Z</pubTime>
+        
+        <tag>javascript </tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://pancakeawesome.ink/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E5%85%A5%E9%97%A8Webpack%EF%BC%8C%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86.html</loc>
-    
     <lastmod>2017-11-01T06:19:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>入门Webpack，看这篇就够了</title>
+        <pubTime>2017-09-12T11:15:16.000Z</pubTime>
+        
+        <tag>前端技术 </tag>
+         
+        <tag>前端工具 </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端工具" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8sass(%E8%AF%AD%E6%B3%95%E7%AF%87).html</loc>
-    
     <lastmod>2017-11-01T03:35:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>系统入门sass（语法篇）</title>
+        <pubTime>2017-09-19T15:15:06.000Z</pubTime>
+        
+        <tag>css </tag>
+         
+        <tag>前端技术 </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/react%E5%AE%9E%E6%88%98-%E6%89%93%E9%80%A0%E7%94%BB%E5%BB%8A%E9%A1%B9%E7%9B%AE.html</loc>
-    
     <lastmod>2017-10-31T11:48:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>react实战--打造画廊项目（一）</title>
+        <pubTime>2017-10-12T13:41:18.000Z</pubTime>
+        
+        <tag>前端技术 </tag>
+         
+        <tag>前端工具 </tag>
+         
+        <tag>react </tag>
+         
+         
+           
+             
+              <breadCrumb title="react" url="http://pancakeawesome.ink/categories/react/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E5%9F%BA%E4%BA%8EES6%E8%AF%AD%E6%B3%95%E7%9A%84React%E9%87%8D%E6%9E%84.html</loc>
-    
     <lastmod>2017-10-30T15:44:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>基于ES6语法的React重构</title>
+        <pubTime>2017-10-30T14:06:20.000Z</pubTime>
+        
+        <tag>react </tag>
+         
+        <tag>es6 </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端框架" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8sass(%E5%9F%BA%E7%A1%80%E7%AF%87).html</loc>
-    
     <lastmod>2017-10-23T12:11:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>系统入门sass（基础篇）</title>
+        <pubTime>2017-09-18T13:56:57.000Z</pubTime>
+        
+        <tag>css </tag>
+         
+        <tag>前端技术 </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/scrum%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91.html</loc>
-    
     <lastmod>2017-10-23T09:05:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>scrum敏捷开发</title>
+        <pubTime>2017-10-23T04:46:37.000Z</pubTime>
+        
+        <tag>软件开发 </tag>
+         
+         
+           
+             
+              <breadCrumb title="软件开发" url="http://pancakeawesome.ink/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E6%B5%85%E6%9E%90react.html</loc>
-    
     <lastmod>2017-10-23T02:17:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>浅析react</title>
+        <pubTime>2017-10-20T14:36:42.000Z</pubTime>
+        
+        <tag>前端技术 </tag>
+         
+        <tag>前端框架 </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端框架" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
-  <url>
-    <loc>http://pancakeawesome.ink/aboutMe/index.html</loc>
     
-    <lastmod>2017-10-20T07:40:22.000Z</lastmod>
-    
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/RESTful-API%E8%AE%BE%E8%AE%A1%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5.html</loc>
-    
     <lastmod>2017-10-16T13:03:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>RESTful API设计最佳实践</title>
+        <pubTime>2017-10-16T08:08:39.000Z</pubTime>
+        
+        <tag>前端架构设计 </tag>
+         
+        <tag>前端技术 </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端架构设计" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E4%B8%89%E7%A7%8Dweb%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86%E7%9A%84%E6%96%B9%E5%BC%8F.html</loc>
-    
     <lastmod>2017-10-16T09:16:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>三种web会话管理的方式</title>
+        <pubTime>2017-10-16T08:07:54.000Z</pubTime>
+        
+        <tag>前端技术 </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/compass%E9%87%8D%E8%A6%81%E5%8A%9F%E8%83%BD%E4%B9%8B%E7%B2%BE%E7%81%B5%E5%9B%BE%E5%90%88%E5%9B%BE.html</loc>
-    
     <lastmod>2017-10-12T13:25:35.000Z</lastmod>
+    <data>
+        <display>
+        <title>compass重要功能之精灵图合图</title>
+        <pubTime>2017-10-10T13:40:39.000Z</pubTime>
+        
+        <tag>css </tag>
+         
+        <tag>前端工具，前端技术 </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD%E4%B9%8Bcompass.html</loc>
-    
     <lastmod>2017-10-12T12:10:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>前端必备技能之compass</title>
+        <pubTime>2017-09-28T04:57:33.000Z</pubTime>
+        
+        <tag>css </tag>
+         
+        <tag>前端技术 </tag>
+         
+        <tag>前端工具 </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端工具" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E4%B8%89%E5%88%86%E9%92%9F%E5%85%A5%E9%97%A8markdown.html</loc>
-    
     <lastmod>2017-10-03T15:03:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>三分钟入门markdown</title>
+        <pubTime>2017-09-18T13:06:45.000Z</pubTime>
+        
+        <tag>blog </tag>
+         
+         
+           
+             
+              <breadCrumb title="blog" url="http://pancakeawesome.ink/categories/blog/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/hexo+githubio+material%E6%90%AD%E5%BB%BA%E4%BD%A0%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99(%E4%BC%98%E5%8C%96%E7%AF%87).html</loc>
-    
     <lastmod>2017-10-02T03:30:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>hexo+githubio+material搭建你的个人博客网站（优化篇）</title>
+        <pubTime>2017-09-23T11:51:23.000Z</pubTime>
+        
+        <tag>blog </tag>
+         
+         
+           
+             
+              <breadCrumb title="blog" url="http://pancakeawesome.ink/categories/blog/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%BF%B7%E6%80%9D.html</loc>
-    
     <lastmod>2017-10-01T06:39:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>动态规划迷思</title>
+        <pubTime>2017-09-15T07:21:08.000Z</pubTime>
+        
+        <tag>算法思想 </tag>
+         
+        <tag>知乎 </tag>
+         
+         
+           
+             
+              <breadCrumb title="算法思想" url="http://pancakeawesome.ink/categories/%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
-  <url>
-    <loc>http://pancakeawesome.ink/timeline/index.html</loc>
     
-    <lastmod>2017-10-01T03:04:38.000Z</lastmod>
     
-  </url>
-  
-  <url>
-    <loc>http://pancakeawesome.ink/tags/index.html</loc>
     
-    <lastmod>2017-10-01T03:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://pancakeawesome.ink/gallery/index.html</loc>
-    
-    <lastmod>2017-10-01T02:59:58.000Z</lastmod>
-    
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/yeoman+bower+gulp-grunt%E6%9E%84%E5%BB%BA%E7%8E%B0%E4%BB%A3%E5%8C%96%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE.html</loc>
-    
     <lastmod>2017-09-30T09:06:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>yeoman+bower+gulp/grunt构建现代化前端项目</title>
+        <pubTime>2017-09-29T14:44:40.000Z</pubTime>
+        
+        <tag>前端技术 </tag>
+         
+        <tag>前端工具 </tag>
+         
+         
+           
+             
+              <breadCrumb title="前端工具" url="http://pancakeawesome.ink/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/hexo+githubio+material%E6%90%AD%E5%BB%BA%E4%BD%A0%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2(%E5%9F%BA%E7%A1%80%E7%AF%87).html</loc>
-    
     <lastmod>2017-09-30T09:06:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>hexo+githubio+material搭建你的个人博客（基础篇）</title>
+        <pubTime>2017-09-15T08:50:58.000Z</pubTime>
+        
+        <tag>blog </tag>
+         
+         
+           
+             
+              <breadCrumb title="blog" url="http://pancakeawesome.ink/categories/blog/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
   <url>
     <loc>http://pancakeawesome.ink/hexo+githubio+material%E6%90%AD%E5%BB%BA%E4%BD%A0%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99(%E4%B8%BB%E9%A2%98%E7%AF%87).html</loc>
-    
     <lastmod>2017-09-30T09:05:57.000Z</lastmod>
+    <data>
+        <display>
+        <title>hexo+githubio+material搭建你的个人博客网站（主题篇）</title>
+        <pubTime>2017-09-20T13:52:02.000Z</pubTime>
+        
+        <tag>blog </tag>
+         
+         
+           
+             
+              <breadCrumb title="blog" url="http://pancakeawesome.ink/categories/blog/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
-  </url>
-  
-  <url>
-    <loc>http://pancakeawesome.ink/google95f136b95dd8d2b7.html</loc>
-    
-    <lastmod>2017-09-14T04:11:07.000Z</lastmod>
-    
-  </url>
-  
 </urlset>
