@@ -81,34 +81,7 @@
 &lt;/style&gt;
 &lt;!--推荐--&gt;
 &lt;linkrel=&quot;stylesheet&quot;href=&quot;//cdn1.domain.com/path/main.css&quot;&gt;
-</code></pre><h3 id="页面渲染类"><a href="#页面渲染类" class="headerlink" title="页面渲染类"></a>页面渲染类</h3><h4 id="1．把-CSS-资源引用放到-HTML-文件顶部"><a href="#1．把-CSS-资源引用放到-HTML-文件顶部" class="headerlink" title="1．把 CSS 资源引用放到 HTML 文件顶部"></a>1．把 CSS 资源引用放到 HTML 文件顶部</h4><p>一般推荐将所有 CSS 资源尽早指定在 HTML 文档 <code>&lt;head&gt;</code> 中，这样浏览器可以优先下载 CSS 并尽早完成页面渲染。</p>
-<h4 id="2．JavaScript-资源引用放到-HTML-文件底部"><a href="#2．JavaScript-资源引用放到-HTML-文件底部" class="headerlink" title="2．JavaScript 资源引用放到 HTML 文件底部"></a>2．JavaScript 资源引用放到 HTML 文件底部</h4><p>JavaScript 资源放到 HTML 文档底部可以防止 JavaScript 的加载和解析执行对页面渲染造成阻塞。由于 JavaScript 资源默认是解析阻塞的，除非被标记为异步或者通过其他的异步方式加载，否则会阻塞 HTML DOM 解析和 CSS 渲染的过程。</p>
-<h4 id="3．尽量预先设定图片等大小"><a href="#3．尽量预先设定图片等大小" class="headerlink" title="3．尽量预先设定图片等大小"></a>3．尽量预先设定图片等大小</h4><p>在加载大量的图片元素时，尽量预先限定图片的尺寸大小，否则在图片加载过程中会更新图片的排版信息，产生大量的重排</p>
-<h4 id="4．不要在-HTML-中直接缩放图片"><a href="#4．不要在-HTML-中直接缩放图片" class="headerlink" title="4．不要在 HTML 中直接缩放图片"></a>4．不要在 HTML 中直接缩放图片</h4><p>在 HTML 中直接缩放图片会导致页面内容的重排重绘，此时可能会使页面中的其他操作产生卡顿，因此要尽量减少在页面中直接进行图片缩放。</p>
-<h4 id="5．减少-DOM-元素数量和深度"><a href="#5．减少-DOM-元素数量和深度" class="headerlink" title="5．减少 DOM 元素数量和深度"></a>5．减少 DOM 元素数量和深度</h4><p>HTML 中标签元素越多，标签的层级越深，浏览器解析 DOM 并绘制到浏览器中所花的时间就越长，所以应尽可能保持 DOM 元素简洁和层级较少。</p>
-<pre><code>&lt;!--不推荐--&gt;
-&lt;div&gt;
-    &lt;span&gt;
-        &lt;ahref=&quot;javascript:void(0);&quot;&gt;
-            &lt;imgsrc=&quot;./path/photo.jpg&quot;alt=&quot;图片&quot;&gt;
-        &lt;/a&gt;
-    &lt;/span&gt;
-&lt;/div&gt;
-&lt;!--推荐--&gt;
-&lt;imgsrc=&quot;./path/photo.jpg&quot;alt=&quot;图片&quot;&gt;
-</code></pre><h4 id="6．尽量避免在选择器末尾添加通配符"><a href="#6．尽量避免在选择器末尾添加通配符" class="headerlink" title="6．尽量避免在选择器末尾添加通配符"></a>6．尽量避免在选择器末尾添加通配符</h4><p>CSS 解析匹配到 渲染树的过程是从右到左的逆向匹配，在选择器末尾添加通配符至少会增加一倍多计算量。</p>
-<h4 id="7．减少使用关系型样式表的写法"><a href="#7．减少使用关系型样式表的写法" class="headerlink" title="7．减少使用关系型样式表的写法"></a>7．减少使用关系型样式表的写法</h4><p>直接使用唯一的类名即可最大限度的提升渲染引擎绘制渲染树等效率</p>
-<h4 id="8．尽量减少使用-JS-动画"><a href="#8．尽量减少使用-JS-动画" class="headerlink" title="8．尽量减少使用 JS 动画"></a>8．尽量减少使用 JS 动画</h4><p>JS 直接操作 DOM 极容易引起页面的重排</p>
-<h4 id="9．CSS-动画使用-translate、scale-代替-top、height"><a href="#9．CSS-动画使用-translate、scale-代替-top、height" class="headerlink" title="9．CSS 动画使用 translate、scale 代替 top、height"></a>9．CSS 动画使用 translate、scale 代替 top、height</h4><p>尽量使用 CSS3 的 translate、scale 属性代替 top、left 和 height、width，避免大量的重排计算</p>
-<h4 id="10．尽量避免使用-lt-table-gt-、-lt-iframe-gt"><a href="#10．尽量避免使用-lt-table-gt-、-lt-iframe-gt" class="headerlink" title="10．尽量避免使用 &lt;table&gt;、 &lt;iframe&gt;"></a>10．尽量避免使用 <code>&lt;table&gt;</code>、 <code>&lt;iframe&gt;</code></h4><p><code>&lt;table&gt;</code> 内容的渲染是将 table 的 DOM 渲染树全部生成完并一次性绘制到页面上的，所以在长表格渲染时很耗性能，应该尽量避免使用它，可以考虑使用列表元素 <code>&lt;ul&gt;</code> 代替。尽量使用异步的方式动态添加 iframe，因为 iframe 内资源的下载进程会阻塞父页面静态资源的下载与 CSS 及 HTML DOM 的解析。</p>
-<h4 id="11．避免运行耗时的-JavaScript"><a href="#11．避免运行耗时的-JavaScript" class="headerlink" title="11．避免运行耗时的 JavaScript"></a>11．避免运行耗时的 JavaScript</h4><p>长时间运行的 JavaScript 会阻塞浏览器构建 DOM 树、DOM 渲染树、渲染页面。所以，任何与页面初次渲染无关的逻辑功能都应该延迟加载执行，这和 JavaScript 资源的异步加载思路是一致的。</p>
-<h4 id="12．避免使用-CSS-表达式或-CSS-滤镜"><a href="#12．避免使用-CSS-表达式或-CSS-滤镜" class="headerlink" title="12．避免使用 CSS 表达式或 CSS 滤镜"></a>12．避免使用 CSS 表达式或 CSS 滤镜</h4><p>CSS 表达式或 CSS 滤镜的解析渲染速度是比较慢的，在有其他解决方案的情况下应该尽量避免使用。</p>
-<pre><code>//不推荐
-.opacity{
-    filter : progid :DXImageTransform.Microsoft.Alpha( opacity =50);
-}
-</code></pre><h2 id="移动端浏览器前端优化策略"><a href="#移动端浏览器前端优化策略" class="headerlink" title="移动端浏览器前端优化策略"></a>移动端浏览器前端优化策略</h2><p>相对于桌面端浏览器，移动端 Web 浏览器上有一些较为明显的特点：设备屏幕较小、新特性兼容性较好、支持一些较新的 HTML5 和 CSS3 特性、需要与 Native 应用交互等。但移动端浏览器可用的 CPU 计算资源和网络资源极为有限，因此要做好移动端 Web 上的优化往往需要做更多的事情。首先，在移动端 Web 的前端页面渲染中，桌面浏览器端上的优化规则同样适用，此外针对移动端也要做一些极致的优化来达到更好的效果。需要注意的是，并不是移动端的优化原则在桌面浏览器端就不适用，而是由于兼容性和差异性的原因，一些优化原则在移动端更具代表性。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>关于页面优化的常用技术手段和思路主要包括以上这些，尽管列举出很多，但仍可能有少数遗漏，可见前端性能优化不是一件简简单单的事情，其涉及的内容很多。大家可以根据实际情况将这些方法应用到自己的项目当中，要想全部做到几乎是不可能的，但做到用户可接受的原则还是很容易实现的。</p>
+</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>关于页面优化的常用技术手段和思路主要包括以上这些，尽管列举出很多，但仍可能有少数遗漏，可见前端性能优化不是一件简简单单的事情，其涉及的内容很多。大家可以根据实际情况将这些方法应用到自己的项目当中，要想全部做到几乎是不可能的，但做到用户可接受的原则还是很容易实现的。</p>
 <p>另外，如果你有比较好的优化点想要扩充，欢迎下方评论。</p>
 ]]></content>
       
