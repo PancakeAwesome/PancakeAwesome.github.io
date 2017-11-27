@@ -19,20 +19,6 @@
 <pre><code>&lt;linkrel=&quot;stylesheet&quot;href=&quot;//cdn.domain.com/path/main.css&quot;&gt;
 ...
 &lt;scriptsrc=&quot;//cdn.domain.com/path/main.js&quot;&gt;&lt;/script&gt;
-</code></pre><h4 id="4．避免页面中空的-href-和-src"><a href="#4．避免页面中空的-href-和-src" class="headerlink" title="4．避免页面中空的 href 和 src"></a>4．避免页面中空的 href 和 src</h4><p>当 <code>&lt;link&gt;</code>标签的 href 属性为空，或 <code>&lt;script&gt;</code>、 <code>&lt;img&gt;</code>、 <code>&lt;iframe&gt;</code>标签的 src 属性为空时，浏览器在渲染的过程中仍会将 href 属性或 src 属性中的空内容进行加载，直至加载失败，这样就阻塞了页面中其他资源的下载进程，而且最终加载到的内容是无效的，因此要尽量避免。</p>
-<pre><code>&lt;!--不推荐--&gt;
-&lt;imgsrc=&quot;&quot;alt=&quot;photo&quot;&gt;
-&lt;ahref=&quot;&quot;&gt;点击链接&lt;/a&gt;
-</code></pre><h4 id="5．为-HTML-指定-Cache-Control-或-Expires"><a href="#5．为-HTML-指定-Cache-Control-或-Expires" class="headerlink" title="5．为 HTML 指定 Cache-Control 或 Expires"></a>5．为 HTML 指定 Cache-Control 或 Expires</h4><p>为 HTML 内容设置 Cache-Control 或 Expires 可以将 HTML 内容缓存起来，避免频繁向服务器端发送请求。前面讲到，在页面 Cache-Control 或 Expires 头部有效时，浏览器将直接从缓存中读取内容，不向服务器端发送请求。</p>
-<pre><code>&lt;metahttp-equiv=&quot;Cache-Control&quot;content=&quot;max-age=7200&quot;&gt;
-&lt;metahttp-equiv=&quot;Expires&quot;content=&quot;Mon,20Jul201623:00:00GMT&quot;&gt;
-</code></pre><h4 id="6．合理设置-Etag-和-Last-Modified"><a href="#6．合理设置-Etag-和-Last-Modified" class="headerlink" title="6．合理设置 Etag 和 Last-Modified"></a>6．合理设置 Etag 和 Last-Modified</h4><p>合理设置 Etag 和 Last-Modified 使用浏览器缓存，对于未修改的文件，静态资源服务器会向浏览器端返回 304，让浏览器从缓存中读取文件，减少 Web 资源下载的带宽消耗并降低服务器负载。</p>
-<pre><code>&lt;metahttp-equiv=&quot;last-modified&quot;content=&quot;Sun,05 Nov 2017 13:45:57 GMT&quot;&gt;
-</code></pre><h4 id="7．减少页面重定向"><a href="#7．减少页面重定向" class="headerlink" title="7．减少页面重定向"></a>7．减少页面重定向</h4><p>页面每次重定向都会延长页面内容返回的等待延时，一次重定向大约需要 200 毫秒不等的时间开销（无缓存），为了保证用户尽快看到页面内容，要尽量避免页面重定向。</p>
-<h4 id="8．使用静态资源分域存放来增加下载并行数"><a href="#8．使用静态资源分域存放来增加下载并行数" class="headerlink" title="8．使用静态资源分域存放来增加下载并行数"></a>8．使用静态资源分域存放来增加下载并行数</h4><p>浏览器在同一时刻向同一个域名请求文件的并行下载数是有限的，因此可以利用多个域名的主机来存放不同的静态资源，增大页面加载时资源的并行下载数，缩短页面资源加载的时间。通常根据多个域名来分别存储 JavaScript、CSS 和图片文件。</p>
-<pre><code>&lt;linkrel=&quot;stylesheet&quot;href=&quot;//cdn1.domain.com/path/main.css&quot;&gt;
-...
-&lt;scriptsrc=&quot;//cdn2.domain.com/path/main.js&quot;&gt;&lt;/script&gt;
 </code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>关于页面优化的常用技术手段和思路主要包括以上这些，尽管列举出很多，但仍可能有少数遗漏，可见前端性能优化不是一件简简单单的事情，其涉及的内容很多。大家可以根据实际情况将这些方法应用到自己的项目当中，要想全部做到几乎是不可能的，但做到用户可接受的原则还是很容易实现的。</p>
 <p>另外，如果你有比较好的优化点想要扩充，欢迎下方评论。</p>
 ]]></content>
