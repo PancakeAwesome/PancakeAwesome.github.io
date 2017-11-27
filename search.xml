@@ -15,13 +15,13 @@
 <h2 id="PC-浏览器前端优化策略"><a href="#PC-浏览器前端优化策略" class="headerlink" title="PC 浏览器前端优化策略"></a>PC 浏览器前端优化策略</h2><p>PC 端优化的策略很多，如 YSlow（YSlow 是 Yahoo 发布的一款 Firefox 插件，现 Chrome 也可安装，可以对网站的页面性能进行分析，提出对该页面性能优化的建议）原则，或者 Chrome 自带的 Audits 等，总结起来主要包括网络加载类、页面渲染类、CSS 优化类、JavaScript 执行类、缓存类、图片类、架构协议类等几类，下面逐一介绍。</p>
 <h3 id="网络加载类"><a href="#网络加载类" class="headerlink" title="网络加载类"></a>网络加载类</h3><h4 id="1．减少-HTTP-资源请求次数"><a href="#1．减少-HTTP-资源请求次数" class="headerlink" title="1．减少 HTTP 资源请求次数"></a>1．减少 HTTP 资源请求次数</h4><p>在前端页面中，通常建议尽可能合并静态资源图片、JavaScript 或 CSS 代码，减少页面请求数和资源请求消耗，这样可以缩短页面首次访问的用户等待时间。通过构建工具合并雪碧图、CSS、JavaScript 文件等都是为了减少 HTTP 资源请求次数。另外也要尽量避免重复的资源，防止增加多余请求。</p>
 <h4 id="2．减小-HTTP-请求大小"><a href="#2．减小-HTTP-请求大小" class="headerlink" title="2．减小 HTTP 请求大小"></a>2．减小 HTTP 请求大小</h4><p>除了减少 HTTP 资源请求次数，也要尽量减小每个 HTTP 请求的大小。如减少没必要的图片、JavaScript、CSS 及 HTML 代码，对文件进行压缩优化，或者使用 gzip 压缩传输内容等都可以用来减小文件大小，缩短网络传输等待时延。前面我们使用构建工具来压缩静态图片资源以及移除代码中的注释并压缩，目的都是为了减小 HTTP 请求的大小。</p>
-<h4 id="3．将-CSS-或-JavaScript-放到外部文件中，避免使用-或-标签直接引入"><a href="#3．将-CSS-或-JavaScript-放到外部文件中，避免使用-或-标签直接引入" class="headerlink" title="3．将 CSS 或 JavaScript 放到外部文件中，避免使用 或 标签直接引入"></a>3．将 CSS 或 JavaScript 放到外部文件中，避免使用 <style>或 <script>标签直接引入</h4><p>在 HTML 文件中引用外部资源可以有效利用浏览器的静态资源缓存，但有时候在移动端页面 CSS 或 JavaScript 比较简单的情况下为了减少请求，也会将 CSS 或 JavaScript 直接写到 HTML 里面，具体要根据 CSS 或 JavaScript 文件的大小和业务的场景来分析。如果 CSS 或 JavaScript 文件内容较多，业务逻辑较复杂，建议放到外部文件引入。</p>
+<h4 id="3．将-CSS-或-JavaScript-放到外部文件中，避免使用style或-script标签直接引入"><a href="#3．将-CSS-或-JavaScript-放到外部文件中，避免使用style或-script标签直接引入" class="headerlink" title="3．将 CSS 或 JavaScript 放到外部文件中，避免使用style或 script标签直接引入"></a>3．将 CSS 或 JavaScript 放到外部文件中，避免使用<code>style</code>或 <code>script</code>标签直接引入</h4><p>在 HTML 文件中引用外部资源可以有效利用浏览器的静态资源缓存，但有时候在移动端页面 CSS 或 JavaScript 比较简单的情况下为了减少请求，也会将 CSS 或 JavaScript 直接写到 HTML 里面，具体要根据 CSS 或 JavaScript 文件的大小和业务的场景来分析。如果 CSS 或 JavaScript 文件内容较多，业务逻辑较复杂，建议放到外部文件引入。</p>
 <pre><code>&lt;linkrel=&quot;stylesheet&quot;href=&quot;//cdn.domain.com/path/main.css&quot;&gt;
 ...
 &lt;scriptsrc=&quot;//cdn.domain.com/path/main.js&quot;&gt;&lt;/script&gt;
 </code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>关于页面优化的常用技术手段和思路主要包括以上这些，尽管列举出很多，但仍可能有少数遗漏，可见前端性能优化不是一件简简单单的事情，其涉及的内容很多。大家可以根据实际情况将这些方法应用到自己的项目当中，要想全部做到几乎是不可能的，但做到用户可接受的原则还是很容易实现的。</p>
 <p>另外，如果你有比较好的优化点想要扩充，欢迎下方评论。</p>
-</style></h4>]]></content>
+]]></content>
       
         <categories>
             
