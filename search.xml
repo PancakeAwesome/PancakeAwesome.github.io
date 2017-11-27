@@ -33,54 +33,6 @@
 <pre><code>&lt;linkrel=&quot;stylesheet&quot;href=&quot;//cdn1.domain.com/path/main.css&quot;&gt;
 ...
 &lt;scriptsrc=&quot;//cdn2.domain.com/path/main.js&quot;&gt;&lt;/script&gt;
-</code></pre><h4 id="9．使用静态资源-CDN-来存储文件"><a href="#9．使用静态资源-CDN-来存储文件" class="headerlink" title="9．使用静态资源 CDN 来存储文件"></a>9．使用静态资源 CDN 来存储文件</h4><p>如果条件允许，可以利用 CDN 网络加快同一个地理区域内重复静态资源文件的响应下载速度，缩短资源请求时间。</p>
-<h4 id="10．使用-CDN-Combo-下载传输内容"><a href="#10．使用-CDN-Combo-下载传输内容" class="headerlink" title="10．使用 CDN Combo 下载传输内容"></a>10．使用 CDN Combo 下载传输内容</h4><p>CDN Combo 是在 CDN 服务器端将多个文件请求打包成一个文件的形式来返回的技术，这样可以实现 HTTP 连接传输的一次性复用，减少浏览器的 HTTP 请求数，加快资源下载速度。例如同一个域名 CDN 服务器上的 a.js，b.js，c.js 就可以按如下方式在一个请求中下载。</p>
-<pre><code>&lt;scriptsrc=&quot;//cdn.domain.com/path/a.js,b.js,c.js&quot;&gt;&lt;/script&gt;
-</code></pre><h4 id="11．使用可缓存的-AJAX"><a href="#11．使用可缓存的-AJAX" class="headerlink" title="11．使用可缓存的 AJAX"></a>11．使用可缓存的 AJAX</h4><p>对于返回内容相同的请求，没必要每次都直接从服务端拉取，合理使用 AJAX 缓存能加快 AJAX 响应速度并减轻服务器压力。</p>
-<pre><code>$.ajax({
-    url: url,
-    type: &#39;get&#39;,
-    cache: true,
-    //推荐使用缓存
-    data: {},
-    success() {
-        //
-        ...
-    },
-    error() {
-        //
-        ...
-    }
-});
-</code></pre><h4 id="12．使用-GET-来完成-AJAX-请求"><a href="#12．使用-GET-来完成-AJAX-请求" class="headerlink" title="12．使用 GET 来完成 AJAX 请求"></a>12．使用 GET 来完成 AJAX 请求</h4><p>使用 XMLHttpRequest 时，浏览器中的 POST 方法会发起两次 TCP 数据包传输，首先发送文件头，然后发送 HTTP 正文数据。而使用 GET 时只发送头部，所以在拉取服务端数据时使用 GET 请求效率更高。</p>
-<pre><code>$.ajax({
-    url: url,
-    type: &#39;get&#39;,
-    //推荐使用get完成请求
-    data: {},
-    success() {
-        //
-        ...
-    },
-    error() {
-        //
-        ...
-    }
-});
-</code></pre><h4 id="13．减少-Cookie-的大小并进行-Cookie-隔离"><a href="#13．减少-Cookie-的大小并进行-Cookie-隔离" class="headerlink" title="13．减少 Cookie 的大小并进行 Cookie 隔离"></a>13．减少 Cookie 的大小并进行 Cookie 隔离</h4><p>HTTP 请求通常默认带上浏览器端的 Cookie 一起发送给服务器，所以在非必要的情况下，要尽量减少 Cookie 来减小 HTTP 请求的大小。对于静态资源，尽量使用不同的域名来存放，因为 Cookie 默认是不能跨域的，这样就做到了不同域名下静态资源请求的 Cookie 隔离。</p>
-<h4 id="14．缩小-favicon-ico-并缓存"><a href="#14．缩小-favicon-ico-并缓存" class="headerlink" title="14．缩小 favicon.ico 并缓存"></a>14．缩小 favicon.ico 并缓存</h4><p>有利于 favicon.ico 的重复加载，因为一般一个 Web 应用的 favicon.ico 是很少改变的。</p>
-<h4 id="15．推荐使用异步-JavaScript-资源"><a href="#15．推荐使用异步-JavaScript-资源" class="headerlink" title="15．推荐使用异步 JavaScript 资源"></a>15．推荐使用异步 JavaScript 资源</h4><p>异步的 JavaScript 资源不会阻塞文档解析，所以允许在浏览器中优先渲染页面，延后加载脚本执行。例如 JavaScript 的引用可以如下设置，也可以使用模块化加载机制来实现。</p>
-<pre><code>&lt;scriptsrc=&quot;main.js&quot;defer&gt;&lt;/script&gt;
-&lt;scriptsrc=&quot;main.js&quot;async&gt;&lt;/script&gt;
-</code></pre><p>使用 async 时，加载和渲染后续文档元素的过程和 main.js 的加载与执行是并行的。使用 defer 时，加载后续文档元素的过程和 main.js 的加载是并行的，但是 main.js 的执行要在页面所有元素解析完成之后才开始执行。</p>
-<h4 id="16．消除阻塞渲染的-CSS-及-JavaScript"><a href="#16．消除阻塞渲染的-CSS-及-JavaScript" class="headerlink" title="16．消除阻塞渲染的 CSS 及 JavaScript"></a>16．消除阻塞渲染的 CSS 及 JavaScript</h4><p>对于页面中加载时间过长的 CSS 或 JavaScript 文件，需要进行合理拆分或延后加载，保证关键路径的资源能快速加载完成。</p>
-<h4 id="17．避免使用-CSS-import-引用加载-CSS"><a href="#17．避免使用-CSS-import-引用加载-CSS" class="headerlink" title="17．避免使用 CSS import 引用加载 CSS"></a>17．避免使用 CSS import 引用加载 CSS</h4><p>CSS 中的 <code>＠import</code> 可以从另一个样式文件中引入样式，但应该避免这种用法，因为这样会增加 CSS 资源加载的关键路径长度，带有 <code>＠import</code> 的 CSS 样式需要在 CSS 文件串行解析到 <code>@import</code> 时才会加载另外的 CSS 文件，大大延后 CSS 渲染完成的时间。</p>
-<pre><code>&lt;!--不推荐--&gt;
-&lt;style&gt;
-    @import&quot;path/main.css&quot;;
-&lt;/style&gt;
-&lt;!--推荐--&gt;
-&lt;linkrel=&quot;stylesheet&quot;href=&quot;//cdn1.domain.com/path/main.css&quot;&gt;
 </code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>关于页面优化的常用技术手段和思路主要包括以上这些，尽管列举出很多，但仍可能有少数遗漏，可见前端性能优化不是一件简简单单的事情，其涉及的内容很多。大家可以根据实际情况将这些方法应用到自己的项目当中，要想全部做到几乎是不可能的，但做到用户可接受的原则还是很容易实现的。</p>
 <p>另外，如果你有比较好的优化点想要扩充，欢迎下方评论。</p>
 ]]></content>
