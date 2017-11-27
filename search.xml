@@ -274,7 +274,7 @@ inputElement.addEventListener(&#39;input&#39;, function(event) {
     <entry>
       <title><![CDATA[列举一些前端优化点---移动端优化]]></title>
       <url>/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9---%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BC%98%E5%8C%96.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前一篇博客我介绍了前端开发中比较常用的pc端优化点，包括网络加载和页面渲染类的优化。</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="http://pancakeawesome.ink/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9---PC%E7%AB%AF%E4%BC%98%E5%8C%96.html">前一篇博客</a>我介绍了前端开发中比较常用的pc端优化点，包括网络加载和页面渲染类的优化。</p>
 <p>这篇博客我们讨论下移动端web开发的常用优化点，包括缓存类，图片类，脚本类，渲染类，架构协议类的相关常用优化点。</p>
 <h2 id="移动端浏览器前端优化策略"><a href="#移动端浏览器前端优化策略" class="headerlink" title="移动端浏览器前端优化策略"></a>移动端浏览器前端优化策略</h2><p>相对于桌面端浏览器，移动端 Web 浏览器上有一些较为明显的特点：设备屏幕较小、新特性兼容性较好、支持一些较新的 HTML5 和 CSS3 特性、需要与 Native 应用交互等。但移动端浏览器可用的 CPU 计算资源和网络资源极为有限，因此要做好移动端 Web 上的优化往往需要做更多的事情。首先，在移动端 Web 的前端页面渲染中，桌面浏览器端上的优化规则同样适用，此外针对移动端也要做一些极致的优化来达到更好的效果。需要注意的是，并不是移动端的优化原则在桌面浏览器端就不适用，而是由于兼容性和差异性的原因，一些优化原则在移动端更具代表性。</p>
 <h3 id="网络加载类"><a href="#网络加载类" class="headerlink" title="网络加载类"></a>网络加载类</h3><h4 id="1．首屏数据请求提前，避免-JavaScript-文件加载后才请求数据"><a href="#1．首屏数据请求提前，避免-JavaScript-文件加载后才请求数据" class="headerlink" title="1．首屏数据请求提前，避免 JavaScript 文件加载后才请求数据"></a>1．首屏数据请求提前，避免 JavaScript 文件加载后才请求数据</h4><p>为了进一步提升页面加载速度，可以考虑将页面的数据请求尽可能提前，避免在 JavaScript 加载完成后才去请求数据。通常数据请求是页面内容渲染中关键路径最长的部分，而且不能并行，所以如果能将数据请求提前，可以极大程度上缩短页面内容的渲染完成时间。</p>
@@ -445,7 +445,7 @@ $(&#39;.scroller&#39;).on(&#39;touchmove&#39;,&#39;.btn&#39;,function(e){
 </blockquote>
 <p>开车速度有点快，坐稳了。</p>
 <blockquote>
-<p>tips : 这么多前端优化点你都记得住吗？反正我是收藏起来备查的。<br>由于优化点很多，所以分了两篇博客来讲，本篇讲pc端的优化，包括网络加载类, 页面渲染类的优化点。<a href="http://pancakeawesome.ink/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9(%E4%B8%80">下篇博客</a>.html) 会讲一下移动端的优化点，<a href="http://pancakeawesome.ink/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9(%E4%B8%80">传送门。</a>.html)</p>
+<p>tips : 这么多前端优化点你都记得住吗？反正我是收藏起来备查的。<br>由于优化点很多，所以分了两篇博客来讲，本篇讲pc端的优化，包括网络加载类, 页面渲染类的优化点。<a href="http://pancakeawesome.ink/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9---PC%E7%AB%AF%E4%BC%98%E5%8C%96.html">下篇博客</a> 会讲一下移动端的优化点，<a href="http://pancakeawesome.ink/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9---PC%E7%AB%AF%E4%BC%98%E5%8C%96.html">传送门。</a></p>
 </blockquote>
 <h2 id="PC-浏览器前端优化策略"><a href="#PC-浏览器前端优化策略" class="headerlink" title="PC 浏览器前端优化策略"></a>PC 浏览器前端优化策略</h2><p>PC 端优化的策略很多，如 YSlow（YSlow 是 Yahoo 发布的一款 Firefox 插件，现 Chrome 也可安装，可以对网站的页面性能进行分析，提出对该页面性能优化的建议）原则，或者 Chrome 自带的 Audits 等，总结起来主要包括网络加载类、页面渲染类、CSS 优化类、JavaScript 执行类、缓存类、图片类、架构协议类等几类，下面逐一介绍。</p>
 <h3 id="网络加载类"><a href="#网络加载类" class="headerlink" title="网络加载类"></a>网络加载类</h3><h4 id="1．减少-HTTP-资源请求次数"><a href="#1．减少-HTTP-资源请求次数" class="headerlink" title="1．减少 HTTP 资源请求次数"></a>1．减少 HTTP 资源请求次数</h4><p>在前端页面中，通常建议尽可能合并静态资源图片、JavaScript 或 CSS 代码，减少页面请求数和资源请求消耗，这样可以缩短页面首次访问的用户等待时间。通过构建工具合并雪碧图、CSS、JavaScript 文件等都是为了减少 HTTP 资源请求次数。另外也要尽量避免重复的资源，防止增加多余请求。</p>
@@ -542,7 +542,7 @@ $(&#39;.scroller&#39;).on(&#39;touchmove&#39;,&#39;.btn&#39;,function(e){
 .opacity{
     filter : progid :DXImageTransform.Microsoft.Alpha( opacity =50);
 }
-</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这样我们就对web前端开发过程中pc端的常用优化点做了粗略的分析，下篇博客讨论一下移动端的常用优化点。传送门。</p>
+</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这样我们就对web前端开发过程中pc端的常用优化点做了粗略的分析，下篇博客讨论一下移动端的常用优化点。<a href="http://pancakeawesome.ink/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9---PC%E7%AB%AF%E4%BC%98%E5%8C%96.html">传送门。</a></p>
 <p>关于页面优化的常用技术手段和思路主要包括以上这些，尽管列举出很多，但仍可能有少数遗漏，可见前端性能优化不是一件简简单单的事情，其涉及的内容很多。大家可以根据实际情况将这些方法应用到自己的项目当中，要想全部做到几乎是不可能的，但做到用户可接受的原则还是很容易实现的。</p>
 <p>另外，如果你有比较好的优化点想要扩充，欢迎下方评论。</p>
 ]]></content>
@@ -1091,9 +1091,9 @@ io.on(&#39;connection&#39;, function(socket) {
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> node.js </tag>
+            
+            <tag> javascript </tag>
             
         </tags>
         
