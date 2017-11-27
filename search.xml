@@ -272,9 +272,39 @@ inputElement.addEventListener(&#39;input&#39;, function(event) {
     </entry>
     
     <entry>
-      <title><![CDATA[列举一些前端优化点（二）]]></title>
-      <url>/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9%EF%BC%88%E4%BA%8C%EF%BC%89.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前一篇博客我介绍了前端开发中比较常用的优化点，包括</p>
+      <title><![CDATA[列举一些前端优化点---移动端优化]]></title>
+      <url>/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9---%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BC%98%E5%8C%96.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前一篇博客我介绍了前端开发中比较常用的pc端优化点，包括网络加载和页面渲染类的优化。</p>
+<p>这篇博客我们讨论下移动端web开发的常用优化点。</p>
+<h2 id="移动端浏览器前端优化策略"><a href="#移动端浏览器前端优化策略" class="headerlink" title="移动端浏览器前端优化策略"></a>移动端浏览器前端优化策略</h2><p>相对于桌面端浏览器，移动端 Web 浏览器上有一些较为明显的特点：设备屏幕较小、新特性兼容性较好、支持一些较新的 HTML5 和 CSS3 特性、需要与 Native 应用交互等。但移动端浏览器可用的 CPU 计算资源和网络资源极为有限，因此要做好移动端 Web 上的优化往往需要做更多的事情。首先，在移动端 Web 的前端页面渲染中，桌面浏览器端上的优化规则同样适用，此外针对移动端也要做一些极致的优化来达到更好的效果。需要注意的是，并不是移动端的优化原则在桌面浏览器端就不适用，而是由于兼容性和差异性的原因，一些优化原则在移动端更具代表性。</p>
+<h3 id="网络加载类"><a href="#网络加载类" class="headerlink" title="网络加载类"></a>网络加载类</h3><h4 id="1．首屏数据请求提前，避免-JavaScript-文件加载后才请求数据"><a href="#1．首屏数据请求提前，避免-JavaScript-文件加载后才请求数据" class="headerlink" title="1．首屏数据请求提前，避免 JavaScript 文件加载后才请求数据"></a>1．首屏数据请求提前，避免 JavaScript 文件加载后才请求数据</h4><p>为了进一步提升页面加载速度，可以考虑将页面的数据请求尽可能提前，避免在 JavaScript 加载完成后才去请求数据。通常数据请求是页面内容渲染中关键路径最长的部分，而且不能并行，所以如果能将数据请求提前，可以极大程度上缩短页面内容的渲染完成时间。</p>
+<h4 id="2．首屏加载和按需加载，非首屏内容滚屏加载，保证首屏内容最小化"><a href="#2．首屏加载和按需加载，非首屏内容滚屏加载，保证首屏内容最小化" class="headerlink" title="2．首屏加载和按需加载，非首屏内容滚屏加载，保证首屏内容最小化"></a>2．首屏加载和按需加载，非首屏内容滚屏加载，保证首屏内容最小化</h4><p>由于移动端网络速度相对较慢，网络资源有限，因此为了尽快完成页面内容的加载，需要保证首屏加载资源最小化，非首屏内容使用滚动的方式异步加载。一般推荐移动端页面首屏数据展示延时最长不超过 3 秒。目前中国联通 3G 的网络速度为 338KB/s（2.71Mb/s），所以推荐首屏所有资源大小不超过 1014KB，即大约不超过 1MB。</p>
+<h4 id="3．模块化资源并行下载"><a href="#3．模块化资源并行下载" class="headerlink" title="3．模块化资源并行下载"></a>3．模块化资源并行下载</h4><p>在移动端资源加载中，尽量保证 JavaScript 资源并行加载，主要指的是模块化 JavaScript 资源的异步加载，例如 AMD 的异步模块，使用并行的加载方式能够缩短多个文件资源的加载时间。</p>
+<h4 id="4．inline-首屏必备的-CSS-和-JavaScript"><a href="#4．inline-首屏必备的-CSS-和-JavaScript" class="headerlink" title="4．inline 首屏必备的 CSS 和 JavaScript"></a>4．inline 首屏必备的 CSS 和 JavaScript</h4><p>通常为了在 HTML 加载完成时能使浏览器中有基本的样式，需要将页面渲染时必备的 CSS 和 JavaScript 通过 <code>&lt;script&gt;</code> 或 <code>&lt;style&gt;</code> 内联到页面中，避免页面 HTML 载入完成到页面内容展示这段过程中页面出现空白。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;htmllang=&quot;en&quot;&gt;
+    &lt;head&gt;
+    &lt;metacharset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;样例&lt;/title&gt;
+    &lt;meta&gt;
+    &lt;style&gt;
+    /*必备的首屏CSS*/
+    html,body{
+        margin:0;
+        padding:0;
+        background-color:#ccc;
+    }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h4 id="5．meta-dns-prefetch-设置-DNS-预解析"><a href="#5．meta-dns-prefetch-设置-DNS-预解析" class="headerlink" title="5．meta dns prefetch 设置 DNS 预解析"></a>5．meta dns prefetch 设置 DNS 预解析</h4><p>设置文件资源的 DNS 预解析，让浏览器提前解析获取静态资源的主机 IP，避免等到请求时才发起 DNS 解析请求。通常在移动端 HTML 中可以采用如下方式完成。</p>
+<pre><code>&lt;!--cdn域名预解析--&gt;
+&lt;metahttp-equiv=&quot;x-dns-prefetch-control&quot;content=&quot;on&quot;&gt;
+&lt;linkrel=&quot;dns-prefetch&quot;href=&quot;//cdn.domain.com&quot;&gt;
+</code></pre><h4 id="6．资源预加载"><a href="#6．资源预加载" class="headerlink" title="6．资源预加载"></a>6．资源预加载</h4><p>对于移动端首屏加载后可能会被使用的资源，需要在首屏完成加载后尽快进行加载，保证在用户需要浏览时已经加载完成，这时候如果再去异步请求就显得很慢。</p>
+<h4 id="7．合理利用-MTU-策略"><a href="#7．合理利用-MTU-策略" class="headerlink" title="7．合理利用 MTU 策略"></a>7．合理利用 MTU 策略</h4><p>通常情况下，我们认为 TCP 网络传输的最大传输单元（Maximum Transmission Unit，MTU）为 1500B，即一个 RTT（Round-Trip Time，网络请求往返时间）内可以传输的数据量最大为 1500 字节。因此，在前后端分离的开发模式中，尽量保证页面的 HTML 内容在 1KB 以内，这样整个 HTML 的内容请求就可以在一个 RTT 内请求完成，最大限度地提高 HTML 载入速度。</p>
 <h3 id="缓存类"><a href="#缓存类" class="headerlink" title="缓存类"></a>缓存类</h3><h4 id="1．合理利用浏览器缓存"><a href="#1．合理利用浏览器缓存" class="headerlink" title="1．合理利用浏览器缓存"></a>1．合理利用浏览器缓存</h4><p>除了上面说到的使用 Cache-Control、Expires、Etag 和 Last-Modified 来设置 HTTP 缓存外，在移动端还可以使用 localStorage 等来保存 AJAX 返回的数据，或者使用 localStorage 保存 CSS 或 JavaScript 静态资源内容，实现移动端的离线应用，尽可能减少网络请求，保证静态资源内容的快速加载。</p>
 <h4 id="2．静态资源离线方案"><a href="#2．静态资源离线方案" class="headerlink" title="2．静态资源离线方案"></a>2．静态资源离线方案</h4><p>对于移动端或 Hybrid 应用，可以设置离线文件或离线包机制让静态资源请求从本地读取，加快资源载入速度，并实现离线更新。关于这块内容，我们会在后面的章节中重点讲解。</p>
 <h4 id="3．尝试使用-AMP-HTML"><a href="#3．尝试使用-AMP-HTML" class="headerlink" title="3．尝试使用 AMP HTML"></a>3．尝试使用 AMP HTML</h4><p>AMP HTML 可以作为优化前端页面性能的一个解决方案，使用 AMP Component 中的元素来代替原始的页面元素进行直接渲染。</p>
@@ -408,14 +438,14 @@ $(&#39;.scroller&#39;).on(&#39;touchmove&#39;,&#39;.btn&#39;,function(e){
     </entry>
     
     <entry>
-      <title><![CDATA[列举一些前端优化点（一）]]></title>
-      <url>/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9(%E4%B8%80).html</url>
+      <title><![CDATA[列举一些前端优化点---PC端优化]]></title>
+      <url>/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9---PC%E7%AB%AF%E4%BC%98%E5%8C%96.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>围绕前端的性能多如牛毛，涉及到方方面面，以我我们将围绕 PC 浏览器和移动端浏览器的优化策略进行罗列 注意，是罗列不是展开，遇到不会不懂的点还请站外扩展</p>
 </blockquote>
 <p>开车速度有点快，坐稳了。</p>
 <blockquote>
-<p>tips : 这么多前端优化点你都记得住吗？反正我是收藏起来备查的。</p>
+<p>tips : 这么多前端优化点你都记得住吗？反正我是收藏起来备查的。<br>由于优化点很多，所以分了两篇博客来讲，本篇讲pc端的优化，包括网络加载类, 页面渲染类的优化点。<a href="http://pancakeawesome.ink/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9(%E4%B8%80">下篇博客</a>.html) 会讲一下移动端的优化点，<a href="http://pancakeawesome.ink/%E5%88%97%E4%B8%BE%E4%B8%80%E4%BA%9B%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E7%82%B9(%E4%B8%80">传送门。</a>.html)</p>
 </blockquote>
 <h2 id="PC-浏览器前端优化策略"><a href="#PC-浏览器前端优化策略" class="headerlink" title="PC 浏览器前端优化策略"></a>PC 浏览器前端优化策略</h2><p>PC 端优化的策略很多，如 YSlow（YSlow 是 Yahoo 发布的一款 Firefox 插件，现 Chrome 也可安装，可以对网站的页面性能进行分析，提出对该页面性能优化的建议）原则，或者 Chrome 自带的 Audits 等，总结起来主要包括网络加载类、页面渲染类、CSS 优化类、JavaScript 执行类、缓存类、图片类、架构协议类等几类，下面逐一介绍。</p>
 <h3 id="网络加载类"><a href="#网络加载类" class="headerlink" title="网络加载类"></a>网络加载类</h3><h4 id="1．减少-HTTP-资源请求次数"><a href="#1．减少-HTTP-资源请求次数" class="headerlink" title="1．减少 HTTP 资源请求次数"></a>1．减少 HTTP 资源请求次数</h4><p>在前端页面中，通常建议尽可能合并静态资源图片、JavaScript 或 CSS 代码，减少页面请求数和资源请求消耗，这样可以缩短页面首次访问的用户等待时间。通过构建工具合并雪碧图、CSS、JavaScript 文件等都是为了减少 HTTP 资源请求次数。另外也要尽量避免重复的资源，防止增加多余请求。</p>
@@ -512,36 +542,10 @@ $(&#39;.scroller&#39;).on(&#39;touchmove&#39;,&#39;.btn&#39;,function(e){
 .opacity{
     filter : progid :DXImageTransform.Microsoft.Alpha( opacity =50);
 }
-</code></pre><h2 id="移动端浏览器前端优化策略"><a href="#移动端浏览器前端优化策略" class="headerlink" title="移动端浏览器前端优化策略"></a>移动端浏览器前端优化策略</h2><p>相对于桌面端浏览器，移动端 Web 浏览器上有一些较为明显的特点：设备屏幕较小、新特性兼容性较好、支持一些较新的 HTML5 和 CSS3 特性、需要与 Native 应用交互等。但移动端浏览器可用的 CPU 计算资源和网络资源极为有限，因此要做好移动端 Web 上的优化往往需要做更多的事情。首先，在移动端 Web 的前端页面渲染中，桌面浏览器端上的优化规则同样适用，此外针对移动端也要做一些极致的优化来达到更好的效果。需要注意的是，并不是移动端的优化原则在桌面浏览器端就不适用，而是由于兼容性和差异性的原因，一些优化原则在移动端更具代表性。</p>
-<h3 id="网络加载类-1"><a href="#网络加载类-1" class="headerlink" title="网络加载类"></a>网络加载类</h3><h4 id="1．首屏数据请求提前，避免-JavaScript-文件加载后才请求数据"><a href="#1．首屏数据请求提前，避免-JavaScript-文件加载后才请求数据" class="headerlink" title="1．首屏数据请求提前，避免 JavaScript 文件加载后才请求数据"></a>1．首屏数据请求提前，避免 JavaScript 文件加载后才请求数据</h4><p>为了进一步提升页面加载速度，可以考虑将页面的数据请求尽可能提前，避免在 JavaScript 加载完成后才去请求数据。通常数据请求是页面内容渲染中关键路径最长的部分，而且不能并行，所以如果能将数据请求提前，可以极大程度上缩短页面内容的渲染完成时间。</p>
-<h4 id="2．首屏加载和按需加载，非首屏内容滚屏加载，保证首屏内容最小化"><a href="#2．首屏加载和按需加载，非首屏内容滚屏加载，保证首屏内容最小化" class="headerlink" title="2．首屏加载和按需加载，非首屏内容滚屏加载，保证首屏内容最小化"></a>2．首屏加载和按需加载，非首屏内容滚屏加载，保证首屏内容最小化</h4><p>由于移动端网络速度相对较慢，网络资源有限，因此为了尽快完成页面内容的加载，需要保证首屏加载资源最小化，非首屏内容使用滚动的方式异步加载。一般推荐移动端页面首屏数据展示延时最长不超过 3 秒。目前中国联通 3G 的网络速度为 338KB/s（2.71Mb/s），所以推荐首屏所有资源大小不超过 1014KB，即大约不超过 1MB。</p>
-<h4 id="3．模块化资源并行下载"><a href="#3．模块化资源并行下载" class="headerlink" title="3．模块化资源并行下载"></a>3．模块化资源并行下载</h4><p>在移动端资源加载中，尽量保证 JavaScript 资源并行加载，主要指的是模块化 JavaScript 资源的异步加载，例如 AMD 的异步模块，使用并行的加载方式能够缩短多个文件资源的加载时间。</p>
-<h4 id="4．inline-首屏必备的-CSS-和-JavaScript"><a href="#4．inline-首屏必备的-CSS-和-JavaScript" class="headerlink" title="4．inline 首屏必备的 CSS 和 JavaScript"></a>4．inline 首屏必备的 CSS 和 JavaScript</h4><p>通常为了在 HTML 加载完成时能使浏览器中有基本的样式，需要将页面渲染时必备的 CSS 和 JavaScript 通过 <code>&lt;script&gt;</code> 或 <code>&lt;style&gt;</code> 内联到页面中，避免页面 HTML 载入完成到页面内容展示这段过程中页面出现空白。</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;htmllang=&quot;en&quot;&gt;
-    &lt;head&gt;
-    &lt;metacharset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;样例&lt;/title&gt;
-    &lt;meta&gt;
-    &lt;style&gt;
-    /*必备的首屏CSS*/
-    html,body{
-        margin:0;
-        padding:0;
-        background-color:#ccc;
-    }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><h4 id="5．meta-dns-prefetch-设置-DNS-预解析"><a href="#5．meta-dns-prefetch-设置-DNS-预解析" class="headerlink" title="5．meta dns prefetch 设置 DNS 预解析"></a>5．meta dns prefetch 设置 DNS 预解析</h4><p>设置文件资源的 DNS 预解析，让浏览器提前解析获取静态资源的主机 IP，避免等到请求时才发起 DNS 解析请求。通常在移动端 HTML 中可以采用如下方式完成。</p>
-<pre><code>&lt;!--cdn域名预解析--&gt;
-&lt;metahttp-equiv=&quot;x-dns-prefetch-control&quot;content=&quot;on&quot;&gt;
-&lt;linkrel=&quot;dns-prefetch&quot;href=&quot;//cdn.domain.com&quot;&gt;
-</code></pre><h4 id="6．资源预加载"><a href="#6．资源预加载" class="headerlink" title="6．资源预加载"></a>6．资源预加载</h4><p>对于移动端首屏加载后可能会被使用的资源，需要在首屏完成加载后尽快进行加载，保证在用户需要浏览时已经加载完成，这时候如果再去异步请求就显得很慢。</p>
-<h4 id="7．合理利用-MTU-策略"><a href="#7．合理利用-MTU-策略" class="headerlink" title="7．合理利用 MTU 策略"></a>7．合理利用 MTU 策略</h4><p>通常情况下，我们认为 TCP 网络传输的最大传输单元（Maximum Transmission Unit，MTU）为 1500B，即一个 RTT（Round-Trip Time，网络请求往返时间）内可以传输的数据量最大为 1500 字节。因此，在前后端分离的开发模式中，尽量保证页面的 HTML 内容在 1KB 以内，这样整个 HTML 的内容请求就可以在一个 RTT 内请求完成，最大限度地提高 HTML 载入速度。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这样我们就对web前端开发过程中pc端的常用优化点做了粗略的分析，下篇博客讨论一下移动端的常用优化点。传送门。</p>
+<p>关于页面优化的常用技术手段和思路主要包括以上这些，尽管列举出很多，但仍可能有少数遗漏，可见前端性能优化不是一件简简单单的事情，其涉及的内容很多。大家可以根据实际情况将这些方法应用到自己的项目当中，要想全部做到几乎是不可能的，但做到用户可接受的原则还是很容易实现的。</p>
+<p>另外，如果你有比较好的优化点想要扩充，欢迎下方评论。</p>
+]]></content>
       
         <categories>
             

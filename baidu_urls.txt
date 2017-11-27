@@ -1,6 +1,6 @@
 http://pancakeawesome.ink/移动端-Web-开发踩坑之旅.html
-http://pancakeawesome.ink/列举一些前端优化点（二）.html
-http://pancakeawesome.ink/列举一些前端优化点(一).html
+http://pancakeawesome.ink/列举一些前端优化点---移动端优化.html
+http://pancakeawesome.ink/列举一些前端优化点---PC端优化.html
 http://pancakeawesome.ink/浏览器「内核」都做了些什么？.html
 http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html
 http://pancakeawesome.ink/10大使用Node-js的理由.html
