@@ -3,6 +3,294 @@
   
     
     <entry>
+      <title><![CDATA[webpack构建react项目]]></title>
+      <url>/webpack%E6%9E%84%E5%BB%BAreact%E9%A1%B9%E7%9B%AE.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在书写文章之前，我假设大家已经有了 <code>JavaScript</code>，<code>Node 包管理工具</code>，<code>Linux 终端操作</code> 这些基本技能，接下来，我将一步一步指引大家从头搭建一个 <code>React</code> 项目</p>
+<h2 id="重新回顾-Webpack-Babel-和-React"><a href="#重新回顾-Webpack-Babel-和-React" class="headerlink" title="重新回顾 Webpack, Babel 和 React"></a>重新回顾 Webpack, Babel 和 React</h2><h2 id="最终实现的效果"><a href="#最终实现的效果" class="headerlink" title="最终实现的效果"></a>最终实现的效果</h2><p>我们将使用 <code>Webpack</code> 和 <code>Babel</code> 搭建一个 <code>React</code> 应用，我们的目的很清晰，就是 <code>更好的理解和掌握这些工具的使用</code></p>
+<p>我们创建的应用程序既要做到 <code>最小</code>，也要遵循 <code>最佳实践</code>，为不是特别熟练的同学巩固一下基础</p>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>创建你的项目，并添加的你的配置文件 <code>package.json</code></p>
+<pre><code>mkdir webpack-babel-react-revisited
+cd webpack-babel-react-revisited
+
+yarn init
+</code></pre><h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><p>我们首先安装 <code>Webpack</code>，它是目前非常流行的 <code>模块打包器</code>，它将应用程序包含的每个模块打包成少量的 <code>块</code>，以便这些代码从服务器加载到浏览器中</p>
+<pre><code>yarn add webpack --dev
+</code></pre><p>接下来，我们开始书写一些模块。我们将源文件 <code>app.js</code> 保存到 <code>src</code> 目录中</p>
+<pre><code>/** app.js */
+
+console.log(&#39;Hello from 枫上雾棋!&#39;);
+</code></pre><p>然后，我们跑一下 <code>Webpack</code></p>
+<pre><code>./node_modules/webpack/bin/webpack.js ./src/app.js --output-filename ./dist/app.bundle.js
+</code></pre><p>如果你打开生成的 <code>app.bundle.js</code>，你会发现上面是 <code>webpack</code> 的模块处理代码，下面是我们书写的 <code>console.log</code></p>
+<p>这条指令是将我们的 <code>app.js</code> 作为 <code>Webpack</code> 的 <code>入口文件</code>，将结果输出到 <code>dist</code> 文件夹中，指令有些冗长，在实际开发中，我们使用 <code>webpack</code> 配置文件来代替，为了文档结构看起来更加清晰，参考 <code>目录</code> 如下</p>
+<pre><code>├── config
+│├── paths.js
+│├── webpack.config.prod.js
+├── src
+│├── app.js
+├──package.json
+</code></pre><p>下面是参考 <code>配置</code></p>
+<p><code>paths.js</code></p>
+<pre><code>const path = require(&#39;path&#39;);
+const fs = require(&#39;fs&#39;);
+
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = relativePath =&gt; path.resolve(appDirectory, relativePath);
+
+module.exports = {
+  appDist: resolveApp(&#39;dist&#39;),
+  appSrc: resolveApp(&#39;src&#39;),
+};
+</code></pre><p>这个文件不是必须的，但在项目增大后，它的意义就瞬间出来了</p>
+<p><code>webpack.config.prod.js</code></p>
+<pre><code>const path = require(&#39;path&#39;);
+const fs = require(&#39;fs&#39;);
+
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = relativePath =&gt; path.resolve(appDirectory, relativePath);
+
+module.exports = {
+  appDist: resolveApp(&#39;dist&#39;),
+  appSrc: resolveApp(&#39;src&#39;),
+};
+这个文件不是必须的，但在项目增大后，它的意义就瞬间出来了
+
+webpack.config.prod.js
+
+const path = require(&#39;path&#39;);
+const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+
+const paths = require(&#39;./paths&#39;);
+
+const plugins = [
+  new HtmlWebpackPlugin({
+    title: &#39;webpack babel react revisited&#39;,
+    filename: path.join(paths.appDist, &#39;index.html&#39;),
+  }),
+];
+
+const config = {
+  entry: {
+    app: path.join(paths.appSrc, &#39;app&#39;),
+  },
+  output: {
+    path: paths.appDist,
+    filename: &#39;assets/js/[name].js&#39;,
+  },
+  resolve: {
+    extensions: [&#39;.js&#39;, &#39;.jsx&#39;],
+  },
+  plugins,
+};
+
+module.exports = config;
+</code></pre><p>这里我们还添加了一个 <a href="http://link.funteas.com/?target=https%3A%2F%2Fgithub.com%2Fjantimon%2Fhtml-webpack-plugin" target="_blank" rel="external">html-webpack-plugin</a> ，它简化了我们 <code>HTML</code> 文件的创建，安装我们就不再这里赘述了，如果还不知道的同学可以点击链接查看</p>
+<p>其中，我们还使用了一个 <code>语法糖</code>，这样在我们导入 <code>.js</code>，<code>.jsx</code> 时就不需要指定扩展名了</p>
+<p>接下来，我们指定配置文件再跑一下 <code>Webpack</code></p>
+<pre><code>./node_modules/webpack/bin/webpack.js --config config/webpack.config.prod.js
+</code></pre><p>发现除了实现上面的效果外，还自动帮我们生成了一个 <code>index.html</code>，我们可以点击这个 <code>html</code>，在控制台中查看效果，相比上面，是不是方便了很多</p>
+<p>当然，最后我们肯定也不是使用这种方式来 <code>build</code>，打开 <code>package.json</code>，添加如下 <code>脚本命令</code>，然后执行 <code>yarn build</code>，是不是瞬间感觉 <code>nice</code> 了很多</p>
+<pre><code>&quot;scripts&quot;: {
+  &quot;clean&quot;: &quot;rimraf dist *.log .DS_Store&quot;,
+  &quot;build&quot;: &quot;yarn run clean &amp;&amp; webpack --config config/webpack.config.prod.js --progress&quot;
+}const path = require(&#39;path&#39;);
+const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+const OpenBrowserPlugin = require(&#39;open-browser-webpack-plugin&#39;);
+
+const paths = require(&#39;./paths&#39;);
+
+const hostname = process.env.HOST || &#39;localhost&#39;;
+const port = process.env.PORT || 3000;
+
+const plugins = [
+  new HtmlWebpackPlugin({
+    title: &#39;webpack babel react revisited&#39;,
+    filename: path.join(paths.appDist, &#39;index.html&#39;),
+  }),
+  new OpenBrowserPlugin({ url: `http://${hostname}:${port}` }),
+];
+
+const config = {
+  entry: {
+    app: path.join(paths.appSrc, &#39;app&#39;),
+  },
+  output: {
+    path: paths.appDist,
+    filename: &#39;assets/js/[name].js&#39;,
+  },
+    resolve: {
+    extensions: [&#39;.js&#39;, &#39;.jsx&#39;],
+  },
+  plugins,
+  devServer: {
+    contentBase: paths.appDist,
+    compress: true,
+    port,
+  },
+};
+
+module.exports = config;
+</code></pre><p>在 <code>webpack.config.prod.js</code> 的基础上，我们增加了 <a href="http://link.funteas.com/?target=https%3A%2F%2Fgithub.com%2Fbaldore%2Fopen-browser-webpack-plugin" target="_blank" rel="external">open-browser-webpack-plugin</a>  插件和 <code>devServer</code> 配置，<code>open-browser-webpack-plugin</code> 插件顾名思义，会帮我们自动打开 <code>dev server</code> 最后返回给我们的地址</p>
+<p>更新 <code>package.json</code></p>
+<pre><code>&quot;scripts&quot;: {
+  &quot;clean&quot;: &quot;rimraf dist *.log .DS_Store&quot;,
+  &quot;webpack:dev&quot;:
+    &quot;NODE_ENV=development webpack-dev-server --config config/webpack.config.dev.js --progress&quot;,
+  &quot;webpack:prod&quot;:
+    &quot;NODE_ENV=production webpack --config config/webpack.config.prod.js --progress&quot;,
+  &quot;start&quot;: &quot;yarn run clean &amp;&amp; yarn run webpack:dev&quot;,
+  &quot;build&quot;: &quot;yarn run clean &amp;&amp; yarn run webpack:prod&quot;
+}
+</code></pre><p>现在，我们就可以通过如下方式来启动</p>
+<pre><code>yarn start
+</code></pre><p>启动后，有没有瞬间感觉很棒</p>
+<h2 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h2><p>为了能够使用 <code>ES6</code> 以及更高版本，我们需要一个 <code>转换编译器</code>，我们选择 <code>Babel</code>，它能将 <code>ES6</code> 转换成可以在浏览器中运行的代码，除此之外，他还内置了 <code>React JSX</code> 扩展，可以说它的出现推动了 <code>JavaScipt</code> 的发展</p>
+<p>所有，我们安装下面这些依赖包</p>
+<pre><code>yarn add --dev babel-loader babel-core babel-preset-env babel-preset-react
+</code></pre><p>创建 <code>Babel</code> 默认配置文件 <code>.babelrc</code></p>
+<pre><code>{&quot;presets&quot;:[&quot;env&quot;,&quot;react&quot;]}
+</code></pre><p>这个是告诉 <code>Babel</code> 用我们刚刚安装的两个 <code>presets</code></p>
+<p>接下来，更新 <code>webpack</code> 配置文件</p>
+<pre><code>config.module = {
+  rules: [
+    {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: [&#39;babel-loader&#39;],
+    },
+  ],
+}
+</code></pre><p>更新以后，虽然看不到什么变化，但事实上我们可以使用 <code>ES6</code> 了</p>
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><p>最后，我们来添加 <code>React</code>，这也可能是你阅读这篇文章的原因</p>
+<p>首先，我们还是先安装它</p>
+<pre><code>yarn add react react-dom
+</code></pre><p>用下面代码替换 <code>console.log</code></p>
+<pre><code>import React, { Component } from &#39;react&#39;;
+import { render } from &#39;react-dom&#39;;
+
+export default class Hello extends Component {
+  render() {
+    return &lt;h1&gt;Hello from 枫上雾棋!&lt;/h1&gt;;
+  }
+}
+
+render(&lt;Hello /&gt;, document.getElementById(&#39;app&#39;));
+</code></pre><p>因为要添加 <code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</code>，所以我们要修改一下 <code>html-webpack-plugin</code> 的配置</p>
+<pre><code>new HtmlWebpackPlugin({
+  template: path.join(paths.appSrc, &#39;index.html&#39;),
+}),
+</code></pre><p>参考 <code>template</code> 如下</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;&gt;
+    &lt;title&gt;webpack babel react revisited&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;noscript&gt;
+      You need to enable JavaScript to run this app.
+    &lt;/noscript&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>接下来，就是见证奇迹的时刻</p>
+<p>重新启动服务，你有没有发现搭建一个 <code>React</code> 应用程序就这么简单</p>
+<p>接下里，大家就可以 <code>自行探索</code>，添加更多的东西来适应自身应用程序的需要</p>
+<p>下面再补充一下如何添加 <code>CSS</code> 和 <code>图片</code></p>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>每个 web 应用程序都离不开 <code>CSS</code>，我们在 <code>src</code> 目录中创建 <code>style.css</code></p>
+<pre><code>body,
+html,
+#app {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#app {
+  padding: 30px;
+  font-family: &#39;微软雅黑&#39;;
+}
+</code></pre><p>将其添加到应用程序中我们需要使用 <a href="http://link.funteas.com/?target=https%3A%2F%2Fgithub.com%2Fwebpack-contrib%2Fcss-loader" target="_blank" rel="external">css-loader</a> </p>
+<p>如果想将 <code>css</code> 注入 <code>style</code> 标签中，我们还需要 <a href="http://link.funteas.com/?target=https%3A%2F%2Fgithub.com%2Fwebpack-contrib%2Fstyle-loader" target="_blank" rel="external">style-loader</a> ，通常，是将这两个结合使用</p>
+<p>我们使用 <a href="http://link.funteas.com/?target=https%3A%2F%2Fgithub.com%2Fwebpack-contrib%2Fextract-text-webpack-plugin" target="_blank" rel="external">extract-text-webpack-plugin</a>  将其解压到外部</p>
+<p>为此，我们首先安装</p>
+<pre><code>yarn add --dev css-loader style-loader extract-text-webpack-plugin
+</code></pre><p>然后在 <code>app.js</code> 中导入 <code>style.css</code></p>
+<pre><code>import&#39;./style.css&#39;;
+</code></pre><p>最后更新 <code>webpack</code> 配置文件</p>
+<pre><code>config.module = {
+  rules: [
+    {
+      test: /\.css$/,
+      use: ExtractTextPlugin.extract({
+        fallback: &#39;style-loader&#39;,
+        use: &#39;css-loader&#39;,
+      }),
+    },
+  ],
+}
+
+config.plugins.push([
+  new ExtractTextPlugin(&quot;styles.css&quot;),
+])
+</code></pre><p>看起来稍显复杂，但是大功告成，为了更好地使用它，我们都得经历这个过程</p>
+<p>重新启动服务，你会发现你的 <code>dist</code> 目录中多了一个 <code>styles.css</code></p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>最后我们增加 <a href="http://link.funteas.com/?target=https%3A%2F%2Fgithub.com%2Fwebpack-contrib%2Ffile-loader" target="_blank" rel="external">file-loader</a>  来处理我们引入的图片等文件</p>
+<p>首先，安装 <code>file-loader</code></p>
+<pre><code>yarn add --dev file-loader
+</code></pre><p>我们在 <code>src/images</code> 中放入一张图片，在 <code>app.js</code> 中导入</p>
+<pre><code>import avatar from &#39;./images/avatar.jpg&#39;;
+
+export default class Hello extends Component {
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;img src={avatar} alt=&quot;avatar&quot; style={{ width: 400, height: 250 }} /&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+</code></pre><p>更新 <code>webpack</code> 配置文件</p>
+<pre><code>config.module = {
+  rules: [
+    {
+      test: /\.(png|jpg|gif)$/,
+      use: [
+        {
+          loader: &#39;file-loader&#39;,
+          options: {
+            name: &#39;[name].[ext]&#39;,
+            outputPath: &#39;assets/images/&#39;,
+          },
+        },
+      ],
+    },
+  ],
+}
+</code></pre><p>重启服务，哈哈</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>如果有什么问题，可以查看 <a href="http://link.funteas.com/?target=https%3A%2F%2Fgithub.com%2FFengShangWuQi%2Fwebpack-babel-react-revisited" target="_blank" rel="external">webpack-babel-react-revisited</a>  仓库</p>
+<p>现在，大家对搭建 <code>React</code> 应用程序是不是感觉轻松了很多，但 <code>React</code> 整个技术栈并不止包括这些，还有 <code>Redux</code>，<code>React Router</code>，<code>单元测试</code>，<code>代码校验</code> 等内容，关于 <code>React</code> 其他内容，欢迎查看日志其他文章</p>
+]]></content>
+      
+        <categories>
+            
+            <category> react </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[JS实现常用算法]]></title>
       <url>/JS%E5%AE%9E%E7%8E%B0%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目标：总结本书主要内容，相应算法使用js来模仿实现</p>
@@ -2001,9 +2289,9 @@ fn();
         
         <tags>
             
-            <tag> http协议 </tag>
-            
             <tag> 网络 </tag>
+            
+            <tag> http协议 </tag>
             
         </tags>
         
