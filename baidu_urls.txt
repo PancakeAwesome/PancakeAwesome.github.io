@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/JS实现常用算法.html
 http://pancakeawesome.ink/移动端-Web-开发踩坑之旅.html
 http://pancakeawesome.ink/列举一些前端优化点---移动端优化.html
 http://pancakeawesome.ink/列举一些前端优化点---PC端优化.html
