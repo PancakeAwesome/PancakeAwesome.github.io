@@ -310,9 +310,9 @@ var Greeting = createReactClass({
             
             <tag> javascript </tag>
             
-            <tag> react </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
@@ -5815,9 +5815,9 @@ npm run dist
         
         <tags>
             
-            <tag> react </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> react </tag>
             
             <tag> 前端工具 </tag>
             
@@ -6448,9 +6448,9 @@ GET /employees?offset=20&amp;limit=10
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> 前端架构设计 </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -6989,9 +6989,9 @@ class ImgFigure extends React.Component {
         
         <tags>
             
-            <tag> react </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> react </tag>
             
             <tag> 前端工具 </tag>
             
