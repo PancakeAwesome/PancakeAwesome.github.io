@@ -1171,21 +1171,8 @@ module.exports = {
 };
 </code></pre><p>这个文件不是必须的，但在项目增大后，它的意义就瞬间出来了</p>
 <p><code>webpack.config.prod.js</code></p>
+<p><code>webpack.config.prod.js</code></p>
 <pre><code>const path = require(&#39;path&#39;);
-const fs = require(&#39;fs&#39;);
-
-const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = relativePath =&gt; path.resolve(appDirectory, relativePath);
-
-module.exports = {
-  appDist: resolveApp(&#39;dist&#39;),
-  appSrc: resolveApp(&#39;src&#39;),
-};
-这个文件不是必须的，但在项目增大后，它的意义就瞬间出来了
-
-webpack.config.prod.js
-
-const path = require(&#39;path&#39;);
 const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
 
 const paths = require(&#39;./paths&#39;);
@@ -5465,21 +5452,20 @@ module.exports = webpackConfig
 <li>测试配置文件：<br>先设置开发文件夹目录：</li>
 </ol>
 <ul>
-<li><p>webpack-demo</p>
-<ul>
+<li>webpack-demo<ul>
 <li>node_modules</li>
 </ul>
 <ul>
-<li><p>src</p>
-<ul>
+<li>src<ul>
 <li>js      // 存放js文件</li>
 <li>css     // 存放css样式</li>
 <li>view    // 存放模板文件</li>
 </ul>
-</li>
-<li><p>webpack.config.js</p>
-</li>
+<ul>
+<li>webpack.config.js</li>
 <li>package.json</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
