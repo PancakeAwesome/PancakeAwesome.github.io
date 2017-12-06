@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/详解-CSS-七种三栏布局技巧.html
 http://pancakeawesome.ink/React特性精华.html
 http://pancakeawesome.ink/变量类型、原型、闭包、作用域面试题及知识点简单总结.html
 http://pancakeawesome.ink/浏览器的渲染：过程与原理.html

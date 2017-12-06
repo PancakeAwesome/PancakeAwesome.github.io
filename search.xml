@@ -3,6 +3,308 @@
   
     
     <entry>
+      <title><![CDATA[详解 CSS 七种三栏布局技巧]]></title>
+      <url>/%E8%AF%A6%E8%A7%A3-CSS-%E4%B8%83%E7%A7%8D%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80%E6%8A%80%E5%B7%A7.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>三栏布局，顾名思义就是两边固定，中间自适应。三栏布局在开发十分常见，那么什么是三栏布局？比如我打开某东的首页：</p>
+<p><img src="https://img.funteas.com/bac807a8c0f10cd4a5eef440123dab99?imageView2/2/w/800" alt=""></p>
+<p>映入眼帘的就是一个常见的三栏布局：即左边商品导航和右边导航固定宽度，中间的主要内容随浏览器宽度自适应。</p>
+<p>下面围绕的这样的目的，即左右模块固定宽度，中间模块随浏览器变化自适应，想要完成的最终效果如下图所示：</p>
+<p><img src="https://img.funteas.com/8c0caa243fe962aaf371e9ca018366eb?imageView2/2/w/800" alt=""></p>
+<p>红色和蓝色宽度固定，绿色宽度自适应，下面七种方法实现的最终效果跟这个差不多，可能会稍有不同。</p>
+<p><strong>下面七种技巧各有千秋，在开发中可以根据实际需求选择适合自己的方法进行编码。</strong></p>
+<h2 id="1-流体布局"><a href="#1-流体布局" class="headerlink" title="1. 流体布局"></a>1. 流体布局</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;style&gt;
+    .left {
+        float: left;
+        height: 200px;
+        width: 100px;
+        background-color: red;
+    }
+    .right {
+        width: 200px;
+        height: 200px;
+        background-color: blue;
+        float: right;
+    }
+    .main {
+        margin-left: 120px;
+        margin-right: 220px;
+        height: 200px;
+        background-color: green;
+    }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>左右模块各自向左右浮动，并设置中间模块的 margin 值使中间模块宽度自适应。</p>
+<p>缺点就是主要内容无法最先加载，当页面内容较多时会影响用户体验。</p>
+<h2 id="2-BFC-三栏布局"><a href="#2-BFC-三栏布局" class="headerlink" title="2. BFC 三栏布局"></a>2. BFC 三栏布局</h2><p>BFC 规则有这样的描述：BFC 区域，不会与浮动元素重叠。因此我们可以利用这一点来实现 3 列布局。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;style&gt;
+    .left {
+        float: left;
+        height: 200px;
+        width: 100px;
+        margin-right: 20px;
+        background-color: red;
+    }
+    .right {
+        width: 200px;
+        height: 200px;
+        float: right;
+        margin-left: 20px;
+        background-color: blue;
+    }    
+    .main {
+        height: 200px;
+        overflow: hidden;
+        background-color: green;
+    }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>缺点跟方法一类似，主要内容模块无法最先加载，当页面中内容较多时会影响用户体验。因此为了解决这个问题，有了下面要介绍的布局方案双飞翼布局。</p>
+<h2 id="3-双飞翼布局"><a href="#3-双飞翼布局" class="headerlink" title="3. 双飞翼布局"></a>3. 双飞翼布局</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;style&gt;
+        .content {
+          float: left;
+          width: 100%;
+        }
+        .main {
+          height: 200px;
+          margin-left: 110px;
+          margin-right: 220px;
+          background-color: green;
+        }
+        //用于清除浮动
+        .main::after {
+          display: block;
+          content: &#39;&#39;;
+          font-size: 0;
+          height: 0;
+          clear: both;
+          zoom: 1;
+        }
+    .left {
+        float: left;
+        height: 200px;
+        width: 100px;
+        margin-left: -100%;
+        background-color: red;
+    }
+    .right {
+        width: 200px;
+        height: 200px;
+        float: right;
+        margin-left: -200px;
+        background-color: blue;
+    }    
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;content&quot;&gt;
+        &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>利用的是浮动元素 margin 负值的应用，感兴趣的同学可以上网搜搜原理。</p>
+<p>主体内容可以优先加载，HTML 代码结构稍微复杂点。</p>
+<h2 id="4-圣杯布局"><a href="#4-圣杯布局" class="headerlink" title="4. 圣杯布局"></a>4. 圣杯布局</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;style&gt;
+    .container {
+        margin-left: 120px;
+        margin-right: 220px;
+    }
+    .main {
+        float: left;
+        width: 100%;
+        height: 300px;
+        background-color: red;
+    }
+    .left {
+        float: left;
+        width: 100px;
+        height: 300px;
+        margin-left: -100%;
+        position: relative;
+        left: -120px;
+        background-color: blue;
+    }
+    .right {
+        float: left;
+        width: 200px;
+        height: 300px;
+        margin-left: -200px;
+        position: relative;
+        right: -220px;
+        background-color: green;
+    }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>跟双飞翼布局很像，有一些细节上的区别，相对于双飞翼布局来说，HTML 结构相对简单，但是样式定义就稍微复杂，也是优先加载内容主体。</p>
+<h2 id="5-Flex-布局"><a href="#5-Flex-布局" class="headerlink" title="5. Flex 布局"></a>5. Flex 布局</h2><p><strong>推荐</strong></p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;style&gt;
+    .container {
+            display: flex;
+    }
+    .main {
+            flex-grow: 1;
+        height: 300px;
+        background-color: red;
+    }
+    .left {
+        order: -1;
+        flex: 0 1 200px;
+        margin-right: 20px;
+        height: 300px;
+        background-color: blue;
+    }
+    .right {
+        flex: 0 1 100px;
+            margin-left: 20px;
+        height: 300px;
+        background-color: green;
+    }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>简单实用，未来的趋势，需要考虑浏览器的兼容性。</p>
+<h2 id="6-Table-布局"><a href="#6-Table-布局" class="headerlink" title="6. Table 布局"></a>6. Table 布局</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;style&gt;
+        .container {
+        display: table;
+        width: 100%;
+        }
+        .left, .main, .right {
+        display: table-cell;
+        }
+        .left {
+        width: 200px;
+        height: 300px;
+        background-color: red;
+        }
+        .main {
+        background-color: blue;
+        }
+        .right {
+        width: 100px;
+        height: 300px;
+        background-color: green;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>缺点：无法设置栏间距</p>
+<h2 id="7-绝对定位布局"><a href="#7-绝对定位布局" class="headerlink" title="7. 绝对定位布局"></a>7. 绝对定位布局</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;style&gt;
+    .container {
+        position: relative;
+    }
+    .main {
+        height: 400px;
+        margin: 0 120px;
+        background-color: green;
+    }
+    .left {
+        position: absolute;
+        width: 100px;
+        height: 300px;
+        left: 0;
+        top: 0;
+        background-color: red;
+    }
+    .right {
+        position: absolute;
+        width: 100px;
+        height: 300px;
+        background-color: blue;
+            right: 0;
+        top: 0;
+    }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>简单实用，并且主要内容可以优先加载。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>以上就是css常见的七种布局方式。如有不足，欢迎指出。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> css </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[React特性精华]]></title>
       <url>/React%E7%89%B9%E6%80%A7%E7%B2%BE%E5%8D%8E.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以下内容是我在学习和研究 React 时，对 React 的特性、重点和注意事项的提取、精练和总结，可以做为 React 特性的字典，方便大家查阅</p>
@@ -310,9 +612,9 @@ var Greeting = createReactClass({
             
             <tag> javascript </tag>
             
-            <tag> react </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
@@ -5815,9 +6117,9 @@ npm run dist
         
         <tags>
             
-            <tag> react </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> react </tag>
             
             <tag> 前端工具 </tag>
             
@@ -6448,9 +6750,9 @@ GET /employees?offset=20&amp;limit=10
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> 前端架构设计 </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -6989,9 +7291,9 @@ class ImgFigure extends React.Component {
         
         <tags>
             
-            <tag> react </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> react </tag>
             
             <tag> 前端工具 </tag>
             
