@@ -3,6 +3,480 @@
   
     
     <entry>
+      <title><![CDATA[10个React小模式]]></title>
+      <url>/10%E4%B8%AAReact%E5%B0%8F%E6%A8%A1%E5%BC%8F.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><del>在过去的几年，我经手过很多大大小小的React项目，在这个过程中，我不断的重复重复，逐渐的形成了一些模式，在这里分享给大家。</del></p>
+<p>如果你是刚开始接触React，能看到这篇文章，只能说你很幸运 ：）。</p>
+<p>如果你没有接触过React，你可以跳过（3，6，8，10）节。</p>
+<h2 id="10个React小模式"><a href="#10个React小模式" class="headerlink" title="10个React小模式"></a>10个React小模式</h2><h3 id="1-数据向下和向上传递"><a href="#1-数据向下和向上传递" class="headerlink" title="1 数据向下和向上传递"></a>1 数据向下和向上传递</h3><p>对于刚接触React新手，我通常都会告诉他们数据的传递模式，也就是父组件向子组件传递数据（比如一个对象，一个字符串等等），也可以是一个方法，使得父组件可以得到子组件的数据。</p>
+<p>就像把一包薯片和一个对讲机传递到被困井下的矿工手上。</p>
+<p>下图是最简单的模式</p>
+<p><img src="https://img.funteas.com/ba8c793625abf7e86b2c6b15afa4544b.png?imageView2/2/w/800" alt=""> （此图胜过千言万语）</p>
+<p>父组件在左边，子组件在右边。连接两个组件的props允许信息在两个方向任意流动。</p>
+<p>一个 props 是<code>items</code>，传递信息到子组件。 一个 props 是<code>deleteitem</code>，给子组件一个方法来告诉父组件（“ 删除这个item ”）。</p>
+<h3 id="2-修复HTML的input标签"><a href="#2-修复HTML的input标签" class="headerlink" title="2 修复HTML的input标签"></a>2 修复HTML的input标签</h3><p>关于React组件化的一个重要方面就是，如果HTML中的标签不能按照你想要的方式工作，你可以按照你的方式定义它。</p>
+<p>当我创建一个页面，页面有很多用户输入框，第一步先处理这些标签。</p>
+<p><img src="https://img.funteas.com/04d8fda42368628d19df33668bb8f32b.png?imageView2/2/w/800" alt=""></p>
+<p>还需要注意:</p>
+<ul>
+<li><p>输入框应该通过<code>onChange</code>方法返回输入值。</p>
+</li>
+<li><p>确保输入值的类型与<code>onChange</code>返回值的类型相同，如果<code>typeof props.value</code>的类型是<code>number</code>，那么就需要将<code>e.target.value</code>的类型转换成<code>number</code>。</p>
+</li>
+<li><p>一组单选按钮的功能和<code>&lt;Select&gt;</code>一样，只是UI不同。可以在你的应用中统一成一个组件（比如<code>&lt;PickOneFromMany /&gt;</code>），然后通过传递<code>ui=&quot;radio&quot;</code> 或者 <code>ui=&quot;dropDown&quot;</code>来区分。</p>
+</li>
+</ul>
+<h3 id="3-为input绑定唯一的ID"><a href="#3-为input绑定唯一的ID" class="headerlink" title="3 为input绑定唯一的ID"></a>3 为input绑定唯一的ID</h3><p>我们会为input绑定唯一的ID，但是为每一个input定义一个唯一的ID很费事。</p>
+<p>你可以为每一对input/label标签生成一个随机ID，但是客户端和服务器端渲染的HTML无法匹配。</p>
+<p>所以，你可以写一个方法自增生成ID，如下：</p>
+<pre><code>class  Input  extends  React.Component {
+
+    constructor(props) {
+
+        super(props);
+
+        this.id  =  getNextId();
+
+        this.onChange  =  this.onChange.bind(this);
+
+    }
+
+    onChange(e) {
+
+        this.props.onChange(e.target.value);
+
+    }
+
+    render() {
+
+        return (
+
+            &lt;label htmlFor={this.id}&gt;
+
+            {this.props.label}
+
+            &lt;input
+
+            id={this.id}
+
+            value={this.props.value}
+
+            onChange={this.onChange}
+
+            /&gt;
+
+            &lt;/label&gt;
+
+        );
+
+    }
+
+}
+</code></pre><p>如果每次调用<code>getNextId()</code>时，仅仅是一个数字自增，那么在服务器端渲染，这个数字将会无限大。所以在每次网络请求的时候需要重置这个数字。代码如下：</p>
+<pre><code>let count = 1;
+
+export const resetId = () =&gt; {
+
+    count = 1;
+
+ }
+
+ export const getNextId = () =&gt; {
+
+     return `element-id-${count++}`;
+
+}
+</code></pre><h3 id="4-用props控制CSS"><a href="#4-用props控制CSS" class="headerlink" title="4 用props控制CSS"></a>4 用props控制CSS</h3><p>如果你想把不同CSS应用在不同的实例中（比如：普通按钮和高亮按钮），你可以传props来控制CSS。</p>
+<p>表面看起来超级简单，但我保证有很多坑等你跳的。</p>
+<p>个人觉得有三种实现的方法：</p>
+<h4 id="使用主题"><a href="#使用主题" class="headerlink" title="使用主题"></a>使用主题</h4><p>把许多CSS打包放到一起，然后使用属性<code>themes</code>来控制。比如：</p>
+<p><code>&lt;Button theme=&quot;secondary&quot;&gt;Hello&lt;/Button&gt;</code></p>
+<h4 id="设置boolean属性"><a href="#设置boolean属性" class="headerlink" title="设置boolean属性"></a>设置boolean属性</h4><p>比如一些特殊的按钮需要倒角，但与你定义的主题不一致。</p>
+<p>要么你去找UI，让它设计时保持一致，要么你就设置一个值为boolean的属性来区分：</p>
+<p><code>&lt;Button theme=&quot;secondary&quot; rounded&gt;Hello&lt;/Button&gt;</code></p>
+<p>类似HTML的二进制属性，所以你不需要写成<code>rounded = [true]</code>。</p>
+<h4 id="设置属性值"><a href="#设置属性值" class="headerlink" title="设置属性值"></a>设置属性值</h4><p>在某些情况下，您可能希望直接传递CSS属性的值（在组件中，将其设置为内联样式）：</p>
+<p><code>&lt;Icon width=&quot;25&quot; height=&quot;25&quot; type=&quot;search&quot; /&gt;</code></p>
+<h4 id="举个例子："><a href="#举个例子：" class="headerlink" title="举个例子："></a>举个例子：</h4><p>假设你正在创建一个链接组件，有三种主题，是否添加下划线是可选的。</p>
+<p><img src="https://img.funteas.com/308756e69607e168e9595e50518b1f03.png?imageView2/2/w/800" alt=""></p>
+<p>代码如下：</p>
+<pre><code>const Link = (props) =&gt; {
+
+    let className = `link link--${props.theme}-theme`;
+
+    if (!props.underline) className += &#39; link--no-underline&#39;;
+
+    return &lt;a  href={props.href}  className={className}&gt;{props.children}&lt;/a&gt;;
+
+};
+
+Link.propTypes = {
+
+    theme: PropTypes.oneOf([
+
+        &#39;default&#39;, // primary color, no underline
+
+        &#39;blend&#39;, // inherit surrounding styles
+
+        &#39;primary-button&#39;, // primary color, solid block
+
+    ]),
+
+    underline: PropTypes.bool,
+
+    href: PropTypes.string.isRequired,
+
+    children: PropTypes.oneOfType([
+
+        PropTypes.element,
+
+        PropTypes.array,
+
+        PropTypes.string,
+
+    ]).isRequired,
+
+};
+
+Link.defaultProps = {
+
+    theme: &#39;default&#39;,
+
+    underline: false,
+
+};
+</code></pre><p>CSS:</p>
+<pre><code>.link--default-theme,
+
+.link--blend-theme:hover {
+
+    color: #D84315;
+
+}
+
+.link--blend-theme {
+
+    color: inherit;
+
+}
+
+.link--default-theme:hover,
+
+.link--blend-theme:hover {
+
+    text-decoration: underline;
+
+}
+
+.link--primary-button-theme {
+
+    display: inline-block;
+
+    padding: 12px 25px;
+
+    font-size: 18px;
+
+    background: #D84315;
+
+    color: white;
+
+}
+
+.link--no-underline {
+
+    text-decoration: none;
+
+}
+</code></pre><h3 id="5-动态组件"><a href="#5-动态组件" class="headerlink" title="5 动态组件"></a>5 动态组件</h3><p>动态组件可以渲染任何一个组件。 它可以是一个动态的页面组件，来展示一堆页面中的某一个页面，比如:</p>
+<pre><code>import  HomePage  from  &#39;./HomePage.jsx&#39;;
+
+import  AboutPage  from  &#39;./AboutPage.jsx&#39;;
+
+import  UserPage  from  &#39;./UserPage.jsx&#39;;
+
+import  FourOhFourPage  from  &#39;./FourOhFourPage.jsx&#39;;
+
+const PAGES = {
+
+    home: HomePage,
+
+    about: AboutPage,
+
+    user: UserPage,
+
+};
+
+const Page = (props) =&gt; {
+
+    const Handler = PAGES[props.page] || FourOhFourPage;
+
+    return  &lt;Handler {...props} /&gt;
+
+};
+
+Page.propTypes  = {
+
+    page:  PropTypes.oneOf(Object.keys(PAGES)).isRequired,
+
+};
+</code></pre><p>如果你把<code>home</code>，<code>about</code> 和 <code>user</code> 换成<code>/</code>，<code>/about</code> 和 <code>/user</code>，恭喜你，你已经把它变成了半个路由器了。</p>
+<h3 id="6-优化组件"><a href="#6-优化组件" class="headerlink" title="6 优化组件"></a>6 优化组件</h3><p>当打开一个页面，input输入框自动获取光标，这会大大提升用户体验。</p>
+<p>比如打开一个注册页面，光标自动获取到用户名输入栏。</p>
+<p>有人在写这个组件的时候会想到，为input绑定一个id，然后通过<code>document.getElementById(&#39;user-name-input&#39;).focus()</code>来实现。</p>
+<p>但我认为这并不是一个很好的方式，我有一个更好的实现方式:</p>
+<pre><code>class Input extends Component {
+
+    focus() {
+
+        this.el.focus();
+
+    }
+
+    render() {
+
+        return (
+
+            &lt;input
+
+                ref={el=&gt; { this.el = el; }}
+
+            /&gt;
+
+        );
+
+    }
+
+}
+</code></pre><p>ok，一个拥有<code>focus()</code>方法的<code>Input</code>组件完成了。</p>
+<p>在父亲组件中，我们可以调到子组件的<code>focus()</code> 方法：</p>
+<pre><code>class SignInModal extends Component {
+
+componentDidMount() {
+
+    this.InputComponent.focus();
+
+}
+
+render() {
+
+    return (
+
+        &lt;div&gt;
+
+            &lt;label&gt;User name: &lt;/label&gt;
+
+            &lt;Input
+
+                ref={comp =&gt; { this.InputComponent = comp; }}
+
+            /&gt;
+
+        &lt;/div&gt;
+
+    )
+
+}
+
+}
+</code></pre><p>注意，当您在一个组件上使用ref时，它是对组件(而不是底层元素)的引用，因此您可以访问它的方法。</p>
+<h3 id="7-别过早组件化"><a href="#7-别过早组件化" class="headerlink" title="7 别过早组件化"></a>7 别过早组件化</h3><p>一个搜索组件，当你输入的时候，可以看到模糊查询到的列表，如下：</p>
+<p><img src="https://img.funteas.com/21312590fab421f25931a31659129d79.png?imageView2/2/w/800" alt=""></p>
+<p>(我在搜索喜欢讽刺政治的人，我和很多人一样，对别人的政治观点非常感兴趣。)</p>
+<p>当设计这个组件的时候，你可能会想：是否需要新建一个搜索结果组件<code>searchResult</code>来展示搜索结果，这个组件可能只需要几行HTML和CSS代码……但我曾告诫自己，当自己犹豫是否要新建的时候，就别新建。</p>
+<p>这种情况我不会新建一个独立的组件，而是添加一个<code>renderSearchResult</code>方法，返回相应的DOM。如下：</p>
+<pre><code>const SearchSuggestions = (props) =&gt; {
+
+    // renderSearchSuggestion() behaves as a pseduo SearchSuggestion component
+
+    // keep it self contained and it should be easy to extract later if needed
+
+    const renderSearchSuggestion = listItem =&gt; (
+
+        &lt;li  key={listItem.id}&gt;{listItem.name} {listItem.id}&lt;/li&gt;
+
+    );
+
+    return (
+
+        &lt;ul&gt;
+
+            {props.listItems.map(renderSearchSuggestion)}
+
+        &lt;/ul&gt;
+
+    );
+
+}
+</code></pre><p>如果其他组件也有类似的需求，你应该复制粘贴代码到那个组件，而不是过早的组件化。</p>
+<h3 id="8-用于文本格式化的组件"><a href="#8-用于文本格式化的组件" class="headerlink" title="8 用于文本格式化的组件"></a>8 用于文本格式化的组件</h3><p>这是一个<code>Price</code>组件，将数字处理成含或者不含小数点或者`&lt;div class=“markdown-html language-javascript” id=”article-text”符号的字符串。</p>
+<pre><code>const Price = (props) =&gt; {
+
+    const price = props.children.toLocaleString(&#39;en&#39;, {
+
+        style: props.showSymbol ? &#39;currency&#39; : undefined,
+
+        currency: props.showSymbol ? &#39;USD&#39; : undefined,
+
+        maximumFractionDigits: props.showDecimals ? 2 : 0,
+
+    });
+
+    return &lt;span  className={props.className}&gt;{price}&lt;/span&gt;
+
+};
+
+Price.propTypes = {
+
+    className: React.PropTypes.string,
+
+    children: React.PropTypes.number,
+
+    showDecimals: React.PropTypes.bool,
+
+    showSymbol: React.PropTypes.bool,
+
+};
+
+Price.defaultProps = {
+
+    children: 0,
+
+    showDecimals: true,
+
+    showSymbol: true,
+
+};
+
+const Page = () =&gt; {
+
+    const lambPrice = 1234.567;
+
+    const jetPrice = 999999.99;
+
+    const bootPrice = 34.567;
+
+    return (
+
+        &lt;div&gt;
+
+            &lt;p&gt;One lamb is &lt;Price  className=&quot;expensive&quot;&gt;{lambPrice}&lt;/Price&gt;&lt;/p&gt;
+
+            &lt;p&gt;One jet is &lt;Price  showDecimals={false}&gt;{jetPrice}&lt;/Price&gt;&lt;/p&gt;
+
+            &lt;p&gt;Those gumboots will set ya back &lt;Price  showDecimals={false}  showSymbol={false}&gt;{bootPrice}&lt;/Price&gt; bucks.&lt;/p&gt;
+
+        &lt;/div&gt;
+
+    );
+
+};
+</code></pre><p>正如你所看到的，我用使用了一个强大的字符串格式化库，<a href="http://link.funteas.com/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fen%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FNumber%2FtoLocaleString" target="_blank" rel="external">链接在这里</a> (target=undefined)。</p>
+<p>用更少的代码实现（我不是很喜欢）:</p>
+<pre><code>function numberToPrice(num, options = {}) {
+
+    const showSymbol = options.showSymbol !== false;
+
+    const showDecimals = options.showDecimals !== false;
+
+    return num.toLocaleString(&#39;en&#39;, {
+
+        style: showSymbol ? &#39;currency&#39; : undefined,
+
+        currency: showSymbol ? &#39;USD&#39; : undefined,
+
+        maximumFractionDigits: showDecimals ? 2 : 0,
+
+    });
+
+}
+
+const Page = () =&gt; {
+
+    const lambPrice = 1234.567;
+
+    const jetPrice = 999999.99;
+
+    const bootPrice = 34.567;
+
+    return (
+
+    &lt;div&gt;
+
+        &lt;p&gt;One lamb is &lt;span  className=&quot;expensive&quot;&gt;{numberToPrice(lambPrice)}&lt;/span&gt;&lt;/p&gt;
+
+        &lt;p&gt;One jet is {numberToPrice(jetPrice, { showDecimals: false })}&lt;/p&gt;
+
+        &lt;p&gt;Those gumboots will set ya back {numberToPrice(bootPrice, { showDecimals: false, showSymbol: false })} bucks.&lt;/p&gt;
+
+    &lt;/div&gt;
+
+    );
+
+};
+</code></pre><p>注意：我并没有检查传入数字的的有效性，是因为…………lan。</p>
+<h3 id="9-降低组件复杂度"><a href="#9-降低组件复杂度" class="headerlink" title="9 降低组件复杂度"></a>9 降低组件复杂度</h3><p>我可能写过上千次这种判断：</p>
+<pre><code>if (props.user.signInStatus === SIGN_IN_STATUSES.SIGNED_IN)...
+</code></pre><p>这是一个错误示范，我应该判断“用户是否登录”而不是判断“用户登录状态===登录”</p>
+<p>我的组件已经够复杂了，不应该让它去考虑传入的价格是不是数字，亦或者boolean值是否是‘true’。</p>
+<p>正如你所见，如果你的数据store和你的组件是相匹配的，那么你的组件将会简单得多。我以前就说过，“复杂”是bug的藏身之处。组件越简单，出bug的概率就越小。</p>
+<p>但是“复杂”无法避免，如何处理呢？</p>
+<p>我建议创建一个模块，来专门处理输入数据，比如重命名<code>props</code>，字符串转成数字，对象转成数组，数据字符串转成数据对象，等等。</p>
+<p>全部在一个地方处理和测试。</p>
+<p>如果你设置<code>react/redux</code>，你应该这样在<code>action</code>中写请求搜索结果：</p>
+<pre><code>fetch(`/api/search?${queryParams}`) 
+
+    .then(response =&gt; response.json()) 
+
+    .then(normalizeSearchResultsApiData) // 处理所有数据 
+
+    .then(normalData =&gt; { 
+
+    // 得到处理后的数据
+
+});
+</code></pre><p>这样会大大降低组件的复杂度。</p>
+<h3 id="10-不用相对路径来导入组件"><a href="#10-不用相对路径来导入组件" class="headerlink" title="10 不用相对路径来导入组件"></a>10 不用相对路径来导入组件</h3><p>别这样写:</p>
+<pre><code>**import** Button **from** &#39;../../../../Button/Button.jsx&#39;;
+**import** Icon **from** &#39;../../../../Icon/Icon.jsx&#39;;
+**import** Footer **from** &#39;../../Footer/Footer.jsx&#39;;
+</code></pre><p>要这样写:</p>
+<pre><code>`import {Button, Icon, Footer} from &#39;Components&#39;;`
+</code></pre><p>理论上你可以这样实现:</p>
+<ul>
+<li><p>创建一个<code>index.js</code>做索引，让你所有的组件可以被引用。</p>
+</li>
+<li><p>使用Webpack的 <code>resolve.alias</code> 来重定向组件的索引文件</p>
+</li>
+</ul>
+<p>我按照以上理论实现的时候发现这样做并不好，有三个原因：</p>
+<ol>
+<li><p>Webpack 2删除了<code>alias</code>方法</p>
+</li>
+<li><p><code>eslint</code>会报错，因为组件并没有在<code>node_modules</code>中。</p>
+</li>
+<li><p>如果你用<code>WebStorm</code>，<code>cmd</code>/<code>ctrl</code> + 左键组件名的时候，会自动打开该组件文件。但是这个功能将会失效。</p>
+</li>
+</ol>
+<p><img src="https://img.funteas.com/7bd63a32fee471e4389e79ddf5070659.png?imageView2/2/w/800" alt=""></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>写了很多，希望对您有帮助！</p>
+]]></content>
+      
+        <categories>
+            
+            <category> react </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端框架 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[详解 CSS 居中布局技巧]]></title>
       <url>/%E8%AF%A6%E8%A7%A3-CSS-%E5%B1%85%E4%B8%AD%E5%B8%83%E5%B1%80%E6%8A%80%E5%B7%A7.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>居中布局是前端页面开发过程中一种很常见的布局方式。</p>
@@ -6602,9 +7076,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> 前端框架 </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
