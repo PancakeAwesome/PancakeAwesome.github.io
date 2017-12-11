@@ -3,6 +3,205 @@
   
     
     <entry>
+      <title><![CDATA[详解 CSS 居中布局技巧]]></title>
+      <url>/%E8%AF%A6%E8%A7%A3-CSS-%E5%B1%85%E4%B8%AD%E5%B8%83%E5%B1%80%E6%8A%80%E5%B7%A7.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>居中布局是前端页面开发过程中一种很常见的布局方式。</p>
+<h2 id="水平居中元素："><a href="#水平居中元素：" class="headerlink" title="水平居中元素："></a>水平居中元素：</h2><p>方式一：CSS3 transform</p>
+<pre><code>.parent {
+    position: relative;
+}
+.child {
+    position: absolute;
+    left: 50%:
+    transform: translateX(-50%);
+}
+</code></pre><p>方式二：flex 布局</p>
+<pre><code>.parent {
+    display: flex;
+    justify-content: center;
+}
+</code></pre><p>适用于子元素为浮动，绝对定位，内联元素，均可水平居中。</p>
+<ul>
+<li><strong>居中的元素为常规文档流中的内联元素(display: inline)</strong></li>
+</ul>
+<p>常见的内联元素有：span, a, img, input, label 等等</p>
+<pre><code>.parent {
+    text-align: center;
+}
+</code></pre><ul>
+<li><strong>居中的元素为常规文档流中的块元素(display: block)</strong></li>
+</ul>
+<p>常见的块元素：div, h1~h6, table, p, ul, li 等等</p>
+<p>方式一：设置 margin</p>
+<pre><code>.parent {
+    width: 100%;
+}
+.child {
+    width: 600px;
+    height: 50px;
+    margin: 0 auto;
+    background: #999;
+}
+</code></pre><p>方式二：修改为 inline-block 属性</p>
+<pre><code>.parent {
+    text-align: center;
+}
+.child {
+    display: inline-block;
+}
+</code></pre><pre><code>.child {
+    width: 100px;
+    float: left;
+    position: relative;
+    left: 50%;
+    margin-left: -50px;
+}
+</code></pre><p>方式一：</p>
+<pre><code>.parent {
+    position: relative;
+}
+.child {
+    position: absolute;
+    width: 100px;
+    left: 50%;
+    margin-left: -50px;
+}
+</code></pre><p>方式二：</p>
+<pre><code>.parent {
+    position: relative;
+}
+.child {
+    position: absolute;
+    width: 100px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+</code></pre><h2 id="垂直居中元素："><a href="#垂直居中元素：" class="headerlink" title="垂直居中元素："></a>垂直居中元素：</h2><p>方式一：CSS3 transform</p>
+<pre><code>.parent {
+    position: relative;
+}
+.child {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+</code></pre><p>方式二：flex 布局</p>
+<pre><code>.parent {
+    display: flex;
+    align-items: center;
+}
+</code></pre><p>适用于子元素为浮动，绝对定位，内联元素，均可垂直居中。</p>
+<pre><code>.text {
+    line-height: 200px;
+    height: 200px;
+}
+</code></pre><p>方式一：</p>
+<pre><code>.parent {
+    position: relative;
+}
+.child{
+    position: absolute;
+    top: 50%;
+    height: 100px;
+    margin-top: -50px;
+}
+</code></pre><p>方式二：</p>
+<pre><code>.parent {
+    position: relative;
+}
+.child{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100px;
+    margin: auto 0;
+}
+</code></pre><h2 id="垂直居中元素：-1"><a href="#垂直居中元素：-1" class="headerlink" title="垂直居中元素："></a>垂直居中元素：</h2><pre><code>div {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    position: fixed;
+    //absolute is ok
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+</code></pre><p>优点：</p>
+<ol>
+<li><p>不仅可以实现在正中间，还可以在正左方，正右方</p>
+</li>
+<li><p>元素的宽高支持百分比 % 属性值和 min-/max- 属性</p>
+</li>
+<li><p>可以封装为一个公共类，可做弹出层</p>
+</li>
+<li><p>浏览器支持性好</p>
+</li>
+</ol>
+<pre><code>.child {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+}
+</code></pre><p>特点：</p>
+<ol>
+<li><p>良好的跨浏览器特性,兼容 IE6 - IE7</p>
+</li>
+<li><p>灵活性差，不能自适应，宽高不支持百分比尺寸和 min-/max- 属性</p>
+</li>
+</ol>
+<pre><code>.child {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  
+}
+</code></pre><p>特点：</p>
+<ol>
+<li><p>内容可自适应，可以封装为一个公共类，可做弹出层</p>
+</li>
+<li><p>可能干扰其他 transform 效果</p>
+</li>
+</ol>
+<pre><code>.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+</code></pre><p>这是 CSS 布局未来的趋势。Flexbox 是 CSS3 新增属性，设计初衷是为了解决像垂直居中这样的常见布局问题。</p>
+<pre><code>text {
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这就是css居中布局的一些常用技巧。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> CSS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[详解 CSS 七种三栏布局技巧]]></title>
       <url>/%E8%AF%A6%E8%A7%A3-CSS-%E4%B8%83%E7%A7%8D%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80%E6%8A%80%E5%B7%A7.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>三栏布局，顾名思义就是两边固定，中间自适应。三栏布局在开发十分常见，那么什么是三栏布局？比如我打开某东的首页：</p>
@@ -1171,7 +1370,6 @@ module.exports = {
 };
 </code></pre><p>这个文件不是必须的，但在项目增大后，它的意义就瞬间出来了</p>
 <p><code>webpack.config.prod.js</code></p>
-<p><code>webpack.config.prod.js</code></p>
 <pre><code>const path = require(&#39;path&#39;);
 const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
 
@@ -1208,7 +1406,8 @@ module.exports = config;
 <pre><code>&quot;scripts&quot;: {
   &quot;clean&quot;: &quot;rimraf dist *.log .DS_Store&quot;,
   &quot;build&quot;: &quot;yarn run clean &amp;&amp; webpack --config config/webpack.config.prod.js --progress&quot;
-}const path = require(&#39;path&#39;);
+}
+</code></pre><pre><code>const path = require(&#39;path&#39;);
 const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
 const OpenBrowserPlugin = require(&#39;open-browser-webpack-plugin&#39;);
 
@@ -3404,9 +3603,9 @@ fn();
         
         <tags>
             
-            <tag> http协议 </tag>
-            
             <tag> 网络 </tag>
+            
+            <tag> http协议 </tag>
             
         </tags>
         
