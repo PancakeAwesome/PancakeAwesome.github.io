@@ -3977,9 +3977,9 @@ io.on(&#39;connection&#39;, function(socket) {
         
         <tags>
             
-            <tag> node.js </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> node.js </tag>
             
         </tags>
         
