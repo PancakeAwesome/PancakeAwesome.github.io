@@ -3,6 +3,239 @@
   
     
     <entry>
+      <title><![CDATA[入门 node.js 你必须知道的那些事]]></title>
+      <url>/%E5%85%A5%E9%97%A8-node-js-%E4%BD%A0%E5%BF%85%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="最基本的一些操作和概念"><a href="#最基本的一些操作和概念" class="headerlink" title="最基本的一些操作和概念"></a>最基本的一些操作和概念</h2><h3 id="用-node-执行一段-js-代码"><a href="#用-node-执行一段-js-代码" class="headerlink" title="用 node 执行一段 js 代码"></a>用 node 执行一段 js 代码</h3><ol>
+<li><p>在命令行中用 cd 切换到桌面</p>
+</li>
+<li><p>创建一个文件夹和并用 cd 命令切换到这个文件夹mkdir nodeTest &amp;&amp; cd nodeTest</p>
+</li>
+<li><p>创建一个 js 文件并写上简单的 js 代码 touch a.js</p>
+</li>
+</ol>
+<pre><code>    var a = 10;
+    console.log(a);
+    console.log(a + 10);
+</code></pre><ol>
+<li>在命令行中输入 node a.js 命令行会输出 10 20</li>
+</ol>
+<h3 id="node-引用文件的方式"><a href="#node-引用文件的方式" class="headerlink" title="node 引用文件的方式"></a>node 引用文件的方式</h3><ol>
+<li><p>Node.js 采用了 CommonJS 规范, 通过 require 来引入一个 js 文件</p>
+</li>
+<li><p>新建文件 b.js 并在文件中引入 a.js</p>
+</li>
+</ol>
+<ul>
+<li><p>touch b.js</p>
+</li>
+<li><p>require(‘./a.js’)</p>
+</li>
+</ul>
+<ol>
+<li>执行 b.js</li>
+</ol>
+<ul>
+<li>node b.js 命令行会输出 10 20</li>
+</ul>
+<h3 id="node-中的模块概念"><a href="#node-中的模块概念" class="headerlink" title="node 中的模块概念"></a>node 中的模块概念</h3><ol>
+<li><p>node 中一个模块就是一个 js 文件，多个模块组成一个特定功能的一堆文件叫包</p>
+</li>
+<li><p>一个 js 文件可以定义它自己暴露给外部的变量 (意思就是另一个文件通过 require 引用它后需要怎么使用它),node 中提供共了 exports 和 module.exports 两个变量来实现它</p>
+</li>
+</ol>
+<p>a.js</p>
+<pre><code>function func1() {
+   console.log(&#39;aaa&#39;)
+}
+function func2() {
+   console.log(&#39;bbb&#39;)
+}
+exports.a = func1
+exports.b = func2
+</code></pre><p>b.js</p>
+<pre><code>var a = require(&#39;./a.js&#39;)
+a.func1() //会打印出aaa
+a.func2() //会打印出bbb
+</code></pre><p>c.js</p>
+<pre><code>//es6 模式匹配写法
+var {fun1,fun2} = require(&#39;./a.js&#39;)//fun1和fun2必须跟a.js中的变量名相同，这里是固定的
+fun1() //会打印出aaa
+fun2() //会打印出bbb
+</code></pre><p>a.js</p>
+<pre><code>//类的写法
+function Test() {
+   this.func1 = function() {
+       console.log(&#39;aaa&#39;)
+   }
+   this.func2 = function() {
+       console.log(&#39;bbb&#39;)
+   }
+}
+module.exports = Hello
+</code></pre><p>b.js</p>
+<pre><code>var Test = require(&#39;./a.js&#39;)
+var test = new Test()
+test.func1()
+test.func2()
+</code></pre><ol>
+<li>exports 和 module.exports 的关系</li>
+</ol>
+<p>exports 是 module.exports 的一个引用，意思就是指向同一块内存地址，node 中真正生效的是 module.exports, 修改 exports 本质上也是修改 module.exports 的值，</p>
+<p>比如 exports.a = 3，实际上 module.exports.a 也是等于 3 的</p>
+<p>又比如 exports = {}，这样 exports 就和 module.exports 的指向的对象就不一样了，后面再怎么修改 exports 也不会影响到 module.exports 的值，也不会影响到文件输出的变量</p>
+<p>再比如 module.exports={}，这样造成的效果和上面 exports={} 的效果是一样的</p>
+<p>建议：如果你还傻傻分不清楚它们的区别，以后在不是必须用到 module.exports 的时候只用 exports, 如果导出一个类这样的必须用到 module.exports 就不要使用 exports 了, 不要混在一起用就不会出错了</p>
+<ol>
+<li>node 中的 npm</li>
+</ol>
+<p>node 中默认自带了 npm，npm 是一个包管理器，上面说到包就是一个个模块 (js 文件) 组成的一个具有特定功能的一堆 js 文件，通过 npm 我们可以引入这些包 (如果不理解，把包理解成一个个插件也没有错) 来轻松实现一些功能</p>
+<p>安装一个模块你只需要 npm install xxx 就可以安装了，然后在你自己的 js 中用 var xxx = require(‘./xxx’) 就可以使用了</p>
+<p>通过 npm install xxx 安装完 xxx 模块后，你会发现当前目录下多了一个 node<em>modules 文件夹，打开 node</em>modules 文件夹你会发现里面有一个 xxx 文件夹。你在执行 npm install xxx 的时候，实际上 npm 也只是帮你把 xxx 这个包下载下来了而已，仅此而已</p>
+<p>当你通过 npm 安装了十来个或者更多的包的时候你可能自己早就不知道自己安装了哪些包了，因为很多包依赖了其它的包 (一个包用到另一个包提供的功能是非常正常的行为，就像我们在用别人包里的功能一样), 所以 npm 提供了 package.json 这个文件来管理包</p>
+<p>package.json 是一个文件，里面可以定义很多键值对，其中有几个字段非常重要，dependencies 表示上线运行时依赖的包，devDependencies 表示开发时依赖的包，scripts 可以定义自己的脚本，main 表示所有的包你都会通过这个文件引入</p>
+<p>当你在 dependencies 和 devDependencies 定义好依赖，然后在命令行中输入 npm install，npm 就会帮你自动安装好这些包；反过来你在命令行中输入 npm install xxx –save 后 npm 就会在 package.json 中的 dependencies 自动加上 xxx，如果执行的是 npm install xxx –save-dev 就会在 devDependencies 中自动加上 xxx。</p>
+<p>而在 scripts 中定义的脚本就直接可以在命令行中运行了，如果还弄不懂，可以看一下我的另一篇文章，如何制作自己的 npm 包</p>
+<h2 id="node-js-中自带的那些模块"><a href="#node-js-中自带的那些模块" class="headerlink" title="node.js 中自带的那些模块"></a>node.js 中自带的那些模块</h2><h3 id="http-模块"><a href="#http-模块" class="headerlink" title="http 模块"></a>http 模块</h3><p>使用别人的模块，其实就是使用别人写好的方法 (函数)，只需要搞清楚别人提供的方法是怎么用的就可以了，可以查 node.js 官网查 api 或者看看网上写的教程就好。</p>
+<p>下面演示了一个最简单的 http 模块的使用方法，在当前目录下在命令行中输入 node test.js，http 会挂起一个监听，只需要在浏览器中输入 <a href="http://localhost:8000，test.js" target="_blank" rel="external">http://localhost:8000，test.js</a> 就会跟浏览器返回 <code>&lt;div&gt;hello world&lt;/div&gt;</code>显示在页面上：</p>
+<pre><code>test.js
+var http = require(&#39;http&#39;)
+var callBack = function(req, res) {
+    res.write(&#39;&lt;div&gt;hello world&lt;/div&gt;&#39;)
+    res.end()
+}
+http.createServer(callBack).listen(8000)
+</code></pre><h3 id="url-模块"><a href="#url-模块" class="headerlink" title="url 模块"></a>url 模块</h3><p>在 http 模块的例子中传入了一个回调函数，两个参数分别是 request 和 response，前者是浏览器传给我们的对象，后者是我们传给浏览器的对象。</p>
+<p>其中 req 中包含了 url 这个属性，可以在回调函数中把它打印出来 <code>console.log(req.url)</code>, 加入你在浏览器中输入的是：<a href="http://localhost:8000/aaa/bbb?abc=3，那么打印出来的值是：/aaa/bbb?abc=3" target="_blank" rel="external">http://localhost:8000/aaa/bbb?abc=3，那么打印出来的值是：/aaa/bbb?abc=3</a></p>
+<p>在这里我们需要使用到的是 / aaa/bbb 和 abc=3 分开来的结果，node 给我们提供了一个处理 url 的模块，就叫做 url 模块. 当然如果你自己想处理这个 url 也是完全可以的，用正则表达式就可以，但是已经有现成的为啥不用呢</p>
+<p>下面简单演示一下用法，在浏览器输入：<a href="http://localhost:8000/aaa/bbb?abc=3" target="_blank" rel="external">http://localhost:8000/aaa/bbb?abc=3</a></p>
+<pre><code>test.js
+var http = require(&#39;http&#39;)
+var url = require(&#39;url&#39;)
+var callBack = function(req, res) {
+    var urlString = url.parse(req.url)
+    var path = urlString.pathname
+    var query = urlString.query
+    console.log(path,query)//打印出/aaa/bbb abc=3
+   res.write(&#39;&lt;div&gt;hello world&lt;/div&gt;&#39;)
+   res.end()
+}
+http.createServer(callBack).listen(8000)
+</code></pre><h3 id="fs-模块"><a href="#fs-模块" class="headerlink" title="fs 模块"></a>fs 模块</h3><p>fs 是一个提供文件操作功能的模块，可以对文件进行读写存删等操作，下面演示向浏览器返回本 js 的内容：</p>
+<pre><code>test.js
+var http = require(&#39;http&#39;)
+var fs = require(&#39;fs&#39;)
+var callBack = function(req, res) {
+    fs.readFile(&#39;./test.js&#39;, &#39;utf-8&#39;, function(err, data) {
+        res.write(data)
+        res.end()
+    })
+}
+http.createServer(callBack).listen(8000)
+</code></pre><h2 id="用-http-模块、url-模块、http-模块搭建一个静态服务器"><a href="#用-http-模块、url-模块、http-模块搭建一个静态服务器" class="headerlink" title="用 http 模块、url 模块、http 模块搭建一个静态服务器"></a>用 http 模块、url 模块、http 模块搭建一个静态服务器</h2><pre><code>var http = require(&#39;http&#39;)
+var url = require(&#39;url&#39;)
+var fs = require(&#39;fs&#39;)
+var callBack = function(req, res) {
+var pathname = url.parse(req.url).pathname
+if (pathname == &#39;/&#39;) {
+    pathname = &#39;/index.html&#39;
+}
+fs.readFile(&#39;.&#39; + pathname, &#39;utf-8&#39;, function(err, data) {
+        if (err) {
+            res.write(&#39;Error 404&#39;)
+        } else {
+            res.write(data)
+        }
+        res.end()
+    }
+)}
+http.createServer(callBack).listen(8000)
+</code></pre><h2 id="使用外部模块"><a href="#使用外部模块" class="headerlink" title="使用外部模块"></a>使用外部模块</h2><h3 id="简单说明"><a href="#简单说明" class="headerlink" title="简单说明"></a>简单说明</h3><p>外部模块都是第三方提供的模块，node.js 默认是不提供的，所以需要用 npm 安装，这里提供 package.json 文件，只需要执行 npm install 安装就行了，另外是管理 MongoDB 数据库的一个包，所以本地需要把 MongoDB 单独安装一下。</p>
+<pre><code>package.json
+{
+  &quot;dependencies&quot;: {
+    &quot;cheerio&quot;: &quot;^1.0.0-rc.2&quot;,
+    &quot;eventproxy&quot;: &quot;^1.0.0&quot;,
+    &quot;express&quot;: &quot;^4.16.2&quot;,
+    &quot;koa&quot;: &quot;^2.4.1&quot;,&lt;!--koa是用来替代express的框架--&gt;
+    &quot;superagent&quot;: &quot;^3.8.1&quot;
+  }
+}
+</code></pre><h3 id="express"><a href="#express" class="headerlink" title="express"></a>express</h3><p>express 提供了基本的路由和静态文件访问的功能，当然还有其它的功能，这里主要演示它的基本使用 下面 1,2,3 都是设置 public 和 files 目录下为静态文件，可以直接通过文件路径访问，1、2 可以同时存在，即可以指定几个目录均为静态文件目录，在指定目录为静态文件后，访问静态文件需要省略这个目录，比如访问 public 目录下的 css/index.css：localhost:8000/css/index.css, 直接省略了 public， 可以通过 3 来指定替换目录名称的路径，通过 3 设置后，要访问 public 下的 css/index.css：localhost:8000/public/css/index.css</p>
+<pre><code>var express = require(&#39;express&#39;)
+var app = express()
+1\. app.use(express.static(&#39;public&#39;))
+2\. app.use(express.static(&#39;files&#39;))
+3\. app.use(&#39;/static&#39;,express.static(public))
+app.get(&#39;/&#39;, function (req, res) {
+  res.send(&#39;Hello World&#39;);//一个回调方法对应一个路径
+})
+app.get(&#39;/user&#39;, function (req, res) {
+  res.send(&#39;user&#39;);
+})
+app.listen(8000, function () {
+  console.log(&#39;app is listening at port 3000&#39;);
+})
+</code></pre><h3 id="superagent、cheerio-模块"><a href="#superagent、cheerio-模块" class="headerlink" title="superagent、cheerio 模块"></a>superagent、cheerio 模块</h3><p>superagent 是一个可以发 http 请求的模块，回调函数中的 res 就是请求到的内容</p>
+<p>cheerio 是在服务器端类式 jquery 的框架，看代码应该能看出来</p>
+<p>下面演示的是抓取糯米网的餐品列表链接</p>
+<pre><code>var superagent = require(&#39;superagent&#39;)
+var cheerio = require(&#39;cheerio&#39;)
+var spideUrl = &#39;https://t10.nuomi.com/pc/t10/index&#39;
+superagent.get(spideUrl)
+    .end(function(err, res) {
+        if (err) {
+            return console.error(err);
+        }
+        var foodUrls = [];
+        var $ = cheerio.load(res.text)
+        // 获取首页所有的链接
+        $(&#39;.j-item a&#39;).each(function(idx, element) {
+            var $element = $(element)
+            foodUrls.push($element.attr(&#39;href&#39;))
+        })
+        console.log(topicUrls)
+    })
+</code></pre><h3 id="eventproxy"><a href="#eventproxy" class="headerlink" title="eventproxy"></a>eventproxy</h3><p>在爬取一堆类式的链接的时候，一个个链接写挺麻烦的，eventproxy 提供了监听，然后触发回调的方式来处理这类问题，下面是我拷贝的一段代码，应该挺容易看懂的</p>
+<pre><code>//得到一个 eventproxy 的实例
+var ep = new eventproxy() 
+// 命令 ep 重复监听 urls.length 次（在这里也就是 10 次） 
+ep.after(&#39;topic_html&#39;, urls.length, function (topics) {
+  topics = topics.map(function(page) {
+    var $ = cheerio.load(page)
+    var userId = $(&#39;.runUserName a font&#39;).eq(0).text()
+    return userId
+  });
+  console.log(topics);
+})
+urls.forEach(function(item) {
+  superagent.get(item)
+    .end(function (err, res) {
+      ep.emit(&#39;topic_html&#39;, res.text)
+    })
+})
+</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>大部分学习前端其实是没必要深入学习 node.js 的，一方面没那个精力，然后也没那么必要，但是一些基本的东西还是有必要好好学学的</p>
+<p>大多数前端同学之所以觉得应该学前端，其实是平时接触到的 npm、require 模块、es6 的语法等问题觉得比较棘手，以为是自己不懂 node.js，其实这些和 node.js 并无太大关系，这些已经影响到学习前端其它内容的地方还是需要好好学习的</p>
+<p>学习 node.js 基本的东西还是有必要的，比如搭建个简单的服务器，做点基本的逻辑处理和数据处理，做个爬虫啥的。而这些都很简单，看两篇博客做几个练习就够了，再深入就根据实际情况学习就好了。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> nodejs </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端技术 </tag>
+            
+            <tag> nodejs </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[10个React小模式]]></title>
       <url>/10%E4%B8%AAReact%E5%B0%8F%E6%A8%A1%E5%BC%8F.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><del>在过去的几年，我经手过很多大大小小的React项目，在这个过程中，我不断的重复重复，逐渐的形成了一些模式，在这里分享给大家。</del></p>
@@ -4077,9 +4310,9 @@ fn();
         
         <tags>
             
-            <tag> 网络 </tag>
-            
             <tag> http协议 </tag>
+            
+            <tag> 网络 </tag>
             
         </tags>
         
