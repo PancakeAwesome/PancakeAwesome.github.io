@@ -3,6 +3,51 @@
   
     
     <entry>
+      <title><![CDATA[undefined与null的区别]]></title>
+      <url>/undefined%E4%B8%8Enull%E7%9A%84%E5%8C%BA%E5%88%AB.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>undefined与null看起来用法都是一样的，但是还有一些本质的区别。</p>
+<h2 id="undefined与null的区别"><a href="#undefined与null的区别" class="headerlink" title="undefined与null的区别"></a>undefined与null的区别</h2><ul>
+<li><code>undefined</code>表示一个变量没有被声明，或者被声明了但没有被赋值</li>
+<li><code>null</code>是一个表示“没有值”的值</li>
+<li>Javascript将未赋值的变量默认值设为<code>undefined</code></li>
+<li>Javascript从来不会将变量设为<code>null</code>。它是用来让程序员表明某个用<code>var</code>声明的变量时没有值的。</li>
+<li><code>undefined</code>不是一个有效的JSON，而<code>null</code>是</li>
+<li><code>undefined</code>的类型(typeof)是<code>undefined</code></li>
+<li><code>null</code>的类型(typeof)是<code>object</code>. <a href="http://link.funteas.com/?target=http%3A%2F%2Fwww.2ality.com%2F2013%2F10%2Ftypeof-null.html" target="_blank" rel="external">为什么?</a> </li>
+<li>它们都是基本类型</li>
+<li>他们都是<a href="http://link.funteas.com/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FGlossary%2FFalsy" target="_blank" rel="external">falsy</a><br>(<code>Boolean(undefined) // false</code>, <code>Boolean(null) // false</code>)</li>
+<li>你可以这样判断一个变量是否是<a href="http://link.funteas.com/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2Fundefined" target="_blank" rel="external">undefined</a> </li>
+</ul>
+<pre><code>typeof variable ===&quot;undefined&quot;
+</code></pre><ul>
+<li>你可以这样判断一个变量是否是<a href="http://link.funteas.com/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2Fnull" target="_blank" rel="external">null</a> </li>
+</ul>
+<pre><code>  variable ===null
+</code></pre><ul>
+<li><strong>双等号</strong>比较时它们相等，但<strong>三等号</strong>比较时不相等</li>
+</ul>
+<pre><code>null==undefined// truenull===undefined// false
+</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>undefined和null的区别在平常的面试和开发过程中算是比较常见的语法知识。希望大家能够记得这些知识。，</p>
+]]></content>
+      
+        <categories>
+            
+            <category> javascript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> 面试 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[入门 node.js 你必须知道的那些事]]></title>
       <url>/%E5%85%A5%E9%97%A8-node-js-%E4%BD%A0%E5%BF%85%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="最基本的一些操作和概念"><a href="#最基本的一些操作和概念" class="headerlink" title="最基本的一些操作和概念"></a>最基本的一些操作和概念</h2><h3 id="用-node-执行一段-js-代码"><a href="#用-node-执行一段-js-代码" class="headerlink" title="用 node 执行一段 js 代码"></a>用 node 执行一段 js 代码</h3><ol>
@@ -3977,9 +4022,9 @@ io.on(&#39;connection&#39;, function(socket) {
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> node.js </tag>
+            
+            <tag> javascript </tag>
             
         </tags>
         
