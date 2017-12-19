@@ -3,6 +3,317 @@
   
     
     <entry>
+      <title><![CDATA[H5的Notification特性 - Web的桌面通知功能]]></title>
+      <url>/H5%E7%9A%84Notification%E7%89%B9%E6%80%A7-Web%E7%9A%84%E6%A1%8C%E9%9D%A2%E9%80%9A%E7%9F%A5%E5%8A%9F%E8%83%BD.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="H5的Notification特性-Web的桌面通知功能"><a href="#H5的Notification特性-Web的桌面通知功能" class="headerlink" title="H5的Notification特性 - Web的桌面通知功能"></a>H5的Notification特性 - Web的桌面通知功能</h3><blockquote>
+<p>目前，<code>web</code>网页使用桌面通知功能的越来越多，包括微博，腾讯视频等大厂站，桌面通知功能是<code>H5</code>的一个<code>API</code> - <code>Notifications</code>。它允许网页或应用程序可以发出通知，通知将被显示在页面之外的系统层面上（通常使用操作系统的标准通知机制，但是在不同的平台和浏览器上的表现会有差异），这样即使应用程序空闲或在后台也可以向用户发送信息。</p>
+</blockquote>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p><code>Notifications</code>的诞生简化了网站或者应用与用户之间的沟通成本（时间成本和开发成本），增强用户黏性（减少了用户离开应用的可能）。传统的通知方式，大多是通过站内信（消息），邮件，短信等方式，它们通常需要刷新（跳转）页面、离开应用打开其他应用或终端来查看消息；而桌面通知功能大大的简化了这个过程，消息的传递基本不消耗时间（如果不设置<code>setTimeout</code>，用时基本不会超过<code>1s</code>），并且用户不需要离开应用，这都带来了极大的方便。可以预见，<code>Notifications</code>将会在很多网页或应用中被大量使用。当然<code>Notifications</code>也具有它的局限性：无法存档、即看即毁<br>那么，这个功能到底能用在哪些场景呢？只能说能应用的场景很多：</p>
+<ul>
+<li><p>社交类网站</p>
+</li>
+<li><p>资讯类网站</p>
+</li>
+<li><p>网页版邮件服务</p>
+</li>
+<li><p>即时通知类网站</p>
+</li>
+<li><p>…</p>
+</li>
+</ul>
+<p>举个例子，当你打开微博页面，你可能会看到（使用新版浏览器）如下图的通知：<br><img src="https://img.funteas.com/f909b1aa4add36264f20d783d4b23859?imageView2/2/w/800" alt=""></p>
+<p>这就是网站使用了桌面通知功能，当你选择允许，那么当网站有推送消息或者你登陆账号有新的消息将会在桌面的右下角出现一个小弹窗通知，如下：<br><img src="https://img.funteas.com/7f39205b4f6be3ef3f66565e8ebaf1c2?imageView2/2/w/800" alt=""></p>
+<p>感觉有点酷酷的！！！</p>
+<h2 id="用户权限-Notification-permission"><a href="#用户权限-Notification-permission" class="headerlink" title="用户权限 - Notification.permission"></a>用户权限 - Notification.permission</h2><p><code>Notification.permission</code>是一个静态方法，可以获取用户当前的通知权限状态，返回一个<code>String</code>，可以根据返回值判断用户是否授予了通知权限。返回值有三种情况：</p>
+<ul>
+<li><p>default</p>
+</li>
+<li><p>granted</p>
+</li>
+<li><p>表示之前已经询问过用户，并且用户已经授予了显示通知的权限。</p>
+</li>
+<li><p>denied</p>
+</li>
+</ul>
+<p>当值为<code>default</code>或者<code>denied</code>时都不会显示通知消息，只有明确的被设置成<code>granted</code>才会显示通知消息</p>
+<pre><code>const permission = Notification.permission;
+if(permission === &#39;granted&#39;){
+    console.log(&#39;已经授权通知，可以进行你的通知啦！&#39;);
+}else{
+    console.log(&#39;用户还未授权，请先授权！&#39;);
+}
+</code></pre><h2 id="请求权限-Notification-requestPermission-CALLBACK"><a href="#请求权限-Notification-requestPermission-CALLBACK" class="headerlink" title="请求权限 - Notification.requestPermission(CALLBACK)"></a>请求权限 - Notification.requestPermission(CALLBACK)</h2><p>应用发送通知之前必须要取得发送通知的权限，才能成功进行通知。<code>Notification.requestPermission(CALLBACK)</code>是请求获取权限的方法（有点类似<code>javascript</code>的<code>confirm</code>弹窗窗），允许传入一个回调，回调会返回用户选择的何种权限，返回两个值，<code>granted</code>代表允许，<code>denied</code>代表拒绝。并且<code>Notification.requestPermission()</code>支持<code>then</code>方式的链式调用，也就意味着可以异步调用它。</p>
+<pre><code>Notification.requestPermission(function (permission) {
+    console.log(&#39;用户是否允许通知： &#39;,permission === &#39;granted&#39; ? &#39;允许&#39; : &#39;拒绝&#39;);
+});
+//两种方式是等价的
+Notification.requestPermission().then(function (permission) {
+    console.log(&#39;用户是否允许通知： &#39;,permission === &#39;granted&#39; ? &#39;允许&#39; : &#39;拒绝&#39;);
+});
+</code></pre><h2 id="创建通知-new-Notification-TITLE-OPTIONS"><a href="#创建通知-new-Notification-TITLE-OPTIONS" class="headerlink" title="创建通知 - new Notification(TITLE, OPTIONS)"></a>创建通知 - new Notification(TITLE, OPTIONS)</h2><p><code>new Notification(TITLE, OPTIONS)</code>方法创建可以创建一个通知实例，允许参入参数两个参数<code>TITLE</code>和<code>OPTIONS</code>。注意默认情况下（实际可以通过<code>OPTIONS</code>中的<code>timestamp</code>参数控制）一旦通知实例被创建出来，它会立即被显示出来。</p>
+<h3 id="TITLE参数"><a href="#TITLE参数" class="headerlink" title="TITLE参数"></a>TITLE参数</h3><p><code>TITLE</code>表示通知的标题。必须参数，允许数字、字符串和空</p>
+<h3 id="OPTIONS参数"><a href="#OPTIONS参数" class="headerlink" title="OPTIONS参数"></a>OPTIONS参数</h3><p><code>OPTIONS</code>是非必须参数，必须为一个对象，它包含：<br>ps: 部分参数在某些浏览器可能会不生效，建议使用最新版的谷歌浏览器。以下某些内容从<a href="http://link.funteas.com/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2Fnotification" target="_blank" rel="external">Notification-MDN-EN</a> 结合谷歌翻译得来，很有可能翻译不准确，如有，请提出。</p>
+<pre><code>{
+    //通知显示正文。非必须，默认为空
+    body: &#39;你的好友XX上线了！&#39;,
+    //通知显示正文的图片地址。非必须，默认为空
+    image: &#39;imgae url&#39;,
+    //通知左侧图标。非必须，默认为空
+    icon: &#39;imgae url&#39;,
+    //通知的分类标记（ID）。非必须，默认为空
+    tag: &#39;test&#39;,
+    //通知相关联的数据，通常用于方法的回调，传参。非必须，默认为空
+    data: &#39;可以是任意数据类型&#39;,
+    //通知显示延迟的时间。非必须，默认通知实例创建完成就显示
+    timestamp: &#39;&#39;,
+    //通知主体内容的水平展示顺序，有点类似direction属性。非必须，默认值是auto, 可以是ltr或rtl
+    dir: &#39;auto&#39;,
+    //当没有足够的空间来显示通知本身时，用于表示通知的图像的URL。非必须，默认为空
+    badge: &#39;xxx&#39;,
+    //通知的语言。非必须默认为空
+    lang: &#39;&#39;,
+    //通知显示时，设备的振动模式。非必须，默认为空
+    vibrate: [200, 100, 200],
+    //新通知出现是否覆盖旧的通知，覆盖（true）则永远只显示一条通知，不覆盖（false）则会多条通知重叠。非必须，默认为true
+    renotify: true,
+    //通知是否静音。非必须，默认为false，表示无声
+    silent: false,
+    //通知声源文件地址。非必须，默认为空
+    sound: &#39;mp3&#39;,
+    //是否不在屏幕上显示通知信息。非必须，默认为false表示要显示
+    noscreen: false,
+    //指定通知是否应该粘滞性，即不容易被用户清理。非必须，默认false表示不具粘滞性
+    sticky: false,
+    //指定通知是否保持活性，知道用户点击或关闭。非必须，默认为false
+    requireInteraction: false
+}
+</code></pre><h3 id="事件及事件钩子"><a href="#事件及事件钩子" class="headerlink" title="事件及事件钩子"></a>事件及事件钩子</h3><p>当通知被创建成功后：</p>
+<ul>
+<li><p>通知实例具有一个静态方法可以用来关闭通知</p>
+</li>
+<li><p>通知实例具有四个事件钩子，来跟踪通知当前的状态。这些事件可以通过事件处理跟踪<code>onshow</code>、<code>onclick</code>、<code>onclose</code>和<code>onerror</code>。因为<code>Notification</code>同样继承自<code>EventTarget</code>，因此可以对它调用<code>addEventListener()</code>方法。</p>
+</li>
+</ul>
+<pre><code>const n = new Notification(&#39;XX网站消息通知&#39;, {
+    body: &#39;你的朋友有新状态啦，快去围观吧！&#39;,
+    tag: &#39;2ue&#39;,
+    icon: &#39;https://2ue.github.io/images/common/avatar.png&#39;,
+    data: {
+        url: &#39;https://2ue.github.io&#39;
+    },
+    timestamp: 3000
+});
+
+n.onshow = function () {
+    console.log(&#39;通知显示了！&#39;);
+}
+n.onclick = function (e) {
+    //可以直接通过实例的方式获取data内自定义的数据
+    //也可以通过访问回调参数e来获取data的数据
+    window.open(n.data.url, &#39;_blank&#39;);
+    n.close();
+}
+n.onclose = function () {
+    console.log(&#39;你墙壁了我！！！&#39;);
+}
+n.onerror = function (err) {
+    console.log(&#39;出错了，小伙子在检查一下吧&#39;);
+    throw err;
+}
+</code></pre><h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><p>写一个简单的例子，可以打开页面体验一下，建议用最新版谷歌浏览器打开~ <a href="http://link.funteas.com/?target=https%3A%2F%2Fcodepen.io%2F2ue%2Fpen%2FrYYzwB" target="_blank" rel="external">Notification.js</a> </p>
+<pre><code>const NotificationInstance = Notification || window.Notification;
+if (!!NotificationInstance) {
+    const permissionNow = NotificationInstance.permission;
+    if (permissionNow === &#39;granted&#39;) {//允许通知
+        CreatNotification();
+    } else if (permissionNow === &#39;denied&#39;) {
+        console.log(&#39;用户拒绝了你!!!&#39;);
+    } else {
+        setPermission();
+    }
+    function setPermission() {
+        //请求获取通知权限
+        NotificationInstance.requestPermission(function (PERMISSION) {
+            if (PERMISSION === &#39;granted&#39;) {
+                CreatNotification();
+            } else {
+                console.log(&#39;用户无情残忍的拒绝了你!!!&#39;);
+            }
+        });
+    }
+    function CreatNotification() {
+        const n = new NotificationInstance(&#39;XX网站消息通知&#39;, {
+            body: &#39;你的朋友有新状态啦，快去围观吧！&#39;,
+            tag: &#39;2ue&#39;,
+            icon: &#39;https://2ue.github.io/images/common/avatar.png&#39;,
+            data: {
+                url: &#39;https://2ue.github.io&#39;
+            }
+        });
+        n.onshow = function () {
+            console.log(&#39;通知显示了！&#39;);
+        }
+        n.onclick = function (e) {
+            //可以直接通过实例的方式获取data内自定义的数据
+            //也可以通过访问回调参数e来获取data的数据
+            window.open(n.data.url, &#39;_blank&#39;);
+            n.close();
+        }
+        n.onclose = function () {
+            console.log(&#39;你墙壁了我！！！&#39;);
+        }
+        n.onerror = function (err) {
+            console.log(&#39;出错了，小伙子在检查一下吧&#39;);
+            throw err;
+        }
+        setTimeout(() =&gt; {
+            n.close();
+        }, 2000);
+    }
+}
+</code></pre><h2 id="兼容"><a href="#兼容" class="headerlink" title="兼容"></a>兼容</h2><p><code>Notifications</code>是<code>H5</code>的新特性，毫无疑问，它的兼容肯定是一篇哀嚎.<br><img src="https://img.funteas.com/340c2c889621a28bd304618c7a309c1a?imageView2/2/w/800" alt=""><img src="https://img.funteas.com/d8a80df35e73a7aaa99fcbf944fcbd40?imageView2/2/w/800" alt=""></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+      
+        <categories>
+            
+            <category> html </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端技术 </tag>
+            
+            <tag> html </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[jsonp的原理介绍及Promise封装]]></title>
+      <url>/jsonp%E7%9A%84%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D%E5%8F%8APromise%E5%B0%81%E8%A3%85.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="什么叫jsonp"><a href="#什么叫jsonp" class="headerlink" title="什么叫jsonp?"></a>什么叫jsonp?</h3><p>jsonp是json with padding（填充式json或参数式json）的简写，是通过ajax请求跨域接口，获取数据的新实现方式</p>
+<h2 id="jsonp的实现原理："><a href="#jsonp的实现原理：" class="headerlink" title="jsonp的实现原理："></a>jsonp的实现原理：</h2><p>动态创建script标签，因为script标签是没有同源策略限制，可以跨域的。 把script标签的src指向正式服务端地址，这个地址跟个参数callback=xxx, 服务端在返回数据时，在xxx里包裹一个方法（里面是返回的数据），相当于在前端执行xxx这个方法，但是浏览器并没有这个方法，所以在发送请求之前在window注册这个方法，<a href="http://link.funteas.com/?target=http%3A%2F%2Fxn--window-og8iw9wvwlnru0xhb8r207bolbe65a675cixmror.xxx" target="_blank" rel="external">这样的话相当于在前端执行window.xxx</a> ()这个方法去获取数据。 具体看接下来的实现！</p>
+<p><a href="http://link.funteas.com/?target=https%3A%2F%2Fgithub.com%2Fwebmodules%2Fjsonp" target="_blank" rel="external">https://github.com/webmodules…</a><br>这个是jsonp库的具体实现，建议下载来研究一下，最好自己动手写一遍。本文主要是Promise封装，所以就不具体介绍jsonp的具体实现</p>
+<h2 id="步骤一："><a href="#步骤一：" class="headerlink" title="步骤一："></a>步骤一：</h2><p>首先安装这个库，因为我是在node npm环境下开发，所以</p>
+<pre><code>$ npm install jsonp
+</code></pre><p><strong>参数介绍</strong><br>jsonp(url, opts, fn)<br>url (String) 服务器端数据接口地址<br>opts (Object) 一般只需关注param即可</p>
+<ul>
+<li><p>param (String) 默认是callback,这是与后端约定的参数名称，也可以随便定义，只要前后端统一</p>
+</li>
+<li><p>timeout (Number) 请求超时时间，默认是6000ms</p>
+</li>
+<li><p>prefix (String) callback值的前缀，默认是__jp</p>
+</li>
+<li><p>name (String) 指定全局注册的回调方法名，一般不会用到，因为默认是prefix+自增数字</p>
+</li>
+</ul>
+<p>fn 回调方法，用es6 Promise</p>
+<h2 id="步骤二："><a href="#步骤二：" class="headerlink" title="步骤二："></a>步骤二：</h2><p><strong>下面是具体用法：</strong><br>建一个名叫jsonp.js的文件<br>先引入jsonp库文件</p>
+<pre><code>import originJSONP from&#39;jsonp&#39;
+</code></pre><p>对外暴露方法 url:请求服务器地址，data:参数</p>
+<pre><code>export default function jsonp(url,data,option) {
+    url += (url.indexOf(&#39;?&#39;)&lt;0?&#39;?&#39;:&#39;&amp;&#39;)+param(data)
+    return new Promise(function(resolve,reject) {
+        originJSONP(url,option, function(err,data) {
+            if(!err){
+                resolve(data)
+            }else{
+                reject(err)
+            }
+        })
+    })
+}
+</code></pre><p>定义一个将Object的参数处理成为 url挂载参数的形式 的函数</p>
+<pre><code>export function param(data) {
+  let url = &#39;&#39;
+  for (var k in data) {
+    let value = data[k] !== undefined ? data[k] : &#39;&#39;
+    url += &#39;&amp;&#39; + k + &#39;=&#39; + encodeURIComponent(value)
+  }
+  return url ? url.substring(1) : &#39;&#39;
+}
+</code></pre><p>到这里 这个Promise 就封装好了，接下来就具体调用来获取数据</p>
+<h2 id="步骤三："><a href="#步骤三：" class="headerlink" title="步骤三："></a>步骤三：</h2><p>建一个js文件，名字自己定义<br>引入前面封装的jsonp.js</p>
+<pre><code>import jsonp from&#39;../common/js/jsonp.js&#39;
+</code></pre><p>定义参数</p>
+<pre><code>const commonParams = {
+    g_tk:1319877694,
+    inCharset:&#39;utf-8&#39;,
+    outCharset:&#39;utf-8&#39;,
+    notice:0,
+    format:&#39;jsonp&#39;
+};
+</code></pre><p>定义前后端统一参数</p>
+<pre><code>const options = {
+    param:&#39;jsonpCallback&#39;
+};
+</code></pre><p>定义获取数据函数 这里我是拿QQ音乐的数据<a href="http://link.funteas.com/?target=https%3A%2F%2Fm.y.qq.com%2F" target="_blank" rel="external">https://m.y.qq.com/</a> （感谢QQ音乐的接口支持）</p>
+<pre><code>export function getDataFunc() { 
+    const url = &#39;https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg&#39;
+    const data = Object.assign({},commonParams,{
+        platform:&#39;h5&#39;,
+        uin:0,
+        needNewCode:1,
+    })
+    return jsonp(url,data,options)
+}
+</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>到此，咱们就完成用jsonp库进行Promise封装，并获取数据的过程！ 感谢阅读！</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端技术 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端技术 </tag>
+            
+            <tag> es6 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title></title>
+      <url>/-index%E9%A1%B5%E9%9D%A2app%E5%92%8Cwechat%E5%90%8C%E6%AD%A5.html</url>
+      <content type="html"><![CDATA[<p>相同页面：</p>
+<ul>
+<li>load相关页面<ul>
+<li>confirmupdate， updateimages， load页面</li>
+</ul>
+</li>
+</ul>
+<p>不同页面：</p>
+<ul>
+<li>index页面</li>
+<li>viewloadstatus页面</li>
+<li>bindremove页面</li>
+</ul>
+<p>公众号：</p>
+<ul>
+<li>菜单按钮</li>
+<li>模版消息</li>
+<li>收发公众号消息</li>
+<li>gps提醒消息</li>
+</ul>
+<p>因为app要实现wechat同步，但是app由于不能调用wechat接口，我们得手动模仿wechat公众号的接口和ui渲染功能，这是我们当时没有预估到的。</p>
+<ul>
+<li>无主load消息</li>
+<li>解绑提醒消息</li>
+</ul>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[undefined与null的区别]]></title>
       <url>/undefined%E4%B8%8Enull%E7%9A%84%E5%8C%BA%E5%88%AB.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>undefined与null看起来用法都是一样的，但是还有一些本质的区别。</p>
@@ -945,9 +1256,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -1247,9 +1558,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -1952,9 +2263,9 @@ console.log(firstLoad(20))
             
             <tag> javascript </tag>
             
-            <tag> 面试 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 面试 </tag>
             
         </tags>
         
@@ -3358,9 +3669,9 @@ $(&#39;.scroller&#39;).on(&#39;touchmove&#39;,&#39;.btn&#39;,function(e){
         
         <tags>
             
-            <tag> 面试 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 面试 </tag>
             
             <tag> 前端优化 </tag>
             
@@ -3487,9 +3798,9 @@ $(&#39;.scroller&#39;).on(&#39;touchmove&#39;,&#39;.btn&#39;,function(e){
         
         <tags>
             
-            <tag> 面试 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 面试 </tag>
             
             <tag> 前端优化 </tag>
             
@@ -7687,9 +7998,9 @@ GET /employees?offset=20&amp;limit=10
         
         <tags>
             
-            <tag> 前端架构设计 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 前端架构设计 </tag>
             
         </tags>
         
@@ -9272,9 +9583,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -10246,9 +10557,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -10495,9 +10806,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
