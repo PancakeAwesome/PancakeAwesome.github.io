@@ -1946,9 +1946,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> react </tag>
             
@@ -2335,9 +2335,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -7739,9 +7739,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> 前端框架 </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
