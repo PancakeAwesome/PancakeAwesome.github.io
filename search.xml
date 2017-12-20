@@ -22,11 +22,11 @@
 <p>③<strong>代码规范部分</strong>：   es6 + ts + css规范 等等等<br>代码规范不多说，前端的js和css都是设计得很粗糙的语言。如果你想hold住更大型的项目，那么规范是你不可忽视的地方。</p>
 <p>逻辑层部分，是我们通常意义上理解的前端本职。</p>
 <h2 id="二、前端交互层"><a href="#二、前端交互层" class="headerlink" title="二、前端交互层"></a>二、前端交互层</h2><p>所谓交互层，可以理解为我们常说的  特效。<br>当前的趋势下，移动端浏览器的性能逐步提升。未来一个大的趋势就是<br>前端开发的效果，正无限逼近原生效果</p>
-<p>同时一些大厂也在纷纷提前布局了，之前惊艳四方的天猫造物节 H5<br><a href="http://www.jianshu.com/p/111ee1fde39f" target="_blank" rel="external">淘宝造物节-风靡朋友圈的h5怎么做的？</a> (target=undefined)</p>
+<p>同时一些大厂也在纷纷提前布局了，之前惊艳四方的天猫造物节 H5<br><a href="http://www.jianshu.com/p/111ee1fde39f" target="_blank" rel="external">淘宝造物节-风靡朋友圈的h5怎么做的？</a> </p>
 <p>如果我们要在这波浪潮上取得先机，那么就必须提前学习。<br>也许再过三年，前端的开发特效的能力，也会成为标配技能。</p>
 <p>可以分三块来看<br><strong>1.呈现效果学习：</strong><br>很多同学不是不会特效，而是不知道要实现成什么样子。用前端的各种东西鼓捣了，终于出来了特效，但是效果却很难看。<br>不不不，做特效，应该先把特效样子调好了再去做。<br>建议学习Adobe Effects （AE），直观地看动效是什么样子，然后再翻译成前端的动效。</p>
 <p><strong>2.相关数学/视觉原理：</strong><br>a.贝塞尔曲线原理<br>b.视差原理<br>c.阻尼公式</p>
-<p><strong>3.相关技术手段实现</strong><br>前端目前实现动画特效的八种方式<br><a href="http://www.offcn.com/it/2017/0110/5881.html" target="_blank" rel="external">http://www.offcn.com/it/2017/…</a> (target=undefined)</p>
+<p><strong>3.相关技术手段实现</strong><br>前端目前实现动画特效的八种方式<br><a href="http://www.offcn.com/it/2017/0110/5881.html" target="_blank" rel="external">http://www.offcn.com/it/2017/…</a> </p>
 <p><strong>①gif:</strong> 设计直接出GIF，前端直接用<br><strong>②逐帧动画</strong>： css3 step属性 或  js制作逐帧动画<br><strong>③css3</strong> ：  transition/ transform/animation<br><strong>④svg</strong> :  svg 很适合移动端<br><strong>⑤canvas</strong>:   canvas适合一些比较大面积的动效<br><strong>⑥flash</strong> 转 canvas :  这个我不了解<br><strong>⑦video</strong>:  用h5 video标签<br><strong>⑧js动画</strong>：  可以配合平台提供的api（重力感应等）开发更复杂的动效</p>
 <h2 id="三、node-服务层"><a href="#三、node-服务层" class="headerlink" title="三、node 服务层"></a><strong>三、node 服务层</strong></h2><p>node在前端应该是无人不知了。在实际使用中node的使用场景应该有这几个：<br><strong>① 作为前端构建辅助工具</strong>： 如各种脚手架中，经常有node的参与<br><strong>② 作为服务端做渲染层</strong>： 实现接口合并和模板渲染<br><strong>③ 作为完整服务器</strong>：  一般是创业公司中，可以一人搭建起全部web功能。如微信公众号项目等</p>
 <p>那么如果要学习的话，要从哪里入手呢？<br>学习一个新技术，我个人的方式都是<br><strong>先把原生的文档，快速过一遍，然后学框架。</strong></p>
@@ -1941,9 +1941,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> react </tag>
             
@@ -2330,9 +2330,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -7734,9 +7734,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端框架 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 前端框架 </tag>
             
         </tags>
         
