@@ -17,14 +17,9 @@
 <p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fmn2gohvx2j30ea07jq2w.jpg" alt=""></p>
 <p>① html 负责结构<br>② css 负责样式<br>③ js 负责逻辑<br>只有模板没有后端数据的页面我们可以理解为静态页面<br>而我们目前主流的三大框架，则提供 模板与数据之间的映射关系。<br>在逻辑层的研究，主要就是学习并熟练三大框架： Vue, React, Angular  </p>
 <p>这一块是我们90%前端，日常工作的主要部分。也是很多公司面试会去重点考察的内容。<br>但是，目前的行情已经不是，你会个新框架就可以任性拿OFFER的时期了。<br>前端的井喷的情况下，仅仅会一些基础知识是不够的。你必须往下深挖。</p>
-<p><strong>可以深挖的部分</strong><br>①<strong>框架部分</strong>： 举个例子，如 Vue+ Vuex+ Vue-router+axios的全家桶<br>react和angular的也类似，有这么一套全家桶。<br>要想在前端竞争中取得优势，需要在这些框架的原理上深挖。<br>研究：  a. 源码和实现原理 （理论）</p>
-<pre><code>b. 常见的应用场景和常见问题的实现 （经验）
-     c. 同类问题的横向对比（比如用了vuex 需要了解一下 redux是怎么实现的）
-</code></pre><p>②<strong>构建部分</strong>：  webpack + npm/yarn +  脚手架（如vue-cli） +sass<br>构建部分，其实是一块很容易出区分度的领域。你研究透一点，你就越能驾驭住项目的变化。<br>研究： a. webpack的配置和对应应用场景</p>
-<pre><code>    b. npm的命令使用，以及一些高级的用法（架设私有npm或者自己写全局包等）
-    c. 脚手架快速搭建的过程，以及如何自定义更改
-    d. 如何配置eslint和单元测试等
-</code></pre><p>③<strong>代码规范部分</strong>：   es6 + ts + css规范 等等等<br>代码规范不多说，前端的js和css都是设计得很粗糙的语言。如果你想hold住更大型的项目，那么规范是你不可忽视的地方。</p>
+<p><strong>可以深挖的部分</strong><br>①<strong>框架部分</strong>： 举个例子，如 Vue+ Vuex+ Vue-router+axios的全家桶<br>react和angular的也类似，有这么一套全家桶。<br>要想在前端竞争中取得优势，需要在这些框架的原理上深挖。<br>研究：<br>a. 源码和实现原理 （理论）<br>b. 常见的应用场景和常见问题的实现 （经验）<br>c. 同类问题的横向对比（比如用了vuex 需要了解一下 redux是怎么实现的）</p>
+<p>②<strong>构建部分</strong>：  webpack + npm/yarn +  脚手架（如vue-cli） +sass<br>构建部分，其实是一块很容易出区分度的领域。你研究透一点，你就越能驾驭住项目的变化。<br>研究：<br>a. webpack的配置和对应应用场景<br>b. npm的命令使用，以及一些高级的用法（架设私有npm或者自己写全局包等）<br>c. 脚手架快速搭建的过程，以及如何自定义更改<br>d. 如何配置eslint和单元测试等</p>
+<p>③<strong>代码规范部分</strong>：   es6 + ts + css规范 等等等<br>代码规范不多说，前端的js和css都是设计得很粗糙的语言。如果你想hold住更大型的项目，那么规范是你不可忽视的地方。</p>
 <p>逻辑层部分，是我们通常意义上理解的前端本职。</p>
 <h2 id="二、前端交互层"><a href="#二、前端交互层" class="headerlink" title="二、前端交互层"></a>二、前端交互层</h2><p>所谓交互层，可以理解为我们常说的  特效。<br>当前的趋势下，移动端浏览器的性能逐步提升。未来一个大的趋势就是<br>前端开发的效果，正无限逼近原生效果</p>
 <p>同时一些大厂也在纷纷提前布局了，之前惊艳四方的天猫造物节 H5<br><a href="http://www.jianshu.com/p/111ee1fde39f" target="_blank" rel="external">淘宝造物节-风靡朋友圈的h5怎么做的？</a> (target=undefined)</p>
