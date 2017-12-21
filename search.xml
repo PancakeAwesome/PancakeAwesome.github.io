@@ -3,6 +3,114 @@
   
     
     <entry>
+      <title><![CDATA[最全的 HTML5 知识汇总]]></title>
+      <url>/%E6%9C%80%E5%85%A8%E7%9A%84-HTML5-%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>HTML5 一直是非常热门的话题，因此此系列文章主要从一些基本功能开始讲起，逐步深入了解 HTML5 的新概念</p>
+<h2 id="最全的-HTML5-知识汇总"><a href="#最全的-HTML5-知识汇总" class="headerlink" title="最全的 HTML5 知识汇总"></a>最全的 HTML5 知识汇总</h2><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a><strong>引言</strong></h3><p>HTML5 一直是非常热门的话题，因此此系列文章主要从一些基本功能开始讲起，逐步深入了解HTML5的新概念。</p>
+<p>首先了解一些基本的术语和概念。</p>
+<ul>
+<li>SGML, HTML,XML三者之间的区别</li>
+<li>Doc类型是什么</li>
+<li>HTML5 有什么新特点新优势。</li>
+<li>学习HTML5</li>
+</ul>
+<p><strong>在开始之前首先来区分SGMC，HTML,XML 三者的概念</strong></p>
+<ul>
+<li><p>SGML 即Standard Globalized Markup Language 是用来定义标准的标记语言，简单的说，就是定义文档的元语言。</p>
+</li>
+<li><p>HTML 是基于SGML 的超链接语言，可以用于创建Web页面。在DTD 内部定义了标签的规则，DTD就是使用SGML 语言创建的。</p>
+</li>
+<li><p>XML 是从SGML 衍生而来的，它主要处理互联网方面的需求，HTML 有很多限制，XML 是SGML 的子集，可用于表示数据。</p>
+</li>
+</ul>
+<h3 id="Doc-类型"><a href="#Doc-类型" class="headerlink" title="Doc 类型"></a><strong>Doc 类型</strong></h3><p>创建HTML 页面时会自动生成以下代码：</p>
+<p>这句代码简单的介绍了HTML 版本号，有了Doctype，就引入了对应的DTD（定义了HTML文档的组织结构），在页面中添加的所有标签才会是合法的，简单的说DTD 就是定义HTML的语法规则。</p>
+<p>即使在没有引入DTD的情况下，很多浏览器也可以识别HTML元素，因为它们自身包含对HTML 元素的定义，这就是为什么很多开发人员没有感受到DTD 的存在。</p>
+<h3 id="HTML5-与之前的版本区别"><a href="#HTML5-与之前的版本区别" class="headerlink" title="HTML5 与之前的版本区别"></a><strong>HTML5 与之前的版本区别</strong></h3><p>HTML5不是基于SGML 语言的，因此不需要DTD ，它是一种全新的标记语言，有自己的解析规则，HTML5的语法规则与之前版本有很大的差别，可以称的上是一种全新的语言。</p>
+<p>HTML5 的Doctype 非常简单：</p>
+<h3 id="HTML5-新特性"><a href="#HTML5-新特性" class="headerlink" title="HTML5 新特性"></a><strong>HTML5 新特性</strong></h3><p><img src="https://img.funteas.com/b14b9a29f0e2ce76d25263279a79389f.png?imageView2/2/w/800" alt=""></p>
+<h4 id="1-理解新的页面结构语义"><a href="#1-理解新的页面结构语义" class="headerlink" title="1. 理解新的页面结构语义"></a><strong>1. 理解新的页面结构语义</strong></h4><p>HTML 旧版本并没有标准的文档定义规则，比如如何定义文档Header或Footer等，很多人都在使用div来修饰一些CSS ，常常会导致不一致性。</p>
+<p><img src="https://img.funteas.com/b148e7d9978482e590080ccf1e0c0c61.png?imageView2/2/w/800" alt=""></p>
+<p>HTML5 定义标准tag如Header,Footer,nav,FlipCaption等。这些标签可使得标记语言更有意义。</p>
+<p>注意： 这些标签不提供特殊的渲染功能，仅仅使的HTML 文档结构更具有意义。</p>
+<p><img src="https://img.funteas.com/1f12123ab961d6adb7ddaf3ff4924e0e.png?imageView2/2/w/800" alt=""></p>
+<h4 id="Lab2-新的输入属性"><a href="#Lab2-新的输入属性" class="headerlink" title="Lab2_ 新的输入属性"></a><strong>Lab2_ 新的输入属性</strong></h4><p>新类型值</p>
+<p>之前为了获得不同的UI 元素，如DatePicker,range Picker,color Picker等，会使用不同的类库。</p>
+<p>HTML5 为输入元素引入了新属性“type”，看以下示例：</p>
+<p><strong>Number</strong></p>
+<pre><code>
+</code></pre><p><img src="https://img.funteas.com/1f26d1bfaa3dc178ab7148d6c2967e9f.png?imageView2/2/w/800" alt=""><strong>Range</strong></p>
+<pre><code>
+</code></pre><p><img src="https://img.funteas.com/563a74237a98a3427f81c4a4ccb544f9.png?imageView2/2/w/800" alt=""><strong>Color</strong></p>
+<pre><code>
+</code></pre><p><img src="https://img.funteas.com/6463c8213f34f82eb9ce87aa93a15cbb.png?imageView2/2/w/800" alt=""><strong>Date</strong></p>
+<pre><code>
+</code></pre><p><img src="https://img.funteas.com/b562a22bb6931be904f6666669db5d58.png?imageView2/2/w/800" alt=""></p>
+<p><strong>Time</strong><img src="https://img.funteas.com/74e67d17e65e3da507e050eae32565ec.png?imageView2/2/w/800" alt=""></p>
+<p><strong>Datetime-local</strong><img src="https://img.funteas.com/f87acbb2d5770137f618e01ef619595b.png?imageView2/2/w/800" alt=""><strong>DateTime (Also include time zone)</strong><img src="https://img.funteas.com/a0af6bd8ffeb37cf8ae3e37954253b26.png?imageView2/2/w/800" alt=""></p>
+<p><strong>Month</strong></p>
+<pre><code>
+</code></pre><p><img src="https://img.funteas.com/884269fc06a2a15e0af4b303168d3577.png?imageView2/2/w/800" alt=""><strong>Week</strong></p>
+<pre><code>
+</code></pre><p><img src="https://img.funteas.com/cf9cbda295a02dd26b2351bf7e4101f0.png?imageView2/2/w/800" alt=""></p>
+<p><strong>下面列举一些有用的属性：</strong></p>
+<p>Autofocus 该属性表示在页面加载时，可初始化焦点。</p>
+<pre><code>…
+</code></pre><p>上面代码实现了，当页面加载时，鼠标聚焦于“MyMonthElement”控件，“autofocus” 则绑定到多控件。Placeholder 新的输入控件</p>
+<pre><code>
+</code></pre><p><img src="https://img.funteas.com/385f658b97fa861522965b4e9944f878.png?imageView2/2/w/800" alt=""></p>
+<h3 id="实验1-–-了解HTML5-Datalist-控件"><a href="#实验1-–-了解HTML5-Datalist-控件" class="headerlink" title="实验1 – 了解HTML5 Datalist 控件"></a><strong>实验1 – 了解HTML5 Datalist 控件</strong></h3><p>DataList是HTML5中的新标签，能够在输入框中，实现自动完成功能。</p>
+<p>可通过3个步骤实现：</p>
+<ol>
+<li>创建DataList</li>
+</ol>
+<pre><code>
+</code></pre><ol>
+<li>创建输入控件，绑定List</li>
+</ol>
+<pre><code>
+</code></pre><ol>
+<li>运行测试</li>
+</ol>
+<div align="“left”"><img src="https://img.funteas.com/4a60b728288edd94d74b25134d5ffc5d.png?imageView2/2/w/800" alt=""></div>
+
+<h3 id="实验2-–-输出元素"><a href="#实验2-–-输出元素" class="headerlink" title="实验2 – 输出元素"></a><strong>实验2 – 输出元素</strong></h3><p>HTML5 中引入标准的语义“Output”元素</p>
+<h3 id="实验3-–-学习HTML5-验证功能"><a href="#实验3-–-学习HTML5-验证功能" class="headerlink" title="实验3 – 学习HTML5 验证功能"></a><strong>实验3 – 学习HTML5 验证功能</strong></h3><p>验证是开发应用最重要的功能，之前都会使用JQuery 验证等功能，在新版的HTML5中提供了验证支持。</p>
+<p>Lab5—使用输入元素的type属性，实现验证功能：</p>
+<ol>
+<li>运行测试</li>
+</ol>
+<div align="“left”"><img src="https://img.funteas.com/e9658aeb8b452a2e3c6f4be220d6d320.png?imageView2/2/w/800" alt=""></div>
+
+<h3 id="实验4-–-使用自定义验证属性实现验证"><a href="#实验4-–-使用自定义验证属性实现验证" class="headerlink" title="实验4 – 使用自定义验证属性实现验证"></a><strong>实验4 – 使用自定义验证属性实现验证</strong></h3><ol>
+<li>创建输入控件</li>
+</ol>
+<p>输出：</p>
+<p><img src="https://img.funteas.com/9d87fe985eeeb0095caf88c286e76cee.png?imageView2/2/w/800" alt=""></p>
+<h3 id="实验5-–-自定义验证"><a href="#实验5-–-自定义验证" class="headerlink" title="实验5 – 自定义验证"></a><strong>实验5 – 自定义验证</strong></h3><p>通过处理oninvalid 事件完成自定义HTML5 验证功能。</p>
+<ol>
+<li>创建输入控件，并绑定验证属性，添加自定义错误提示。2.  添加style 标签，创建CSS 来隐藏错误信息</li>
+</ol>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+      
+        <categories>
+            
+            <category> html5 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端技术 </tag>
+            
+            <tag> html5 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[2018年，前端应该怎么学？]]></title>
       <url>/2018%E5%B9%B4%EF%BC%8C%E5%89%8D%E7%AB%AF%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E5%AD%A6%EF%BC%9F.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>面向2018年，我觉得前端有这么三个方向可以突破</p>
