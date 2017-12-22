@@ -333,39 +333,6 @@ if (!!NotificationInstance) {
     </entry>
     
     <entry>
-      <title></title>
-      <url>/-index%E9%A1%B5%E9%9D%A2app%E5%92%8Cwechat%E5%90%8C%E6%AD%A5.html</url>
-      <content type="html"><![CDATA[<p>相同页面：</p>
-<ul>
-<li>load相关页面<ul>
-<li>confirmupdate， updateimages， load页面</li>
-</ul>
-</li>
-</ul>
-<p>不同页面：</p>
-<ul>
-<li>index页面</li>
-<li>viewloadstatus页面</li>
-<li>bindremove页面</li>
-</ul>
-<p>公众号：</p>
-<ul>
-<li>菜单按钮</li>
-<li>模版消息</li>
-<li>收发公众号消息</li>
-<li>gps提醒消息</li>
-</ul>
-<p>因为app要实现wechat同步，但是app由于不能调用wechat接口，我们得手动模仿wechat公众号的接口和ui渲染功能，这是我们当时没有预估到的。</p>
-<ul>
-<li>无主load消息</li>
-<li>解绑提醒消息</li>
-</ul>
-]]></content>
-      
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[undefined与null的区别]]></title>
       <url>/undefined%E4%B8%8Enull%E7%9A%84%E5%8C%BA%E5%88%AB.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>undefined与null看起来用法都是一样的，但是还有一些本质的区别。</p>

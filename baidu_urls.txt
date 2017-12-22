@@ -1,7 +1,6 @@
 http://pancakeawesome.ink/2018年，前端应该怎么学？.html
 http://pancakeawesome.ink/H5的Notification特性-Web的桌面通知功能.html
 http://pancakeawesome.ink/jsonp的原理介绍及Promise封装.html
-http://pancakeawesome.ink/-index页面app和wechat同步.html
 http://pancakeawesome.ink/undefined与null的区别.html
 http://pancakeawesome.ink/入门-node-js-你必须知道的那些事.html
 http://pancakeawesome.ink/10个React小模式.html
