@@ -7573,9 +7573,9 @@ export default Enhance(MyComponent); // Enhanced component
         
         <tags>
             
-            <tag> react </tag>
-            
             <tag> es6 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
