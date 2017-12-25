@@ -28,7 +28,7 @@
 }
 </code></pre><p>也许你会用得到，详情请参考：<a href="https://link.funteas.com?target=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F8738768%2Fcss-box-shadow-on-three-sides-of-a-div" target="_blank" rel="external">CSS box-shadow on three sides of a div?</a> </p>
 <h3 id="三、超好用的-currentColor"><a href="#三、超好用的-currentColor" class="headerlink" title="三、超好用的 currentColor"></a>三、超好用的 currentColor</h3><p>先来举个例子，html代码：</p>
-<pre><code>&lt;ahref=&quot;##&quot;class=&quot;link&quot;&gt;&lt;iclass=&quot;icon&quot;&gt;&lt;/i&gt;返回&lt;/a&gt;
+<pre><code>&lt;a href=&quot;##&quot; class=&quot;link&quot;&gt;&lt;i class=&quot;icon&quot;&gt;&lt;/i&gt;返回&lt;/a&gt;
 </code></pre><p>css 代码：</p>
 <pre><code>.icon {
   display: inline-block;
@@ -2370,9 +2370,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> react </tag>
             
@@ -2759,9 +2759,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -8163,9 +8163,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> 前端框架 </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
