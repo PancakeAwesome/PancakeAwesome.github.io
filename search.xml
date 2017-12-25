@@ -10,7 +10,8 @@
 <pre><code>cursor: pointer | wait | hand | text | move |not-allowed;
 </code></pre><p>但是，它还支持用户自定义图片，你知道吗？</p>
 <pre><code>cursor: url(jartto.cur), url(http://jartto.wang/jartto.gif), auto;
-</code></pre><p>下图为各浏览器支持情况：<br><img src="https://user-gold-cdn.xitu.io/2017/11/13/2bec2268894c4928afacd033feca690e" alt="tips1"></p>
+</code></pre><p>下图为各浏览器支持情况：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fmt0w88h1yj30hx05n74v.jpg" alt="tips1"></p>
 <p>记得在定义完自定义的游标之后在末尾加上一般性的游标，以防那些url所定义的游标不能使用。</p>
 <p>这里有详细说明：</p>
 <p>1.<a href="https://link.funteas.com?target=https%3A%2F%2Fwww.cnblogs.com%2FMY0101%2Fp%2F6130089.html" target="_blank" rel="external">css cursor 的可选值（鼠标的各种样式）</a><br>2.<a href="https://link.funteas.com?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2FCSS_User_Interface%2FUsing_URL_values_for_the_cursor_property" target="_blank" rel="external">Using URL values for the cursor property</a> </p>
