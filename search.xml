@@ -3,6 +3,267 @@
   
     
     <entry>
+      <title><![CDATA[理解ES6的 Iterator 、Iterable 、 Generator]]></title>
+      <url>/%E7%90%86%E8%A7%A3ES6%E7%9A%84-Iterator-%E3%80%81Iterable-%E3%80%81-Generator.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://link.funteas.com?target=https%3A%2F%2Fuser-images.githubusercontent.com%2F17233090%2F33112922-a8f5a4dc-cf90-11e7-8466-5d7f3d8177b1.png" target="_blank" rel="external"><img src="https://user-gold-cdn.xitu.io/2017/11/22/15fe29066edb99ba" alt="image"></a> </p>
+<h3 id="理解ES6的-Iterator-、Iterable-、-Generator"><a href="#理解ES6的-Iterator-、Iterable-、-Generator" class="headerlink" title="理解ES6的 Iterator 、Iterable 、 Generator"></a>理解ES6的 Iterator 、Iterable 、 Generator</h3><h3 id="什么是迭代器-Iterator-？"><a href="#什么是迭代器-Iterator-？" class="headerlink" title="什么是迭代器(Iterator)？"></a>什么是迭代器(Iterator)？</h3><p>满足<a href="https://link.funteas.com?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FIteration_protocols%23%25E8%25BF%25AD%25E4%25BB%25A3%25E5%2599%25A8%25E5%258D%258F%25E8%25AE%25AE" target="_blank" rel="external">迭代器协议</a> 的对象。<br><a href="https://link.funteas.com?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FIteration_protocols%23%25E8%25BF%25AD%25E4%25BB%25A3%25E5%2599%25A8%25E5%258D%258F%25E8%25AE%25AE" target="_blank" rel="external">迭代器协议</a> : 对象的<code>next</code>方法是一个无参函数，它返回一个对象，该对象拥有<code>done</code>和<code>value</code>两个属性：</p>
+<ul>
+<li><p><code>done</code>(<code>boolean</code>):</p>
+</li>
+<li><p>如果迭代器已经经过了被迭代序列时为<code>true</code>。这时<code>value</code>可能描述了该迭代器的返回值。</p>
+</li>
+<li><p>如果迭代器可以产生序列中的下一个值，则为<code>false</code>。这等效于连同<code>done</code>属性也不指定。</p>
+</li>
+<li><p><code>value</code>: 迭代器返回的任何 JavaScript值。<code>done</code>为<code>true</code>时可省略。</p>
+</li>
+</ul>
+<p>ES5实现一个简单的迭代器：</p>
+<pre><code>function createIterator(items) {
+    var i = 0;
+
+    return {
+        next: function() {
+
+            var done = (i &gt;= items.length);
+            var value = !done ? items[i++] : undefined;
+
+            return {
+                done: done,
+                value: value
+            };
+        }
+    };
+}
+
+var iterator = createIterator([1, 2, 3]);
+
+console.log(iterator.next());           // &quot;{ value: 1, done: false }&quot;
+console.log(iterator.next());           // &quot;{ value: 2, done: false }&quot;
+console.log(iterator.next());           // &quot;{ value: 3, done: false }&quot;
+console.log(iterator.next());           // &quot;{ value: undefined, done: true }&quot;
+// 之后的所有调用
+console.log(iterator.next());           // &quot;{ value: undefined, done: true }&quot;
+</code></pre><h3 id="什么是可迭代对象-Iterable-？"><a href="#什么是可迭代对象-Iterable-？" class="headerlink" title="什么是可迭代对象(Iterable)？"></a>什么是可迭代对象(Iterable)？</h3><p>满足<a href="https://link.funteas.com?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FIteration_protocols%23%25E5%258F%25AF%25E8%25BF%25AD%25E4%25BB%25A3%25E5%258D%258F%25E8%25AE%25AE" target="_blank" rel="external">可迭代协议</a> 的对象是可迭代对象。<br><a href="https://link.funteas.com?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FIteration_protocols%23%25E5%258F%25AF%25E8%25BF%25AD%25E4%25BB%25A3%25E5%258D%258F%25E8%25AE%25AE" target="_blank" rel="external">可迭代协议</a> : 对象的<code>[Symbol.iterator]</code>值是一个无参函数，该函数返回一个迭代器。</p>
+<p>在ES6中，所有的集合对象（<code>Array</code>、 <code>Set</code> 与 <code>Map</code>）以及<code>String</code>、<code>arguments</code>都是可迭代对象，它们都有默认的迭代器。</p>
+<p>可迭代对象可以在以下语句中使用：</p>
+<pre><code>for (let value of [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]) {
+  console.log(value);
+}
+// &quot;a&quot;
+// &quot;b&quot;
+// &quot;c&quot;
+</code></pre><pre><code>[...&#39;abc&#39;];   // [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+console.log(...[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]);   // [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+</code></pre><pre><code>function* gen() {
+  yield* [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+}
+
+gen().next(); // { value: &quot;a&quot;, done: false }
+</code></pre><pre><code>let [a, b, c] = new Set([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]);
+a;   // &#39;a&#39;
+</code></pre><p><code>for...of</code>接受一个可迭代对象（Iterable），或者能被强制转换/包装成一个可迭代对象的值（如’abc’）。遍历时，<code>for...of</code>会获取可迭代对象的<code>[Symbol.iterator]()</code>，对该迭代器逐次调用next()，直到迭代器返回对象的<code>done</code>属性为<code>true</code>时，遍历结束，不对该value处理。</p>
+<p><code>for...of</code>循环实例：</p>
+<pre><code>var a = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;];
+
+for (var val of a) {
+    console.log( val );
+}
+// &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;
+</code></pre><p>转换成普通for循环示例，等价于上面<code>for...of</code>循环：</p>
+<pre><code>var a = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;];
+
+for (var val, ret, it = a[Symbol.iterator]();
+    (ret = it.next()) &amp;&amp; !ret.done;
+) {
+    val = ret.value;
+    console.log( val );
+}
+// &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;
+</code></pre><h4 id="使迭代器可迭代"><a href="#使迭代器可迭代" class="headerlink" title="使迭代器可迭代"></a>使迭代器可迭代</h4><p>在什么是迭代器部分，我们自定义了一个简单的生成迭代器的函数<code>createIterator</code>，但并该函数生成的迭代器并没有实现可迭代协议，所以不能在<code>for...of</code>等语法中使用。可以为该对象实现可迭代协议，在<code>[Symbol.iterator]</code>函数中返回该迭代器自身。</p>
+<pre><code>function createIterator(items) {
+    var i = 0;
+
+    return {
+        next: function () {
+
+            var done = (i &gt;= items.length);
+            var value = !done ? items[i++] : undefined;
+
+            return {
+                done: done,
+                value: value
+            };
+        },
+        [Symbol.iterator]: function () { return this }
+    };
+}
+
+var iterator = createIterator([1, 2, 3]);
+console.log(...iterator)
+</code></pre><h3 id="什么是生成器-Generator-？"><a href="#什么是生成器-Generator-？" class="headerlink" title="什么是生成器(Generator)？"></a>什么是生成器(Generator)？</h3><h4 id="生成器函数"><a href="#生成器函数" class="headerlink" title="生成器函数"></a>生成器函数</h4><p><a href="https://link.funteas.com?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FStatements%2Ffunction*" target="_blank" rel="external">生成器函数（GeneratorFunction）</a> 是能返回一个<a href="https://link.funteas.com?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FGenerator" target="_blank" rel="external">生成器（generator）</a> 的函数。生成器函数由放在 function 关键字之后的一个星号（ * ）来表示，并能使用新的 yield 关键字。</p>
+<pre><code>function *aGeneratorfunction(){
+  yield 1
+  yield 2
+  yield 3
+};
+
+var aGeneratorObject = aGeneratorfunction()
+// 生成器对象
+aGeneratorObject.toString()   // &quot;[object Generator]&quot;
+function *aGeneratorfunction(){
+  yield 1
+  yield 2
+  yield 3
+};
+
+var aGeneratorObject = aGeneratorfunction()
+
+// 满足迭代器协议，是迭代器
+aGeneratorObject.next()   // {value: 1, done: false}
+aGeneratorObject.next()   // {value: 2, done: false}
+aGeneratorObject.next()   // {value: 3, done: false}
+aGeneratorObject.next()   // {value: undefined, done: true}
+
+// [Symbol.iterator]是一个无参函数，该函数执行后返回生成器对象本身（是迭代器），所以是可迭代对象
+aGeneratorObject[Symbol.iterator]() === aGeneratorObject   // true
+
+// 可以被迭代
+var aGeneratorObject1 = aGeneratorfunction()
+[...aGeneratorObject1]   // [1, 2, 3]
+</code></pre><h4 id="在生成器中return"><a href="#在生成器中return" class="headerlink" title="在生成器中return"></a>在生成器中return</h4><p>遍历返回对象的<code>done</code>值为<code>true</code>时迭代即结束，不对该<code>value</code>处理。</p>
+<pre><code>function *createIterator() {
+  yield 1;
+  return 42;
+  yield 2;
+}
+
+let iterator = createIterator();
+iterator.next();   // {value: 1, done: false}
+iterator.next();   // {value: 42, done: true}
+iterator.next();   // {value: undefined, done: true}
+</code></pre><p><code>done</code>值为true时迭代即结束，迭代不对该value处理。所以对这个迭代器遍历，不会对值42处理。</p>
+<pre><code>let iterator1 = createIterator();
+console.log(...iterator);   // 1
+</code></pre><h3 id="添加-Symbol-iterator-使Object可迭代"><a href="#添加-Symbol-iterator-使Object可迭代" class="headerlink" title="添加[Symbol.iterator]使Object可迭代"></a>添加<code>[Symbol.iterator]</code>使<code>Object</code>可迭代</h3><p>根据<a href="https://link.funteas.com?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FIteration_protocols" target="_blank" rel="external">可迭代协议</a> ，给<code>Object</code>的原型添加<code>[Symbol.iterator]</code>，值为返回一个对象的无参函数，被返回对象符合迭代器协议。</p>
+<pre><code>Object.prototype[Symbol.iterator] = function () {
+  var i = 0
+  var items = Object.entries(this)
+  return {
+    next: function () {
+      var done = (i &gt;= items.length);
+      var value = !done ? items[i++] : undefined;
+
+      return {
+          done: done,
+          value: value
+      };
+    }
+  }
+}
+
+var a = {
+  name: &#39;Jimmy&#39;,
+  age: 18,
+  job: &#39;actor&#39;
+}
+
+console.log(...a)   // [ &#39;name&#39;, &#39;Jimmy&#39; ] [ &#39;age&#39;, 18 ] [ &#39;job&#39;, &#39;actor&#39; ]
+</code></pre><p>使用生成器简化代码：</p>
+<pre><code>Object.prototype[Symbol.iterator] = function* () {
+  for (const key in this) {
+    if (this.hasOwnProperty(key)) {
+      yield [key, this[key]];
+    }
+  }
+}
+
+var a = {
+  name: &#39;Jimmy&#39;,
+  age: 18,
+  job: &#39;actor&#39;
+}
+
+console.log(...a)   // [ &#39;name&#39;, &#39;Jimmy&#39; ] [ &#39;age&#39;, 18 ] [ &#39;job&#39;, &#39;actor&#39; ]
+</code></pre><pre><code>function* g1() {
+  yield 1;
+  yield 2;
+}
+
+function* g2() {
+  yield* g1();
+  yield* [3, 4];
+  yield* &quot;56&quot;;
+  yield* arguments;
+}
+
+var generator = g2(7, 8);
+console.log(...generator);   // 1 2 3 4 &quot;5&quot; &quot;6&quot; 7 8
+</code></pre><h3 id="最后一个例子"><a href="#最后一个例子" class="headerlink" title="最后一个例子"></a>最后一个例子</h3><p>分析下面这段代码：</p>
+<pre><code>function* fibs() {
+  var a = 0;
+  var b = 1;
+  while (true) {
+    yield a;
+    [a, b] = [b, a + b];
+  }
+}
+
+var [first, second, third, fourth, fifth, sixth] = fibs();
+console.log(first, second, third, fourth, fifth, sixth);
+</code></pre><p>在这段代码里，<code>fibs</code>是一个生成无限长的斐波那契数列的生成器，<code>[a, b] = [b, a + b]</code>是利用解构赋值的交换赋值写法（=赋值是从右到左计算，所以先计算右侧<code>a+b</code>，然后才结构，所有有交换赋值的效果），写成生成有限长的数组的ES5写法如下：</p>
+<pre><code>function fibs1(n) {
+  var a = 0;
+  var b = 1;
+  var c = 0;
+  var result = []
+  for (var i = 0; i &lt; n; i++) {
+    result.push(a);
+    c = a;
+    a = b;
+    b = c + b;
+  }
+
+  return result;
+}
+
+console.log(fibs1(6))   // [0, 1, 1, 2, 3, 5]
+</code></pre><p>而第一段代码里，就是从<code>fibs()</code>迭代器（生成器是迭代器的子集）中解构出前六个值，代码示例如下：</p>
+<pre><code>function* fibs2(n) {
+  var a = 0;
+  var b = 1;
+  for (var i = 0; i &lt; n; i++) {
+    yield a;
+    [a, b] = [b, a + b];
+  }
+}
+
+console.log(...fibs2(6))
+</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h3 id="为什么要使用迭代器、生成器，有什么好处？"><a href="#为什么要使用迭代器、生成器，有什么好处？" class="headerlink" title="为什么要使用迭代器、生成器，有什么好处？"></a>为什么要使用迭代器、生成器，有什么好处？</h3><p>…还没想清楚</p>
+<p>以上，有很多个人理解的部分，欢迎纠错(*￣︶￣)</p>
+]]></content>
+      
+        <categories>
+            
+            <category> es6 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
+            
+            <tag> 面试 </tag>
+            
+            <tag> es6 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[网页适配 iPhoneX，就是这么简单]]></title>
       <url>/%E7%BD%91%E9%A1%B5%E9%80%82%E9%85%8D-iPhoneX%EF%BC%8C%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E7%AE%80%E5%8D%95.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>iPhoneX 取消了物理按键，改成底部小黑条，这一改动导致网页出现了比较尴尬的屏幕适配问题。对于网页而言，顶部（刘海部位）的适配问题浏览器已经做了处理，所以我们只需要关注底部与小黑条的适配问题即可（即常见的吸底导航、返回顶部等各种相对底部 fixed 定位的元素）。</p>
@@ -3377,9 +3638,9 @@ export default class Hello extends Component {
         
         <tags>
             
-            <tag> react </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
@@ -8085,9 +8346,9 @@ npm run dist
             
             <tag> 前端技术 </tag>
             
-            <tag> react </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
@@ -9259,9 +9520,9 @@ class ImgFigure extends React.Component {
             
             <tag> 前端技术 </tag>
             
-            <tag> react </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
