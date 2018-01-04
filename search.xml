@@ -27,8 +27,8 @@
 </ul>
 <p>本系列文章是React技术栈，Vue技术栈将会在本系列文章结束后陆续更新。</p>
 <h3 id="系列文章目录链接"><a href="#系列文章目录链接" class="headerlink" title="系列文章目录链接"></a>系列文章目录链接</h3><ol>
-<li><a href="http://link.funteas.com/?target=http%3A%2F%2Fsfau.lt%2Fb5ZcHH" target="_blank" rel="external">React项目实战：环境搭建</a> </li>
-<li><a href="http://link.funteas.com/?target=http%3A%2F%2Fsfau.lt%2Fb5Zefv" target="_blank" rel="external">React项目实战：react-redux-router基本原理</a> </li>
+<li><a href="http://pancakeawesome.ink/React%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98-%E4%B8%80-%EF%BC%9A%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html">React项目实战：环境搭建</a> </li>
+<li><a href="http://pancakeawesome.ink/React%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98(%E4%BA%8C">React项目实战：react-redux-router基本原理</a>:react-redux-router%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.html) </li>
 <li>React项目实战：登录页面（编辑中）</li>
 </ol>
 <h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><p>由于本系列的文章是项目实战，需要有相关的技术基础，可以到下方给出的链接进行深入学习。项目实战用到的主要框架和插件有：</p>
@@ -61,16 +61,16 @@ npm install *** --save    #运行时依赖的模块；自动把模块和版本�
 npm install *** --save-dev    #开发时依赖的模块；自动把模块和版本号添加到package.json文件devdependencies部分
 npm update ***    #更新node模块
 npm uninstall ***    #卸载node模块
-</code></pre><h3 id="创建package-json文件-articleHeader5"><a href="#创建package-json文件-articleHeader5" class="headerlink" title="创建package.json文件 ## (#articleHeader5)"></a>创建package.json文件 ## (#articleHeader5)</h3><p>项目根目录：<code>D:\web\react-webapp-demo</code>，请根据自己实际情况设置。</p>
+</code></pre><h3 id="创建package-json文件"><a href="#创建package-json文件" class="headerlink" title="创建package.json文件"></a>创建package.json文件</h3><p>项目根目录：<code>D:\web\react-webapp-demo</code>，请根据自己实际情况设置。</p>
 <pre><code>cd D:\web\react-webapp-demo    #在PowerSell中打开项目目录
 npm init -y    #跳过提问阶段，直接生成一个新的 package.json 文件。
-</code></pre><h3 id="安装模块-articleHeader6"><a href="#安装模块-articleHeader6" class="headerlink" title="安装模块 ## (#articleHeader6)"></a>安装模块 ## (#articleHeader6)</h3><pre><code>npm install --save react react-dom redux react-redux redux-logger redux-thunk react-router react-router-redux@next history styled-components isomorphic-fetch jroll jroll-pulldown jroll-infinite echarts babel-polyfill
+</code></pre><h3 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h3><pre><code>npm install --save react react-dom redux react-redux redux-logger redux-thunk react-router react-router-redux@next history styled-components isomorphic-fetch jroll jroll-pulldown jroll-infinite echarts babel-polyfill
 npm install --save-dev webpack webpack-dev-server webpack-merge clean-webpack-plugin babel-loader babel-core babel-preset-env babel-preset-react css-loader style-loader file-loader url-loader html-webpack-plugin uglifyjs-webpack-plugin
 </code></pre><p>模块简要说明：</p>
 <blockquote>
 <p><code>react``react-dom</code>：React依赖<br><code>redux``react-redux``redux-logger``redux-thunk</code>：Redux依赖<br><code>react-router``react-router-redux``history</code>：react-router依赖<br><code>styled-components</code>：React中的CSS的实现依赖<br><code>isomorphic-fetch</code>：fetch兼容库<br><code>jroll``jroll-pulldown``jroll-infinite</code>：JRoll插件依赖<br><code>echarts</code>：基于html5 Canvas图表库<br><code>babel-polyfill</code>：用于实现浏览器不支持原生功能的代码<br><code>webpack</code>：预编译模块打包<br><code>webpack-dev-server</code>：实时重新加载的Web服务器<br><code>webpack-merge</code>：webpack配置分离插件<br><code>clean-webpack-plugin</code>：在building之前删除你以前build过的文件<br><code>babel-loader``babel-core``babel-preset-env``babel-preset-react</code>：转码器babel依赖<br><code>css-loader``style-loader``file-loader``url-loader</code>：各格式文件打包依赖<br><code>html-webpack-plugin</code>：生成HTML5文件的插件<br><code>uglifyjs-webpack-plugin</code>：代码压缩插件</p>
 </blockquote>
-<h3 id="配置模块-articleHeader7"><a href="#配置模块-articleHeader7" class="headerlink" title="配置模块 ## (#articleHeader7)"></a>配置模块 ## (#articleHeader7)</h3><p>在项目根目录生成<code>.babelrc</code>文件（Windows系统下文件重命名为.babelrc.），并写入如下数据</p>
+<h3 id="配置模块"><a href="#配置模块" class="headerlink" title="配置模块"></a>配置模块</h3><p>在项目根目录生成<code>.babelrc</code>文件（Windows系统下文件重命名为.babelrc.），并写入如下数据</p>
 <pre><code>{
     &quot;presets&quot;: [&quot;env&quot;,&quot;react&quot;]
 }
@@ -159,7 +159,7 @@ module.exports = merge(common, {
         new UglifyJSPlugin()    //代码压缩
     ]
 });
-</code></pre><h3 id="项目目录-articleHeader8"><a href="#项目目录-articleHeader8" class="headerlink" title="项目目录 ## (#articleHeader8)"></a>项目目录 ## (#articleHeader8)</h3><pre><code> react-webapp-demo
+</code></pre><h3 id="项目目录"><a href="#项目目录" class="headerlink" title="项目目录"></a>项目目录</h3><pre><code> react-webapp-demo
   |- /node_modules    //模块安装目录
   |- /src    //代码目录
     |- /container    //容器组件
@@ -177,7 +177,7 @@ module.exports = merge(common, {
   |- webpack.prod.js    //webpack编译配置
 </code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>前面有说到<code>React</code>在React Native App上的实现，其实React.js就是其在Web端的实现，加上工程化开发，这两者开发思维惊人的相似，有种<em>React就是那个离前端大统一最接近的技术</em> 的预感。</p>
 <blockquote>
-<p>刚好最近有时间，整理一下自己React.js的知识点，如果对React开发WebApp单页应用感兴趣的话，欢迎浏览，<a href="https://segmentfault.com/a/1190000012164495" target="_blank" rel="external">点击前往</a>。</p>
+<p>刚好最近有时间，整理一下自己React.js的知识点，如果对React开发WebApp单页应用感兴趣的话，欢迎浏览，<a href="http://pancakeawesome.ink/React%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98-%E4%B8%80-%EF%BC%9A%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html">点击前往</a>。</p>
 </blockquote>
 ]]></content>
       
@@ -393,8 +393,8 @@ let store = createStore(todoApp)
 <p>明智的做法是只在最顶层组件（如路由操作）里使用 Redux。其余内部组件仅仅是展示性的，所有数据都通过 props 传入。</p>
 <p><img src="https://img.funteas.com/91203073913747ce6dd77f8bfef1710a?imageView2/2/w/800" alt=""></p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h3 id="系列目录"><a href="#系列目录" class="headerlink" title="系列目录"></a>系列目录</h3><ol>
-<li><a href="http://link.funteas.com/?target=http%3A%2F%2Fsfau.lt%2Fb5ZcHH" target="_blank" rel="external">React项目实战：环境搭建</a> </li>
-<li><a href="http://link.funteas.com/?target=http%3A%2F%2Fsfau.lt%2Fb5Zefv" target="_blank" rel="external">React项目实战：react-redux-router基本原理</a> </li>
+<li><a href="http://pancakeawesome.ink/React%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98-%E4%B8%80-%EF%BC%9A%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html">React项目实战：环境搭建</a> </li>
+<li><a href="http://pancakeawesome.ink/React%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98(%E4%BA%8C">React项目实战：react-redux-router基本原理</a>:react-redux-router%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.html) </li>
 <li>React项目实战：登录页面（编辑中）</li>
 </ol>
 ]]></content>
