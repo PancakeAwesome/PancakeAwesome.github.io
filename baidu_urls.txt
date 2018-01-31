@@ -1,4 +1,3 @@
-http://pancakeawesome.ink/梯度下降（Gradient-Descent）小结.html
 http://pancakeawesome.ink/React项目实战-一-：环境搭建.html
 http://pancakeawesome.ink/React项目实战(二):react-redux-router基本原理.html
 http://pancakeawesome.ink/理解ES6的-Iterator-、Iterable-、-Generator.html
