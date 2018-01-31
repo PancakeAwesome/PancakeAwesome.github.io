@@ -30,6 +30,7 @@
 <p>$$\sum<em>{i=0}N\int</em>{a}{b}g(t,i)\text{d}t$$</p>
 <p><img src="http://latex.codecogs.com/gif.latex?\prod&space;n_{i}&plus;1" alt=""></p>
 <p><img src="http://latex.codecogs.com/gif.latex?a^{b}" alt=""></p>
+<p><a href="http://www.codecogs.com/eqnedit.php?latex=J(\theta_0,&space;\theta_1)&space;=&space;\sum\limits_{i=1}^{m}(h_\theta(x_i)&space;-&space;y_i)^2" target="_blank"><img src="http://latex.codecogs.com/gif.latex?J(\theta_0,&space;\theta_1)&space;=&space;\sum\limits_{i=1}^{m}(h_\theta(x_i)&space;-&space;y_i)^2" title="J(\theta_0, \theta_1) = \sum\limits_{i=1}^{m}(h_\theta(x_i) - y_i)^2"></a></p>
 <p> 其中xixix_i表示样本特征x的第i个元素，yiyiy<em>i表示样本输出y的第i个元素，hθ(xi)hθ(xi)h</em>\theta(x_i)为假设函数。   </p>
 <h4 id="3-3-梯度下降的详细算法"><a href="#3-3-梯度下降的详细算法" class="headerlink" title="3.3 梯度下降的详细算法"></a>3.3 梯度下降的详细算法</h4><p>梯度下降法的算法可以有代数法和矩阵法（也称向量法）两种表示，如果对矩阵分析不熟悉，则代数法更加容易理解。不过矩阵法更加的简洁，且由于使用了矩阵，实现逻辑更加的一目了然。这里先介绍代数法，后介绍矩阵法。</p>
 <h5 id="3-3-1-梯度下降法的代数方式描述"><a href="#3-3-1-梯度下降法的代数方式描述" class="headerlink" title="3.3.1 梯度下降法的代数方式描述"></a>3.3.1 梯度下降法的代数方式描述</h5><ol>
@@ -787,9 +788,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -3387,9 +3388,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> react </tag>
             
@@ -3776,9 +3777,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
