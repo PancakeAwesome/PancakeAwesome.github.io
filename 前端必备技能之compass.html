@@ -1,4 +1,273 @@
-<!DOCTYPE html><html style="display:none" lang="zh"><head><meta charset="utf-8"><script>window.materialVersion="1.5.0",window.oldVersion=["codestartv1","1.3.4","1.4.0","1.4.0b1"]</script><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://busuanzi.ibruce.info"><link rel="dns-prefetch" href="https://changyan.sohu.com"><title> 前端必备技能之compass | Edward&#39;s Blog</title><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0097A7"><meta name="author" content="Edward Guan"><meta name="description" itemprop="description" content="前端必备技能之compass"><meta name="keywords" content="前端,node,react,js,java,自学编程,学习分享,UESTC,css,前端技术,前端工具"><script>window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}},lsloader.removeLS=function(e){try{localStorage.removeItem(e)}catch(e){}},lsloader.setLS=function(e,t){try{localStorage.setItem(e,t)}catch(e){}},lsloader.getLS=function(e){var t="";try{t=localStorage.getItem(e)}catch(e){t=""}return t},versionString="/*"+(window.materialVersion||"unknownVersion")+"*/",lsloader.clean=function(){try{for(var e=[],t=0;t<localStorage.length;t++)e.push(localStorage.key(t));e.forEach(function(e){var t=lsloader.getLS(e);window.oldVersion&&window.oldVersion.reduce(function(e,n){return e||-1!==t.indexOf("/*"+n+"*/")},!1)&&lsloader.removeLS(e)})}catch(e){}},lsloader.clean(),lsloader.load=function(e,t,n,s){"boolean"==typeof n&&(s=n,n=void 0),s=s||!1,n=n||function(){};var a;if((a=this.getLS(e))&&-1===a.indexOf(versionString))return this.removeLS(e),void this.requestResource(e,t,n,s);if(a){if(a.split(versionString)[0]!=t)return console.log("reload:"+t),this.removeLS(e),void this.requestResource(e,t,n,s);a=a.split(versionString)[1],s?(this.jsRunSequence.push({name:e,code:a}),this.runjs(t,e,a)):(document.getElementById(e).appendChild(document.createTextNode(a)),n())}else this.requestResource(e,t,n,s)},lsloader.requestResource=function(e,t,n,s){var a=this;s?this.iojs(t,e,function(e,t,n){a.setLS(t,e+versionString+n),a.runjs(e,t,n)}):this.iocss(t,e,function(n){document.getElementById(e).appendChild(document.createTextNode(n)),a.setLS(e,t+versionString+n)},n)},lsloader.iojs=function(e,t,n){var s=this;s.jsRunSequence.push({name:t,code:""});try{var a=new XMLHttpRequest;a.open("get",e,!0),a.onreadystatechange=function(){if(4==a.readyState){if((a.status>=200&&a.status<300||304==a.status)&&""!=a.response)return void n(e,t,a.response);s.jsfallback(e,t)}},a.send(null)}catch(n){s.jsfallback(e,t)}},lsloader.iocss=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.iofonts=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.runjs=function(e,t,n){if(t&&n)for(var s in this.jsRunSequence)this.jsRunSequence[s].name==t&&(this.jsRunSequence[s].code=n);if(this.jsRunSequence[0]&&this.jsRunSequence[0].code&&"failed"!=this.jsRunSequence[0].status)(o=document.createElement("script")).appendChild(document.createTextNode(this.jsRunSequence[0].code)),o.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(o),this.jsRunSequence.shift(),this.jsRunSequence.length>0&&this.runjs();else if(this.jsRunSequence[0]&&"failed"==this.jsRunSequence[0].status){var a=this,o=document.createElement("script");o.src=this.jsRunSequence[0].path,o.type="text/javascript",this.jsRunSequence[0].status="loading",o.onload=function(){a.jsRunSequence.shift(),a.jsRunSequence.length>0&&a.runjs()},document.body.appendChild(o)}},lsloader.tagLoad=function(e,t){this.jsRunSequence.push({name:t,code:"",path:e,status:"failed"}),this.runjs()},lsloader.jsfallback=function(e,t){if(!this.jsnamemap[t]){this.jsnamemap[t]=t;for(var n in this.jsRunSequence)this.jsRunSequence[n].name==t&&(this.jsRunSequence[n].code="",this.jsRunSequence[n].status="failed",this.jsRunSequence[n].path=e);this.runjs()}},lsloader.cssfallback=function(e,t,n){if(!this.cssnamemap[t]){this.cssnamemap[t]=1;var s=document.createElement("link");s.type="text/css",s.href=e,s.rel="stylesheet",s.onload=s.onerror=n;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(s,a)}},lsloader.runInlineScript=function(e,t){var n=document.getElementById(t).innerText;this.jsRunSequence.push({name:e,code:n}),this.runjs()},lsloader.loadCombo=function(e){var t="",n={};for(var s in e){var a=this.getLS(e[s].name);if(a)var o=a.split(versionString)[0],i=a.split(versionString)[1];else o="";o==e[s].path?this.jsRunSequence.push({name:e[s].name,code:i,path:e[s].path}):(this.jsRunSequence.push({name:e[s].name,code:null,path:e[s].path,status:"comboloading"}),n[e[s].name]=!0,t+=(""==t?"":";")+e[s].path)}var u=this;if(t){var r=new XMLHttpRequest;r.open("get",combo+t,!0),r.onreadystatechange=function(){if(4==r.readyState)if(r.status>=200&&r.status<300||304==r.status){if(""!=r.response)return void u.runCombo(r.response,n)}else{for(var e in u.jsRunSequence)n[u.jsRunSequence[e].name]&&(u.jsRunSequence[e].status="failed");u.runjs()}},r.send(null)}this.runjs()},lsloader.runCombo=function(e,t){(e=e.split("/*combojs*/")).shift();for(var n in this.jsRunSequence)t[this.jsRunSequence[n].name]&&e[0]&&(this.jsRunSequence[n].status="comboJS",this.jsRunSequence[n].code=e[0],this.setLS(this.jsRunSequence[n].name,this.jsRunSequence[n].path+versionString+e[0]),e.shift());this.runjs()}</script><script>function Queue(){this.dataStore=[],this.offer=function(e){this.debug&&console.log("Offered a Queued Function."),"function"==typeof e?this.dataStore.push(e):console.log("You must offer a function.")},this.poll=function(){return this.debug&&console.log("Polled a Queued Function."),this.dataStore.shift()},this.execNext=function(){var e=this.poll();void 0!==e&&(this.debug&&console.log("Run a Queued Function."),e())},this.debug=!1,this.startDebug=function(){this.debug=!0}}var queue=new Queue</script><link rel="icon shortcut" type="image/ico" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="icon" sizes="192x192" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="apple-touch-icon" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="apple-mobile-web-app-title" content="Title"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="480"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Edward&#39;s Blog"> <!--[if lte IE 9]><link rel="stylesheet" href="/css/ie-blocker.css"><script src="/js/ie-blocker.zhCN.js"></script><![endif]--><style id="material_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="style_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="prettify_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="prettify_theme"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style>body,html{font-family:Roboto,"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;overflow-x:hidden!important}code{font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace}a{color:#00838f}#scheme-Paradox .hot_tags-count,#scheme-Paradox .sidebar-colored .sidebar-badge,#scheme-Paradox .sidebar-colored .sidebar-header,#scheme-Paradox .sidebar_archives-count,#search-form-label:after,#search-label,.mdl-card__media{background-color:#0097a7!important}#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus,#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover{color:#0097a7!important}#ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a,#post_entry-right-info,.sidebar-colored .sidebar-nav li:hover>a,.sidebar-colored .sidebar-nav li:hover>a i,.sidebar-colored .sidebar-nav li>a:focus i,.sidebar-colored .sidebar-nav li>a:hover,.sidebar-colored .sidebar-nav li>a:hover i,.sidebar-colored .sidebar-nav>.open>a,.sidebar-colored .sidebar-nav>.open>a:focus,.sidebar-colored .sidebar-nav>.open>a:hover{color:#0097a7!important}.toTop{background:#757575!important}.material-layout .material-index>.material-nav,.material-layout .material-post>.material-nav,.material-nav a{color:#757575}#scheme-Paradox .MD-burger-layer{background-color:#757575}#scheme-Paradox #post-toc-trigger-btn{color:#757575}.post-toc a:hover{color:#00838f;text-decoration:underline}</style><style>body{background-color:#f5f5f5}#scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{background-color:#fff}</style><style>.fade{transition:all .8s linear;-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0);opacity:1}.fade.out{opacity:0}</style><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==",!0)</script><meta property="og:url" content="http://pancakeawesome.ink"><meta property="og:type" content="blog"><meta property="og:title" content="前端必备技能之compass | Edward&#39;s Blog"><meta property="og:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta property="og:description" content="前端必备技能之compass"><meta property="og:article:tag" content="css"><meta property="og:article:tag" content="前端技术"><meta property="og:article:tag" content="前端工具"><meta property="article:published_time" content="Thu Sep 28 2017 12:57:33 GMT+0800"><meta property="article:modified_time" content="Thu Oct 12 2017 20:10:16 GMT+0800"><meta name="twitter:title" content="前端必备技能之compass | Edward&#39;s Blog"><meta name="twitter:description" content="前端必备技能之compass"><meta name="twitter:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:url" content="http://pancakeawesome.ink"><link rel="canonical" href="http://pancakeawesome.ink/前端必备技能之compass.html"><script type="application/ld+json">
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.0 -->
+    <script>
+        window.materialVersion = "1.5.0"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+    <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+
+
+    <link rel="dns-prefetch" href="https://changyan.sohu.com"/>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Title -->
+    
+    <title>
+        
+            前端必备技能之compass | 
+        
+        Edward&#39;s Blog
+    </title>
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Edward Guan">
+    <meta name="description" itemprop="description" content="前端必备技能之compass">
+    <meta name="keywords" content="前端,node,react,js,java,自学编程,学习分享,UESTC,css,前端技术,前端工具">
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(window.oldVersion){var remove=window.oldVersion.reduce(function(p,c){return p||data.indexOf("/*"+c+"*/")!==-1},false);if(remove){lsloader.removeLS(key)}}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload,isJs){if(typeof cssonload==="boolean"){isJs=cssonload;cssonload=undefined}isJs=isJs||false;cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}code=code.split(versionString)[1];if(isJs){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload,isJs)}};lsloader.requestResource=function(name,path,cssonload,isJs){var that=this;if(isJs){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else{this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
+    <link rel="icon" sizes="192x192" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
+    <link rel="apple-touch-icon" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Edward&#39;s Blog">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icon -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://pancakeawesome.ink">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="前端必备技能之compass | Edward&#39;s Blog">
+    <meta property="og:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg" />
+    <meta property="og:description" content="前端必备技能之compass">
+    <meta property="og:article:tag" content="css"> <meta property="og:article:tag" content="前端技术"> <meta property="og:article:tag" content="前端工具"> 
+
+    
+        <meta property="article:published_time" content="Thu Sep 28 2017 12:57:33 GMT+0800" />
+        <meta property="article:modified_time" content="Thu Oct 12 2017 20:10:16 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="前端必备技能之compass | Edward&#39;s Blog">
+    <meta name="twitter:description" content="前端必备技能之compass">
+    <meta name="twitter:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="http://pancakeawesome.ink" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://pancakeawesome.ink/前端必备技能之compass.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -26,20 +295,276 @@
     "keywords": ",css,前端技术,前端工具前端,node,react,js,java,自学编程,学习分享,UESTC",
     "description": "前端必备技能之compass",
 }
-</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?0c041dca6f79c4e40fb45d1283e327e7";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body id="scheme-Paradox" class="lazy"><div class="material-layout mdl-js-layout has-drawer is-upgraded"><main class="material-layout__content" id="main"><div id="top"></div> <button class="MD-burger-icon sidebar-toggle"><span class="MD-burger-layer"></span></button> <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon"> <i class="material-icons">format_list_numbered</i></button><ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh;overflow-y:scroll"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#compass的安装-amp-amp-项目的构建"><span class="post-toc-number">2.</span> <span class="post-toc-text">compass的安装&&项目的构建</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#compass的安装"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">compass的安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#compass项目的运行"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">compass项目的运行</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#项目搭建"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">项目搭建</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#compass的各大模块"><span class="post-toc-number">3.</span> <span class="post-toc-text">compass的各大模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#reset模块"><span class="post-toc-number">4.</span> <span class="post-toc-text">reset模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#reset模块引入"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">reset模块引入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#css样式效果展示"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">css样式效果展示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#normalize模块"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">normalize模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#normalize模块-1"><span class="post-toc-number">4.3.1.</span> <span class="post-toc-text">normalize模块</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#normalize的安装"><span class="post-toc-number">4.3.2.</span> <span class="post-toc-text">normalize的安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#normalize的引入"><span class="post-toc-number">4.3.3.</span> <span class="post-toc-text">normalize的引入</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#layout模块"><span class="post-toc-number">5.</span> <span class="post-toc-text">layout模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#grid-background模块："><span class="post-toc-number">5.1.</span> <span class="post-toc-text">grid-background模块：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#stretching模块："><span class="post-toc-number">5.2.</span> <span class="post-toc-text">stretching模块：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sticky-footer模块"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">sticky-footer模块</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#css3-amp-amp-browser-support模块"><span class="post-toc-number">6.</span> <span class="post-toc-text">css3&&browser support模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用的browser-support子功能："><span class="post-toc-number">6.1.</span> <span class="post-toc-text">常用的browser support子功能：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用的css3子功能："><span class="post-toc-number">6.2.</span> <span class="post-toc-text">常用的css3子功能：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#typography模块"><span class="post-toc-number">7.</span> <span class="post-toc-text">typography模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#links子模块："><span class="post-toc-number">7.1.</span> <span class="post-toc-text">links子模块：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#list子模块"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">list子模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#text子模块"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">text子模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#vertical-rythm子模块"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">vertical rythm子模块</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#helpers模块"><span class="post-toc-number">8.</span> <span class="post-toc-text">helpers模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#inline-image"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">inline-image()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#image-url"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">image-url()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#font-files"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">font-files()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#font-face"><span class="post-toc-number">8.4.</span> <span class="post-toc-text">font-face()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#append-selector"><span class="post-toc-number">8.5.</span> <span class="post-toc-text">append-selector()</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#utilities模块"><span class="post-toc-number">9.</span> <span class="post-toc-text">utilities模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#color子模块"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">color子模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#print子模块"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">print子模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tables子模块"><span class="post-toc-number">9.3.</span> <span class="post-toc-text">tables子模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#general子模块"><span class="post-toc-number">9.4.</span> <span class="post-toc-text">general子模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#hacks子模块"><span class="post-toc-number">9.4.1.</span> <span class="post-toc-text">hacks子模块</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#标签云模块"><span class="post-toc-number">9.4.2.</span> <span class="post-toc-text">标签云模块</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#sprites模块"><span class="post-toc-number">10.</span> <span class="post-toc-text">sprites模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">11.</span> <span class="post-toc-text">总结</span></a></li></ol></ul><div class="material-post_container"><div class="material-post mdl-grid"><div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col"><div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50"><script type="text/ls-javascript" id="post-thumbnail-script">
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+        <script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?0c041dca6f79c4e40fb45d1283e327e7';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+    
+
+    <!-- Custom Head -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#compass的安装-amp-amp-项目的构建"><span class="post-toc-number">2.</span> <span class="post-toc-text">compass的安装&&项目的构建</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#compass的安装"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">compass的安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#compass项目的运行"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">compass项目的运行</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#项目搭建"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">项目搭建</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#compass的各大模块"><span class="post-toc-number">3.</span> <span class="post-toc-text">compass的各大模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#reset模块"><span class="post-toc-number">4.</span> <span class="post-toc-text">reset模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#reset模块引入"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">reset模块引入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#css样式效果展示"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">css样式效果展示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#normalize模块"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">normalize模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#normalize模块-1"><span class="post-toc-number">4.3.1.</span> <span class="post-toc-text">normalize模块</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#normalize的安装"><span class="post-toc-number">4.3.2.</span> <span class="post-toc-text">normalize的安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#normalize的引入"><span class="post-toc-number">4.3.3.</span> <span class="post-toc-text">normalize的引入</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#layout模块"><span class="post-toc-number">5.</span> <span class="post-toc-text">layout模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#grid-background模块："><span class="post-toc-number">5.1.</span> <span class="post-toc-text">grid-background模块：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#stretching模块："><span class="post-toc-number">5.2.</span> <span class="post-toc-text">stretching模块：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#sticky-footer模块"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">sticky-footer模块</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#css3-amp-amp-browser-support模块"><span class="post-toc-number">6.</span> <span class="post-toc-text">css3&&browser support模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用的browser-support子功能："><span class="post-toc-number">6.1.</span> <span class="post-toc-text">常用的browser support子功能：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用的css3子功能："><span class="post-toc-number">6.2.</span> <span class="post-toc-text">常用的css3子功能：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#typography模块"><span class="post-toc-number">7.</span> <span class="post-toc-text">typography模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#links子模块："><span class="post-toc-number">7.1.</span> <span class="post-toc-text">links子模块：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#list子模块"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">list子模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#text子模块"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">text子模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#vertical-rythm子模块"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">vertical rythm子模块</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#helpers模块"><span class="post-toc-number">8.</span> <span class="post-toc-text">helpers模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#inline-image"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">inline-image()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#image-url"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">image-url()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#font-files"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">font-files()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#font-face"><span class="post-toc-number">8.4.</span> <span class="post-toc-text">font-face()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#append-selector"><span class="post-toc-number">8.5.</span> <span class="post-toc-text">append-selector()</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#utilities模块"><span class="post-toc-number">9.</span> <span class="post-toc-text">utilities模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#color子模块"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">color子模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#print子模块"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">print子模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#tables子模块"><span class="post-toc-number">9.3.</span> <span class="post-toc-text">tables子模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#general子模块"><span class="post-toc-number">9.4.</span> <span class="post-toc-text">general子模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#hacks子模块"><span class="post-toc-number">9.4.1.</span> <span class="post-toc-text">hacks子模块</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#标签云模块"><span class="post-toc-number">9.4.2.</span> <span class="post-toc-text">标签云模块</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#sprites模块"><span class="post-toc-number">10.</span> <span class="post-toc-text">sprites模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">11.</span> <span class="post-toc-text">总结</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
     var randomNum = Math.floor(Math.random() * 30 + 1);
 
     $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-</script><p class="article-headline-p"> 前端必备技能之compass</p></div><div class="mdl-color-text--grey-700 mdl-card__supporting-text meta"><div id="author-avatar"> <img src="/img/rip.jpeg" width="44px" height="44px" alt="Author Avatar"></div><div> <strong>Edward Guan</strong> <span>9月 28, 2017</span></div><div class="section-spacer"></div> <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">devices other</i> <span class="visuallyhidden">devices other</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button"><li class="mdl-menu__item">在其它设备中阅读本文章</li> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACXElEQVR42u3aQY7jMAwEwPz/0zPXBQbxdouWYgTlUw52ovJBYpp8/Xz19cLDw8PDw8PDw3sY7xVff5+KfuyfO/9+27vPo7Xh4eHhHeHlS7xe+rt73sHeLXGyNjw8PLyTvOulXG/u86Xnv/uf4wQPDw/v8bxkE0/ux8PDw/tuXh46JMdG8srw8PDwnsnLo9g8dGgj2g9nLXh4eHgxL28ynf98tL+Hh4eHF/DqkaabXsd1tHHb0BUeHh7eBt5aTLBWcOevbLQePDw8vM28fKFrwetaYHF9z2JJjYeHh7eB1zafrrf4fNNvRw2KBhgeHh7eQV7ecLqGtYdQG+luyVrw8PDwgjAiH06dx7XtK2ifxcPDwzvDm7TB2tc0KbKjwAIPDw/vOK9tRBXjUGXsu1ay4+Hh4e3mzUvetkE1uT86tPDw8PA286JgdP6TZaTbFut4eHh4J3ntX/21EnkthmipeHh4eCd5SZnbFsrJ0vPjJB8Cw8PDw9vNa7fptrm1FgevtdDw8PDwTvLaErYNcNfChfZ78PDw8M7zJgHr/NhYa6rh4eHhPY032axzxl134uHh4Z3n5eNWbUiRLzQfYlj8x4CHh4d3Ky/f3NuGVvLsWssNDw8P7zyvvfJN/K4woj3A8PDw8Hbzbt6Uy+bW/Fk8PDy8T/HuihvmLbQ2hsDDw8P7LC8fBUgw8wGFxVEDPDw8vEfy2g29bv9PwHh4eHiP5K0NDbTFdDtYgIeHh3ee1xbKa1t/fqjkJDw8PLzzvLxsnR8M7XZfDxng4eHhbeZ934WHh4eHh4eHh/eA6xfxZs5KTeG1CgAAAABJRU5ErkJggg=="></ul> <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">bookmark</i> <span class="visuallyhidden">bookmark</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button"><li class="mdl-menu__item"> <a class="post_tag-link" href="/tags/css/">css</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端工具/">前端工具</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端技术/">前端技术</a></li></ul> <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">share</i> <span class="visuallyhidden">share</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button"><a class="post_share-link" href="#"><li class="mdl-menu__item"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> &nbsp;浏览量</span></li></a><a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=前端必备技能之compass&url=http://pancakeawesome.ink/前端必备技能之compass.html&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank"><li class="mdl-menu__item"> 分享到微博</li></a><a class="post_share-link" href="https://twitter.com/intent/tweet?text=前端必备技能之compass&url=http://pancakeawesome.ink/前端必备技能之compass.html&via=Edward Guan" target="_blank"><li class="mdl-menu__item"> 分享到 Twitter</li></a><a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/前端必备技能之compass.html" target="_blank"><li class="mdl-menu__item"> 分享到 Facebook</li></a><a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/前端必备技能之compass.html" target="_blank"><li class="mdl-menu__item"> 分享到 Google+</li></a><a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/前端必备技能之compass.html&title=前端必备技能之compass" target="_blank"><li class="mdl-menu__item"> 分享到 LinkedIn</li></a><a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=前端必备技能之compass&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/前端必备技能之compass.html" target="_blank"><li class="mdl-menu__item"> 分享到 QQ</li></a></ul></div><div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先介绍下<a href="http://compass-style.org/" target="_blank" rel="external">compass</a>，compass是一款优秀的开源的<strong>css书写框架</strong>，什么叫书写框架呢？众所周知，<code>sass</code>中有很多便捷的语法特性，比如<code>mixin</code>,<code>function</code>等，<code>compass</code>正是一个强大的函数仓库，compass封装了很多在平常工程过程中能用到的css效果的函数，比如清楚浮动，设置表格样式等等。<br><em>至于sass和css之间的关系请看我的上篇<a href="http://pancakeawesome.ink/2017/09/18/%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8sass/">博客</a></em>，讲的很详细。<br><strong>这里是我写的一个compass的demo，可以对照着看</strong><br><strong>如果把<code>sass</code>必做钉子，那么<code>compass</code>就是一个锤子🔨，可以方便快捷地构建你的<code>css</code>工程化代码</strong></p><h2 id="compass的安装-amp-amp-项目的构建"><a href="#compass的安装-amp-amp-项目的构建" class="headerlink" title="compass的安装&amp;&amp;项目的构建"></a>compass的安装&amp;&amp;项目的构建</h2><h3 id="compass的安装"><a href="#compass的安装" class="headerlink" title="compass的安装"></a>compass的安装</h3><p>如果你是<code>Mac os</code>系统，那么你的电脑预装了ruby的环境，那么就会有<code>gem</code>这个ruby的包管理器。如果你的电脑是windows的，那么请先安装<code>ruby</code>，具体安装方法我就不赘述了，请大家自行谷歌。</p><pre><code>gem install compass
-</code></pre><p><em>如果大家在gem install过程中发现速度很慢，甚至卡住了</em>，请谷歌：<strong>gem源</strong>，具体原因我就不说了=,=</p><h3 id="compass项目的运行"><a href="#compass项目的运行" class="headerlink" title="compass项目的运行"></a>compass项目的运行</h3><ul><li>正式编译，<strong>会将项目目录下的<code>scss</code>文件编译成<code>css</code>文件并执行scss文件中的函数在</strong>命令行环境下：<pre><code>compass compile
-</code></pre><em>加上<code>--force</code>会强制编译</em></li><li>自动编译，会自动监听文件的更改而随之编译文件。<pre><code>compass watch
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                前端必备技能之compass
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/rip.jpeg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Edward Guan</strong>
+        <span>9月 28, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACXElEQVR42u3aQY7jMAwEwPz/0zPXBQbxdouWYgTlUw52ovJBYpp8/Xz19cLDw8PDw8PDw3sY7xVff5+KfuyfO/9+27vPo7Xh4eHhHeHlS7xe+rt73sHeLXGyNjw8PLyTvOulXG/u86Xnv/uf4wQPDw/v8bxkE0/ux8PDw/tuXh46JMdG8srw8PDwnsnLo9g8dGgj2g9nLXh4eHgxL28ynf98tL+Hh4eHF/DqkaabXsd1tHHb0BUeHh7eBt5aTLBWcOevbLQePDw8vM28fKFrwetaYHF9z2JJjYeHh7eB1zafrrf4fNNvRw2KBhgeHh7eQV7ecLqGtYdQG+luyVrw8PDwgjAiH06dx7XtK2ifxcPDwzvDm7TB2tc0KbKjwAIPDw/vOK9tRBXjUGXsu1ay4+Hh4e3mzUvetkE1uT86tPDw8PA286JgdP6TZaTbFut4eHh4J3ntX/21EnkthmipeHh4eCd5SZnbFsrJ0vPjJB8Cw8PDw9vNa7fptrm1FgevtdDw8PDwTvLaErYNcNfChfZ78PDw8M7zJgHr/NhYa6rh4eHhPY032axzxl134uHh4Z3n5eNWbUiRLzQfYlj8x4CHh4d3Ky/f3NuGVvLsWssNDw8P7zyvvfJN/K4woj3A8PDw8Hbzbt6Uy+bW/Fk8PDy8T/HuihvmLbQ2hsDDw8P7LC8fBUgw8wGFxVEDPDw8vEfy2g29bv9PwHh4eHiP5K0NDbTFdDtYgIeHh3ee1xbKa1t/fqjkJDw8PLzzvLxsnR8M7XZfDxng4eHhbeZ934WHh4eHh4eHh/eA6xfxZs5KTeG1CgAAAABJRU5ErkJggg==">
+    
+</ul>
+
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/css/">css</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端工具/">前端工具</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端技术/">前端技术</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=前端必备技能之compass&url=http://pancakeawesome.ink/前端必备技能之compass.html&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=前端必备技能之compass&url=http://pancakeawesome.ink/前端必备技能之compass.html&via=Edward Guan" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/前端必备技能之compass.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/前端必备技能之compass.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/前端必备技能之compass.html&title=前端必备技能之compass" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=前端必备技能之compass&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/前端必备技能之compass.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先介绍下<a href="http://compass-style.org/" target="_blank" rel="external">compass</a>，compass是一款优秀的开源的<strong>css书写框架</strong>，什么叫书写框架呢？众所周知，<code>sass</code>中有很多便捷的语法特性，比如<code>mixin</code>,<code>function</code>等，<code>compass</code>正是一个强大的函数仓库，compass封装了很多在平常工程过程中能用到的css效果的函数，比如清楚浮动，设置表格样式等等。<br><em>至于sass和css之间的关系请看我的上篇<a href="http://pancakeawesome.ink/2017/09/18/%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8sass/">博客</a></em>，讲的很详细。<br><strong>这里是我写的一个compass的demo，可以对照着看</strong><br><strong>如果把<code>sass</code>必做钉子，那么<code>compass</code>就是一个锤子🔨，可以方便快捷地构建你的<code>css</code>工程化代码</strong></p>
+<h2 id="compass的安装-amp-amp-项目的构建"><a href="#compass的安装-amp-amp-项目的构建" class="headerlink" title="compass的安装&amp;&amp;项目的构建"></a>compass的安装&amp;&amp;项目的构建</h2><h3 id="compass的安装"><a href="#compass的安装" class="headerlink" title="compass的安装"></a>compass的安装</h3><p>如果你是<code>Mac os</code>系统，那么你的电脑预装了ruby的环境，那么就会有<code>gem</code>这个ruby的包管理器。如果你的电脑是windows的，那么请先安装<code>ruby</code>，具体安装方法我就不赘述了，请大家自行谷歌。</p>
+<pre><code>gem install compass
+</code></pre><p><em>如果大家在gem install过程中发现速度很慢，甚至卡住了</em>，请谷歌：<strong>gem源</strong>，具体原因我就不说了=,=</p>
+<h3 id="compass项目的运行"><a href="#compass项目的运行" class="headerlink" title="compass项目的运行"></a>compass项目的运行</h3><ul>
+<li>正式编译，<strong>会将项目目录下的<code>scss</code>文件编译成<code>css</code>文件并执行scss文件中的函数在</strong>命令行环境下：<pre><code>compass compile
+</code></pre><em>加上<code>--force</code>会强制编译</em></li>
+<li>自动编译，会自动监听文件的更改而随之编译文件。<pre><code>compass watch
 </code></pre><h3 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h3>下面通过compass搭建你的项目：<pre><code>compass create &lt;project name&gt;
 </code></pre>成功之后你会在命令行中查看到compass项目成功搭建的提示：<br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fk0rttcy1sj30z70k4ack.jpg" alt=""><br>看一下项目的目录:<br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fk0rv00m1dj308b04t0sk.jpg" alt=""><br>这就是compass构建的项目初始目录<h2 id="compass的各大模块"><a href="#compass的各大模块" class="headerlink" title="compass的各大模块"></a>compass的各大模块</h2>compass中有各个功能不一的模块，每个模块都封装了大量的minxin和function。<br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fk0s3r3nlpj30ry0dfjrx.jpg" alt=""><br><strong>其中reset模块和layout模块是特殊的核心模块，需要单独制定引入</strong>，<strong>而其他五大模块则只需要引入compass，就自动引入了</strong><pre><code>@import &#39;compass&#39;;
 </code></pre><em>下面就分别介绍一下各个核心模块，但是由于精力有限，每个模块我只会介绍一些项目开发过程中常见的功能函数，其他的函数，请直接移步compass的 api <a href="http://compass-style.org/reference/compass/css3/" target="_blank" rel="external">doc</a></em><h2 id="reset模块"><a href="#reset模块" class="headerlink" title="reset模块"></a>reset模块</h2>reset模块是负责将浏览器默认样式统一，以减少浏览器之间差异性。<h3 id="reset模块引入"><a href="#reset模块引入" class="headerlink" title="reset模块引入"></a>reset模块引入</h3>/sass/screen.ccss文件中：<br><strong>screen.scss文件负责站点主体的样式</strong><pre><code>@import &quot;compass/reset&quot;;
-</code></pre><h3 id="css样式效果展示"><a href="#css样式效果展示" class="headerlink" title="css样式效果展示"></a>css样式效果展示</h3><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fk0sic433gj30vb0izwg9.jpg" alt=""><h3 id="normalize模块"><a href="#normalize模块" class="headerlink" title="normalize模块"></a>normalize模块</h3><strong>用normalize模块来代替compass默认的reset模块</strong><br>其实可以看出reset模块很粗暴，它会把所有浏览器默认属性重置，这样在实际工程中回造成很多麻烦，我们可以很方便的normalize模块来替代reset,normalize模块会将大多数常用到的标签属性重置。<h4 id="normalize模块-1"><a href="#normalize模块-1" class="headerlink" title="normalize模块"></a>normalize模块</h4>normalize常用的子模块有：</li><li>html5模块：用来统一html5属性</li><li>base：用来统一一般的html属性</li><li>links:用来统一<code>&lt;a&gt;</code>标签相关的属性<h4 id="normalize的安装"><a href="#normalize的安装" class="headerlink" title="normalize的安装"></a>normalize的安装</h4><pre><code>gem install normalize
-</code></pre><em>用homebrew，npm也可以安装</em></li></ul><h4 id="normalize的引入"><a href="#normalize的引入" class="headerlink" title="normalize的引入"></a>normalize的引入</h4><ul><li>在工程目录下的<code>config.rb</code>下将normalize通过require语法引入<pre><code>require &#39;compass-normalize&#39;
-</code></pre></li><li>在screen.scss文件中将normalize模块引入<pre><code>/*
+</code></pre><h3 id="css样式效果展示"><a href="#css样式效果展示" class="headerlink" title="css样式效果展示"></a>css样式效果展示</h3><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fk0sic433gj30vb0izwg9.jpg" alt=""><h3 id="normalize模块"><a href="#normalize模块" class="headerlink" title="normalize模块"></a>normalize模块</h3><strong>用normalize模块来代替compass默认的reset模块</strong><br>其实可以看出reset模块很粗暴，它会把所有浏览器默认属性重置，这样在实际工程中回造成很多麻烦，我们可以很方便的normalize模块来替代reset,normalize模块会将大多数常用到的标签属性重置。<h4 id="normalize模块-1"><a href="#normalize模块-1" class="headerlink" title="normalize模块"></a>normalize模块</h4>normalize常用的子模块有：</li>
+<li>html5模块：用来统一html5属性</li>
+<li>base：用来统一一般的html属性</li>
+<li>links:用来统一<code>&lt;a&gt;</code>标签相关的属性<h4 id="normalize的安装"><a href="#normalize的安装" class="headerlink" title="normalize的安装"></a>normalize的安装</h4><pre><code>gem install normalize
+</code></pre><em>用homebrew，npm也可以安装</em></li>
+</ul>
+<h4 id="normalize的引入"><a href="#normalize的引入" class="headerlink" title="normalize的引入"></a>normalize的引入</h4><ul>
+<li>在工程目录下的<code>config.rb</code>下将normalize通过require语法引入<pre><code>require &#39;compass-normalize&#39;
+</code></pre></li>
+<li>在screen.scss文件中将normalize模块引入<pre><code>/*
   引入normalize模块
 */
 @import &quot;normalize&quot;;
@@ -59,16 +584,38 @@
   normalize子模块三
 */
 @import &quot;normalize/links&quot;;
-</code></pre>具体这些子模块的作用可以去去normalize的官网去查看<a href="https://necolas.github.io/normalize.css/" target="_blank" rel="external">doc</a><br><code>screen.css</code>文件的显示效果:(以html5模块举例)<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fk0tb4jv4lj30vi0ie0tp.jpg" alt=""><h2 id="layout模块"><a href="#layout模块" class="headerlink" title="layout模块"></a>layout模块</h2>如果说reset模块事使用起来最简单的模块（因为只需引进来即可，不需要多余操作），那么layout模块就是使用率最低的模块。layout模块提供页面的布局控制能力。<br><strong>layout模块不属于compass自带的模块，需要在scss文件中单独引入</strong><br>layout模块又分为三个子模块：</li><li>grid-background</li><li>sticky-footer</li><li>stretching<h3 id="grid-background模块："><a href="#grid-background模块：" class="headerlink" title="grid-background模块："></a>grid-background模块：</h3>提供为元素提供定宽定高或者自适应格式宽高的背景的功能。<br><strong>这个功能不常用，在webapp电子书在线阅读等场景需求下可以用到，有需要的去doc仔细看看</strong></li><li>引入：<pre><code>@import &#39;compass/layout/grid-background&#39;;
-</code></pre></li><li>相关mixin：<ul><li><strong>grid-background($total, $column, $gutter, $baseline, $offset, $column-color, $gutter-color, $baseline-color, $force-fluid)</strong><ul><li>功能：提供为元素提供定宽定高或者自适应格式宽高的背景的功能</li><li>参数：</li><li>示例：<pre><code>screen.scss文件:
+</code></pre>具体这些子模块的作用可以去去normalize的官网去查看<a href="https://necolas.github.io/normalize.css/" target="_blank" rel="external">doc</a><br><code>screen.css</code>文件的显示效果:(以html5模块举例)<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fk0tb4jv4lj30vi0ie0tp.jpg" alt=""><h2 id="layout模块"><a href="#layout模块" class="headerlink" title="layout模块"></a>layout模块</h2>如果说reset模块事使用起来最简单的模块（因为只需引进来即可，不需要多余操作），那么layout模块就是使用率最低的模块。layout模块提供页面的布局控制能力。<br><strong>layout模块不属于compass自带的模块，需要在scss文件中单独引入</strong><br>layout模块又分为三个子模块：</li>
+<li>grid-background</li>
+<li>sticky-footer</li>
+<li>stretching<h3 id="grid-background模块："><a href="#grid-background模块：" class="headerlink" title="grid-background模块："></a>grid-background模块：</h3>提供为元素提供定宽定高或者自适应格式宽高的背景的功能。<br><strong>这个功能不常用，在webapp电子书在线阅读等场景需求下可以用到，有需要的去doc仔细看看</strong></li>
+<li>引入：<pre><code>@import &#39;compass/layout/grid-background&#39;;
+</code></pre></li>
+<li>相关mixin：<ul>
+<li><strong>grid-background($total, $column, $gutter, $baseline, $offset, $column-color, $gutter-color, $baseline-color, $force-fluid)</strong><ul>
+<li>功能：提供为元素提供定宽定高或者自适应格式宽高的背景的功能</li>
+<li>参数：</li>
+<li>示例：<pre><code>screen.scss文件:
 /*
 grid-background模块
 */
 #root {
 @include grid-background();
 }
-</code></pre>screen.css文件中:<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fk5dydolwaj30tu0gugoy.jpg" alt=""></li></ul></li></ul></li></ul><h3 id="stretching模块："><a href="#stretching模块：" class="headerlink" title="stretching模块："></a>stretching模块：</h3><p>提供子元素拉伸填满整个父元素的能力。</p><ul><li>引入：<pre><code>@import &#39;compass/layout/stetching&#39;;
-</code></pre></li><li>相关mixin：<ul><li><strong>stretch($offset-top, $offset-right, $offset-bottom, $offset-left)</strong><ul><li>功能：将子元素填满父元素</li><li>参数：绝对定位上右下左的位置</li><li>示例：<pre><code>screen.scss文件:
+</code></pre>screen.css文件中:<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fk5dydolwaj30tu0gugoy.jpg" alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="stretching模块："><a href="#stretching模块：" class="headerlink" title="stretching模块："></a>stretching模块：</h3><p>提供子元素拉伸填满整个父元素的能力。</p>
+<ul>
+<li>引入：<pre><code>@import &#39;compass/layout/stetching&#39;;
+</code></pre></li>
+<li>相关mixin：<ul>
+<li><strong>stretch($offset-top, $offset-right, $offset-bottom, $offset-left)</strong><ul>
+<li>功能：将子元素填满父元素</li>
+<li>参数：绝对定位上右下左的位置</li>
+<li>示例：<pre><code>screen.scss文件:
 /*
 stretching模块
 */
@@ -84,7 +631,16 @@ bottom: 0;
 left: 0;
 right: 0;
 }
-</code></pre></li></ul></li></ul></li></ul><h3 id="sticky-footer模块"><a href="#sticky-footer模块" class="headerlink" title="sticky-footer模块"></a>sticky-footer模块</h3><p>提供页面中的页脚始终在页面最底部的功能：<br>提供子元素拉伸填满整个父元素的能力。</p><ul><li>引入：<ul><li>在html文件中引入以下标签：<pre><code>&lt;body&gt;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="sticky-footer模块"><a href="#sticky-footer模块" class="headerlink" title="sticky-footer模块"></a>sticky-footer模块</h3><p>提供页面中的页脚始终在页面最底部的功能：<br>提供子元素拉伸填满整个父元素的能力。</p>
+<ul>
+<li>引入：<ul>
+<li>在html文件中引入以下标签：<pre><code>&lt;body&gt;
 &lt;div id=&quot;root&quot;&gt;
 &lt;div id=&quot;root_footer&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -92,8 +648,16 @@ right: 0;
 Footer content goes here.
 &lt;/div&gt;
 &lt;/body&gt;
-</code></pre></li><li>在screen.scss文件中引入footer模块<pre><code>@import &#39;compass/layout/sticky-footer&#39;;
-</code></pre></li></ul></li><li>相关mixin：<ul><li><strong>sticky-footer($footer-height, $root-selector, $root-footer-selector, $footer-selector)</strong><ul><li>功能：当主体内容不超过浏览器窗口大小时，页脚始终在窗口底部；当主体内容超过浏览器窗口大小时，页脚将随浏览器内容在页面底部</li><li>参数：footer的高度</li><li>示例：<pre><code>screen.scss文件:
+</code></pre></li>
+<li>在screen.scss文件中引入footer模块<pre><code>@import &#39;compass/layout/sticky-footer&#39;;
+</code></pre></li>
+</ul>
+</li>
+<li>相关mixin：<ul>
+<li><strong>sticky-footer($footer-height, $root-selector, $root-footer-selector, $footer-selector)</strong><ul>
+<li>功能：当主体内容不超过浏览器窗口大小时，页脚始终在窗口底部；当主体内容超过浏览器窗口大小时，页脚将随浏览器内容在页面底部</li>
+<li>参数：footer的高度</li>
+<li>示例：<pre><code>screen.scss文件:
 /*
 sticky-footer模块
 */
@@ -117,9 +681,41 @@ clear: both;
 position: relative;
 height: 30px;
 }
-</code></pre></li></ul></li></ul></li></ul><h2 id="css3-amp-amp-browser-support模块"><a href="#css3-amp-amp-browser-support模块" class="headerlink" title="css3&amp;&amp;browser support模块"></a>css3&amp;&amp;browser support模块</h2><p>css3模块:提供css3特性的一些功能函数，support模块提供规定compass支持哪些浏览器的功能。如果说layout模块使用率最低，那么css3一定是主动使用率最高的模块，因为我们在使用css特性时，都会用到browser support模块来做浏览器的兼容,配置compass模块默认支持哪些浏览器。<br>引入css3模块：</p><pre><code>@import &quot;compass/css3&quot;;
-</code></pre><p>引入browser support模块：<br><em>其实可以不用引入，因为css3模块自动引入support模块</em></p><pre><code>@import &quot;compass/support&quot;;
-</code></pre><h3 id="常用的browser-support子功能："><a href="#常用的browser-support子功能：" class="headerlink" title="常用的browser support子功能："></a>常用的browser support子功能：</h3><p><strong>介绍一些常用的，其他的请看官网的doc</strong></p><ul><li><strong>browsers()</strong><ul><li>返回值是compass目前版本支持的浏览器list</li></ul></li><li><strong>$supported-browsers: chrome,ie</strong><ul><li>功能：声明compass支持的浏览器list</li><li>参数：浏览器的list（逗号分隔）</li></ul></li><li><strong>$browser-minimum-versions: (“ie”: “8”);</strong><ul><li>功能：声明compass支持的最低浏览器版本</li><li>参数：浏览器和版本号对应的键值对（map形式）</li></ul></li></ul><h3 id="常用的css3子功能："><a href="#常用的css3子功能：" class="headerlink" title="常用的css3子功能："></a>常用的css3子功能：</h3><p><strong>介绍一些常用的，其他的请看官网的doc</strong><br><strong>所有的css属性的编译结果（css文件中）都是依照support模块设置的浏览器版本</strong><br><em>我的实例结果都是在没有设置support中的功能前提下而得出的</em></p><ul><li><p><strong>box-shadow</strong></p><ul><li>box-shadow()<ul><li>功能：添加元素的box-shadow样式，并自动根据browsersupport中的浏览器，添加浏览器前缀</li><li>参数：上右下左边框阴影样式的高度和颜色</li><li>示例：<pre><code>screen.scss文件:
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="css3-amp-amp-browser-support模块"><a href="#css3-amp-amp-browser-support模块" class="headerlink" title="css3&amp;&amp;browser support模块"></a>css3&amp;&amp;browser support模块</h2><p>css3模块:提供css3特性的一些功能函数，support模块提供规定compass支持哪些浏览器的功能。如果说layout模块使用率最低，那么css3一定是主动使用率最高的模块，因为我们在使用css特性时，都会用到browser support模块来做浏览器的兼容,配置compass模块默认支持哪些浏览器。<br>引入css3模块：</p>
+<pre><code>@import &quot;compass/css3&quot;;
+</code></pre><p>引入browser support模块：<br><em>其实可以不用引入，因为css3模块自动引入support模块</em></p>
+<pre><code>@import &quot;compass/support&quot;;
+</code></pre><h3 id="常用的browser-support子功能："><a href="#常用的browser-support子功能：" class="headerlink" title="常用的browser support子功能："></a>常用的browser support子功能：</h3><p><strong>介绍一些常用的，其他的请看官网的doc</strong></p>
+<ul>
+<li><strong>browsers()</strong><ul>
+<li>返回值是compass目前版本支持的浏览器list</li>
+</ul>
+</li>
+<li><strong>$supported-browsers: chrome,ie</strong><ul>
+<li>功能：声明compass支持的浏览器list</li>
+<li>参数：浏览器的list（逗号分隔）</li>
+</ul>
+</li>
+<li><strong>$browser-minimum-versions: (“ie”: “8”);</strong><ul>
+<li>功能：声明compass支持的最低浏览器版本</li>
+<li>参数：浏览器和版本号对应的键值对（map形式）</li>
+</ul>
+</li>
+</ul>
+<h3 id="常用的css3子功能："><a href="#常用的css3子功能：" class="headerlink" title="常用的css3子功能："></a>常用的css3子功能：</h3><p><strong>介绍一些常用的，其他的请看官网的doc</strong><br><strong>所有的css属性的编译结果（css文件中）都是依照support模块设置的浏览器版本</strong><br><em>我的实例结果都是在没有设置support中的功能前提下而得出的</em></p>
+<ul>
+<li><p><strong>box-shadow</strong></p>
+<ul>
+<li>box-shadow()<ul>
+<li>功能：添加元素的box-shadow样式，并自动根据browsersupport中的浏览器，添加浏览器前缀</li>
+<li>参数：上右下左边框阴影样式的高度和颜色</li>
+<li>示例：<pre><code>screen.scss文件:
 .webdemo-sec {
 @include box-shadow(1px 2px 3px 4px #cfcecf);
 }
@@ -129,7 +725,17 @@ screen.css文件中:
 -webkit-box-shadow: 1px 2px 3px 4px #cfcecf;
 box-shadow: 1px 2px 3px 4px #cfcecf;
 }
-</code></pre></li></ul></li></ul></li><li><p><strong>opacity</strong></p><ul><li>opacity($opacity)<ul><li>功能：提供元素透明度样式的功能</li><li>参数：透明度</li><li>示例：<pre><code>screen.scss文件:
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>opacity</strong></p>
+<ul>
+<li>opacity($opacity)<ul>
+<li>功能：提供元素透明度样式的功能</li>
+<li>参数：透明度</li>
+<li>示例：<pre><code>screen.scss文件:
 .opacity-test {
 @include opacity(.5);
 }
@@ -138,7 +744,17 @@ screen.css文件中:
 filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
 opacity: 0.5;
 }
-</code></pre></li></ul></li></ul></li><li><p><strong>inline-block</strong></p><ul><li>inline-block($alignment, $ie-alignment)<ul><li>功能：提供元素display是inline-block的功能（兼容）</li><li>参数：</li><li>示例：<pre><code>screen.scss文件:
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>inline-block</strong></p>
+<ul>
+<li>inline-block($alignment, $ie-alignment)<ul>
+<li>功能：提供元素display是inline-block的功能（兼容）</li>
+<li>参数：</li>
+<li>示例：<pre><code>screen.scss文件:
 .inlineblock-test {
 @include inline-block();
 }
@@ -150,7 +766,21 @@ vertical-align: middle;
 *zoom: 1;
 *display: inline;
 }
-</code></pre></li></ul></li></ul></li><li><p><strong>flex</strong><br><strong>提供相关flexbox布局特性的功能并做浏览器兼容，这个我经常用到很好用</strong></p><ul><li>相关mixin<ul><li>display-flex($display)</li><li>flex-direction($direction)</li><li>justify-content($justify-content)</li><li>align-items($align-items)</li><li>功能：提供相关flexbox布局特性的功能并做浏览器兼容</li><li>参数：</li><li>示例：<pre><code>screen.scss文件:
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>flex</strong><br><strong>提供相关flexbox布局特性的功能并做浏览器兼容，这个我经常用到很好用</strong></p>
+<ul>
+<li>相关mixin<ul>
+<li>display-flex($display)</li>
+<li>flex-direction($direction)</li>
+<li>justify-content($justify-content)</li>
+<li>align-items($align-items)</li>
+<li>功能：提供相关flexbox布局特性的功能并做浏览器兼容</li>
+<li>参数：</li>
+<li>示例：<pre><code>screen.scss文件:
 .flex-test {
 @include display-flex();
 @include flex-direction(row);
@@ -168,8 +798,28 @@ justify-content: center;
 -webkit-align-items: center;
 align-items: center;
 }
-</code></pre></li></ul></li></ul></li></ul><h2 id="typography模块"><a href="#typography模块" class="headerlink" title="typography模块"></a>typography模块</h2><p>typography模块主要用来修饰文本样式，垂直韵律等。<br>typography又分为四个子模块：</p><ul><li>links</li><li>list</li><li>text</li><li>vertical rhythm</li></ul><p>引入typography模块：</p><pre><code>@import &quot;compass/typography&quot;;
-</code></pre><h3 id="links子模块："><a href="#links子模块：" class="headerlink" title="links子模块："></a>links子模块：</h3><p>修饰<code>&lt;a&gt;</code>标签超链接的样式。<br>我们对<code>&lt;a&gt;</code>标签通常有两种场景修饰它的样式：</p><ul><li><p><strong>hover-link()</strong></p><ul><li>功能：正常状态下掉下划线，hover和focus状态下才显示a标签的下划线<ul><li>参数：</li><li>示例：<pre><code>screen.scss文件:
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="typography模块"><a href="#typography模块" class="headerlink" title="typography模块"></a>typography模块</h2><p>typography模块主要用来修饰文本样式，垂直韵律等。<br>typography又分为四个子模块：</p>
+<ul>
+<li>links</li>
+<li>list</li>
+<li>text</li>
+<li>vertical rhythm</li>
+</ul>
+<p>引入typography模块：</p>
+<pre><code>@import &quot;compass/typography&quot;;
+</code></pre><h3 id="links子模块："><a href="#links子模块：" class="headerlink" title="links子模块："></a>links子模块：</h3><p>修饰<code>&lt;a&gt;</code>标签超链接的样式。<br>我们对<code>&lt;a&gt;</code>标签通常有两种场景修饰它的样式：</p>
+<ul>
+<li><p><strong>hover-link()</strong></p>
+<ul>
+<li>功能：正常状态下掉下划线，hover和focus状态下才显示a标签的下划线<ul>
+<li>参数：</li>
+<li>示例：<pre><code>screen.scss文件:
 a {
 @include hover-link(); 
 }
@@ -180,7 +830,17 @@ text-decoration: none;
 a:hover, a:focus {
 text-decoration: underline;
 }
-</code></pre></li></ul></li></ul></li><li><p>不同状态下改变a标签的颜色</p><ul><li><strong>link-colors($normal, $hover, $active, $visited, $focus)</strong><ul><li>功能：修改不同状态下超链接的颜色</li><li>参数：不同状态下超链接的颜色，只有第一个参数是必须的</li><li>示例：<pre><code>screen.scss文件:
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>不同状态下改变a标签的颜色</p>
+<ul>
+<li><strong>link-colors($normal, $hover, $active, $visited, $focus)</strong><ul>
+<li>功能：修改不同状态下超链接的颜色</li>
+<li>参数：不同状态下超链接的颜色，只有第一个参数是必须的</li>
+<li>示例：<pre><code>screen.scss文件:
 a {
 @include link-colors(#cc0, #c0c, #0cc, #00c, #c00);
 }
@@ -200,7 +860,13 @@ color: #c0c;
 a:active {
 color: #0cc;
 }
-</code></pre></li></ul></li></ul></li><li><p><strong>unstyled-link()</strong></p><pre><code>  -     功能：消除超链接原来的样式，让其在非正常状态的样式和其所在文本一样
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>unstyled-link()</strong></p>
+<pre><code>  -     功能：消除超链接原来的样式，让其在非正常状态的样式和其所在文本一样
   -     参数：
   -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -216,7 +882,12 @@ cursor: inherit;
 a:active, a:focus {
 outline: none;
 }
-</code></pre></li></ul><h3 id="list子模块"><a href="#list子模块" class="headerlink" title="list子模块"></a>list子模块</h3><p>修饰<code>ul</code>和<code>ol</code>列表的样式。</p><ul><li><p><strong>no-bullets()</strong></p><pre><code>  -     功能：消除`ul`和`ol`元素之前所有`li`的默认点的样式。
+</code></pre></li>
+</ul>
+<h3 id="list子模块"><a href="#list子模块" class="headerlink" title="list子模块"></a>list子模块</h3><p>修饰<code>ul</code>和<code>ol</code>列表的样式。</p>
+<ul>
+<li><p><strong>no-bullets()</strong></p>
+<pre><code>  -     功能：消除`ul`和`ol`元素之前所有`li`的默认点的样式。
   -     参数：
   -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -232,7 +903,9 @@ list-style-image: none;
 list-style-type: none;
 margin-left: 0;
 }
-</code></pre></li><li><p><strong>no-bullet()</strong></p><pre><code>  -     功能：消除`ul`和`ol`元素之前单个`li`的默认点的样式。
+</code></pre></li>
+<li><p><strong>no-bullet()</strong></p>
+<pre><code>  -     功能：消除`ul`和`ol`元素之前单个`li`的默认点的样式。
   -     参数：
   -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -245,7 +918,9 @@ list-style-image: none;
 list-style-type: none;
 margin-left: 0;
 }
-</code></pre></li><li><p><strong>inline-list()</strong></p><pre><code>  -     功能：通过设置`li`元素的display值为inline,实现横向`ul`或`ol`列表的样式。
+</code></pre></li>
+<li><p><strong>inline-list()</strong></p>
+<pre><code>  -     功能：通过设置`li`元素的display值为inline,实现横向`ul`或`ol`列表的样式。
   -     参数：
   -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -261,7 +936,9 @@ margin: 0;
 padding: 0;
 display: inline;
 }
-</code></pre></li><li><p><strong>horizontal-list(0, right)</strong></p><pre><code>  -     功能：相比于上例，我们要实现横向list时，由于上例的li都是inline的样式，所有没有高度，这样我们想给li设置一些必须有高度的样式修饰时，就会出现麻烦，horizontal-list()这个mixin可以通过浮动的方式实现横向list且每个li都有高度。
+</code></pre></li>
+<li><p><strong>horizontal-list(0, right)</strong></p>
+<pre><code>  -     功能：相比于上例，我们要实现横向list时，由于上例的li都是inline的样式，所有没有高度，这样我们想给li设置一些必须有高度的样式修饰时，就会出现麻烦，horizontal-list()这个mixin可以通过浮动的方式实现横向list且每个li都有高度。
   -     参数：第一个参数时li元素padding的值，第二个元素浮动的方向，设置成false，不设置padding值以兼容ie
   -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -295,7 +972,9 @@ padding-left: 0;
 .list-horizontal li.last {
 padding-left: 0;
 }
-</code></pre></li><li><p><strong>horizontal-list(0, right)</strong></p><pre><code>  -     功能：通过设置li元素为的display属性为inline-block来实现横向list。
+</code></pre></li>
+<li><p><strong>horizontal-list(0, right)</strong></p>
+<pre><code>  -     功能：通过设置li元素为的display属性为inline-block来实现横向list。
   -     参数：li的padding值
   -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -310,7 +989,12 @@ vertical-align: 7px;
 *zoom: 1;
 *display: inline;
 }
-</code></pre></li></ul><h3 id="text子模块"><a href="#text子模块" class="headerlink" title="text子模块"></a>text子模块</h3><p>文本操作，操作过长文本的样式。</p><ul><li><p><strong>force-wrap()</strong></p><pre><code>  -     功能：强行使长文本换行。
+</code></pre></li>
+</ul>
+<h3 id="text子模块"><a href="#text子模块" class="headerlink" title="text子模块"></a>text子模块</h3><p>文本操作，操作过长文本的样式。</p>
+<ul>
+<li><p><strong>force-wrap()</strong></p>
+<pre><code>  -     功能：强行使长文本换行。
   -     参数：
   -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -328,7 +1012,9 @@ white-space: -moz-pre-wrap;
 white-space: -hp-pre-wrap;
 word-wrap: break-word;
 }
-</code></pre></li><li><p><strong>nowrap()</strong></p><pre><code>  -     功能：无论何时都不换行。
+</code></pre></li>
+<li><p><strong>nowrap()</strong></p>
+<pre><code>  -     功能：无论何时都不换行。
   -     参数：
   -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -339,8 +1025,15 @@ screen.css文件中:
 .nowrap-text {
 white-space: nowrap;
 }
-</code></pre></li><li><p><strong>ellipsis()</strong></p><pre><code>  -     功能：不换行的时候文本超出容器的宽度，出现省略号。
-</code></pre><ul><li>引入： firefox不能很好的支持text-overflow属性，所以需要相关的xml文件来hack，compass已经封装好了，直接引用就好</li></ul></li></ul><pre><code>compass install compass/ellipsis
+</code></pre></li>
+<li><p><strong>ellipsis()</strong></p>
+<pre><code>  -     功能：不换行的时候文本超出容器的宽度，出现省略号。
+</code></pre><ul>
+<li>引入： firefox不能很好的支持text-overflow属性，所以需要相关的xml文件来hack，compass已经封装好了，直接引用就好</li>
+</ul>
+</li>
+</ul>
+<pre><code>compass install compass/ellipsis
 </code></pre><pre><code>    -     参数：
     -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -357,7 +1050,9 @@ screen.css文件中:
   text-overflow: ellipsis;
   -moz-binding: url(&#39;xml/ellipsis.xml#ellipsis&#39;);
 }
-</code></pre><ul><li><p><strong>hide-text()</strong></p><pre><code>  -     功能：背景图片和标签文本重复时，隐藏标签文本，用图片替换文本内容，这个mixin用来隐藏文字。
+</code></pre><ul>
+<li><p><strong>hide-text()</strong></p>
+<pre><code>  -     功能：背景图片和标签文本重复时，隐藏标签文本，用图片替换文本内容，这个mixin用来隐藏文字。
   -     参数：
   -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -371,7 +1066,9 @@ overflow: hidden;
 text-align: left;
 text-transform: capitalize;
 }
-</code></pre></li><li><p><strong>squish-text()</strong></p><pre><code>  -     功能：功能同上，字体设置为透明，来隐藏文字。
+</code></pre></li>
+<li><p><strong>squish-text()</strong></p>
+<pre><code>  -     功能：功能同上，字体设置为透明，来隐藏文字。
   -     参数：
   -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -384,7 +1081,9 @@ font: 0/0 serif;
 text-shadow: none;
 color: transparent;
 }
-</code></pre></li><li><p><strong>replace-text()</strong></p><pre><code>  -     功能：隐藏文字后，添加背景图片。
+</code></pre></li>
+<li><p><strong>replace-text()</strong></p>
+<pre><code>  -     功能：隐藏文字后，添加背景图片。
   -     参数：第一个参数是图片的url地址（可以使服务器资源的地址也可以是本地图片的地址），第二个和第三个参数是图片的background-position的值。
   -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -401,7 +1100,9 @@ background-image: url(http://img3.mukewang.com/5452ffeb0001b82401000100-40-40.jp
 background-repeat: no-repeat;
 background-position: 50% 0.5%;
 }
-</code></pre></li><li><p><strong>replace-text-with-dimensions()</strong></p><pre><code>  -     功能：功能同上，但是会自动隐藏超出容器的多余图片的边框。
+</code></pre></li>
+<li><p><strong>replace-text-with-dimensions()</strong></p>
+<pre><code>  -     功能：功能同上，但是会自动隐藏超出容器的多余图片的边框。
   -     参数：第一个参数是图片的url地址（可以使服务器资源的地址也可以是本地图片的地址）
   -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -418,8 +1119,13 @@ background-image: url(http://img3.mukewang.com/5452ffeb0001b82401000100-40-40.jp
 background-repeat: no-repeat;
 background-position: 50% 0.5%;
 }
-</code></pre></li></ul><h3 id="vertical-rythm子模块"><a href="#vertical-rythm子模块" class="headerlink" title="vertical rythm子模块"></a>vertical rythm子模块</h3><p>修饰文本的垂直韵律。修饰文本行与行之间的样式。<br><em>这个功能不是很长用到，如果做页面大段文本布局的童鞋可以深入理解一下，请入doc <a href="http://compass-style.org/reference/compass/typography/" target="_blank" rel="external">api</a></em></p><h2 id="helpers模块"><a href="#helpers模块" class="headerlink" title="helpers模块"></a>helpers模块</h2><p>helpers模块是用来提供许多工具function的内部模块。<br><strong>helpers模块中有很多不适很常用的function，这里不多讲，如果有需要的童鞋请进入doc <a href="http://compass-style.org/reference/compass/typography/" target="_blank" rel="external">api</a></strong><br><strong>这里只介绍常用的功能</strong><br><strong>安装</strong>：</p><pre><code>compass install helpers
-</code></pre><p><strong>引入</strong>：</p><pre><code>@import &#39;compass/helpers&#39;;
+</code></pre></li>
+</ul>
+<h3 id="vertical-rythm子模块"><a href="#vertical-rythm子模块" class="headerlink" title="vertical rythm子模块"></a>vertical rythm子模块</h3><p>修饰文本的垂直韵律。修饰文本行与行之间的样式。<br><em>这个功能不是很长用到，如果做页面大段文本布局的童鞋可以深入理解一下，请入doc <a href="http://compass-style.org/reference/compass/typography/" target="_blank" rel="external">api</a></em></p>
+<h2 id="helpers模块"><a href="#helpers模块" class="headerlink" title="helpers模块"></a>helpers模块</h2><p>helpers模块是用来提供许多工具function的内部模块。<br><strong>helpers模块中有很多不适很常用的function，这里不多讲，如果有需要的童鞋请进入doc <a href="http://compass-style.org/reference/compass/typography/" target="_blank" rel="external">api</a></strong><br><strong>这里只介绍常用的功能</strong><br><strong>安装</strong>：</p>
+<pre><code>compass install helpers
+</code></pre><p><strong>引入</strong>：</p>
+<pre><code>@import &#39;compass/helpers&#39;;
 </code></pre><h3 id="inline-image"><a href="#inline-image" class="headerlink" title="inline-image()"></a>inline-image()</h3><pre><code>    -     功能：将图片base64编码压缩。
     -     参数：图片本地地址
     -     示例：
@@ -427,10 +1133,12 @@ background-position: 50% 0.5%;
 .analyze-logo {    
     background-image: inline-image(&#39;1503616769997479025.jpg&#39;);
 }
-</code></pre><p><em>screen.css</em>文件中:<br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkdgggqdmxj30zk0ewn0k.jpg" alt=""><br><strong>这种方法会很消耗内存，在项目中不适很常用到，compass的另一个比较常用的模块–精灵合图绘很适合这样的场景，大力推荐！</strong></p><h3 id="image-url"><a href="#image-url" class="headerlink" title="image-url()"></a>image-url()</h3><pre><code>    -     功能：直接使用文件的名称来代替文件的本地路径，compass会直接根据config.rb文件中配置来寻路，并且可以给生成css文件中图片地址加上cache-buster（时间戳和版本号，通常在图片路径中问号的后面。图片每次更新都会更改这个值。会造成大量的缓存垃圾。）
+</code></pre><p><em>screen.css</em>文件中:<br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkdgggqdmxj30zk0ewn0k.jpg" alt=""><br><strong>这种方法会很消耗内存，在项目中不适很常用到，compass的另一个比较常用的模块—精灵合图绘很适合这样的场景，大力推荐！</strong></p>
+<h3 id="image-url"><a href="#image-url" class="headerlink" title="image-url()"></a>image-url()</h3><pre><code>    -     功能：直接使用文件的名称来代替文件的本地路径，compass会直接根据config.rb文件中配置来寻路，并且可以给生成css文件中图片地址加上cache-buster（时间戳和版本号，通常在图片路径中问号的后面。图片每次更新都会更改这个值。会造成大量的缓存垃圾。）
     -     参数：图片本地地址
     -     注意：这里的参数直接使用了图片的文件名称，相对路径图片的引用自动根据图片改变而改变,URL后面的cache会据config中的httppath配置项去自动加上http域名,config文件中的relative-assets配置项来配置是否使用相对路径来引用资源文件。
-</code></pre><p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkdgorxruoj30ma07eq3c.jpg" alt=""></p><pre><code>    -     示例：
+</code></pre><p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkdgorxruoj30ma07eq3c.jpg" alt=""></p>
+<pre><code>    -     示例：
 </code></pre><pre><code>screen.scss文件:
 .analyze-logo {
     background-image: image-url(&#39;1503616769997479025.jpg&#39;);
@@ -439,13 +1147,17 @@ screen.css文件中:
 .analyze-logo {
   background-image: url(&#39;../images/1503616769997479025.jpg?1506223791&#39;);
 }
-</code></pre><p><strong>功能类似的还有stylesheet-url和font-url用来指向css目录和font目录，可以查询doc api</strong></p><h3 id="font-files"><a href="#font-files" class="headerlink" title="font-files()"></a>font-files()</h3><pre><code>    -     功能：在项目目录中寻路font字体文件，并加上cache-buster
+</code></pre><p><strong>功能类似的还有stylesheet-url和font-url用来指向css目录和font目录，可以查询doc api</strong></p>
+<h3 id="font-files"><a href="#font-files" class="headerlink" title="font-files()"></a>font-files()</h3><pre><code>    -     功能：在项目目录中寻路font字体文件，并加上cache-buster
     -     参数：font字体文件的文件名列表
     -     注意：**在config.rb文件中配置font字体文件的路径。**
-</code></pre><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkdh3hrs8kj309u0drjrq.jpg" alt=""></p><p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkdgorxruoj30ma07eq3c.jpg" alt=""></p><pre><code>    -     示例：
+</code></pre><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkdh3hrs8kj309u0drjrq.jpg" alt=""></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkdgorxruoj30ma07eq3c.jpg" alt=""></p>
+<pre><code>    -     示例：
 </code></pre><pre><code>screen.scss文件:
 @debug font-files(&quot;fontawesome-webfont.eot&quot;, &quot;fontawesome-webfont.ttf&quot;, &quot;fontawesome-webfont.svg&quot;, &quot;fontawesome-webfont.woff&quot;, &quot;FontAwesome.otf&quot;);
-</code></pre><p>命令行中：<br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkdgzlxvuaj313h046t9h.jpg" alt=""></p><h3 id="font-face"><a href="#font-face" class="headerlink" title="font-face()"></a>font-face()</h3><pre><code>    -     功能：相比于font-url，font-face会额外根据字体文件帮我们生成对应的format的值
+</code></pre><p>命令行中：<br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkdgzlxvuaj313h046t9h.jpg" alt=""></p>
+<h3 id="font-face"><a href="#font-face" class="headerlink" title="font-face()"></a>font-face()</h3><pre><code>    -     功能：相比于font-url，font-face会额外根据字体文件帮我们生成对应的format的值
     -     参数：字体文件的url，可以和font-files配合
     -     示例：
 </code></pre><pre><code>screen.scss文件:
@@ -456,7 +1168,8 @@ screen.css文件中:
   font-family: &quot;FontAwesome&quot;;
   src: url(&#39;../fonts/fontawesome-webfont.eot?1478142484&#39;) format(&#39;embedded-opentype&#39;), url(&#39;../fonts/fontawesome-webfont.ttf?1478142484&#39;) format(&#39;truetype&#39;), url(&#39;../fonts/fontawesome-webfont.svg?1478142484&#39;) format(&#39;svg&#39;), url(&#39;../fonts/fontawesome-webfont.woff?1478142484&#39;) format(&#39;woff&#39;), url(&#39;../fonts/FontAwesome.otf?1478142484&#39;) format(&#39;opentype&#39;);
 }
-</code></pre><p>命令行中：<br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkdgzlxvuaj313h046t9h.jpg" alt="3123"></p><h3 id="append-selector"><a href="#append-selector" class="headerlink" title="append-selector()"></a>append-selector()</h3><pre><code>    -     功能：将选择器嵌套起来
+</code></pre><p>命令行中：<br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkdgzlxvuaj313h046t9h.jpg" alt="3123"></p>
+<h3 id="append-selector"><a href="#append-selector" class="headerlink" title="append-selector()"></a>append-selector()</h3><pre><code>    -     功能：将选择器嵌套起来
     -     参数： 将第二个选择弃嵌套到第一个参数的选择器中
     -     注意：**在选择器里面要引用sass的变量需要加上#{}sass的变量包裹器**
     -     示例：
@@ -468,13 +1181,33 @@ screen.css文件中:
 p.bar, span.bar, div.bar {
   color: #000;
 }
-</code></pre><h2 id="utilities模块"><a href="#utilities模块" class="headerlink" title="utilities模块"></a>utilities模块</h2><p>辅助工具类🔧的模块。与helpers模块不同的是，utilities模块都是mixin。<br><em>引入：</em></p><pre><code>@import &#39;compass/utilities&#39;;
-</code></pre><p>utilities模块又分为以下5个子模块：</p><ul><li>color</li><li>generak</li><li>print</li><li>tables</li><li><strong>sprites</strong>（精灵图合图相关工具的集合,<strong>这个功能模块是使用compass的重中之重！</strong>详见我的另一篇博客）</li></ul><h3 id="color子模块"><a href="#color子模块" class="headerlink" title="color子模块"></a>color子模块</h3><p>颜色相关的模块。</p><ul><li><strong>brightness()</strong><pre><code>  -     功能：返回相关颜色的亮度值，计算hsl的亮度值（l）
+</code></pre><h2 id="utilities模块"><a href="#utilities模块" class="headerlink" title="utilities模块"></a>utilities模块</h2><p>辅助工具类🔧的模块。与helpers模块不同的是，utilities模块都是mixin。<br><em>引入：</em></p>
+<pre><code>@import &#39;compass/utilities&#39;;
+</code></pre><p>utilities模块又分为以下5个子模块：</p>
+<ul>
+<li>color</li>
+<li>generak</li>
+<li>print</li>
+<li>tables</li>
+<li><strong>sprites</strong>（精灵图合图相关工具的集合,<strong>这个功能模块是使用compass的重中之重！</strong>详见我的另一篇博客）</li>
+</ul>
+<h3 id="color子模块"><a href="#color子模块" class="headerlink" title="color子模块"></a>color子模块</h3><p>颜色相关的模块。</p>
+<ul>
+<li><strong>brightness()</strong><pre><code>  -     功能：返回相关颜色的亮度值，计算hsl的亮度值（l）
   -     参数：色值
-</code></pre></li></ul><h3 id="print子模块"><a href="#print子模块" class="headerlink" title="print子模块"></a>print子模块</h3><p>打印场景下相关功能的模块。这个场景很少见，估计是打印页面相关的样式。</p><ul><li><strong>print-utilities();</strong><pre><code>  -     功能：适配打印页面。产生打印页面才显示的样式。
+</code></pre></li>
+</ul>
+<h3 id="print子模块"><a href="#print子模块" class="headerlink" title="print子模块"></a>print子模块</h3><p>打印场景下相关功能的模块。这个场景很少见，估计是打印页面相关的样式。</p>
+<ul>
+<li><strong>print-utilities();</strong><pre><code>  -     功能：适配打印页面。产生打印页面才显示的样式。
   -     参数：media文件，默认print.
   -     注意：**需要print.scss中做适配**
-</code></pre><ul><li>引入 ：</li></ul></li></ul><pre><code>index.html文件中：
+</code></pre><ul>
+<li>引入    ：</li>
+</ul>
+</li>
+</ul>
+<pre><code>index.html文件中：
 &lt;link href=&quot;stylesheets/print.css&quot; media=&quot;print&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
 </code></pre><pre><code>-     示例
 </code></pre><pre><code>print.scss文件中：
@@ -487,7 +1220,9 @@ screen.css文件中:
 .print-only {
   display: none;
 }
-</code></pre><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkdhvt5ihdj31240lemzn.jpg" alt="print.css文件"></p><h3 id="tables子模块"><a href="#tables子模块" class="headerlink" title="tables子模块"></a>tables子模块</h3><p>table样式的相关样式集合。<br><em>用一个实例来说明这些mixin</em><br><strong>需要在index.html文件中引入相关格式的html代码：</strong></p><pre><code>index.html文件中：
+</code></pre><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkdhvt5ihdj31240lemzn.jpg" alt="print.css文件"></p>
+<h3 id="tables子模块"><a href="#tables子模块" class="headerlink" title="tables子模块"></a>tables子模块</h3><p>table样式的相关样式集合。<br><em>用一个实例来说明这些mixin</em><br><strong>需要在index.html文件中引入相关格式的html代码：</strong></p>
+<pre><code>index.html文件中：
 &lt;div class=&#39;example&#39;&gt;
     &lt;table class=&quot;good-price&quot; cellspacing=&#39;0&#39;&gt;
         &lt;thead&gt;
@@ -608,7 +1343,11 @@ screen.css文件中：
 .good-price tfoot th.even, .good-price tfoot th:nth-child(2n), .good-price tfoot td.even, .good-price tfoot td:nth-child(2n) {
   background-color: #dddddd;
 }
-</code></pre><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkdic3j8rmj30cp04iq34.jpg" alt="table样式"></p><h3 id="general子模块"><a href="#general子模块" class="headerlink" title="general子模块"></a>general子模块</h3><p>一些常见的样式的相关样式集合。</p><ul><li><p><strong>clearfix()</strong></p><pre><code>  -     功能：overflow:hidden的方法清除浮动。
+</code></pre><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkdic3j8rmj30cp04iq34.jpg" alt="table样式"></p>
+<h3 id="general子模块"><a href="#general子模块" class="headerlink" title="general子模块"></a>general子模块</h3><p>一些常见的样式的相关样式集合。</p>
+<ul>
+<li><p><strong>clearfix()</strong></p>
+<pre><code>  -     功能：overflow:hidden的方法清除浮动。
   -     示例
 </code></pre><pre><code>screen.scss文件:
 .clearfix {
@@ -622,7 +1361,9 @@ screen.css文件中:
 overflow: hidden;
 *zoom: 1;
 }
-</code></pre></li><li><p><strong>pie-clearfix()</strong></p><pre><code>  -     功能：伪类的方法清除浮动。
+</code></pre></li>
+<li><p><strong>pie-clearfix()</strong></p>
+<pre><code>  -     功能：伪类的方法清除浮动。
   -     示例
 </code></pre><pre><code>screen.scss文件:
 .clearfix {
@@ -637,8 +1378,15 @@ content: &quot;&quot;;
 display: table;
 clear: both;
 }
-</code></pre></li><li><p><strong>float()</strong></p><pre><code>  -     功能：根据你在browser support中配置的浏览器环境，兼容ie6浮动布局。
-</code></pre><ul><li>注意：需要在browser support中配置</li></ul></li></ul><pre><code>$browser-minimum-versions: (&quot;ie&quot;: &quot;6&quot;);
+</code></pre></li>
+<li><p><strong>float()</strong></p>
+<pre><code>  -     功能：根据你在browser support中配置的浏览器环境，兼容ie6浮动布局。
+</code></pre><ul>
+<li>注意：需要在browser support中配置</li>
+</ul>
+</li>
+</ul>
+<pre><code>$browser-minimum-versions: (&quot;ie&quot;: &quot;6&quot;);
 </code></pre><pre><code>- 参数：浮动的方向
     -     示例
 </code></pre><pre><code>screen.scss文件:
@@ -650,8 +1398,13 @@ screen.css文件中:
   float: left;
   display: inline;
 }
-</code></pre><h4 id="hacks子模块"><a href="#hacks子模块" class="headerlink" title="hacks子模块"></a>hacks子模块</h4><p>很多兼容ie的hack集合。</p><ul><li><p><strong>has-layout()</strong></p><pre><code>  -     功能：激活兼容ie属性。
-</code></pre><ul><li>参数：激活ie的方式，推荐zoom<ul><li>示例<pre><code>screen.scss文件:
+</code></pre><h4 id="hacks子模块"><a href="#hacks子模块" class="headerlink" title="hacks子模块"></a>hacks子模块</h4><p>很多兼容ie的hack集合。</p>
+<ul>
+<li><p><strong>has-layout()</strong></p>
+<pre><code>  -     功能：激活兼容ie属性。
+</code></pre><ul>
+<li>参数：激活ie的方式，推荐zoom         <ul>
+<li>示例<pre><code>screen.scss文件:
 .need-has-layout {
 @include has-layout();
 }
@@ -659,8 +1412,16 @@ screen.css文件中:
 .need-has-layout {
 *zoom: 1;
 }
-</code></pre></li></ul></li></ul></li><li><p><strong>underscore-hack()</strong></p><pre><code>  -     功能：正常情况下属性是某种值，ie下hack成另一种值。
-</code></pre><ul><li>参数：第一个参数是属性的key，第二个是正常情况下的value，第三个是hack情况下的value<ul><li>示例：<pre><code>screen.scss文件:
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>underscore-hack()</strong></p>
+<pre><code>  -     功能：正常情况下属性是某种值，ie下hack成另一种值。
+</code></pre><ul>
+<li>参数：第一个参数是属性的key，第二个是正常情况下的value，第三个是hack情况下的value        <ul>
+<li>示例：<pre><code>screen.scss文件:
 .underscore-hack-display {
 @include underscore-hack(display,block,inline);
 }
@@ -669,8 +1430,16 @@ screen.css文件中:
 display: block;
 _display: inline;
 }
-</code></pre></li></ul></li></ul></li><li><p><strong>min-height()</strong></p><pre><code>  -     功能：下划线的方式hack min-height和min-width属性。
-</code></pre><ul><li>参数：相应的height或者width值<ul><li>示例：<pre><code>screen.scss文件:
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>min-height()</strong></p>
+<pre><code>  -     功能：下划线的方式hack min-height和min-width属性。
+</code></pre><ul>
+<li>参数：相应的height或者width值<ul>
+<li>示例：<pre><code>screen.scss文件:
 .test-min-height {
 @include min-height(10px);
 }
@@ -680,7 +1449,14 @@ min-height: 10px;
 height: auto;
 _height: 10px;
 }
-</code></pre></li></ul></li></ul></li></ul><h4 id="标签云模块"><a href="#标签云模块" class="headerlink" title="标签云模块"></a>标签云模块</h4><p>compass封装了一个简单的标签云功能模块，以一个例子来说明：</p><pre><code>screen.scss文件:
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="标签云模块"><a href="#标签云模块" class="headerlink" title="标签云模块"></a>标签云模块</h4><p>compass封装了一个简单的标签云功能模块，以一个例子来说明：</p>
+<pre><code>screen.scss文件:
 .tag-cloud-container {
     @include tag-cloud(24px);
 }
@@ -710,7 +1486,419 @@ screen.css文件中:
 .tag-cloud-container .xxl {
   font-size: 48px;
 }
-</code></pre><p><strong>在index.html文件中不同的标签加上不同的类，从而实现一个简单的标签云，效果如下：</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkdj3zidjrj316c0qp0uz.jpg" alt="index.html"></p><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkdj344tjyj30lp017q2v.jpg" alt="标签云效果demo"></p><h2 id="sprites模块"><a href="#sprites模块" class="headerlink" title="sprites模块"></a>sprites模块</h2><p>精灵图合图相关功能集合。可以说是compass在日常工程中的最佳实践，非常实用也非常重要。<br><strong>想象一下设计人员（通常是漂亮的小姐姐们～不好意思责怪人家呀=。=）将sprites图中的一个图标，并且很有可能影响到了其他的图标，开发人员就要吐血地在项目中修改所有被影响的样式代码，这真的是巨痛苦无比呀</strong><br>由于sprites模块很重要，我将它放到了另外一个博客中，以便详细讲解～<a href="http://pancakeawesome.ink/2017/10/10/compass%E9%87%8D%E8%A6%81%E5%8A%9F%E8%83%BD%E4%B9%8B%E7%B2%BE%E7%81%B5%E5%9B%BE%E5%90%88%E5%9B%BE/">传送门</a></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>compass是一个很好用的前端自动化工具，它给sass插上了一双翅膀，极大地提高了我们的开发效率！<br><strong>这里是我写的一个compass的demo，可以对照着看</strong></p><blockquote style="margin:2em 0 0;padding:.5em 1em;border-left:3px solid #f44336;background-color:#f5f5f5;list-style:none"><p> <strong>This blog is under a <a href="https://pancakeawesome.ink/" target="_blank">CC BY-NC-SA 3.0 Unported License</a></strong><br> <strong>本文链接：</strong><a href="http://pancakeawesome.ink/前端必备技能之compass.html">http://pancakeawesome.ink/前端必备技能之compass.html</a></p></blockquote></div><div id="changyan-comment"><div id="SOHUCS" sid="前端必备技能之compass.html"></div><script type="text/javascript">!function(){var t="da223e602e0abf03eded8d4c19e7d862";if((window.innerWidth||document.documentElement.clientWidth)<960)window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cytdf2o7Q&conf='+t+'"><\/script>');else{!function(t,e){var n=document.getElementsByTagName("head")[0]||document.head||document.documentElement,a=document.createElement("script");a.setAttribute("type","text/javascript"),a.setAttribute("charset","UTF-8"),a.setAttribute("src",t),"function"==typeof e&&(window.attachEvent?a.onreadystatechange=function(){var t=a.readyState;"loaded"!==t&&"complete"!==t||(a.onreadystatechange=null,e())}:a.onload=e),n.appendChild(a)}("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:"cytdf2o7Q",conf:t})})}}()</script></div><style>#changyan-comment{background-color:#eee;padding:2pc}</style></div><nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col"> <a href="/yeoman+bower+gulp-grunt构建现代化前端项目.html" id="post_nav-newer" class="prev-content"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation"> <i class="material-icons">arrow_back</i></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 新篇</a><div class="section-spacer"></div> <a href="/hexo+githubio+material搭建你的个人博客网站(优化篇).html" id="post_nav-older" class="next-content">旧篇 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation"> <i class="material-icons">arrow_forward</i></button></a></nav></div></div><div class="sidebar-overlay"></div><aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation"><div id="sidebar-main"><div class="sidebar-header header-cover" style="background-image:url(/img/thumbnail/sidebar_header.jpg)"><div class="top-bar"></div> <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display:initial" data-upgraded=",MaterialButton,MaterialRipple"> <i class="material-icons">clear_all</i><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button><div class="sidebar-image"> <img src="/img/rip.jpeg" alt="Edward Guan's avatar"></div> <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">guanchao930908@163.com<b class="caret"></b></a></div><ul class="nav sidebar-nav"><li class="dropdown"><ul id="settings-dropdown" class="dropdown-menu"><li> <a href="mailto:guanchao930908@163.com" target="_blank" title="Email Me"><i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i> Email Me</a></li></ul></li><li id="sidebar-first-li"> <a href="/"><i class="material-icons sidebar-material-icons">home</i> 主页</a></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">timeline</i> 归档<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/archives/2018/02/">二月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">20</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">10</span></a></li></ul></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">chrome_reader_mode</i> 分类<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/categories/CSS/">CSS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/blog/">blog<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/css/">css<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/es6/">es6<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/html/">html<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript/">javascript<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript设计模式/">javascript设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/node-js/">node.js<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/nodejs/">nodejs<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/react/">react<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/typescript/">typescript<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端优化/">前端优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端工具/">前端工具<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端技术/">前端技术<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端架构设计/">前端架构设计<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端框架/">前端框架<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据分析/">数据分析<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据可视化/">数据可视化<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/机器学习/">机器学习<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法思想/">算法思想<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/软件开发/">软件开发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/面试/">面试<span class="sidebar_archives-count">1</span></a></li></ul></li><li> <a href="/tags" title="标签云"><i class="material-icons sidebar-material-icons">cloud_circle</i> 标签云</a></li><li class="divider"></li><li> <a href="/timeline" title="Timeline"><i class="material-icons sidebar-material-icons">send</i> Timeline</a></li><li> <a href="/gallery" title="Gallery"><i class="material-icons sidebar-material-icons">photo_library</i> Gallery</a></li><li> <a href="/aboutMe" title="About Me"><i class="material-icons sidebar-material-icons">person_pin</i> About Me</a></li><li class="divider"></li><li> <a href="/archives">文章总数 <span class="sidebar-badge">61</span></a></li></ul></div></aside><div id="back-to-top" class="toTop-wrap"> <a href="#top" class="toTop"><i class="material-icons footer_top-i">expand_less</i></a></div><footer class="mdl-mini-footer" id="bottom"><div class="mdl-mini-footer--left-section sns-list"> <a href="https://twitter.com/591153977" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter"> <span class="visuallyhidden">Twitter</span></button></a> <a href="https://www.facebook.com/profile.php?id=100011433530812" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook"> <span class="visuallyhidden">Facebook</span></button></a> <a href="https://www.instagram.com/edward930908/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-instagram"> <span class="visuallyhidden">Instagram</span></button></a> <a href="https://github.com/PancakeAwesome" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-github"> <span class="visuallyhidden">Github</span></button></a> <a href="https://www.linkedin.com/in/%E8%B6%85-%E7%AE%A1-89495a145/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin"> <span class="visuallyhidden">LinkedIn</span></button></a></div><div id="copyright"> Copyright&nbsp;©<script type="text/javascript">var fd=new Date;document.write("&nbsp;"+fd.getFullYear()+"&nbsp;")</script>Edward's Blog<br><p>Hosted by <a href="https://pages.coding.me" style="font-weight:700">Coding Pages</a></p></div><div class="mdl-mini-footer--right-section"><div><div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div><div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div></div></div></footer><script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==",!0)</script><script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==",!0)</script><script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==",!0)</script><script type="text/ls-javascript" id="NProgress-script">
+</code></pre><p><strong>在index.html文件中不同的标签加上不同的类，从而实现一个简单的标签云，效果如下：</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkdj3zidjrj316c0qp0uz.jpg" alt="index.html"></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkdj344tjyj30lp017q2v.jpg" alt="标签云效果demo"></p>
+<h2 id="sprites模块"><a href="#sprites模块" class="headerlink" title="sprites模块"></a>sprites模块</h2><p>精灵图合图相关功能集合。可以说是compass在日常工程中的最佳实践，非常实用也非常重要。<br><strong>想象一下设计人员（通常是漂亮的小姐姐们～不好意思责怪人家呀=。=）将sprites图中的一个图标，并且很有可能影响到了其他的图标，开发人员就要吐血地在项目中修改所有被影响的样式代码，这真的是巨痛苦无比呀</strong><br>由于sprites模块很重要，我将它放到了另外一个博客中，以便详细讲解～<a href="http://pancakeawesome.ink/2017/10/10/compass%E9%87%8D%E8%A6%81%E5%8A%9F%E8%83%BD%E4%B9%8B%E7%B2%BE%E7%81%B5%E5%9B%BE%E5%90%88%E5%9B%BE/">传送门</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>compass是一个很好用的前端自动化工具，它给sass插上了一双翅膀，极大地提高了我们的开发效率！<br><strong>这里是我写的一个compass的demo，可以对照着看</strong></p>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            This blog is under a <a href="https://pancakeawesome.ink/" target="_blank">CC BY-NC-SA 3.0 Unported License</a>
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="http://pancakeawesome.ink/前端必备技能之compass.html">http://pancakeawesome.ink/前端必备技能之compass.html</a>
+                    </p>
+                </blockquote>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="前端必备技能之compass.html"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cytdf2o7Q';
+var conf = 'da223e602e0abf03eded8d4c19e7d862';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/yeoman+bower+gulp-grunt构建现代化前端项目.html" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/hexo+githubio+material搭建你的个人博客网站(优化篇).html" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/thumbnail/sidebar_header.jpg);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/rip.jpeg" alt="Edward Guan's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        guanchao930908@163.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:guanchao930908@163.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">20</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">10</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/CSS/">CSS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/blog/">blog<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/css/">css<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/es6/">es6<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/html/">html<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript/">javascript<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript设计模式/">javascript设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/node-js/">node.js<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/nodejs/">nodejs<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/react/">react<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/typescript/">typescript<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端优化/">前端优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端工具/">前端工具<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端技术/">前端技术<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端架构设计/">前端架构设计<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端框架/">前端框架<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据分析/">数据分析<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据可视化/">数据可视化<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/机器学习/">机器学习<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法思想/">算法思想<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/软件开发/">软件开发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/面试/">面试<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">cloud_circle</i>
+                
+                标签云
+            </a>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
+        <li>
+            <a href="/timeline" title="Timeline">
+                
+                    <i class="material-icons sidebar-material-icons">send</i>
+                
+                Timeline
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/gallery" title="Gallery">
+                
+                    <i class="material-icons sidebar-material-icons">photo_library</i>
+                
+                Gallery
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/aboutMe" title="About Me">
+                
+                    <i class="material-icons sidebar-material-icons">person_pin</i>
+                
+                About Me
+            </a>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">60</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/591153977" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/profile.php?id=100011433530812" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+        <a href="https://www.instagram.com/edward930908/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-instagram">
+                <span class="visuallyhidden">Instagram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/PancakeAwesome" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+        <a href="https://www.linkedin.com/in/%E8%B6%85-%E7%AE%A1-89495a145/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin">
+                <span class="visuallyhidden">LinkedIn</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Edward's Blog
+            
+                <br>
+                
+                    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+                
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
     NProgress.configure({
         showSpinner: true
     });
@@ -729,7 +1917,50 @@ screen.css文件中:
         NProgress.done();
         $('.fade').removeClass('out');
     }, 800);
-</script><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytdf2o7Q"></script><script>var agent=navigator.userAgent.toLowerCase();agent.indexOf("ucbrowser")>0&&(document.write('<link rel="stylesheet" href="/css/uc.css">'),alert("由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。"))</script><script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==",!0)</script><script type="text/ls-javascript" id="window-load">
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+   <!-- 畅言公共 js 代码 start -->
+<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytdf2o7Q">
+</script>
+<!-- 畅言公共 js 代码 end -->
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
     $(window).on('load', function() {
         // Post_Toc parent position fixed
         $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
@@ -744,7 +1975,15 @@ screen.css文件中:
         
     
     
-</script><script type="text/ls-javascript" id="lazy-load">
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
     // Offer LazyLoad
     queue.offer(function(){
         $('.lazy').lazyload({
@@ -758,4 +1997,26 @@ screen.css文件中:
             queue.execNext();
         },200);
     });
-</script><script>!function(){for(var e=document.querySelectorAll('script[type="text/ls-javascript"]'),r=0;r<e.length;++r){var o=e[r];lsloader.runInlineScript(o.id,o.id)}}(),console.log("\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;")</script></main></div></body></html>
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

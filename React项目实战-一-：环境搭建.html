@@ -1,4 +1,273 @@
-<!DOCTYPE html><html style="display:none" lang="zh"><head><meta charset="utf-8"><script>window.materialVersion="1.5.0",window.oldVersion=["codestartv1","1.3.4","1.4.0","1.4.0b1"]</script><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://busuanzi.ibruce.info"><link rel="dns-prefetch" href="https://changyan.sohu.com"><title> React项目实战(一)：环境搭建 | Edward&#39;s Blog</title><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0097A7"><meta name="author" content="Edward Guan"><meta name="description" itemprop="description" content="React项目实战(一)：环境搭建"><meta name="keywords" content="前端,node,react,js,java,自学编程,学习分享,UESTC,前端技术,react"><script>window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}},lsloader.removeLS=function(e){try{localStorage.removeItem(e)}catch(e){}},lsloader.setLS=function(e,t){try{localStorage.setItem(e,t)}catch(e){}},lsloader.getLS=function(e){var t="";try{t=localStorage.getItem(e)}catch(e){t=""}return t},versionString="/*"+(window.materialVersion||"unknownVersion")+"*/",lsloader.clean=function(){try{for(var e=[],t=0;t<localStorage.length;t++)e.push(localStorage.key(t));e.forEach(function(e){var t=lsloader.getLS(e);window.oldVersion&&window.oldVersion.reduce(function(e,n){return e||-1!==t.indexOf("/*"+n+"*/")},!1)&&lsloader.removeLS(e)})}catch(e){}},lsloader.clean(),lsloader.load=function(e,t,n,s){"boolean"==typeof n&&(s=n,n=void 0),s=s||!1,n=n||function(){};var a;if((a=this.getLS(e))&&-1===a.indexOf(versionString))return this.removeLS(e),void this.requestResource(e,t,n,s);if(a){if(a.split(versionString)[0]!=t)return console.log("reload:"+t),this.removeLS(e),void this.requestResource(e,t,n,s);a=a.split(versionString)[1],s?(this.jsRunSequence.push({name:e,code:a}),this.runjs(t,e,a)):(document.getElementById(e).appendChild(document.createTextNode(a)),n())}else this.requestResource(e,t,n,s)},lsloader.requestResource=function(e,t,n,s){var a=this;s?this.iojs(t,e,function(e,t,n){a.setLS(t,e+versionString+n),a.runjs(e,t,n)}):this.iocss(t,e,function(n){document.getElementById(e).appendChild(document.createTextNode(n)),a.setLS(e,t+versionString+n)},n)},lsloader.iojs=function(e,t,n){var s=this;s.jsRunSequence.push({name:t,code:""});try{var a=new XMLHttpRequest;a.open("get",e,!0),a.onreadystatechange=function(){if(4==a.readyState){if((a.status>=200&&a.status<300||304==a.status)&&""!=a.response)return void n(e,t,a.response);s.jsfallback(e,t)}},a.send(null)}catch(n){s.jsfallback(e,t)}},lsloader.iocss=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.iofonts=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.runjs=function(e,t,n){if(t&&n)for(var s in this.jsRunSequence)this.jsRunSequence[s].name==t&&(this.jsRunSequence[s].code=n);if(this.jsRunSequence[0]&&this.jsRunSequence[0].code&&"failed"!=this.jsRunSequence[0].status)(o=document.createElement("script")).appendChild(document.createTextNode(this.jsRunSequence[0].code)),o.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(o),this.jsRunSequence.shift(),this.jsRunSequence.length>0&&this.runjs();else if(this.jsRunSequence[0]&&"failed"==this.jsRunSequence[0].status){var a=this,o=document.createElement("script");o.src=this.jsRunSequence[0].path,o.type="text/javascript",this.jsRunSequence[0].status="loading",o.onload=function(){a.jsRunSequence.shift(),a.jsRunSequence.length>0&&a.runjs()},document.body.appendChild(o)}},lsloader.tagLoad=function(e,t){this.jsRunSequence.push({name:t,code:"",path:e,status:"failed"}),this.runjs()},lsloader.jsfallback=function(e,t){if(!this.jsnamemap[t]){this.jsnamemap[t]=t;for(var n in this.jsRunSequence)this.jsRunSequence[n].name==t&&(this.jsRunSequence[n].code="",this.jsRunSequence[n].status="failed",this.jsRunSequence[n].path=e);this.runjs()}},lsloader.cssfallback=function(e,t,n){if(!this.cssnamemap[t]){this.cssnamemap[t]=1;var s=document.createElement("link");s.type="text/css",s.href=e,s.rel="stylesheet",s.onload=s.onerror=n;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(s,a)}},lsloader.runInlineScript=function(e,t){var n=document.getElementById(t).innerText;this.jsRunSequence.push({name:e,code:n}),this.runjs()},lsloader.loadCombo=function(e){var t="",n={};for(var s in e){var a=this.getLS(e[s].name);if(a)var o=a.split(versionString)[0],i=a.split(versionString)[1];else o="";o==e[s].path?this.jsRunSequence.push({name:e[s].name,code:i,path:e[s].path}):(this.jsRunSequence.push({name:e[s].name,code:null,path:e[s].path,status:"comboloading"}),n[e[s].name]=!0,t+=(""==t?"":";")+e[s].path)}var u=this;if(t){var r=new XMLHttpRequest;r.open("get",combo+t,!0),r.onreadystatechange=function(){if(4==r.readyState)if(r.status>=200&&r.status<300||304==r.status){if(""!=r.response)return void u.runCombo(r.response,n)}else{for(var e in u.jsRunSequence)n[u.jsRunSequence[e].name]&&(u.jsRunSequence[e].status="failed");u.runjs()}},r.send(null)}this.runjs()},lsloader.runCombo=function(e,t){(e=e.split("/*combojs*/")).shift();for(var n in this.jsRunSequence)t[this.jsRunSequence[n].name]&&e[0]&&(this.jsRunSequence[n].status="comboJS",this.jsRunSequence[n].code=e[0],this.setLS(this.jsRunSequence[n].name,this.jsRunSequence[n].path+versionString+e[0]),e.shift());this.runjs()}</script><script>function Queue(){this.dataStore=[],this.offer=function(e){this.debug&&console.log("Offered a Queued Function."),"function"==typeof e?this.dataStore.push(e):console.log("You must offer a function.")},this.poll=function(){return this.debug&&console.log("Polled a Queued Function."),this.dataStore.shift()},this.execNext=function(){var e=this.poll();void 0!==e&&(this.debug&&console.log("Run a Queued Function."),e())},this.debug=!1,this.startDebug=function(){this.debug=!0}}var queue=new Queue</script><link rel="icon shortcut" type="image/ico" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="icon" sizes="192x192" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="apple-touch-icon" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="apple-mobile-web-app-title" content="Title"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="480"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Edward&#39;s Blog"> <!--[if lte IE 9]><link rel="stylesheet" href="/css/ie-blocker.css"><script src="/js/ie-blocker.zhCN.js"></script><![endif]--><style id="material_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="style_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="prettify_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="prettify_theme"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style>body,html{font-family:Roboto,"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;overflow-x:hidden!important}code{font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace}a{color:#00838f}#scheme-Paradox .hot_tags-count,#scheme-Paradox .sidebar-colored .sidebar-badge,#scheme-Paradox .sidebar-colored .sidebar-header,#scheme-Paradox .sidebar_archives-count,#search-form-label:after,#search-label,.mdl-card__media{background-color:#0097a7!important}#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus,#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover{color:#0097a7!important}#ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a,#post_entry-right-info,.sidebar-colored .sidebar-nav li:hover>a,.sidebar-colored .sidebar-nav li:hover>a i,.sidebar-colored .sidebar-nav li>a:focus i,.sidebar-colored .sidebar-nav li>a:hover,.sidebar-colored .sidebar-nav li>a:hover i,.sidebar-colored .sidebar-nav>.open>a,.sidebar-colored .sidebar-nav>.open>a:focus,.sidebar-colored .sidebar-nav>.open>a:hover{color:#0097a7!important}.toTop{background:#757575!important}.material-layout .material-index>.material-nav,.material-layout .material-post>.material-nav,.material-nav a{color:#757575}#scheme-Paradox .MD-burger-layer{background-color:#757575}#scheme-Paradox #post-toc-trigger-btn{color:#757575}.post-toc a:hover{color:#00838f;text-decoration:underline}</style><style>body{background-color:#f5f5f5}#scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{background-color:#fff}</style><style>.fade{transition:all .8s linear;-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0);opacity:1}.fade.out{opacity:0}</style><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==",!0)</script><meta property="og:url" content="http://pancakeawesome.ink"><meta property="og:type" content="blog"><meta property="og:title" content="React项目实战(一)：环境搭建 | Edward&#39;s Blog"><meta property="og:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta property="og:description" content="React项目实战(一)：环境搭建"><meta property="og:article:tag" content="前端技术"><meta property="og:article:tag" content="react"><meta property="article:published_time" content="Thu Jan 04 2018 09:40:13 GMT+0800"><meta property="article:modified_time" content="Thu Jan 04 2018 10:54:49 GMT+0800"><meta name="twitter:title" content="React项目实战(一)：环境搭建 | Edward&#39;s Blog"><meta name="twitter:description" content="React项目实战(一)：环境搭建"><meta name="twitter:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:url" content="http://pancakeawesome.ink"><link rel="canonical" href="http://pancakeawesome.ink/React项目实战-一-：环境搭建.html"><script type="application/ld+json">
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.0 -->
+    <script>
+        window.materialVersion = "1.5.0"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+    <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+
+
+    <link rel="dns-prefetch" href="https://changyan.sohu.com"/>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Title -->
+    
+    <title>
+        
+            React项目实战(一)：环境搭建 | 
+        
+        Edward&#39;s Blog
+    </title>
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Edward Guan">
+    <meta name="description" itemprop="description" content="React项目实战(一)：环境搭建">
+    <meta name="keywords" content="前端,node,react,js,java,自学编程,学习分享,UESTC,前端技术,react">
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(window.oldVersion){var remove=window.oldVersion.reduce(function(p,c){return p||data.indexOf("/*"+c+"*/")!==-1},false);if(remove){lsloader.removeLS(key)}}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload,isJs){if(typeof cssonload==="boolean"){isJs=cssonload;cssonload=undefined}isJs=isJs||false;cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}code=code.split(versionString)[1];if(isJs){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload,isJs)}};lsloader.requestResource=function(name,path,cssonload,isJs){var that=this;if(isJs){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else{this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
+    <link rel="icon" sizes="192x192" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
+    <link rel="apple-touch-icon" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Edward&#39;s Blog">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icon -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://pancakeawesome.ink">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="React项目实战(一)：环境搭建 | Edward&#39;s Blog">
+    <meta property="og:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg" />
+    <meta property="og:description" content="React项目实战(一)：环境搭建">
+    <meta property="og:article:tag" content="前端技术"> <meta property="og:article:tag" content="react"> 
+
+    
+        <meta property="article:published_time" content="Thu Jan 04 2018 09:40:13 GMT+0800" />
+        <meta property="article:modified_time" content="Thu Jan 04 2018 10:54:49 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="React项目实战(一)：环境搭建 | Edward&#39;s Blog">
+    <meta name="twitter:description" content="React项目实战(一)：环境搭建">
+    <meta name="twitter:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="http://pancakeawesome.ink" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://pancakeawesome.ink/React项目实战-一-：环境搭建.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -26,34 +295,332 @@
     "keywords": ",前端技术,react前端,node,react,js,java,自学编程,学习分享,UESTC",
     "description": "React项目实战(一)：环境搭建",
 }
-</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?0c041dca6f79c4e40fb45d1283e327e7";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body id="scheme-Paradox" class="lazy"><div class="material-layout mdl-js-layout has-drawer is-upgraded"><main class="material-layout__content" id="main"><div id="top"></div> <button class="MD-burger-icon sidebar-toggle"><span class="MD-burger-layer"></span></button> <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon"> <i class="material-icons">format_list_numbered</i></button><ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh;overflow-y:scroll"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#写在前面"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">写在前面</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#系列文章目录链接"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">系列文章目录链接</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#技术栈"><span class="post-toc-number">2.</span> <span class="post-toc-text">技术栈</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#环境搭建"><span class="post-toc-number">3.</span> <span class="post-toc-text">环境搭建</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Node-js安装"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Node.js安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#npm部署"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">npm部署</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建package-json文件"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">创建package.json文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装模块"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">安装模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置模块"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">配置模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#项目目录"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">项目目录</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-number">4.</span> <span class="post-toc-text">后记</span></a></li></ol></ul><div class="material-post_container"><div class="material-post mdl-grid"><div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col"><div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50"><script type="text/ls-javascript" id="post-thumbnail-script">
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+        <script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?0c041dca6f79c4e40fb45d1283e327e7';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+    
+
+    <!-- Custom Head -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#写在前面"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">写在前面</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#系列文章目录链接"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">系列文章目录链接</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#技术栈"><span class="post-toc-number">2.</span> <span class="post-toc-text">技术栈</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#环境搭建"><span class="post-toc-number">3.</span> <span class="post-toc-text">环境搭建</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Node-js安装"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Node.js安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#npm部署"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">npm部署</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建package-json文件"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">创建package.json文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装模块"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">安装模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置模块"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">配置模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#项目目录"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">项目目录</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-number">4.</span> <span class="post-toc-text">后记</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
     var randomNum = Math.floor(Math.random() * 30 + 1);
 
     $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-</script><p class="article-headline-p"> React项目实战(一)：环境搭建</p></div><div class="mdl-color-text--grey-700 mdl-card__supporting-text meta"><div id="author-avatar"> <img src="/img/rip.jpeg" width="44px" height="44px" alt="Author Avatar"></div><div> <strong>Edward Guan</strong> <span>1月 04, 2018</span></div><div class="section-spacer"></div> <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">devices other</i> <span class="visuallyhidden">devices other</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button"><li class="mdl-menu__item">在其它设备中阅读本文章</li> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC2klEQVR42u3aW27CQAwFUPa/6fa3UkW4tlMVPCdfFRAyx0i1/Hh8HXk9sLGxsbGxsbGxsd+S/Yivn5//fe/v73z2Sv7NTwHFM2NjY2OfwH7xr/8JIwnHdZgmTy/fhY2NjX0AO0ktyb09wPy51/diY2NjY08Od11sXCfIeWGDjY2NjZ0csVe65MVMr+zBxsbGPo2dlBDVkmPy+d7wABsbG/tM9mTQ+19///N8GxsbG/tt2NUrSUjV1JWUKMkTX5wHGxsbeyn7rmFqoblz2fSvjg0KC6DY2NjYS9l3Nf2vD5GPBJLxQPIjRXkbGxsbezX7Oi3lgciLk7tCX6jAsLGxsVewq82a6kpldRGnOtwtLINiY2NjH8POR6p5mukNdPOE2pxvY2NjY69gN5NBsekz+YbJu9jY2NgnsKvrMpM2U2/Q21sPKuRtbGxs7A9nV9s31bt6Saga3OgM2NjY2EvZ+SJjPqatHqtXzJRLGmxsbOzV7AkyCUFeikwaSdjY2Ngns3utonwE2wtNniCby5fY2NjY69jzBNNblK8+sbpChI2Njb2bPSkkeiPbHHBz+wkbGxt7Kbuaiv5uQbMa3KS9hY2NjX0OO398/novHVZDf/OgFxsbG/vD2b2Vx3w83CPdVcxgY2Njn8a+q/CYFzmTIGJjY2Ofw+6NWpP20KTkyJd+Rr00bGxs7A9nVwe9fzdamKwNlRMYNjY29lJ2talUHR5MUubN4wFsbGzsRezro/cGA70U2PtkIdzY2NjYS9nVK1/cyZtN1UKlOajGxsbGXsquLsHc1fqflyjV8TA2Njb2bnaetCZpr9ckShJYs6mEjY2NvY49aTDN1y7zRFUNDTY2NjZ2UkjkyW8elKT8KJQi2NjY2Eeye0krSUjVEiX/MbCxsbFPYFebSpOhbHTQYihfPB0bGxt7NXsy6E2C9SheObIQDmxsbOyl7HMubGxsbGxsbGxs7Le5vgHd4yCCr3mTWQAAAABJRU5ErkJggg=="></ul> <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">bookmark</i> <span class="visuallyhidden">bookmark</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button"><li class="mdl-menu__item"> <a class="post_tag-link" href="/tags/react/">react</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端技术/">前端技术</a></li></ul> <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">share</i> <span class="visuallyhidden">share</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button"><a class="post_share-link" href="#"><li class="mdl-menu__item"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> &nbsp;浏览量</span></li></a><a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=React项目实战(一)：环境搭建&url=http://pancakeawesome.ink/React项目实战-一-：环境搭建.html&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank"><li class="mdl-menu__item"> 分享到微博</li></a><a class="post_share-link" href="https://twitter.com/intent/tweet?text=React项目实战(一)：环境搭建&url=http://pancakeawesome.ink/React项目实战-一-：环境搭建.html&via=Edward Guan" target="_blank"><li class="mdl-menu__item"> 分享到 Twitter</li></a><a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/React项目实战-一-：环境搭建.html" target="_blank"><li class="mdl-menu__item"> 分享到 Facebook</li></a><a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/React项目实战-一-：环境搭建.html" target="_blank"><li class="mdl-menu__item"> 分享到 Google+</li></a><a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/React项目实战-一-：环境搭建.html&title=React项目实战(一)：环境搭建" target="_blank"><li class="mdl-menu__item"> 分享到 LinkedIn</li></a><a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=React项目实战(一)：环境搭建&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/React项目实战-一-：环境搭建.html" target="_blank"><li class="mdl-menu__item"> 分享到 QQ</li></a></ul></div><div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>移动互联网时代时代已经到来，市场需求催化着前端技术不断的升级改造，前端大统一的时代即将来临，不管你愿不愿意相信，历史的前进步伐是不可抗拒的。</p><p>Web端<code>跨平台</code>的特性，在面对更新迭代频繁的场景上有其独到的优势，即使其性能、功能和体验受到浏览器的限制，产品功能依旧围绕着Web端在做着不断的尝试：</p><ol><li>手机作为日常生活中智能设备的终极形态，其硬件性能的提升加上浏览器内核的升级，让WebApp有了实际应用的可行性；</li><li>Html5和CSS3引入的新特性，极大的丰富了WebApp的可能性；</li><li>Native App内嵌WebView的方式，间接地解决了入口的问题，提升了用户体验，例如微信公众号就是一个比较优秀的场景实现。</li></ol><p>这些不断地尝试是让WebApp的使用场景变得越来越广泛，但其终究不能完全替代Native App，况且Native App还分成两大阵营：IOS和Android，前端的重复开发无疑增加了开发成本，那么有没有什么方案可以解决重复开发的困扰呢？新的技术又开始了新的尝试：</p><ul><li>React Native App，个人认为比较成功的解决方案，其利用JSBridge调用原生API渲染UI交互通信，实现了IOS和Android的开发统一（IOS和Android需要差异处理）。但其放弃了Web端无需安装的优势，有些小遗憾。</li><li>微信小程序，在其宣传阶段本以为是优秀的解决方案，但其自身的规则封闭限制了其场景使用；或许就因为其依赖于微信，本身就不可能过于开放。</li><li>Weex App，阿里巴巴开发团队在React Native App的成功案例上，重新设计出原理相同的开发模式。</li></ul><p>虽然上面说的都只是前端大统一的过渡方案，但有这些技术作为基础，前端大统一不就由可能变成肯定了吗？成熟的方案只不过是时间问题罢了。最近在找工作，发现React的技术需求变得越来越强烈，所以有所感触，不知各位看法如何？</p><p>前端各自领域的技术不断更新改造，加上前端大统一的步伐越来越近，总有那么一瞬间让人感觉疲惫，似乎要被时间抛弃。技术终究要靠人来实现，不断学习，不断尝试新的技术，和所有的前端开发人员共勉。</p><p>Web前端框架层出不穷，不可能面面俱到，这里给个小建议：</p><ul><li>如果对Weex App感兴趣，应该选择vue框架；</li><li>如果对React Native App感兴趣，应该选择React.js框架；</li></ul><p>本系列文章是React技术栈，Vue技术栈将会在本系列文章结束后陆续更新。</p><h3 id="系列文章目录链接"><a href="#系列文章目录链接" class="headerlink" title="系列文章目录链接"></a>系列文章目录链接</h3><ol><li><a href="http://pancakeawesome.ink/React%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98-%E4%B8%80-%EF%BC%9A%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html">React项目实战：环境搭建</a></li><li><a href="http://pancakeawesome.ink/React%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98(%E4%BA%8C\">React项目实战：react-redux-router基本原理</a>:react-redux-router%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.html)</li><li>React项目实战：登录页面（编辑中）</li></ol><h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><p>由于本系列的文章是项目实战，需要有相关的技术基础，可以到下方给出的链接进行深入学习。项目实战用到的主要框架和插件有：</p><ul><li>webpack：预编译模块打包工具。 <a href="https://webpack.js.org/" target="_blank" rel="external">官方文档</a>- <a href="https://doc.webpack-china.org/" target="_blank" rel="external">中文翻译</a></li><li>React：构建用户界面的JavaScript库。 <a href="https://reactjs.org/" target="_blank" rel="external">官方文档</a>- <a href="https://doc.react-china.org/" target="_blank" rel="external">中文翻译</a></li><li>Redux：管理整个应用的数据流。 <a href="https://redux.js.org/" target="_blank" rel="external">官方文档</a>- <a href="http://www.redux.org.cn/" target="_blank" rel="external">中文翻译</a></li><li>react-router：React应用路由库。 <a href="https://github.com/ReactTraining/react-router" target="_blank" rel="external">官方文档</a></li><li>styled-components：React中的CSS最佳实践。 <a href="https://www.styled-components.com/" target="_blank" rel="external">官方文档</a></li><li>isomorphic-fetch：fetch兼容库。 <a href="https://github.com/matthew-andrews/isomorphic-fetch" target="_blank" rel="external">官方文档</a></li><li>JRoll2：移动前端滑动插件。 <a href="http://www.chjtx.com/JRoll/" target="_blank" rel="external">官方文档</a></li><li>ECharts：基于html5 Canvas图表库。 <a href="http://echarts.baidu.com/" target="_blank" rel="external">官方文档</a></li></ul><p>建议学习时以官方文档为准，中文翻译或者第三方作者的教程可以帮助你理清思路；会用到的重要知识点我也会进行简明的解释，如遇到错误或者不理解的内容，欢迎实时指出。</p><h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>环境搭建是最为枯燥和最容易出错的地方，不过作为开发者，我们还是很有必要了解配置的具体步骤，在后面一段时间会发布一个简易版环境搭建教程。</p><blockquote><p>系统环境：Win10 + 关闭安全管家</p></blockquote><h3 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><p>到官方网站下载安装包 <a href="https://nodejs.org/zh-cn/" target="_blank" rel="external">点击前往</a>，<code>选择LTS版本</code>（9.0以后的版本在安装styled-components时会报错）。</p><h3 id="npm部署"><a href="#npm部署" class="headerlink" title="npm部署"></a>npm部署</h3><p>npm更新并部署至全局</p><pre><code>npm install npm  -g
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                React项目实战(一)：环境搭建
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/rip.jpeg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Edward Guan</strong>
+        <span>1月 04, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC2klEQVR42u3aW27CQAwFUPa/6fa3UkW4tlMVPCdfFRAyx0i1/Hh8HXk9sLGxsbGxsbGxsd+S/Yivn5//fe/v73z2Sv7NTwHFM2NjY2OfwH7xr/8JIwnHdZgmTy/fhY2NjX0AO0ktyb09wPy51/diY2NjY08Od11sXCfIeWGDjY2NjZ0csVe65MVMr+zBxsbGPo2dlBDVkmPy+d7wABsbG/tM9mTQ+19///N8GxsbG/tt2NUrSUjV1JWUKMkTX5wHGxsbeyn7rmFqoblz2fSvjg0KC6DY2NjYS9l3Nf2vD5GPBJLxQPIjRXkbGxsbezX7Oi3lgciLk7tCX6jAsLGxsVewq82a6kpldRGnOtwtLINiY2NjH8POR6p5mukNdPOE2pxvY2NjY69gN5NBsekz+YbJu9jY2NgnsKvrMpM2U2/Q21sPKuRtbGxs7A9nV9s31bt6Saga3OgM2NjY2EvZ+SJjPqatHqtXzJRLGmxsbOzV7AkyCUFeikwaSdjY2Ngns3utonwE2wtNniCby5fY2NjY69jzBNNblK8+sbpChI2Njb2bPSkkeiPbHHBz+wkbGxt7Kbuaiv5uQbMa3KS9hY2NjX0OO398/novHVZDf/OgFxsbG/vD2b2Vx3w83CPdVcxgY2Njn8a+q/CYFzmTIGJjY2Ofw+6NWpP20KTkyJd+Rr00bGxs7A9nVwe9fzdamKwNlRMYNjY29lJ2talUHR5MUubN4wFsbGzsRezro/cGA70U2PtkIdzY2NjYS9nVK1/cyZtN1UKlOajGxsbGXsquLsHc1fqflyjV8TA2Njb2bnaetCZpr9ckShJYs6mEjY2NvY49aTDN1y7zRFUNDTY2NjZ2UkjkyW8elKT8KJQi2NjY2Eeye0krSUjVEiX/MbCxsbFPYFebSpOhbHTQYihfPB0bGxt7NXsy6E2C9SheObIQDmxsbOyl7HMubGxsbGxsbGxs7Le5vgHd4yCCr3mTWQAAAABJRU5ErkJggg==">
+    
+</ul>
+
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/react/">react</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端技术/">前端技术</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=React项目实战(一)：环境搭建&url=http://pancakeawesome.ink/React项目实战-一-：环境搭建.html&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=React项目实战(一)：环境搭建&url=http://pancakeawesome.ink/React项目实战-一-：环境搭建.html&via=Edward Guan" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/React项目实战-一-：环境搭建.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/React项目实战-一-：环境搭建.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/React项目实战-一-：环境搭建.html&title=React项目实战(一)：环境搭建" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=React项目实战(一)：环境搭建&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/React项目实战-一-：环境搭建.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>移动互联网时代时代已经到来，市场需求催化着前端技术不断的升级改造，前端大统一的时代即将来临，不管你愿不愿意相信，历史的前进步伐是不可抗拒的。</p>
+<p>Web端<code>跨平台</code>的特性，在面对更新迭代频繁的场景上有其独到的优势，即使其性能、功能和体验受到浏览器的限制，产品功能依旧围绕着Web端在做着不断的尝试：</p>
+<ol>
+<li>手机作为日常生活中智能设备的终极形态，其硬件性能的提升加上浏览器内核的升级，让WebApp有了实际应用的可行性；</li>
+<li>Html5和CSS3引入的新特性，极大的丰富了WebApp的可能性；</li>
+<li>Native App内嵌WebView的方式，间接地解决了入口的问题，提升了用户体验，例如微信公众号就是一个比较优秀的场景实现。</li>
+</ol>
+<p>这些不断地尝试是让WebApp的使用场景变得越来越广泛，但其终究不能完全替代Native App，况且Native App还分成两大阵营：IOS和Android，前端的重复开发无疑增加了开发成本，那么有没有什么方案可以解决重复开发的困扰呢？新的技术又开始了新的尝试：</p>
+<ul>
+<li>React Native App，个人认为比较成功的解决方案，其利用JSBridge调用原生API渲染UI交互通信，实现了IOS和Android的开发统一（IOS和Android需要差异处理）。但其放弃了Web端无需安装的优势，有些小遗憾。</li>
+<li>微信小程序，在其宣传阶段本以为是优秀的解决方案，但其自身的规则封闭限制了其场景使用；或许就因为其依赖于微信，本身就不可能过于开放。</li>
+<li>Weex App，阿里巴巴开发团队在React Native App的成功案例上，重新设计出原理相同的开发模式。</li>
+</ul>
+<p>虽然上面说的都只是前端大统一的过渡方案，但有这些技术作为基础，前端大统一不就由可能变成肯定了吗？成熟的方案只不过是时间问题罢了。最近在找工作，发现React的技术需求变得越来越强烈，所以有所感触，不知各位看法如何？</p>
+<p>前端各自领域的技术不断更新改造，加上前端大统一的步伐越来越近，总有那么一瞬间让人感觉疲惫，似乎要被时间抛弃。技术终究要靠人来实现，不断学习，不断尝试新的技术，和所有的前端开发人员共勉。</p>
+<p>Web前端框架层出不穷，不可能面面俱到，这里给个小建议：</p>
+<ul>
+<li>如果对Weex App感兴趣，应该选择vue框架；</li>
+<li>如果对React Native App感兴趣，应该选择React.js框架；</li>
+</ul>
+<p>本系列文章是React技术栈，Vue技术栈将会在本系列文章结束后陆续更新。</p>
+<h3 id="系列文章目录链接"><a href="#系列文章目录链接" class="headerlink" title="系列文章目录链接"></a>系列文章目录链接</h3><ol>
+<li><a href="http://pancakeawesome.ink/React%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98-%E4%B8%80-%EF%BC%9A%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html">React项目实战：环境搭建</a> </li>
+<li><a href="http://pancakeawesome.ink/React%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98(%E4%BA%8C\">React项目实战：react-redux-router基本原理</a>:react-redux-router%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.html) </li>
+<li>React项目实战：登录页面（编辑中）</li>
+</ol>
+<h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><p>由于本系列的文章是项目实战，需要有相关的技术基础，可以到下方给出的链接进行深入学习。项目实战用到的主要框架和插件有：</p>
+<ul>
+<li>webpack：预编译模块打包工具。 <a href="https://webpack.js.org/" target="_blank" rel="external">官方文档</a>- <a href="https://doc.webpack-china.org/" target="_blank" rel="external">中文翻译</a></li>
+<li>React：构建用户界面的JavaScript库。 <a href="https://reactjs.org/" target="_blank" rel="external">官方文档</a>- <a href="https://doc.react-china.org/" target="_blank" rel="external">中文翻译</a></li>
+<li>Redux：管理整个应用的数据流。 <a href="https://redux.js.org/" target="_blank" rel="external">官方文档</a>- <a href="http://www.redux.org.cn/" target="_blank" rel="external">中文翻译</a></li>
+<li>react-router：React应用路由库。 <a href="https://github.com/ReactTraining/react-router" target="_blank" rel="external">官方文档</a></li>
+<li>styled-components：React中的CSS最佳实践。 <a href="https://www.styled-components.com/" target="_blank" rel="external">官方文档</a></li>
+<li>isomorphic-fetch：fetch兼容库。 <a href="https://github.com/matthew-andrews/isomorphic-fetch" target="_blank" rel="external">官方文档</a></li>
+<li>JRoll2：移动前端滑动插件。 <a href="http://www.chjtx.com/JRoll/" target="_blank" rel="external">官方文档</a></li>
+<li>ECharts：基于html5 Canvas图表库。 <a href="http://echarts.baidu.com/" target="_blank" rel="external">官方文档</a></li>
+</ul>
+<p>建议学习时以官方文档为准，中文翻译或者第三方作者的教程可以帮助你理清思路；会用到的重要知识点我也会进行简明的解释，如遇到错误或者不理解的内容，欢迎实时指出。</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>环境搭建是最为枯燥和最容易出错的地方，不过作为开发者，我们还是很有必要了解配置的具体步骤，在后面一段时间会发布一个简易版环境搭建教程。</p>
+<blockquote>
+<p>系统环境：Win10 + 关闭安全管家</p>
+</blockquote>
+<h3 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><p>到官方网站下载安装包 <a href="https://nodejs.org/zh-cn/" target="_blank" rel="external">点击前往</a>，<code>选择LTS版本</code>（9.0以后的版本在安装styled-components时会报错）。</p>
+<h3 id="npm部署"><a href="#npm部署" class="headerlink" title="npm部署"></a>npm部署</h3><p>npm更新并部署至全局</p>
+<pre><code>npm install npm  -g
 
 #【可选】设置淘宝镜像
 npm config set registry https://registry.npm.taobao.org
-</code></pre><p>npm常用命令：</p><pre><code>npm init    #引导创建package.json文件
+</code></pre><p>npm常用命令：</p>
+<pre><code>npm init    #引导创建package.json文件
 npm install ***    #本地安装；会在当前目录生成node_modules文件夹，并在此安装node模块
 npm install *** -g    #全局安装；会在C:\Users\***\AppData\Roaming\npm\node_modules安装
 npm install *** --save    #运行时依赖的模块；自动把模块和版本号添加到package.json文件dependencies部分
 npm install *** --save-dev    #开发时依赖的模块；自动把模块和版本号添加到package.json文件devdependencies部分
 npm update ***    #更新node模块
 npm uninstall ***    #卸载node模块
-</code></pre><h3 id="创建package-json文件"><a href="#创建package-json文件" class="headerlink" title="创建package.json文件"></a>创建package.json文件</h3><p>项目根目录：<code>D:\web\react-webapp-demo</code>，请根据自己实际情况设置。</p><pre><code>cd D:\web\react-webapp-demo    #在PowerSell中打开项目目录
+</code></pre><h3 id="创建package-json文件"><a href="#创建package-json文件" class="headerlink" title="创建package.json文件"></a>创建package.json文件</h3><p>项目根目录：<code>D:\web\react-webapp-demo</code>，请根据自己实际情况设置。</p>
+<pre><code>cd D:\web\react-webapp-demo    #在PowerSell中打开项目目录
 npm init -y    #跳过提问阶段，直接生成一个新的 package.json 文件。
 </code></pre><h3 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h3><pre><code>npm install --save react react-dom redux react-redux redux-logger redux-thunk react-router react-router-redux@next history styled-components isomorphic-fetch jroll jroll-pulldown jroll-infinite echarts babel-polyfill
 npm install --save-dev webpack webpack-dev-server webpack-merge clean-webpack-plugin babel-loader babel-core babel-preset-env babel-preset-react css-loader style-loader file-loader url-loader html-webpack-plugin uglifyjs-webpack-plugin
-</code></pre><p>模块简要说明：</p><blockquote><p><code>react``react-dom</code>：React依赖<br><code>redux``react-redux``redux-logger``redux-thunk</code>：Redux依赖<br><code>react-router``react-router-redux``history</code>：react-router依赖<br><code>styled-components</code>：React中的CSS的实现依赖<br><code>isomorphic-fetch</code>：fetch兼容库<br><code>jroll``jroll-pulldown``jroll-infinite</code>：JRoll插件依赖<br><code>echarts</code>：基于html5 Canvas图表库<br><code>babel-polyfill</code>：用于实现浏览器不支持原生功能的代码<br><code>webpack</code>：预编译模块打包<br><code>webpack-dev-server</code>：实时重新加载的Web服务器<br><code>webpack-merge</code>：webpack配置分离插件<br><code>clean-webpack-plugin</code>：在building之前删除你以前build过的文件<br><code>babel-loader``babel-core``babel-preset-env``babel-preset-react</code>：转码器babel依赖<br><code>css-loader``style-loader``file-loader``url-loader</code>：各格式文件打包依赖<br><code>html-webpack-plugin</code>：生成HTML5文件的插件<br><code>uglifyjs-webpack-plugin</code>：代码压缩插件</p></blockquote><h3 id="配置模块"><a href="#配置模块" class="headerlink" title="配置模块"></a>配置模块</h3><p>在项目根目录生成<code>.babelrc</code>文件（Windows系统下文件重命名为.babelrc.），并写入如下数据</p><pre><code>{
+</code></pre><p>模块简要说明：</p>
+<blockquote>
+<p><code>react``react-dom</code>：React依赖<br><code>redux``react-redux``redux-logger``redux-thunk</code>：Redux依赖<br><code>react-router``react-router-redux``history</code>：react-router依赖<br><code>styled-components</code>：React中的CSS的实现依赖<br><code>isomorphic-fetch</code>：fetch兼容库<br><code>jroll``jroll-pulldown``jroll-infinite</code>：JRoll插件依赖<br><code>echarts</code>：基于html5 Canvas图表库<br><code>babel-polyfill</code>：用于实现浏览器不支持原生功能的代码<br><code>webpack</code>：预编译模块打包<br><code>webpack-dev-server</code>：实时重新加载的Web服务器<br><code>webpack-merge</code>：webpack配置分离插件<br><code>clean-webpack-plugin</code>：在building之前删除你以前build过的文件<br><code>babel-loader``babel-core``babel-preset-env``babel-preset-react</code>：转码器babel依赖<br><code>css-loader``style-loader``file-loader``url-loader</code>：各格式文件打包依赖<br><code>html-webpack-plugin</code>：生成HTML5文件的插件<br><code>uglifyjs-webpack-plugin</code>：代码压缩插件</p>
+</blockquote>
+<h3 id="配置模块"><a href="#配置模块" class="headerlink" title="配置模块"></a>配置模块</h3><p>在项目根目录生成<code>.babelrc</code>文件（Windows系统下文件重命名为.babelrc.），并写入如下数据</p>
+<pre><code>{
     &quot;presets&quot;: [&quot;env&quot;,&quot;react&quot;]
 }
-</code></pre><p>配置package.json：运行<code>npm run build</code>启动编译模式和<code>npm run start</code>热更新模式;</p><pre><code>&quot;scripts&quot;: {
+</code></pre><p>配置package.json：运行<code>npm run build</code>启动编译模式和<code>npm run start</code>热更新模式;</p>
+<pre><code>&quot;scripts&quot;: {
     &quot;start&quot;: &quot;webpack-dev-server --config webpack.dev.js&quot;,
     &quot;build&quot;: &quot;webpack --config webpack.prod.js&quot;
 },
-</code></pre><p>根目录新建webpack配置文件：<code>webpack.common.js</code>、<code>webpack.dev.js</code>、<code>webpack.prod.js</code>;</p><p><strong>webpack.common.js</strong>（共用配置）</p><pre><code>const path = require(&#39;path&#39;);
+</code></pre><p>根目录新建webpack配置文件：<code>webpack.common.js</code>、<code>webpack.dev.js</code>、<code>webpack.prod.js</code>;</p>
+<p><strong>webpack.common.js</strong>（共用配置）</p>
+<pre><code>const path = require(&#39;path&#39;);
 const CleanWebpackPlugin = require(&#39;clean-webpack-plugin&#39;);
 const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
 const webpack = require(&#39;webpack&#39;);
@@ -102,7 +669,8 @@ module.exports = {
         }),    //共用代码打包
     ]
 };
-</code></pre><p><strong>webpack.dev.js</strong>（开发配置）</p><pre><code>const merge = require(&#39;webpack-merge&#39;);
+</code></pre><p><strong>webpack.dev.js</strong>（开发配置）</p>
+<pre><code>const merge = require(&#39;webpack-merge&#39;);
 const common = require(&#39;./webpack.common.js&#39;);
 const webpack = require(&#39;webpack&#39;);
 
@@ -120,7 +688,8 @@ module.exports = merge(common, {
         new webpack.HotModuleReplacementPlugin()    //加载热替换插件
     ]
 });
-</code></pre><p><strong>webpack.prod.js</strong>（预编译配置）</p><pre><code>const merge = require(&#39;webpack-merge&#39;);
+</code></pre><p><strong>webpack.prod.js</strong>（预编译配置）</p>
+<pre><code>const merge = require(&#39;webpack-merge&#39;);
 const UglifyJSPlugin = require(&#39;uglifyjs-webpack-plugin&#39;);
 const common = require(&#39;./webpack.common.js&#39;);
 
@@ -145,7 +714,419 @@ module.exports = merge(common, {
   |- webpack.common.js    //webpack共用配置
   |- webpack.dev.js    //webpack开发配置
   |- webpack.prod.js    //webpack编译配置
-</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>前面有说到<code>React</code>在React Native App上的实现，其实React.js就是其在Web端的实现，加上工程化开发，这两者开发思维惊人的相似，有种<em>React就是那个离前端大统一最接近的技术</em> 的预感。</p><blockquote><p>刚好最近有时间，整理一下自己React.js的知识点，如果对React开发WebApp单页应用感兴趣的话，欢迎浏览，<a href="http://pancakeawesome.ink/React%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98-%E4%B8%80-%EF%BC%9A%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html">点击前往</a>。</p></blockquote><blockquote style="margin:2em 0 0;padding:.5em 1em;border-left:3px solid #f44336;background-color:#f5f5f5;list-style:none"><p> <strong>This blog is under a <a href="https://pancakeawesome.ink/" target="_blank">CC BY-NC-SA 3.0 Unported License</a></strong><br> <strong>本文链接：</strong><a href="http://pancakeawesome.ink/React项目实战-一-：环境搭建.html">http://pancakeawesome.ink/React项目实战-一-：环境搭建.html</a></p></blockquote></div><div id="changyan-comment"><div id="SOHUCS" sid="React项目实战-一-：环境搭建.html"></div><script type="text/javascript">!function(){var t="da223e602e0abf03eded8d4c19e7d862";if((window.innerWidth||document.documentElement.clientWidth)<960)window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cytdf2o7Q&conf='+t+'"><\/script>');else{!function(t,e){var n=document.getElementsByTagName("head")[0]||document.head||document.documentElement,a=document.createElement("script");a.setAttribute("type","text/javascript"),a.setAttribute("charset","UTF-8"),a.setAttribute("src",t),"function"==typeof e&&(window.attachEvent?a.onreadystatechange=function(){var t=a.readyState;"loaded"!==t&&"complete"!==t||(a.onreadystatechange=null,e())}:a.onload=e),n.appendChild(a)}("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:"cytdf2o7Q",conf:t})})}}()</script></div><style>#changyan-comment{background-color:#eee;padding:2pc}</style></div><nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col"> <a href="/梯度下降（Gradient-Descent）小结.html" id="post_nav-newer" class="prev-content"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation"> <i class="material-icons">arrow_back</i></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 新篇</a><div class="section-spacer"></div> <a href="/React项目实战(二):react-redux-router基本原理.html" id="post_nav-older" class="next-content">旧篇 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation"> <i class="material-icons">arrow_forward</i></button></a></nav></div></div><div class="sidebar-overlay"></div><aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation"><div id="sidebar-main"><div class="sidebar-header header-cover" style="background-image:url(/img/thumbnail/sidebar_header.jpg)"><div class="top-bar"></div> <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display:initial" data-upgraded=",MaterialButton,MaterialRipple"> <i class="material-icons">clear_all</i><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button><div class="sidebar-image"> <img src="/img/rip.jpeg" alt="Edward Guan's avatar"></div> <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">guanchao930908@163.com<b class="caret"></b></a></div><ul class="nav sidebar-nav"><li class="dropdown"><ul id="settings-dropdown" class="dropdown-menu"><li> <a href="mailto:guanchao930908@163.com" target="_blank" title="Email Me"><i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i> Email Me</a></li></ul></li><li id="sidebar-first-li"> <a href="/"><i class="material-icons sidebar-material-icons">home</i> 主页</a></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">timeline</i> 归档<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/archives/2018/02/">二月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">20</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">10</span></a></li></ul></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">chrome_reader_mode</i> 分类<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/categories/CSS/">CSS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/blog/">blog<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/css/">css<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/es6/">es6<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/html/">html<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript/">javascript<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript设计模式/">javascript设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/node-js/">node.js<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/nodejs/">nodejs<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/react/">react<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/typescript/">typescript<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端优化/">前端优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端工具/">前端工具<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端技术/">前端技术<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端架构设计/">前端架构设计<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端框架/">前端框架<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据分析/">数据分析<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据可视化/">数据可视化<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/机器学习/">机器学习<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法思想/">算法思想<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/软件开发/">软件开发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/面试/">面试<span class="sidebar_archives-count">1</span></a></li></ul></li><li> <a href="/tags" title="标签云"><i class="material-icons sidebar-material-icons">cloud_circle</i> 标签云</a></li><li class="divider"></li><li> <a href="/timeline" title="Timeline"><i class="material-icons sidebar-material-icons">send</i> Timeline</a></li><li> <a href="/gallery" title="Gallery"><i class="material-icons sidebar-material-icons">photo_library</i> Gallery</a></li><li> <a href="/aboutMe" title="About Me"><i class="material-icons sidebar-material-icons">person_pin</i> About Me</a></li><li class="divider"></li><li> <a href="/archives">文章总数 <span class="sidebar-badge">61</span></a></li></ul></div></aside><div id="back-to-top" class="toTop-wrap"> <a href="#top" class="toTop"><i class="material-icons footer_top-i">expand_less</i></a></div><footer class="mdl-mini-footer" id="bottom"><div class="mdl-mini-footer--left-section sns-list"> <a href="https://twitter.com/591153977" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter"> <span class="visuallyhidden">Twitter</span></button></a> <a href="https://www.facebook.com/profile.php?id=100011433530812" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook"> <span class="visuallyhidden">Facebook</span></button></a> <a href="https://www.instagram.com/edward930908/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-instagram"> <span class="visuallyhidden">Instagram</span></button></a> <a href="https://github.com/PancakeAwesome" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-github"> <span class="visuallyhidden">Github</span></button></a> <a href="https://www.linkedin.com/in/%E8%B6%85-%E7%AE%A1-89495a145/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin"> <span class="visuallyhidden">LinkedIn</span></button></a></div><div id="copyright"> Copyright&nbsp;©<script type="text/javascript">var fd=new Date;document.write("&nbsp;"+fd.getFullYear()+"&nbsp;")</script>Edward's Blog<br><p>Hosted by <a href="https://pages.coding.me" style="font-weight:700">Coding Pages</a></p></div><div class="mdl-mini-footer--right-section"><div><div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div><div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div></div></div></footer><script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==",!0)</script><script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==",!0)</script><script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==",!0)</script><script type="text/ls-javascript" id="NProgress-script">
+</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>前面有说到<code>React</code>在React Native App上的实现，其实React.js就是其在Web端的实现，加上工程化开发，这两者开发思维惊人的相似，有种<em>React就是那个离前端大统一最接近的技术</em> 的预感。</p>
+<blockquote>
+<p>刚好最近有时间，整理一下自己React.js的知识点，如果对React开发WebApp单页应用感兴趣的话，欢迎浏览，<a href="http://pancakeawesome.ink/React%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98-%E4%B8%80-%EF%BC%9A%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html">点击前往</a>。</p>
+</blockquote>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            This blog is under a <a href="https://pancakeawesome.ink/" target="_blank">CC BY-NC-SA 3.0 Unported License</a>
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="http://pancakeawesome.ink/React项目实战-一-：环境搭建.html">http://pancakeawesome.ink/React项目实战-一-：环境搭建.html</a>
+                    </p>
+                </blockquote>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="React项目实战-一-：环境搭建.html"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cytdf2o7Q';
+var conf = 'da223e602e0abf03eded8d4c19e7d862';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/梯度下降（Gradient-Descent）小结.html" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/React项目实战(二):react-redux-router基本原理.html" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/thumbnail/sidebar_header.jpg);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/rip.jpeg" alt="Edward Guan's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        guanchao930908@163.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:guanchao930908@163.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">20</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">10</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/CSS/">CSS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/blog/">blog<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/css/">css<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/es6/">es6<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/html/">html<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript/">javascript<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript设计模式/">javascript设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/node-js/">node.js<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/nodejs/">nodejs<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/react/">react<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/typescript/">typescript<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端优化/">前端优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端工具/">前端工具<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端技术/">前端技术<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端架构设计/">前端架构设计<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端框架/">前端框架<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据分析/">数据分析<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据可视化/">数据可视化<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/机器学习/">机器学习<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法思想/">算法思想<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/软件开发/">软件开发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/面试/">面试<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">cloud_circle</i>
+                
+                标签云
+            </a>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
+        <li>
+            <a href="/timeline" title="Timeline">
+                
+                    <i class="material-icons sidebar-material-icons">send</i>
+                
+                Timeline
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/gallery" title="Gallery">
+                
+                    <i class="material-icons sidebar-material-icons">photo_library</i>
+                
+                Gallery
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/aboutMe" title="About Me">
+                
+                    <i class="material-icons sidebar-material-icons">person_pin</i>
+                
+                About Me
+            </a>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">60</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/591153977" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/profile.php?id=100011433530812" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+        <a href="https://www.instagram.com/edward930908/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-instagram">
+                <span class="visuallyhidden">Instagram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/PancakeAwesome" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+        <a href="https://www.linkedin.com/in/%E8%B6%85-%E7%AE%A1-89495a145/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin">
+                <span class="visuallyhidden">LinkedIn</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Edward's Blog
+            
+                <br>
+                
+                    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+                
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
     NProgress.configure({
         showSpinner: true
     });
@@ -164,7 +1145,50 @@ module.exports = merge(common, {
         NProgress.done();
         $('.fade').removeClass('out');
     }, 800);
-</script><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytdf2o7Q"></script><script>var agent=navigator.userAgent.toLowerCase();agent.indexOf("ucbrowser")>0&&(document.write('<link rel="stylesheet" href="/css/uc.css">'),alert("由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。"))</script><script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==",!0)</script><script type="text/ls-javascript" id="window-load">
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+   <!-- 畅言公共 js 代码 start -->
+<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytdf2o7Q">
+</script>
+<!-- 畅言公共 js 代码 end -->
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
     $(window).on('load', function() {
         // Post_Toc parent position fixed
         $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
@@ -179,7 +1203,15 @@ module.exports = merge(common, {
         
     
     
-</script><script type="text/ls-javascript" id="lazy-load">
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
     // Offer LazyLoad
     queue.offer(function(){
         $('.lazy').lazyload({
@@ -193,4 +1225,26 @@ module.exports = merge(common, {
             queue.execNext();
         },200);
     });
-</script><script>!function(){for(var e=document.querySelectorAll('script[type="text/ls-javascript"]'),r=0;r<e.length;++r){var o=e[r];lsloader.runInlineScript(o.id,o.id)}}(),console.log("\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;")</script></main></div></body></html>
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
