@@ -20,9 +20,9 @@ J(\theta_0, \theta_1) = \sum\limits_{i=1}^{m}(y^{(i)} - h_\theta(x^{(i)})^2 = \s
 <h3 id="2-最小二乘法的代数法解法"><a href="#2-最小二乘法的代数法解法" class="headerlink" title="2.最小二乘法的代数法解法"></a>2.最小二乘法的代数法解法</h3><p>上面提到要使$J(\theta_0, \theta_1)$最小，方法就是对$theta_0$ 和 $\theta_1$分别来求偏导数，令偏导数为0，得到一个关于$\theta_0$ 和 $\theta_1$的二元方程组。求解这个二元方程组，就可以得到$\theta_0$ 和 $\theta_1$的值。下面我们具体看看过程。</p>
 <p>$J(\theta_0, \theta_1)$对$\theta_0$求导，得到如下方程：</p>
 <script type="math/tex; mode=display">
-\sum\limits_{i=1}^{m}(y^{(i)} -  \theta_0 - \theta_1 x^{(i)}) = 0        ①</script><p>$J(\theta_0, \theta_1)$对$\theta_1$求导，得到如下方程：</p>
+\sum\limits_{i=1}^{m}(y^{(i)} -  \theta_0 - \theta_1 x^{(i)}) = 0</script><p>$J(\theta_0, \theta_1)$对$\theta_1$求导，得到如下方程：</p>
 <script type="math/tex; mode=display">
-\sum\limits_{i=1}^{m}(y^{(i)} -  \theta_0 - \theta_1 x^{(i)})x^{(i)} = 0    ②</script><p>①和②组成一个二元一次方程组，容易求出$\theta_0$ 和 $\theta_1$的值：</p>
+\sum\limits_{i=1}^{m}(y^{(i)} -  \theta_0 - \theta_1 x^{(i)})x^{(i)} = 0</script><p>①和②组成一个二元一次方程组，容易求出$\theta_0$ 和 $\theta_1$的值：</p>
 <script type="math/tex; mode=display">
 \theta_0 = \sum\limits_{i=1}^{m}\big(x^{(i)})^2\sum\limits_{i=1}^{m}y^{(i)} - \sum\limits_{i=1}^{m}x^{(i)}\sum\limits_{i=1}^{m}x^{(i)}y^{(i)} \Bigg/ m\sum\limits_{i=1}^{m}\big(x^{(i)})^2 - \big(\sum\limits_{i=1}^{m}x^{(i)})^2</script><script type="math/tex; mode=display">
 \theta_1 = m\sum\limits_{i=1}^{m}x^{(i)}y^{(i)} - \sum\limits_{i=1}^{m}x^{(i)}\sum\limits_{i=1}^{m}y^{(i)} \Bigg/ m\sum\limits_{i=1}^{m}\big(x^{(i)})^2 - \big(\sum\limits_{i=1}^{m}x^{(i)})^2</script><p>这个方法很容易推广到多个样本特征的线性拟合。</p>
