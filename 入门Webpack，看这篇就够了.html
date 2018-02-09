@@ -1,273 +1,4 @@
-<!DOCTYPE html>
-<html style="display: none;" lang="zh">
-    <head>
-    <meta charset="utf-8">
-    <!--
-        © Material Theme
-        https://github.com/viosey/hexo-theme-material
-        Version: 1.5.0 -->
-    <script>
-        window.materialVersion = "1.5.0"
-        // Delete localstorage with these tags
-        window.oldVersion = [
-            'codestartv1',
-            '1.3.4',
-            '1.4.0',
-            '1.4.0b1'
-        ]
-    </script>
-
-    <!-- dns prefetch -->
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-
-
-
-    <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
-
-
-    <link rel="dns-prefetch" href="https://changyan.sohu.com"/>
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Title -->
-    
-    <title>
-        
-            入门Webpack，看这篇就够了 | 
-        
-        Edward&#39;s Blog
-    </title>
-
-    <!-- Meta & Info -->
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="theme-color" content="#0097A7">
-    <meta name="author" content="Edward Guan">
-    <meta name="description" itemprop="description" content="入门Webpack，看这篇就够了">
-    <meta name="keywords" content="前端,node,react,js,java,自学编程,学习分享,UESTC,前端技术,前端工具">
-
-    <!-- Import lsloader -->
-    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(window.oldVersion){var remove=window.oldVersion.reduce(function(p,c){return p||data.indexOf("/*"+c+"*/")!==-1},false);if(remove){lsloader.removeLS(key)}}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload,isJs){if(typeof cssonload==="boolean"){isJs=cssonload;cssonload=undefined}isJs=isJs||false;cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}code=code.split(versionString)[1];if(isJs){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload,isJs)}};lsloader.requestResource=function(name,path,cssonload,isJs){var that=this;if(isJs){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else{this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
-
-    <!-- Import queue -->
-    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
-
-    <!-- Favicons -->
-    <link rel="icon shortcut" type="image/ico" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
-    <link rel="icon" sizes="192x192" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
-    <link rel="apple-touch-icon" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
-
-    <!--iOS -->
-    <meta name="apple-mobile-web-app-title" content="Title">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="480">
-
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Edward&#39;s Blog">
-
-    <!-- Site Verification -->
-    
-    
-
-    <!-- RSS -->
-    
-
-    <!--[if lte IE 9]>
-        <link rel="stylesheet" href="/css/ie-blocker.css">
-
-        
-            <script src="/js/ie-blocker.zhCN.js"></script>
-        
-    <![endif]-->
-
-    <!-- Import CSS -->
-    
-        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-
-        
-            
-                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-            
-        
-
-    
-
-    
-
-    <!-- Config CSS -->
-
-<!-- Other Styles -->
-<style>
-  body, html {
-    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-    overflow-x: hidden !important;
-  }
-  
-  code {
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  }
-
-  a {
-    color: #00838F;
-  }
-
-  .mdl-card__media,
-  #search-label,
-  #search-form-label:after,
-  #scheme-Paradox .hot_tags-count,
-  #scheme-Paradox .sidebar_archives-count,
-  #scheme-Paradox .sidebar-colored .sidebar-header,
-  #scheme-Paradox .sidebar-colored .sidebar-badge{
-    background-color: #0097A7 !important;
-  }
-
-  /* Sidebar User Drop Down Menu Text Color */
-  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
-  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-    color: #0097A7 !important;
-  }
-
-  #post_entry-right-info,
-  .sidebar-colored .sidebar-nav li:hover > a,
-  .sidebar-colored .sidebar-nav li:hover > a i,
-  .sidebar-colored .sidebar-nav li > a:hover,
-  .sidebar-colored .sidebar-nav li > a:hover i,
-  .sidebar-colored .sidebar-nav li > a:focus i,
-  .sidebar-colored .sidebar-nav > .open > a,
-  .sidebar-colored .sidebar-nav > .open > a:hover,
-  .sidebar-colored .sidebar-nav > .open > a:focus,
-  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-    color: #0097A7 !important;
-  }
-
-  .toTop {
-    background: #757575 !important;
-  }
-
-  .material-layout .material-post>.material-nav,
-  .material-layout .material-index>.material-nav,
-  .material-nav a {
-    color: #757575;
-  }
-
-  #scheme-Paradox .MD-burger-layer {
-    background-color: #757575;
-  }
-
-  #scheme-Paradox #post-toc-trigger-btn {
-    color: #757575;
-  }
-
-  .post-toc a:hover {
-    color: #00838F;
-    text-decoration: underline;
-  }
-
-</style>
-
-
-<!-- Theme Background Related-->
-
-    <style>
-      body{
-        background-color: #F5F5F5;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-        background-color: #fff;
-      }
-    </style>
-
-
-
-
-<!-- Fade Effect -->
-
-    <style>
-      .fade {
-        transition: all 800ms linear;
-        -webkit-transform: translate3d(0,0,0);
-        -moz-transform: translate3d(0,0,0);
-        -ms-transform: translate3d(0,0,0);
-        -o-transform: translate3d(0,0,0);
-        transform: translate3d(0,0,0);
-        opacity: 1;
-      }
-
-      .fade.out{
-        opacity: 0;
-      }
-    </style>
-
-
-<!-- Import Font -->
-<!-- Import Roboto -->
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-
-
-<!-- Import Material Icon -->
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-
-
-    <!-- Import jQuery -->
-    
-        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
-    
-
-    <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://pancakeawesome.ink">
-    <meta property="og:type" content="blog">
-    <meta property="og:title" content="入门Webpack，看这篇就够了 | Edward&#39;s Blog">
-    <meta property="og:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg" />
-    <meta property="og:description" content="入门Webpack，看这篇就够了">
-    <meta property="og:article:tag" content="前端技术"> <meta property="og:article:tag" content="前端工具"> 
-
-    
-        <meta property="article:published_time" content="Tue Sep 12 2017 19:15:16 GMT+0800" />
-        <meta property="article:modified_time" content="Wed Nov 01 2017 14:19:34 GMT+0800" />
-    
-
-    <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="入门Webpack，看这篇就够了 | Edward&#39;s Blog">
-    <meta name="twitter:description" content="入门Webpack，看这篇就够了">
-    <meta name="twitter:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="http://pancakeawesome.ink" />
-
-    <!-- Add canonical link for SEO -->
-    
-        <link rel="canonical" href="http://pancakeawesome.ink/入门Webpack，看这篇就够了.html" />
-    
-
-    <!-- Structured-data for SEO -->
-    
-        
-
-
-<script type="application/ld+json">
+<!DOCTYPE html><html style="display:none" lang="zh"><head><meta charset="utf-8"><script>window.materialVersion="1.5.0",window.oldVersion=["codestartv1","1.3.4","1.4.0","1.4.0b1"]</script><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://busuanzi.ibruce.info"><link rel="dns-prefetch" href="https://changyan.sohu.com"><title> 入门Webpack，看这篇就够了 | Edward&#39;s Blog</title><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0097A7"><meta name="author" content="Edward Guan"><meta name="description" itemprop="description" content="入门Webpack，看这篇就够了"><meta name="keywords" content="前端,node,react,js,java,自学编程,学习分享,UESTC,前端技术,前端工具"><script>window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}},lsloader.removeLS=function(e){try{localStorage.removeItem(e)}catch(e){}},lsloader.setLS=function(e,t){try{localStorage.setItem(e,t)}catch(e){}},lsloader.getLS=function(e){var t="";try{t=localStorage.getItem(e)}catch(e){t=""}return t},versionString="/*"+(window.materialVersion||"unknownVersion")+"*/",lsloader.clean=function(){try{for(var e=[],t=0;t<localStorage.length;t++)e.push(localStorage.key(t));e.forEach(function(e){var t=lsloader.getLS(e);window.oldVersion&&window.oldVersion.reduce(function(e,n){return e||-1!==t.indexOf("/*"+n+"*/")},!1)&&lsloader.removeLS(e)})}catch(e){}},lsloader.clean(),lsloader.load=function(e,t,n,s){"boolean"==typeof n&&(s=n,n=void 0),s=s||!1,n=n||function(){};var a;if((a=this.getLS(e))&&-1===a.indexOf(versionString))return this.removeLS(e),void this.requestResource(e,t,n,s);if(a){if(a.split(versionString)[0]!=t)return console.log("reload:"+t),this.removeLS(e),void this.requestResource(e,t,n,s);a=a.split(versionString)[1],s?(this.jsRunSequence.push({name:e,code:a}),this.runjs(t,e,a)):(document.getElementById(e).appendChild(document.createTextNode(a)),n())}else this.requestResource(e,t,n,s)},lsloader.requestResource=function(e,t,n,s){var a=this;s?this.iojs(t,e,function(e,t,n){a.setLS(t,e+versionString+n),a.runjs(e,t,n)}):this.iocss(t,e,function(n){document.getElementById(e).appendChild(document.createTextNode(n)),a.setLS(e,t+versionString+n)},n)},lsloader.iojs=function(e,t,n){var s=this;s.jsRunSequence.push({name:t,code:""});try{var a=new XMLHttpRequest;a.open("get",e,!0),a.onreadystatechange=function(){if(4==a.readyState){if((a.status>=200&&a.status<300||304==a.status)&&""!=a.response)return void n(e,t,a.response);s.jsfallback(e,t)}},a.send(null)}catch(n){s.jsfallback(e,t)}},lsloader.iocss=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.iofonts=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.runjs=function(e,t,n){if(t&&n)for(var s in this.jsRunSequence)this.jsRunSequence[s].name==t&&(this.jsRunSequence[s].code=n);if(this.jsRunSequence[0]&&this.jsRunSequence[0].code&&"failed"!=this.jsRunSequence[0].status)(o=document.createElement("script")).appendChild(document.createTextNode(this.jsRunSequence[0].code)),o.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(o),this.jsRunSequence.shift(),this.jsRunSequence.length>0&&this.runjs();else if(this.jsRunSequence[0]&&"failed"==this.jsRunSequence[0].status){var a=this,o=document.createElement("script");o.src=this.jsRunSequence[0].path,o.type="text/javascript",this.jsRunSequence[0].status="loading",o.onload=function(){a.jsRunSequence.shift(),a.jsRunSequence.length>0&&a.runjs()},document.body.appendChild(o)}},lsloader.tagLoad=function(e,t){this.jsRunSequence.push({name:t,code:"",path:e,status:"failed"}),this.runjs()},lsloader.jsfallback=function(e,t){if(!this.jsnamemap[t]){this.jsnamemap[t]=t;for(var n in this.jsRunSequence)this.jsRunSequence[n].name==t&&(this.jsRunSequence[n].code="",this.jsRunSequence[n].status="failed",this.jsRunSequence[n].path=e);this.runjs()}},lsloader.cssfallback=function(e,t,n){if(!this.cssnamemap[t]){this.cssnamemap[t]=1;var s=document.createElement("link");s.type="text/css",s.href=e,s.rel="stylesheet",s.onload=s.onerror=n;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(s,a)}},lsloader.runInlineScript=function(e,t){var n=document.getElementById(t).innerText;this.jsRunSequence.push({name:e,code:n}),this.runjs()},lsloader.loadCombo=function(e){var t="",n={};for(var s in e){var a=this.getLS(e[s].name);if(a)var o=a.split(versionString)[0],i=a.split(versionString)[1];else o="";o==e[s].path?this.jsRunSequence.push({name:e[s].name,code:i,path:e[s].path}):(this.jsRunSequence.push({name:e[s].name,code:null,path:e[s].path,status:"comboloading"}),n[e[s].name]=!0,t+=(""==t?"":";")+e[s].path)}var u=this;if(t){var r=new XMLHttpRequest;r.open("get",combo+t,!0),r.onreadystatechange=function(){if(4==r.readyState)if(r.status>=200&&r.status<300||304==r.status){if(""!=r.response)return void u.runCombo(r.response,n)}else{for(var e in u.jsRunSequence)n[u.jsRunSequence[e].name]&&(u.jsRunSequence[e].status="failed");u.runjs()}},r.send(null)}this.runjs()},lsloader.runCombo=function(e,t){(e=e.split("/*combojs*/")).shift();for(var n in this.jsRunSequence)t[this.jsRunSequence[n].name]&&e[0]&&(this.jsRunSequence[n].status="comboJS",this.jsRunSequence[n].code=e[0],this.setLS(this.jsRunSequence[n].name,this.jsRunSequence[n].path+versionString+e[0]),e.shift());this.runjs()}</script><script>function Queue(){this.dataStore=[],this.offer=function(e){this.debug&&console.log("Offered a Queued Function."),"function"==typeof e?this.dataStore.push(e):console.log("You must offer a function.")},this.poll=function(){return this.debug&&console.log("Polled a Queued Function."),this.dataStore.shift()},this.execNext=function(){var e=this.poll();void 0!==e&&(this.debug&&console.log("Run a Queued Function."),e())},this.debug=!1,this.startDebug=function(){this.debug=!0}}var queue=new Queue</script><link rel="icon shortcut" type="image/ico" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="icon" sizes="192x192" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="apple-touch-icon" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="apple-mobile-web-app-title" content="Title"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="480"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Edward&#39;s Blog"> <!--[if lte IE 9]><link rel="stylesheet" href="/css/ie-blocker.css"><script src="/js/ie-blocker.zhCN.js"></script><![endif]--><style id="material_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="style_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="prettify_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="prettify_theme"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style>body,html{font-family:Roboto,"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;overflow-x:hidden!important}code{font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace}a{color:#00838f}#scheme-Paradox .hot_tags-count,#scheme-Paradox .sidebar-colored .sidebar-badge,#scheme-Paradox .sidebar-colored .sidebar-header,#scheme-Paradox .sidebar_archives-count,#search-form-label:after,#search-label,.mdl-card__media{background-color:#0097a7!important}#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus,#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover{color:#0097a7!important}#ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a,#post_entry-right-info,.sidebar-colored .sidebar-nav li:hover>a,.sidebar-colored .sidebar-nav li:hover>a i,.sidebar-colored .sidebar-nav li>a:focus i,.sidebar-colored .sidebar-nav li>a:hover,.sidebar-colored .sidebar-nav li>a:hover i,.sidebar-colored .sidebar-nav>.open>a,.sidebar-colored .sidebar-nav>.open>a:focus,.sidebar-colored .sidebar-nav>.open>a:hover{color:#0097a7!important}.toTop{background:#757575!important}.material-layout .material-index>.material-nav,.material-layout .material-post>.material-nav,.material-nav a{color:#757575}#scheme-Paradox .MD-burger-layer{background-color:#757575}#scheme-Paradox #post-toc-trigger-btn{color:#757575}.post-toc a:hover{color:#00838f;text-decoration:underline}</style><style>body{background-color:#f5f5f5}#scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{background-color:#fff}</style><style>.fade{transition:all .8s linear;-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0);opacity:1}.fade.out{opacity:0}</style><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==",!0)</script><meta property="og:url" content="http://pancakeawesome.ink"><meta property="og:type" content="blog"><meta property="og:title" content="入门Webpack，看这篇就够了 | Edward&#39;s Blog"><meta property="og:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta property="og:description" content="入门Webpack，看这篇就够了"><meta property="og:article:tag" content="前端技术"><meta property="og:article:tag" content="前端工具"><meta property="article:published_time" content="Tue Sep 12 2017 19:15:16 GMT+0800"><meta property="article:modified_time" content="Wed Nov 01 2017 14:19:34 GMT+0800"><meta name="twitter:title" content="入门Webpack，看这篇就够了 | Edward&#39;s Blog"><meta name="twitter:description" content="入门Webpack，看这篇就够了"><meta name="twitter:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:url" content="http://pancakeawesome.ink"><link rel="canonical" href="http://pancakeawesome.ink/入门Webpack，看这篇就够了.html"><script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -295,296 +26,17 @@
     "keywords": ",前端技术,前端工具前端,node,react,js,java,自学编程,学习分享,UESTC",
     "description": "入门Webpack，看这篇就够了",
 }
-</script>
-
-
-    
-
-    <!-- Analytics -->
-    
-    
-        <script>
-    var _hmt = _hmt || [];
-    (function() {var hm = document.createElement('script');
-    hm.src = 'https://hm.baidu.com/hm.js?0c041dca6f79c4e40fb45d1283e327e7';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(hm, s);
-    })();
-</script>
-    
-    
-
-    <!-- Custom Head -->
-    
-
-</head>
-
-
-    
-        <body id="scheme-Paradox" class="lazy">
-            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
-                
-
-                <!-- Main Container -->
-                <main class="material-layout__content" id="main">
-
-                    <!-- Top Anchor -->
-                    <div id="top"></div>
-
-                    
-                        <!-- Hamburger Button -->
-                        <button class="MD-burger-icon sidebar-toggle">
-                            <span class="MD-burger-layer"></span>
-                        </button>
-                    
-
-                    <!-- Post TOC -->
-
-    
-    <!-- Back Button -->
-    <!--
-    <div class="material-back" id="backhome-div" tabindex="0">
-        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
-           href="#" onclick="window.history.back();return false;"
-           target="_self"
-           role="button"
-           data-upgraded=",MaterialButton,MaterialRipple">
-            <i class="material-icons" role="presentation">arrow_back</i>
-            <span class="mdl-button__ripple-container">
-                <span class="mdl-ripple"></span>
-            </span>
-        </a>
-    </div>
-    -->
-
-
-    <!-- Left aligned menu below button -->
-    
-    
-    <button id="post-toc-trigger-btn"
-        class="mdl-button mdl-js-button mdl-button--icon">
-        <i class="material-icons">format_list_numbered</i>
-    </button>
-
-    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#webpack处理资源文件：webpack版本：3-5-5"><span class="post-toc-number">2.</span> <span class="post-toc-text">webpack处理资源文件：webpack版本：3.5.5</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何在terminal中安装webpack"><span class="post-toc-number">3.</span> <span class="post-toc-text">如何在terminal中安装webpack</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#建立项目的webpack配置文件"><span class="post-toc-number">4.</span> <span class="post-toc-text">建立项目的webpack配置文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#webpack命令方式"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">webpack命令方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#npm脚本执行方式"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">npm脚本执行方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#webpack的打包入口和出口文件配置"><span class="post-toc-number">5.</span> <span class="post-toc-text">webpack的打包入口和出口文件配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Webpack如何在项目自动生成html文件"><span class="post-toc-number">6.</span> <span class="post-toc-text">Webpack如何在项目自动生成html文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多页面应用的配置"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">多页面应用的配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Loader"><span class="post-toc-number">7.</span> <span class="post-toc-text">Loader</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是Loader？"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">什么是Loader？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Loader的特性"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">Loader的特性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用loader的方式"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">使用loader的方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用babel-loader转换es6语法"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">使用babel-loader转换es6语法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用loader处理css文件"><span class="post-toc-number">7.5.</span> <span class="post-toc-text">使用loader处理css文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用less-loader，sass-loader处理css易处理语言"><span class="post-toc-number">7.6.</span> <span class="post-toc-text">使用less-loader，sass-loader处理css易处理语言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#loader处理模版文件"><span class="post-toc-number">7.7.</span> <span class="post-toc-text">loader处理模版文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#html-loader"><span class="post-toc-number">7.7.1.</span> <span class="post-toc-text">html-loader</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ejs-loader"><span class="post-toc-number">7.7.2.</span> <span class="post-toc-text">ejs-loader</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#loader处理图片资源文件"><span class="post-toc-number">7.8.</span> <span class="post-toc-text">loader处理图片资源文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#项目中通常三个地方会用到图片"><span class="post-toc-number">7.8.1.</span> <span class="post-toc-text">项目中通常三个地方会用到图片</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#处理图片文件的loader通常有"><span class="post-toc-number">7.8.2.</span> <span class="post-toc-text">处理图片文件的loader通常有</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用上述三个loader处理图片文件"><span class="post-toc-number">7.8.3.</span> <span class="post-toc-text">使用上述三个loader处理图片文件</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">8.</span> <span class="post-toc-text">总结</span></a></li></ol>
-    </ul>
-    
-
-
-
-
-<!-- Layouts -->
-
-    <!-- Post Module -->
-    <div class="material-post_container">
-
-        <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-
-                <!-- Post Header(Thumbnail & Title) -->
-                
-    <!-- Paradox Post Header -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script type="text/ls-javascript" id="post-thumbnail-script">
+</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?0c041dca6f79c4e40fb45d1283e327e7";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body id="scheme-Paradox" class="lazy"><div class="material-layout mdl-js-layout has-drawer is-upgraded"><main class="material-layout__content" id="main"><div id="top"></div> <button class="MD-burger-icon sidebar-toggle"><span class="MD-burger-layer"></span></button> <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon"> <i class="material-icons">format_list_numbered</i></button><ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh;overflow-y:scroll"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#webpack处理资源文件：webpack版本：3-5-5"><span class="post-toc-number">2.</span> <span class="post-toc-text">webpack处理资源文件：webpack版本：3.5.5</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何在terminal中安装webpack"><span class="post-toc-number">3.</span> <span class="post-toc-text">如何在terminal中安装webpack</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#建立项目的webpack配置文件"><span class="post-toc-number">4.</span> <span class="post-toc-text">建立项目的webpack配置文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#webpack命令方式"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">webpack命令方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#npm脚本执行方式"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">npm脚本执行方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#webpack的打包入口和出口文件配置"><span class="post-toc-number">5.</span> <span class="post-toc-text">webpack的打包入口和出口文件配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Webpack如何在项目自动生成html文件"><span class="post-toc-number">6.</span> <span class="post-toc-text">Webpack如何在项目自动生成html文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多页面应用的配置"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">多页面应用的配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Loader"><span class="post-toc-number">7.</span> <span class="post-toc-text">Loader</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是Loader？"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">什么是Loader？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Loader的特性"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">Loader的特性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用loader的方式"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">使用loader的方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用babel-loader转换es6语法"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">使用babel-loader转换es6语法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用loader处理css文件"><span class="post-toc-number">7.5.</span> <span class="post-toc-text">使用loader处理css文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用less-loader，sass-loader处理css易处理语言"><span class="post-toc-number">7.6.</span> <span class="post-toc-text">使用less-loader，sass-loader处理css易处理语言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#loader处理模版文件"><span class="post-toc-number">7.7.</span> <span class="post-toc-text">loader处理模版文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#html-loader"><span class="post-toc-number">7.7.1.</span> <span class="post-toc-text">html-loader</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ejs-loader"><span class="post-toc-number">7.7.2.</span> <span class="post-toc-text">ejs-loader</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#loader处理图片资源文件"><span class="post-toc-number">7.8.</span> <span class="post-toc-text">loader处理图片资源文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#项目中通常三个地方会用到图片"><span class="post-toc-number">7.8.1.</span> <span class="post-toc-text">项目中通常三个地方会用到图片</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#处理图片文件的loader通常有"><span class="post-toc-number">7.8.2.</span> <span class="post-toc-text">处理图片文件的loader通常有</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用上述三个loader处理图片文件"><span class="post-toc-number">7.8.3.</span> <span class="post-toc-text">使用上述三个loader处理图片文件</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">8.</span> <span class="post-toc-text">总结</span></a></li></ol></ul><div class="material-post_container"><div class="material-post mdl-grid"><div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col"><div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50"><script type="text/ls-javascript" id="post-thumbnail-script">
     var randomNum = Math.floor(Math.random() * 30 + 1);
 
     $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-</script>
-
-        
-    
-            <p class="article-headline-p">
-                入门Webpack，看这篇就够了
-            </p>
-        </div>
-
-
-
-
-
-                
-                    <!-- Paradox Post Info -->
-                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
-
-    <!-- Author Avatar -->
-    <div id="author-avatar">
-        <img src="/img/rip.jpeg" width="44px" height="44px" alt="Author Avatar"/>
-    </div>
-    <!-- Author Name & Date -->
-    <div>
-        <strong>Edward Guan</strong>
-        <span>9月 12, 2017</span>
-    </div>
-
-    <div class="section-spacer"></div>
-
-    <!-- Favorite -->
-    <!--
-        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
-            <i class="material-icons" role="presentation">favorite</i>
-            <span class="visuallyhidden">favorites</span>
-        </button>
-    -->
-
-    <!-- Qrcode -->
-    
-        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">devices other</i>
-    <span class="visuallyhidden">devices other</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
-    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-    
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC1klEQVR42u3aQXIbMQwEQP//08k1h0ieAaSyTPaeVKr1LhsHQ8Tw68+V1xc2NjY2NjY2Njb2R7K/4uvf+//z0ODOR/ck32zWjI2NjX0D+5t//Q9enHzOyzR7e/FX2NjY2Bew86bVUmet8fnT6jVjY2NjY8fg589ptyjY2NjY2O9gb0qTNMLXrgcbGxv7HnYyoJltPGZhQF6+t8/SsLGxsT+ePQt6f/bzj+Xb2NjY2B/Gro8wBi/YBAP5KKpeOTY2Nvah7OdHajZLz4/pFE2ovBMbGxv7HvbsSE17vCYJcWdtMml12NjY2KeyN6OlWSNZjfgXWxRsbGzsU9lt7Dob8RSLK1tm8T02Njb20ezZliBpbLPINh9v5ZscbGxs7FPZ+UioHfrPntNuOYbxADY2NvZx7FnQmzSP5+DZMcpZnICNjY19Kvv5UmaR8CwA2AQJw3wbGxsb+yB2Ph7Ki5VsIZInzJofNjY29j3svJ3kjM0AqI0Khg0MGxsb+yB2G9Mmm4Q26M1Js9aFjY2NfQM7D2vz4VF+0CffzCTg1Q4MGxsb+xey84g3+bm/Kda+9EUDw8bGxj6OXQzZR4d18oK2zbUIqrGxsbEPZbeHKTch7j4kyLcl2NjY2Pew24FOPk7KG+QsJG5HS9jY2NinsmfgJKYtNgnlQc+8mWFjY2Pfxm5/+r82Bsij37zQ2NjY2DewZ0Hvuw/otIOnKHLGxsbGvoCd8IbNY3RPWzJsbGzsO9n5gpLStAFAXr461p3l29jY2Ni/kN1erzpMsxkhDZsuNjY29qHsdon7Q5ltOTahMjY2NvY97DwwaMdArxpOtaWMGhg2Njb2cezNSKhexIt4ReGwsbGxseP2kze8tnW1B3qwsbGxsfPtyobRtsO2+WFjY2Pfw86HSrNmMwt698EANjY29g3sWdC7KVPeLNsG9rAc2NjY2Iey77mwsbGxsbGxsbGxP+b6C8bHKlxbtZKFAAAAAElFTkSuQmCC">
-    
-</ul>
-
-    
-
-    <!-- Tags (bookmark) -->
-    
-    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-        <i class="material-icons" role="presentation">bookmark</i>
-        <span class="visuallyhidden">bookmark</span>
-    </button>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
-        <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/前端工具/">前端工具</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端技术/">前端技术</a>
-    </ul>
-    
-
-    <!-- Share -->
-    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">share</i>
-    <span class="visuallyhidden">share</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
-    
-
-    
-        
-            <!-- Busuanzi Views -->
-            <a class="post_share-link" href="#">
-                <li class="mdl-menu__item">
-                    <span id="busuanzi_container_page_pv">
-                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
-                    </span>
-                </li>
-            </a>
-        
-    
-
-    <!-- Share Weibo -->
-    
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=入门Webpack，看这篇就够了&url=http://pancakeawesome.ink/入门Webpack，看这篇就够了.html&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank">
-            <li class="mdl-menu__item">
-                分享到微博
-            </li>
-        </a>
-    
-
-    <!-- Share Twitter -->
-    
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=入门Webpack，看这篇就够了&url=http://pancakeawesome.ink/入门Webpack，看这篇就够了.html&via=Edward Guan" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Twitter
-            </li>
-        </a>
-    
-
-    <!-- Share Facebook -->
-    
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/入门Webpack，看这篇就够了.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Facebook
-            </li>
-        </a>
-    
-
-    <!-- Share Google+ -->
-    
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/入门Webpack，看这篇就够了.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Google+
-            </li>
-        </a>
-    
-
-    <!-- Share LinkedIn -->
-    
-        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/入门Webpack，看这篇就够了.html&title=入门Webpack，看这篇就够了" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 LinkedIn
-            </li>
-        </a>
-    
-
-    <!-- Share QQ -->
-    
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=入门Webpack，看这篇就够了&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/入门Webpack，看这篇就够了.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 QQ
-            </li>
-        </a>
-    
-
-    <!-- Share Telegram -->
-    
-</ul>
-
-</div>
-
-                
-
-                <!-- Post Content -->
-                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
-    
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>webpack</code>是现在一款非常流行的<strong>模块化管理工具🔧</strong>，<strong><code>react+webpack+es6</code></strong>是很火的项目构建组合。</p>
-<p><img src="https://img.funteas.com/e54cfd22c67adc465dff62272b905fc7?imageView2/2/w/800" alt=""></p>
-<blockquote>
-<p><code>webpack</code>会将有依赖关系的文件都视为一个模块，比如<code>scss</code>,<code>sass</code>,<code>less</code>,<code>css</code>结尾的文件，这样会产生一个模块群，<code>webpack</code>处理过后会产生可以被浏览器识别的一些文件，比如<code>Js</code>,<code>css</code>,<code>html</code>等。</p>
-<p><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是<code>webpack</code>的<strong>代码分割</strong>特性～</p>
-<p><code>webpack</code>的<strong>模块热更新</strong>特性：当项目文件发生变化时，不需要开发人员手动刷新浏览器，<code>webpack</code>会自动刷新页面，极大地提高了开发效率，是不是很神奇！</p>
-</blockquote>
-<p><strong>注意：本文的webpack环境是<code>3.5.5</code>由于webpack的更新很快，每次更新都会更新新的语法，所以学习webpack的本质就可以</strong>，具体语法可以看webpack官网：<strong><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></strong></p>
-<p>那么让我们快速以一个webpack demo的形式开始我们的webpack的学习吧～</p>
-<h2 id="webpack处理资源文件：webpack版本：3-5-5"><a href="#webpack处理资源文件：webpack版本：3-5-5" class="headerlink" title="webpack处理资源文件：webpack版本：3.5.5"></a>webpack处理资源文件：webpack版本：3.5.5</h2><p><strong>因为每个版本的文档都会变化所以坑很多，请注意自己的版本</strong></p>
-<h2 id="如何在terminal中安装webpack"><a href="#如何在terminal中安装webpack" class="headerlink" title="如何在terminal中安装webpack"></a>如何在terminal中安装webpack</h2><ul>
-<li>新建project目录</li>
-<li>初始化npm:<pre><code>npm init
-</code></pre></li>
-<li>安装webpack<pre><code>npm install webpack --save-dev
-</code></pre></li>
-<li>注意:dev参数是安装到本地项目文件夹下，并将webpack写入到package.json配置文件中的devdependecies参数中。</li>
-</ul>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fkp0uuy0zxj30di04vwek.jpg" alt=""></p>
-<ul>
-<li>直接对js文件执行打包：<pre><code>webpack [source.file] [target.file]
-</code></pre></li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fkp16i9tk2j30l905u74n.jpg" alt=""></p>
-<p><strong>打包执行结果在命令行中的参数：</strong></p>
-<ul>
-<li><code>hash</code>:这次打包结果文件的hash值。</li>
-<li><code>version</code>:webpack的版本。</li>
-<li><code>time</code>：这次打包的所耗时间。</li>
-<li><code>asset</code>：打包的结果文件。</li>
-<li><code>size</code>：打包文件的大小。</li>
-<li><code>chunks</code>：打包的入口文件的分块。</li>
-<li><code>chunk names</code>：分块的名称。</li>
-</ul>
-<p>看一下打包结果文件hello.bundle.js的结构：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkp19bxi7uj30s40bb3yt.jpg" alt=""></p>
-<pre><code>/* 2 */
+</script><p class="article-headline-p"> 入门Webpack，看这篇就够了</p></div><div class="mdl-color-text--grey-700 mdl-card__supporting-text meta"><div id="author-avatar"> <img src="/img/rip.jpeg" width="44px" height="44px" alt="Author Avatar"></div><div> <strong>Edward Guan</strong> <span>9月 12, 2017</span></div><div class="section-spacer"></div> <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">devices other</i> <span class="visuallyhidden">devices other</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button"><li class="mdl-menu__item">在其它设备中阅读本文章</li> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC1klEQVR42u3aQXIbMQwEQP//08k1h0ieAaSyTPaeVKr1LhsHQ8Tw68+V1xc2NjY2NjY2Njb2R7K/4uvf+//z0ODOR/ck32zWjI2NjX0D+5t//Q9enHzOyzR7e/FX2NjY2Bew86bVUmet8fnT6jVjY2NjY8fg589ptyjY2NjY2O9gb0qTNMLXrgcbGxv7HnYyoJltPGZhQF6+t8/SsLGxsT+ePQt6f/bzj+Xb2NjY2B/Gro8wBi/YBAP5KKpeOTY2Nvah7OdHajZLz4/pFE2ovBMbGxv7HvbsSE17vCYJcWdtMml12NjY2KeyN6OlWSNZjfgXWxRsbGzsU9lt7Dob8RSLK1tm8T02Njb20ezZliBpbLPINh9v5ZscbGxs7FPZ+UioHfrPntNuOYbxADY2NvZx7FnQmzSP5+DZMcpZnICNjY19Kvv5UmaR8CwA2AQJw3wbGxsb+yB2Ph7Ki5VsIZInzJofNjY29j3svJ3kjM0AqI0Khg0MGxsb+yB2G9Mmm4Q26M1Js9aFjY2NfQM7D2vz4VF+0CffzCTg1Q4MGxsb+xey84g3+bm/Kda+9EUDw8bGxj6OXQzZR4d18oK2zbUIqrGxsbEPZbeHKTch7j4kyLcl2NjY2Pew24FOPk7KG+QsJG5HS9jY2NinsmfgJKYtNgnlQc+8mWFjY2Pfxm5/+r82Bsij37zQ2NjY2DewZ0Hvuw/otIOnKHLGxsbGvoCd8IbNY3RPWzJsbGzsO9n5gpLStAFAXr461p3l29jY2Ni/kN1erzpMsxkhDZsuNjY29qHsdon7Q5ltOTahMjY2NvY97DwwaMdArxpOtaWMGhg2Njb2cezNSKhexIt4ReGwsbGxseP2kze8tnW1B3qwsbGxsfPtyobRtsO2+WFjY2Pfw86HSrNmMwt698EANjY29g3sWdC7KVPeLNsG9rAc2NjY2Iey77mwsbGxsbGxsbGxP+b6C8bHKlxbtZKFAAAAAElFTkSuQmCC"></ul> <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">bookmark</i> <span class="visuallyhidden">bookmark</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button"><li class="mdl-menu__item"> <a class="post_tag-link" href="/tags/前端工具/">前端工具</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端技术/">前端技术</a></li></ul> <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">share</i> <span class="visuallyhidden">share</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button"><a class="post_share-link" href="#"><li class="mdl-menu__item"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> &nbsp;浏览量</span></li></a><a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=入门Webpack，看这篇就够了&url=http://pancakeawesome.ink/入门Webpack，看这篇就够了.html&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank"><li class="mdl-menu__item"> 分享到微博</li></a><a class="post_share-link" href="https://twitter.com/intent/tweet?text=入门Webpack，看这篇就够了&url=http://pancakeawesome.ink/入门Webpack，看这篇就够了.html&via=Edward Guan" target="_blank"><li class="mdl-menu__item"> 分享到 Twitter</li></a><a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/入门Webpack，看这篇就够了.html" target="_blank"><li class="mdl-menu__item"> 分享到 Facebook</li></a><a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/入门Webpack，看这篇就够了.html" target="_blank"><li class="mdl-menu__item"> 分享到 Google+</li></a><a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/入门Webpack，看这篇就够了.html&title=入门Webpack，看这篇就够了" target="_blank"><li class="mdl-menu__item"> 分享到 LinkedIn</li></a><a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=入门Webpack，看这篇就够了&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/入门Webpack，看这篇就够了.html" target="_blank"><li class="mdl-menu__item"> 分享到 QQ</li></a></ul></div><div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>webpack</code>是现在一款非常流行的<strong>模块化管理工具🔧</strong>，<strong><code>react+webpack+es6</code></strong>是很火的项目构建组合。</p><p><img src="https://img.funteas.com/e54cfd22c67adc465dff62272b905fc7?imageView2/2/w/800" alt=""></p><blockquote><p><code>webpack</code>会将有依赖关系的文件都视为一个模块，比如<code>scss</code>,<code>sass</code>,<code>less</code>,<code>css</code>结尾的文件，这样会产生一个模块群，<code>webpack</code>处理过后会产生可以被浏览器识别的一些文件，比如<code>Js</code>,<code>css</code>,<code>html</code>等。</p><p><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>在面对大型工程项目时，非常有优势，它最大的特点是很轻，不会加载打包冗余的文件，只会打包项目中用的到的模块。这是<code>webpack</code>的<strong>代码分割</strong>特性～</p><p><code>webpack</code>的<strong>模块热更新</strong>特性：当项目文件发生变化时，不需要开发人员手动刷新浏览器，<code>webpack</code>会自动刷新页面，极大地提高了开发效率，是不是很神奇！</p></blockquote><p><strong>注意：本文的webpack环境是<code>3.5.5</code>由于webpack的更新很快，每次更新都会更新新的语法，所以学习webpack的本质就可以</strong>，具体语法可以看webpack官网：<strong><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></strong></p><p>那么让我们快速以一个webpack demo的形式开始我们的webpack的学习吧～</p><h2 id="webpack处理资源文件：webpack版本：3-5-5"><a href="#webpack处理资源文件：webpack版本：3-5-5" class="headerlink" title="webpack处理资源文件：webpack版本：3.5.5"></a>webpack处理资源文件：webpack版本：3.5.5</h2><p><strong>因为每个版本的文档都会变化所以坑很多，请注意自己的版本</strong></p><h2 id="如何在terminal中安装webpack"><a href="#如何在terminal中安装webpack" class="headerlink" title="如何在terminal中安装webpack"></a>如何在terminal中安装webpack</h2><ul><li>新建project目录</li><li>初始化npm:<pre><code>npm init
+</code></pre></li><li>安装webpack<pre><code>npm install webpack --save-dev
+</code></pre></li><li>注意:dev参数是安装到本地项目文件夹下，并将webpack写入到package.json配置文件中的devdependecies参数中。</li></ul><p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fkp0uuy0zxj30di04vwek.jpg" alt=""></p><ul><li>直接对js文件执行打包：<pre><code>webpack [source.file] [target.file]
+</code></pre></li></ul><p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fkp16i9tk2j30l905u74n.jpg" alt=""></p><p><strong>打包执行结果在命令行中的参数：</strong></p><ul><li><code>hash</code>:这次打包结果文件的hash值。</li><li><code>version</code>:webpack的版本。</li><li><code>time</code>：这次打包的所耗时间。</li><li><code>asset</code>：打包的结果文件。</li><li><code>size</code>：打包文件的大小。</li><li><code>chunks</code>：打包的入口文件的分块。</li><li><code>chunk names</code>：分块的名称。</li></ul><p>看一下打包结果文件hello.bundle.js的结构：</p><p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkp19bxi7uj30s40bb3yt.jpg" alt=""></p><pre><code>/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
-</code></pre><p>这段代码其实是webpack利用内置的<code>__webpack_require__</code>函数来代替源代码中的require方法来引用相关的文件并插入到bundle文件中：</p>
-<p>hello.js入口文件：</p>
-<pre><code>require(&#39;./world.js&#39;);
+</code></pre><p>这段代码其实是webpack利用内置的<code>__webpack_require__</code>函数来代替源代码中的require方法来引用相关的文件并插入到bundle文件中：</p><p>hello.js入口文件：</p><pre><code>require(&#39;./world.js&#39;);
 require(&#39;./style.css&#39;);
 
 function function_name(argument) {
@@ -593,56 +45,18 @@ function function_name(argument) {
 }
 
 function_name(&#39;hello!&#39;);
-</code></pre><h2 id="建立项目的webpack配置文件"><a href="#建立项目的webpack配置文件" class="headerlink" title="建立项目的webpack配置文件"></a>建立项目的webpack配置文件</h2><p>新建项目初始目录：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkp1lrxcrkj304d084glk.jpg" alt=""></p>
-<ul>
-<li>src：项目源代码目录。<ul>
-<li>app.js:打包的入口文件。</li>
-<li>components：项目组件目录。</li>
-<li>assets:静态资源（图片）目录。</li>
-<li>css：css资源目录。</li>
-</ul>
-</li>
-<li>dist：打包后的静态资源目录。</li>
-<li><strong>webpack.config.js:webpack的配置文件。</strong><br>以commonjs的模块化方式建立配置文件的框架,添加入口出口文件：</li>
-</ul>
-<pre><code>module.exports = {
+</code></pre><h2 id="建立项目的webpack配置文件"><a href="#建立项目的webpack配置文件" class="headerlink" title="建立项目的webpack配置文件"></a>建立项目的webpack配置文件</h2><p>新建项目初始目录：</p><p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkp1lrxcrkj304d084glk.jpg" alt=""></p><ul><li>src：项目源代码目录。<ul><li>app.js:打包的入口文件。</li><li>components：项目组件目录。</li><li>assets:静态资源（图片）目录。</li><li>css：css资源目录。</li></ul></li><li>dist：打包后的静态资源目录。</li><li><strong>webpack.config.js:webpack的配置文件。</strong><br>以commonjs的模块化方式建立配置文件的框架,添加入口出口文件：</li></ul><pre><code>module.exports = {
   entry: __dirname + &#39;/src/app.js&#39;;
   output: {
       path: __dirname + &#39;/dist&#39;,
       filename: &#39;js/[name].bundle.js&#39;
   }
 }
-</code></pre><h3 id="webpack命令方式"><a href="#webpack命令方式" class="headerlink" title="webpack命令方式"></a>webpack命令方式</h3><p><code>npm run webpack</code>命令行运行参数：<br><code>npm run webpack --config webpack.config.js --progress  --colors --display-reasons --watch</code><br><em>这些参数具体的作用后文有写</em></p>
-<h3 id="npm脚本执行方式"><a href="#npm脚本执行方式" class="headerlink" title="npm脚本执行方式"></a>npm脚本执行方式</h3><p>在npm的配置文件package.json中的scripts参数配置webpack：</p>
-<pre><code>&quot;scripts&quot;: {
+</code></pre><h3 id="webpack命令方式"><a href="#webpack命令方式" class="headerlink" title="webpack命令方式"></a>webpack命令方式</h3><p><code>npm run webpack</code>命令行运行参数：<br><code>npm run webpack --config webpack.config.js --progress --colors --display-reasons --watch</code><br><em>这些参数具体的作用后文有写</em></p><h3 id="npm脚本执行方式"><a href="#npm脚本执行方式" class="headerlink" title="npm脚本执行方式"></a>npm脚本执行方式</h3><p>在npm的配置文件package.json中的scripts参数配置webpack：</p><pre><code>&quot;scripts&quot;: {
     &quot;webpack&quot;: &quot;webpack --config webpack.config.js --progress --colors&quot;
   }
-</code></pre><p><em>常用的webpack执行参数：</em></p>
-<pre><code>webpack --config webpack.config.js --progress  --colors --display-reasons --watch
-</code></pre><ul>
-<li><code>--config &lt;指定的webpack配置文件名称&gt;</code>: 指定webpack配置文件来执行webpack命令。</li>
-<li><code>progress</code>:打包的过程。</li>
-<li><code>--colors</code>:结果输出在命令行是彩色的。</li>
-<li><code>--display-reasons</code>:打包的原因。</li>
-<li><code>--watch</code>:自动监听项目代码文件的变化，自动执行webpack命令。</li>
-</ul>
-<h2 id="webpack的打包入口和出口文件配置"><a href="#webpack的打包入口和出口文件配置" class="headerlink" title="webpack的打包入口和出口文件配置"></a>webpack的打包入口和出口文件配置</h2><p>打包文件的路径设置在<em>webpack.config.js</em>文件中的output参数。</p>
-<ul>
-<li>entry:打包入口文件；<ul>
-<li>string:单个入口文件路径。</li>
-<li>array:多个入口文件路径。</li>
-<li>object:多页面应用中的多个入口文件<ul>
-<li>key: 不同页面的代号。</li>
-<li>value: 和上面的value规定一样，可以是数组也可以是string。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>output:打包出口文件。<ul>
-<li><code>path</code>:生成出口文件的存储路径。</li>
-<li><code>filename</code>:打包文件的名称（使用相对路径，不要使用绝对路径）</li>
-<li><code>publicPath</code>:上线之后的项目路径。一旦配置了这个路径，所有路径都以这种路径为主。<br>具体配置如下：<pre><code>entry: __dirname + &#39;src/app.js&#39;,
+</code></pre><p><em>常用的webpack执行参数：</em></p><pre><code>webpack --config webpack.config.js --progress  --colors --display-reasons --watch
+</code></pre><ul><li><code>--config &lt;指定的webpack配置文件名称&gt;</code>: 指定webpack配置文件来执行webpack命令。</li><li><code>progress</code>:打包的过程。</li><li><code>--colors</code>:结果输出在命令行是彩色的。</li><li><code>--display-reasons</code>:打包的原因。</li><li><code>--watch</code>:自动监听项目代码文件的变化，自动执行webpack命令。</li></ul><h2 id="webpack的打包入口和出口文件配置"><a href="#webpack的打包入口和出口文件配置" class="headerlink" title="webpack的打包入口和出口文件配置"></a>webpack的打包入口和出口文件配置</h2><p>打包文件的路径设置在<em>webpack.config.js</em>文件中的output参数。</p><ul><li>entry:打包入口文件；<ul><li>string:单个入口文件路径。</li><li>array:多个入口文件路径。</li><li>object:多页面应用中的多个入口文件<ul><li>key: 不同页面的代号。</li><li>value: 和上面的value规定一样，可以是数组也可以是string。</li></ul></li></ul></li><li>output:打包出口文件。<ul><li><code>path</code>:生成出口文件的存储路径。</li><li><code>filename</code>:打包文件的名称（使用相对路径，不要使用绝对路径）</li><li><code>publicPath</code>:上线之后的项目路径。一旦配置了这个路径，所有路径都以这种路径为主。<br>具体配置如下：<pre><code>entry: __dirname + &#39;src/app.js&#39;,
 output: {
   /**
    * __dirname: absolute file path
@@ -657,33 +71,10 @@ output: {
   filename: &#39;js/[name].bundle.js&#39;,
   publicPath: &#39;http://cdn.com/&#39;
 }
-</code></pre><strong><code>path</code>之前要加<code>__dirname</code>，否则会报错，这是个坑，<code>__dirname</code>在nodejs语法中代表文件所在目录的绝对路径。</strong></li>
-</ul>
-</li>
-</ul>
-<h2 id="Webpack如何在项目自动生成html文件"><a href="#Webpack如何在项目自动生成html文件" class="headerlink" title="Webpack如何在项目自动生成html文件"></a>Webpack如何在项目自动生成html文件</h2><p>由于我们index页面中1引用的js文件有可能会带hash（每次打包都会变化）。这样我们每次都得手动改变INDEX页面中引用js的代码，非常麻烦。</p>
-<p>那么如何在html中使用动态生成的打包后的文件呢？</p>
-<ul>
-<li>通过<code>html-webpack-plugin</code>这个插件自定义<code>html</code>，并且通过模版和其参数，使用外联的方式传入<code>scirpt</code>动态文件；<ul>
-<li>我们可以使用WEbpakc的另一个核心的功能：<strong><code>plugins</code></strong><br>在webpack配置文件中配置<code>plugins</code>参数：</li>
-</ul>
-</li>
-</ul>
-<pre><code>plugins: [
+</code></pre><strong><code>path</code>之前要加<code>__dirname</code>，否则会报错，这是个坑，<code>__dirname</code>在nodejs语法中代表文件所在目录的绝对路径。</strong></li></ul></li></ul><h2 id="Webpack如何在项目自动生成html文件"><a href="#Webpack如何在项目自动生成html文件" class="headerlink" title="Webpack如何在项目自动生成html文件"></a>Webpack如何在项目自动生成html文件</h2><p>由于我们index页面中1引用的js文件有可能会带hash（每次打包都会变化）。这样我们每次都得手动改变INDEX页面中引用js的代码，非常麻烦。</p><p>那么如何在html中使用动态生成的打包后的文件呢？</p><ul><li>通过<code>html-webpack-plugin</code>这个插件自定义<code>html</code>，并且通过模版和其参数，使用外联的方式传入<code>scirpt</code>动态文件；<ul><li>我们可以使用WEbpakc的另一个核心的功能：<strong><code>plugins</code></strong><br>在webpack配置文件中配置<code>plugins</code>参数：</li></ul></li></ul><pre><code>plugins: [
         new htmlWebpackPlugin()
     ]
-</code></pre><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkp2oj1rzvj30oi03474i.jpg" alt="打包效果：生成了相应的INDEX.html"><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkp2pvnon8j30v801tq2y.jpg" alt="dist打包目录下index页面中引入了相应的出口文件:bundle.js"></p>
-<ul>
-<li><p>通过向上述插件的模版中传入参数：</p>
-<ul>
-<li>一个对象：<ul>
-<li><code>filename</code>:生成html文件的名称</li>
-<li><code>template</code>:模版文件的相对路径（<strong>上下文环境是webpack.config.js文件的路径</strong>）</li>
-<li><code>injecet</code>:script文件嵌入到html文件的哪个部分。</li>
-<li><code>chunks</code>:</li>
-<li><code>minify</code>:压缩选项。<ul>
-<li><code>removeComments</code>:删除注释</li>
-<li><code>collapseWhitespace</code>：删除空格<pre><code>plugins: [
+</code></pre><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkp2oj1rzvj30oi03474i.jpg" alt="打包效果：生成了相应的INDEX.html"><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkp2pvnon8j30v801tq2y.jpg" alt="dist打包目录下index页面中引入了相应的出口文件:bundle.js"></p><ul><li><p>通过向上述插件的模版中传入参数：</p><ul><li>一个对象：<ul><li><code>filename</code>:生成html文件的名称</li><li><code>template</code>:模版文件的相对路径（<strong>上下文环境是webpack.config.js文件的路径</strong>）</li><li><code>injecet</code>:script文件嵌入到html文件的哪个部分。</li><li><code>chunks</code>:</li><li><code>minify</code>:压缩选项。<ul><li><code>removeComments</code>:删除注释</li><li><code>collapseWhitespace</code>：删除空格<pre><code>plugins: [
 new htmlWebpackPlugin({
 filename: &#39;index.html&#39;,
 template: &#39;index.html&#39;,
@@ -695,15 +86,7 @@ minify: {
 }
 })
 ]
-</code></pre></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>同时htmlwebpackplugin也支持从WEbpack.config.js文件中向html页面中传入参数，支持ejs的语法形式，比如我们在htmlwebpackplugin传入相应参数：</p>
-<pre><code>plugins: [
+</code></pre></li></ul></li></ul></li></ul></li><li><p>同时htmlwebpackplugin也支持从WEbpack.config.js文件中向html页面中传入参数，支持ejs的语法形式，比如我们在htmlwebpackplugin传入相应参数：</p><pre><code>plugins: [
       new htmlWebpackPlugin({
           filename: &#39;index.html&#39;,
           template: &#39;index.html&#39;,
@@ -713,27 +96,16 @@ minify: {
           date: new Date(),
       })
   ]
-</code></pre><p>在模版文件中加入下列测试代码来引用传入的title和date变量：</p>
-<pre><code>&lt;title&gt;&lt;%= htmlWebpackPlugin.options.title%&gt;&lt;/title&gt;
-</code></pre></li>
-</ul>
-<ul>
-<li>如何通过上述插件<code>inline</code>的形式引用出口<code>js</code>文件：<ul>
-<li>我们可以通过webpack暴露给我们的引用变量去获取相应的js文件。<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+</code></pre><p>在模版文件中加入下列测试代码来引用传入的title和date变量：</p><pre><code>&lt;title&gt;&lt;%= htmlWebpackPlugin.options.title%&gt;&lt;/title&gt;
+</code></pre></li></ul><ul><li>如何通过上述插件<code>inline</code>的形式引用出口<code>js</code>文件：<ul><li>我们可以通过webpack暴露给我们的引用变量去获取相应的js文件。<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
   &lt;%= compilation.assets[htmlWebpackPlugin.files.chunks.main.entry.substr(htmlWebpackPlugin.files.publicPath.length)].source() %&gt;
 &lt;/script&gt;
-</code></pre><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkp41iss8ej30v80ifwg3.jpg" alt=""><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkp48exje5j30ni0cc74p.jpg" alt="这样也会将相应的出口打包js文件引入进html文件中"></li>
-</ul>
-</li>
-<li>我们也可以通过外链的形式在模版文件中自定义引入特定的js文件。<pre><code>&lt;% for(var k in htmlWebpackPlugin.files.chunks) { %&gt;
+</code></pre><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkp41iss8ej30v80ifwg3.jpg" alt=""><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkp48exje5j30ni0cc74p.jpg" alt="这样也会将相应的出口打包js文件引入进html文件中"></li></ul></li><li>我们也可以通过外链的形式在模版文件中自定义引入特定的js文件。<pre><code>&lt;% for(var k in htmlWebpackPlugin.files.chunks) { %&gt;
       &lt;% if(k != &#39;main&#39;) { %&gt;
           &lt;script type=&quot;text/javascript&quot; src=&#39;&lt;%= htmlWebpackPlugin.files.chunks[k].entry%&gt;&#39;&gt;&lt;/script&gt;
       &lt;% }%&gt;
   &lt;% }%&gt;
-</code></pre><strong>以上代码可以实现main的js文件以内联的形式引入到html文件中，而其他js文件以外链的形式引入到html文件。</strong></li>
-</ul>
-<h3 id="多页面应用的配置"><a href="#多页面应用的配置" class="headerlink" title="多页面应用的配置"></a>多页面应用的配置</h3><p>多页面应用环境下，需要配置多个入口文件，配置多个htmlwebpackplugin插件从而生成多个html文件。<br>配置如下：</p>
-<pre><code>module.exports = {
+</code></pre><strong>以上代码可以实现main的js文件以内联的形式引入到html文件中，而其他js文件以外链的形式引入到html文件。</strong></li></ul><h3 id="多页面应用的配置"><a href="#多页面应用的配置" class="headerlink" title="多页面应用的配置"></a>多页面应用的配置</h3><p>多页面应用环境下，需要配置多个入口文件，配置多个htmlwebpackplugin插件从而生成多个html文件。<br>配置如下：</p><pre><code>module.exports = {
     entry: {
         main: &#39;./src/script/main.js&#39;,
         a: &#39;./src/script/a.js&#39;,
@@ -771,61 +143,18 @@ minify: {
         })
     ]
 }
-</code></pre><p><em><code>chunks</code>:定义引入的chunk文件。</em><br><em><code>excludeChunks</code>:定义不引入的chunk文件。</em></p>
-<h2 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h2><p>loader和plugins无疑是<code>webpack</code>重要的两个概念。</p>
-<h3 id="什么是Loader？"><a href="#什么是Loader？" class="headerlink" title="什么是Loader？"></a>什么是Loader？</h3><p>loader可以用来处理资源文件，接受资源文件作为参数，loader处理之后返回一个新的文件。</p>
-<h3 id="Loader的特性"><a href="#Loader的特性" class="headerlink" title="Loader的特性"></a>Loader的特性</h3><ul>
-<li>可串联</li>
-<li>同步和异步的</li>
-<li>可以接受参数</li>
-<li>可以根据文件的正则表达式来处理特定文件</li>
-<li>可以根据<code>npm</code>安装</li>
-<li>获取webpack config的配置</li>
-<li>loader可以生成额外的文件</li>
-</ul>
-<h3 id="使用loader的方式"><a href="#使用loader的方式" class="headerlink" title="使用loader的方式"></a>使用loader的方式</h3><ul>
-<li>在require声明的路径前面配置。</li>
-<li><strong>配置文件中配置（webpack.config.js）</strong></li>
-<li>cli：在命令行中通过参数指定loader。</li>
-</ul>
-<h3 id="使用babel-loader转换es6语法"><a href="#使用babel-loader转换es6语法" class="headerlink" title="使用babel-loader转换es6语法"></a>使用babel-loader转换es6语法</h3><ul>
-<li>安装babel-loader<br><em>命令行安装<code>babel-loader</code></em>：<pre><code>npm install babel-loader babel-core webpack --save-dev
-</code></pre></li>
-<li>配置babel-loader：<ul>
-<li>配置test属性<br>test属性是一个正则表达式，loader会处理相应后缀的文件。</li>
-<li>配置options属性<br>给options添加一个presets对象，值是一个数组，数组里面的值是指定loader如何去处理js文件，如果参数是<code>env</code>，代表用最新的es6语法去处理js文件。<ul>
-<li>需要安装<code>presets</code>插件:<pre><code>npm install babel-preset-env --save-dev
-</code></pre></li>
-<li>配置presets属性<pre><code>      options: {
+</code></pre><p><em><code>chunks</code>:定义引入的chunk文件。</em><br><em><code>excludeChunks</code>:定义不引入的chunk文件。</em></p><h2 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h2><p>loader和plugins无疑是<code>webpack</code>重要的两个概念。</p><h3 id="什么是Loader？"><a href="#什么是Loader？" class="headerlink" title="什么是Loader？"></a>什么是Loader？</h3><p>loader可以用来处理资源文件，接受资源文件作为参数，loader处理之后返回一个新的文件。</p><h3 id="Loader的特性"><a href="#Loader的特性" class="headerlink" title="Loader的特性"></a>Loader的特性</h3><ul><li>可串联</li><li>同步和异步的</li><li>可以接受参数</li><li>可以根据文件的正则表达式来处理特定文件</li><li>可以根据<code>npm</code>安装</li><li>获取webpack config的配置</li><li>loader可以生成额外的文件</li></ul><h3 id="使用loader的方式"><a href="#使用loader的方式" class="headerlink" title="使用loader的方式"></a>使用loader的方式</h3><ul><li>在require声明的路径前面配置。</li><li><strong>配置文件中配置（webpack.config.js）</strong></li><li>cli：在命令行中通过参数指定loader。</li></ul><h3 id="使用babel-loader转换es6语法"><a href="#使用babel-loader转换es6语法" class="headerlink" title="使用babel-loader转换es6语法"></a>使用babel-loader转换es6语法</h3><ul><li>安装babel-loader<br><em>命令行安装<code>babel-loader</code></em>：<pre><code>npm install babel-loader babel-core webpack --save-dev
+</code></pre></li><li>配置babel-loader：<ul><li>配置test属性<br>test属性是一个正则表达式，loader会处理相应后缀的文件。</li><li>配置options属性<br>给options添加一个presets对象，值是一个数组，数组里面的值是指定loader如何去处理js文件，如果参数是<code>env</code>，代表用最新的es6语法去处理js文件。<ul><li>需要安装<code>presets</code>插件:<pre><code>npm install babel-preset-env --save-dev
+</code></pre></li><li>配置presets属性<pre><code>      options: {
           // set the version of es6
           presets: [&#39;env&#39;]
       }
-</code></pre></li>
-</ul>
-</li>
-<li>配置<code>exclude</code>和<code>include</code>属性<br>配置exclude 和 include属性可以指定babel-loader处理的文件范围。<br><strong>注意⚠️：include和exclude属性必须是绝对路径，且使用绝对路径会加快loader找到相应文件的速度。</strong><br><strong>我们可以使用nodejs自带的api—path将相对路径解析相应的绝对路径：</strong><pre><code>var path = require(&#39;path&#39;);
+</code></pre></li></ul></li><li>配置<code>exclude</code>和<code>include</code>属性<br>配置exclude 和 include属性可以指定babel-loader处理的文件范围。<br><strong>注意⚠️：include和exclude属性必须是绝对路径，且使用绝对路径会加快loader找到相应文件的速度。</strong><br><strong>我们可以使用nodejs自带的api—path将相对路径解析相应的绝对路径：</strong><pre><code>var path = require(&#39;path&#39;);
 path.resolve(__dirname, &#39;./node_modules&#39;);
-</code></pre><em><code>__dirname</code>是<code>nodejs</code>中的绝对路径变量。</em></li>
-</ul>
-</li>
-</ul>
-<h3 id="使用loader处理css文件"><a href="#使用loader处理css文件" class="headerlink" title="使用loader处理css文件"></a>使用loader处理css文件</h3><ul>
-<li>处理css文件<ul>
-<li>安装<code>css-loader</code>,<code>style-loader</code>,<code>postcss-loader</code><pre><code>npm install --save-dev css-loader style-loader postcss-loader
-</code></pre></li>
-<li>入口文件app.js中引入css文件<pre><code>import &#39;./css/common.css&#39;;
-</code></pre></li>
-<li>配置对css文件的处理设置：<ul>
-<li>use属性：loader数组。<br>使用多个loader对css文件处理。<br><strong>注意：⚠️loader处理方式是从右到左，数组的话就是从下往上。</strong></li>
-</ul>
-</li>
-<li><code>postcss-loader</code>处理css文件<br><code>postcss-loader</code>是处理css文件的后处理器，可以实现加浏览器前缀等等功能。<code>postcss-loader</code>应该最先处理css文件。<br><strong>plugins属性是一个函数，这个函数会返回一个引入的插件的数组</strong><ul>
-<li>配置<code>postcss-loader</code><ul>
-<li>安装<code>autoprefixer</code>插件。<br><code>autoprefixer</code>插件可以自动根据浏览器版本种类添加前缀。<pre><code>npm install autoprefixer --save-dev
-</code></pre></li>
-<li>配置相应的plugins参数:<br><code>root</code>参数：表明插件处理文件的路径的根路径（从哪开始解析）</li>
-<li>安装<code>postcss-import</code>    插件<br>处理在css文件中通过<code>@import</code>进来的资源文件。        </li>
-<li>配置相应的plugins参数：<br><code>broswers</code>参数是处理浏览器版本的列表。<code>&#39;last 5 versions&#39;</code>代表支持最新的五个版本的浏览器。<pre><code>options: {
+</code></pre><em><code>__dirname</code>是<code>nodejs</code>中的绝对路径变量。</em></li></ul></li></ul><h3 id="使用loader处理css文件"><a href="#使用loader处理css文件" class="headerlink" title="使用loader处理css文件"></a>使用loader处理css文件</h3><ul><li>处理css文件<ul><li>安装<code>css-loader</code>,<code>style-loader</code>,<code>postcss-loader</code><pre><code>npm install --save-dev css-loader style-loader postcss-loader
+</code></pre></li><li>入口文件app.js中引入css文件<pre><code>import &#39;./css/common.css&#39;;
+</code></pre></li><li>配置对css文件的处理设置：<ul><li>use属性：loader数组。<br>使用多个loader对css文件处理。<br><strong>注意：⚠️loader处理方式是从右到左，数组的话就是从下往上。</strong></li></ul></li><li><code>postcss-loader</code>处理css文件<br><code>postcss-loader</code>是处理css文件的后处理器，可以实现加浏览器前缀等等功能。<code>postcss-loader</code>应该最先处理css文件。<br><strong>plugins属性是一个函数，这个函数会返回一个引入的插件的数组</strong><ul><li>配置<code>postcss-loader</code><ul><li>安装<code>autoprefixer</code>插件。<br><code>autoprefixer</code>插件可以自动根据浏览器版本种类添加前缀。<pre><code>npm install autoprefixer --save-dev
+</code></pre></li><li>配置相应的plugins参数:<br><code>root</code>参数：表明插件处理文件的路径的根路径（从哪开始解析）</li><li>安装<code>postcss-import</code> 插件<br>处理在css文件中通过<code>@import</code>进来的资源文件。</li><li>配置相应的plugins参数：<br><code>broswers</code>参数是处理浏览器版本的列表。<code>&#39;last 5 versions&#39;</code>代表支持最新的五个版本的浏览器。<pre><code>options: {
 plugins: function () {
     return [
         require(&#39;postcss-import&#39;)({
@@ -838,20 +167,8 @@ plugins: function () {
       ]
 }
 }
-</code></pre></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><em>注意postcss-loader预处理器的配置</em><br><strong><code>css-loader</code>保证webpack可以打包css模块</strong><br><strong><code>style-loader</code>保证可以在<code>js</code>文件中引入<code>css</code>代码，以<code>&lt;style&gt;</code>标签的形式加入到<code>html</code>中并显示其效果</strong></p>
-<h3 id="使用less-loader，sass-loader处理css易处理语言"><a href="#使用less-loader，sass-loader处理css易处理语言" class="headerlink" title="使用less-loader，sass-loader处理css易处理语言"></a>使用less-loader，sass-loader处理css易处理语言</h3><p><strong>步骤</strong>：先用<code>less-loader</code>去处理<code>less</code>文件转换成<code>css</code>文件，再将<code>css</code>文件用<code>postcss-loader</code>预处理<code>css</code>文件，加上前缀等之类的功能，再用<code>css-loader</code>处理<code>css</code>文件中的<code>url</code>引用表达式，然后解析相关引用资源，最后使用<code>style-loader</code>处理<code>css</code>文件，将<code>css</code>代码插入到页面上。</p>
-<ul>
-<li>安装<code>less-loader</code>和<code>sass-loader</code><pre><code>npm install --save-dev less-loader sass-loader
-</code></pre></li>
-<li>配置<code>loader</code><pre><code>// less loader
+</code></pre></li></ul></li></ul></li></ul></li></ul><p><em>注意postcss-loader预处理器的配置</em><br><strong><code>css-loader</code>保证webpack可以打包css模块</strong><br><strong><code>style-loader</code>保证可以在<code>js</code>文件中引入<code>css</code>代码，以<code>&lt;style&gt;</code>标签的形式加入到<code>html</code>中并显示其效果</strong></p><h3 id="使用less-loader，sass-loader处理css易处理语言"><a href="#使用less-loader，sass-loader处理css易处理语言" class="headerlink" title="使用less-loader，sass-loader处理css易处理语言"></a>使用less-loader，sass-loader处理css易处理语言</h3><p><strong>步骤</strong>：先用<code>less-loader</code>去处理<code>less</code>文件转换成<code>css</code>文件，再将<code>css</code>文件用<code>postcss-loader</code>预处理<code>css</code>文件，加上前缀等之类的功能，再用<code>css-loader</code>处理<code>css</code>文件中的<code>url</code>引用表达式，然后解析相关引用资源，最后使用<code>style-loader</code>处理<code>css</code>文件，将<code>css</code>代码插入到页面上。</p><ul><li>安装<code>less-loader</code>和<code>sass-loader</code><pre><code>npm install --save-dev less-loader sass-loader
+</code></pre></li><li>配置<code>loader</code><pre><code>// less loader
     {
       test: /\.less$/,
       use: [
@@ -913,17 +230,11 @@ plugins: function () {
              }
          ]
     }
-</code></pre></li>
-</ul>
-<h3 id="loader处理模版文件"><a href="#loader处理模版文件" class="headerlink" title="loader处理模版文件"></a>loader处理模版文件</h3><p>模版文件通常是生成html文件的模版。webpack有很多loader处理这些模版文件，包括ejs，jade或者html等等编写的模版。</p>
-<h4 id="html-loader"><a href="#html-loader" class="headerlink" title="html-loader"></a><code>html-loader</code></h4><p><code>html-loader</code>会将html模版文件当成<strong>字符串</strong>来处理。<br>安装<code>html-loader</code></p>
-<pre><code>npm install --save-dev html-loader
-</code></pre><ul>
-<li>html格式的模版文件<pre><code>&lt;div class=&quot;layer&quot;&gt;
+</code></pre></li></ul><h3 id="loader处理模版文件"><a href="#loader处理模版文件" class="headerlink" title="loader处理模版文件"></a>loader处理模版文件</h3><p>模版文件通常是生成html文件的模版。webpack有很多loader处理这些模版文件，包括ejs，jade或者html等等编写的模版。</p><h4 id="html-loader"><a href="#html-loader" class="headerlink" title="html-loader"></a><code>html-loader</code></h4><p><code>html-loader</code>会将html模版文件当成<strong>字符串</strong>来处理。<br>安装<code>html-loader</code></p><pre><code>npm install --save-dev html-loader
+</code></pre><ul><li>html格式的模版文件<pre><code>&lt;div class=&quot;layer&quot;&gt;
   &lt;div&gt;this is html template file&lt;/div&gt;
 &lt;/div&gt;
-</code></pre></li>
-<li>在js文件中引入tpl模版文件<pre><code>import tpl from &#39;./layer.tpl&#39;;
+</code></pre></li><li>在js文件中引入tpl模版文件<pre><code>import tpl from &#39;./layer.tpl&#39;;
 function layer() {
   return {
       name: &#39;layer&#39;,
@@ -931,8 +242,7 @@ function layer() {
   }
 }
 export default layer;
-</code></pre><em>layer.js</em></li>
-<li>在入口文件中引用<pre><code>import Layer from &#39;./components/layer/layer.js&#39;;
+</code></pre><em>layer.js</em></li><li>在入口文件中引用<pre><code>import Layer from &#39;./components/layer/layer.js&#39;;
 const App = function () {
   let dom = document.getElementById(&#39;app&#39;);
   let layer = Layer();
@@ -940,16 +250,13 @@ const App = function () {
   dom.innerHTML = layer.tpl;
 }
 new App();
-</code></pre><em>app.js</em><h4 id="ejs-loader"><a href="#ejs-loader" class="headerlink" title="ejs-loader"></a><code>ejs-loader</code></h4><code>ejs-loader</code>可以处理<code>ejs</code>,<code>tpl</code>格式的模版文件。</li>
-<li>用ejs语法编写tpl文件<pre><code>&lt;div class=&quot;layer&quot;&gt;
+</code></pre><em>app.js</em><h4 id="ejs-loader"><a href="#ejs-loader" class="headerlink" title="ejs-loader"></a><code>ejs-loader</code></h4><code>ejs-loader</code>可以处理<code>ejs</code>,<code>tpl</code>格式的模版文件。</li><li>用ejs语法编写tpl文件<pre><code>&lt;div class=&quot;layer&quot;&gt;
   &lt;div&gt;this is &lt;%= name%&gt; layer&lt;/div&gt;
   &lt;% for(let i = 0;i &lt; arr.length; i ++) { %&gt;
       &lt;%= arr[i] %&gt;
   &lt;% }%&gt;
 &lt;/div&gt;
-</code></pre></li>
-<li><p>在js文件中引入tpl模版文件。</p>
-<pre><code>import tpl from &#39;./layer.tpl&#39;;
+</code></pre></li><li><p>在js文件中引入tpl模版文件。</p><pre><code>import tpl from &#39;./layer.tpl&#39;;
 function layer() {
   return {
       name: &#39;layer&#39;,
@@ -957,10 +264,7 @@ function layer() {
   }
 }
 export default layer;
-</code></pre><p><em>layer.js</em></p>
-</li>
-<li><p>在入口文件中引用</p>
-<pre><code>import Layer from &#39;./components/layer/layer.js&#39;;
+</code></pre><p><em>layer.js</em></p></li><li><p>在入口文件中引用</p><pre><code>import Layer from &#39;./components/layer/layer.js&#39;;
 const App = function () {
   let dom = document.getElementById(&#39;app&#39;);
   let layer = Layer();
@@ -971,23 +275,8 @@ const App = function () {
   });
 }
 new App();
-</code></pre><p><em><code>app.js</code></em></p>
-</li>
-</ul>
-<h3 id="loader处理图片资源文件"><a href="#loader处理图片资源文件" class="headerlink" title="loader处理图片资源文件"></a>loader处理图片资源文件</h3><p>图片往往是影响网页加载速度的罪魁祸首，<code>webpack</code>可以在项目上线之前通过loader处理大量的资源文件，优化网页加载速度。</p>
-<h4 id="项目中通常三个地方会用到图片"><a href="#项目中通常三个地方会用到图片" class="headerlink" title="项目中通常三个地方会用到图片"></a>项目中通常三个地方会用到图片</h4><ul>
-<li>根目录的<code>index.html</code>入口文件里使用；</li>
-<li><code>less</code>,<code>sass</code>,<code>css</code>样式文件中引用图片；</li>
-<li>模版文件中引用图片；<br><strong> 注意 ：</strong>如果在模版文件中如果要使用相对路径引用文件，<strong>则必须使用<code>require</code>引用文件</strong><pre><code>    &lt;img src=&quot;${ require(&#39;../../assets/logo36x36.png&#39;) }&quot;&gt;
-</code></pre><em>模版文件中的图片引用</em></li>
-</ul>
-<h4 id="处理图片文件的loader通常有"><a href="#处理图片文件的loader通常有" class="headerlink" title="处理图片文件的loader通常有"></a>处理图片文件的loader通常有</h4><ul>
-<li><code>file-loader</code>：可以处理引用本地图片文件。</li>
-<li><code>url-loader</code>：可以按情况处理图片或者其他文件,通常处理重复性不高的http请求的小文件。当文件大小大于指定<code>limit</code>参数（byte为单位），则交给<code>file-loader</code>处理，如果小于这个<code>limit</code>则将图片和文件转位<a href="https://www.baidu.com/link?url=nBogYLNyNQjNiBpP1-dQPajqi7kfFr7JQIidMwG3Df2kmrGeX3sRBICHh3YWgg3uFUxAzTWAERCqc8Jf17ogTq&amp;wd=&amp;eqid=b931441300012bda0000000659ef4dd4" target="_blank" rel="external">BASE64</a>编码。</li>
-<li><code>image-webpack-loader</code>: 压缩http请求的图片。</li>
-</ul>
-<h4 id="使用上述三个loader处理图片文件"><a href="#使用上述三个loader处理图片文件" class="headerlink" title="使用上述三个loader处理图片文件"></a>使用上述三个loader处理图片文件</h4><p><em><code>loader</code>配置</em></p>
-<pre><code>// picture loader
+</code></pre><p><em><code>app.js</code></em></p></li></ul><h3 id="loader处理图片资源文件"><a href="#loader处理图片资源文件" class="headerlink" title="loader处理图片资源文件"></a>loader处理图片资源文件</h3><p>图片往往是影响网页加载速度的罪魁祸首，<code>webpack</code>可以在项目上线之前通过loader处理大量的资源文件，优化网页加载速度。</p><h4 id="项目中通常三个地方会用到图片"><a href="#项目中通常三个地方会用到图片" class="headerlink" title="项目中通常三个地方会用到图片"></a>项目中通常三个地方会用到图片</h4><ul><li>根目录的<code>index.html</code>入口文件里使用；</li><li><code>less</code>,<code>sass</code>,<code>css</code>样式文件中引用图片；</li><li>模版文件中引用图片；<br> <strong>注意 ：</strong>如果在模版文件中如果要使用相对路径引用文件，<strong>则必须使用<code>require</code>引用文件</strong><pre><code>    &lt;img src=&quot;${ require(&#39;../../assets/logo36x36.png&#39;) }&quot;&gt;
+</code></pre><em>模版文件中的图片引用</em></li></ul><h4 id="处理图片文件的loader通常有"><a href="#处理图片文件的loader通常有" class="headerlink" title="处理图片文件的loader通常有"></a>处理图片文件的loader通常有</h4><ul><li><code>file-loader</code>：可以处理引用本地图片文件。</li><li><code>url-loader</code>：可以按情况处理图片或者其他文件,通常处理重复性不高的http请求的小文件。当文件大小大于指定<code>limit</code>参数（byte为单位），则交给<code>file-loader</code>处理，如果小于这个<code>limit</code>则将图片和文件转位<a href="https://www.baidu.com/link?url=nBogYLNyNQjNiBpP1-dQPajqi7kfFr7JQIidMwG3Df2kmrGeX3sRBICHh3YWgg3uFUxAzTWAERCqc8Jf17ogTq&amp;wd=&amp;eqid=b931441300012bda0000000659ef4dd4" target="_blank" rel="external">BASE64</a>编码。</li><li><code>image-webpack-loader</code>: 压缩http请求的图片。</li></ul><h4 id="使用上述三个loader处理图片文件"><a href="#使用上述三个loader处理图片文件" class="headerlink" title="使用上述三个loader处理图片文件"></a>使用上述三个loader处理图片文件</h4><p><em><code>loader</code>配置</em></p><pre><code>// picture loader
             {
                 test: /\.(png|jpg|gif|svg)$/,
                 use: [
@@ -1009,13 +298,7 @@ new App();
                     }
                 ]
             },
-</code></pre><ul>
-<li><strong>重复性大的图片推荐通过http请求，这样会有缓存，优化加载速度</strong></li>
-<li><strong>小的图片重复性不大的图片可以用base64编码，使用<code>url-loader</code>去处理</strong></li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>整个webpack的demo工程我都亲自在Mac环境下测试并运行成功，上传到了github，这里是地址：<br><a href="https://github.com/PancakeAwesome/webpack-demo-test" target="_blank" rel="external">demo1传送门</a><br><a href="https://github.com/PancakeAwesome/PancakeAwesome.github.io" target="_blank" rel="external">demo2传送门</a><br>下面贴下我完整的<code>webpack.config.js</code>和<code>pacakge.json</code>的代码：<strong>由于webpack版本更新很快情注意自己的版本，最新语法去<a href="https://webpack.github.io/" target="_blank" rel="external">官网查看</a></strong></p>
-<p><code>webpack.config.js</code></p>
-<pre><code>var htmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+</code></pre><ul><li><strong>重复性大的图片推荐通过http请求，这样会有缓存，优化加载速度</strong></li><li><strong>小的图片重复性不大的图片可以用base64编码，使用<code>url-loader</code>去处理</strong></li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>整个webpack的demo工程我都亲自在Mac环境下测试并运行成功，上传到了github，这里是地址：<br><a href="https://github.com/PancakeAwesome/webpack-demo-test" target="_blank" rel="external">demo1传送门</a><br><a href="https://github.com/PancakeAwesome/PancakeAwesome.github.io" target="_blank" rel="external">demo2传送门</a><br>下面贴下我完整的<code>webpack.config.js</code>和<code>pacakge.json</code>的代码：<strong>由于webpack版本更新很快情注意自己的版本，最新语法去<a href="https://webpack.github.io/" target="_blank" rel="external">官网查看</a></strong></p><p><code>webpack.config.js</code></p><pre><code>var htmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
 var path = require(&#39;path&#39;);
 
 module.exports = {    
@@ -1191,8 +474,7 @@ module.exports = {
         })
     ]
 }
-</code></pre><p><code>pacage.json</code></p>
-<pre><code>{
+</code></pre><p><code>pacage.json</code></p><pre><code>{
   &quot;name&quot;: &quot;webpack-demo&quot;,
   &quot;version&quot;: &quot;1.0.0&quot;,
   &quot;description&quot;: &quot;&quot;,
@@ -1227,407 +509,7 @@ module.exports = {
     &quot;webpack&quot;: &quot;^3.5.5&quot;
   }
 }
-</code></pre>
-        
-                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
-                    <p><strong>
-                         
-                            This blog is under a <a href="https://pancakeawesome.ink/" target="_blank">CC BY-NC-SA 3.0 Unported License</a>
-                        </strong>
-                        <br>
-                        <strong>本文链接：</strong><a href="http://pancakeawesome.ink/入门Webpack，看这篇就够了.html">http://pancakeawesome.ink/入门Webpack，看这篇就够了.html</a>
-                    </p>
-                </blockquote>
-        
-    
-
-    
-</div>
-
-
-                
-
-                <!-- Post Comments -->
-                
-                    
-    <!-- 使用 changyan -->
-<div id="changyan-comment">
-    <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="入门Webpack，看这篇就够了.html"  ></div>
-<script type="text/javascript">
-(function(){
-var appid = 'cytdf2o7Q';
-var conf = 'da223e602e0abf03eded8d4c19e7d862';
-var width = window.innerWidth || document.documentElement.clientWidth;
-if (width < 960) {
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
-
-</div>
-<style>
-    #changyan-comment{
-        background-color: #eee;
-        padding: 2pc;
-    }
-</style>
-
-                
-            </div>
-
-            <!-- Post Prev & Next Nav -->
-            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-    <!-- Prev Nav -->
-    
-        <a href="/动态规划迷思.html" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
-
-    <!-- Section Spacer -->
-    <div class="section-spacer"></div>
-
-    <!-- Next Nav -->
-    
-</nav>
-
-        </div>
-    </div>
-
-
-
-                    
-                        <!-- Overlay For Active Sidebar -->
-<div class="sidebar-overlay"></div>
-
-<!-- Material sidebar -->
-<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
-    <div id="sidebar-main">
-        <!-- Sidebar Header -->
-        <div class="sidebar-header header-cover" style="background-image: url(/img/thumbnail/sidebar_header.jpg);">
-    <!-- Top bar -->
-    <div class="top-bar"></div>
-
-    <!-- Sidebar toggle button -->
-    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
-        <i class="material-icons">clear_all</i>
-        <span class="mdl-button__ripple-container">
-            <span class="mdl-ripple">
-            </span>
-        </span>
-    </button>
-
-    <!-- Sidebar Avatar -->
-    <div class="sidebar-image">
-        <img src="/img/rip.jpeg" alt="Edward Guan's avatar">
-    </div>
-
-    <!-- Sidebar Email -->
-    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
-        guanchao930908@163.com
-        <b class="caret"></b>
-    </a>
-</div>
-
-
-        <!-- Sidebar Navigation  -->
-        <ul class="nav sidebar-nav">
-    <!-- User dropdown  -->
-    <li class="dropdown">
-        <ul id="settings-dropdown" class="dropdown-menu">
-            
-                <li>
-                    <a href="mailto:guanchao930908@163.com" target="_blank" title="Email Me">
-                        
-                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
-                        
-                        Email Me
-                    </a>
-                </li>
-            
-        </ul>
-    </li>
-
-    <!-- Homepage -->
-    
-        <li id="sidebar-first-li">
-            <a href="/">
-                
-                    <i class="material-icons sidebar-material-icons">home</i>
-                
-                主页
-            </a>
-        </li>
-        
-    
-
-    <!-- Archives  -->
-    
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">timeline</i>
-                
-                    归档
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-            <li>
-                <a class="sidebar_archives-link" href="/archives/2018/02/">二月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">20</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">10</span></a>
-            </ul>
-        </li>
-        
-    
-
-    <!-- Categories  -->
-    
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                分类
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/CSS/">CSS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/blog/">blog<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/css/">css<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/es6/">es6<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/html/">html<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript/">javascript<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript设计模式/">javascript设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/node-js/">node.js<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/nodejs/">nodejs<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/react/">react<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/typescript/">typescript<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端优化/">前端优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端工具/">前端工具<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端技术/">前端技术<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端架构设计/">前端架构设计<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端框架/">前端框架<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据分析/">数据分析<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据可视化/">数据可视化<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/机器学习/">机器学习<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法思想/">算法思想<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/软件开发/">软件开发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/面试/">面试<span class="sidebar_archives-count">1</span></a>
-            </ul>
-        </li>
-        
-    
-
-    <!-- Pages  -->
-    
-        <li>
-            <a href="/tags" title="标签云">
-                
-                    <i class="material-icons sidebar-material-icons">cloud_circle</i>
-                
-                标签云
-            </a>
-        </li>
-        
-            <li class="divider"></li>
-        
-    
-        <li>
-            <a href="/timeline" title="Timeline">
-                
-                    <i class="material-icons sidebar-material-icons">send</i>
-                
-                Timeline
-            </a>
-        </li>
-        
-    
-        <li>
-            <a href="/gallery" title="Gallery">
-                
-                    <i class="material-icons sidebar-material-icons">photo_library</i>
-                
-                Gallery
-            </a>
-        </li>
-        
-    
-        <li>
-            <a href="/aboutMe" title="About Me">
-                
-                    <i class="material-icons sidebar-material-icons">person_pin</i>
-                
-                About Me
-            </a>
-        </li>
-        
-            <li class="divider"></li>
-        
-    
-
-    <!-- Article Number  -->
-    
-        <li>
-            <a href="/archives">
-                文章总数
-                <span class="sidebar-badge">60</span>
-            </a>
-        </li>
-        
-    
-</ul>
-
-
-        <!-- Sidebar Footer -->
-        <!--
-I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
-If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
-It will not impact the appearance and can give developers a lot of support :)
-
-很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
-如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
-它不会影响美观并可以给开发者很大的支持和动力。 :)
--->
-
-<!-- Sidebar Divider -->
-
-
-<!-- Theme Material -->
-
-
-<!-- Help & Support -->
-<!--
-
--->
-
-<!-- Feedback -->
-<!--
-
--->
-
-<!-- About Theme -->
-<!--
-
--->
-
-    </div>
-
-    <!-- Sidebar Image -->
-    
-
-</aside>
-
-                    
-
-                    
-                        <!-- Footer Top Button -->
-                        <div id="back-to-top" class="toTop-wrap">
-    <a href="#top" class="toTop">
-        <i class="material-icons footer_top-i">expand_less</i>
-    </a>
-</div>
-
-                    
-
-                    <!--Footer-->
-<footer class="mdl-mini-footer" id="bottom">
-    
-        <!-- Paradox Footer Left Section -->
-        <div class="mdl-mini-footer--left-section sns-list">
-    <!-- Twitter -->
-    
-        <a href="https://twitter.com/591153977" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
-                <span class="visuallyhidden">Twitter</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- Facebook -->
-    
-        <a href="https://www.facebook.com/profile.php?id=100011433530812" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
-                <span class="visuallyhidden">Facebook</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- Google + -->
-    
-
-    <!-- Weibo -->
-    
-
-    <!-- Instagram -->
-    
-        <a href="https://www.instagram.com/edward930908/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn footer-sns-instagram">
-                <span class="visuallyhidden">Instagram</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- Tumblr -->
-    
-
-    <!-- Github -->
-    
-        <a href="https://github.com/PancakeAwesome" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
-                <span class="visuallyhidden">Github</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- LinkedIn -->
-    
-        <a href="https://www.linkedin.com/in/%E8%B6%85-%E7%AE%A1-89495a145/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin">
-                <span class="visuallyhidden">LinkedIn</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- Zhihu -->
-    
-
-    <!-- Bilibili -->
-    
-
-    <!-- Telegram -->
-    
-    
-    <!-- V2EX -->
-    
-</div>
-
-
-        <!--Copyright-->
-        <div id="copyright">
-            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Edward's Blog
-            
-                <br>
-                
-                    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
-                
-            
-        </div>
-
-        <!-- Paradox Footer Right Section -->
-
-        <!--
-        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
-        It will not impact the appearance and can give developers a lot of support :)
-
-        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
-        它不会影响美观并可以给开发者很大的支持。 :)
-        -->
-
-        <div class="mdl-mini-footer--right-section">
-            <div>
-                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
-                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
-            </div>
-        </div>
-    
-</footer>
-
-
-                    <!-- Import JS File -->
-
-    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
-
-
-
-    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
-
-
-
-    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
-
-
-<script type="text/ls-javascript" id="NProgress-script">
+</code></pre><blockquote style="margin:2em 0 0;padding:.5em 1em;border-left:3px solid #f44336;background-color:#f5f5f5;list-style:none"><p> <strong>This blog is under a <a href="https://pancakeawesome.ink/" target="_blank">CC BY-NC-SA 3.0 Unported License</a></strong><br> <strong>本文链接：</strong><a href="http://pancakeawesome.ink/入门Webpack，看这篇就够了.html">http://pancakeawesome.ink/入门Webpack，看这篇就够了.html</a></p></blockquote></div><div id="changyan-comment"><div id="SOHUCS" sid="入门Webpack，看这篇就够了.html"></div><script type="text/javascript">!function(){var t="da223e602e0abf03eded8d4c19e7d862";if((window.innerWidth||document.documentElement.clientWidth)<960)window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cytdf2o7Q&conf='+t+'"><\/script>');else{!function(t,e){var n=document.getElementsByTagName("head")[0]||document.head||document.documentElement,a=document.createElement("script");a.setAttribute("type","text/javascript"),a.setAttribute("charset","UTF-8"),a.setAttribute("src",t),"function"==typeof e&&(window.attachEvent?a.onreadystatechange=function(){var t=a.readyState;"loaded"!==t&&"complete"!==t||(a.onreadystatechange=null,e())}:a.onload=e),n.appendChild(a)}("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:"cytdf2o7Q",conf:t})})}}()</script></div><style>#changyan-comment{background-color:#eee;padding:2pc}</style></div><nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col"> <a href="/动态规划迷思.html" id="post_nav-newer" class="prev-content"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation"> <i class="material-icons">arrow_back</i></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 新篇</a><div class="section-spacer"></div></nav></div></div><div class="sidebar-overlay"></div><aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation"><div id="sidebar-main"><div class="sidebar-header header-cover" style="background-image:url(/img/thumbnail/sidebar_header.jpg)"><div class="top-bar"></div> <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display:initial" data-upgraded=",MaterialButton,MaterialRipple"> <i class="material-icons">clear_all</i><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button><div class="sidebar-image"> <img src="/img/rip.jpeg" alt="Edward Guan's avatar"></div> <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">guanchao930908@163.com<b class="caret"></b></a></div><ul class="nav sidebar-nav"><li class="dropdown"><ul id="settings-dropdown" class="dropdown-menu"><li> <a href="mailto:guanchao930908@163.com" target="_blank" title="Email Me"><i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i> Email Me</a></li></ul></li><li id="sidebar-first-li"> <a href="/"><i class="material-icons sidebar-material-icons">home</i> 主页</a></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">timeline</i> 归档<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/archives/2018/02/">二月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">20</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">10</span></a></li></ul></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">chrome_reader_mode</i> 分类<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/categories/CSS/">CSS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/blog/">blog<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/css/">css<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/es6/">es6<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/html/">html<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript/">javascript<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript设计模式/">javascript设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/node-js/">node.js<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/nodejs/">nodejs<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/react/">react<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/typescript/">typescript<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端优化/">前端优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端工具/">前端工具<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端技术/">前端技术<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端架构设计/">前端架构设计<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端框架/">前端框架<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据分析/">数据分析<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据可视化/">数据可视化<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/机器学习/">机器学习<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法思想/">算法思想<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/软件开发/">软件开发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/面试/">面试<span class="sidebar_archives-count">1</span></a></li></ul></li><li> <a href="/tags" title="标签云"><i class="material-icons sidebar-material-icons">cloud_circle</i> 标签云</a></li><li class="divider"></li><li> <a href="/timeline" title="Timeline"><i class="material-icons sidebar-material-icons">send</i> Timeline</a></li><li> <a href="/gallery" title="Gallery"><i class="material-icons sidebar-material-icons">photo_library</i> Gallery</a></li><li> <a href="/aboutMe" title="About Me"><i class="material-icons sidebar-material-icons">person_pin</i> About Me</a></li><li class="divider"></li><li> <a href="/archives">文章总数 <span class="sidebar-badge">60</span></a></li></ul></div></aside><div id="back-to-top" class="toTop-wrap"> <a href="#top" class="toTop"><i class="material-icons footer_top-i">expand_less</i></a></div><footer class="mdl-mini-footer" id="bottom"><div class="mdl-mini-footer--left-section sns-list"> <a href="https://twitter.com/591153977" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter"> <span class="visuallyhidden">Twitter</span></button></a> <a href="https://www.facebook.com/profile.php?id=100011433530812" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook"> <span class="visuallyhidden">Facebook</span></button></a> <a href="https://www.instagram.com/edward930908/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-instagram"> <span class="visuallyhidden">Instagram</span></button></a> <a href="https://github.com/PancakeAwesome" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-github"> <span class="visuallyhidden">Github</span></button></a> <a href="https://www.linkedin.com/in/%E8%B6%85-%E7%AE%A1-89495a145/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin"> <span class="visuallyhidden">LinkedIn</span></button></a></div><div id="copyright"> Copyright&nbsp;©<script type="text/javascript">var fd=new Date;document.write("&nbsp;"+fd.getFullYear()+"&nbsp;")</script>Edward's Blog<br><p>Hosted by <a href="https://pages.coding.me" style="font-weight:700">Coding Pages</a></p></div><div class="mdl-mini-footer--right-section"><div><div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div><div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div></div></div></footer><script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==",!0)</script><script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==",!0)</script><script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==",!0)</script><script type="text/ls-javascript" id="NProgress-script">
     NProgress.configure({
         showSpinner: true
     });
@@ -1646,50 +528,7 @@ It will not impact the appearance and can give developers a lot of support :)
         NProgress.done();
         $('.fade').removeClass('out');
     }, 800);
-</script>
-
-
-
-
-
-
-
-    <!-- Busuanzi -->
-    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-   <!-- 畅言公共 js 代码 start -->
-<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytdf2o7Q">
-</script>
-<!-- 畅言公共 js 代码 end -->
-
-
-
-
-
-<!-- UC Browser Compatible -->
-<script>
-	var agent = navigator.userAgent.toLowerCase();
-	if(agent.indexOf('ucbrowser')>0) {
-		document.write('<link rel="stylesheet" href="/css/uc.css">');
-	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
-	}
-</script>
-
-<!-- Import prettify js  -->
-
-    
-        
-            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
-        
-    
-
-
-
-<!-- Window Load -->
-<!-- add class for prettify -->
-<script type="text/ls-javascript" id="window-load">
+</script><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytdf2o7Q"></script><script>var agent=navigator.userAgent.toLowerCase();agent.indexOf("ucbrowser")>0&&(document.write('<link rel="stylesheet" href="/css/uc.css">'),alert("由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。"))</script><script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==",!0)</script><script type="text/ls-javascript" id="window-load">
     $(window).on('load', function() {
         // Post_Toc parent position fixed
         $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
@@ -1704,15 +543,7 @@ It will not impact the appearance and can give developers a lot of support :)
         
     
     
-</script>
-
-<!-- MathJax Load-->
-
-
-<!-- Bing Background -->
-
-
-<script type="text/ls-javascript" id="lazy-load">
+</script><script type="text/ls-javascript" id="lazy-load">
     // Offer LazyLoad
     queue.offer(function(){
         $('.lazy').lazyload({
@@ -1726,26 +557,4 @@ It will not impact the appearance and can give developers a lot of support :)
             queue.execNext();
         },200);
     });
-</script>
-
-<!-- Custom Footer -->
-
-
-
-<script>
-    (function(){
-        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
-
-        for (var i = 0; i < scriptList.length; ++i) {
-            var item = scriptList[i];
-            lsloader.runInlineScript(item.id,item.id);
-        }
-    })()
-console.log('\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
-</script>
-
-                </main>
-            </div>
-        </body>
-    
-</html>
+</script><script>!function(){for(var e=document.querySelectorAll('script[type="text/ls-javascript"]'),r=0;r<e.length;++r){var o=e[r];lsloader.runInlineScript(o.id,o.id)}}(),console.log("\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;")</script></main></div></body></html>

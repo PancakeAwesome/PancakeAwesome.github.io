@@ -1,273 +1,4 @@
-<!DOCTYPE html>
-<html style="display: none;" lang="zh">
-    <head>
-    <meta charset="utf-8">
-    <!--
-        © Material Theme
-        https://github.com/viosey/hexo-theme-material
-        Version: 1.5.0 -->
-    <script>
-        window.materialVersion = "1.5.0"
-        // Delete localstorage with these tags
-        window.oldVersion = [
-            'codestartv1',
-            '1.3.4',
-            '1.4.0',
-            '1.4.0b1'
-        ]
-    </script>
-
-    <!-- dns prefetch -->
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-
-
-
-    <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
-
-
-    <link rel="dns-prefetch" href="https://changyan.sohu.com"/>
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Title -->
-    
-    <title>
-        
-            我所认识的JavaScript正则表达式 | 
-        
-        Edward&#39;s Blog
-    </title>
-
-    <!-- Meta & Info -->
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="theme-color" content="#0097A7">
-    <meta name="author" content="Edward Guan">
-    <meta name="description" itemprop="description" content="我所认识的JavaScript正则表达式">
-    <meta name="keywords" content="前端,node,react,js,java,自学编程,学习分享,UESTC,javascript">
-
-    <!-- Import lsloader -->
-    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(window.oldVersion){var remove=window.oldVersion.reduce(function(p,c){return p||data.indexOf("/*"+c+"*/")!==-1},false);if(remove){lsloader.removeLS(key)}}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload,isJs){if(typeof cssonload==="boolean"){isJs=cssonload;cssonload=undefined}isJs=isJs||false;cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}code=code.split(versionString)[1];if(isJs){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload,isJs)}};lsloader.requestResource=function(name,path,cssonload,isJs){var that=this;if(isJs){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else{this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
-
-    <!-- Import queue -->
-    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
-
-    <!-- Favicons -->
-    <link rel="icon shortcut" type="image/ico" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
-    <link rel="icon" sizes="192x192" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
-    <link rel="apple-touch-icon" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
-
-    <!--iOS -->
-    <meta name="apple-mobile-web-app-title" content="Title">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="480">
-
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Edward&#39;s Blog">
-
-    <!-- Site Verification -->
-    
-    
-
-    <!-- RSS -->
-    
-
-    <!--[if lte IE 9]>
-        <link rel="stylesheet" href="/css/ie-blocker.css">
-
-        
-            <script src="/js/ie-blocker.zhCN.js"></script>
-        
-    <![endif]-->
-
-    <!-- Import CSS -->
-    
-        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-
-        
-            
-                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-            
-        
-
-    
-
-    
-
-    <!-- Config CSS -->
-
-<!-- Other Styles -->
-<style>
-  body, html {
-    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-    overflow-x: hidden !important;
-  }
-  
-  code {
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  }
-
-  a {
-    color: #00838F;
-  }
-
-  .mdl-card__media,
-  #search-label,
-  #search-form-label:after,
-  #scheme-Paradox .hot_tags-count,
-  #scheme-Paradox .sidebar_archives-count,
-  #scheme-Paradox .sidebar-colored .sidebar-header,
-  #scheme-Paradox .sidebar-colored .sidebar-badge{
-    background-color: #0097A7 !important;
-  }
-
-  /* Sidebar User Drop Down Menu Text Color */
-  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
-  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-    color: #0097A7 !important;
-  }
-
-  #post_entry-right-info,
-  .sidebar-colored .sidebar-nav li:hover > a,
-  .sidebar-colored .sidebar-nav li:hover > a i,
-  .sidebar-colored .sidebar-nav li > a:hover,
-  .sidebar-colored .sidebar-nav li > a:hover i,
-  .sidebar-colored .sidebar-nav li > a:focus i,
-  .sidebar-colored .sidebar-nav > .open > a,
-  .sidebar-colored .sidebar-nav > .open > a:hover,
-  .sidebar-colored .sidebar-nav > .open > a:focus,
-  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-    color: #0097A7 !important;
-  }
-
-  .toTop {
-    background: #757575 !important;
-  }
-
-  .material-layout .material-post>.material-nav,
-  .material-layout .material-index>.material-nav,
-  .material-nav a {
-    color: #757575;
-  }
-
-  #scheme-Paradox .MD-burger-layer {
-    background-color: #757575;
-  }
-
-  #scheme-Paradox #post-toc-trigger-btn {
-    color: #757575;
-  }
-
-  .post-toc a:hover {
-    color: #00838F;
-    text-decoration: underline;
-  }
-
-</style>
-
-
-<!-- Theme Background Related-->
-
-    <style>
-      body{
-        background-color: #F5F5F5;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-        background-color: #fff;
-      }
-    </style>
-
-
-
-
-<!-- Fade Effect -->
-
-    <style>
-      .fade {
-        transition: all 800ms linear;
-        -webkit-transform: translate3d(0,0,0);
-        -moz-transform: translate3d(0,0,0);
-        -ms-transform: translate3d(0,0,0);
-        -o-transform: translate3d(0,0,0);
-        transform: translate3d(0,0,0);
-        opacity: 1;
-      }
-
-      .fade.out{
-        opacity: 0;
-      }
-    </style>
-
-
-<!-- Import Font -->
-<!-- Import Roboto -->
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-
-
-<!-- Import Material Icon -->
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-
-
-    <!-- Import jQuery -->
-    
-        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
-    
-
-    <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://pancakeawesome.ink">
-    <meta property="og:type" content="blog">
-    <meta property="og:title" content="我所认识的JavaScript正则表达式 | Edward&#39;s Blog">
-    <meta property="og:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg" />
-    <meta property="og:description" content="我所认识的JavaScript正则表达式">
-    <meta property="og:article:tag" content="javascript"> 
-
-    
-        <meta property="article:published_time" content="Fri Nov 17 2017 20:58:02 GMT+0800" />
-        <meta property="article:modified_time" content="Fri Nov 17 2017 21:09:41 GMT+0800" />
-    
-
-    <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="我所认识的JavaScript正则表达式 | Edward&#39;s Blog">
-    <meta name="twitter:description" content="我所认识的JavaScript正则表达式">
-    <meta name="twitter:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="http://pancakeawesome.ink" />
-
-    <!-- Add canonical link for SEO -->
-    
-        <link rel="canonical" href="http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html" />
-    
-
-    <!-- Structured-data for SEO -->
-    
-        
-
-
-<script type="application/ld+json">
+<!DOCTYPE html><html style="display:none" lang="zh"><head><meta charset="utf-8"><script>window.materialVersion="1.5.0",window.oldVersion=["codestartv1","1.3.4","1.4.0","1.4.0b1"]</script><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://busuanzi.ibruce.info"><link rel="dns-prefetch" href="https://changyan.sohu.com"><title> 我所认识的JavaScript正则表达式 | Edward&#39;s Blog</title><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0097A7"><meta name="author" content="Edward Guan"><meta name="description" itemprop="description" content="我所认识的JavaScript正则表达式"><meta name="keywords" content="前端,node,react,js,java,自学编程,学习分享,UESTC,javascript"><script>window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}},lsloader.removeLS=function(e){try{localStorage.removeItem(e)}catch(e){}},lsloader.setLS=function(e,t){try{localStorage.setItem(e,t)}catch(e){}},lsloader.getLS=function(e){var t="";try{t=localStorage.getItem(e)}catch(e){t=""}return t},versionString="/*"+(window.materialVersion||"unknownVersion")+"*/",lsloader.clean=function(){try{for(var e=[],t=0;t<localStorage.length;t++)e.push(localStorage.key(t));e.forEach(function(e){var t=lsloader.getLS(e);window.oldVersion&&window.oldVersion.reduce(function(e,n){return e||-1!==t.indexOf("/*"+n+"*/")},!1)&&lsloader.removeLS(e)})}catch(e){}},lsloader.clean(),lsloader.load=function(e,t,n,s){"boolean"==typeof n&&(s=n,n=void 0),s=s||!1,n=n||function(){};var a;if((a=this.getLS(e))&&-1===a.indexOf(versionString))return this.removeLS(e),void this.requestResource(e,t,n,s);if(a){if(a.split(versionString)[0]!=t)return console.log("reload:"+t),this.removeLS(e),void this.requestResource(e,t,n,s);a=a.split(versionString)[1],s?(this.jsRunSequence.push({name:e,code:a}),this.runjs(t,e,a)):(document.getElementById(e).appendChild(document.createTextNode(a)),n())}else this.requestResource(e,t,n,s)},lsloader.requestResource=function(e,t,n,s){var a=this;s?this.iojs(t,e,function(e,t,n){a.setLS(t,e+versionString+n),a.runjs(e,t,n)}):this.iocss(t,e,function(n){document.getElementById(e).appendChild(document.createTextNode(n)),a.setLS(e,t+versionString+n)},n)},lsloader.iojs=function(e,t,n){var s=this;s.jsRunSequence.push({name:t,code:""});try{var a=new XMLHttpRequest;a.open("get",e,!0),a.onreadystatechange=function(){if(4==a.readyState){if((a.status>=200&&a.status<300||304==a.status)&&""!=a.response)return void n(e,t,a.response);s.jsfallback(e,t)}},a.send(null)}catch(n){s.jsfallback(e,t)}},lsloader.iocss=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.iofonts=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.runjs=function(e,t,n){if(t&&n)for(var s in this.jsRunSequence)this.jsRunSequence[s].name==t&&(this.jsRunSequence[s].code=n);if(this.jsRunSequence[0]&&this.jsRunSequence[0].code&&"failed"!=this.jsRunSequence[0].status)(o=document.createElement("script")).appendChild(document.createTextNode(this.jsRunSequence[0].code)),o.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(o),this.jsRunSequence.shift(),this.jsRunSequence.length>0&&this.runjs();else if(this.jsRunSequence[0]&&"failed"==this.jsRunSequence[0].status){var a=this,o=document.createElement("script");o.src=this.jsRunSequence[0].path,o.type="text/javascript",this.jsRunSequence[0].status="loading",o.onload=function(){a.jsRunSequence.shift(),a.jsRunSequence.length>0&&a.runjs()},document.body.appendChild(o)}},lsloader.tagLoad=function(e,t){this.jsRunSequence.push({name:t,code:"",path:e,status:"failed"}),this.runjs()},lsloader.jsfallback=function(e,t){if(!this.jsnamemap[t]){this.jsnamemap[t]=t;for(var n in this.jsRunSequence)this.jsRunSequence[n].name==t&&(this.jsRunSequence[n].code="",this.jsRunSequence[n].status="failed",this.jsRunSequence[n].path=e);this.runjs()}},lsloader.cssfallback=function(e,t,n){if(!this.cssnamemap[t]){this.cssnamemap[t]=1;var s=document.createElement("link");s.type="text/css",s.href=e,s.rel="stylesheet",s.onload=s.onerror=n;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(s,a)}},lsloader.runInlineScript=function(e,t){var n=document.getElementById(t).innerText;this.jsRunSequence.push({name:e,code:n}),this.runjs()},lsloader.loadCombo=function(e){var t="",n={};for(var s in e){var a=this.getLS(e[s].name);if(a)var o=a.split(versionString)[0],i=a.split(versionString)[1];else o="";o==e[s].path?this.jsRunSequence.push({name:e[s].name,code:i,path:e[s].path}):(this.jsRunSequence.push({name:e[s].name,code:null,path:e[s].path,status:"comboloading"}),n[e[s].name]=!0,t+=(""==t?"":";")+e[s].path)}var u=this;if(t){var r=new XMLHttpRequest;r.open("get",combo+t,!0),r.onreadystatechange=function(){if(4==r.readyState)if(r.status>=200&&r.status<300||304==r.status){if(""!=r.response)return void u.runCombo(r.response,n)}else{for(var e in u.jsRunSequence)n[u.jsRunSequence[e].name]&&(u.jsRunSequence[e].status="failed");u.runjs()}},r.send(null)}this.runjs()},lsloader.runCombo=function(e,t){(e=e.split("/*combojs*/")).shift();for(var n in this.jsRunSequence)t[this.jsRunSequence[n].name]&&e[0]&&(this.jsRunSequence[n].status="comboJS",this.jsRunSequence[n].code=e[0],this.setLS(this.jsRunSequence[n].name,this.jsRunSequence[n].path+versionString+e[0]),e.shift());this.runjs()}</script><script>function Queue(){this.dataStore=[],this.offer=function(e){this.debug&&console.log("Offered a Queued Function."),"function"==typeof e?this.dataStore.push(e):console.log("You must offer a function.")},this.poll=function(){return this.debug&&console.log("Polled a Queued Function."),this.dataStore.shift()},this.execNext=function(){var e=this.poll();void 0!==e&&(this.debug&&console.log("Run a Queued Function."),e())},this.debug=!1,this.startDebug=function(){this.debug=!0}}var queue=new Queue</script><link rel="icon shortcut" type="image/ico" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="icon" sizes="192x192" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="apple-touch-icon" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="apple-mobile-web-app-title" content="Title"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="480"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Edward&#39;s Blog"> <!--[if lte IE 9]><link rel="stylesheet" href="/css/ie-blocker.css"><script src="/js/ie-blocker.zhCN.js"></script><![endif]--><style id="material_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="style_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="prettify_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="prettify_theme"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style>body,html{font-family:Roboto,"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;overflow-x:hidden!important}code{font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace}a{color:#00838f}#scheme-Paradox .hot_tags-count,#scheme-Paradox .sidebar-colored .sidebar-badge,#scheme-Paradox .sidebar-colored .sidebar-header,#scheme-Paradox .sidebar_archives-count,#search-form-label:after,#search-label,.mdl-card__media{background-color:#0097a7!important}#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus,#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover{color:#0097a7!important}#ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a,#post_entry-right-info,.sidebar-colored .sidebar-nav li:hover>a,.sidebar-colored .sidebar-nav li:hover>a i,.sidebar-colored .sidebar-nav li>a:focus i,.sidebar-colored .sidebar-nav li>a:hover,.sidebar-colored .sidebar-nav li>a:hover i,.sidebar-colored .sidebar-nav>.open>a,.sidebar-colored .sidebar-nav>.open>a:focus,.sidebar-colored .sidebar-nav>.open>a:hover{color:#0097a7!important}.toTop{background:#757575!important}.material-layout .material-index>.material-nav,.material-layout .material-post>.material-nav,.material-nav a{color:#757575}#scheme-Paradox .MD-burger-layer{background-color:#757575}#scheme-Paradox #post-toc-trigger-btn{color:#757575}.post-toc a:hover{color:#00838f;text-decoration:underline}</style><style>body{background-color:#f5f5f5}#scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{background-color:#fff}</style><style>.fade{transition:all .8s linear;-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0);opacity:1}.fade.out{opacity:0}</style><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==",!0)</script><meta property="og:url" content="http://pancakeawesome.ink"><meta property="og:type" content="blog"><meta property="og:title" content="我所认识的JavaScript正则表达式 | Edward&#39;s Blog"><meta property="og:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta property="og:description" content="我所认识的JavaScript正则表达式"><meta property="og:article:tag" content="javascript"><meta property="article:published_time" content="Fri Nov 17 2017 20:58:02 GMT+0800"><meta property="article:modified_time" content="Fri Nov 17 2017 21:09:41 GMT+0800"><meta name="twitter:title" content="我所认识的JavaScript正则表达式 | Edward&#39;s Blog"><meta name="twitter:description" content="我所认识的JavaScript正则表达式"><meta name="twitter:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:url" content="http://pancakeawesome.ink"><link rel="canonical" href="http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html"><script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -295,272 +26,18 @@
     "keywords": ",javascript前端,node,react,js,java,自学编程,学习分享,UESTC",
     "description": "我所认识的JavaScript正则表达式",
 }
-</script>
-
-
-    
-
-    <!-- Analytics -->
-    
-    
-        <script>
-    var _hmt = _hmt || [];
-    (function() {var hm = document.createElement('script');
-    hm.src = 'https://hm.baidu.com/hm.js?0c041dca6f79c4e40fb45d1283e327e7';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(hm, s);
-    })();
-</script>
-    
-    
-
-    <!-- Custom Head -->
-    
-
-</head>
-
-
-    
-        <body id="scheme-Paradox" class="lazy">
-            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
-                
-
-                <!-- Main Container -->
-                <main class="material-layout__content" id="main">
-
-                    <!-- Top Anchor -->
-                    <div id="top"></div>
-
-                    
-                        <!-- Hamburger Button -->
-                        <button class="MD-burger-icon sidebar-toggle">
-                            <span class="MD-burger-layer"></span>
-                        </button>
-                    
-
-                    <!-- Post TOC -->
-
-    
-    <!-- Back Button -->
-    <!--
-    <div class="material-back" id="backhome-div" tabindex="0">
-        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
-           href="#" onclick="window.history.back();return false;"
-           target="_self"
-           role="button"
-           data-upgraded=",MaterialButton,MaterialRipple">
-            <i class="material-icons" role="presentation">arrow_back</i>
-            <span class="mdl-button__ripple-container">
-                <span class="mdl-ripple"></span>
-            </span>
-        </a>
-    </div>
-    -->
-
-
-    <!-- Left aligned menu below button -->
-    
-    
-    <button id="post-toc-trigger-btn"
-        class="mdl-button mdl-js-button mdl-button--icon">
-        <i class="material-icons">format_list_numbered</i>
-    </button>
-
-    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#我所认识的JavaScript正则表达式"><span class="post-toc-number">2.</span> <span class="post-toc-text">我所认识的JavaScript正则表达式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RegExp-三大方法"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">RegExp 三大方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#String-四大护法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">String 四大护法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RegExp-字符"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">RegExp 字符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#贪婪匹配和懒惰匹配"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">贪婪匹配和懒惰匹配</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#子表达式"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">子表达式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#后向引用"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">后向引用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#零宽断言"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">零宽断言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">其他</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#综合应用"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">综合应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用匹配模式（持续更新）"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">常用匹配模式（持续更新）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-number">3.</span> <span class="post-toc-text">后记</span></a></li></ol>
-    </ul>
-    
-
-
-
-
-<!-- Layouts -->
-
-    <!-- Post Module -->
-    <div class="material-post_container">
-
-        <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-
-                <!-- Post Header(Thumbnail & Title) -->
-                
-    <!-- Paradox Post Header -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script type="text/ls-javascript" id="post-thumbnail-script">
+</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?0c041dca6f79c4e40fb45d1283e327e7";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body id="scheme-Paradox" class="lazy"><div class="material-layout mdl-js-layout has-drawer is-upgraded"><main class="material-layout__content" id="main"><div id="top"></div> <button class="MD-burger-icon sidebar-toggle"><span class="MD-burger-layer"></span></button> <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon"> <i class="material-icons">format_list_numbered</i></button><ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh;overflow-y:scroll"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#我所认识的JavaScript正则表达式"><span class="post-toc-number">2.</span> <span class="post-toc-text">我所认识的JavaScript正则表达式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RegExp-三大方法"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">RegExp 三大方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#String-四大护法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">String 四大护法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RegExp-字符"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">RegExp 字符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#贪婪匹配和懒惰匹配"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">贪婪匹配和懒惰匹配</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#子表达式"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">子表达式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#后向引用"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">后向引用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#零宽断言"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">零宽断言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">其他</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#综合应用"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">综合应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用匹配模式（持续更新）"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">常用匹配模式（持续更新）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-number">3.</span> <span class="post-toc-text">后记</span></a></li></ol></ul><div class="material-post_container"><div class="material-post mdl-grid"><div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col"><div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50"><script type="text/ls-javascript" id="post-thumbnail-script">
     var randomNum = Math.floor(Math.random() * 30 + 1);
 
     $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-</script>
-
-        
-    
-            <p class="article-headline-p">
-                我所认识的JavaScript正则表达式
-            </p>
-        </div>
-
-
-
-
-
-                
-                    <!-- Paradox Post Info -->
-                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
-
-    <!-- Author Avatar -->
-    <div id="author-avatar">
-        <img src="/img/rip.jpeg" width="44px" height="44px" alt="Author Avatar"/>
-    </div>
-    <!-- Author Name & Date -->
-    <div>
-        <strong>Edward Guan</strong>
-        <span>11月 17, 2017</span>
-    </div>
-
-    <div class="section-spacer"></div>
-
-    <!-- Favorite -->
-    <!--
-        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
-            <i class="material-icons" role="presentation">favorite</i>
-            <span class="visuallyhidden">favorites</span>
-        </button>
-    -->
-
-    <!-- Qrcode -->
-    
-        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">devices other</i>
-    <span class="visuallyhidden">devices other</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
-    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-    
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC0UlEQVR42u3aQW7cMBAEQP//08kDAmi7Z5RkQZZOhr1asuRDgz36+XXl9YONjY2NjY2NjY39leyf+Hq+68+/Pn/y+a4PgNmesbGxsY9mJ8vksOdNPK/4vPXVnrGxsbEvYCcbnUXRPiZfCEhsbGxs7Mefk29IYmm2B2xsbGzsTYAlEfV8b35EwcbGxsbel0p5nfQ3jjH/rUvDxsbG/nr2rNz/vz//0/k2NjY29hez26sNqncPGKudY2NjYx/Kbo8We2QyPGiHENHq2NjY2Ieyk1dk8gPALH7yMXAbpdjY2Nj3sNsBbf4ST3sIyQ8q7T8PGxsb+1T2bIDaVkV5NCYj3nYP2NjY2Dew27qnPgaUZVP7IIYBho2NjX0EO4mKdx9QOyp+5q3m29jY2NhHsNthQLKJtoSaxVu+OjY2NvYN7LyI38dYPr7NH80wwLCxsbEPZReRUD6UWan01vAAGxsb+1T2uyV+WxLlj3L/Qg82Njb2qey2rN8UQEkUJS/35KtjY2Nj38Buh6b5oSUfEieMukLCxsbGvoa9eZmmHe62n8mjLgpXbGxs7KPZsyNHW+7MvjMPzrpUwsbGxj6CnQ9N22X2A4b2ePOhusLGxsa+gL0v4tsCqP2e/MFhY2Nj38OeDXfbJTeFVD48+BCE2NjY2Eez2wBL7t2MddvXd6Lvx8bGxj6anVdLs0eW3DsbGycBiY2NjX0POy+biionDrA80mZ1GDY2NvY97LdiLCp6Rq9XtqNfbGxs7LPZs1DJtzgbG+xHDh8CDBsbG/sgdhsSbam0r4fagXSR29jY2NgHsWeh1ZZNsyHuh6ooHyRjY2NjX8B+3nr+mXxDs0qrfYjY2NjY2HmA5b9594gSrY6NjY2NvdhQWw/Vx4xNqYSNjY19EHt/YGhHwm8VVdGesbGxsY9mty/f7CMw38OmbMLGxsa+gX3PhY2NjY2NjY2Njf01129vzWbZJoCojQAAAABJRU5ErkJggg==">
-    
-</ul>
-
-    
-
-    <!-- Tags (bookmark) -->
-    
-    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-        <i class="material-icons" role="presentation">bookmark</i>
-        <span class="visuallyhidden">bookmark</span>
-    </button>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
-        <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/javascript/">javascript</a>
-    </ul>
-    
-
-    <!-- Share -->
-    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">share</i>
-    <span class="visuallyhidden">share</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
-    
-
-    
-        
-            <!-- Busuanzi Views -->
-            <a class="post_share-link" href="#">
-                <li class="mdl-menu__item">
-                    <span id="busuanzi_container_page_pv">
-                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
-                    </span>
-                </li>
-            </a>
-        
-    
-
-    <!-- Share Weibo -->
-    
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=我所认识的JavaScript正则表达式&url=http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank">
-            <li class="mdl-menu__item">
-                分享到微博
-            </li>
-        </a>
-    
-
-    <!-- Share Twitter -->
-    
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=我所认识的JavaScript正则表达式&url=http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html&via=Edward Guan" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Twitter
-            </li>
-        </a>
-    
-
-    <!-- Share Facebook -->
-    
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Facebook
-            </li>
-        </a>
-    
-
-    <!-- Share Google+ -->
-    
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Google+
-            </li>
-        </a>
-    
-
-    <!-- Share LinkedIn -->
-    
-        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html&title=我所认识的JavaScript正则表达式" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 LinkedIn
-            </li>
-        </a>
-    
-
-    <!-- Share QQ -->
-    
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=我所认识的JavaScript正则表达式&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 QQ
-            </li>
-        </a>
-    
-
-    <!-- Share Telegram -->
-    
-</ul>
-
-</div>
-
-                
-
-                <!-- Post Content -->
-                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
-    
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>如果说这是一篇关于正则表达式的小结，我更愿意把它当做一个手册。</p>
-<h2 id="我所认识的JavaScript正则表达式"><a href="#我所认识的JavaScript正则表达式" class="headerlink" title="我所认识的JavaScript正则表达式"></a>我所认识的JavaScript正则表达式</h2><h3 id="RegExp-三大方法"><a href="#RegExp-三大方法" class="headerlink" title="RegExp 三大方法"></a>RegExp 三大方法</h3><p>本文的RegExp采用直接量语法表示：/pattern/attributes。attributes有三个选择，i、m和g，m（多行匹配）不常用直接省略，所以一个pattern（匹配模式）可以表示如下：</p>
-<pre><code>var pattern =/hello/ig;
-</code></pre><p>i（ignore）表示不区分大小写（地搜索匹配），比较简单，以下例子中不加述说；g（global）表示全局（搜索匹配），即找到一个后继续找下去，相对复杂，以下各种方法中会特别介绍。</p>
-<p>既然是RegExp的三大方法，所以都是pattern.test/exec/complie的格式。</p>
-<p>主要功能：检测指定字符串是否含有某个子串（或者匹配模式），返回true或者false。</p>
-<p>示例如下：</p>
-<pre><code>var s = &#39;you love me and I love you&#39;;
+</script><p class="article-headline-p"> 我所认识的JavaScript正则表达式</p></div><div class="mdl-color-text--grey-700 mdl-card__supporting-text meta"><div id="author-avatar"> <img src="/img/rip.jpeg" width="44px" height="44px" alt="Author Avatar"></div><div> <strong>Edward Guan</strong> <span>11月 17, 2017</span></div><div class="section-spacer"></div> <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">devices other</i> <span class="visuallyhidden">devices other</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button"><li class="mdl-menu__item">在其它设备中阅读本文章</li> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC0UlEQVR42u3aQW7cMBAEQP//08kDAmi7Z5RkQZZOhr1asuRDgz36+XXl9YONjY2NjY2NjY39leyf+Hq+68+/Pn/y+a4PgNmesbGxsY9mJ8vksOdNPK/4vPXVnrGxsbEvYCcbnUXRPiZfCEhsbGxs7Mefk29IYmm2B2xsbGzsTYAlEfV8b35EwcbGxsbel0p5nfQ3jjH/rUvDxsbG/nr2rNz/vz//0/k2NjY29hez26sNqncPGKudY2NjYx/Kbo8We2QyPGiHENHq2NjY2Ieyk1dk8gPALH7yMXAbpdjY2Nj3sNsBbf4ST3sIyQ8q7T8PGxsb+1T2bIDaVkV5NCYj3nYP2NjY2Dew27qnPgaUZVP7IIYBho2NjX0EO4mKdx9QOyp+5q3m29jY2NhHsNthQLKJtoSaxVu+OjY2NvYN7LyI38dYPr7NH80wwLCxsbEPZReRUD6UWan01vAAGxsb+1T2uyV+WxLlj3L/Qg82Njb2qey2rN8UQEkUJS/35KtjY2Nj38Buh6b5oSUfEieMukLCxsbGvoa9eZmmHe62n8mjLgpXbGxs7KPZsyNHW+7MvjMPzrpUwsbGxj6CnQ9N22X2A4b2ePOhusLGxsa+gL0v4tsCqP2e/MFhY2Nj38OeDXfbJTeFVD48+BCE2NjY2Eez2wBL7t2MddvXd6Lvx8bGxj6anVdLs0eW3DsbGycBiY2NjX0POy+biionDrA80mZ1GDY2NvY97LdiLCp6Rq9XtqNfbGxs7LPZs1DJtzgbG+xHDh8CDBsbG/sgdhsSbam0r4fagXSR29jY2NgHsWeh1ZZNsyHuh6ooHyRjY2NjX8B+3nr+mXxDs0qrfYjY2NjY2HmA5b9594gSrY6NjY2NvdhQWw/Vx4xNqYSNjY19EHt/YGhHwm8VVdGesbGxsY9mty/f7CMw38OmbMLGxsa+gX3PhY2NjY2NjY2Njf01129vzWbZJoCojQAAAABJRU5ErkJggg=="></ul> <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">bookmark</i> <span class="visuallyhidden">bookmark</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button"><li class="mdl-menu__item"> <a class="post_tag-link" href="/tags/javascript/">javascript</a></li></ul> <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">share</i> <span class="visuallyhidden">share</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button"><a class="post_share-link" href="#"><li class="mdl-menu__item"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> &nbsp;浏览量</span></li></a><a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=我所认识的JavaScript正则表达式&url=http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank"><li class="mdl-menu__item"> 分享到微博</li></a><a class="post_share-link" href="https://twitter.com/intent/tweet?text=我所认识的JavaScript正则表达式&url=http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html&via=Edward Guan" target="_blank"><li class="mdl-menu__item"> 分享到 Twitter</li></a><a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html" target="_blank"><li class="mdl-menu__item"> 分享到 Facebook</li></a><a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html" target="_blank"><li class="mdl-menu__item"> 分享到 Google+</li></a><a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html&title=我所认识的JavaScript正则表达式" target="_blank"><li class="mdl-menu__item"> 分享到 LinkedIn</li></a><a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=我所认识的JavaScript正则表达式&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html" target="_blank"><li class="mdl-menu__item"> 分享到 QQ</li></a></ul></div><div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>如果说这是一篇关于正则表达式的小结，我更愿意把它当做一个手册。</p><h2 id="我所认识的JavaScript正则表达式"><a href="#我所认识的JavaScript正则表达式" class="headerlink" title="我所认识的JavaScript正则表达式"></a>我所认识的JavaScript正则表达式</h2><h3 id="RegExp-三大方法"><a href="#RegExp-三大方法" class="headerlink" title="RegExp 三大方法"></a>RegExp 三大方法</h3><p>本文的RegExp采用直接量语法表示：/pattern/attributes。attributes有三个选择，i、m和g，m（多行匹配）不常用直接省略，所以一个pattern（匹配模式）可以表示如下：</p><pre><code>var pattern =/hello/ig;
+</code></pre><p>i（ignore）表示不区分大小写（地搜索匹配），比较简单，以下例子中不加述说；g（global）表示全局（搜索匹配），即找到一个后继续找下去，相对复杂，以下各种方法中会特别介绍。</p><p>既然是RegExp的三大方法，所以都是pattern.test/exec/complie的格式。</p><p>主要功能：检测指定字符串是否含有某个子串（或者匹配模式），返回true或者false。</p><p>示例如下：</p><pre><code>var s = &#39;you love me and I love you&#39;;
 var pattern = /you/;
 var ans = pattern.test(s);
 console.log(ans);
 // true
-</code></pre><p>如果attributes用了g，则可以继续找下去，其中还会涉及lastIndex属性（参照exec中搭配g的介绍）。</p>
-<p>主要功能：提取指定字符串中的符合要求的子串（或者匹配模式），返回一个数组存放匹配结果；如果没有，则返回null。（也可自己写方法循环提取所有或者指定index的数据）</p>
-<p>exec可以说是test的升级版本，因为它不仅可以检测，而且检测到了可以直接提取结果。</p>
-<p>示例如下：</p>
-<pre><code>var s = &#39;you love me and I love you&#39;;
+</code></pre><p>如果attributes用了g，则可以继续找下去，其中还会涉及lastIndex属性（参照exec中搭配g的介绍）。</p><p>主要功能：提取指定字符串中的符合要求的子串（或者匹配模式），返回一个数组存放匹配结果；如果没有，则返回null。（也可自己写方法循环提取所有或者指定index的数据）</p><p>exec可以说是test的升级版本，因为它不仅可以检测，而且检测到了可以直接提取结果。</p><p>示例如下：</p><pre><code>var s = &#39;you love me and I love you&#39;;
 var pattern = /you/;
 var ans = pattern.exec(s);
 console.log(ans);
@@ -569,25 +46,14 @@ console.log(ans.index);
 // 0
 console.log(ans.input);
 // you love me and I love you
-</code></pre><p>输出的东西很有意思。此数组的第 0 个元素是与正则表达式相匹配的文本，第 1 个元素是与 RegExpObject 的第 1 个子表达式相匹配的文本（如果有的话），第 2 个元素是与 RegExpObject 的第 2 个子表达式相匹配的文本（如果有的话），以此类推。</p>
-<p>啥叫“与子表达式相匹配的文本”？看下面的例子：</p>
-<pre><code>var s = &#39;you love me and I love you&#39;;
+</code></pre><p>输出的东西很有意思。此数组的第 0 个元素是与正则表达式相匹配的文本，第 1 个元素是与 RegExpObject 的第 1 个子表达式相匹配的文本（如果有的话），第 2 个元素是与 RegExpObject 的第 2 个子表达式相匹配的文本（如果有的话），以此类推。</p><p>啥叫“与子表达式相匹配的文本”？看下面的例子：</p><pre><code>var s = &#39;you love me and I love you&#39;;
 var pattern = /y(o?)u/;
 var ans = pattern.exec(s);
 console.log(ans);
 // [&quot;you&quot;, &quot;o&quot;, index: 0, input: &quot;you love me and I love you&quot;]
 console.log(ans.length)
 // 2
-</code></pre><p>所谓的子表达式就是pattern里（）内的东西（具体可以参考下文对子表达式的介绍）。再看上面例子的数组长度，是2！！index和input只是数组属性（chrome中以上的输出可能会让人误会）。</p>
-<p>除了数组元素和 length 属性之外，exec() 方法还返回两个属性。index 属性声明的是匹配文本的第一个字符的位置。input 属性则存放的是被检索的字符串 string。我们可以看得出，<strong>在调用非全局的 RegExp 对象的 exec() 方法时，返回的数组与调用方法 String.match() 返回的数组是相同的</strong>。</p>
-<p>如果使用 “g” 参数，exec() 的工作原理如下（还是以上的例子 ps：如果test使用g参数类似）：</p>
-<ol>
-<li>找到第一个 “you”，并存储其位置</li>
-<li>如果再次运行 exec()，则从存储的位置（lastIndex）开始检索，并找到下一个 “you”，并存储其位置</li>
-</ol>
-<p>当 RegExpObject 是一个全局正则表达式时，exec() 的行为就稍微复杂一些。它会在 RegExpObject 的 lastIndex 属性指定的字符处开始检索字符串 string。当 exec() 找到了与表达式相匹配的文本时，在匹配后，它将把 RegExpObject 的 lastIndex 属性设置为匹配文本的最后一个字符的下一个位置。这就是说，我们可以通过反复调用 exec() 方法来遍历字符串中的所有匹配文本。当 exec() 再也找不到匹配的文本时，它将返回 null，并把 lastIndex 属性重置为 0。这里引入lastIndex属性，这货只有跟g和test（或者g和exec）三者搭配时才有作用。它是pattern的一个属性，一个整数，标示开始下一次匹配的字符位置。</p>
-<p>实例如下：</p>
-<pre><code>var s = &#39;you love me and I love you&#39;;
+</code></pre><p>所谓的子表达式就是pattern里（）内的东西（具体可以参考下文对子表达式的介绍）。再看上面例子的数组长度，是2！！index和input只是数组属性（chrome中以上的输出可能会让人误会）。</p><p>除了数组元素和 length 属性之外，exec() 方法还返回两个属性。index 属性声明的是匹配文本的第一个字符的位置。input 属性则存放的是被检索的字符串 string。我们可以看得出，<strong>在调用非全局的 RegExp 对象的 exec() 方法时，返回的数组与调用方法 String.match() 返回的数组是相同的</strong>。</p><p>如果使用 “g” 参数，exec() 的工作原理如下（还是以上的例子 ps：如果test使用g参数类似）：</p><ol><li>找到第一个 “you”，并存储其位置</li><li>如果再次运行 exec()，则从存储的位置（lastIndex）开始检索，并找到下一个 “you”，并存储其位置</li></ol><p>当 RegExpObject 是一个全局正则表达式时，exec() 的行为就稍微复杂一些。它会在 RegExpObject 的 lastIndex 属性指定的字符处开始检索字符串 string。当 exec() 找到了与表达式相匹配的文本时，在匹配后，它将把 RegExpObject 的 lastIndex 属性设置为匹配文本的最后一个字符的下一个位置。这就是说，我们可以通过反复调用 exec() 方法来遍历字符串中的所有匹配文本。当 exec() 再也找不到匹配的文本时，它将返回 null，并把 lastIndex 属性重置为 0。这里引入lastIndex属性，这货只有跟g和test（或者g和exec）三者搭配时才有作用。它是pattern的一个属性，一个整数，标示开始下一次匹配的字符位置。</p><p>实例如下：</p><pre><code>var s = &#39;you love me and I love you&#39;;
 var pattern = /you/g;
 var ans;
 do {
@@ -595,54 +61,29 @@ do {
     console.log(ans);
     console.log(pattern.lastIndex);
 } while (ans !== null)
-</code></pre><p>结果如下：</p>
-<p><img src="https://img.funteas.com/a301222db5d77dd9038aa49a6fa50a74.png?imageView2/2/w/800" alt=""></p>
-<p>应该还容易理解，当第三次循环时，找不到“you”了，于是返回null，lastIndex值也变成0了。</p>
-<p>如果在一个字符串中完成了一次模式匹配之后要开始检索新的字符串（仍然使用旧的pattern），就必须手动地把 lastIndex 属性重置为 0。</p>
-<p>主要功能：改变当前匹配模式（pattern）</p>
-<p>这货是改变匹配模式时用的，用处不大，略过。详见JavaScript compile() 方法</p>
-<h3 id="String-四大护法"><a href="#String-四大护法" class="headerlink" title="String 四大护法"></a>String 四大护法</h3><p>和RegExp三大方法分庭抗礼的是String的四大护法，四大护法有些和RegExp三大方法类似，有的更胜一筹。</p>
-<p>既然是String家族下的四大护法，所以肯定是string在前，即str.search/match/replace/split形式。</p>
-<p>既然是String的方法，当然参数可以只用字符串而不用pattern。</p>
-<p>主要功能：搜索指定字符串中是否含有某子串（或者匹配模式），如有，返回子串在原串中的初始位置，如没有，返回-1。</p>
-<p>是不是和test类似呢？test只能判断有木有，search还能返回位置！当然test()如果有需要能继续找下去，而search则会自动忽略g（如果有的话）。实例如下：</p>
-<pre><code>var s = &#39;you love me and I love you&#39;;
+</code></pre><p>结果如下：</p><p><img src="https://img.funteas.com/a301222db5d77dd9038aa49a6fa50a74.png?imageView2/2/w/800" alt=""></p><p>应该还容易理解，当第三次循环时，找不到“you”了，于是返回null，lastIndex值也变成0了。</p><p>如果在一个字符串中完成了一次模式匹配之后要开始检索新的字符串（仍然使用旧的pattern），就必须手动地把 lastIndex 属性重置为 0。</p><p>主要功能：改变当前匹配模式（pattern）</p><p>这货是改变匹配模式时用的，用处不大，略过。详见JavaScript compile() 方法</p><h3 id="String-四大护法"><a href="#String-四大护法" class="headerlink" title="String 四大护法"></a>String 四大护法</h3><p>和RegExp三大方法分庭抗礼的是String的四大护法，四大护法有些和RegExp三大方法类似，有的更胜一筹。</p><p>既然是String家族下的四大护法，所以肯定是string在前，即str.search/match/replace/split形式。</p><p>既然是String的方法，当然参数可以只用字符串而不用pattern。</p><p>主要功能：搜索指定字符串中是否含有某子串（或者匹配模式），如有，返回子串在原串中的初始位置，如没有，返回-1。</p><p>是不是和test类似呢？test只能判断有木有，search还能返回位置！当然test()如果有需要能继续找下去，而search则会自动忽略g（如果有的话）。实例如下：</p><pre><code>var s = &#39;you love me and I love you&#39;;
 var pattern = /you/;
 var ans = s.search(pattern);
 console.log(ans);
 // 0
-</code></pre><p>话说和String的indexOf方法有点相似，不同的是indexOf方法可以从指定位置开始查找，但是不支持正则。</p>
-<p>主要功能：和exec类似，从指定字符串中查找子串或者匹配模式，找到返回数组，没找到返回null</p>
-<p>match是exec的轻量版，当不使用全局模式匹配时，match和exec返回结果一致；当使用全局模式匹配时，match直接返回一个字符串数组，获得的信息远没有exec多，但是使用方式简单。</p>
-<p>实例如下：</p>
-<pre><code>var s =&#39;you love me and I love you&#39;;
+</code></pre><p>话说和String的indexOf方法有点相似，不同的是indexOf方法可以从指定位置开始查找，但是不支持正则。</p><p>主要功能：和exec类似，从指定字符串中查找子串或者匹配模式，找到返回数组，没找到返回null</p><p>match是exec的轻量版，当不使用全局模式匹配时，match和exec返回结果一致；当使用全局模式匹配时，match直接返回一个字符串数组，获得的信息远没有exec多，但是使用方式简单。</p><p>实例如下：</p><pre><code>var s =&#39;you love me and I love you&#39;;
 console.log(s.match(/you/));
 // [&quot;you&quot;, index: 0, input: &quot;you love me and I love you&quot;]
 console.log(s.match(/you/g));
 // [&quot;you&quot;, &quot;you&quot;]
-</code></pre><p>主要功能：用另一个子串替换指定字符串中的某子串（或者匹配模式），返回替换后的新的字符串  str.replace(‘搜索模式’,’替换的内容’)  如果用的是pattern并且带g，则全部替换；否则替换第一处。</p>
-<p>实例如下：</p>
-<pre><code>var s =&#39;you love me and I love you&#39;;
+</code></pre><p>主要功能：用另一个子串替换指定字符串中的某子串（或者匹配模式），返回替换后的新的字符串 str.replace(‘搜索模式’,’替换的内容’) 如果用的是pattern并且带g，则全部替换；否则替换第一处。</p><p>实例如下：</p><pre><code>var s =&#39;you love me and I love you&#39;;
 console.log(s.replace(&#39;you&#39;,&#39;zichi&#39;));
 // zichi love me and I love you
 console.log(s.replace(/you/,&#39;zichi&#39;));
 // zichi love me and I love you
 console.log(s.replace(/you/g,&#39;zichi&#39;));
 // zichi love me and I love zichi
-</code></pre><p>如果需要替代的内容不是指定的字符串，而是跟匹配模式或者原字符串有关，那么就要用到$了（记住这些和$符号有关的东东只和replace有关哦）。</p>
-<p><img src="https://img.funteas.com/af7727482590a48709ff28d8de0d1dd2.png?imageView2/2/w/800" alt=""></p>
-<p>怎么用？看个例子就明白了。</p>
-<pre><code>var s = &#39;I love you&#39;;
+</code></pre><p>如果需要替代的内容不是指定的字符串，而是跟匹配模式或者原字符串有关，那么就要用到$了（记住这些和$符号有关的东东只和replace有关哦）。</p><p><img src="https://img.funteas.com/af7727482590a48709ff28d8de0d1dd2.png?imageView2/2/w/800" alt=""></p><p>怎么用？看个例子就明白了。</p><pre><code>var s = &#39;I love you&#39;;
 var pattern = /love/;
 var ans = s.replace(pattern, &#39;&lt;div class=&quot;article-entry&quot; id=&quot;article-entry&quot;&#39; + &#39;&gt;&lt;&#39; + &quot;/div&gt;&quot;);
 console.log(ans);
 // I I love you you
-</code></pre><p>没错，’<div class="“article-entry”" id="“article-entry”’" +="" ‘="">&lt;’ + “$’”其实就相当于原串了！</div></p>
-<p>replace的第二个参数还能是函数，看具体例子前先看一段介绍：</p>
-<blockquote>
-<p>注意：第一个参数是匹配到的子串，接下去是子表达式匹配的值，如果要用子表达式参数，则必须要有第一个参数（表示匹配到的串），也就是说，如果要用第n个参数代表的值，则左边参数都必须写出来。最后两个参数跟exec后返回的数组的两个属性差不多。</p>
-</blockquote>
-<pre><code>var s = &#39;I love you&#39;;
+</code></pre><p>没错，’</p><div class="“article-entry”" id="“article-entry”’" +="" ‘="">&lt;’ + “$’”其实就相当于原串了！</div><p></p><p>replace的第二个参数还能是函数，看具体例子前先看一段介绍：</p><blockquote><p>注意：第一个参数是匹配到的子串，接下去是子表达式匹配的值，如果要用子表达式参数，则必须要有第一个参数（表示匹配到的串），也就是说，如果要用第n个参数代表的值，则左边参数都必须写出来。最后两个参数跟exec后返回的数组的两个属性差不多。</p></blockquote><pre><code>var s = &#39;I love you&#39;;
 var pattern = /love/;
 var ans = s.replace(pattern, function(a) {　　 
 // 只有一个参数，默认为匹配到的串（如还有参数，则按序表示子表达式和其他两个参数）
@@ -650,71 +91,46 @@ var ans = s.replace(pattern, function(a) {　　
 });
 console.log(ans);
 // I LOVE you
-</code></pre><p>主要功能：分割字符串</p>
-<p>字符串分割成字符串数组的方法（另有数组变成字符串的join方法）。直接看以下例子：</p>
-<pre><code>var s = &#39;you love me and I love you&#39;;
+</code></pre><p>主要功能：分割字符串</p><p>字符串分割成字符串数组的方法（另有数组变成字符串的join方法）。直接看以下例子：</p><pre><code>var s = &#39;you love me and I love you&#39;;
 var pattern = &#39;and&#39;;
 var ans = s.split(pattern);
 console.log(ans);
 // [&quot;you love me &quot;, &quot; I love you&quot;]
-</code></pre><p>如果你嫌得到的数组会过于庞大，也可以自己定义数组大小，加个参数即可：</p>
-<pre><code>var s = &#39;you love me and I love you&#39;;
+</code></pre><p>如果你嫌得到的数组会过于庞大，也可以自己定义数组大小，加个参数即可：</p><pre><code>var s = &#39;you love me and I love you&#39;;
 var pattern = /and/;
 var ans = s.split(pattern, 1);
 console.log(ans);
 // [&quot;you love me &quot;]
-</code></pre><h3 id="RegExp-字符"><a href="#RegExp-字符" class="headerlink" title="RegExp 字符"></a>RegExp 字符</h3><p><img src="https://img.funteas.com/0f972256c0d7f457495addfb48b46aec.png?imageView2/2/w/800" alt=""><img src="https://img.funteas.com/452f237aaa6135b99502df770729c0f2.png?imageView2/2/w/800" alt=""><img src="https://img.funteas.com/7002103ee3659d4c5453949a4d1b528b.png?imageView2/2/w/800" alt=""></p>
-<ul>
-<li>\s 任意空白字符 \S相反 空白字符可以是： 空格符 (space character) 制表符 (tab character) 回车符 (carriage return character) 换行符 (new line character) 垂直换行符 (vertical tab character) 换页符 (form feed character)</li>
-<li>\b是正则表达式规定的一个特殊代码，代表着单词的开头或结尾，也就是单词的分界处。虽然通常英文的单词是由空格，标点符号或者换行来分隔的，但是\b并不匹配这些单词分隔字符中的任何一个，它只匹配一个位置。（和^ $ 以及零宽断言类似）</li>
-<li>\w 匹配字母或数字或下划线   [a-z0-9A-Z_]完全等同于\w</li>
-</ul>
-<h3 id="贪婪匹配和懒惰匹配"><a href="#贪婪匹配和懒惰匹配" class="headerlink" title="贪婪匹配和懒惰匹配"></a>贪婪匹配和懒惰匹配</h3><p>什么是贪婪匹配？贪婪匹配就是在正则表达式的匹配过程中，默认会使得匹配长度越大越好。</p>
-<pre><code>var s = &#39;hello world welcome to my world&#39;;
+</code></pre><h3 id="RegExp-字符"><a href="#RegExp-字符" class="headerlink" title="RegExp 字符"></a>RegExp 字符</h3><p><img src="https://img.funteas.com/0f972256c0d7f457495addfb48b46aec.png?imageView2/2/w/800" alt=""><img src="https://img.funteas.com/452f237aaa6135b99502df770729c0f2.png?imageView2/2/w/800" alt=""><img src="https://img.funteas.com/7002103ee3659d4c5453949a4d1b528b.png?imageView2/2/w/800" alt=""></p><ul><li>\s 任意空白字符 \S相反 空白字符可以是： 空格符 (space character) 制表符 (tab character) 回车符 (carriage return character) 换行符 (new line character) 垂直换行符 (vertical tab character) 换页符 (form feed character)</li><li>\b是正则表达式规定的一个特殊代码，代表着单词的开头或结尾，也就是单词的分界处。虽然通常英文的单词是由空格，标点符号或者换行来分隔的，但是\b并不匹配这些单词分隔字符中的任何一个，它只匹配一个位置。（和^ $ 以及零宽断言类似）</li><li>\w 匹配字母或数字或下划线 [a-z0-9A-Z_]完全等同于\w</li></ul><h3 id="贪婪匹配和懒惰匹配"><a href="#贪婪匹配和懒惰匹配" class="headerlink" title="贪婪匹配和懒惰匹配"></a>贪婪匹配和懒惰匹配</h3><p>什么是贪婪匹配？贪婪匹配就是在正则表达式的匹配过程中，默认会使得匹配长度越大越好。</p><pre><code>var s = &#39;hello world welcome to my world&#39;;
 var pattern = /hello.*world/;
 var ans = pattern.exec(s);
 console.log(ans)
 // [&quot;hello world welcome to my world&quot;, index: 0, input: &quot;hello world welcome to my world&quot;]
-</code></pre><p>以上例子不会匹配最前面的<a href="http://link.funteas.com/?target=http%3A%2F%2Fwww.codeceo.com%2Farticle%2Fhello-world-30-years.html" target="_blank" rel="external">Hello World</a> (title=undefined target=undefined)，而是一直贪心的往后匹配。</p>
-<p>那么我需要最短的匹配怎么办？很简单，加个‘？’即可，这就是传说中的懒惰匹配，即匹配到了，就不往后找了。</p>
-<pre><code>var s = &#39;hello world welcome to my world&#39;;
+</code></pre><p>以上例子不会匹配最前面的<a href="http://link.funteas.com/?target=http%3A%2F%2Fwww.codeceo.com%2Farticle%2Fhello-world-30-years.html" target="_blank" rel="external">Hello World</a> (title=undefined target=undefined)，而是一直贪心的往后匹配。</p><p>那么我需要最短的匹配怎么办？很简单，加个‘？’即可，这就是传说中的懒惰匹配，即匹配到了，就不往后找了。</p><pre><code>var s = &#39;hello world welcome to my world&#39;;
 var pattern = /hello.*?world/;
 var ans = pattern.exec(s);
 console.log(ans)
 // [&quot;hello world&quot;, index: 0, input: &quot;hello world welcome to my world&quot;]
-</code></pre><p><strong>懒惰限定符（？）添加的场景如下：</strong></p>
-<p><img src="https://img.funteas.com/bfed54f78ebb16f531dbb785782e7a7f.png?imageView2/2/w/800" alt=""></p>
-<h3 id="子表达式"><a href="#子表达式" class="headerlink" title="子表达式"></a>子表达式</h3><p>用一个小括号指定：</p>
-<pre><code>var s = &#39;hello world&#39;;
+</code></pre><p><strong>懒惰限定符（？）添加的场景如下：</strong></p><p><img src="https://img.funteas.com/bfed54f78ebb16f531dbb785782e7a7f.png?imageView2/2/w/800" alt=""></p><h3 id="子表达式"><a href="#子表达式" class="headerlink" title="子表达式"></a>子表达式</h3><p>用一个小括号指定：</p><pre><code>var s = &#39;hello world&#39;;
 var pattern = /(hello)/;
 var ans = pattern.exec(s);
 console.log(ans);
-</code></pre><p>在exec中数组输出子表达式所匹配的值：</p>
-<pre><code>var s = &#39;hello world&#39;;
+</code></pre><p>在exec中数组输出子表达式所匹配的值：</p><pre><code>var s = &#39;hello world&#39;;
 var pattern = /(h(e)llo)/;
 var ans = pattern.exec(s);
 console.log(ans);
 // [&quot;hello&quot;, &quot;hello&quot;, &quot;e&quot;, index: 0, input: &quot;hello world&quot;]
-</code></pre><p>在replace中作为替换值引用：</p>
-<pre><code>var s = &#39;hello world&#39;;
+</code></pre><p>在replace中作为替换值引用：</p><pre><code>var s = &#39;hello world&#39;;
 var pattern = /(h\w*o)\s*(w\w*d)/;
 var ans = s.replace(pattern, &#39;$2 $1&#39;)
 console.log(ans);
 // world hello
-</code></pre><p>后向引用 &amp; 零宽断言</p>
-<p>简单地说：从左向右，以分组的左括号为标志，第一个出现的分组的组号为1，第二个为2，以此类推。</p>
-<p>复杂地说：分组0对应整个正则表达式实际上组号分配过程是要从左向右扫描两遍的：第一遍只给未命名组分配，第二遍只给命名组分配－－因此所有命名组的组号都大于未命名的组号。可以使用(?:exp)这样的语法来剥夺一个分组对组号分配的参与权．</p>
-<h3 id="后向引用"><a href="#后向引用" class="headerlink" title="后向引用"></a>后向引用</h3><p>如果我们要找连续两个一样的字符，比如要找两个连续的c，可以这样/c{2}/，如果要找两个连续的单词hello，可以这样/(hello){2}/，但是要在一个字符串中找连续两个相同的任意单词呢，比如一个字符串hellohellochinaworldworld，我要找的是hello和world，怎么找？</p>
-<p>这时候就要用后向引用。看具体例子：</p>
-<pre><code>var s = &#39;hellohellochinaworldworld&#39;;
+</code></pre><p>后向引用 &amp; 零宽断言</p><p>简单地说：从左向右，以分组的左括号为标志，第一个出现的分组的组号为1，第二个为2，以此类推。</p><p>复杂地说：分组0对应整个正则表达式实际上组号分配过程是要从左向右扫描两遍的：第一遍只给未命名组分配，第二遍只给命名组分配－－因此所有命名组的组号都大于未命名的组号。可以使用(?:exp)这样的语法来剥夺一个分组对组号分配的参与权．</p><h3 id="后向引用"><a href="#后向引用" class="headerlink" title="后向引用"></a>后向引用</h3><p>如果我们要找连续两个一样的字符，比如要找两个连续的c，可以这样/c{2}/，如果要找两个连续的单词hello，可以这样/(hello){2}/，但是要在一个字符串中找连续两个相同的任意单词呢，比如一个字符串hellohellochinaworldworld，我要找的是hello和world，怎么找？</p><p>这时候就要用后向引用。看具体例子：</p><pre><code>var s = &#39;hellohellochinaworldworld&#39;;
 var pattern = /(\w+)\1/g;
 var a = s.match(pattern);
 console.log(a);
 // [&quot;hellohello&quot;, &quot;worldworld&quot;]
-</code></pre><p>这里的\1就表示和匹配模式中的第一个子表达式（分组）一样的内容，\2表示和第二个子表达式（如果有的话）一样的内容，\3 \4 以此类推。（也可以自己命名，详见参考文献）</p>
-<p>或许你觉得数组里两个hello两个world太多了，我只要一个就够了，就又要用到子表达式了。因为match方法里是不能引用子表达式的值的，我们回顾下哪些方法是可以的？没错，exec和replace是可以的！</p>
-<p><strong>exec方式：</strong></p>
-<pre><code>var s = &#39;hellohellochinaworldworld&#39;;
+</code></pre><p>这里的\1就表示和匹配模式中的第一个子表达式（分组）一样的内容，\2表示和第二个子表达式（如果有的话）一样的内容，\3 \4 以此类推。（也可以自己命名，详见参考文献）</p><p>或许你觉得数组里两个hello两个world太多了，我只要一个就够了，就又要用到子表达式了。因为match方法里是不能引用子表达式的值的，我们回顾下哪些方法是可以的？没错，exec和replace是可以的！</p><p><strong>exec方式：</strong></p><pre><code>var s = &#39;hellohellochinaworldworld&#39;;
 var pattern = /(\w+)\1/g;
 var ans;
 do {
@@ -724,9 +140,7 @@ do {
 // result
 // [&quot;hellohello&quot;, &quot;hello&quot;, index: 0, input: &quot;hellohellochinaworldworld&quot;] index.html:69
 // [&quot;worldworld&quot;, &quot;world&quot;, index: 15, input: &quot;hellohellochinaworldworld&quot;] index.html:69// null
-</code></pre><p>如果输出只要hello和world，console.log(ans[1])即可。</p>
-<p><strong>replace方式：</strong></p>
-<pre><code>var s = &#39;hellohellochinaworldworld&#39;;
+</code></pre><p>如果输出只要hello和world，console.log(ans[1])即可。</p><p><strong>replace方式：</strong></p><pre><code>var s = &#39;hellohellochinaworldworld&#39;;
 var pattern = /(\w+)\1/g;
 var ans = [];
 s.replace(pattern, function(a, b) {
@@ -734,8 +148,7 @@ s.replace(pattern, function(a, b) {
 });
 console.log(ans);
 // [&quot;hello&quot;, &quot;world&quot;]
-</code></pre><p>如果要找连续n个相同的串，比如说要找出一个字符串中出现最多的字符：</p>
-<pre><code>String.prototype.getMost = function() {
+</code></pre><p>如果要找连续n个相同的串，比如说要找出一个字符串中出现最多的字符：</p><pre><code>String.prototype.getMost = function() {
     var a = this.split(&#39;&#39;);
     a.sort();
     var s = a.join(&#39;&#39;);
@@ -749,40 +162,29 @@ console.log(ans);
 var s = &#39;aaabbbcccaaabbbcccccc&#39;;
 console.log(s.getMost());
 // c: 9
-</code></pre><p>如果需要引用某个子表达式（分组），请认准后向引用！</p>
-<h3 id="零宽断言"><a href="#零宽断言" class="headerlink" title="零宽断言"></a>零宽断言</h3><p>别被名词吓坏了，其实解释很简单。</p>
-<p>它们用于查找在某些内容(但并不包括这些内容)之后的东西，也就是说它们像\b,^,$那样用于指定一个位置，这个位置应该满足一定的条件(即断言)</p>
-<p>零宽度正预测先行断言，它断言自身出现的位置的后面能匹配表达式exp。</p>
-<pre><code>// 获取字符串中以ing结尾的单词的前半部分
+</code></pre><p>如果需要引用某个子表达式（分组），请认准后向引用！</p><h3 id="零宽断言"><a href="#零宽断言" class="headerlink" title="零宽断言"></a>零宽断言</h3><p>别被名词吓坏了，其实解释很简单。</p><p>它们用于查找在某些内容(但并不包括这些内容)之后的东西，也就是说它们像\b,^,$那样用于指定一个位置，这个位置应该满足一定的条件(即断言)</p><p>零宽度正预测先行断言，它断言自身出现的位置的后面能匹配表达式exp。</p><pre><code>// 获取字符串中以ing结尾的单词的前半部分
 var s = &#39;I love dancing but he likes singing&#39;;
 var pattern = /\b\w+(?=ing\b)/g;
 var ans = s.match(pattern);
 console.log(ans);
 // [&quot;danc&quot;, &quot;sing&quot;]
-</code></pre><p>零宽度负预测先行断言，断言此位置的后面不能匹配表达式exp</p>
-<pre><code>// 获取第五位不是i的单词的前四位
+</code></pre><p>零宽度负预测先行断言，断言此位置的后面不能匹配表达式exp</p><pre><code>// 获取第五位不是i的单词的前四位
 var s = &#39;I love dancing but he likes singing&#39;;
 var pattern = /\b\w{4}(?!i)/g;
 var ans = s.match(pattern);
 console.log(ans);
 // [&quot;love&quot;, &quot;like&quot;]
-</code></pre><p>javascript正则只支持前瞻，不支持后瞻（(?&lt;=exp)和(?</p>
-<p>关于零宽断言的具体应用可以参考综合应用一节给字符串加千分符。</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>因为某些字符已经被正则表达式用掉了，比如. * ( ) / \  []，所以需要使用它们（作为字符）时，需要用\转义</p>
-<pre><code>var s = &#39;http://www.cnblogs.com/zichi/&#39;;
+</code></pre><p>javascript正则只支持前瞻，不支持后瞻（(?&lt;=exp)和(?</p><p>关于零宽断言的具体应用可以参考综合应用一节给字符串加千分符。</p><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>因为某些字符已经被正则表达式用掉了，比如. * ( ) / \ []，所以需要使用它们（作为字符）时，需要用\转义</p><pre><code>var s = &#39;http://www.cnblogs.com/zichi/&#39;;
 var pattern = /http:\/\/www\.cnblogs\.com\/zichi\//;
 var ans = pattern.exec(s);
 console.log(ans);
 // [&quot;http://www.cnblogs.com/zichi/&quot;, index: 0, input: &quot;http://www.cnblogs.com/zichi/&quot;]
-</code></pre><p>如果需要匹配abc里的任意字母，可以用[abc]，但是如果不是单个字母那么简单，就要用到分支条件。</p>
-<p>分支条件很简单，就是用|表示符合其中任意一种规则。</p>
-<pre><code>var s = &quot;I don&#39;t like you but I love you&quot;;
+</code></pre><p>如果需要匹配abc里的任意字母，可以用[abc]，但是如果不是单个字母那么简单，就要用到分支条件。</p><p>分支条件很简单，就是用|表示符合其中任意一种规则。</p><pre><code>var s = &quot;I don&#39;t like you but I love you&quot;;
 var pattern = /I.*(like|love).*you/g;
 var ans = s.match(pattern);
 console.log(ans);
 // [&quot;I don&#39;t like you but I love you&quot;]
-</code></pre><p>答案执行了贪婪匹配，如果需要懒惰匹配，则：</p>
-<pre><code>var s = &quot;I don&#39;t like you but I love you&quot;;
+</code></pre><p>答案执行了贪婪匹配，如果需要懒惰匹配，则：</p><pre><code>var s = &quot;I don&#39;t like you but I love you&quot;;
 var pattern = /I.*?(like|love).*?you/g;
 var ans = s.match(pattern);
 console.log(ans);
@@ -813,430 +215,7 @@ console.log(s.getAns());
 var s = &#39;aaabbbcccaaabbbcccccc&#39;;
 console.log(s.getMost());
 // c: 9
-</code></pre><h3 id="常用匹配模式（持续更新）"><a href="#常用匹配模式（持续更新）" class="headerlink" title="常用匹配模式（持续更新）"></a>常用匹配模式（持续更新）</h3><ol>
-<li>只能输入汉字：/^[\u4e00-\u9fa5]{0,}$/</li>
-</ol>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><ol>
-<li><strong>test</strong>：检查指定字符串中有没有某子串（或某匹配模式），返回true或者false；如有必要可以进行全局模式搜索。</li>
-<li><strong>exec</strong>：检查指定字符串中有没有某子串（或者匹配模式），如有返回数组（数组信息丰富，可参考上文介绍），如没有返回null；如有必要可以进行全局搜索找出所有子串（或者匹配模式）的信息，<strong>信息中含有匹配模式中子表达式所对应的字符串</strong>。</li>
-<li><strong>compile</strong>：修改正则表达式中的pattern</li>
-<li><strong>search</strong>：检查指定字符串中有没有某子串（或者匹配模式），如有返回子串（或者匹配模式）在原串中的开始位置，如没有返回-1。不能进行全局搜索。</li>
-<li><strong>match</strong>：检查指定字符串中有没有某子串（或者匹配模式），非全局模式下返回信息和exec一致；如进行全局搜索，直接返回字符串数组。（如不需要关于每个匹配的更多信息，推荐用match而不是exec）</li>
-<li><strong>replace</strong>：检查指定字符串中有没有某子串（或者匹配模式），并用另一个子串代替（该子串可以跟原字符串或者搜索到的子串有关）；如启动g，则全局替换，否则只替换第一个。<strong>replace方法可以引用子表达式所对应的值</strong>。</li>
-<li><strong>split</strong>：用特定模式分割字符串，返回一个字符串数组；与Array的join方法正好相反。</li>
-<li><strong>子表达式</strong>：用括号括起来的正则匹配表达式，用后向引用可以对其进行引用；也可以和exec或者replace搭配获取其真实匹配值。</li>
-<li><strong>后向引用</strong> ：对子表达式所在分组进行引用。</li>
-<li><strong>零宽断言</strong>：和\b ^ 以及$类似的某个位置概念。</li>
-</ol>
-
-        
-                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
-                    <p><strong>
-                         
-                            This blog is under a <a href="https://pancakeawesome.ink/" target="_blank">CC BY-NC-SA 3.0 Unported License</a>
-                        </strong>
-                        <br>
-                        <strong>本文链接：</strong><a href="http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html">http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html</a>
-                    </p>
-                </blockquote>
-        
-    
-
-    
-</div>
-
-
-                
-
-                <!-- Post Comments -->
-                
-                    
-    <!-- 使用 changyan -->
-<div id="changyan-comment">
-    <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="我所认识的JavaScript正则表达式.html"  ></div>
-<script type="text/javascript">
-(function(){
-var appid = 'cytdf2o7Q';
-var conf = 'da223e602e0abf03eded8d4c19e7d862';
-var width = window.innerWidth || document.documentElement.clientWidth;
-if (width < 960) {
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
-
-</div>
-<style>
-    #changyan-comment{
-        background-color: #eee;
-        padding: 2pc;
-    }
-</style>
-
-                
-            </div>
-
-            <!-- Post Prev & Next Nav -->
-            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-    <!-- Prev Nav -->
-    
-        <a href="/浏览器「内核」都做了些什么？.html" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
-
-    <!-- Section Spacer -->
-    <div class="section-spacer"></div>
-
-    <!-- Next Nav -->
-    
-        <a href="/10大使用Node-js的理由.html" id="post_nav-older" class="next-content">
-            旧篇
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_forward</i>
-            </button>
-        </a>
-    
-</nav>
-
-        </div>
-    </div>
-
-
-
-                    
-                        <!-- Overlay For Active Sidebar -->
-<div class="sidebar-overlay"></div>
-
-<!-- Material sidebar -->
-<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
-    <div id="sidebar-main">
-        <!-- Sidebar Header -->
-        <div class="sidebar-header header-cover" style="background-image: url(/img/thumbnail/sidebar_header.jpg);">
-    <!-- Top bar -->
-    <div class="top-bar"></div>
-
-    <!-- Sidebar toggle button -->
-    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
-        <i class="material-icons">clear_all</i>
-        <span class="mdl-button__ripple-container">
-            <span class="mdl-ripple">
-            </span>
-        </span>
-    </button>
-
-    <!-- Sidebar Avatar -->
-    <div class="sidebar-image">
-        <img src="/img/rip.jpeg" alt="Edward Guan's avatar">
-    </div>
-
-    <!-- Sidebar Email -->
-    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
-        guanchao930908@163.com
-        <b class="caret"></b>
-    </a>
-</div>
-
-
-        <!-- Sidebar Navigation  -->
-        <ul class="nav sidebar-nav">
-    <!-- User dropdown  -->
-    <li class="dropdown">
-        <ul id="settings-dropdown" class="dropdown-menu">
-            
-                <li>
-                    <a href="mailto:guanchao930908@163.com" target="_blank" title="Email Me">
-                        
-                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
-                        
-                        Email Me
-                    </a>
-                </li>
-            
-        </ul>
-    </li>
-
-    <!-- Homepage -->
-    
-        <li id="sidebar-first-li">
-            <a href="/">
-                
-                    <i class="material-icons sidebar-material-icons">home</i>
-                
-                主页
-            </a>
-        </li>
-        
-    
-
-    <!-- Archives  -->
-    
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">timeline</i>
-                
-                    归档
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-            <li>
-                <a class="sidebar_archives-link" href="/archives/2018/02/">二月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">20</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">10</span></a>
-            </ul>
-        </li>
-        
-    
-
-    <!-- Categories  -->
-    
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                分类
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/CSS/">CSS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/blog/">blog<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/css/">css<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/es6/">es6<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/html/">html<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript/">javascript<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript设计模式/">javascript设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/node-js/">node.js<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/nodejs/">nodejs<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/react/">react<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/typescript/">typescript<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端优化/">前端优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端工具/">前端工具<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端技术/">前端技术<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端架构设计/">前端架构设计<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端框架/">前端框架<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据分析/">数据分析<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据可视化/">数据可视化<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/机器学习/">机器学习<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法思想/">算法思想<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/软件开发/">软件开发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/面试/">面试<span class="sidebar_archives-count">1</span></a>
-            </ul>
-        </li>
-        
-    
-
-    <!-- Pages  -->
-    
-        <li>
-            <a href="/tags" title="标签云">
-                
-                    <i class="material-icons sidebar-material-icons">cloud_circle</i>
-                
-                标签云
-            </a>
-        </li>
-        
-            <li class="divider"></li>
-        
-    
-        <li>
-            <a href="/timeline" title="Timeline">
-                
-                    <i class="material-icons sidebar-material-icons">send</i>
-                
-                Timeline
-            </a>
-        </li>
-        
-    
-        <li>
-            <a href="/gallery" title="Gallery">
-                
-                    <i class="material-icons sidebar-material-icons">photo_library</i>
-                
-                Gallery
-            </a>
-        </li>
-        
-    
-        <li>
-            <a href="/aboutMe" title="About Me">
-                
-                    <i class="material-icons sidebar-material-icons">person_pin</i>
-                
-                About Me
-            </a>
-        </li>
-        
-            <li class="divider"></li>
-        
-    
-
-    <!-- Article Number  -->
-    
-        <li>
-            <a href="/archives">
-                文章总数
-                <span class="sidebar-badge">60</span>
-            </a>
-        </li>
-        
-    
-</ul>
-
-
-        <!-- Sidebar Footer -->
-        <!--
-I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
-If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
-It will not impact the appearance and can give developers a lot of support :)
-
-很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
-如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
-它不会影响美观并可以给开发者很大的支持和动力。 :)
--->
-
-<!-- Sidebar Divider -->
-
-
-<!-- Theme Material -->
-
-
-<!-- Help & Support -->
-<!--
-
--->
-
-<!-- Feedback -->
-<!--
-
--->
-
-<!-- About Theme -->
-<!--
-
--->
-
-    </div>
-
-    <!-- Sidebar Image -->
-    
-
-</aside>
-
-                    
-
-                    
-                        <!-- Footer Top Button -->
-                        <div id="back-to-top" class="toTop-wrap">
-    <a href="#top" class="toTop">
-        <i class="material-icons footer_top-i">expand_less</i>
-    </a>
-</div>
-
-                    
-
-                    <!--Footer-->
-<footer class="mdl-mini-footer" id="bottom">
-    
-        <!-- Paradox Footer Left Section -->
-        <div class="mdl-mini-footer--left-section sns-list">
-    <!-- Twitter -->
-    
-        <a href="https://twitter.com/591153977" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
-                <span class="visuallyhidden">Twitter</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- Facebook -->
-    
-        <a href="https://www.facebook.com/profile.php?id=100011433530812" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
-                <span class="visuallyhidden">Facebook</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- Google + -->
-    
-
-    <!-- Weibo -->
-    
-
-    <!-- Instagram -->
-    
-        <a href="https://www.instagram.com/edward930908/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn footer-sns-instagram">
-                <span class="visuallyhidden">Instagram</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- Tumblr -->
-    
-
-    <!-- Github -->
-    
-        <a href="https://github.com/PancakeAwesome" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
-                <span class="visuallyhidden">Github</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- LinkedIn -->
-    
-        <a href="https://www.linkedin.com/in/%E8%B6%85-%E7%AE%A1-89495a145/" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin">
-                <span class="visuallyhidden">LinkedIn</span>
-            </button><!--
-     --></a>
-    
-
-    <!-- Zhihu -->
-    
-
-    <!-- Bilibili -->
-    
-
-    <!-- Telegram -->
-    
-    
-    <!-- V2EX -->
-    
-</div>
-
-
-        <!--Copyright-->
-        <div id="copyright">
-            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Edward's Blog
-            
-                <br>
-                
-                    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
-                
-            
-        </div>
-
-        <!-- Paradox Footer Right Section -->
-
-        <!--
-        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
-        It will not impact the appearance and can give developers a lot of support :)
-
-        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
-        它不会影响美观并可以给开发者很大的支持。 :)
-        -->
-
-        <div class="mdl-mini-footer--right-section">
-            <div>
-                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
-                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
-            </div>
-        </div>
-    
-</footer>
-
-
-                    <!-- Import JS File -->
-
-    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
-
-
-
-    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
-
-
-
-    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
-
-
-<script type="text/ls-javascript" id="NProgress-script">
+</code></pre><h3 id="常用匹配模式（持续更新）"><a href="#常用匹配模式（持续更新）" class="headerlink" title="常用匹配模式（持续更新）"></a>常用匹配模式（持续更新）</h3><ol><li>只能输入汉字：/^[\u4e00-\u9fa5]{0,}$/</li></ol><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><ol><li><strong>test</strong>：检查指定字符串中有没有某子串（或某匹配模式），返回true或者false；如有必要可以进行全局模式搜索。</li><li><strong>exec</strong>：检查指定字符串中有没有某子串（或者匹配模式），如有返回数组（数组信息丰富，可参考上文介绍），如没有返回null；如有必要可以进行全局搜索找出所有子串（或者匹配模式）的信息，<strong>信息中含有匹配模式中子表达式所对应的字符串</strong>。</li><li><strong>compile</strong>：修改正则表达式中的pattern</li><li><strong>search</strong>：检查指定字符串中有没有某子串（或者匹配模式），如有返回子串（或者匹配模式）在原串中的开始位置，如没有返回-1。不能进行全局搜索。</li><li><strong>match</strong>：检查指定字符串中有没有某子串（或者匹配模式），非全局模式下返回信息和exec一致；如进行全局搜索，直接返回字符串数组。（如不需要关于每个匹配的更多信息，推荐用match而不是exec）</li><li><strong>replace</strong>：检查指定字符串中有没有某子串（或者匹配模式），并用另一个子串代替（该子串可以跟原字符串或者搜索到的子串有关）；如启动g，则全局替换，否则只替换第一个。<strong>replace方法可以引用子表达式所对应的值</strong>。</li><li><strong>split</strong>：用特定模式分割字符串，返回一个字符串数组；与Array的join方法正好相反。</li><li><strong>子表达式</strong>：用括号括起来的正则匹配表达式，用后向引用可以对其进行引用；也可以和exec或者replace搭配获取其真实匹配值。</li><li><strong>后向引用</strong> ：对子表达式所在分组进行引用。</li><li><strong>零宽断言</strong>：和\b ^ 以及$类似的某个位置概念。</li></ol><blockquote style="margin:2em 0 0;padding:.5em 1em;border-left:3px solid #f44336;background-color:#f5f5f5;list-style:none"><p> <strong>This blog is under a <a href="https://pancakeawesome.ink/" target="_blank">CC BY-NC-SA 3.0 Unported License</a></strong><br> <strong>本文链接：</strong><a href="http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html">http://pancakeawesome.ink/我所认识的JavaScript正则表达式.html</a></p></blockquote></div><div id="changyan-comment"><div id="SOHUCS" sid="我所认识的JavaScript正则表达式.html"></div><script type="text/javascript">!function(){var t="da223e602e0abf03eded8d4c19e7d862";if((window.innerWidth||document.documentElement.clientWidth)<960)window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cytdf2o7Q&conf='+t+'"><\/script>');else{!function(t,e){var n=document.getElementsByTagName("head")[0]||document.head||document.documentElement,a=document.createElement("script");a.setAttribute("type","text/javascript"),a.setAttribute("charset","UTF-8"),a.setAttribute("src",t),"function"==typeof e&&(window.attachEvent?a.onreadystatechange=function(){var t=a.readyState;"loaded"!==t&&"complete"!==t||(a.onreadystatechange=null,e())}:a.onload=e),n.appendChild(a)}("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:"cytdf2o7Q",conf:t})})}}()</script></div><style>#changyan-comment{background-color:#eee;padding:2pc}</style></div><nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col"> <a href="/浏览器「内核」都做了些什么？.html" id="post_nav-newer" class="prev-content"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation"> <i class="material-icons">arrow_back</i></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 新篇</a><div class="section-spacer"></div> <a href="/10大使用Node-js的理由.html" id="post_nav-older" class="next-content">旧篇 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation"> <i class="material-icons">arrow_forward</i></button></a></nav></div></div><div class="sidebar-overlay"></div><aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation"><div id="sidebar-main"><div class="sidebar-header header-cover" style="background-image:url(/img/thumbnail/sidebar_header.jpg)"><div class="top-bar"></div> <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display:initial" data-upgraded=",MaterialButton,MaterialRipple"> <i class="material-icons">clear_all</i><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button><div class="sidebar-image"> <img src="/img/rip.jpeg" alt="Edward Guan's avatar"></div> <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">guanchao930908@163.com<b class="caret"></b></a></div><ul class="nav sidebar-nav"><li class="dropdown"><ul id="settings-dropdown" class="dropdown-menu"><li> <a href="mailto:guanchao930908@163.com" target="_blank" title="Email Me"><i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i> Email Me</a></li></ul></li><li id="sidebar-first-li"> <a href="/"><i class="material-icons sidebar-material-icons">home</i> 主页</a></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">timeline</i> 归档<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/archives/2018/02/">二月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">14</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">20</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">10</span></a></li></ul></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">chrome_reader_mode</i> 分类<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/categories/CSS/">CSS<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/blog/">blog<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/css/">css<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/es6/">es6<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/html/">html<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript/">javascript<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript设计模式/">javascript设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/node-js/">node.js<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/nodejs/">nodejs<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/react/">react<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/typescript/">typescript<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端优化/">前端优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端工具/">前端工具<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端技术/">前端技术<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端架构设计/">前端架构设计<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端框架/">前端框架<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据分析/">数据分析<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据可视化/">数据可视化<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/机器学习/">机器学习<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法思想/">算法思想<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/软件开发/">软件开发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/面试/">面试<span class="sidebar_archives-count">1</span></a></li></ul></li><li> <a href="/tags" title="标签云"><i class="material-icons sidebar-material-icons">cloud_circle</i> 标签云</a></li><li class="divider"></li><li> <a href="/timeline" title="Timeline"><i class="material-icons sidebar-material-icons">send</i> Timeline</a></li><li> <a href="/gallery" title="Gallery"><i class="material-icons sidebar-material-icons">photo_library</i> Gallery</a></li><li> <a href="/aboutMe" title="About Me"><i class="material-icons sidebar-material-icons">person_pin</i> About Me</a></li><li class="divider"></li><li> <a href="/archives">文章总数 <span class="sidebar-badge">60</span></a></li></ul></div></aside><div id="back-to-top" class="toTop-wrap"> <a href="#top" class="toTop"><i class="material-icons footer_top-i">expand_less</i></a></div><footer class="mdl-mini-footer" id="bottom"><div class="mdl-mini-footer--left-section sns-list"> <a href="https://twitter.com/591153977" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter"> <span class="visuallyhidden">Twitter</span></button></a> <a href="https://www.facebook.com/profile.php?id=100011433530812" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook"> <span class="visuallyhidden">Facebook</span></button></a> <a href="https://www.instagram.com/edward930908/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-instagram"> <span class="visuallyhidden">Instagram</span></button></a> <a href="https://github.com/PancakeAwesome" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-github"> <span class="visuallyhidden">Github</span></button></a> <a href="https://www.linkedin.com/in/%E8%B6%85-%E7%AE%A1-89495a145/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin"> <span class="visuallyhidden">LinkedIn</span></button></a></div><div id="copyright"> Copyright&nbsp;©<script type="text/javascript">var fd=new Date;document.write("&nbsp;"+fd.getFullYear()+"&nbsp;")</script>Edward's Blog<br><p>Hosted by <a href="https://pages.coding.me" style="font-weight:700">Coding Pages</a></p></div><div class="mdl-mini-footer--right-section"><div><div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div><div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div></div></div></footer><script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==",!0)</script><script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==",!0)</script><script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==",!0)</script><script type="text/ls-javascript" id="NProgress-script">
     NProgress.configure({
         showSpinner: true
     });
@@ -1255,50 +234,7 @@ It will not impact the appearance and can give developers a lot of support :)
         NProgress.done();
         $('.fade').removeClass('out');
     }, 800);
-</script>
-
-
-
-
-
-
-
-    <!-- Busuanzi -->
-    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-   <!-- 畅言公共 js 代码 start -->
-<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytdf2o7Q">
-</script>
-<!-- 畅言公共 js 代码 end -->
-
-
-
-
-
-<!-- UC Browser Compatible -->
-<script>
-	var agent = navigator.userAgent.toLowerCase();
-	if(agent.indexOf('ucbrowser')>0) {
-		document.write('<link rel="stylesheet" href="/css/uc.css">');
-	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
-	}
-</script>
-
-<!-- Import prettify js  -->
-
-    
-        
-            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
-        
-    
-
-
-
-<!-- Window Load -->
-<!-- add class for prettify -->
-<script type="text/ls-javascript" id="window-load">
+</script><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytdf2o7Q"></script><script>var agent=navigator.userAgent.toLowerCase();agent.indexOf("ucbrowser")>0&&(document.write('<link rel="stylesheet" href="/css/uc.css">'),alert("由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。"))</script><script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==",!0)</script><script type="text/ls-javascript" id="window-load">
     $(window).on('load', function() {
         // Post_Toc parent position fixed
         $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
@@ -1313,15 +249,7 @@ It will not impact the appearance and can give developers a lot of support :)
         
     
     
-</script>
-
-<!-- MathJax Load-->
-
-
-<!-- Bing Background -->
-
-
-<script type="text/ls-javascript" id="lazy-load">
+</script><script type="text/ls-javascript" id="lazy-load">
     // Offer LazyLoad
     queue.offer(function(){
         $('.lazy').lazyload({
@@ -1335,26 +263,4 @@ It will not impact the appearance and can give developers a lot of support :)
             queue.execNext();
         },200);
     });
-</script>
-
-<!-- Custom Footer -->
-
-
-
-<script>
-    (function(){
-        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
-
-        for (var i = 0; i < scriptList.length; ++i) {
-            var item = scriptList[i];
-            lsloader.runInlineScript(item.id,item.id);
-        }
-    })()
-console.log('\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
-</script>
-
-                </main>
-            </div>
-        </body>
-    
-</html>
+</script><script>!function(){for(var e=document.querySelectorAll('script[type="text/ls-javascript"]'),r=0;r<e.length;++r){var o=e[r];lsloader.runInlineScript(o.id,o.id)}}(),console.log("\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;")</script></main></div></body></html>
