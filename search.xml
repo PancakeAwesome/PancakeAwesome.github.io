@@ -9,7 +9,13 @@
 <script type="math/tex; mode=display">\frac{\partial u}{\partial t}
 = h^2 \left( \frac{\partial^2 u}{\partial x^2} +
 \frac{\partial^2 u}{\partial y^2} +
-\frac{\partial^2 u}{\partial z^2}\right)</script><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+\frac{\partial^2 u}{\partial z^2}\right)</script><script type="math/tex; mode=display">
+\begin{eqnarray}
+\nabla\cdot\vec{E} &=& \frac{\rho}{\epsilon_0} \\
+\nabla\cdot\vec{B} &=& 0 \\
+\nabla\times\vec{E} &=& -\frac{\partial B}{\partial t} \\
+\nabla\times\vec{B} &=& \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)
+\end{eqnarray}</script><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
       
         
     </entry>
@@ -9154,9 +9160,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端框架 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 前端框架 </tag>
             
         </tags>
         
