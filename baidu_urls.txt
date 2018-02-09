@@ -3,7 +3,6 @@ http://pancakeawesome.ink/React项目实战-一-：环境搭建.html
 http://pancakeawesome.ink/React项目实战(二):react-redux-router基本原理.html
 http://pancakeawesome.ink/理解ES6的-Iterator-、Iterable-、-Generator.html
 http://pancakeawesome.ink/网页适配-iPhoneX，就是这么简单.html
-http://pancakeawesome.ink/《统计学习方法》学习笔记.html
 http://pancakeawesome.ink/CSS-实用-Tips.html
 http://pancakeawesome.ink/20-个-CSS-高级技巧汇总.html
 http://pancakeawesome.ink/2018年，前端应该怎么学？.html
@@ -57,3 +56,4 @@ http://pancakeawesome.ink/三分钟入门markdown.html
 http://pancakeawesome.ink/hexo+githubio+material搭建你的个人博客(基础篇).html
 http://pancakeawesome.ink/动态规划迷思.html
 http://pancakeawesome.ink/入门Webpack，看这篇就够了.html
+http://pancakeawesome.ink/《统计学习方法》学习笔记.html
