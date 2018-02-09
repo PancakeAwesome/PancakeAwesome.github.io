@@ -3,18 +3,10 @@
   
     
     <entry>
-      <title><![CDATA[test]]></title>
-      <url>/test.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>$T(n) = \Theta(n)$</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
-      
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[最小二乘法小结]]></title>
       <url>/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最小二乘法小结</p>
+<p>$T(n) = \Theta(n)$</p>
 <p>最小二乘法是用来做函数拟合或者求函数极值的方法。在机器学习，尤其是回归模型中，经常可以看到最小二乘法的身影，这里就对我对最小二乘法的认知做一个小结。&lt;/p&gt;</p>
 <p></p><h1>1.最小二乘法的原理与要解决的问题　</h1><p></p>
 <p>　　　　最小二乘法是由勒让德在19世纪发现的，原理的一般形式很简单，当然发现的过程是非常艰难的。形式如下式：</p>
@@ -758,9 +750,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -3358,9 +3350,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> react </tag>
             
@@ -3747,9 +3739,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -9151,9 +9143,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> 前端框架 </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
