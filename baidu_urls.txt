@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/test.html
 http://pancakeawesome.ink/最小二乘法小结.html
 http://pancakeawesome.ink/React项目实战-一-：环境搭建.html
 http://pancakeawesome.ink/React项目实战(二):react-redux-router基本原理.html
