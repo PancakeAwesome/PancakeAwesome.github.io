@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/hexo中使用mathJax渲染Latex.html
 http://pancakeawesome.ink/最小二乘法小结.html
 http://pancakeawesome.ink/《统计学习方法》学习笔记.html
 http://pancakeawesome.ink/React项目实战-一-：环境搭建.html

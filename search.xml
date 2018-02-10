@@ -3,6 +3,14 @@
   
     
     <entry>
+      <title><![CDATA[hexo中使用mathJax渲染Latex]]></title>
+      <url>/hexo%E4%B8%AD%E4%BD%BF%E7%94%A8mathJax%E6%B8%B2%E6%9F%93Latex.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[最小二乘法小结]]></title>
       <url>/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最小二乘法是用来做函数拟合或者求函数极值的方法。在机器学习，尤其是回归模型中，经常可以看到最小二乘法的身影，这里就对我对最小二乘法的认知做一个小结。</p>
@@ -30,7 +38,7 @@ J(\theta_0, \theta_1) = \sum\limits_{i=1}^{m}(y^{(i)} - h_\theta(x^{(i)})^2 = \s
 <script type="math/tex; mode=display">
 h_\theta(x_0, x_1, ...x_n) = \sum\limits_{i=0}^{n}\theta_{i}x_{i}。</script><p>损失函数表示为：</p>
 <script type="math/tex; mode=display">
-J(θ0,θ1...,θn)=∑j=1m(hθ(x0(j)),x1(j),...xn(j)))−y(j)))2=∑j=1m(∑i=0nθixi(j)−y(j))2J(\theta_0, \theta_1..., \theta_n) = \sum\limits_{j=1}^{m}(h_\theta(x_0^{(j)}), x_1^{(j)}, ...x_n^{(j)})) - y^{(j)}))^2 = \sum\limits_{j=1}^{m}(\sum\limits_{i=0}^{n}\theta_{i}x_{i}^{(j)}- y{(j)})^2</script><p>利用损失函数分别对$\theta_i$(i=0,1,…n)求导,并令导数为0可得：</p>
+J(\theta_0, \theta_1..., \theta_n) = \sum\limits_{j=1}^{m}(h_\theta(x_0^{(j)}), x_1^{(j)}, ...x_n^{(j)})) - y^{(j)}))^2 = \sum\limits_{j=1}^{m}(\sum\limits_{i=0}^{n}\theta_{i}x_{i}^{(j)}- y{(j)})^2</script><p>利用损失函数分别对$\theta_i$(i=0,1,…n)求导,并令导数为0可得：</p>
 <script type="math/tex; mode=display">
 \sum\limits_{j=0}^{m}(\sum\limits_{i=0}^{n}\theta_{i}x_{i}^{(j)} - y_j)x_i^{j} = 0
 $$   (i=0,1,...n)
@@ -848,9 +856,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -1195,9 +1203,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -1453,9 +1461,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -2734,9 +2742,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3036,9 +3044,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3350,9 +3358,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> react </tag>
             
@@ -3739,9 +3747,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -5811,9 +5819,9 @@ io.on(&#39;connection&#39;, function(socket) {
         
         <tags>
             
-            <tag> node.js </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> node.js </tag>
             
         </tags>
         
@@ -10070,9 +10078,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -11063,9 +11071,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12117,9 +12125,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -12375,9 +12383,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
