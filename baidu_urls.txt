@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/梯度下降（Gradient-Descent）小结.html
 http://pancakeawesome.ink/hexo中使用mathJax渲染Latex.html
 http://pancakeawesome.ink/最小二乘法小结.html
 http://pancakeawesome.ink/《统计学习方法》学习笔记.html

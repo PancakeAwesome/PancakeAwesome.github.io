@@ -3,6 +3,85 @@
   
     
     <entry>
+      <title><![CDATA[梯度下降（Gradient Descent）小结]]></title>
+      <url>/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–最小二乘法</a></li>
+<li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a><br>在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。这里就对梯度下降法做一个完整的总结。</li>
+</ul>
+<h2 id="梯度下降（Gradient-Descent）小结"><a href="#梯度下降（Gradient-Descent）小结" class="headerlink" title="梯度下降（Gradient Descent）小结"></a>梯度下降（Gradient Descent）小结</h2><h3 id="1-梯度"><a href="#1-梯度" class="headerlink" title="1. 梯度"></a>1. 梯度</h3><p>在微积分里面，对多元函数的参数求∂偏导数，把求得的各个参数的偏导数以向量的形式写出来，就是梯度。比如函数f(x,y), 分别对x,y求偏导数，求得的梯度向量就是$(∂_f/∂_x, ∂_f/∂_y)^T$,简称grad f(x,y)或者▽f(x,y)。对于在点$(x_0,y_0)$的具体梯度向量就是$(∂_f/∂_x, ∂_f/∂_y)^T$.或者$▽_f(x_0,y_0)$，如果是3个参数的向量梯度，就是$(∂_f/∂_x, ∂_f/∂_y,∂_f/∂_z)^T$,以此类推。</p>
+<p>那么这个梯度向量求出来有什么意义呢？他的意义从几何意义上讲，就是函数变化增加最快的地方。具体来说，对于函数f(x,y),在点(x0,y0)，沿着梯度向量的方向就是$(∂_f/∂_x, ∂_f/∂_y)^T$的方向是f(x,y)增加最快的地方。或者说，沿着梯度向量的方向，更加容易找到函数的最大值。反过来说，沿着梯度向量相反的方向，也就是 -$(∂_f/∂_x, ∂_f/∂_y)^T$的方向，梯度减少最快，也就是更加容易找到函数的最小值。</p>
+<h3 id="2-梯度下降与梯度上升"><a href="#2-梯度下降与梯度上升" class="headerlink" title="2. 梯度下降与梯度上升"></a>2. 梯度下降与梯度上升</h3><p>在机器学习算法中，在最小化损失函数时，可以通过梯度下降法来一步步的迭代求解，得到最小化的损失函数，和模型参数值。反过来，如果我们需要求解损失函数的最大值，这时就需要用梯度上升法来迭代了。</p>
+<p>梯度下降法和梯度上升法是可以互相转化的。比如我们需要求解损失函数f(θ)的最小值，这时我们需要用梯度下降法来迭代求解。但是实际上，我们可以反过来求解损失函数 -f(θ)的最大值，这时梯度上升法就派上用场了。</p>
+<p>下面来详细总结下梯度下降法。        </p>
+<h3 id="3-梯度下降法算法详解"><a href="#3-梯度下降法算法详解" class="headerlink" title="3. 梯度下降法算法详解"></a>3. 梯度下降法算法详解</h3><h4 id="3-1-梯度下降的直观解释"><a href="#3-1-梯度下降的直观解释" class="headerlink" title="3.1 梯度下降的直观解释"></a>3.1 梯度下降的直观解释</h4><p>首先来看看梯度下降的一个直观的解释。比如我们在一座大山上的某处位置，由于我们不知道怎么下山，于是决定走一步算一步，也就是在每走到一个位置的时候，求解当前位置的梯度，沿着梯度的负方向，也就是当前最陡峭的位置向下走一步，然后继续求解当前位置梯度，向这一步所在位置沿着最陡峭最易下山的位置走一步。这样一步步的走下去，一直走到觉得我们已经到了山脚。当然这样走下去，有可能我们不能走到山脚，而是到了某一个局部的山峰低处。</p>
+<p>从上面的解释可以看出，梯度下降不一定能够找到全局的最优解，有可能是一个局部最优解。当然，如果损失函数是凸函数，梯度下降法得到的解就一定是全局最优解。</p>
+<p><img src="https://images2015.cnblogs.com/blog/1042406/201610/1042406-20161017221342935-1872962415.png" alt=""></p>
+<h4 id="3-2-梯度下降的相关概念"><a href="#3-2-梯度下降的相关概念" class="headerlink" title="3.2 梯度下降的相关概念"></a>3.2 梯度下降的相关概念</h4><p>在详细了解梯度下降的算法之前，我们先看看相关的一些概念。</p>
+<ol>
+<li>步长（Learning rate）：步长决定了在梯度下降迭代的过程中，每一步沿梯度负方向前进的长度。用上面下山的例子，步长就是在当前这一步所在位置沿着最陡峭最易下山的位置走的那一步的长度。</li>
+</ol>
+<p>2.特征（feature）：指的是样本中输入部分，比如样本$（x_0,y_0）$,$（x_1,y_1）$,则样本特征为x，样本输出为y。</p>
+<ol>
+<li><p>假设函数（hypothesis function）：在监督学习中，为了拟合输入样本，而使用的假设函数，记为$h_θ(x)$。比如对于样本$（x_i,y_i）$(i=1,2,…n),可以采用拟合函数如下： $h_θ(x) = θ_0+θ_1x$。</p>
+</li>
+<li><p>损失函数（loss function）：为了评估模型拟合的好坏，通常用损失函数来度量拟合的程度。损失函数极小化，意味着拟合程度最好，对应的模型参数即为最优参数。在线性回归中，损失函数通常为样本输出和假设函数的差取平方。比如对于样本$（x_i,y_i）$(i=1,2,…n),采用线性回归，损失函数为：<br>$$<br>J(\theta_0, \theta_1) = \sum\limits_{i=1}^{m}(h_\theta(x_i) - y_i)^2<br>$$<br>其中$x_i$表示样本特征x的第i个元素，$y_i$表示样本输出y的第i个元素，$h_\theta(x_i)$为假设函数。   </p>
+</li>
+</ol>
+<h4 id="3-3-梯度下降的详细算法"><a href="#3-3-梯度下降的详细算法" class="headerlink" title="3.3 梯度下降的详细算法"></a>3.3 梯度下降的详细算法</h4><p>梯度下降法的算法可以有代数法和矩阵法（也称向量法）两种表示，如果对矩阵分析不熟悉，则代数法更加容易理解。不过矩阵法更加的简洁，且由于使用了矩阵，实现逻辑更加的一目了然。这里先介绍代数法，后介绍矩阵法。</p>
+<h5 id="3-3-1-梯度下降法的代数方式描述"><a href="#3-3-1-梯度下降法的代数方式描述" class="headerlink" title="3.3.1 梯度下降法的代数方式描述"></a>3.3.1 梯度下降法的代数方式描述</h5><ol>
+<li>先决条件： 确认优化模型的假设函数和损失函数。</li>
+</ol>
+<p>比如对于线性回归，假设函数表示为 $h_\theta(x_1, x_2, …x_n) = \theta_0 + \theta_{1}x_1 + … + \theta_{n}x_{n}$, 其中$\theta_i$  (i = 0,1,2… n)为模型参数，$x_i$  (i = 0,1,2… n)为每个样本的n个特征值。这个表示可以简化，我们增加一个特征$x_0 = 1$  ，这样$h_\theta(x_0, x_1, …x_n) = \sum\limits_{i=0}^{n}\theta_{i}x_{i}$。</p>
+<p>同样是线性回归，对应于上面的假设函数，损失函数为：<br>$$<br>J(\theta_0, \theta_1…, \theta_n) = \frac{1}{2m}\sum\limits_{i=0}^{m}(h_\theta(x_0, x_1, …x_n) - y_i)^2<br>$$</p>
+<ol>
+<li><p>算法相关参数初始化：主要是初始化$\theta_0, \theta_1…, \theta_n$,算法终止距离$\varepsilon$以及步长$\alpha$。在没有任何先验知识的时候，我喜欢将所有的$\theta$初始化为0， 将步长初始化为1。在调优的时候再 优化。</p>
+</li>
+<li><p>算法过程：</p>
+</li>
+</ol>
+<p>　　1）确定当前位置的损失函数的梯度，对于$\theta_i$,其梯度表达式如下：<br>$$<br>\frac{\partial}{\partial\theta_i}J(\theta_0, \theta_1…, \theta_n)<br>$$<br>　　2）用步长乘以损失函数的梯度，得到当前位置下降的距离，即$\alpha\frac{\partial}{\partial\theta_i}J(\theta_0, \theta_1…, \theta_n)$对应于前面登山例子中的某一步。</p>
+<p>　　3）确定是否所有的$\theta_i$,梯度下降的距离都小于$\varepsilon$，如果小于$\varepsilon$则算法终止，当前所有的$\theta_i$(i=0,1,…n)即为最终结果。否则进入步骤4.</p>
+<p>　　4）更新所有的$\theta$，对于$\theta_i$，其更新表达式如下。更新完毕后继续转入步骤1.<br>$$<br>\theta_i = \theta_i - \alpha\frac{\partial}{\partial\theta_i}J(\theta_0, \theta_1…, \theta_n)<br>$$<br>下面用线性回归的例子来具体描述梯度下降。假设我们的样本是$(x_1^{(0)}, x_2^{(0)}, …x_n^{(0)}, y_0), (x_1^{(1)}, x_2^{(1)}, …x_n^{(1)},y_1), … (x_1^{(m)}, x_2^{(m)}, …x_n^{(m)}, y_n)$,损失函数如前面先决条件所述：<br>$$<br>(\theta_0, \theta_1…, \theta_n) = \frac{1}{2m}\sum\limits_{i=0}^{m}(h_\theta(x_0, x_1, …x_n) - y_i)^2<br>$$<br>则在算法过程步骤1中对于θi\theta_i 的偏导数计算如下： 　　<br>$$<br>\frac{\partial}{\partial\theta_i}J(\theta_0, \theta_1…, \theta_n)= \frac{1}{m}\sum\limits_{j=0}^{m}(h_\theta(x_0^{j}, x_1^{j}, …x_n^{j}) - y_j)x_i^{j}<br>$$<br>由于样本中没有$x_0$上式中令所有的$x_0^{j}$为1.</p>
+<p>步骤4中$\theta_i$的更新表达式如下：<br>$$<br>\theta_i = \theta_i - \alpha\frac{1}{m}\sum\limits_{j=0}^{m}(h_\theta(x_0^{j}, x_1^{j}, …x_n^{j}) - y_j)x_i^{j}<br>$$<br>从这个例子可以看出当前点的梯度方向是由所有的样本决定的，加$\frac{1}{m}$ 是为了好理解。由于步长也为常数，他们的乘机也为常数，所以这里$\alpha\frac{1}{m}$可以用一个常数表示。</p>
+<p>在下面第4节会详细讲到的梯度下降法的变种，他们主要的区别就是对样本的采用方法不同。这里我们采用的是用所有样本。</p>
+<h5 id="3-3-2-梯度下降法的矩阵方式描述"><a href="#3-3-2-梯度下降法的矩阵方式描述" class="headerlink" title="3.3.2 梯度下降法的矩阵方式描述"></a>3.3.2 梯度下降法的矩阵方式描述</h5><p>这一部分主要讲解梯度下降法的矩阵方式表述，相对于3.3.1的代数法，要求有一定的矩阵分析的基础知识，尤其是矩阵求导的知识。</p>
+<ol>
+<li><p>先决条件： 和3.3.1类似， 需要确认优化模型的假设函数和损失函数。对于线性回归，假设函数$\theta(x_1, x_2, …x_n) = \theta_0 + \theta_{1}x_1 + … + \theta_{n}x_{n}$的矩阵表达方式为：<br>$$h_\mathbf{\theta}(\mathbf{x}) = \mathbf{X\theta}$$ ，其中， 假设函数$h_\mathbf{\theta}(\mathbf{X})$为mx1的向量,$\mathbf{\theta}$为nx1的向量，里面有n个代数法的模型参数。$\mathbf{X}$为mxn维的矩阵。m代表样本的个数，n代表样本的特征数。<br>损失函数的表达式为：$J(\mathbf\theta) = \frac{1}{2}(\mathbf{X\theta} - \mathbf{Y})^T(\mathbf{X\theta} - \mathbf{Y})$, 其中$\mathbf{Y}$是样本的输出向量，维度为mx1.</p>
+</li>
+<li><p>算法相关参数初始化: $\theta$向量可以初始化为默认值，或者调优后的值。算法终止距离$\varepsilon$，步长$\alpha$和3.3.1比没有变化。</p>
+</li>
+<li><p>算法过程：</p>
+</li>
+</ol>
+<p>　　1）确定当前位置的损失函数的梯度，对于$\theta$向量,其梯度表达式如下：<br>$$<br>\frac{\partial}{\partial\mathbf\theta}J(\mathbf\theta)<br>$$<br>　　2）用步长乘以损失函数的梯度，得到当前位置下降的距离，即$\alpha\frac{\partial}{\partial\theta}J(\theta)$对应于前面登山例子中的某一步。</p>
+<p>　　3）确定$\mathbf\theta$向量里面的每个值,梯度下降的距离都小于$\varepsilon$，如果小于$\varepsilon$则算法终止，当前$\mathbf\theta$向量即为最终结果。否则进入步骤4.</p>
+<p>　　4）更新$\theta$向量，其更新表达式如下。更新完毕后继续转入步骤1.<br>$$<br>\mathbf\theta= \mathbf\theta - \alpha\frac{\partial}{\partial\theta}J(\mathbf\theta)<br>$$<br>还是用线性回归的例子来描述具体的算法过程。</p>
+<p>损失函数对于θ\theta向量的偏导数计算如下：<br>$$<br>\frac{\partial}{\partial\mathbf\theta}J(\mathbf\theta) = \mathbf{X}^T(\mathbf{X\theta} - \mathbf{Y})<br>$$<br>步骤4中$\theta$向量的更新表达式如下：<br>$$<br>\mathbf\theta= \mathbf\theta - \alpha\mathbf{X}^T(\mathbf{X\theta} - \mathbf{Y})<br>$$<br>对于3.3.1的代数法，可以看到矩阵法要简洁很多。这里面用到了矩阵求导链式法则，和两个矩阵求导的公式。</p>
+<p>　　公式1：$\frac{\partial}{\partial\mathbf{X}}(\mathbf{XX^T}) =2\mathbf{X}$</p>
+<p>　　公式2：$$\frac{\partial}{\partial\mathbf\theta}(\mathbf{X\theta}) =\mathbf{X^T}$$</p>
+<p>如果需要熟悉矩阵求导建议参考张贤达的《矩阵分析与应用》一书。</p>
+<h4 id="3-4-梯度下降的算法调优"><a href="#3-4-梯度下降的算法调优" class="headerlink" title="3.4 梯度下降的算法调优"></a>3.4 梯度下降的算法调优</h4><p>在使用梯度下降时，需要进行调优。哪些地方需要调优呢？</p>
+<ol>
+<li><p>算法的步长选择。在前面的算法描述中，我提到取步长为1，但是实际上取值取决于数据样本，可以多取一些值，从大到小，分别运行算法，看看迭代效果，如果损失函数在变小，说明取值有效，否则要增大步长。前面说了。步长太大，会导致迭代过快，甚至有可能错过最优解。步长太小，迭代速度太慢，很长时间算法都不能结束。所以算法的步长需要多次运行后才能得到一个较为优的值。</p>
+</li>
+<li><p>算法参数的初始值选择。 初始值不同，获得的最小值也有可能不同，因此梯度下降求得的只是局部最小值；当然如果损失函数是凸函数则一定是最优解。由于有局部最优解的风险，需要多次用不同初始值运行算法，关键损失函数的最小值，选择损失函数最小化的初值。</p>
+</li>
+</ol>
+<p>3.归一化。由于样本不同特征的取值范围不一样，可能导致迭代很慢，为了减少特征取值的影响，可以对特征数据归一化，也就是对于每个特征x，求出它的期望$\overline{x}$和标准差std(x)，然后转化为：<br>$$<br>\frac{x - \overline{x}}{std(x)}<br>$$<br>这样特征的新期望为0，新方差为1，迭代次数可以大大加快。</p>
+<h3 id="4-梯度下降法大家族（BGD，SGD，MBGD）"><a href="#4-梯度下降法大家族（BGD，SGD，MBGD）" class="headerlink" title="4. 梯度下降法大家族（BGD，SGD，MBGD）"></a>4. 梯度下降法大家族（BGD，SGD，MBGD）</h3><h4 id="4-1-批量梯度下降法（Batch-Gradient-Descent）"><a href="#4-1-批量梯度下降法（Batch-Gradient-Descent）" class="headerlink" title="4.1 批量梯度下降法（Batch Gradient Descent）"></a>4.1 批量梯度下降法（Batch Gradient Descent）</h4><p>批量梯度下降法，是梯度下降法最常用的形式，具体做法也就是在更新参数时使用所有的样本来进行更新，这个方法对应于前面3.3.1的线性回归的梯度下降算法，也就是说3.3.1的梯度下降算法就是批量梯度下降法。　　<br>$$<br>\theta_i = \theta_i - \alpha\sum\limits_{j=0}^{m}(h_\theta(x_0^{j}, x_1^{j}, …x_n^{j}) - y_j)x_i^{j}<br>$$<br>由于我们有m个样本，这里求梯度的时候就用了所有m个样本的梯度数据。</p>
+<h4 id="4-2-随机梯度下降法（Stochastic-Gradient-Descent）"><a href="#4-2-随机梯度下降法（Stochastic-Gradient-Descent）" class="headerlink" title="4.2 随机梯度下降法（Stochastic Gradient Descent）"></a>4.2 随机梯度下降法（Stochastic Gradient Descent）</h4><p>随机梯度下降法，其实和批量梯度下降法原理类似，区别在与求梯度时没有用所有的m个样本的数据，而是仅仅选取一个样本j来求梯度。对应的更新公式是：<br>$$<br>\theta_i = \theta_i - \alpha (h_\theta(x_0^{j}, x_1^{j}, …x_n^{j}) - y_j)x_i^{j}<br>$$<br>随机梯度下降法，和4.1的批量梯度下降法是两个极端，一个采用所有数据来梯度下降，一个用一个样本来梯度下降。自然各自的优缺点都非常突出。对于训练速度来说，随机梯度下降法由于每次仅仅采用一个样本来迭代，训练速度很快，而批量梯度下降法在样本量很大的时候，训练速度不能让人满意。对于准确度来说，随机梯度下降法用于仅仅用一个样本决定梯度方向，导致解很有可能不是最优。对于收敛速度来说，由于随机梯度下降法一次迭代一个样本，导致迭代方向变化很大，不能很快的收敛到局部最优解。</p>
+<p>那么，有没有一个中庸的办法能够结合两种方法的优点呢？有！这就是4.3的小批量梯度下降法。</p>
+<h4 id="4-3-小批量梯度下降法（Mini-batch-Gradient-Descent）"><a href="#4-3-小批量梯度下降法（Mini-batch-Gradient-Descent）" class="headerlink" title="4.3 小批量梯度下降法（Mini-batch Gradient Descent）"></a>4.3 小批量梯度下降法（Mini-batch Gradient Descent）</h4><p>　　小批量梯度下降法是批量梯度下降法和随机梯度下降法的折衷，也就是对于m个样本，我们采用x个样子来迭代，1&lt;x&lt;m。一般可以取x=10，当然根据样本的数据，可以调整这个x的值。对应的更新公式是：<br>$$<br>\theta_i = \theta_i - \alpha \sum\limits_{j=t}^{t+x-1}(h_\theta(x_0^{j}, x_1^{j}, …x_n^{j}) - y_j)x_i^{j}<br>$$</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h3 id="梯度下降法和其他无约束优化算法的比较"><a href="#梯度下降法和其他无约束优化算法的比较" class="headerlink" title="梯度下降法和其他无约束优化算法的比较"></a>梯度下降法和其他无约束优化算法的比较</h3><p>在机器学习中的无约束优化算法，除了梯度下降以外，还有前面提到的最小二乘法，此外还有牛顿法和拟牛顿法。</p>
+<p>梯度下降法和最小二乘法相比，梯度下降法需要选择步长，而最小二乘法不需要。梯度下降法是迭代求解，最小二乘法是计算解析解。如果样本量不算很大，且存在解析解，最小二乘法比起梯度下降法要有优势，计算速度很快。但是如果样本量很大，用最小二乘法由于需要求一个超级大的逆矩阵，这时就很难或者很慢才能求解解析解了，使用迭代的梯度下降法比较有优势。</p>
+<p>梯度下降法和牛顿法/拟牛顿法相比，两者都是迭代求解，不过梯度下降法是梯度求解，而牛顿法/拟牛顿法是用二阶的海森矩阵的逆矩阵或伪逆矩阵求解。相对而言，使用牛顿法/拟牛顿法收敛更快。但是每次迭代的时间比梯度下降法长。</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[hexo中使用mathJax渲染Latex]]></title>
       <url>/hexo%E4%B8%AD%E4%BD%BF%E7%94%A8mathJax%E6%B8%B2%E6%9F%93Latex.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>当我们用markdown写博客时，总会遇到一些很繁琐的数学公式，这是我们需要用Latex语法去编写数学公式。下面是一些常用的数学公式及其Latex语法。</p>
@@ -70,13 +149,17 @@
     <entry>
       <title><![CDATA[最小二乘法小结]]></title>
       <url>/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最小二乘法是用来做函数拟合或者求函数极值的方法。在机器学习，尤其是回归模型中，经常可以看到最小二乘法的身影，这里就对我对最小二乘法的认知做一个小结。</p>
-<h2 id="1-最小二乘法的原理与要解决的问题"><a href="#1-最小二乘法的原理与要解决的问题" class="headerlink" title="1.最小二乘法的原理与要解决的问题　"></a>1.最小二乘法的原理与要解决的问题　</h2><p>最小二乘法是由勒让德在19世纪发现的，原理的一般形式很简单，当然发现的过程是非常艰难的。形式如下式：</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–最小二乘法</a></li>
+<li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a></li>
+</ul>
+<p>最小二乘法是用来做函数拟合或者求函数极值的方法。在机器学习，尤其是回归模型中，经常可以看到最小二乘法的身影，这里就对我对最小二乘法的认知做一个小结。</p>
+<h2 id="最小二乘法小结"><a href="#最小二乘法小结" class="headerlink" title="最小二乘法小结"></a>最小二乘法小结</h2><h3 id="1-最小二乘法的原理与要解决的问题"><a href="#1-最小二乘法的原理与要解决的问题" class="headerlink" title="1.最小二乘法的原理与要解决的问题　"></a>1.最小二乘法的原理与要解决的问题　</h3><p>最小二乘法是由勒让德在19世纪发现的，原理的一般形式很简单，当然发现的过程是非常艰难的。形式如下式：</p>
 <p>　　目标函数 = Σ（观测值-理论值）<sup>2</sup></p>
 <p>观测值就是我们的多组样本，理论值就是我们的假设拟合函数。目标函数也就是在机器学习中常说的损失函数，我们的目标是得到使目标函数最小化时候的拟合函数的模型。举一个最简单的线性回归的简单例子，比如我们有m个只有一个特征的样本：<br>$$<br>(x^{(1)},y^{(1)}), (x^{(2)},y^{(2)}),…(x^{(m)},y^{(m)})<br>$$<br>样本采用下面的拟合函数：<br>$$<br>h_\theta(x) = \theta_0 + \theta_1 x<br>$$<br>这样我们的样本有一个特征x，对应的拟合函数有两个参数$\theta_0$ 和 $\theta_1$需要求出。</p>
 <p>我们的目标函数为：<br>$$<br>J(\theta_0, \theta_1) = \sum\limits_{i=1}^{m}(y^{(i)} - h_\theta(x^{(i)}))^2 = \sum\limits_{i=1}^{m}(y^{(i)} -  \theta_0 - \theta_1 x^{(i)})^2<br>$$<br>用最小二乘法做什么呢，使$J(\theta_0, \theta_1)$最小，求出使$J(\theta_0, \theta_1)$最小时的$\theta_0$ 和 $\theta_1$，这样拟合函数就得出了。</p>
 <p>那么，最小二乘法怎么才能使$J(\theta_0, \theta_1)$最小呢？</p>
-<h2 id="2-最小二乘法的代数法解法"><a href="#2-最小二乘法的代数法解法" class="headerlink" title="2.最小二乘法的代数法解法"></a>2.最小二乘法的代数法解法</h2><p>上面提到要使$J(\theta_0, \theta_1)$最小，方法就是对$theta_0$ 和 $\theta_1$分别来求偏导数，令偏导数为0，得到一个关于$\theta_0$ 和 $\theta_1$的二元方程组。求解这个二元方程组，就可以得到$\theta_0$ 和 $\theta_1$的值。下面我们具体看看过程。</p>
+<h3 id="2-最小二乘法的代数法解法"><a href="#2-最小二乘法的代数法解法" class="headerlink" title="2.最小二乘法的代数法解法"></a>2.最小二乘法的代数法解法</h3><p>上面提到要使$J(\theta_0, \theta_1)$最小，方法就是对$theta_0$ 和 $\theta_1$分别来求偏导数，令偏导数为0，得到一个关于$\theta_0$ 和 $\theta_1$的二元方程组。求解这个二元方程组，就可以得到$\theta_0$ 和 $\theta_1$的值。下面我们具体看看过程。</p>
 <p>$J(\theta_0, \theta_1)$对$\theta_0$求导，得到如下方程：<br>$$<br>\sum\limits_{i=1}^{m}(y^{(i)} -  \theta_0 - \theta_1 x^{(i)}) = 0   ①<br>$$      </p>
 <p>$J(\theta_0, \theta_1)$对$\theta_1$求导，得到如下方程：<br>$$<br>\sum\limits_{i=1}^{m}(y^{(i)} -  \theta_0 - \theta_1 x^{(i)})x^{(i)} = 0   ②<br>$$      </p>
 <p>①和②组成一个二元一次方程组，容易求出$\theta_0$ 和 $\theta_1$的值：<br>$$<br>\theta_0 = \sum\limits_{i=1}^{m}\big(x^{(i)})^2\sum\limits_{i=1}^{m}y^{(i)} - \sum\limits_{i=1}^{m}x^{(i)}\sum\limits_{i=1}^{m}x^{(i)}y^{(i)} \Bigg/ m\sum\limits_{i=1}^{m}\big(x^{(i)})^2 - \big(\sum\limits_{i=1}^{m}x^{(i)})^2<br>$$</p>
@@ -85,7 +168,7 @@
 <p>拟合函数表示为$h_\theta(x_1, x_2, …x_n) = \theta_0 + \theta_{1}x_1 + … + \theta_{n}x_{n}$, 其中$\theta_i$ (i = 0,1,2… n)为模型参数，$x_i$ (i = 0,1,2… n)为每个样本的n个特征值。这个表示可以简化，我们增加一个特征$x_0 = 1$ ，这样拟合函数表示为：<br>$$<br>h_\theta(x_0, x_1, …x_n) = \sum\limits_{i=0}^{n}\theta_{i}x_{i}。<br>$$<br>损失函数表示为：<br>$$<br>J(\theta_0, \theta_1…, \theta_n) = \sum\limits_{j=1}^{m}(h_\theta(x_0^{(j)}), x_1^{(j)}, …x_n^{(j)})) - y^{(j)}))^2 = \sum\limits_{j=1}^{m}(\sum\limits_{i=0}^{n}\theta_{i}x_{i}^{(j)}- y{(j)})^2<br>$$<br>利用损失函数分别对$\theta_i$(i=0,1,…n)求导,并令导数为0可得：<br>$$<br>\sum\limits_{j=0}^{m}(\sum\limits_{i=0}^{n}\theta_{i}x_{i}^{(j)} - y_j)x_i^{j} = 0   (i=0,1,…n)<br>$$</p>
 <p>这样我们得到一个N+1元一次方程组，这个方程组有N+1个方程，求解这个方程，就可以得到所有的N+1个未知的$\theta$。</p>
 <p>这个方法很容易推广到多个样本特征的非线性拟合。原理和上面的一样，都是用损失函数对各个参数求导取0，然后求解方程组得到参数值。这里就不累述了。</p>
-<h2 id="3-最小二乘法的矩阵法解法"><a href="#3-最小二乘法的矩阵法解法" class="headerlink" title="3.最小二乘法的矩阵法解法"></a>3.最小二乘法的矩阵法解法</h2><p>矩阵法比代数法要简洁，且矩阵运算可以取代循环，所以现在很多书和机器学习库都是用的矩阵法来做最小二乘法。</p>
+<h3 id="3-最小二乘法的矩阵法解法"><a href="#3-最小二乘法的矩阵法解法" class="headerlink" title="3.最小二乘法的矩阵法解法"></a>3.最小二乘法的矩阵法解法</h3><p>矩阵法比代数法要简洁，且矩阵运算可以取代循环，所以现在很多书和机器学习库都是用的矩阵法来做最小二乘法。</p>
 <p>这里用上面的多元线性回归例子来描述矩阵法解法。</p>
 <p>假设函数$h_\theta(x_1, x_2, …x_n) = \theta_0 + \theta_{1}x_1 + … + \theta_{n}x_{n}$的矩阵表达方式为：<br>$$<br>h_\mathbf{\theta}(\mathbf{x}) = \mathbf{X\theta}<br>$$<br>其中， 假设函数$h_\mathbf{\theta}(\mathbf{X})$为mx1的向量,$\mathbf{\theta}$为nx1的向量，里面有n个代数法的模型参数。$\mathbf{X}$为mxn维的矩阵。m代表样本的个数，n代表样本的特征数。</p>
 <p>损失函数定义为$J(\mathbf\theta) = \frac{1}{2}(\mathbf{X\theta} - \mathbf{Y})^T(\mathbf{X\theta} - \mathbf{Y})$</p>
@@ -94,7 +177,7 @@
 <p>　　公式1：$\frac{\partial}{\partial\mathbf{X}}(\mathbf{XX^T}) =2\mathbf{X}$</p>
 <p>　　公式2：$\frac{\partial}{\partial\mathbf\theta}(\mathbf{X\theta}) =\mathbf{X^T}$</p>
 <p>对上述求导等式整理后可得：<br>$$<br>\mathbf{X^{T}X\theta} = \mathbf{X^{T}Y}<br>$$<br>两边同时左乘$$(\mathbf{X^{T}X})^{-1}$$可得：<br>$$<br>\mathbf{\theta} = (\mathbf{X^{T}X})^{-1}\mathbf{X^{T}Y}<br>$$<br>这样我们就一下子求出了$\theta$向量表达式的公式，免去了代数法一个个去求导的麻烦。只要给了数据,我们就可以用$\mathbf{\theta} = (\mathbf{X^{T}X})^{-1}\mathbf{X^{T}Y}$算出$\theta$。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h2 id="4-最小二乘法的局限性和适用场景"><a href="#4-最小二乘法的局限性和适用场景" class="headerlink" title="4.最小二乘法的局限性和适用场景　　"></a>4.最小二乘法的局限性和适用场景　　</h2><p>从上面可以看出，最小二乘法适用简洁高效，比梯度下降这样的迭代法似乎方便很多。但是这里我们就聊聊最小二乘法的局限性。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h3 id="最小二乘法的局限性和适用场景"><a href="#最小二乘法的局限性和适用场景" class="headerlink" title="最小二乘法的局限性和适用场景　　"></a>最小二乘法的局限性和适用场景　　</h3><p>从上面可以看出，最小二乘法适用简洁高效，比梯度下降这样的迭代法似乎方便很多。但是这里我们就聊聊最小二乘法的局限性。</p>
 <p>首先，最小二乘法需要计算$\mathbf{X^{T}X}$的逆矩阵，有可能它的逆矩阵不存在，这样就没有办法直接用最小二乘法了，此时梯度下降法仍然可以使用。当然，我们可以通过对样本数据进行整理，去掉冗余特征。让$\mathbf{X^{T}X}$的行列式不为0，然后继续使用最小二乘法。</p>
 <p>第二，当样本特征n非常的大的时候，计算$\mathbf{X^{T}X}$的逆矩阵是一个非常耗时的工作（nxn的矩阵求逆），甚至不可行。此时以梯度下降为代表的迭代法仍然可以使用。那这个n到底多大就不适合最小二乘法呢？如果你没有很多的分布式大数据计算资源，建议超过10000个特征就用迭代法吧。或者通过主成分分析降低特征的维度后再用最小二乘法。</p>
 <p>第三，如果拟合函数不是线性的，这时无法使用最小二乘法，需要通过一些技巧转化为线性才能使用，此时梯度下降仍然可以用。</p>
@@ -111,6 +194,8 @@
         <tags>
             
             <tag> 机器学习 </tag>
+            
+            <tag> 优化算法 </tag>
             
         </tags>
         
@@ -1224,9 +1309,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -1482,9 +1567,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -2763,9 +2848,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3065,9 +3150,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -5840,9 +5925,9 @@ io.on(&#39;connection&#39;, function(socket) {
         
         <tags>
             
-            <tag> node.js </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> node.js </tag>
             
         </tags>
         
@@ -10099,9 +10184,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -11092,9 +11177,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12066,9 +12151,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -12315,9 +12400,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
