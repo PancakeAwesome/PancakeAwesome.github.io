@@ -78,7 +78,7 @@ fn.getInstance = function() { //写法1
 var fnA = fn.getInstance();
 var fnB = fn.getInstance();
 console.log(fnA === fnB); //true
-</code></pre><p>日常的业务场景中，单例模式也比较常见，比如：一个页面中的模态框只有一个，每次打开与关闭的都应该是同一个，而不是重复新建。而且为了性能优化，我们应该在需要时再创建，而不是页面初始化时就已经存在于dom中，这个就是<em>惰性单例模式</em>。</p><pre><code>//假设我们需要点击某个按钮时就显示出模态框，那么我们可以像下面这么
+</code></pre><p>日常的业务场景中，单例模式也比较常见，比如：一个页面中的模态框只有一个，每次打开与关闭的都应该是同一个，而不是重复新建。而且为了性能优化，我们应该在需要时再创建，而不是页面初始化时就已经存在于dom中，这个就是_惰性单例模式_。</p><pre><code>//假设我们需要点击某个按钮时就显示出模态框，那么我们可以像下面这么
 var createModal = (function() {
     var modal = null;
     returnfunction() {

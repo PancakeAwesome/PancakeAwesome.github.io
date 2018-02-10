@@ -107,7 +107,7 @@ let createType = await quoteHandler.confirmCreate();
         });
     }
 }
-</code></pre><p>这样外部调用者就可以使用await，而不用传递一个点击事件的回调函数了。</p><p>但是需要注意的是await的一次性执行特点。相对于回调函数来说，await的执行是一次性的，例如监听点击事件，然后使用await，那么点击事件只会执行一次，因为代码从上往下执行完了，所以当希望点击之后出错了还能继续修改和提交就不能使用await，另外使用await获取异步数据，如果出错了，那么成功的resolve就不会执行，后续的代码也不会执行，所以请求出错的时候基本逻辑不会有问题。</p><p>要在babel里面使用await，需要：</p><p>（1）安装一个Node包</p><p>npm install —save-dev babel-plugin-transform-async-to-generator</p><p>（2）在工程的根目录添加一个.babelrc文件，内容为：</p><pre><code>{&quot;plugins&quot;:[&quot;transform-async-to-generator&quot;]}
+</code></pre><p>这样外部调用者就可以使用await，而不用传递一个点击事件的回调函数了。</p><p>但是需要注意的是await的一次性执行特点。相对于回调函数来说，await的执行是一次性的，例如监听点击事件，然后使用await，那么点击事件只会执行一次，因为代码从上往下执行完了，所以当希望点击之后出错了还能继续修改和提交就不能使用await，另外使用await获取异步数据，如果出错了，那么成功的resolve就不会执行，后续的代码也不会执行，所以请求出错的时候基本逻辑不会有问题。</p><p>要在babel里面使用await，需要：</p><p>（1）安装一个Node包</p><p>npm install –save-dev babel-plugin-transform-async-to-generator</p><p>（2）在工程的根目录添加一个.babelrc文件，内容为：</p><pre><code>{&quot;plugins&quot;:[&quot;transform-async-to-generator&quot;]}
 </code></pre><p>（3）使用的时候先引入一个模块</p><pre><code>require(&quot;babel-polyfill&quot;);
 </code></pre><p>然后就可以愉快地使用ES7的await了。</p><p>使用await的函数前面需要加上async关键字，如下代码：</p><pre><code>async showOrderDialog() {
 
