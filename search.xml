@@ -4251,9 +4251,9 @@ export default class Hello extends Component {
         
         <tags>
             
-            <tag> react </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
@@ -5925,9 +5925,9 @@ io.on(&#39;connection&#39;, function(socket) {
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> node.js </tag>
+            
+            <tag> javascript </tag>
             
         </tags>
         
@@ -8959,9 +8959,9 @@ npm run dist
             
             <tag> 前端技术 </tag>
             
-            <tag> react </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
@@ -9257,9 +9257,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> 前端框架 </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -10133,9 +10133,9 @@ class ImgFigure extends React.Component {
             
             <tag> 前端技术 </tag>
             
-            <tag> react </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
