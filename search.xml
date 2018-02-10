@@ -3,6 +3,71 @@
   
     
     <entry>
+      <title><![CDATA[hexo中使用mathJax渲染Latex]]></title>
+      <url>/hexo%E4%B8%AD%E4%BD%BF%E7%94%A8mathJax%E6%B8%B2%E6%9F%93Latex.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>当我们用markdown写博客时，总会遇到一些很繁琐的数学公式，这是我们需要用Latex语法去编写数学公式。下面是一些常用的数学公式及其Latex语法。</p>
+<h2 id="MathJax使用与LaTex语法"><a href="#MathJax使用与LaTex语法" class="headerlink" title="MathJax使用与LaTex语法"></a>MathJax使用与LaTex语法</h2><ul>
+<li>LaTex可以在<a href="https://stackedit.io/editor" target="_blank" rel="noopener">stackedit里面</a>进行练习，所见即所得</li>
+<li><p>排版<br>在使用MathJax时，需要告知是使用使用inline排版还是displayed排版，后者会单独占用一行；在MathJax中默认的inline公式分隔符是<code>$...$</code>或<code>(..)</code>,而displayed的是<code>$$...$$</code></p>
+<ul>
+<li>例子 inline <code>$ q \in R $</code>显示为 q∈R ; displayed: <code>$$q \in R $$</code> 显示为<br>$$<br>q \in R<br>$$</li>
+</ul>
+</li>
+<li><p>上下标<br>上标使用^ ,下标使用_ 比如 <code>x_i^2</code>:$x_i^2$,默认情况下， 上下标符号只对一个字符起作用，比如<code>10^10</code>:$101010^10$,而使用分组符号<code>10^{10}</code>:$101010^{10}$</p>
+</li>
+<li><p>希腊字母<br><img src="http://7xncgn.com1.z0.glb.clouddn.com/16-10-21/69388107-12" alt=""> </p>
+</li>
+<li><p>括号</p>
+<ul>
+<li>小括号与中括号，使用<code>()</code>, <code>[]</code></li>
+<li>大括号：因为大括号有时被用来分组，所以需要转义使用，比如<code>\{``\}</code>,也可以 使用<code>\lbrace</code>, <code>\rbrace</code></li>
+<li>尖括号：<code>\langle</code>,<code>\rangle</code>,如<code>\langle x \rangle</code>:⟨x⟩ \langle x \rangle </li>
+<li>上取整：<code>\lceil</code>,<code>\rceil</code>, 如<code>\lceil x \rceil</code>: ⌈x⌉ \lceil x \rceil </li>
+<li>下取整：使用<code>\lfloor</code> 和 <code>\rfloor</code> 表示。如，<code>\lfloor x \rfloor</code>：⌊x⌋\lfloor x \rfloor。</li>
+</ul>
+</li>
+<li><p>求和与积分</p>
+<ul>
+<li><p>\sum是用来表示求和符合的，其下标表示下限，上标表示上限，比如`</p>
+<p>sum_1^n:$sum_1^n$</p>
+</li>
+<li><p>\int用来表示积分符号，同样地，其上下标表示积分的上下限,比如<code>\int_1^\infty</code>: $\int_1^\infty$</p>
+</li>
+<li><p>与此类似的符号还有，<code>\prod</code>:$\prod$，<code>\bigcup</code>:$\bigcup$，<code>\bigcap</code>：$\bigcap$，<code>\iint</code>:$\iint$。</p>
+</li>
+</ul>
+</li>
+<li><p>分式与根式</p>
+<ul>
+<li><code>\frac {a}{b}</code>: $\frac {a}{b}$ 作用于其后的两个分组a,b </li>
+<li><code>\sqrt[4]{\frac {x}{y}}</code>: $\sqrt[4]{\frac {x}{y}}$</li>
+</ul>
+</li>
+<li><p>字体</p>
+<ul>
+<li>\mathbb显示黑板粗字体 ，比如 <code>\mathbb {CHAN}</code>:$ℂℍ$</li>
+</ul>
+</li>
+</ul>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>如有不足，欢迎指出。谢谢～<br>不定期更新。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> blog </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> blog </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[最小二乘法小结]]></title>
       <url>/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最小二乘法是用来做函数拟合或者求函数极值的方法。在机器学习，尤其是回归模型中，经常可以看到最小二乘法的身影，这里就对我对最小二乘法的认知做一个小结。</p>
@@ -1159,9 +1224,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -1417,9 +1482,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -2698,9 +2763,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3000,9 +3065,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -10034,9 +10099,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -11027,9 +11092,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12001,9 +12066,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -12250,9 +12315,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
