@@ -9,9 +9,9 @@
 <li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–最小二乘法</a></li>
 <li><a href="http://pancakeawesome.ink/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a></li>
 <li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–牛顿法</a></li>
-<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">约束优化算法–拉格朗日乘子法</a></li>
-<li>在求解最优化问题中，<strong>拉格朗日乘子法</strong>（Lagrange Multiplier）和<strong>KKT</strong>（Karush Kuhn Tucker）<strong>条件</strong>是两种最常用的方法。在有等式约束时使用拉格朗日乘子法，在有不等约束时使用KKT条件。</li>
+<li><a href="http://pancakeawesome.ink/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E5%AD%90%E6%B3%95%EF%BC%88Lagrange-Multiplier-%E5%92%8CKKT%E6%9D%A1%E4%BB%B6.html">约束优化算法–拉格朗日乘子法</a></li>
 </ul>
+<p>在求解最优化问题中，<strong>拉格朗日乘子法</strong>（Lagrange Multiplier）和<strong>KKT</strong>（Karush Kuhn Tucker）<strong>条件</strong>是两种最常用的方法。在有等式约束时使用拉格朗日乘子法，在有不等约束时使用KKT条件。</p>
 <h2 id="拉格朗日乘子法（Lagrange-Multiplier-和KKT条件"><a href="#拉格朗日乘子法（Lagrange-Multiplier-和KKT条件" class="headerlink" title="拉格朗日乘子法（Lagrange Multiplier) 和KKT条件"></a>拉格朗日乘子法（Lagrange Multiplier) 和KKT条件</h2><p>　　我们这里提到的最优化问题通常是指对于给定的某一函数，<strong>求其在指定作用域上的全局最小值(因为最小值与最大值可以很容易转化，即最大值问题可以转化成最小值问题)</strong>。提到KKT条件一般会附带的提一下拉格朗日乘子。对学过高等数学的人来说比较拉格朗日乘子应该会有些印象。二者均是求解最优化问题的方法，不同之处在于应用的情形不同。</p>
 <p>一般情况下，最优化问题会碰到一下三种情况：</p>
 <p><strong>（1）无约束条件</strong></p>
@@ -95,58 +95,59 @@
 <li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–最小二乘法</a></li>
 <li><a href="http://pancakeawesome.ink/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a></li>
 <li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–牛顿法</a></li>
-<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">约束优化算法–拉格朗日乘子法</a></li>
+<li><a href="http://pancakeawesome.ink/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E5%AD%90%E6%B3%95%EF%BC%88Lagrange-Multiplier-%E5%92%8CKKT%E6%9D%A1%E4%BB%B6.html">约束优化算法–拉格朗日乘子法</a></li>
 </ul>
-<h2 id="本讲大纲："><a href="#本讲大纲：" class="headerlink" title="本讲大纲："></a>本讲大纲：</h2><p>1.牛顿方法(Newton’s method) </p>
+<h2 id="大纲："><a href="#大纲：" class="headerlink" title="大纲："></a>大纲：</h2><p>1.牛顿方法(Newton’s method) </p>
 <p>2.指数族(Exponential family) </p>
 <p>3.广义线性模型(Generalized linear models)</p>
-<h2 id="1-牛顿方法"><a href="#1-牛顿方法" class="headerlink" title="1.牛顿方法"></a>1.牛顿方法</h2><p>假设有函数：<img src="http://img.blog.csdn.net/20150706110633987" alt="这里写图片描述"> ，我们希望找到满足<img src="http://img.blog.csdn.net/20150706110724167" alt="这里写图片描述"> 的<img src="http://img.blog.csdn.net/20150706110745198" alt="这里写图片描述"> 值. 这里<img src="http://img.blog.csdn.net/20150706110801823" alt="这里写图片描述"> 是实数. </p>
-<p>牛顿方法执行下面的更新：<br><img src="http://img.blog.csdn.net/20150706110859861" alt="这里写图片描述"> </p>
-<p>下图为执行牛顿方法的过程：<br><img src="http://img.blog.csdn.net/20150706111014684" alt="这里写图片描述"> </p>
+<h3 id="1-牛顿方法"><a href="#1-牛顿方法" class="headerlink" title="1.牛顿方法"></a>1.牛顿方法</h3><p>假设有函数：<img src="http://img.blog.csdn.net/20150706110633987" alt=""> ，我们希望找到满足<img src="http://img.blog.csdn.net/20150706110724167" alt=""> 的<img src="http://img.blog.csdn.net/20150706110745198" alt=""> 值. 这里<img src="http://img.blog.csdn.net/20150706110801823" alt=""> 是实数. </p>
+<p>牛顿方法执行下面的更新：<br><img src="http://img.blog.csdn.net/20150706110859861" alt=""> </p>
+<p>下图为执行牛顿方法的过程：<br><img src="http://img.blog.csdn.net/20150706111014684" alt=""> </p>
 <p>简单的来说就是通过求当前点的导数得到下一个点.用到的性质是导数值等于该点切线和横轴夹角的正切值.</p>
-<p>令<img src="http://img.blog.csdn.net/20150706112630955" alt="这里写图片描述"> ，我们可以用同样的算法去最大化<img src="http://img.blog.csdn.net/20150706112810083" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20150706112829665" alt="这里写图片描述"> </p>
+<p>令<img src="http://img.blog.csdn.net/20150706112630955" alt=""> ，我们可以用同样的算法去最大化<img src="http://img.blog.csdn.net/20150706112810083" alt=""><br><img src="http://img.blog.csdn.net/20150706112829665" alt=""> </p>
 <p>牛顿方法的一般化： </p>
-<p>如果<img src="http://img.blog.csdn.net/20150706113038478" alt="这里写图片描述"> 是一个向量，那么：<br><img src="http://img.blog.csdn.net/20150706113134002" alt="这里写图片描述"> </p>
-<p>其中，<img src="http://img.blog.csdn.net/20150706113310504" alt="这里写图片描述"> 是<img src="http://img.blog.csdn.net/20150706113341254" alt="这里写图片描述"> 对<img src="http://img.blog.csdn.net/20150706113407533" alt="这里写图片描述"> 的偏导数； </p>
-<p>H称为<strong>黑塞矩阵(Hessian matrix)</strong>,是一个n*n的矩阵，n是特征量的个数，并且<img src="http://img.blog.csdn.net/20150706113605999" alt="这里写图片描述"> （==当年学的各种名词又开始在脑海里翻滚==）</p>
+<p>如果<img src="http://img.blog.csdn.net/20150706113038478" alt=""> 是一个向量，那么：<br><img src="http://img.blog.csdn.net/20150706113134002" alt=""> </p>
+<p>其中，<img src="http://img.blog.csdn.net/20150706113310504" alt=""> 是<img src="http://img.blog.csdn.net/20150706113341254" alt=""> 对<img src="http://img.blog.csdn.net/20150706113407533" alt=""> 的偏导数； </p>
+<p>H称为<strong>黑塞矩阵(Hessian matrix)</strong>,是一个n*n的矩阵，n是特征量的个数，并且<img src="http://img.blog.csdn.net/20150706113605999" alt=""> （==当年学的各种名词又开始在脑海里翻滚==）</p>
 <p>牛顿方法的收敛速度比批处理梯度下降快很多，因为其是二次收敛到最优值，很少次的迭代就能够非常接近最小值了；但是当n很大时，每次迭代求黑塞矩阵和黑塞矩阵的逆代价是很大的.这里我们可以用改进的拟牛顿法。</p>
-<h2 id="2-指数族"><a href="#2-指数族" class="headerlink" title="2.指数族"></a>2.指数族</h2><p>指数族形式：<br><img src="http://img.blog.csdn.net/20150706145955215" alt="这里写图片描述"> </p>
-<p>其中，<img src="http://img.blog.csdn.net/20150706150152243" alt="这里写图片描述"> 被称为<strong>自然参数</strong>（natural parameter）或者<strong>典范参数</strong>（canonical parameter）; </p>
-<p>T(y)是<strong>充分统计量</strong>（sufficient statistic）（对于我们考虑的分布来说，通常T(y)=y）；<img src="http://img.blog.csdn.net/20150706150629710" alt="这里写图片描述"> </p>
-<p>是日志分配函数(log partition function),<img src="http://img.blog.csdn.net/20150706150937473" alt="这里写图片描述"> 是一个规范化常数，使得分布的和为1. </p>
-<p>给定T,a,b，通过改变参数<img src="http://img.blog.csdn.net/20150706151225336" alt="这里写图片描述"> 得到不同的分布.</p>
+<h3 id="2-指数族"><a href="#2-指数族" class="headerlink" title="2.指数族"></a>2.指数族</h3><p>指数族形式：<br><img src="http://img.blog.csdn.net/20150706145955215" alt=""> </p>
+<p>其中，<img src="http://img.blog.csdn.net/20150706150152243" alt=""> 被称为<strong>自然参数</strong>（natural parameter）或者<strong>典范参数</strong>（canonical parameter）; </p>
+<p>T(y)是<strong>充分统计量</strong>（sufficient statistic）（对于我们考虑的分布来说，通常T(y)=y）；<img src="http://img.blog.csdn.net/20150706150629710" alt=""> </p>
+<p>是日志分配函数(log partition function),<img src="http://img.blog.csdn.net/20150706150937473" alt=""> 是一个规范化常数，使得分布的和为1. </p>
+<p>给定T,a,b，通过改变参数<img src="http://img.blog.csdn.net/20150706151225336" alt=""> 得到不同的分布.</p>
 <p>下面展示<strong>伯努利（Bernoulli）</strong>和<strong>高斯分布（Gaussian distribution）</strong>都是指数分布族的特例：</p>
-<p>伯努利分布可以写成：<br><img src="http://img.blog.csdn.net/20150706152013489" alt="这里写图片描述"> </p>
-<p>因此，令<img src="http://img.blog.csdn.net/20150706152120210" alt="这里写图片描述"> （有趣地发现其反函数为<img src="http://img.blog.csdn.net/20150706152244195" alt="这里写图片描述"> <img src="http://img.blog.csdn.net/20150706152310735" alt="这里写图片描述"> ），并且，<br><img src="http://img.blog.csdn.net/20150706152421266" alt="这里写图片描述"> </p>
+<p>伯努利分布可以写成：<br><img src="http://img.blog.csdn.net/20150706152013489" alt=""> </p>
+<p>因此，令<img src="http://img.blog.csdn.net/20150706152120210" alt=""> （有趣地发现其反函数为<img src="http://img.blog.csdn.net/20150706152244195" alt=""> <img src="http://img.blog.csdn.net/20150706152310735" alt=""> ），并且，<br><img src="http://img.blog.csdn.net/20150706152421266" alt=""> </p>
 <p>高斯分布： </p>
-<p>回忆我们对线性回归求导时，方差对我们最终结果并没有任何影响.为了使问题简化，令<img src="http://img.blog.csdn.net/20150706153327249" alt="这里写图片描述"> 于是有，<br><img src="http://img.blog.csdn.net/20150706153356621" alt="这里写图片描述"> </p>
-<p>得：<br><img src="http://img.blog.csdn.net/20150706153538163" alt="这里写图片描述"> </p>
+<p>回忆我们对线性回归求导时，方差对我们最终结果并没有任何影响.为了使问题简化，令<img src="http://img.blog.csdn.net/20150706153327249" alt=""> 于是有，<br><img src="http://img.blog.csdn.net/20150706153356621" alt=""> </p>
+<p>得：<br><img src="http://img.blog.csdn.net/20150706153538163" alt=""> </p>
 <p>指数分布族还包括很多其他的分布：<br><strong>多项式分布</strong>（multinomial）<br><strong>泊松分布</strong>（poisson）：用于计数的建模<br><strong>伽马分布</strong>（gamma），<strong>指数分布</strong>（exponential）:用于对连续非负的随机变量进行建模<br><strong>β分布</strong>，<strong>Dirichlet分布</strong>：对小数建模</p>
-<h2 id="3-GLMS（广义线性模型）"><a href="#3-GLMS（广义线性模型）" class="headerlink" title="3.GLMS（广义线性模型）"></a>3.GLMS（广义线性模型）</h2><p>为了导出GLM,作三个假设： </p>
-<p>（1）<img src="http://img.blog.csdn.net/20150706155242811" alt="这里写图片描述"> </p>
-<p>（2）给定x，我们的目标是预测T(y)的预期值. 在大部分例子中，我们有T(y)=y，因此意味着我们通过学习得到的假设满足<img src="http://img.blog.csdn.net/20150706155656016" alt="这里写图片描述"> （这个假设对logistic回归和线性回归都成立） </p>
-<p>（3）自然参数和输入变量是线性相关的，也就是说<img src="http://img.blog.csdn.net/20150706155904652" alt="这里写图片描述"> （如果自然参数是向量，则<img src="http://img.blog.csdn.net/20150706160004248" alt="这里写图片描述"> ）</p>
-<h3 id="3-1普通的最小二乘法"><a href="#3-1普通的最小二乘法" class="headerlink" title="3.1普通的最小二乘法"></a><strong>3.1普通的最小二乘法</strong></h3><p>为了说明普通的最小二乘法是GLM的特例，设定目标变量y(在GLM术语中叫响应变量-response variable)是连续的，并且假设服从高斯分布<img src="http://img.blog.csdn.net/20150706160927520" alt="这里写图片描述"> ，高斯分布写成指数族的形式，有<img src="http://img.blog.csdn.net/20150706161155908" alt="这里写图片描述"> 得到：<br><img src="http://img.blog.csdn.net/20150706161225959" alt="这里写图片描述"> </p>
-<h3 id="3-2-logistic回归"><a href="#3-2-logistic回归" class="headerlink" title="3.2 logistic回归"></a><strong>3.2 logistic回归</strong></h3><p>考虑logistic,我们感兴趣的是二元分类，也就是说<img src="http://img.blog.csdn.net/20150706162711352" alt="这里写图片描述"> 很容易想到指数分布族的伯努利分布，有<img src="http://img.blog.csdn.net/20150706162832273" alt="这里写图片描述"> ，同理得到：<br><img src="http://img.blog.csdn.net/20150706162917426" alt="这里写图片描述"> </p>
-<p>正则响应函数（canonical response function）：<img src="http://img.blog.csdn.net/20150706163151572" alt="这里写图片描述"> </p>
-<p>正则链接函数（canonical link function）:<img src="http://img.blog.csdn.net/20150706163448826" alt="这里写图片描述"> </p>
-<h3 id="3-3-softmax-回归"><a href="#3-3-softmax-回归" class="headerlink" title="3.3 softmax 回归"></a><strong>3.3 softmax 回归</strong></h3><p>当分类问题的y取值不止两个时，我们需要采用<strong>多项式分布（multinomial distribution）</strong>.</p>
+<h3 id="3-GLMS（广义线性模型）"><a href="#3-GLMS（广义线性模型）" class="headerlink" title="3.GLMS（广义线性模型）"></a>3.GLMS（广义线性模型）</h3><p>为了导出GLM,作三个假设： </p>
+<p>（1）<img src="http://img.blog.csdn.net/20150706155242811" alt=""> </p>
+<p>（2）给定x，我们的目标是预测T(y)的预期值. 在大部分例子中，我们有T(y)=y，因此意味着我们通过学习得到的假设满足<img src="http://img.blog.csdn.net/20150706155656016" alt=""> （这个假设对logistic回归和线性回归都成立） </p>
+<p>（3）自然参数和输入变量是线性相关的，也就是说<img src="http://img.blog.csdn.net/20150706155904652" alt=""> （如果自然参数是向量，则<img src="http://img.blog.csdn.net/20150706160004248" alt=""> ）</p>
+<h4 id="3-1普通的最小二乘法"><a href="#3-1普通的最小二乘法" class="headerlink" title="3.1普通的最小二乘法"></a><strong>3.1普通的最小二乘法</strong></h4><p>为了说明普通的最小二乘法是GLM的特例，设定目标变量y(在GLM术语中叫响应变量-response variable)是连续的，并且假设服从高斯分布<img src="http://img.blog.csdn.net/20150706160927520" alt=""> ，高斯分布写成指数族的形式，有<img src="http://img.blog.csdn.net/20150706161155908" alt=""> 得到：<br><img src="http://img.blog.csdn.net/20150706161225959" alt=""> </p>
+<h4 id="3-2-logistic回归"><a href="#3-2-logistic回归" class="headerlink" title="3.2 logistic回归"></a><strong>3.2 logistic回归</strong></h4><p>考虑logistic,我们感兴趣的是二元分类，也就是说<img src="http://img.blog.csdn.net/20150706162711352" alt=""> 很容易想到指数分布族的伯努利分布，有<img src="http://img.blog.csdn.net/20150706162832273" alt=""> ，同理得到：<br><img src="http://img.blog.csdn.net/20150706162917426" alt=""> </p>
+<p>正则响应函数（canonical response function）：<img src="http://img.blog.csdn.net/20150706163151572" alt=""> </p>
+<p>正则链接函数（canonical link function）:<img src="http://img.blog.csdn.net/20150706163448826" alt=""> </p>
+<h4 id="3-3-softmax-回归"><a href="#3-3-softmax-回归" class="headerlink" title="3.3 softmax 回归"></a><strong>3.3 softmax 回归</strong></h4><p>当分类问题的y取值不止两个时，我们需要采用<strong>多项式分布（multinomial distribution）</strong>.</p>
 <p>在推导多项式分布的GLM之前，先把多项式分布表达成指数族.</p>
-<p>为了参数化多项式分布的k各可能结果，有人可能会用k个参数来说明每一种情况的可能性，但是这些参数是冗余的，并且并不是独立的(由于知道任何其中的k-1个，剩下的一个就可以求出，因为满足<img src="http://img.blog.csdn.net/20150706165207052" alt="这里写图片描述"> ). 因此我们用k-1个参数<img src="http://img.blog.csdn.net/20150706165446547" alt="这里写图片描述"> 对多项分布进行参数化，<img src="http://img.blog.csdn.net/20150706170009460" alt="这里写图片描述"> . </p>
-<p>定义<img src="http://img.blog.csdn.net/20150706170122808" alt="这里写图片描述"> ，如下，<br><img src="http://img.blog.csdn.net/20150706170157510" alt="这里写图片描述"> </p>
-<p>介绍一个很有用的记号，<img src="http://img.blog.csdn.net/20150706170454371" alt="这里写图片描述"> ，例如1{2=3}=0,1{3=5-2}=1. </p>
-<p>因此T(y)和y的关系为<img src="http://img.blog.csdn.net/20150706170650806" alt="这里写图片描述"> . </p>
-<p>并且有<img src="http://img.blog.csdn.net/20150706170739298" alt="这里写图片描述"> ，因此：<br><img src="http://img.blog.csdn.net/20150706170825859" alt="这里写图片描述"> </p>
-<p>链接函数为，<img src="http://img.blog.csdn.net/20150706171724655" alt="这里写图片描述"> ，为了方便，定义<img src="http://img.blog.csdn.net/20150706171759377" alt="这里写图片描述"> .</p>
-<p>可得：<br><img src="http://img.blog.csdn.net/20150706171921306" alt="这里写图片描述"> </p>
-<p>因此<img src="http://img.blog.csdn.net/20150706172034079" alt="这里写图片描述"> ，反代回去得到响应函数：<br><img src="http://img.blog.csdn.net/20150706172133807" alt="这里写图片描述"> </p>
-<p>从η到<img src="http://img.blog.csdn.net/20150706172447119" alt="这里写图片描述"> 的映射叫做<strong>softmax函数</strong>.</p>
-<p>根据假设3，<img src="http://img.blog.csdn.net/20150706172621524" alt="这里写图片描述"> 得到:<br><img src="http://img.blog.csdn.net/20150706172655176" alt="这里写图片描述"> </p>
-<p>这个应用于分类问题（当<img src="http://img.blog.csdn.net/20150706172823866" alt="这里写图片描述"> ），叫做<strong>softmax回归(softmax regression)</strong>.是logistic回归的推广.</p>
-<p><img src="http://img.blog.csdn.net/20150706173028013" alt="这里写图片描述"> </p>
-<p>与最小二乘法和logistic回归类似，<br><img src="http://img.blog.csdn.net/20150706173405511" alt="这里写图片描述"> </p>
+<p>为了参数化多项式分布的k各可能结果，有人可能会用k个参数来说明每一种情况的可能性，但是这些参数是冗余的，并且并不是独立的(由于知道任何其中的k-1个，剩下的一个就可以求出，因为满足<img src="http://img.blog.csdn.net/20150706165207052" alt=""> ). 因此我们用k-1个参数<img src="http://img.blog.csdn.net/20150706165446547" alt=""> 对多项分布进行参数化，<img src="http://img.blog.csdn.net/20150706170009460" alt=""> . </p>
+<p>定义<img src="http://img.blog.csdn.net/20150706170122808" alt=""> ，如下，<br><img src="http://img.blog.csdn.net/20150706170157510" alt=""> </p>
+<p>介绍一个很有用的记号，<img src="http://img.blog.csdn.net/20150706170454371" alt=""> ，例如1{2=3}=0,1{3=5-2}=1. </p>
+<p>因此T(y)和y的关系为<img src="http://img.blog.csdn.net/20150706170650806" alt=""> . </p>
+<p>并且有<img src="http://img.blog.csdn.net/20150706170739298" alt=""> ，因此：<br><img src="http://img.blog.csdn.net/20150706170825859" alt=""> </p>
+<p>链接函数为，<img src="http://img.blog.csdn.net/20150706171724655" alt=""> ，为了方便，定义<img src="http://img.blog.csdn.net/20150706171759377" alt=""> .</p>
+<p>可得：<br><img src="http://img.blog.csdn.net/20150706171921306" alt=""> </p>
+<p>因此<img src="http://img.blog.csdn.net/20150706172034079" alt=""> ，反代回去得到响应函数：<br><img src="http://img.blog.csdn.net/20150706172133807" alt=""> </p>
+<p>从η到<img src="http://img.blog.csdn.net/20150706172447119" alt=""> 的映射叫做<strong>softmax函数</strong>.</p>
+<p>根据假设3，<img src="http://img.blog.csdn.net/20150706172621524" alt=""> 得到:<br><img src="http://img.blog.csdn.net/20150706172655176" alt=""> </p>
+<p>这个应用于分类问题（当<img src="http://img.blog.csdn.net/20150706172823866" alt=""> ），叫做<strong>softmax回归(softmax regression)</strong>.是logistic回归的推广.</p>
+<p><img src="http://img.blog.csdn.net/20150706173028013" alt=""> </p>
+<p>与最小二乘法和logistic回归类似，<br><img src="http://img.blog.csdn.net/20150706173405511" alt=""> </p>
 <p>再通过梯度上升或者牛顿方法求出θ.</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>如有不足，欢迎指出～</p>
+]]></content>
       
         <categories>
             
@@ -172,8 +173,9 @@
 <li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–最小二乘法</a></li>
 <li><a href="http://pancakeawesome.ink/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a></li>
 <li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–牛顿法</a></li>
-<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">约束优化算法–拉格朗日乘子法</a><br>在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。这里就对梯度下降法做一个完整的总结。</li>
+<li><a href="http://pancakeawesome.ink/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E5%AD%90%E6%B3%95%EF%BC%88Lagrange-Multiplier-%E5%92%8CKKT%E6%9D%A1%E4%BB%B6.html">约束优化算法–拉格朗日乘子法</a></li>
 </ul>
+<p>在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。这里就对梯度下降法做一个完整的总结。</p>
 <h2 id="梯度下降（Gradient-Descent）小结"><a href="#梯度下降（Gradient-Descent）小结" class="headerlink" title="梯度下降（Gradient Descent）小结"></a>梯度下降（Gradient Descent）小结</h2><h3 id="1-梯度"><a href="#1-梯度" class="headerlink" title="1. 梯度"></a>1. 梯度</h3><p>在微积分里面，对多元函数的参数求∂偏导数，把求得的各个参数的偏导数以向量的形式写出来，就是梯度。比如函数f(x,y), 分别对x,y求偏导数，求得的梯度向量就是$(∂_f/∂_x, ∂_f/∂_y)^T$,简称grad f(x,y)或者▽f(x,y)。对于在点$(x_0,y_0)$的具体梯度向量就是$(∂_f/∂_x, ∂_f/∂_y)^T$.或者$▽_f(x_0,y_0)$，如果是3个参数的向量梯度，就是$(∂_f/∂_x, ∂_f/∂_y,∂_f/∂_z)^T$,以此类推。</p>
 <p>那么这个梯度向量求出来有什么意义呢？他的意义从几何意义上讲，就是函数变化增加最快的地方。具体来说，对于函数f(x,y),在点(x0,y0)，沿着梯度向量的方向就是$(∂_f/∂_x, ∂_f/∂_y)^T$的方向是f(x,y)增加最快的地方。或者说，沿着梯度向量的方向，更加容易找到函数的最大值。反过来说，沿着梯度向量相反的方向，也就是 -$(∂_f/∂_x, ∂_f/∂_y)^T$的方向，梯度减少最快，也就是更加容易找到函数的最小值。</p>
 <h3 id="2-梯度下降与梯度上升"><a href="#2-梯度下降与梯度上升" class="headerlink" title="2. 梯度下降与梯度上升"></a>2. 梯度下降与梯度上升</h3><p>在机器学习算法中，在最小化损失函数时，可以通过梯度下降法来一步步的迭代求解，得到最小化的损失函数，和模型参数值。反过来，如果我们需要求解损失函数的最大值，这时就需要用梯度上升法来迭代了。</p>
@@ -334,7 +336,7 @@
 <li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–最小二乘法</a></li>
 <li><a href="http://pancakeawesome.ink/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a></li>
 <li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–牛顿法</a></li>
-<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">约束优化算法–拉格朗日乘子法</a></li>
+<li><a href="http://pancakeawesome.ink/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E5%AD%90%E6%B3%95%EF%BC%88Lagrange-Multiplier-%E5%92%8CKKT%E6%9D%A1%E4%BB%B6.html">约束优化算法–拉格朗日乘子法</a></li>
 </ul>
 <p>最小二乘法是用来做函数拟合或者求函数极值的方法。在机器学习，尤其是回归模型中，经常可以看到最小二乘法的身影，这里就对我对最小二乘法的认知做一个小结。</p>
 <h2 id="最小二乘法小结"><a href="#最小二乘法小结" class="headerlink" title="最小二乘法小结"></a>最小二乘法小结</h2><h3 id="1-最小二乘法的原理与要解决的问题"><a href="#1-最小二乘法的原理与要解决的问题" class="headerlink" title="1.最小二乘法的原理与要解决的问题　"></a>1.最小二乘法的原理与要解决的问题　</h3><p>最小二乘法是由勒让德在19世纪发现的，原理的一般形式很简单，当然发现的过程是非常艰难的。形式如下式：</p>
@@ -1145,9 +1147,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -3647,9 +3649,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> react </tag>
             
@@ -4036,9 +4038,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
