@@ -3,12 +3,99 @@
   
     
     <entry>
+      <title><![CDATA[拉格朗日乘子法（Lagrange Multiplier) 和KKT条件]]></title>
+      <url>/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E5%AD%90%E6%B3%95%EF%BC%88Lagrange-Multiplier-%E5%92%8CKKT%E6%9D%A1%E4%BB%B6.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–最小二乘法</a></li>
+<li><a href="http://pancakeawesome.ink/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a></li>
+<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–牛顿法</a></li>
+<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">约束优化算法–拉格朗日乘子法</a></li>
+<li>在求解最优化问题中，<strong>拉格朗日乘子法</strong>（Lagrange Multiplier）和<strong>KKT</strong>（Karush Kuhn Tucker）<strong>条件</strong>是两种最常用的方法。在有等式约束时使用拉格朗日乘子法，在有不等约束时使用KKT条件。</li>
+</ul>
+<h2 id="拉格朗日乘子法（Lagrange-Multiplier-和KKT条件"><a href="#拉格朗日乘子法（Lagrange-Multiplier-和KKT条件" class="headerlink" title="拉格朗日乘子法（Lagrange Multiplier) 和KKT条件"></a>拉格朗日乘子法（Lagrange Multiplier) 和KKT条件</h2><p>　　我们这里提到的最优化问题通常是指对于给定的某一函数，<strong>求其在指定作用域上的全局最小值(因为最小值与最大值可以很容易转化，即最大值问题可以转化成最小值问题)</strong>。提到KKT条件一般会附带的提一下拉格朗日乘子。对学过高等数学的人来说比较拉格朗日乘子应该会有些印象。二者均是求解最优化问题的方法，不同之处在于应用的情形不同。</p>
+<p>一般情况下，最优化问题会碰到一下三种情况：</p>
+<p><strong>（1）无约束条件</strong></p>
+<p>　　这是最简单的情况，解决方法通常是函数对变量求导，令求导函数等于0的点可能是极值点。将结果带回原函数进行验证即可。</p>
+<p><strong>（2）等式约束条件</strong></p>
+<p>设目标函数为f(x)，约束条件为h_k(x)，形如:</p>
+<p>　　s.t. 表示subject to ，“受限于”的意思，l表示有l个约束条件。</p>
+<p><img src="http://img.blog.csdn.net/20150609154048760?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvam9obm55Y29uc3RhbnRpbmU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>　　　则解决方法是<strong>消元法或者拉格朗日法</strong>。消元法比较简单不在赘述，这里主要讲拉格朗日法，因为后面提到的KKT条件是对拉格朗日乘子法的一种泛化。</p>
+<p>　　　例如给定椭球:</p>
+<p><img src="https://images0.cnblogs.com/blog/571227/201411/231635338436753.png" alt=""></p>
+<p>　  　求这个椭球的内接长方体的最大体积。这个问题实际上就是条件极值问题，即在条件    <img src="https://images0.cnblogs.com/blog/571227/201411/231637406257888.png" alt="">  下，求<img src="https://images0.cnblogs.com/blog/571227/201411/231639439217452.png" alt="">的最大值。</p>
+<p>　　  当然这个问题实际可以先根据条件消去 z <strong>(消元法)</strong>，然后带入转化为无条件极值问题来处理。但是有时候这样做很困难，甚至是做不到的，这时候就需要用<strong>拉格朗日乘数法</strong>了。  </p>
+<p>　　  首先定义拉格朗日函数F(x)：</p>
+<p><img src="http://img.blog.csdn.net/20150609154103976?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvam9obm55Y29uc3RhbnRpbmU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">  （ 其中λk是各个约束条件的待定系数。）   </p>
+<p>然后解变量的偏导方程：</p>
+<p><img src="http://img.blog.csdn.net/20150609154208263?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvam9obm55Y29uc3RhbnRpbmU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">……<img src="http://img.blog.csdn.net/20150609154221648?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvam9obm55Y29uc3RhbnRpbmU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">,</p>
+<p>　　　如果有l个约束条件，就应该有l+1个方程。求出的方程组的解就可能是最优化值（高等数学中提到的极值），将结果带回原方程验证就可得到解。</p>
+<p>　　　回到上面的题目，通过拉格朗日乘数法将问题转化为<br><img src="https://images0.cnblogs.com/blog/571227/201411/231658574531311.png" alt=""></p>
+<p>　　　对<img src="https://images0.cnblogs.com/blog/571227/201411/231659273433944.png" alt="">求偏导得到</p>
+<p><img src="https://images0.cnblogs.com/blog/571227/201411/231705053906736.png" alt=""></p>
+<p>　　　联立前面三个方程得到<img src="https://images0.cnblogs.com/blog/571227/201411/231712092968762.png" alt="">和<img src="https://images0.cnblogs.com/blog/571227/201411/231712459683193.png" alt="">，带入第四个方程解之<br>　　　<br><img src="https://images0.cnblogs.com/blog/571227/201411/231716003591207.png" alt=""></p>
+<p>　　　带入解得最大体积为：</p>
+<p><img src="https://images0.cnblogs.com/blog/571227/201411/231718509061837.png" alt=""></p>
+<p>　　　至于为什么这么做可以求解最优化？维基百科上给出了一个比较好的直观解释。</p>
+<p>举个二维最优化的例子：</p>
+<p>  　　　　 min f(x,y)    </p>
+<p>  　　　　 s.t. g(x,y) = c</p>
+<p>这里画出z=f(x,y)的等高线（函数登高线定义见百度百科）：</p>
+<p><img src="https://pic002.cnblogs.com/images/2012/103496/2012101621500549.png" alt=""></p>
+<p>绿线标出的是约束g(x,y)=c的点的轨迹。蓝线是f(x,y)的等高线。箭头表示斜率，和等高线的法线平行。从梯度的方向上来看，显然有d1&gt;d2。绿色的线是约束，也就是说，只要正好落在这条绿线上的点才可能是满足要求的点。如果没有这条约束，f(x,y)的最小值应该会落在最小那圈等高线内部的某一点上。<strong>而现在加上了约束，最小值点应该在哪里呢？显然应该是在f(x,y)的等高线正好和约束线相切的位置，因为如果只是相交意味着肯定还存在其它的等高线在该条等高线的内部或者外部，使得新的等高线与目标函数的交点的值更大或者更小，只有到等高线与目标函数的曲线相切的时候，可能取得最优值。</strong></p>
+<p>　　如果我们对约束也求梯度∇g(x,y)，则其梯度如图中绿色箭头所示。<strong>很容易看出来，要想让目标函数f(x,y)的等高线和约束相切，则他们切点的梯度一定在一条直线上(f和g的斜率平行)。</strong></p>
+<p><strong>也即在最优化解的时候：$∇_f(x,y)=λ（∇_g(x,y)-C)$ </strong>   （其中∇为梯度算子; 即：f(x)的梯度 = λ* g(x)的梯度，λ是常数,可以是任何非0实数，表示左右两边同向。）</p>
+<p>即：$▽[f(x,y)+λ(g(x,y)−c)]=0λ≠0$</p>
+<p>　　那么拉格朗日函数： F(x,y)=f(x,y)+λ(g(x,y)−c) 在达到极值时与f(x,y)相等，因为F(x,y)达到极值时g(x,y)−c总等于零。</p>
+<p>　　min( F(x,λ) )取得极小值时其导数为0，即$▽f(x)+▽\Sigma_i^n=λ_ih_i(x)=0$，也就是说f(x)和h(x)的梯度共线。</p>
+<p><strong>简单的说，在F(x,λ)取得最优化解的时候，即F</strong>(x,λ)取极值（导数为0，▽[f(x,y)+λ(g(x,y)−c)]=0）的时候，<strong>f(x)与g(x) 梯度共线，此时就是在条件约束g(x)下，f(x)的最优化解。</strong></p>
+<p><strong>（3）不等式约束条件</strong></p>
+<p>设目标函数f(x)，不等式约束为g(x)，有的教程还会添加上等式约束条件h(x)。此时的约束优化问题描述如下：</p>
+<p><img src="http://img.blog.csdn.net/20150609161331945?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvam9obm55Y29uc3RhbnRpbmU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>则我们定义不等式约束下的拉格朗日函数L，则L表达式为：</p>
+<p><img src="http://img.blog.csdn.net/20150609160802317?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvam9obm55Y29uc3RhbnRpbmU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>其中f(x)是原目标函数，hj(x)是第j个等式约束条件，λj是对应的约束系数，gk是不等式约束，uk是对应的约束系数。</p>
+<p>　　常用的方法是KKT条件，同样地，把所有的不等式约束、等式约束和目标函数全部写为一个式子L(a, b, x)= f(x) + a<em>g(x)+b</em>h(x)，</p>
+<p>KKT条件是说<strong>最优值</strong>必须满足以下条件：</p>
+<p>1）L(a, b, x)对x求导为零；</p>
+<p>2）h(x) =0;</p>
+<p><strong>3）a*g(x) = 0;</strong></p>
+<p>　　求取这些等式之后就能得到候选最优值。其中第三个式子非常有趣，因为g(x)&lt;=0，如果要满足这个等式，必须a=0或者g(x)=0. 这是SVM的很多重要性质的来源，如支持向量的概念。</p>
+<p>　　接下来主要介绍KKT条件，推导及应用。详细推导过程如下：</p>
+<p><img src="https://images2015.cnblogs.com/blog/520787/201509/520787-20150901140514200-1606864139.jpg" alt=""> </p>
+<p><img src="https://images2015.cnblogs.com/blog/520787/201509/520787-20150901140604513-1723209246.jpg" alt=""></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>参考：</p>
+<p>　　【1】<a href="http://blog.csdn.net/acdreamers/article/details/41413445" target="_blank" rel="noopener">拉格朗日乘数法</a></p>
+<p>　　【2】<a href="http://blog.csdn.net/johnnyconstantine/article/details/46335763" target="_blank" rel="noopener">KKT条件介绍</a></p>
+<p>　　【3】<a href="http://blog.csdn.net/xianlingmao/article/details/7919597" target="_blank" rel="noopener">深入理解拉格朗日乘子法（Lagrange Multiplier) 和KKT条件</a></p>
+<p>　　【4】<a href="http://www.cnblogs.com/zhangchaoyang/articles/2726873.html" target="_blank" rel="noopener">拉格朗日乘子法和KKT条件</a> </p>
+]]></content>
+      
+        <categories>
+            
+            <category> 机器学习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+            <tag> 优化算法 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[牛顿法小结]]></title>
       <url>/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
 <li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–最小二乘法</a></li>
 <li><a href="http://pancakeawesome.ink/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a></li>
 <li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–牛顿法</a></li>
+<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">约束优化算法–拉格朗日乘子法</a></li>
 </ul>
 <h2 id="本讲大纲："><a href="#本讲大纲：" class="headerlink" title="本讲大纲："></a>本讲大纲：</h2><p>1.牛顿方法(Newton’s method) </p>
 <p>2.指数族(Exponential family) </p>
@@ -84,7 +171,8 @@
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
 <li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–最小二乘法</a></li>
 <li><a href="http://pancakeawesome.ink/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a></li>
-<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–牛顿法</a><br>在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。这里就对梯度下降法做一个完整的总结。</li>
+<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–牛顿法</a></li>
+<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">约束优化算法–拉格朗日乘子法</a><br>在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。这里就对梯度下降法做一个完整的总结。</li>
 </ul>
 <h2 id="梯度下降（Gradient-Descent）小结"><a href="#梯度下降（Gradient-Descent）小结" class="headerlink" title="梯度下降（Gradient Descent）小结"></a>梯度下降（Gradient Descent）小结</h2><h3 id="1-梯度"><a href="#1-梯度" class="headerlink" title="1. 梯度"></a>1. 梯度</h3><p>在微积分里面，对多元函数的参数求∂偏导数，把求得的各个参数的偏导数以向量的形式写出来，就是梯度。比如函数f(x,y), 分别对x,y求偏导数，求得的梯度向量就是$(∂_f/∂_x, ∂_f/∂_y)^T$,简称grad f(x,y)或者▽f(x,y)。对于在点$(x_0,y_0)$的具体梯度向量就是$(∂_f/∂_x, ∂_f/∂_y)^T$.或者$▽_f(x_0,y_0)$，如果是3个参数的向量梯度，就是$(∂_f/∂_x, ∂_f/∂_y,∂_f/∂_z)^T$,以此类推。</p>
 <p>那么这个梯度向量求出来有什么意义呢？他的意义从几何意义上讲，就是函数变化增加最快的地方。具体来说，对于函数f(x,y),在点(x0,y0)，沿着梯度向量的方向就是$(∂_f/∂_x, ∂_f/∂_y)^T$的方向是f(x,y)增加最快的地方。或者说，沿着梯度向量的方向，更加容易找到函数的最大值。反过来说，沿着梯度向量相反的方向，也就是 -$(∂_f/∂_x, ∂_f/∂_y)^T$的方向，梯度减少最快，也就是更加容易找到函数的最小值。</p>
@@ -245,7 +333,8 @@
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
 <li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–最小二乘法</a></li>
 <li><a href="http://pancakeawesome.ink/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a></li>
-<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–牛顿法</a>˜</li>
+<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–牛顿法</a></li>
+<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">约束优化算法–拉格朗日乘子法</a></li>
 </ul>
 <p>最小二乘法是用来做函数拟合或者求函数极值的方法。在机器学习，尤其是回归模型中，经常可以看到最小二乘法的身影，这里就对我对最小二乘法的认知做一个小结。</p>
 <h2 id="最小二乘法小结"><a href="#最小二乘法小结" class="headerlink" title="最小二乘法小结"></a>最小二乘法小结</h2><h3 id="1-最小二乘法的原理与要解决的问题"><a href="#1-最小二乘法的原理与要解决的问题" class="headerlink" title="1.最小二乘法的原理与要解决的问题　"></a>1.最小二乘法的原理与要解决的问题　</h3><p>最小二乘法是由勒让德在19世纪发现的，原理的一般形式很简单，当然发现的过程是非常艰难的。形式如下式：</p>
@@ -1056,9 +1145,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -3558,9 +3647,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> react </tag>
             
@@ -3947,9 +4036,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
