@@ -3,6 +3,77 @@
   
     
     <entry>
+      <title><![CDATA[牛顿法小结]]></title>
+      <url>/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="本讲大纲：-本讲大纲"><a href="#本讲大纲：-本讲大纲" class="headerlink" title="本讲大纲： ## (#本讲大纲)"></a>本讲大纲： ## (#本讲大纲)</h2><p>1.牛顿方法(Newton’s method) </p>
+<p>2.指数族(Exponential family) </p>
+<p>3.广义线性模型(Generalized linear models)</p>
+<h2 id="1-牛顿方法"><a href="#1-牛顿方法" class="headerlink" title="1.牛顿方法"></a>1.牛顿方法</h2><p>假设有函数：<img src="http://img.blog.csdn.net/20150706110633987" alt="这里写图片描述"> ，我们希望找到满足<img src="http://img.blog.csdn.net/20150706110724167" alt="这里写图片描述"> 的<img src="http://img.blog.csdn.net/20150706110745198" alt="这里写图片描述"> 值. 这里<img src="http://img.blog.csdn.net/20150706110801823" alt="这里写图片描述"> 是实数. </p>
+<p>牛顿方法执行下面的更新：<br><img src="http://img.blog.csdn.net/20150706110859861" alt="这里写图片描述"> </p>
+<p>下图为执行牛顿方法的过程：<br><img src="http://img.blog.csdn.net/20150706111014684" alt="这里写图片描述"> </p>
+<p>简单的来说就是通过求当前点的导数得到下一个点.用到的性质是导数值等于该点切线和横轴夹角的正切值.</p>
+<p>令<img src="http://img.blog.csdn.net/20150706112630955" alt="这里写图片描述"> ，我们可以用同样的算法去最大化<img src="http://img.blog.csdn.net/20150706112810083" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20150706112829665" alt="这里写图片描述"> </p>
+<p>牛顿方法的一般化： </p>
+<p>如果<img src="http://img.blog.csdn.net/20150706113038478" alt="这里写图片描述"> 是一个向量，那么：<br><img src="http://img.blog.csdn.net/20150706113134002" alt="这里写图片描述"> </p>
+<p>其中，<img src="http://img.blog.csdn.net/20150706113310504" alt="这里写图片描述"> 是<img src="http://img.blog.csdn.net/20150706113341254" alt="这里写图片描述"> 对<img src="http://img.blog.csdn.net/20150706113407533" alt="这里写图片描述"> 的偏导数； </p>
+<p>H称为<strong>黑塞矩阵(Hessian matrix)</strong>,是一个n*n的矩阵，n是特征量的个数，并且<img src="http://img.blog.csdn.net/20150706113605999" alt="这里写图片描述"> （==当年学的各种名词又开始在脑海里翻滚==）</p>
+<p>牛顿方法的收敛速度比批处理梯度下降快很多，因为其是二次收敛到最优值，很少次的迭代就能够非常接近最小值了；但是当n很大时，每次迭代求黑塞矩阵和黑塞矩阵的逆代价是很大的.这里我们可以用改进的拟牛顿法。</p>
+<h2 id="2-指数族"><a href="#2-指数族" class="headerlink" title="2.指数族"></a>2.指数族</h2><p>指数族形式：<br><img src="http://img.blog.csdn.net/20150706145955215" alt="这里写图片描述"> </p>
+<p>其中，<img src="http://img.blog.csdn.net/20150706150152243" alt="这里写图片描述"> 被称为<strong>自然参数</strong>（natural parameter）或者<strong>典范参数</strong>（canonical parameter）; </p>
+<p>T(y)是<strong>充分统计量</strong>（sufficient statistic）（对于我们考虑的分布来说，通常T(y)=y）；<img src="http://img.blog.csdn.net/20150706150629710" alt="这里写图片描述"> </p>
+<p>是日志分配函数(log partition function),<img src="http://img.blog.csdn.net/20150706150937473" alt="这里写图片描述"> 是一个规范化常数，使得分布的和为1. </p>
+<p>给定T,a,b，通过改变参数<img src="http://img.blog.csdn.net/20150706151225336" alt="这里写图片描述"> 得到不同的分布.</p>
+<p>下面展示<strong>伯努利（Bernoulli）</strong>和<strong>高斯分布（Gaussian distribution）</strong>都是指数分布族的特例：</p>
+<p>伯努利分布可以写成：<br><img src="http://img.blog.csdn.net/20150706152013489" alt="这里写图片描述"> </p>
+<p>因此，令<img src="http://img.blog.csdn.net/20150706152120210" alt="这里写图片描述"> （有趣地发现其反函数为<img src="http://img.blog.csdn.net/20150706152244195" alt="这里写图片描述"> <img src="http://img.blog.csdn.net/20150706152310735" alt="这里写图片描述"> ），并且，<br><img src="http://img.blog.csdn.net/20150706152421266" alt="这里写图片描述"> </p>
+<p>高斯分布： </p>
+<p>回忆我们对线性回归求导时，方差对我们最终结果并没有任何影响.为了使问题简化，令<img src="http://img.blog.csdn.net/20150706153327249" alt="这里写图片描述"> 于是有，<br><img src="http://img.blog.csdn.net/20150706153356621" alt="这里写图片描述"> </p>
+<p>得：<br><img src="http://img.blog.csdn.net/20150706153538163" alt="这里写图片描述"> </p>
+<p>指数分布族还包括很多其他的分布：<br><strong>多项式分布</strong>（multinomial）<br><strong>泊松分布</strong>（poisson）：用于计数的建模<br><strong>伽马分布</strong>（gamma），<strong>指数分布</strong>（exponential）:用于对连续非负的随机变量进行建模<br><strong>β分布</strong>，<strong>Dirichlet分布</strong>：对小数建模</p>
+<h2 id="3-GLMS（广义线性模型）"><a href="#3-GLMS（广义线性模型）" class="headerlink" title="3.GLMS（广义线性模型）"></a>3.GLMS（广义线性模型）</h2><p>为了导出GLM,作三个假设： </p>
+<p>（1）<img src="http://img.blog.csdn.net/20150706155242811" alt="这里写图片描述"> </p>
+<p>（2）给定x，我们的目标是预测T(y)的预期值. 在大部分例子中，我们有T(y)=y，因此意味着我们通过学习得到的假设满足<img src="http://img.blog.csdn.net/20150706155656016" alt="这里写图片描述"> （这个假设对logistic回归和线性回归都成立） </p>
+<p>（3）自然参数和输入变量是线性相关的，也就是说<img src="http://img.blog.csdn.net/20150706155904652" alt="这里写图片描述"> （如果自然参数是向量，则<img src="http://img.blog.csdn.net/20150706160004248" alt="这里写图片描述"> ）</p>
+<h3 id="3-1普通的最小二乘法"><a href="#3-1普通的最小二乘法" class="headerlink" title="3.1普通的最小二乘法"></a><strong>3.1普通的最小二乘法</strong></h3><p>为了说明普通的最小二乘法是GLM的特例，设定目标变量y(在GLM术语中叫响应变量-response variable)是连续的，并且假设服从高斯分布<img src="http://img.blog.csdn.net/20150706160927520" alt="这里写图片描述"> ，高斯分布写成指数族的形式，有<img src="http://img.blog.csdn.net/20150706161155908" alt="这里写图片描述"> 得到：<br><img src="http://img.blog.csdn.net/20150706161225959" alt="这里写图片描述"> </p>
+<h3 id="3-2-logistic回归"><a href="#3-2-logistic回归" class="headerlink" title="3.2 logistic回归"></a><strong>3.2 logistic回归</strong></h3><p>考虑logistic,我们感兴趣的是二元分类，也就是说<img src="http://img.blog.csdn.net/20150706162711352" alt="这里写图片描述"> 很容易想到指数分布族的伯努利分布，有<img src="http://img.blog.csdn.net/20150706162832273" alt="这里写图片描述"> ，同理得到：<br><img src="http://img.blog.csdn.net/20150706162917426" alt="这里写图片描述"> </p>
+<p>正则响应函数（canonical response function）：<img src="http://img.blog.csdn.net/20150706163151572" alt="这里写图片描述"> </p>
+<p>正则链接函数（canonical link function）:<img src="http://img.blog.csdn.net/20150706163448826" alt="这里写图片描述"> </p>
+<h3 id="3-3-softmax-回归"><a href="#3-3-softmax-回归" class="headerlink" title="3.3 softmax 回归"></a><strong>3.3 softmax 回归</strong></h3><p>当分类问题的y取值不止两个时，我们需要采用<strong>多项式分布（multinomial distribution）</strong>.</p>
+<p>在推导多项式分布的GLM之前，先把多项式分布表达成指数族.</p>
+<p>为了参数化多项式分布的k各可能结果，有人可能会用k个参数来说明每一种情况的可能性，但是这些参数是冗余的，并且并不是独立的(由于知道任何其中的k-1个，剩下的一个就可以求出，因为满足<img src="http://img.blog.csdn.net/20150706165207052" alt="这里写图片描述"> ). 因此我们用k-1个参数<img src="http://img.blog.csdn.net/20150706165446547" alt="这里写图片描述"> 对多项分布进行参数化，<img src="http://img.blog.csdn.net/20150706170009460" alt="这里写图片描述"> . </p>
+<p>定义<img src="http://img.blog.csdn.net/20150706170122808" alt="这里写图片描述"> ，如下，<br><img src="http://img.blog.csdn.net/20150706170157510" alt="这里写图片描述"> </p>
+<p>介绍一个很有用的记号，<img src="http://img.blog.csdn.net/20150706170454371" alt="这里写图片描述"> ，例如1{2=3}=0,1{3=5-2}=1. </p>
+<p>因此T(y)和y的关系为<img src="http://img.blog.csdn.net/20150706170650806" alt="这里写图片描述"> . </p>
+<p>并且有<img src="http://img.blog.csdn.net/20150706170739298" alt="这里写图片描述"> ，因此：<br><img src="http://img.blog.csdn.net/20150706170825859" alt="这里写图片描述"> </p>
+<p>链接函数为，<img src="http://img.blog.csdn.net/20150706171724655" alt="这里写图片描述"> ，为了方便，定义<img src="http://img.blog.csdn.net/20150706171759377" alt="这里写图片描述"> .</p>
+<p>可得：<br><img src="http://img.blog.csdn.net/20150706171921306" alt="这里写图片描述"> </p>
+<p>因此<img src="http://img.blog.csdn.net/20150706172034079" alt="这里写图片描述"> ，反代回去得到响应函数：<br><img src="http://img.blog.csdn.net/20150706172133807" alt="这里写图片描述"> </p>
+<p>从η到<img src="http://img.blog.csdn.net/20150706172447119" alt="这里写图片描述"> 的映射叫做<strong>softmax函数</strong>.</p>
+<p>根据假设3，<img src="http://img.blog.csdn.net/20150706172621524" alt="这里写图片描述"> 得到:<br><img src="http://img.blog.csdn.net/20150706172655176" alt="这里写图片描述"> </p>
+<p>这个应用于分类问题（当<img src="http://img.blog.csdn.net/20150706172823866" alt="这里写图片描述"> ），叫做<strong>softmax回归(softmax regression)</strong>.是logistic回归的推广.</p>
+<p><img src="http://img.blog.csdn.net/20150706173028013" alt="这里写图片描述"> </p>
+<p>与最小二乘法和logistic回归类似，<br><img src="http://img.blog.csdn.net/20150706173405511" alt="这里写图片描述"> </p>
+<p>再通过梯度上升或者牛顿方法求出θ.</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+      
+        <categories>
+            
+            <category> 机器学习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+            <tag> 优化算法 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[梯度下降（Gradient Descent）小结]]></title>
       <url>/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
@@ -60,7 +131,7 @@
 <p>　　4）更新$\theta$向量，其更新表达式如下。更新完毕后继续转入步骤1.<br>$$<br>\mathbf\theta= \mathbf\theta - \alpha\frac{\partial}{\partial\theta}J(\mathbf\theta)<br>$$<br>还是用线性回归的例子来描述具体的算法过程。</p>
 <p>损失函数对于θ\theta向量的偏导数计算如下：<br>$$<br>\frac{\partial}{\partial\mathbf\theta}J(\mathbf\theta) = \mathbf{X}^T(\mathbf{X\theta} - \mathbf{Y})<br>$$<br>步骤4中$\theta$向量的更新表达式如下：<br>$$<br>\mathbf\theta= \mathbf\theta - \alpha\mathbf{X}^T(\mathbf{X\theta} - \mathbf{Y})<br>$$<br>对于3.3.1的代数法，可以看到矩阵法要简洁很多。这里面用到了矩阵求导链式法则，和两个矩阵求导的公式。</p>
 <p>　　公式1：$\frac{\partial}{\partial\mathbf{X}}(\mathbf{XX^T}) =2\mathbf{X}$</p>
-<p>　　公式2：$$\frac{\partial}{\partial\mathbf\theta}(\mathbf{X\theta}) =\mathbf{X^T}$$</p>
+<p>　　公式2：$\frac{\partial}{\partial\mathbf\theta}(\mathbf{X\theta}) =\mathbf{X^T}$</p>
 <p>如果需要熟悉矩阵求导建议参考张贤达的《矩阵分析与应用》一书。</p>
 <h4 id="3-4-梯度下降的算法调优"><a href="#3-4-梯度下降的算法调优" class="headerlink" title="3.4 梯度下降的算法调优"></a>3.4 梯度下降的算法调优</h4><p>在使用梯度下降时，需要进行调优。哪些地方需要调优呢？</p>
 <ol>
@@ -978,9 +1049,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -1325,9 +1396,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -1583,9 +1654,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -2864,9 +2935,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3166,9 +3237,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3480,9 +3551,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> react </tag>
             
@@ -3869,9 +3940,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -9273,9 +9344,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端框架 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 前端框架 </tag>
             
         </tags>
         
@@ -10200,9 +10271,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -11193,9 +11264,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12167,9 +12238,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -12416,9 +12487,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
