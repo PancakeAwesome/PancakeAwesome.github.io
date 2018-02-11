@@ -62,8 +62,8 @@
 <p><strong>3）a*g(x) = 0;</strong></p>
 <p>　　求取这些等式之后就能得到候选最优值。其中第三个式子非常有趣，因为g(x)&lt;=0，如果要满足这个等式，必须a=0或者g(x)=0. 这是SVM的很多重要性质的来源，如支持向量的概念。</p>
 <p>　　接下来主要介绍KKT条件，推导及应用。详细推导过程如下：</p>
-<p><img src="https://images2015.cnblogs.com/blog/520787/201509/520787-20150901140514200-1606864139.jpg" alt=""> </p>
-<p><img src="https://images2015.cnblogs.com/blog/520787/201509/520787-20150901140604513-1723209246.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1focuapmvucj30pu0g20t4.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1focub1hacmj30pp0bgwev.jpg" alt=""></p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>参考：</p>
 <p>　　【1】<a href="http://blog.csdn.net/acdreamers/article/details/41413445" target="_blank" rel="noopener">拉格朗日乘数法</a></p>
 <p>　　【2】<a href="http://blog.csdn.net/johnnyconstantine/article/details/46335763" target="_blank" rel="noopener">KKT条件介绍</a></p>
