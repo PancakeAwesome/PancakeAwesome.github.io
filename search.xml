@@ -183,7 +183,7 @@
 <p>下面来详细总结下梯度下降法。        </p>
 <h3 id="3-梯度下降法算法详解"><a href="#3-梯度下降法算法详解" class="headerlink" title="3. 梯度下降法算法详解"></a>3. 梯度下降法算法详解</h3><h4 id="3-1-梯度下降的直观解释"><a href="#3-1-梯度下降的直观解释" class="headerlink" title="3.1 梯度下降的直观解释"></a>3.1 梯度下降的直观解释</h4><p>首先来看看梯度下降的一个直观的解释。比如我们在一座大山上的某处位置，由于我们不知道怎么下山，于是决定走一步算一步，也就是在每走到一个位置的时候，求解当前位置的梯度，沿着梯度的负方向，也就是当前最陡峭的位置向下走一步，然后继续求解当前位置梯度，向这一步所在位置沿着最陡峭最易下山的位置走一步。这样一步步的走下去，一直走到觉得我们已经到了山脚。当然这样走下去，有可能我们不能走到山脚，而是到了某一个局部的山峰低处。</p>
 <p>从上面的解释可以看出，梯度下降不一定能够找到全局的最优解，有可能是一个局部最优解。当然，如果损失函数是凸函数，梯度下降法得到的解就一定是全局最优解。</p>
-<p><img src="https://images2015.cnblogs.com/blog/1042406/201610/1042406-20161017221342935-1872962415.png" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1focuincajcj30j209dwfe.jpg" alt=""></p>
 <h4 id="3-2-梯度下降的相关概念"><a href="#3-2-梯度下降的相关概念" class="headerlink" title="3.2 梯度下降的相关概念"></a>3.2 梯度下降的相关概念</h4><p>在详细了解梯度下降的算法之前，我们先看看相关的一些概念。</p>
 <ol>
 <li><p>步长（Learning rate）：步长决定了在梯度下降迭代的过程中，每一步沿梯度负方向前进的长度。用上面下山的例子，步长就是在当前这一步所在位置沿着最陡峭最易下山的位置走的那一步的长度。</p>
@@ -1494,9 +1494,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -1752,9 +1752,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3033,9 +3033,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3335,9 +3335,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -10369,9 +10369,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -11362,9 +11362,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12336,9 +12336,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -12585,9 +12585,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
