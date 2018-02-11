@@ -5,7 +5,12 @@
     <entry>
       <title><![CDATA[牛顿法小结]]></title>
       <url>/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="本讲大纲：-本讲大纲"><a href="#本讲大纲：-本讲大纲" class="headerlink" title="本讲大纲： ## (#本讲大纲)"></a>本讲大纲： ## (#本讲大纲)</h2><p>1.牛顿方法(Newton’s method) </p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–最小二乘法</a></li>
+<li><a href="http://pancakeawesome.ink/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a></li>
+<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–牛顿法</a></li>
+</ul>
+<h2 id="本讲大纲："><a href="#本讲大纲：" class="headerlink" title="本讲大纲："></a>本讲大纲：</h2><p>1.牛顿方法(Newton’s method) </p>
 <p>2.指数族(Exponential family) </p>
 <p>3.广义线性模型(Generalized linear models)</p>
 <h2 id="1-牛顿方法"><a href="#1-牛顿方法" class="headerlink" title="1.牛顿方法"></a>1.牛顿方法</h2><p>假设有函数：<img src="http://img.blog.csdn.net/20150706110633987" alt="这里写图片描述"> ，我们希望找到满足<img src="http://img.blog.csdn.net/20150706110724167" alt="这里写图片描述"> 的<img src="http://img.blog.csdn.net/20150706110745198" alt="这里写图片描述"> 值. 这里<img src="http://img.blog.csdn.net/20150706110801823" alt="这里写图片描述"> 是实数. </p>
@@ -78,7 +83,8 @@
       <url>/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
 <li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–最小二乘法</a></li>
-<li><a href="http://pancakeawesome.ink/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a><br>在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。这里就对梯度下降法做一个完整的总结。</li>
+<li><a href="http://pancakeawesome.ink/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a></li>
+<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–牛顿法</a><br>在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。这里就对梯度下降法做一个完整的总结。</li>
 </ul>
 <h2 id="梯度下降（Gradient-Descent）小结"><a href="#梯度下降（Gradient-Descent）小结" class="headerlink" title="梯度下降（Gradient Descent）小结"></a>梯度下降（Gradient Descent）小结</h2><h3 id="1-梯度"><a href="#1-梯度" class="headerlink" title="1. 梯度"></a>1. 梯度</h3><p>在微积分里面，对多元函数的参数求∂偏导数，把求得的各个参数的偏导数以向量的形式写出来，就是梯度。比如函数f(x,y), 分别对x,y求偏导数，求得的梯度向量就是$(∂_f/∂_x, ∂_f/∂_y)^T$,简称grad f(x,y)或者▽f(x,y)。对于在点$(x_0,y_0)$的具体梯度向量就是$(∂_f/∂_x, ∂_f/∂_y)^T$.或者$▽_f(x_0,y_0)$，如果是3个参数的向量梯度，就是$(∂_f/∂_x, ∂_f/∂_y,∂_f/∂_z)^T$,以此类推。</p>
 <p>那么这个梯度向量求出来有什么意义呢？他的意义从几何意义上讲，就是函数变化增加最快的地方。具体来说，对于函数f(x,y),在点(x0,y0)，沿着梯度向量的方向就是$(∂_f/∂_x, ∂_f/∂_y)^T$的方向是f(x,y)增加最快的地方。或者说，沿着梯度向量的方向，更加容易找到函数的最大值。反过来说，沿着梯度向量相反的方向，也就是 -$(∂_f/∂_x, ∂_f/∂_y)^T$的方向，梯度减少最快，也就是更加容易找到函数的最小值。</p>
@@ -239,6 +245,7 @@
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
 <li><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–最小二乘法</a></li>
 <li><a href="http://pancakeawesome.ink/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html">无约束优化算法–梯度下降法</a></li>
+<li><a href="http://pancakeawesome.ink/%E7%89%9B%E9%A1%BF%E6%B3%95%E5%B0%8F%E7%BB%93.html">无约束优化算法–牛顿法</a></li>
 </ul>
 <p>最小二乘法是用来做函数拟合或者求函数极值的方法。在机器学习，尤其是回归模型中，经常可以看到最小二乘法的身影，这里就对我对最小二乘法的认知做一个小结。</p>
 <h2 id="最小二乘法小结"><a href="#最小二乘法小结" class="headerlink" title="最小二乘法小结"></a>最小二乘法小结</h2><h3 id="1-最小二乘法的原理与要解决的问题"><a href="#1-最小二乘法的原理与要解决的问题" class="headerlink" title="1.最小二乘法的原理与要解决的问题　"></a>1.最小二乘法的原理与要解决的问题　</h3><p>最小二乘法是由勒让德在19世纪发现的，原理的一般形式很简单，当然发现的过程是非常艰难的。形式如下式：</p>
@@ -1396,9 +1403,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -1654,9 +1661,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -2935,9 +2942,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3237,9 +3244,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -10271,9 +10278,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -11264,9 +11271,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12238,9 +12245,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -12487,9 +12494,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
