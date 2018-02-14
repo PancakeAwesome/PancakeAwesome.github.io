@@ -3,9 +3,70 @@
   
     
     <entry>
+      <title><![CDATA[逻辑回归原理小结]]></title>
+      <url>/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%8E%9F%E7%90%86%E5%B0%8F%E7%BB%93.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>线性回归原理<a href="">小结</a>。</p>
+<p>逻辑回归是一个分类算法，它可以处理二元分类以及多元分类。虽然它名字里面有“回归”两个字，却不是一个回归算法。那为什么有“回归”这个误导性的词呢？后面我们会说道逻辑回归的假设函数是sigmoid函数，逻辑回归又被称为sigmoid回归，本文对逻辑回归原理做一个总结。</p>
+<h2 id="逻辑回归原理小结"><a href="#逻辑回归原理小结" class="headerlink" title="逻辑回归原理小结"></a>逻辑回归原理小结</h2><h3 id="1-从线性回归到逻辑回归"><a href="#1-从线性回归到逻辑回归" class="headerlink" title="1. 从线性回归到逻辑回归"></a>1. 从线性回归到逻辑回归</h3><p>我们知道，线性回归的模型是求出输出特征向量Y和输入样本矩阵X之间的线性关系系数$\theta$，满足$\mathbf{Y = X\theta}$。此时我们的Y是连续的，所以是回归模型。如果我们想要Y是离散的话，怎么办呢？一个可以想到的办法是，我们对于这个Y再做一次函数转换，变为$g(Y)$。如果我们令$g(Y)$的值在某个实数区间的时候是类别A，在另一个实数区间的时候是类别B，以此类推，就得到了一个分类模型。如果结果的类别只有两种，那么就是一个二元分类模型了。逻辑回归的出发点就是从这来的。下面我们开始引入二元逻辑回归。</p>
+<h3 id="2-二元逻辑回归的模型"><a href="#2-二元逻辑回归的模型" class="headerlink" title="2. 二元逻辑回归的模型"></a>2. 二元逻辑回归的模型</h3><p>上一节我们提到对线性回归的结果做一个在函数g上的转换，可以变化为逻辑回归。这个函数g在逻辑回归中我们一般取为sigmoid函数，形式如下：<br>$$<br>\frac{1}{1+e^{-z}}<br>$$<br>它有一个非常好的性质，即当z趋于正无穷时，$g(z)$趋于1，而当z趋于负无穷时，$g(z)$趋于0，这非常适合于我们的分类概率模型。另外，它还有一个很好的导数性质：<br>$$<br>g^{‘}(z) = g(z)(1-g(z))<br>$$<br>这个通过函数对$g(z)$求导很容易得到，后面我们会用到这个式子。</p>
+<p>如果我们令$g(z)$中的z为：${z = x\theta}$，这样就得到了二元逻辑回归模型的一般形式：<br>$$<br>h_{\theta}(x) = \frac{1}{1+e^{-x\theta}}<br>$$<br>其中x为样本输入，$h_{\theta}(x)$为模型输出，可以理解为某一分类的概率大小。而$\theta$为分类模型的要求出的模型参数。对于模型输出$h_{\theta}(x)$，我们让它和我们的二元样本输出y（假设为0和1）有这样的对应关系，如果$h_{\theta}(x) &gt;0.5 $，即$\theta &gt; 0$, 则y为1。如果$h_{\theta}(x) &lt; 0.5$，即$\theta &lt; 0$, 则y为0。y=0.5是临界情况，此时$\theta = 0$为， 从逻辑回归模型本身无法确定分类。</p>
+<p>$h_{\theta}(x)$的值越小，而分类为0的的概率越高，反之，值越大的话分类为1的的概率越高。如果靠近临界点，则分类准确率会下降。</p>
+<p>此处我们也可以将模型写成矩阵模式：<br>$$<br>h_{\theta}(X) = \frac{1}{1+e^{-X\theta}}<br>$$<br>其中$h_{\theta}(X)$为模型输出，为 mx1的维度。X为样本特征矩阵，为mxn的维度。$\theta$为分类的模型系数，为nx1的向量。</p>
+<p>理解了二元分类回归的模型，接着我们就要看模型的损失函数了，我们的目标是极小化损失函数来得到对应的模型系数$\theta$。</p>
+<h3 id="3-二元逻辑回归的损失函数"><a href="#3-二元逻辑回归的损失函数" class="headerlink" title="3. 二元逻辑回归的损失函数"></a>3. 二元逻辑回归的损失函数</h3><p>回顾下线性回归的损失函数，由于线性回归是连续的，所以可以使用模型误差的的平方和来定义损失函数。但是逻辑回归不是连续的，自然线性回归损失函数定义的经验就用不上了，而且平方差的损失函数对应逻辑回归并不是凸函数，我们不能进行凸优化，找到全局最优值。不过我们可以使用最大似然法，通过训练集来拟合参数，来推导出我们的损失函数。</p>
+<p>我们可以找到这种损失函数的定义，<br>$$<br>cost(h_{\theta}(x), y) = -log(P(y=1|x;\theta)),<br>$$</p>
+<p>$$<br>cost(h_{\theta}(x), y) = -log(1-P(y=0|x;\theta))<br>$$</p>
+<p>其中cost函数是损失函数。<br>我们观察到，这个cost函数很符合分类的要求。<br>我们知道，按照第二节二元逻辑回归的定义，假设我们的样本输出是0或者1两类。那么我们有：<br>$$<br>P(y=1|x,\theta ) = h_{\theta}(x)<br>$$</p>
+<p>$$<br>P(y=0|x,\theta ) = 1- h_{\theta}(x)<br>$$<br> 把这两个式子写成一个式子，就是：<br>$$<br>P(y|x,\theta ) = h_{\theta}(x)^y(1-h_{\theta}(x))^{1-y}<br>$$<br>其中y的取值只能是0或者1。</p>
+<p>用矩阵法表示，即为：<br>$$<br>P(Y|X,\theta ) = h_{\theta}(X)^Y(1-h_{\theta}(X))^{1-Y}<br>$$</p>
+<p>得到了y的概率分布函数表达式，我们就可以用似然函数最大化来求解我们需要的模型系数$\theta$。</p>
+<p>为了方便求解，这里我们用对数似然函数最大化，对数似然函数取反即为我们的损失函数$J(\theta)$。其中：</p>
+<p>似然函数的代数表达式为：<br>$$<br>L(\theta) = P(Y|X;\theta)=\prod\limits_{i=1}^{m}P(y^{(i)}|x^{(i)};\theta)=\prod\limits_{i=1}^{m}(h_{\theta}(x^{(i)}))^{y^{(i)}}(1-h_{\theta}(x^{(i)}))^{1-y^{(i)}}<br>$$<br>其中m为样本的个数。</p>
+<p>根据上面我们对cost函数的推导，对似然函数对数化取反的表达式，即损失函数表达式为：<br>$$<br>J(\theta) = -lnL(\theta) = -\sum\limits_{i=1}^{m}(y^{(i)}log(h_{\theta}(x^{(i)}))+ (1-y^{(i)})log(1-h_{\theta}(x^{(i)})))<br>$$<br> 损失函数用矩阵法表达更加简洁：<br>$$<br>J(\theta) = -Y\bullet logh_{\theta}(X) - (1-Y)\bullet log(1-h_{\theta}(X))<br>$$<br>其中$\bullet$为阿达姆乘积，在octave和matlab中用<code>.*</code>表示，代表矩阵中每个元素相乘。</p>
+<h3 id="4-二元逻辑回归的损失函数的优化方法"><a href="#4-二元逻辑回归的损失函数的优化方法" class="headerlink" title="4. 二元逻辑回归的损失函数的优化方法"></a>4. 二元逻辑回归的损失函数的优化方法</h3><p>对于二元逻辑回归的损失函数极小化，有比较多的方法，最常见的有梯度下降法，坐标轴下降法，等牛顿法等。这里推导出梯度下降法中$\theta$每次迭代的公式。由于代数法推导比较的繁琐，我习惯于用矩阵法来做损失函数的优化过程，这里给出矩阵法推导二元逻辑回归梯度的过程。</p>
+<p>对于$J(\theta) = -Y\bullet logh_{\theta}(X) - (1-Y)\bullet log(1-h_{\theta}(X))$，我们用$J(\theta)$对$\theta$向量求导可得：<br>$$<br>\frac{\partial}{\partial\theta}J(\theta) = -Y \bullet X^T\frac{1}{h_{\theta}(X)}h_{\theta}(X)(1-h_{\theta}(X)) + (E-Y)\bullet X^T\frac{1}{1-h_{\theta}(X)}h_{\theta}(X)(1-h_{\theta}(X))<br>$$<br>这一步我们用到了矩阵求导的链式法则，和下面三个矩阵求导公式：<br>$$<br>\frac{\partial}{\partial X}logX = 1/X<br>$$<br>$g(z)’=g(z)(1−g(z)) ,(g(z)$为sigmoid函数)。<br>$$<br>\frac{\partial}{\partial\theta}X\theta = X^T<br>$$<br>对于刚才的求导公式我们进行化简可得：<br>$$<br>\frac{\partial}{\partial\theta}J(\theta) = X^T(h_{\theta}(X) - Y )<br>$$<br>从而在梯度下降法中每一步向量$\theta$的迭代公式如下：<br>$$<br>\theta = \theta - \alpha X^T(h_{\theta}(X) - Y )<br>$$<br>其中，$\alpha$为梯度下降法的步长。</p>
+<p>实践中，我们一般不用操心优化方法，大部分机器学习库都内置了各种逻辑回归的优化方法，不过了解至少一种优化方法还是有必要的。</p>
+<h3 id="5-二元逻辑回归的正则化"><a href="#5-二元逻辑回归的正则化" class="headerlink" title="5. 二元逻辑回归的正则化"></a>5. 二元逻辑回归的正则化</h3><p>逻辑回归也会面临过拟合问题，所以我们也要考虑正则化。常见的有L1正则化和L2正则化。</p>
+<p>逻辑回归的L1正则化的损失函数表达式如下，相比普通的逻辑回归损失函数，增加了L1的范数做作为惩罚，超参数αα\alpha作为惩罚系数，调节惩罚项的大小。</p>
+<p>二元逻辑回归的L1正则化损失函数表达式如下：<br>$$<br>J(\theta) = -Y\bullet logh_{\theta}(X) - (1-Y)\bullet log(1-h_{\theta}(X)) + \alpha||\theta||_1<br>$$<br>其中$||\theta||_1$为$\theta$的L1范数。</p>
+<p>逻辑回归的L1正则化损失函数的优化方法常用的有坐标轴下降法和最小角回归法。</p>
+<p>二元逻辑回归的L2正则化损失函数表达式如下：<br>$$<br>J(\theta) = -Y\bullet logh_{\theta}(X) - (E-Y)\bullet log(1-h_{\theta}(X)) + \frac{1}{2}\alpha||\theta||_2^2<br>$$<br>其中$||\theta||_2$为$\theta$的L2范数。</p>
+<p>逻辑回归的L2正则化损失函数的优化方法和普通的逻辑回归类似。</p>
+<h3 id="6-二元逻辑回归的推广：多元逻辑回归"><a href="#6-二元逻辑回归的推广：多元逻辑回归" class="headerlink" title="6. 二元逻辑回归的推广：多元逻辑回归"></a>6. 二元逻辑回归的推广：多元逻辑回归</h3><p>前面几节我们的逻辑回归的模型和损失函数都局限于二元逻辑回归，实际上二元逻辑回归的模型和损失函数很容易推广到多元逻辑回归。比如总是认为某种类型为正值，其余为0值，这种方法为最常用的one-vs-reset，简称OvR.</p>
+<p>另一种多元逻辑回归的方法是Many-vs-Many(MvM)，它会选择一部分类别的样本和另一部分类别的样本来做逻辑回归二分类。最常用的是One-Vs-One（OvO）。OvO是MvM的特例。每次我们选择两类样本来做二元逻辑回归。</p>
+<p>这里只介绍多元逻辑回归的softmax回归的一种特例推导：</p>
+<p>首先回顾下二元逻辑回归。<br>$$<br>P(y=1|x,\theta ) = h_{\theta}(x) =  \frac{1}{1+e^{-x\theta}} = \frac{e^{x\theta}}{1+e^{x\theta}}<br>$$</p>
+<p>$$<br>P(y=0|x,\theta ) = 1- h_{\theta}(x) = \frac{1}{1+e^{x\theta}}<br>$$<br>其中y只能取到0和1。则有：<br>$$<br>ln\frac{P(y=1|x,\theta )}{P(y=0|x,\theta)} = x\theta<br>$$<br>如果我们要推广到多元逻辑回归，则模型要稍微做下扩展。</p>
+<p>我们假设是K元分类模型,即样本输出y的取值为1，2，。。。，K。</p>
+<p>根据二元逻辑回归的经验，我们有：<br>$$<br>\frac{P(y=1|x,\theta )}{P(y=K|x,\theta)} = x\theta_1<br>$$</p>
+<p>$$<br>\frac{P(y=2|x,\theta )}{P(y=K|x,\theta)} = x\theta_2<br>$$<br>…<br>$$<br>ln\frac{P(y=K-1|x,\theta )}{P(y=K|x,\theta)} = x\theta_{K-1}<br>$$<br>上面有K-1个方程。</p>
+<p>加上概率之和为1的方程如下：<br>$$<br>\sum\limits_{i=1}^{K}P(y=i|x,\theta ) = 1<br>$$<br>从而得到K个方程，里面有K个逻辑回归的概率分布。</p>
+<p>解出这个K元一次方程组，得到K元逻辑回归的概率分布如下：<br>$$<br>P(y=k|x,\theta ) =  e^{x\theta_k} \bigg/ 1+\sum\limits_{t=1}^{K-1}e^{x\theta_t}　 k = 1,2,…K-1<br>$$</p>
+<p>$$<br>P(y=K|x,\theta ) =  1 \bigg/ 1+\sum\limits_{t=1}^{K-1}e^{x\theta_t}<br>$$<br>多元逻辑回归的损失函数推导以及优化方法和二元逻辑回归类似，这里就不累述。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>线性回归原理<a href="">小结</a>。</p>
+<p>逻辑回归尤其是二元逻辑回归是非常常见的模型，训练速度很快，虽然使用起来没有支持向量机（SVM）那么占主流，但是解决普通的分类问题是足够了，训练速度也比起SVM要快不少。如果你要理解机器学习分类算法，那么第一个应该学习的分类算法个人觉得应该是逻辑回归。理解了逻辑回归，其他的分类算法再学习起来应该没有那么难了。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 逻辑回归 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[线性回归原理小结]]></title>
       <url>/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%8E%9F%E7%90%86%E5%B0%8F%E7%BB%93.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="线性回归原理小结"><a href="#线性回归原理小结" class="headerlink" title="线性回归原理小结"></a>线性回归原理小结</h2><p>线性回归可以说是机器学习中最基本的问题类型了，这里就对线性回归的原理和算法做一个小结。</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>逻辑回归原理<a href="">小结</a></p>
+<h2 id="线性回归原理小结"><a href="#线性回归原理小结" class="headerlink" title="线性回归原理小结"></a>线性回归原理小结</h2><p>线性回归可以说是机器学习中最基本的问题类型了，这里就对线性回归的原理和算法做一个小结。</p>
 <h3 id="1-线性回归的模型函数和损失函数"><a href="#1-线性回归的模型函数和损失函数" class="headerlink" title="1. 线性回归的模型函数和损失函数"></a>1. 线性回归的模型函数和损失函数</h3><p>线性回归遇到的问题一般是这样的。我们有m个样本，每个样本对应于n维特征和一个结果输出，如下：<br>$$<br>(x_1^{(0)}, x_2^{(0)}, …x_n^{(0)}, y_0), (x_1^{(1)}, x_2^{(1)}, …x_n^{(1)},y_1), … (x_1^{(m)}, x_2^{(m)}, …x_n^{(m)}, y_n)<br>$$<br>我们的问题是，对于一个新的$(x_1^{(x)}, x_2^{(x)}, …x_n^{(x)}$ , 他所对应的yxyxy_x是多少呢？ 如果这个问题里面的y是连续的，则是一个回归问题，否则是一个分类问题。</p>
 <p>对于n维特征的样本数据，如果我们决定使用线性回归，那么对应的模型是这样的：</p>
 <p>$h_\theta(x_1, x_2, …x_n) = \theta_0 + \theta_{1}x_1 + … + \theta_{n}x_{n}$, 其中$\theta_i $ (i = 0,1,2… n)为模型参数，$x_i  $(i = 0,1,2… n)为每个样本的n个特征值。这个表示可以简化，我们增加一个特征$x_0 = 1$  ，这样$h_\theta(x_0, x_1, …x_n) = \sum\limits_{i=0}^{n}\theta_{i}x_{i}$。</p>
@@ -27,7 +88,7 @@
 <p>Ridge回归的求解比较简单，一般用最小二乘法。这里给出用最小二乘法的矩阵推导形式，和普通线性回归类似。</p>
 <p>令$J(\mathbf\theta)$的导数为0，得到下式：<br>$$<br>\mathbf{X^T(X\theta - Y) + \alpha\theta} = 0<br>$$<br>整理即可得到最后的$\theta$的结果：<br>$$<br>\mathbf{\theta = (X^TX + \alpha E)^{-1}X^TY}<br>$$<br>其中E为单位矩阵。</p>
 <p>除了上面这两种常见的线性回归正则化，还有一些其他的线性回归正则化算法，区别主要就在于正则化项的不同，和损失函数的优化方式不同，这里就不累述了。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>逻辑回归原理<a href="">小结</a></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>逻辑回归原理<a href="">小结</a>。</p>
 ]]></content>
       
         <categories>
@@ -1567,9 +1628,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -1825,9 +1886,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3106,9 +3167,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3408,9 +3469,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -9515,9 +9576,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> 前端框架 </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -10442,9 +10503,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -11435,9 +11496,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12409,9 +12470,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -12658,9 +12719,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         

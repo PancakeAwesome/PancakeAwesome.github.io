@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/逻辑回归原理小结.html
 http://pancakeawesome.ink/线性回归原理小结.html
 http://pancakeawesome.ink/交叉验证-Cross-Validation-原理小结.html
 http://pancakeawesome.ink/拉格朗日乘子法（Lagrange-Multiplier-和KKT条件.html
