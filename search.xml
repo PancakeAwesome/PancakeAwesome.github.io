@@ -25,7 +25,7 @@
 <p>似然函数的代数表达式为：<br>$$<br>L(\theta) = P(Y|X;\theta)=\prod\limits_{i=1}^{m}P(y^{(i)}|x^{(i)};\theta)=\prod\limits_{i=1}^{m}(h_{\theta}(x^{(i)}))^{y^{(i)}}(1-h_{\theta}(x^{(i)}))^{1-y^{(i)}}<br>$$<br>其中m为样本的个数。</p>
 <p>根据上面我们对cost函数的推导，对似然函数对数化取反的表达式，即损失函数表达式为：<br>$$<br>J(\theta) = -lnL(\theta) = -\sum\limits_{i=1}^{m}(y^{(i)}log(h_{\theta}(x^{(i)}))+ (1-y^{(i)})log(1-h_{\theta}(x^{(i)})))<br>$$<br> 损失函数用矩阵法表达更加简洁：<br>$$<br>J(\theta) = -Y\bullet logh_{\theta}(X) - (1-Y)\bullet log(1-h_{\theta}(X))<br>$$<br>其中$\bullet$为阿达姆乘积，在octave和matlab中用<code>.*</code>表示，代表矩阵中每个元素相乘。</p>
 <h3 id="4-二元逻辑回归的损失函数的优化方法"><a href="#4-二元逻辑回归的损失函数的优化方法" class="headerlink" title="4. 二元逻辑回归的损失函数的优化方法"></a>4. 二元逻辑回归的损失函数的优化方法</h3><p>对于二元逻辑回归的损失函数极小化，有比较多的方法，最常见的有梯度下降法，坐标轴下降法，等牛顿法等。这里推导出梯度下降法中$\theta$每次迭代的公式。由于代数法推导比较的繁琐，我习惯于用矩阵法来做损失函数的优化过程，这里给出矩阵法推导二元逻辑回归梯度的过程。</p>
-<p>对于$J(\theta) = -Y\bullet logh_{\theta}(X) - (1-Y)\bullet log(1-h_{\theta}(X))$，我们用$J(\theta)$对$\theta$向量求导可得：<br>$$<br>\frac{\partial}{\partial\theta}J(\theta) = -Y \bullet X^T\frac{1}{h_{\theta}(X)}h_{\theta}(X)(1-h_{\theta}(X)) + (E-Y)\bullet X^T\frac{1}{1-h_{\theta}(X)}h_{\theta}(X)(1-h_{\theta}(X))<br>$$<br>这一步我们用到了矩阵求导的链式法则，和下面三个矩阵求导公式：<br>$$<br>\frac{\partial}{\partial X}logX = 1/X<br>$$<br>$g(z)’=g(z)(1−g(z)) ,(g(z)$为sigmoid函数)。<br>$$<br>\frac{\partial}{\partial\theta}X\theta = X^T<br>$$<br>对于刚才的求导公式我们进行化简可得：<br>$$<br>\frac{\partial}{\partial\theta}J(\theta) = X^T(h_{\theta}(X) - Y )<br>$$<br>从而在梯度下降法中每一步向量$\theta$的迭代公式如下：<br>$$<br>\theta = \theta - \alpha X^T(h_{\theta}(X) - Y )<br>$$<br>其中，$\alpha$为梯度下降法的步长。</p>
+<p>对于$J(\theta) = -Y\bullet logh_{\theta}(X) - (1-Y)\bullet log(1-h_{\theta}(X))$，我们用$J(\theta)$对$\theta$向量求导可得：<br>$$<br>\frac{\partial}{\partial\theta}J(\theta) = -Y \bullet X^T\frac{1}{h_{\theta}(X)}h_{\theta}(X)(1-h_{\theta}(X)) + (1-Y)\bullet X^T\frac{1}{1-h_{\theta}(X)}h_{\theta}(X)(1-h_{\theta}(X))<br>$$<br>这一步我们用到了矩阵求导的链式法则，和下面三个矩阵求导公式：<br>$$<br>\frac{\partial}{\partial X}logX = 1/X<br>$$<br>$g(z)’=g(z)(1−g(z)) ,(g(z)$为sigmoid函数)。<br>$$<br>\frac{\partial}{\partial\theta}X\theta = X^T<br>$$<br>对于刚才的求导公式我们进行化简可得：<br>$$<br>\frac{\partial}{\partial\theta}J(\theta) = X^T(h_{\theta}(X) - Y )<br>$$<br>从而在梯度下降法中每一步向量$\theta$的迭代公式如下：<br>$$<br>\theta = \theta - \alpha X^T(h_{\theta}(X) - Y )<br>$$<br>其中，$\alpha$为梯度下降法的步长。</p>
 <p>实践中，我们一般不用操心优化方法，大部分机器学习库都内置了各种逻辑回归的优化方法，不过了解至少一种优化方法还是有必要的。</p>
 <h3 id="5-二元逻辑回归的正则化"><a href="#5-二元逻辑回归的正则化" class="headerlink" title="5. 二元逻辑回归的正则化"></a>5. 二元逻辑回归的正则化</h3><p>逻辑回归也会面临过拟合问题，所以我们也要考虑正则化。常见的有L1正则化和L2正则化。</p>
 <p>逻辑回归的L1正则化的损失函数表达式如下，相比普通的逻辑回归损失函数，增加了L1的范数做作为惩罚，超参数αα\alpha作为惩罚系数，调节惩罚项的大小。</p>
@@ -1283,9 +1283,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -1630,9 +1630,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -1888,9 +1888,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3169,9 +3169,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3471,9 +3471,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3785,9 +3785,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> react </tag>
             
@@ -4174,9 +4174,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -10505,9 +10505,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -11498,9 +11498,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12472,9 +12472,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -12721,9 +12721,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
