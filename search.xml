@@ -3,6 +3,79 @@
   
     
     <entry>
+      <title><![CDATA[线性回归原理小结]]></title>
+      <url>/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%8E%9F%E7%90%86%E5%B0%8F%E7%BB%93.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="线性回归原理小结"><a href="#线性回归原理小结" class="headerlink" title="线性回归原理小结"></a>线性回归原理小结</h2><p>线性回归可以说是机器学习中最基本的问题类型了，这里就对线性回归的原理和算法做一个小结。</p>
+<h3 id="1-线性回归的模型函数和损失函数"><a href="#1-线性回归的模型函数和损失函数" class="headerlink" title="1. 线性回归的模型函数和损失函数"></a>1. 线性回归的模型函数和损失函数</h3><p>线性回归遇到的问题一般是这样的。我们有m个样本，每个样本对应于n维特征和一个结果输出，如下：<br>$$<br>(x_1^{(0)}, x_2^{(0)}, …x_n^{(0)}, y_0), (x_1^{(1)}, x_2^{(1)}, …x_n^{(1)},y_1), … (x_1^{(m)}, x_2^{(m)}, …x_n^{(m)}, y_n)<br>$$<br>我们的问题是，对于一个新的$(x_1^{(x)}, x_2^{(x)}, …x_n^{(x)}$ , 他所对应的yxyxy_x是多少呢？ 如果这个问题里面的y是连续的，则是一个回归问题，否则是一个分类问题。</p>
+<p>对于n维特征的样本数据，如果我们决定使用线性回归，那么对应的模型是这样的：</p>
+<p>$h_\theta(x_1, x_2, …x_n) = \theta_0 + \theta_{1}x_1 + … + \theta_{n}x_{n}$, 其中$\theta_i $ (i = 0,1,2… n)为模型参数，$x_i  $(i = 0,1,2… n)为每个样本的n个特征值。这个表示可以简化，我们增加一个特征$x_0 = 1$  ，这样$h_\theta(x_0, x_1, …x_n) = \sum\limits_{i=0}^{n}\theta_{i}x_{i}$。</p>
+<p>进一步用矩阵形式表达更加简洁如下：<br>$$<br>h_\mathbf{\theta}(\mathbf{X}) = \mathbf{X\theta}<br>$$<br>其中， 假设函数$h_\mathbf{\theta}(\mathbf{X})$为mx1的向量,$\mathbf{\theta}$为nx1的向量，里面有n个代数法的模型参数。$\mathbf{X}$为mxn维的矩阵。m代表样本的个数，n代表样本的特征数。</p>
+<p>得到了模型，我们需要求出需要的损失函数，一般线性回归我们用均方误差作为损失函数。损失函数的代数法表示如下：<br>$$<br>J(\theta_0, \theta_1…, \theta_n) = \frac{1}{2m}\sum\limits_{i=0}^{m}(h_\theta(x_0, x_1, …x_n) - y_i)^2<br>$$<br><em>ps:1/m系数是为了平均损失函数，1/2是为了方便求导损失函数的计算。</em><br>进一步用矩阵形式表达损失函数：<br>$$<br>J(\mathbf\theta) = \frac{1}{m}(\mathbf{X\theta} - \mathbf{Y})^T(\mathbf{X\theta} - \mathbf{Y})<br>$$<br><em>ps:矩阵表达没有1/2是矩阵求导不需要方便乘上1/2计算。</em><br>由于矩阵法表达比较的简洁，后面我们将统一采用矩阵方式表达模型函数和损失函数。</p>
+<h3 id="2-线性回归的算法"><a href="#2-线性回归的算法" class="headerlink" title="2. 线性回归的算法"></a>2. 线性回归的算法</h3><p>对于线性回归的损失函数$J(\mathbf\theta) = \frac{1}{2}(\mathbf{X\theta} - \mathbf{Y})^T(\mathbf{X\theta} - \mathbf{Y})$，我们常用的有两种方法来求损失函数最小化时候的$\mathbf{\theta}$参数：一种是<strong><a href="http://pancakeawesome.ink/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%EF%BC%88Gradient-Descent%EF%BC%89%E5%B0%8F%E7%BB%93.html">梯度下降法</a> </strong>，一种是<strong><a href="http://pancakeawesome.ink/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E5%B0%8F%E7%BB%93.html">最小二乘法</a> </strong>。由于已经在其它篇中单独介绍了梯度下降法和最小二乘法，可以点链接到对应的文章链接去阅读。</p>
+<p>如果采用梯度下降法，则$\mathbf{\theta}$的迭代公式是这样的：<br>$$<br>\mathbf\theta= \mathbf\theta - \alpha\frac{1}{m}\mathbf{X}^T(\mathbf{X\theta} - \mathbf{Y})<br>$$<br>通过若干次迭代后，我们可以得到最终的$\mathbf{\theta}$的结果</p>
+<p>如果采用最小二乘法，则$\mathbf{\theta}$的结果公式如下：<br>$$<br>\mathbf{\theta} = \frac{1}{m}(\mathbf{X^{T}X})^{-1}\mathbf{X^{T}Y}<br>$$</p>
+<p>当然线性回归，还有其他的常用算法，比如牛顿法和拟牛顿法，这里不详细描述。</p>
+<h3 id="3-线性回归的推广：多项式回归"><a href="#3-线性回归的推广：多项式回归" class="headerlink" title="3. 线性回归的推广：多项式回归"></a>3. 线性回归的推广：多项式回归</h3><p>回到我们开始的线性模型，$h_\theta(x_1, x_2, …x_n) = \theta_0 + \theta_{1}x_1 + … + \theta_{n}x_{n}$, 如果这里不仅仅是x的一次方，比如增加二次方，那么模型就变成了多项式回归。这里写一个只有两个特征的p次方多项式回归的模型：<br>$$<br>h_\theta(x_1, x_2) = \theta_0 + \theta_{1}x_1 + \theta_{2}x_{2} + \theta_{3}x_1^{2} + \theta_{4}x_2^{2} + \theta_{5}x_{1}x_2<br>$$<br>我们令$x_0 = 1, x_1 = x_1, x_2 = x_2, x_3 =x_1^{2}, x_4 = x_2^{2}, x_5 =  x_{1}x_2$ ,这样我们就得到了下式：<br>$$<br>h_\theta(x_1, x_2) = \theta_0 + \theta_{1}x_1 + \theta_{2}x_{2} + \theta_{3}x_3 + \theta_{4}x_4 + \theta_{5}x_5<br>$$<br>可以发现，我们又重新回到了线性回归，这是一个五元线性回归，可以用线性回归的方法来完成算法。对于每个二元样本特征$(x_1,x_2)$,我们得到一个五元样本特征$(1, x_1, x_2, x_{1}^2, x_{2}^2, x_{1}x_2)$，通过这个改进的五元样本特征，我们重新把不是线性回归的函数变回线性回归。</p>
+<p>多项式回归常常用来拟合训练集数据，从而减少训练数据的损失。但是过多的特征有可能会导致假设函数过拟合。</p>
+<h3 id="4-线性回归的推广：广义线性回归"><a href="#4-线性回归的推广：广义线性回归" class="headerlink" title="4. 线性回归的推广：广义线性回归"></a>4. 线性回归的推广：广义线性回归</h3><p>在上一节的线性回归的推广中，我们对样本特征端做了推广，这里我们对于特征y做推广。比如我们的输出$\mathbf{Y}$不满足和$\mathbf{X}$的线性关系，但是$\mathbf{Y}$ 和XX\mathbf{X}满足线性关系，模型函数如下：<br>$$<br>\mathbf{Y} = \mathbf{X\theta}<br>$$<br>这样对与每个样本的输入y，我们用 lny去对应， 从而仍然可以用线性回归的算法去处理这个问题。我们把 Iny一般化，假设这个函数是单调可微函数g(.)g(.)\mathbf{g}(.),则一般化的广义线性回归形式是：<br>$$<br>\mathbf{g}(\mathbf{Y}) = \mathbf{X\theta} 或者 \mathbf{Y} = \mathbf{g^{-1}}(\mathbf{X\theta})<br>$$<br>这个函数$\mathbf{g}(.)$我们通常称为联系函数。</p>
+<h3 id="5-线性回归的正则化"><a href="#5-线性回归的正则化" class="headerlink" title="5. 线性回归的正则化"></a>5. 线性回归的正则化</h3><p>为了防止模型的过拟合，我们在建立线性模型的时候经常需要加入正则化项。一般有L1正则化和L2正则化。</p>
+<p>线性回归的L1正则化通常称为Lasso回归，它和一般线性回归的区别是在损失函数上增加了一个L1正则化的项，L1正则化的项有一个常数系数$alpha$来调节损失函数的均方差项和正则化项的权重，具体Lasso回归的损失函数表达式如下：　　<br>$$<br>J(\mathbf\theta) = \frac{1}{2n}(\mathbf{X\theta} - \mathbf{Y})^T(\mathbf{X\theta} - \mathbf{Y}) + \alpha\frac{1}{m}||\theta||_1<br>$$<br>其中n为样本个数，$\alpha$为常数系数，需要进行调优。$||\theta||_1$为L1范数。</p>
+<p> Lasso回归可以使得一些特征的系数变小，甚至还是一些绝对值较小的系数直接变为0。增强模型的泛化能力。</p>
+<p> Lasso回归的求解办法一般有坐标轴下降法（coordinate descent）和最小角回归法（ Least Angle Regression），由于它们比较复杂，在我的这篇文章单独讲述： <a href="">线程回归的正则化-Lasso回归小结</a> </p>
+<p>线性回归的L2正则化通常称为Ridge回归，它和一般线性回归的区别是在损失函数上增加了一个L2正则化的项，和Lasso回归的区别是Ridge回归的正则化项是L2范数，而Lasso回归的正则化项是L1范数。具体Ridge回归的损失函数表达式如下：<br>$$<br>J(\mathbf\theta) = \frac{1}{2}(\mathbf{X\theta} - \mathbf{Y})^T(\mathbf{X\theta} - \mathbf{Y}) + \frac{1}{2m}\alpha||\theta||_2^2<br>$$<br>其中$\alpha$为常数系数，需要进行调优。$||\theta||_2$为L2范数。</p>
+<p>Ridge回归在不抛弃任何一个特征的情况下，缩小了回归系数，使得模型相对而言比较的稳定，但和Lasso回归比，这会使得模型的特征留的特别多，模型解释性差。</p>
+<p>Ridge回归的求解比较简单，一般用最小二乘法。这里给出用最小二乘法的矩阵推导形式，和普通线性回归类似。</p>
+<p>令$J(\mathbf\theta)$的导数为0，得到下式：<br>$$<br>\mathbf{X^T(X\theta - Y) + \alpha\theta} = 0<br>$$<br>整理即可得到最后的$\theta$的结果：<br>$$<br>\mathbf{\theta = (X^TX + \alpha E)^{-1}X^TY}<br>$$<br>其中E为单位矩阵。</p>
+<p>除了上面这两种常见的线性回归正则化，还有一些其他的线性回归正则化算法，区别主要就在于正则化项的不同，和损失函数的优化方式不同，这里就不累述了。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>逻辑回归原理<a href="">小结</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 机器学习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[交叉验证(Cross Validation)原理小结]]></title>
+      <url>/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81-Cross-Validation-%E5%8E%9F%E7%90%86%E5%B0%8F%E7%BB%93.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="交叉验证-Cross-Validation-原理小结"><a href="#交叉验证-Cross-Validation-原理小结" class="headerlink" title="交叉验证(Cross Validation)原理小结"></a>交叉验证(Cross Validation)原理小结</h2><p>交叉验证是在机器学习建立模型和验证模型参数时常用的办法。交叉验证，顾名思义，就是重复的使用数据，把得到的样本数据进行切分，组合为不同的训练集和测试集，用训练集来训练模型，用测试集来评估模型预测的好坏。在此基础上可以得到多组不同的训练集和测试集，某次训练集中的某样本在下次可能成为测试集中的样本，即所谓“交叉”。　</p>
+<p>那么什么时候才需要交叉验证呢？交叉验证用在数据不是很充足的时候。比如在我日常项目里面，对于普通适中问题，如果数据样本量小于一万条，我们就会采用交叉验证来训练优化选择模型。如果样本大于一万条的话，我们一般随机的把数据分成三份，一份为训练集（Training Set），一份为验证集（Validation Set），最后一份为测试集（Test Set）。用训练集来训练模型，用验证集来评估模型预测的好坏和选择模型及其对应的参数。把最终得到的模型再用于测试集，最终决定使用哪个模型以及对应参数。</p>
+<p>回到交叉验证，根据切分的方法不同，交叉验证分为下面三种：
+　　　</p>
+<h3 id="简单交叉验证"><a href="#简单交叉验证" class="headerlink" title="简单交叉验证"></a>简单交叉验证</h3><p>第一种是<strong>简单交叉验证</strong>，所谓的简单，是和其他交叉验证方法相对而言的。首先，我们随机的将样本数据分为两部分（比如： 70%的训练集，30%的测试集），然后用训练集来训练模型，在测试集上验证模型及参数。接着，我们再把样本打乱，重新选择训练集和测试集，继续训练数据和检验模型。最后我们选择损失函数评估最优的模型和参数。　</p>
+<h3 id="S折交叉验证"><a href="#S折交叉验证" class="headerlink" title="S折交叉验证"></a>S折交叉验证</h3><p> 第二种是<strong>S折交叉验证</strong>（S-Folder Cross Validation）。和第一种方法不同，S折交叉验证会把样本数据随机的分成S份，每次随机的选择S-1份作为训练集，剩下的1份做测试集。当这一轮完成后，重新随机选择S-1份来训练数据。若干轮（小于S）之后，选择损失函数评估最优的模型和参数。</p>
+<h3 id="留一交叉验证"><a href="#留一交叉验证" class="headerlink" title="留一交叉验证"></a>留一交叉验证</h3><p>第三种是<strong>留一交叉验证</strong>（Leave-one-out Cross Validation），它是第二种情况的特例，此时S等于样本数N，这样对于N个样本，每次选择N-1个样本来训练数据，留一个样本来验证模型预测的好坏。此方法主要用于样本量非常少的情况，比如对于普通适中问题，N小于50时，我一般采用留一交叉验证。</p>
+<p>通过反复的交叉验证，用损失函数来度量得到的模型的好坏，最终我们可以得到一个较好的模型。那这三种情况，到底我们应该选择哪一种方法呢？一句话总结，如果我们只是对数据做一个初步的模型建立，不是要做深入分析的话，简单交叉验证就可以了。否则就用S折交叉验证。在样本量少的时候，使用S折交叉验证的特例留一交叉验证。</p>
+<p>此外还有一种比较特殊的交叉验证方式，也是用于样本量少的时候。叫做<strong>自助法</strong>(bootstrapping)。比如我们有m个样本（m较小），每次在这m个样本中随机采集一个样本，放入训练集，采样完后把样本放回。这样重复采集m次，我们得到m个样本组成的训练集。当然，这m个样本中很有可能有重复的样本数据。同时，用原始的m个样本做测试集。这样接着进行交叉验证。由于我们的训练集有重复数据，这会改变数据的分布，因而训练结果会有估计偏差，因此，此种方法不是很常用，除非数据量真的很少，比如小于20个。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>如有不足，欢迎指出～</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 机器学习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[拉格朗日乘子法（Lagrange Multiplier) 和KKT条件]]></title>
       <url>/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E5%AD%90%E6%B3%95%EF%BC%88Lagrange-Multiplier-%E5%92%8CKKT%E6%9D%A1%E4%BB%B6.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
@@ -358,7 +431,7 @@
 <p>假设函数$h_\theta(x_1, x_2, …x_n) = \theta_0 + \theta_{1}x_1 + … + \theta_{n}x_{n}$的矩阵表达方式为：<br>$$<br>h_\mathbf{\theta}(\mathbf{x}) = \mathbf{X\theta}<br>$$<br>其中， 假设函数$h_\mathbf{\theta}(\mathbf{X})$为mx1的向量,$\mathbf{\theta}$为nx1的向量，里面有n个代数法的模型参数。$\mathbf{X}$为mxn维的矩阵。m代表样本的个数，n代表样本的特征数。</p>
 <p>损失函数定义为$J(\mathbf\theta) = \frac{1}{2}(\mathbf{X\theta} - \mathbf{Y})^T(\mathbf{X\theta} - \mathbf{Y})$</p>
 <p>其中$\mathbf{Y}$是样本的输出向量，维度为mx1. $\frac{1}{2}$在这主要是为了求导后系数为1，方便计算。</p>
-<p>根据最小二乘法的原理，我们要对这个损失函数对$\mathbf{\theta}$向量求导取0。结果如下式：<br>$$<br>\frac{\partial}{\partial\mathbf\theta}J(\mathbf\theta) = \mathbf{X}^T(\mathbf{X\theta} - \mathbf{Y}) = 0<br>$$<br>这里面用到了矩阵求导链式法则，和两个矩阵求导的公式。</p>
+<p>根据最小二乘法的原理，我们要对这个损失函数对$\mathbf{\theta}$向量求导取0。结果如下式：<br>$$<br>\frac{\partial}{\partial\mathbf\theta}J(\mathbf\theta) = \mathbf{X}^T(\mathbf{X\theta} - \mathbf{Y}) = 0<br>$$<br><em>ps：这个方程被称为正规方程，和最小二乘法等价，是一种优化算法。</em><br>这里面用到了矩阵求导链式法则，和两个矩阵求导的公式。</p>
 <p>　　公式1：$\frac{\partial}{\partial\mathbf{X}}(\mathbf{XX^T}) =2\mathbf{X}$</p>
 <p>　　公式2：$\frac{\partial}{\partial\mathbf\theta}(\mathbf{X\theta}) =\mathbf{X^T}$</p>
 <p>对上述求导等式整理后可得：<br>$$<br>\mathbf{X^{T}X\theta} = \mathbf{X^{T}Y}<br>$$<br>两边同时左乘$$(\mathbf{X^{T}X})^{-1}$$可得：<br>$$<br>\mathbf{\theta} = (\mathbf{X^{T}X})^{-1}\mathbf{X^{T}Y}<br>$$<br>这样我们就一下子求出了$\theta$向量表达式的公式，免去了代数法一个个去求导的麻烦。只要给了数据,我们就可以用$\mathbf{\theta} = (\mathbf{X^{T}X})^{-1}\mathbf{X^{T}Y}$算出$\theta$。</p>
@@ -1147,9 +1220,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -1494,9 +1567,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -1752,9 +1825,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3033,9 +3106,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3335,9 +3408,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3649,9 +3722,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> react </tag>
             
@@ -4038,9 +4111,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -6443,9 +6516,9 @@ fn();
         
         <tags>
             
-            <tag> http协议 </tag>
-            
             <tag> 网络 </tag>
+            
+            <tag> http协议 </tag>
             
         </tags>
         
@@ -9442,9 +9515,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端框架 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 前端框架 </tag>
             
         </tags>
         
@@ -10369,9 +10442,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -11362,9 +11435,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12336,9 +12409,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -12585,9 +12658,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
