@@ -9,7 +9,7 @@
 <h3 id="1-感知机模型"><a href="#1-感知机模型" class="headerlink" title="1. 感知机模型"></a>1. 感知机模型</h3><p>感知机的思想很简单，比如我们在一个平台上有很多的男孩女孩，感知机的模型就是尝试找到一条直线，能够把所有的男孩和女孩隔离开。放到三维空间或者更高维的空间，感知机的模型就是尝试找到一个超平面，能够把所有的二元类别隔离开。当然你会问，如果我们找不到这么一条直线的话怎么办？找不到的话那就意味着类别线性不可分，也就意味着感知机模型不适合你的数据的分类。使用感知机一个最大的前提，就是数据是线性可分的。这严重限制了感知机的使用场景。它的分类竞争对手在面对不可分的情况时，比如支持向量机可以通过核技巧来让数据在高维可分，神经网络可以通过激活函数和增加隐藏层来让数据可分。</p>
 <p>用数学的语言来说，如果我们有m个样本，每个样本对应于n维特征和一个二元类别输出，如下：<br>$$<br>(x_1^{(0)}, x_2^{(0)}, …x_n^{(0)}, y_0), (x_1^{(1)}, x_2^{(1)}, …x_n^{(1)},y_1), … (x_1^{(m)}, x_2^{(m)}, …x_n^{(m)}, y_m)<br>$$<br>我们的目标是找到这样一个超平面，即：<br>$$<br>\theta_0 + \theta_{1}x_1 + … + \theta_{n}x_{n} = 0<br>$$<br>让其中一种类别的样本都满足$\theta_0 + \theta_{1}x_1 + … + \theta_{n}x_{n} &gt; 0$ ，让另一种类别的样本都满足$\theta_0 + \theta_{1}x_1 + … + \theta_{n}x_{n} &lt; 0$ ，从而得到线性可分。如果数据线性可分，这样的超平面一般都不是唯一的，也就是说感知机模型可以有多个解。</p>
 <p>为了简化这个超平面的写法，我们增加一个特征$x_0 = 1$  ，这样超平面为$\sum\limits_{i=0}^{n}\theta_{i}x_{i} = 0$。进一步用向量来表示为： $\theta \bullet x = 0$,其中$\theta$ 为(n+1)x1的向量，x为(n+1)x1的向量, $\bullet$ 为内积，后面我们都用向量来表示超平面。</p>
-<p>   而感知机的模型可以定义为：$y = sign(\theta \bullet z)$ 其中：<br>$$<br>sign(z)= \begin{cases} -1&amp; {z&lt;0}\\ 1&amp; {z\geq 0} \end{cases}<br>$$<br>$z = \theta x$</p>
+<p>   而感知机的模型可以定义为：$y = sign(z)$ 其中：<br>$$<br>sign(z)= \begin{cases} -1&amp; {z&lt;0}\\ 1&amp; {z\geq 0} \end{cases}<br>$$<br>$z = \theta \bullet x$。</p>
 <h3 id="2-感知机模型损失函数"><a href="#2-感知机模型损失函数" class="headerlink" title="2. 感知机模型损失函数"></a>2. 感知机模型损失函数</h3><p>为了后面便于定义损失函数，我们将满足$\theta \bullet x &gt; 0$的样本类别输出值取为1，满足$\theta \bullet x &lt; 0$的样本类别输出值取为-1，  这样取y的值有一个好处，就是方便定义损失函数。因为正确分类的样本满足$y\theta \bullet x &gt; 0$，而错误分类的样本满足 $y\theta \bullet x &lt; 0$。我们损失函数的优化目标，就是期望使误分类的所有样本，到超平面的距离之和最小。</p>
 <p>由于$y\theta \bullet x &lt; 0$，所以对于每一个误分类的样本i  ，到超平面的距离是<br>$$<br>\theta \bullet x^{(i)}\big / ||\theta||_2,<br>$$<br>其中$||\theta||_2$为L2范数。</p>
 <p>我们假设所有误分类的点的集合为M，则所有误分类的样本到超平面的距离之和为：<br>$$<br>\sum\limits_{x_i \in M}y^{(i)}\theta \bullet x^{(i)}\big / ||\theta||_2,<br>$$<br>这样我们就得到了初步的感知机模型的损失函数。</p>
@@ -1368,9 +1368,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -1715,9 +1715,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -1973,9 +1973,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3254,9 +3254,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3556,9 +3556,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3870,9 +3870,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> react </tag>
             
@@ -4259,9 +4259,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -6664,9 +6664,9 @@ fn();
         
         <tags>
             
-            <tag> 网络 </tag>
-            
             <tag> http协议 </tag>
+            
+            <tag> 网络 </tag>
             
         </tags>
         
@@ -10590,9 +10590,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -11583,9 +11583,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12557,9 +12557,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -12806,9 +12806,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
