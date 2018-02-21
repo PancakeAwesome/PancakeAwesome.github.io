@@ -31,8 +31,14 @@
 <p>好了，既然我们已经求出$w和\alpha$的关系，就可以带入优化函数$L(w,b,\alpha)$消去$w$了。我们定义:<br>$$<br>\psi(\alpha) = \underbrace{min}_{w,b}\;  L(w,b,\alpha)<br>$$<br>现在我们来看将$w$替换为$\alpha$的表达式以后的优化函数$\psi(\alpha)$的表达式：</p>
 <p> $$<br> \begin{align} \psi(\alpha) &amp; =  \frac{1}{2}||w||_2^2 - \sum\limits_{i=1}^{m}\alpha_i[y_i(w^Tx_i + b) - 1] \\&amp; = \frac{1}{2}w^Tw-\sum\limits_{i=1}^{m}\alpha_iy_iw^Tx_i - \sum\limits_{i=1}^{m}\alpha_iy_ib + \sum\limits_{i=1}^{m}\alpha_i \\&amp; = \frac{1}{2}w^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i -\sum\limits_{i=1}^{m}\alpha_iy_iw^Tx_i - \sum\limits_{i=1}^{m}\alpha_iy_ib + \sum\limits_{i=1}^{m}\alpha_i \\&amp; = \frac{1}{2}w^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i - w^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i - \sum\limits_{i=1}^{m}\alpha_iy_ib + \sum\limits_{i=1}^{m}\alpha_i  \\&amp; = - \frac{1}{2}w^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i - \sum\limits_{i=1}^{m}\alpha_iy_ib + \sum\limits_{i=1}^{m}\alpha_i  \\&amp; = - \frac{1}{2}w^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i - b\sum\limits_{i=1}^{m}\alpha_iy_i + \sum\limits_{i=1}^{m}\alpha_i \\&amp; = -\frac{1}{2}(\sum\limits_{i=1}^{m}\alpha_iy_ix_i)^T(\sum\limits_{i=1}^{m}\alpha_iy_ix_i) - b\sum\limits_{i=1}^{m}\alpha_iy_i + \sum\limits_{i=1}^{m}\alpha_i  \\&amp; = -\frac{1}{2}\sum\limits_{i=1}^{m}\alpha_iy_ix_i^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i - b\sum\limits_{i=1}^{m}\alpha_iy_i + \sum\limits_{i=1}^{m}\alpha_i \\&amp; = -\frac{1}{2}\sum\limits_{i=1}^{m}\alpha_iy_ix_i^T\sum\limits_{i=1}^{m}\alpha_iy_ix_i + \sum\limits_{i=1}^{m}\alpha_i \\&amp; = -\frac{1}{2}\sum\limits_{i=1,j=1}^{m}\alpha_iy_ix_i^T\alpha_jy_jx_j + \sum\limits_{i=1}^{m}\alpha_i \\&amp; = \sum\limits_{i=1}^{m}\alpha_i  - \frac{1}{2}\sum\limits_{i=1,j=1}^{m}\alpha_i\alpha_jy_iy_jx_i^Tx_j  \end{align}<br>$$<br>其中，(1)式到(2)式用到了范数的定义$||w||_2^2 =w^Tw$, (2)式到(3)式用到了上面的$w = \sum\limits_{i=1}^{m}\alpha_iy_ix_i$， (3)式到(4)式把和样本无关的$w^T$提前，(4)式到(5)式合并了同类项，(5)式到(6)式把和样本无关的$b$提前，(6)式到(7)式继续用到$w = \sum\limits_{i=1}^{m}\alpha_iy_ix_i$，（7）式到(8)式用到了向量的转置。由于常量的转置是其本身，所有只有向量$x_i$被转置，（8）式到(9)式用到了上面的$\sum\limits_{i=1}^{m}\alpha_iy_i = 0$，（9）式到(10)式使用了$(a+b+c+…)(a+b+c+…)=aa+ab+ac+ba+bb+bc+…$的乘法运算法则，（10）式到(11)式仅仅是位置的调整。</p>
 <p>从上面可以看出，通过对$w,b$极小化以后，我们的优化函数$\psi(\alpha)$仅仅只有$\alpha$向量做参数。只要我们能够极大化$\psi(\alpha)$，就可以求出此时对应的$\alpha$，进而求出$w,b$.</p>
-<p>对$\psi(\alpha)$求极大化的数学表达式如下:<br>$$<br> \underbrace{max}_{\alpha} -\frac{1}{2}\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{m}$\alpha_i\alpha_jy_iy_j(x_i \bullet x_j) + \sum\limits_{i=1}^{m} \alpha_i<br>s.t. \; \sum\limits_{i=1}^{m}\alpha_iy_i = 0<br> \alpha_i \geq 0  \; i=1,2,…m<br>$$<br>可以去掉负号，即为等价的极小化问题如下：<br>$$<br>\underbrace{min}_{\alpha} \frac{1}{2}\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{m}\alpha_i\alpha_jy_iy_j(x_i \bullet x_j) -  \sum\limits_{i=1}^{m} \alpha_i<br>s.t. \; \sum\limits_{i=1}^{m}\alpha_iy_i = 0<br> \alpha_i \geq 0  \; i=1,2,…m<br>$$<br> 只要我们可以求出上式极小化时对应的$\alpha$向量就可以求出w和b了。具体怎么极小化上式得到对应的$\alpha$，一般需要用到SMO算法，这个算法比较复杂，我们后面会专门来讲。在这里，我们假设通过SMO算法，我们得到了对应的$\alpha$的值$\alpha^{*}$。</p>
-<p>那么我们根据$w = \sum\limits_{i=1}^{m}\alpha_iy_ix_i$，可以求出对应的$w$的值<br>$$<br>w^{<em>} = \sum\limits_{i=1}^{m}\alpha_i^{</em>}y_ix_i<br>$$<br>求b则稍微麻烦一点。注意到，对于任意支持向量$(x_x, y_s)$，都有<br>$$<br>y_s(w^Tx_s+b) = y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1<br>$$<br>假设我们有S个支持向量，则对应我们求出S个$b^{<em>}$,理论上这些$b^{</em>}$都可以作为最终的结果， 但是我们一般采用一种更健壮的办法，即求出所有支持向量所对应的$b_s^{*}$，然后将其平均值作为最后的结果。</p>
+<p>对$\psi(\alpha)$求极大化的数学表达式如下:<br>$$<br> \underbrace{max}_{\alpha} -\frac{1}{2}\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{m}$\alpha_i\alpha_jy_iy_j(x_i \bullet x_j) + \sum\limits_{i=1}^{m} \alpha_i<br> $$</p>
+<p>$$<br>s.t. \; \sum\limits_{i=1}^{m}\alpha_iy_i = 0<br>$$</p>
+<p>$$<br> \alpha_i \geq 0  \; i=1,2,…m<br>$$<br>可以去掉负号，即为等价的极小化问题如下：<br>$$<br>\underbrace{min}_{\alpha} \frac{1}{2}\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{m}\alpha_i\alpha_jy_iy_j(x_i \bullet x_j) -  \sum\limits_{i=1}^{m} \alpha_i<br>$$</p>
+<p>$$<br>s.t. \; \sum\limits_{i=1}^{m}\alpha_iy_i = 0<br>$$</p>
+<p>$$<br> \alpha_i \geq 0  \; i=1,2,…m<br>$$<br> 只要我们可以求出上式极小化时对应的$\alpha$向量就可以求出w和b了。具体怎么极小化上式得到对应的$\alpha$，一般需要用到SMO算法，这个算法比较复杂，我们后面会专门来讲。在这里，我们假设通过SMO算法，我们得到了对应的$\alpha$的值$\alpha^{*}$。</p>
+<p>那么我们根据$w = \sum\limits_{i=1}^{m}\alpha_iy_ix_i$，可以求出对应的$w$的值<br>$$<br>w^{<em>} = \sum\limits_{i=1}^{m}\alpha_i^{</em>}y_ix_i<br>$$</p>
+<p>求b则稍微麻烦一点。注意到，对于任意支持向量$(x_x, y_s)$，都有</p>
+<p>$$<br>y_s(w^Tx_s+b) = y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1<br>$$<br>假设我们有S个支持向量，则对应我们求出S个$b^{<em>}$,理论上这些$b^{</em>}$都可以作为最终的结果， 但是我们一般采用一种更健壮的办法，即求出所有支持向量所对应的$b_s^{*}$，然后将其平均值作为最后的结果。</p>
 <p>怎么得到支持向量呢？根据KKT条件中的对偶互补条件$\alpha_{i}^{*}(y_i(w^Tx_i + b) - 1) = 0$，如果$\alpha_i&gt;0$则有$y_i(w^Tx_i + b) =1$ 即点在支持向量上，否则如果$\alpha_i=0$则有$y_i(w^Tx_i + b) \geq 1$，即样本在支持向量上或者已经被正确分类。</p>
 <h3 id="5-线性可分SVM的算法过程"><a href="#5-线性可分SVM的算法过程" class="headerlink" title="5. 线性可分SVM的算法过程"></a>5. 线性可分SVM的算法过程</h3><p>这里我们对线性可分SVM的算法过程做一个总结。</p>
 <p>输入是线性可分的m个样本${(x_1,y_1), (x_2,y_2), …, (x_m,y_m),}$,其中x为n维特征向量。y为二元输出，值为1，或者-1.</p>
@@ -4715,9 +4721,9 @@ export default class Hello extends Component {
         
         <tags>
             
-            <tag> react </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
@@ -6389,9 +6395,9 @@ io.on(&#39;connection&#39;, function(socket) {
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> node.js </tag>
+            
+            <tag> javascript </tag>
             
         </tags>
         
@@ -9423,9 +9429,9 @@ npm run dist
             
             <tag> 前端技术 </tag>
             
-            <tag> react </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
@@ -9721,9 +9727,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端框架 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 前端框架 </tag>
             
         </tags>
         
@@ -10597,9 +10603,9 @@ class ImgFigure extends React.Component {
             
             <tag> 前端技术 </tag>
             
-            <tag> react </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
