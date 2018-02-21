@@ -36,7 +36,8 @@
 <p>$$<br> \alpha_i \geq 0  \; i=1,2,…m<br>$$<br>可以去掉负号，即为等价的极小化问题如下：<br>$$<br>\underbrace{min}_{\alpha} \frac{1}{2}\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{m}\alpha_i\alpha_jy_iy_j(x_i \bullet x_j) -  \sum\limits_{i=1}^{m} \alpha_i<br>$$</p>
 <p>$$<br>s.t. \; \sum\limits_{i=1}^{m}\alpha_iy_i = 0<br>$$</p>
 <p>$$<br> \alpha_i \geq 0  \; i=1,2,…m<br>$$<br> 只要我们可以求出上式极小化时对应的$\alpha$向量就可以求出w和b了。具体怎么极小化上式得到对应的$\alpha$，一般需要用到SMO算法，这个算法比较复杂，我们后面会专门来讲。在这里，我们假设通过SMO算法，我们得到了对应的$\alpha$的值$\alpha^{*}$。</p>
-<p>那么我们根据$w = \sum\limits_{i=1}^{m}\alpha_iy_ix_i$，可以求出对应的$w$的值<br>$$<br>w^{<em>} = \sum\limits_{i=1}^{m}\alpha_i^{</em>}y_ix_i<br>$$</p>
+<p>那么我们根据$w = \sum\limits_{i=1}^{m}\alpha_iy_ix_i$，可以求出对应的$w$的值</p>
+<p>$$<br>w^{<em>} = \sum\limits_{i=1}^{m}\alpha_i^{</em>}y_ix_i<br>$$</p>
 <p>求b则稍微麻烦一点。注意到，对于任意支持向量$(x_x, y_s)$，都有</p>
 <p>$$<br>y_s(w^Tx_s+b) = y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1<br>$$<br>假设我们有S个支持向量，则对应我们求出S个$b^{<em>}$,理论上这些$b^{</em>}$都可以作为最终的结果， 但是我们一般采用一种更健壮的办法，即求出所有支持向量所对应的$b_s^{*}$，然后将其平均值作为最后的结果。</p>
 <p>怎么得到支持向量呢？根据KKT条件中的对偶互补条件$\alpha_{i}^{*}(y_i(w^Tx_i + b) - 1) = 0$，如果$\alpha_i&gt;0$则有$y_i(w^Tx_i + b) =1$ 即点在支持向量上，否则如果$\alpha_i=0$则有$y_i(w^Tx_i + b) \geq 1$，即样本在支持向量上或者已经被正确分类。</p>
@@ -1779,9 +1780,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -2037,9 +2038,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3318,9 +3319,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3620,9 +3621,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -4721,9 +4722,9 @@ export default class Hello extends Component {
         
         <tags>
             
-            <tag> 前端工具 </tag>
-            
             <tag> react </tag>
+            
+            <tag> 前端工具 </tag>
             
         </tags>
         
@@ -9429,9 +9430,9 @@ npm run dist
             
             <tag> 前端技术 </tag>
             
-            <tag> 前端工具 </tag>
-            
             <tag> react </tag>
+            
+            <tag> 前端工具 </tag>
             
         </tags>
         
@@ -9727,9 +9728,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> 前端框架 </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -10603,9 +10604,9 @@ class ImgFigure extends React.Component {
             
             <tag> 前端技术 </tag>
             
-            <tag> 前端工具 </tag>
-            
             <tag> react </tag>
+            
+            <tag> 前端工具 </tag>
             
         </tags>
         
@@ -10654,9 +10655,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -11647,9 +11648,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12621,9 +12622,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -12870,9 +12871,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
