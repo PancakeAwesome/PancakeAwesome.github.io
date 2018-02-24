@@ -8,7 +8,7 @@
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="http://pancakeawesome.ink/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E5%8E%9F%E7%90%86-%E4%B8%80-%E7%BA%BF%E6%80%A7%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA.html">支持向量机原理(一) 线性支持向量机</a> </p>
 <p><a href="http://pancakeawesome.ink/支持向量机原理-二-线性支持向量机的软间隔最大化模型.html">支持向量机原理(二) 线性支持向量机的软间隔最大化模型</a> </p>
 <p><a href="http://pancakeawesome.ink/支持向量机原理-三-线性不可分支持向量机与核函数.html">支持向量机原理(三)线性不可分支持向量机与核函数</a> </p>
-<p><a href="">支持向量机原理(四)SMO算法原理</a> </p>
+<p><a href="http://pancakeawesome.ink/支持向量机原理-四-SMO算法原理.html">支持向量机原理(四)SMO算法原理</a> </p>
 <p><a href="">支持向量机原理(五)线性支持回归</a></p>
 <p>　　在SVM的前三篇里，我们优化的目标函数最终都是一个关于$\alpha$向量的函数。而怎么极小化这个函数，求出对应的$\alpha$向量，进而求出分离超平面我们没有讲。本篇就对优化这个关于$\alpha$向量的函数的SMO算法做一个总结。</p>
 <h2 id="支持向量机原理-四-SMO算法原理"><a href="#支持向量机原理-四-SMO算法原理" class="headerlink" title="支持向量机原理(四)SMO算法原理"></a>支持向量机原理(四)SMO算法原理</h2><h3 id="1-回顾SVM优化目标函数"><a href="#1-回顾SVM优化目标函数" class="headerlink" title="1. 回顾SVM优化目标函数"></a>1. 回顾SVM优化目标函数</h3><p>我们首先回顾下我们的优化目标函数：<br>$$<br> \underbrace{ min }_{\alpha}  \frac{1}{2}\sum\limits_{i=1,j=1}^{m}\alpha_i\alpha_jy_iy_jK(x_i,x_j) - \sum\limits_{i=1}^{m}\alpha_i<br>$$</p>
@@ -63,7 +63,7 @@
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="http://pancakeawesome.ink/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E5%8E%9F%E7%90%86-%E4%B8%80-%E7%BA%BF%E6%80%A7%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA.html">支持向量机原理(一) 线性支持向量机</a> </p>
 <p><a href="http://pancakeawesome.ink/支持向量机原理-二-线性支持向量机的软间隔最大化模型.html">支持向量机原理(二) 线性支持向量机的软间隔最大化模型</a> </p>
 <p><a href="http://pancakeawesome.ink/支持向量机原理-三-线性不可分支持向量机与核函数.html">支持向量机原理(三)线性不可分支持向量机与核函数</a> </p>
-<p><a href="">支持向量机原理(四)SMO算法原理</a> </p>
+<p><a href="http://pancakeawesome.ink/支持向量机原理-四-SMO算法原理.html">支持向量机原理(四)SMO算法原理</a> </p>
 <p><a href="">支持向量机原理(五)线性支持回归</a></p>
 <p>在前面两篇我们讲到了线性可分SVM的硬间隔最大化和软间隔最大化的算法，它们对线性可分的数据有很好的处理，但是对完全线性不可分的数据没有办法。本文我们就来探讨SVM如何处理线性不可分的数据，重点讲述核函数在SVM中处理线性不可分数据的作用。</p>
 <h2 id="支持向量机原理-三-线性不可分支持向量机与核函数"><a href="#支持向量机原理-三-线性不可分支持向量机与核函数" class="headerlink" title="支持向量机原理(三)线性不可分支持向量机与核函数"></a>支持向量机原理(三)线性不可分支持向量机与核函数</h2><h3 id="1-回顾多项式回归"><a href="#1-回顾多项式回归" class="headerlink" title="1. 回顾多项式回归"></a>1. 回顾多项式回归</h3><p>在<a href="http://pancakeawesome.ink/线性回归原理小结.html">线性回归原理小结</a> 中，我们讲到了如何将多项式回归转化为线性回归。</p>
@@ -122,7 +122,7 @@
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="http://pancakeawesome.ink/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E5%8E%9F%E7%90%86-%E4%B8%80-%E7%BA%BF%E6%80%A7%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA.html">支持向量机原理(一) 线性支持向量机</a> </p>
 <p><a href="http://pancakeawesome.ink/支持向量机原理-二-线性支持向量机的软间隔最大化模型.html">支持向量机原理(二) 线性支持向量机的软间隔最大化模型</a> </p>
 <p><a href="http://pancakeawesome.ink/支持向量机原理-三-线性不可分支持向量机与核函数.html">支持向量机原理(三)线性不可分支持向量机与核函数</a> </p>
-<p><a href="">支持向量机原理(四)SMO算法原理</a> </p>
+<p><a href="http://pancakeawesome.ink/支持向量机原理-四-SMO算法原理.html">支持向量机原理(四)SMO算法原理</a> </p>
 <p><a href="">支持向量机原理(五)线性支持回归</a></p>
 <p>在<a href="http://pancakeawesome.ink/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E5%8E%9F%E7%90%86-%E4%B8%80-%E7%BA%BF%E6%80%A7%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA.html">支持向量机原理(一) 线性支持向量机</a> 中，我们对线性可分SVM的模型和损失函数优化做了总结。最后我们提到了有时候不能线性可分的原因是线性数据集里面多了少量的异常点，由于这些异常点导致了数据集不能线性可分，本篇就对线性支持向量机如何处理这些异常点的原理方法做一个总结。</p>
 <h2 id="支持向量机原理-二-线性支持向量机的软间隔最大化模型"><a href="#支持向量机原理-二-线性支持向量机的软间隔最大化模型" class="headerlink" title="支持向量机原理(二) 线性支持向量机的软间隔最大化模型"></a>支持向量机原理(二) 线性支持向量机的软间隔最大化模型</h2><h3 id="1-线性分类SVM面临的问题"><a href="#1-线性分类SVM面临的问题" class="headerlink" title="1. 线性分类SVM面临的问题"></a>1. 线性分类SVM面临的问题</h3><p>有时候本来数据的确是可分的，也就是说可以用 线性分类SVM的学习方法来求解，但是却因为混入了异常点，导致不能线性可分，比如下图，本来数据是可以按下面的实线来做超平面分离的，可以由于一个橙色和一个蓝色的异常点导致我们没法按照上一篇<a href="http://pancakeawesome.ink/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E5%8E%9F%E7%90%86-%E4%B8%80-%E7%BA%BF%E6%80%A7%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA.html">线性支持向量机</a> 中的方法来分类。</p>
@@ -192,7 +192,7 @@
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="http://pancakeawesome.ink/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E5%8E%9F%E7%90%86-%E4%B8%80-%E7%BA%BF%E6%80%A7%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA.html">支持向量机原理(一) 线性支持向量机</a> </p>
 <p><a href="http://pancakeawesome.ink/支持向量机原理-二-线性支持向量机的软间隔最大化模型.html">支持向量机原理(二) 线性支持向量机的软间隔最大化模型</a> </p>
 <p><a href="http://pancakeawesome.ink/支持向量机原理-三-线性不可分支持向量机与核函数.html">支持向量机原理(三)线性不可分支持向量机与核函数</a> </p>
-<p><a href="">支持向量机原理(四)SMO算法原理</a> </p>
+<p><a href="http://pancakeawesome.ink/支持向量机原理-四-SMO算法原理.html">支持向量机原理(四)SMO算法原理</a> </p>
 <p><a href="">支持向量机原理(五)线性支持回归</a> </p>
 <p>支持向量机(Support Vecor Machine,以下简称SVM)虽然诞生只有短短的二十多年，但是自一诞生便由于它良好的分类性能席卷了机器学习领域，并牢牢压制了神经网络领域好多年。如果不考虑集成学习的算法，不考虑特定的训练数据集，在分类算法中的表现SVM说是排第一估计是没有什么异议的。</p>
 <p>SVM是一个二元分类算法，线性分类和非线性分类都支持。经过演进，现在也可以支持多元分类，同时经过扩展，也能应用于回归问题。本系列文章就对SVM的原理做一个总结。本篇的重点是SVM用于线性分类时模型和损失函数优化的一个总结。</p>
