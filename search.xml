@@ -45,7 +45,8 @@
 <p>算法过程如下：</p>
 <p>1）构造约束优化问题<br>$$<br>\underbrace{min}_{\alpha} \frac{1}{2}\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{m}\alpha_i\alpha_jy_iy_j(x_i \bullet x_j) -  \sum\limits_{i=1}^{m} \alpha_i<br>s.t. \; \sum\limits_{i=1}^{m}\alpha_iy_i = 0<br> \alpha_i \geq 0  \; i=1,2,…m<br>$$<br>2）用SMO算法求出上式最小时对应的$\alpha$向量的值$\alpha^{*}$向量.</p>
 <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1forgbk55iyj306i029742.jpg" alt=""></p>
-<p>4) 找出所有的S个支持向量,即满足$\alpha_s &gt; 0对应的样本(x_s,y_s)$，通过 $y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1$，<br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1forgc99qyjj30g206ijri.jpg" alt=""></p>
+<p>4) 找出所有的S个支持向量,即满足$\alpha_s &gt; 0对应的样本(x_s,y_s)$，通过 $y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1$，计算出每个支持向量$(x_x, y_s)$对应的<img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forignoltxj300n00s3y9.jpg" alt="">,计算出这些<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1forih85h1ij305k01m0si.jpg" alt="">. 所有的<img src="https://ws1.sinaimg.cn/large/006tKfTcgy1forihgijw3j300k00w0sh.jpg" alt="">对应的平均值即为最终的<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1foriho23knj303701ljr5.jpg" alt=""></p>
+<p> 这样最终的分类超平面为：<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1forihwybdtj304000wdfl.jpg" alt="">，最终的分类决策函数为：<img src="https://ws1.sinaimg.cn/large/006tKfTcgy1forii2lcckj306c00z0si.jpg" alt=""></p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>线性可分SVM的学习方法对于非线性的数据集是没有办法使用的， 有时候不能线性可分的原因是线性数据集里面多了少量的异常点，由于这些异常点导致了数据集不能线性可分， 那么怎么可以处理这些异常点使数据集依然可以用线性可分的思想呢？ 我们在下一节的线性SVM的软间隔最大化里继续讲。</p>
 ]]></content>
       
@@ -1777,9 +1778,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -2035,9 +2036,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3316,9 +3317,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3618,9 +3619,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -10652,9 +10653,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -11645,9 +11646,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12619,9 +12620,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -12868,9 +12869,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
