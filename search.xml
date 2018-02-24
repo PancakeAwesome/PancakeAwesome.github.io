@@ -36,17 +36,16 @@
 <p>$$<br> \alpha_i \geq 0  \; i=1,2,…m<br>$$<br>可以去掉负号，即为等价的极小化问题如下：<br>$$<br>\underbrace{min}_{\alpha} \frac{1}{2}\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{m}\alpha_i\alpha_jy_iy_j(x_i \bullet x_j) -  \sum\limits_{i=1}^{m} \alpha_i<br>$$</p>
 <p>$$<br>s.t. \; \sum\limits_{i=1}^{m}\alpha_iy_i = 0<br>$$</p>
 <p>$$<br> \alpha_i \geq 0  \; i=1,2,…m<br>$$<br> 只要我们可以求出上式极小化时对应的$\alpha$向量就可以求出w和b了。具体怎么极小化上式得到对应的$\alpha$，一般需要用到SMO算法，这个算法比较复杂，我们后面会专门来讲。在这里，我们假设通过SMO算法，我们得到了对应的$\alpha$的值$\alpha^{*}$。</p>
-<p>那么我们根据$w = \sum\limits_{i=1}^{m}\alpha_iy_ix_i$，可以求出对应的$w$的值$<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forfr9etejj306f02cwe9.jpg" alt=""><br>求b则稍微麻烦一点。注意到，对于任意支持向量$(x_x, y_s)$，都有</p>
-<p>$$<br>y_s(w^Tx_s+b) = y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1<br>$$<br>假设我们有S个支持向量，则对应我们求出S个$b^{<em>}$,理论上这些$b^{</em>}$都可以作为最终的结果， 但是我们一般采用一种更健壮的办法，即求出所有支持向量所对应的$b_s^{*}$，然后将其平均值作为最后的结果。</p>
+<p>那么我们根据$w = \sum\limits_{i=1}^{m}\alpha_iy_ix_i$，可以求出对应的$w$的值<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forfr9etejj306f02cwe9.jpg" alt=""><br>求b则稍微麻烦一点。注意到，对于任意支持向量$(x_x, y_s)$，都有</p>
+<p>$$<br>y_s(w^Tx_s+b) = y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1<br>$$<br>假设我们有S个支持向量，则对应我们求出S个<img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forg9kg5ekj300l00s0sh.jpg" alt="">,理论上这些<img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forg9kg5ekj300l00s0sh.jpg" alt="">都可以作为最终的结果， 但是我们一般采用一种更健壮的办法，即求出所有支持向量所对应的<img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forgacjnllj300l00r3y9.jpg" alt="">，然后将其平均值作为最后的结果。</p>
 <p>怎么得到支持向量呢？根据KKT条件中的对偶互补条件$\alpha_{i}^{*}(y_i(w^Tx_i + b) - 1) = 0$，如果$\alpha_i&gt;0$则有$y_i(w^Tx_i + b) =1$ 即点在支持向量上，否则如果$\alpha_i=0$则有$y_i(w^Tx_i + b) \geq 1$，即样本在支持向量上或者已经被正确分类。</p>
 <h3 id="5-线性可分SVM的算法过程"><a href="#5-线性可分SVM的算法过程" class="headerlink" title="5. 线性可分SVM的算法过程"></a>5. 线性可分SVM的算法过程</h3><p>这里我们对线性可分SVM的算法过程做一个总结。</p>
 <p>输入是线性可分的m个样本${(x_1,y_1), (x_2,y_2), …, (x_m,y_m),}$,其中x为n维特征向量。y为二元输出，值为1，或者-1.</p>
-<p>输出是分离超平面的参数$w^{<em>}和b^{</em>}$和分类决策函数。</p>
+<p>输出是分离超平面的参数<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1forgb0sjhmj301o00oa9t.jpg" alt="">和分类决策函数。</p>
 <p>算法过程如下：</p>
 <p>1）构造约束优化问题<br>$$<br>\underbrace{min}_{\alpha} \frac{1}{2}\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{m}\alpha_i\alpha_jy_iy_j(x_i \bullet x_j) -  \sum\limits_{i=1}^{m} \alpha_i<br>s.t. \; \sum\limits_{i=1}^{m}\alpha_iy_i = 0<br> \alpha_i \geq 0  \; i=1,2,…m<br>$$<br>2）用SMO算法求出上式最小时对应的$\alpha$向量的值$\alpha^{*}$向量.</p>
-<p>3) 计算$w^{<em>} = \sum\limits_{i=1}^{m}\alpha_i^{</em>}y_ix_i$</p>
-<p>4) 找出所有的S个支持向量,即满足$\alpha_s &gt; 0对应的样本(x_s,y_s)$，通过 $y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1$，计算出每个支持向量$(x_x, y_s)$对应的$b_s^{<em>}$,计算出这些$b_s^{</em>} = y_s - \sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s$. 所有的$b_s^{<em>}$对应的平均值即为最终的$b^{</em>} = \frac{1}{S}\sum\limits_{i=1}^{S}b_s^{*}$</p>
-<p> 这样最终的分类超平面为：$w^{<em>} \bullet x + b^{</em>} = 0 $，最终的分类决策函数为：$f(x) = sign(w^{<em>} \bullet x + b^{</em>})$</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1forgbk55iyj306i029742.jpg" alt=""></p>
+<p>4) 找出所有的S个支持向量,即满足$\alpha_s &gt; 0对应的样本(x_s,y_s)$，通过 $y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1$，<br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1forgc99qyjj30g206ijri.jpg" alt=""></p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>线性可分SVM的学习方法对于非线性的数据集是没有办法使用的， 有时候不能线性可分的原因是线性数据集里面多了少量的异常点，由于这些异常点导致了数据集不能线性可分， 那么怎么可以处理这些异常点使数据集依然可以用线性可分的思想呢？ 我们在下一节的线性SVM的软间隔最大化里继续讲。</p>
 ]]></content>
       
@@ -1778,9 +1777,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -2036,9 +2035,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3317,9 +3316,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3619,9 +3618,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -10653,9 +10652,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -11646,9 +11645,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12620,9 +12619,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -12869,9 +12868,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
