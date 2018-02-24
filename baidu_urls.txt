@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/支持向量机原理-三-线性不可分支持向量机与核函数.html
 http://pancakeawesome.ink/支持向量机原理-二-线性支持向量机的软间隔最大化模型.html
 http://pancakeawesome.ink/支持向量机原理-一-线性支持向量机.html
 http://pancakeawesome.ink/感知机原理小结.html
