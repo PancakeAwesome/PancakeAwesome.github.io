@@ -12,9 +12,9 @@
 <p><a href="">支持向量机原理(五)线性支持回归</a></p>
 <p>在<a href="http://pancakeawesome.ink/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E5%8E%9F%E7%90%86-%E4%B8%80-%E7%BA%BF%E6%80%A7%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA.html">支持向量机原理(一) 线性支持向量机</a> 中，我们对线性可分SVM的模型和损失函数优化做了总结。最后我们提到了有时候不能线性可分的原因是线性数据集里面多了少量的异常点，由于这些异常点导致了数据集不能线性可分，本篇就对线性支持向量机如何处理这些异常点的原理方法做一个总结。</p>
 <h2 id="支持向量机原理-二-线性支持向量机的软间隔最大化模型"><a href="#支持向量机原理-二-线性支持向量机的软间隔最大化模型" class="headerlink" title="支持向量机原理(二) 线性支持向量机的软间隔最大化模型"></a>支持向量机原理(二) 线性支持向量机的软间隔最大化模型</h2><h3 id="1-线性分类SVM面临的问题"><a href="#1-线性分类SVM面临的问题" class="headerlink" title="1. 线性分类SVM面临的问题"></a>1. 线性分类SVM面临的问题</h3><p>有时候本来数据的确是可分的，也就是说可以用 线性分类SVM的学习方法来求解，但是却因为混入了异常点，导致不能线性可分，比如下图，本来数据是可以按下面的实线来做超平面分离的，可以由于一个橙色和一个蓝色的异常点导致我们没法按照上一篇<a href="http://pancakeawesome.ink/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E5%8E%9F%E7%90%86-%E4%B8%80-%E7%BA%BF%E6%80%A7%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA.html">线性支持向量机</a> 中的方法来分类。</p>
-<p><img src="https://images2015.cnblogs.com/blog/1042406/201611/1042406-20161125104106409-1177897648.png" alt=""> </p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1forjkcaw3mj30ej0bu3yl.jpg" alt=""></p>
 <p>另外一种情况没有这么糟糕到不可分，但是会严重影响我们模型的泛化预测效果，比如下图，本来如果我们不考虑异常点，SVM的超平面应该是下图中的红色线所示，但是由于有一个蓝色的异常点，导致我们学习到的超平面是下图中的粗虚线所示，这样会严重影响我们的分类模型预测效果。</p>
-<p><img src="https://images2015.cnblogs.com/blog/1042406/201611/1042406-20161125104737206-364720074.png" alt=""> </p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forjlg0wf6j30g80fxmxj.jpg" alt=""></p>
 <p>如何解决这些问题呢？SVM引入了软间隔最大化的方法来解决。</p>
 <h3 id="2-线性分类SVM的软间隔最大化"><a href="#2-线性分类SVM的软间隔最大化" class="headerlink" title="2. 线性分类SVM的软间隔最大化"></a>2. 线性分类SVM的软间隔最大化</h3><p>所谓的软间隔，是相对于硬间隔说的，我们可以认为上一篇线性分类SVM的学习方法属于硬间隔最大化。</p>
 <p>回顾下硬间隔最大化的条件：<br>$$<br>min\;\; \frac{1}{2}||w||_2^2  \;\; s.t \;\; y_i(w^Tx_i + b)  \geq 1 (i =1,2,…m)<br>$$<br>接着我们再看如何可以软间隔最大化呢？</p>
@@ -41,7 +41,7 @@
 <p>　　i)如果$\leq \xi_i \leq 1$,那么点被正确分类，但是却在超平面和自己类别的支持向量之间。如图中的样本2和4.</p>
 <p>　　ii)如果$\xi_i =1$,那么点在分离超平面上，无法被正确分类。</p>
 <p>　　iii)如果$\xi_i &gt; 1$,那么点在超平面的另一侧，也就是说，这个点不能被正常分类。如图中的样本1和3.</p>
-<p><img src="https://images2015.cnblogs.com/blog/1042406/201611/1042406-20161125133202346-307657619.jpg" alt=""> </p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forjmpwxvkj30eh09xt98.jpg" alt=""></p>
 <h3 id="5-软间隔最大化的线性可分SVM的算法过程"><a href="#5-软间隔最大化的线性可分SVM的算法过程" class="headerlink" title="5. 软间隔最大化的线性可分SVM的算法过程"></a>5. 软间隔最大化的线性可分SVM的算法过程</h3><p>这里我们对软间隔最大化时的线性可分SVM的算法过程做一个总结。</p>
 <p>输入是线性可分的m个样本${(x_1,y_1), (x_2,y_2), …, (x_m,y_m),}$,其中x为n维特征向量。y为二元输出，值为1，或者-1.</p>
 <p>输出是分离超平面的参数$w^{<em>}和b^{</em>}$和分类决策函数。</p>
@@ -53,7 +53,7 @@
 <p>4) 找出所有的S个支持向量,即满足$\alpha_s &lt; C$对应的样本$(x_s,y_s)$，通过 $y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1$，计算出每个支持向量$(x_x, y_s)$对应的$b_s^{<em>}$,计算出这些$b_s^{</em>} = y_s - \sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s$. 所有的$b_s^{<em>}$对应的平均值即为最终的$b^{</em>} = \frac{1}{S}\sum\limits_{i=1}^{S}b_s^{*}$</p>
 <p>这样最终的分类超平面为：$w^{<em>} \bullet x + b^{</em>} = 0$ ，最终的分类决策函数为：$f(x) = sign(w^{<em>} \bullet x + b^{</em>})$</p>
 <h3 id="6-合页损失函数"><a href="#6-合页损失函数" class="headerlink" title="6. 合页损失函数"></a>6. 合页损失函数</h3><p>线性支持向量机还有另外一种解释如下：<br>$$<br> \underbrace{ min}_{w, b}[1-y_i(w \bullet x + b)]_{+} + \lambda ||w||_2^2<br>$$<br>其中$L(y(w \bullet x + b)) = [1-y_i(w \bullet x + b)]_{+}$称为合页损失函数(hinge loss function)，下标+表示为：<br>$$<br> [z]_{+}= \begin{cases} z &amp; {z &gt;0}\\ 0&amp; {z\leq 0} \end{cases}<br>$$<br>也就是说，如果点被正确分类，且函数间隔大于1，损失是0，否则损失是$1-y(w \bullet x + b)$,如下图中的绿线。我们在下图还可以看出其他各种模型损失和函数间隔的关系：对于0-1损失函数，如果正确分类，损失是0，误分类损失1， 如下图黑线，可见0-1损失函数是不可导的。对于感知机模型，感知机的损失函数是$[-y_i(w \bullet x + b)]_{+}$，这样当样本被正确分类时，损失是0，误分类时，损失是$-y_i(w \bullet x + b)$，如下图紫线。对于逻辑回归之类和最大熵模型对应的对数损失，损失函数是$log[1+exp(-y(w \bullet x + b))]$, 如下图红线所示。</p>
-<p><img src="https://images2015.cnblogs.com/blog/1042406/201611/1042406-20161125140636518-992065349.png" alt=""> </p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1forjnfwcntj30es0b2q30.jpg" alt=""></p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>线性可分SVM通过软间隔最大化，可以解决线性数据集带有异常点时的分类处理，但是现实生活中的确有很多数据不是线性可分的，这些线性不可分的数据也不是去掉异常点就能处理这么简单。那么SVM怎么能处理中这样的情况呢？我们在下一篇就来讨论线性不可分SVM和核函数的原理。</p>
 ]]></content>
       
@@ -114,7 +114,7 @@
 <p>输出是分离超平面的参数<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1forgb0sjhmj301o00oa9t.jpg" alt="">和分类决策函数。</p>
 <p>算法过程如下：</p>
 <p>1）构造约束优化问题<br>$$<br>\underbrace{min}_{\alpha} \frac{1}{2}\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{m}\alpha_i\alpha_jy_iy_j(x_i \bullet x_j) -  \sum\limits_{i=1}^{m} \alpha_i<br>s.t. \; \sum\limits_{i=1}^{m}\alpha_iy_i = 0<br> \alpha_i \geq 0  \; i=1,2,…m<br>$$<br>2）用SMO算法求出上式最小时对应的$\alpha$向量的值$\alpha^{*}$向量.</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1forgbk55iyj306i029742.jpg" alt=""></p>
+<p>3）计算出<img src="https://ws1.sinaimg.cn/large/006tKfTcgy1forjigtez9j304101jq2p.jpg" alt=""></p>
 <p>4) 找出所有的S个支持向量,即满足$\alpha_s &gt; 0对应的样本(x_s,y_s)$，通过 $y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1$，计算出每个支持向量$(x_x, y_s)$对应的<img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forignoltxj300n00s3y9.jpg" alt="">,计算出这些<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1forih85h1ij305k01m0si.jpg" alt="">. 所有的<img src="https://ws1.sinaimg.cn/large/006tKfTcgy1forihgijw3j300k00w0sh.jpg" alt="">对应的平均值即为最终的<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1foriho23knj303701ljr5.jpg" alt=""></p>
 <p> 这样最终的分类超平面为：<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1forihwybdtj304000wdfl.jpg" alt="">，最终的分类决策函数为：<img src="https://ws1.sinaimg.cn/large/006tKfTcgy1forii2lcckj306c00z0si.jpg" alt=""></p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>线性可分SVM的学习方法对于非线性的数据集是没有办法使用的， 有时候不能线性可分的原因是线性数据集里面多了少量的异常点，由于这些异常点导致了数据集不能线性可分， 那么怎么可以处理这些异常点使数据集依然可以用线性可分的思想呢？ 我们在下一节的线性SVM的软间隔最大化里继续讲。</p>
