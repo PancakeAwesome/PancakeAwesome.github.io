@@ -33,8 +33,8 @@
 <p>$$<br> \mu_i \geq 0 \;(i =1,2,…,m)<br>$$<br>对于$ C- \alpha_i - \mu_i = 0 ， \alpha_i \geq 0 ，\mu_i \geq 0 $这3个式子，我们可以消去$\mu_i$，只留下$\alpha_i$，也就是说$ \leq \alpha_i \leq C$。 同时将优化目标函数变号，求极小值，如下：<br>$$<br> \underbrace{ min }_{\alpha}  \frac{1}{2}\sum\limits_{i=1,j=1}^{m}\alpha_i\alpha_jy_iy_jx_i^Tx_j - \sum\limits_{i=1}^{m}\alpha_i<br>$$</p>
 <p>$$<br> s.t. \; \sum\limits_{i=1}^{m}\alpha_iy_i = 0<br>$$</p>
 <p>$$<br>0 \leq \alpha_i \leq C<br>$$<br>这就是软间隔最大化时的线性可分SVM的优化目标形式，和上一篇的硬间隔最大化的线性可分SVM相比，我们仅仅是多了一个约束条件$\leq \alpha_i \leq C$。我们依然可以通过SMO算法来求上式极小化时对应的$\alpha$向量就可以求出$w和b$了。</p>
-<h3 id="4-软间隔最大化时的支持向量"><a href="#4-软间隔最大化时的支持向量" class="headerlink" title="4. 软间隔最大化时的支持向量"></a>4. 软间隔最大化时的支持向量</h3><p>在硬间隔最大化时，支持向量比较简单，就是满足$y_i(w^Tx_i + b) -1 =0$就可以了。根据KKT条件中的对偶互补条件$\alpha_{i}^{<em>}(y_i(w^Tx_i + b) - 1) = 0$，如果$\alpha_{i}^{</em>}&gt;0$则有$y_i(w^Tx_i + b) =1$ 即点在支持向量上，否则如果$\alpha_{i}^{*}=0$则有$y_i(w^Tx_i + b) \geq 1$，即样本在支持向量上或者已经被正确分类。</p>
-<p>在软间隔最大化时，则稍微复杂一些，因为我们对每个样本$(x_i,y_i$)引入了松弛变量$\xi_i$。我们从下图来研究软间隔最大化时支持向量的情况，第i个点到对应类别支持向量的距离为$\frac{\xi_i}{||w||_2}$。根据软间隔最大化时KKT条件中的对偶互补条件$\alpha_{i}^{<em>}(y_i(w^Tx_i + b) - 1 + \xi_i^{</em>}) = 0$我们有：</p>
+<h3 id="4-软间隔最大化时的支持向量"><a href="#4-软间隔最大化时的支持向量" class="headerlink" title="4. 软间隔最大化时的支持向量"></a>4. 软间隔最大化时的支持向量</h3><p>在硬间隔最大化时，支持向量比较简单，就是满足$y_i(w^Tx_i + b) -1 =0$就可以了。根据KKT条件中的对偶互补条件<img src="https://ws2.sinaimg.cn/large/006tKfTcgy1forjvc6hjdj306g00rwe9.jpg" alt="">，如果<img src="https://ws1.sinaimg.cn/large/006tKfTcgy1forjvn1o2gj301q00s741.jpg" alt="">则有$y_i(w^Tx_i + b) =1$ 即点在支持向量上，否则如果<img src="https://ws2.sinaimg.cn/large/006tKfTcgy1forjw5maoxj301o00u741.jpg" alt="">则有$y_i(w^Tx_i + b) \geq 1$，即样本在支持向量上或者已经被正确分类。</p>
+<p>在软间隔最大化时，则稍微复杂一些，因为我们对每个样本$(x_i,y_i$)引入了松弛变量$\xi_i$。我们从下图来研究软间隔最大化时支持向量的情况，第i个点到对应类别支持向量的距离为$\frac{\xi_i}{||w||_2}$。根据软间隔最大化时KKT条件中的对偶互补条件<img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forjx2x8nxj307e00v742.jpg" alt="">我们有：</p>
 <p>a) 如果$\alpha = 0$,那么$y_i(w^Tx_i + b) - 1 \geq 0$,即样本在支持向量上或者已经被正确分类。如图中所有远离支持向量的点。</p>
 <p>b) 如果$\alpha &lt; C$,那么$\xi_i = 0 ,\;\; y_i(w^Tx_i + b) - 1 =  0$,即点在支持向量上。如图中在虚线支持向量上的点。</p>
 <p>c) 如果$\alpha = C$，说明这是一个可能比较异常的点，需要检查此时$\xi_i$</p>
@@ -44,14 +44,14 @@
 <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forjmpwxvkj30eh09xt98.jpg" alt=""></p>
 <h3 id="5-软间隔最大化的线性可分SVM的算法过程"><a href="#5-软间隔最大化的线性可分SVM的算法过程" class="headerlink" title="5. 软间隔最大化的线性可分SVM的算法过程"></a>5. 软间隔最大化的线性可分SVM的算法过程</h3><p>这里我们对软间隔最大化时的线性可分SVM的算法过程做一个总结。</p>
 <p>输入是线性可分的m个样本${(x_1,y_1), (x_2,y_2), …, (x_m,y_m),}$,其中x为n维特征向量。y为二元输出，值为1，或者-1.</p>
-<p>输出是分离超平面的参数$w^{<em>}和b^{</em>}$和分类决策函数。</p>
+<p>输出是分离超平面的参数<img src="https://ws2.sinaimg.cn/large/006tKfTcgy1forjxs0tjrj301q00kdfl.jpg" alt="">和分类决策函数。</p>
 <p>算法过程如下：</p>
 <p>1）选择一个惩罚系数$C&gt;0$, 构造约束优化问题<br>$$<br> \underbrace{ min }_{\alpha}  \frac{1}{2}\sum\limits_{i=1,j=1}^{m}\alpha_i\alpha_jy_iy_jx_i^Tx_j - \sum\limits_{i=1}^{m}\alpha_i<br>$$</p>
 <p> $$<br> s.t. \; \sum\limits_{i=1}^{m}\alpha_iy_i = 0<br>$$</p>
-<p>$$<br>0 \leq \alpha_i \leq C<br>$$<br>2）用SMO算法求出上式最小时对应的$\alpha$向量的值$\alpha^{*}$向量.</p>
-<p>3) 计算$w^{<em>} = \sum\limits_{i=1}^{m}\alpha_i^{</em>}y_ix_i$</p>
-<p>4) 找出所有的S个支持向量,即满足$\alpha_s &lt; C$对应的样本$(x_s,y_s)$，通过 $y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1$，计算出每个支持向量$(x_x, y_s)$对应的$b_s^{<em>}$,计算出这些$b_s^{</em>} = y_s - \sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s$. 所有的$b_s^{<em>}$对应的平均值即为最终的$b^{</em>} = \frac{1}{S}\sum\limits_{i=1}^{S}b_s^{*}$</p>
-<p>这样最终的分类超平面为：$w^{<em>} \bullet x + b^{</em>} = 0$ ，最终的分类决策函数为：$f(x) = sign(w^{<em>} \bullet x + b^{</em>})$</p>
+<p>$$<br>0 \leq \alpha_i \leq C<br>$$<br>2）用SMO算法求出上式最小时对应的$\alpha$向量的值<img src="https://ws1.sinaimg.cn/large/006tKfTcgy1forjydovgtj300o00m0sh.jpg" alt="">向量.</p>
+<p>3) 计算<img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forjyrrpg3j303v01jq2p.jpg" alt=""></p>
+<p>4) 找出所有的S个支持向量,即满足$\alpha_s &lt; C$对应的样本$(x_s,y_s)$，通过 $y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1$，计算出每个支持向量$(x_x, y_s)$对应的<img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forjzbkpthj300o00r3y9.jpg" alt="">,计算出这些<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fork0oei4rj305i01g0si.jpg" alt="">. 所有的<img src="https://ws3.sinaimg.cn/large/006tKfTcgy1forjzbkpthj300o00r3y9.jpg" alt="">对应的平均值即为最终的<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fork0wadsij303401ojr5.jpg" alt=""></p>
+<p>这样最终的分类超平面为：<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fork17volaj3040013gld.jpg" alt="">，最终的分类决策函数为：<img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fork1grqwsj30680143ya.jpg" alt=""></p>
 <h3 id="6-合页损失函数"><a href="#6-合页损失函数" class="headerlink" title="6. 合页损失函数"></a>6. 合页损失函数</h3><p>线性支持向量机还有另外一种解释如下：<br>$$<br> \underbrace{ min}_{w, b}[1-y_i(w \bullet x + b)]_{+} + \lambda ||w||_2^2<br>$$<br>其中$L(y(w \bullet x + b)) = [1-y_i(w \bullet x + b)]_{+}$称为合页损失函数(hinge loss function)，下标+表示为：<br>$$<br> [z]_{+}= \begin{cases} z &amp; {z &gt;0}\\ 0&amp; {z\leq 0} \end{cases}<br>$$<br>也就是说，如果点被正确分类，且函数间隔大于1，损失是0，否则损失是$1-y(w \bullet x + b)$,如下图中的绿线。我们在下图还可以看出其他各种模型损失和函数间隔的关系：对于0-1损失函数，如果正确分类，损失是0，误分类损失1， 如下图黑线，可见0-1损失函数是不可导的。对于感知机模型，感知机的损失函数是$[-y_i(w \bullet x + b)]_{+}$，这样当样本被正确分类时，损失是0，误分类时，损失是$-y_i(w \bullet x + b)$，如下图紫线。对于逻辑回归之类和最大熵模型对应的对数损失，损失函数是$log[1+exp(-y(w \bullet x + b))]$, 如下图红线所示。</p>
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1forjnfwcntj30es0b2q30.jpg" alt=""></p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>线性可分SVM通过软间隔最大化，可以解决线性数据集带有异常点时的分类处理，但是现实生活中的确有很多数据不是线性可分的，这些线性不可分的数据也不是去掉异常点就能处理这么简单。那么SVM怎么能处理中这样的情况呢？我们在下一篇就来讨论线性不可分SVM和核函数的原理。</p>
@@ -9796,9 +9796,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端框架 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 前端框架 </tag>
             
         </tags>
         
