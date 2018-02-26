@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/主成分分析（PCA）原理总结.html
 http://pancakeawesome.ink/K-Means聚类算法原理.html
 http://pancakeawesome.ink/支持向量机原理-五-线性支持回归.html
 http://pancakeawesome.ink/支持向量机原理-四-SMO算法原理.html
