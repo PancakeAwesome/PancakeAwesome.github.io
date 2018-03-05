@@ -72,7 +72,7 @@
     epsilon = 0.1                #白化的时候，防止除数为0
     ZCAMatrix = np.dot(np.dot(U, np.diag(1.0/np.sqrt(np.diag(S) + epsilon))), U.T)                     #计算zca白化矩阵
     return np.dot(ZCAMatrix, inputs)   #白化变换
-</code></pre><h3 id="7-PCA算法总结"><a href="#7-PCA算法总结" class="headerlink" title="7. PCA算法总结"></a>7. PCA算法总结</h3><p>这里对PCA算法做一个总结。作为一个非监督学习的降维方法，它只需要特征值分解，就可以对数据进行压缩，去噪。因此在实际场景应用很广泛。为了克服PCA的一些缺点，出现了很多PCA的变种，比如第六节的为解决非线性降维的KPCA，还有解决内存限制的增量PCA方法Incremental PCA，以及解决稀疏数据降维的PCA方法Sparse PCA等。</p>
+</code></pre><h3 id="8-PCA算法总结"><a href="#8-PCA算法总结" class="headerlink" title="8. PCA算法总结"></a>8. PCA算法总结</h3><p>这里对PCA算法做一个总结。作为一个非监督学习的降维方法，它只需要特征值分解，就可以对数据进行压缩，去噪。因此在实际场景应用很广泛。为了克服PCA的一些缺点，出现了很多PCA的变种，比如第六节的为解决非线性降维的KPCA，还有解决内存限制的增量PCA方法Incremental PCA，以及解决稀疏数据降维的PCA方法Sparse PCA等。</p>
 <p>PCA算法的主要优点有：</p>
 <p>1）仅仅需要以方差衡量信息量，不受数据集以外的因素影响。　</p>
 <p>2）各主成分之间正交，可消除原始数据成分间的相互影响的因素。</p>
@@ -2175,9 +2175,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -2433,9 +2433,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3714,9 +3714,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -4016,9 +4016,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -11050,9 +11050,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12043,9 +12043,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -13017,9 +13017,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -13266,9 +13266,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
