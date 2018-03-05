@@ -560,6 +560,7 @@
 <h3 id="3-二元逻辑回归的损失函数"><a href="#3-二元逻辑回归的损失函数" class="headerlink" title="3. 二元逻辑回归的损失函数"></a>3. 二元逻辑回归的损失函数</h3><p>回顾下线性回归的损失函数，由于线性回归是连续的，所以可以使用模型误差的的平方和来定义损失函数。但是逻辑回归不是连续的，自然线性回归损失函数定义的经验就用不上了，而且逻辑回归对应的平方差的损失函数并不是凸函数，我们不能进行凸优化，找到全局最优值。不过我们可以使用最大似然法，通过训练集来拟合参数，来推导出我们的损失函数。</p>
 <p>我们可以找到这种损失函数的定义，<br>$$<br>cost(h_{\theta}(x), y) = -log(P(y=1|x;\theta)),<br>$$</p>
 <p>$$<br>cost(h_{\theta}(x), y) = -log(1-P(y=0|x;\theta))<br>$$</p>
+<p>总结一下，可以用I指示函数将上述两个式子写成一个。<br>$$<br>cost(h_{\theta}(x), y) = -log(I(y=i)P(y=i|x;\theta))<br>$$</p>
 <p>其中cost函数是损失函数。我们观察到，这个cost函数很符合分类对损失函数的要求。</p>
 <p>我们知道，按照第二节二元逻辑回归的定义，假设我们的样本输出是0或者1两类。那么我们有：<br>$$<br>P(y=1|x,\theta ) = h_{\theta}(x)<br>$$</p>
 <p>$$<br>P(y=0|x,\theta ) = 1- h_{\theta}(x)<br>$$<br> 把这两个式子写成一个式子，就是：<br>$$<br>P(y|x,\theta ) = h_{\theta}(x)^y(1-h_{\theta}(x))^{1-y}<br>$$<br>其中y的取值只能是0或者1。</p>
@@ -2174,9 +2175,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -2432,9 +2433,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -3713,9 +3714,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -4015,9 +4016,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -11049,9 +11050,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -12042,9 +12043,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -13016,9 +13017,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -13265,9 +13266,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
