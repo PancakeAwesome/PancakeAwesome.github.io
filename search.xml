@@ -27,7 +27,7 @@
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fp363ydx64j309b07k0sn.jpg" alt=""></p>
 <h3 id="3-DNN前向传播算法数学原理"><a href="#3-DNN前向传播算法数学原理" class="headerlink" title="3. DNN前向传播算法数学原理"></a>3. DNN前向传播算法数学原理</h3><p>在上一节，我们已经介绍了DNN各层线性关系系数$w$,偏倚$b$的定义。假设我们选择的激活函数是$\sigma(z)$，隐藏层和输出层的输出值为aaa，则对于下图的三层DNN,利用和感知机一样的思路，我们可以利用上一层的输出计算下一层的输出，也就是所谓的DNN前向传播算法。</p>
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fp36462j3jj30fq0c4aah.jpg" alt=""></p>
-<p>对于第二层的的输出$a_1^2,a_2^2,a_3^2$，我们有：<br>$$<br>a_1^2=\sigma(z_1^2) = \sigma(w_{11}^2x_1 + w_{12}^2x_2 + w_{13}^2x_3 + b_1^{2})<br>$$<br>$$<br>a_2^2=\sigma(z_2^2) = \sigma(w_{21}^2x_1 + w_{22}^2x_2 + w_{23}^2x_3 + b_2^{2})<br>$$<br>$$<br>a_3^2=\sigma(z_3^2) = \sigma(w_{31}^2x_1 + w_{32}^2x_2 + w_{33}^2x_3 + b_3^{2})<br>$$<br>对于第三层的的输出a31a13a_1^3，我们有：<br>$$<br>a_1^3=\sigma(z_1^3) = \sigma(w_{11}^3a_1^2 + w_{12}^3a_2^2 + w_{13}^3a_3^2 + b_1^{3})<br>$$<br>将上面的例子一般化，假设第$l-1$层共有m个神经元，则对于第$l$层的第j个神经元的输出$a_j^l$，我们有：<br>$$<br>a_j^l = \sigma(z_j^l) = \sigma(\sum\limits_{k=1}^mw_{jk}^la_k^{l-1} + b_j^l)<br>$$<br>其中，如果$l=2$,则对于的$a_k^1$即为输入层的$x_k$。</p>
+<p>对于第二层的的输出$a_1^2,a_2^2,a_3^2$，我们有：<br>$$<br>a_1^2=\sigma(z_1^2) = \sigma(w_{11}^2x_1 + w_{12}^2x_2 + w_{13}^2x_3 + b_1^{2})<br>$$<br>$$<br>a_2^2=\sigma(z_2^2) = \sigma(w_{21}^2x_1 + w_{22}^2x_2 + w_{23}^2x_3 + b_2^{2})<br>$$<br>$$<br>a_3^2=\sigma(z_3^2) = \sigma(w_{31}^2x_1 + w_{32}^2x_2 + w_{33}^2x_3 + b_3^{2})<br>$$<br>对于第三层的的输出$a_1^3$，我们有：<br>$$<br>a_1^3=\sigma(z_1^3) = \sigma(w_{11}^3a_1^2 + w_{12}^3a_2^2 + w_{13}^3a_3^2 + b_1^{3})<br>$$<br>将上面的例子一般化，假设第$l-1$层共有m个神经元，则对于第$l$层的第j个神经元的输出$a_j^l$，我们有：<br>$$<br>a_j^l = \sigma(z_j^l) = \sigma(\sum\limits_{k=1}^mw_{jk}^la_k^{l-1} + b_j^l)<br>$$<br>其中，如果$l=2$,则对于的$a_k^1$即为输入层的$x_k$。</p>
 <p>从上面可以看出，使用代数法一个个的表示输出比较复杂，而如果使用矩阵法则比较的简洁。假设第$l-1$层共有m个神经元，而第$l$层共有n个神经元，则第$l$层的线性系数$w$组成了一个$n \times m$的矩阵$W^l$, 第$l$层的偏倚$b$组成了一个$n \times 1$的向量$b^l$ , 第$l-1$层的的输出$a$组成了一个$m \times 1$的向量$a^{l-1}$，第$l$层的的未激活前线性输出$z$组成了一个$n \times 1$的向量$z^{l}$, 第$l$层的的输出$a$组成了一个$n \times 1$的向量$a^{l}$。则用矩阵法表示，第l层的输出为：<br>$$<br>a^l = \sigma(z^l) = \sigma(W^la^{l-1} + b^l)<br>$$<br>这个表示方法简洁漂亮，后面我们的讨论都会基于上面的这个矩阵法表示来。</p>
 <h3 id="4-DNN前向传播算法"><a href="#4-DNN前向传播算法" class="headerlink" title="4. DNN前向传播算法"></a>4. DNN前向传播算法</h3><p>有了上一节的数学推导，DNN的前向传播算法也就不难了。所谓的DNN的前向传播算法也就是利用我们的若干个权重系数矩阵$W$,偏倚向量$b$来和输入值向量$x$进行一系列线性运算和激活运算，从输入层开始，一层层的向后计算，一直到运算到输出层，得到输出结果为值。</p>
 <p>输入: 总层数L，所有隐藏层和输出层对应的矩阵$W$,偏倚向量$b$，输入值向量$x$</p>
@@ -1882,9 +1882,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -4384,9 +4384,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> react </tag>
             
@@ -4773,9 +4773,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
