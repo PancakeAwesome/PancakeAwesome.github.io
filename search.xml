@@ -6,17 +6,17 @@
       <title><![CDATA[深度神经网络（DNN）损失函数和激活函数的选择]]></title>
       <url>/%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88DNN%EF%BC%89%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%92%8C%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%89%E6%8B%A9.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
-<li><a href="http://pancakeawesome.ink/%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C\(DNN\">深度神经网络(DNN)模型与前向传播算法(FP)</a>%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95(FP).html)</li>
-<li><a href="http://pancakeawesome.ink/%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C\(DNN\">深度神经网络（DNN）与反向传播算法(BP)</a>%E4%B8%8E%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95-BP.html)</li>
+<li><a href="http://pancakeawesome.ink/深度神经网络(DNN">深度神经网络(DNN)模型与前向传播算法(FP)</a>模型与前向传播算法(FP).html)</li>
+<li><a href="http://pancakeawesome.ink/深度神经网络\(DNN\">深度神经网络（DNN）与反向传播算法(BP)</a>与反向传播算法-BP.html)</li>
 </ul>
-<p>在<a href="http://www.cnblogs.com/pinard/p/6422831.html" target="_blank" rel="noopener">深度神经网络（DNN）反向传播算法(BP)</a> 中，我们对DNN的前向反向传播算法的使用做了总结。里面使用的损失函数是均方差，而激活函数是Sigmoid。实际上DNN可以使用的损失函数和激活函数不少。这些损失函数和激活函数如何选择呢？下面我们就对DNN损失函数和激活函数的选择做一个总结。</p>
+<p>在<a href="http://pancakeawesome.ink/深度神经网络\(DNN\">深度神经网络（DNN）反向传播算法(BP)</a>与反向传播算法-BP.html) 中，我们对DNN的前向反向传播算法的使用做了总结。里面使用的损失函数是均方差，而激活函数是Sigmoid。实际上DNN可以使用的损失函数和激活函数不少。这些损失函数和激活函数如何选择呢？下面我们就对DNN损失函数和激活函数的选择做一个总结。</p>
 <h2 id="深度神经网络（DNN）损失函数和激活函数的选择"><a href="#深度神经网络（DNN）损失函数和激活函数的选择" class="headerlink" title="深度神经网络（DNN）损失函数和激活函数的选择"></a>深度神经网络（DNN）损失函数和激活函数的选择</h2><h3 id="1-均方差损失函数-Sigmoid激活函数的问题"><a href="#1-均方差损失函数-Sigmoid激活函数的问题" class="headerlink" title="1. 均方差损失函数+Sigmoid激活函数的问题"></a>1. 均方差损失函数+Sigmoid激活函数的问题</h3><p>在讲反向传播算法时，我们用均方差损失函数和Sigmoid激活函数做了实例，首先我们就来看看均方差+Sigmoid的组合有什么问题。</p>
 <p>首先我们回顾下Sigmoid激活函数的表达式为：<br>$$<br>\sigma(z) = \frac{1}{1+e^{-z}}<br>$$<br>$\sigma(z)$的函数图像如下：</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fp5906d8ijj30ci08cjrj.jpg" alt=""></p>
 <p>从图上可以看出，对于Sigmoid，当$z$的取值越来越大后，函数曲线变得越来越平缓，意味着此时的导数$\sigma ^{‘}(z)$也越来越小。同样的，当$z$的取值越来越小时，也有这个问题。仅仅在$z$取值为0附近时，导数$\sigma ^{‘}(z)$的取值较大。</p>
 <p>在上篇讲的均方差+Sigmoid的反向传播算法中，每一层向前递推都要乘以$\sigma ^{‘}(z)$,得到梯度变化值。Sigmoid的这个曲线意味着在大多数时候，我们的梯度变化值很小，导致我们的$W,b$更新到极值的速度较慢，也就是我们的算法收敛速度较慢。那么有什么什么办法可以改进呢？</p>
 <h3 id="2-使用交叉熵损失函数-Sigmoid激活函数改进DNN算法收敛速度"><a href="#2-使用交叉熵损失函数-Sigmoid激活函数改进DNN算法收敛速度" class="headerlink" title="2. 使用交叉熵损失函数+Sigmoid激活函数改进DNN算法收敛速度"></a>2. 使用交叉熵损失函数+Sigmoid激活函数改进DNN算法收敛速度</h3><p>上一节我们讲到Sigmoid的函数特性导致反向传播算法收敛速度慢的问题，那么如何改进呢？换掉Sigmoid？这当然是一种选择。另一种常见的选择是用交叉熵损失函数来代替均方差损失函数。</p>
-<p>我们来看看每个样本的交叉熵损失函数的形式：<br>$$<br>J(W,b,a,y) = -y \bullet lna- (1-y) \bullet ln(1 -a)<br>$$<br>其中，$\bullet$为向量内积。这个形式其实很熟悉，在<a href="http://www.cnblogs.com/pinard/p/6029432.html" target="_blank" rel="noopener">逻辑回归原理小结</a> 中其实我们就用到了类似的形式，只是当时我们是用最大似然估计推导出来的，而这个损失函数的学名叫交叉熵。</p>
+<p>我们来看看每个样本的交叉熵损失函数的形式：<br>$$<br>J(W,b,a,y) = -y \bullet lna- (1-y) \bullet ln(1 -a)<br>$$<br>其中，$\bullet$为向量内积。这个形式其实很熟悉，在<a href="http://pancakeawesome.ink/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%8E%9F%E7%90%86%E5%B0%8F%E7%BB%93.html">逻辑回归原理小结</a> 中其实我们就用到了类似的形式，只是当时我们是用最大似然估计推导出来的，而这个损失函数的学名叫交叉熵。</p>
 <p>使用了交叉熵损失函数，就能解决Sigmoid函数导数变化大多数时候反向传播算法慢的问题吗？我们来看看当使用交叉熵时，我们输出层$\delta^L$的梯度情况。</p>
 <p>$$<br> \begin{align} \delta^L  &amp; = \frac{\partial J(W,b,a^L,y)}{\partial z^L} \\&amp; = -y\frac{1}{a^L}(a^L)(1-a^L) + (1-y) \frac{1}{1-a^L}(a^L)(1-a^L) \\&amp; = -y(1-a^L) + (1-y)a^L \\&amp; = a^L-y \end{align}<br>$$<br>可见此时我们的$\delta^l$梯度表达式里面已经没有了$\sigma ^{‘}(z)$，作为一个特例，回顾一下我们上一节均方差损失函数时在$\delta^L$梯度，<br>$$<br>\frac{\partial J(W,b,x,y)}{\partial z^L} = (a^L-y) \odot \sigma^{‘}(z)<br>$$<br>对比两者在第L层的$\delta^L$梯度表达式，就可以看出，使用交叉熵，得到的的$\delta^l$梯度表达式没有了$\sigma^{‘}(z)$，梯度为预测值和真实值的差距，这样求得的$W^l,b^l$的地图也不包含$\sigma^{‘}(z)$，因此避免了反向传播收敛速度慢的问题。</p>
 <p>通常情况下，如果我们使用了sigmoid激活函数，交叉熵损失函数肯定比均方差损失函数好用。</p>
@@ -2002,9 +2002,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -4504,9 +4504,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> react </tag>
             
@@ -4893,9 +4893,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -10297,9 +10297,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端框架 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 前端框架 </tag>
             
         </tags>
         
