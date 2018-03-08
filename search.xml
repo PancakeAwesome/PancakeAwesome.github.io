@@ -804,28 +804,29 @@
 <p>设目标函数为f(x)，约束条件为h_k(x)，形如:</p>
 <p>　　s.t. 表示subject to ，“受限于”的意思，l表示有l个约束条件。</p>
 <p><img src="http://img.blog.csdn.net/20150609154048760?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvam9obm55Y29uc3RhbnRpbmU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>　　　则解决方法是<strong>消元法或者拉格朗日法</strong>。消元法比较简单不在赘述，这里主要讲拉格朗日法，因为后面提到的KKT条件是对拉格朗日乘子法的一种泛化。</p>
-<p>　　　例如给定椭球:</p>
-<p><img src="https://images0.cnblogs.com/blog/571227/201411/231635338436753.png" alt=""></p>
+<p>则解决方法是<strong>消元法或者拉格朗日法</strong>。消元法比较简单不在赘述，这里主要讲拉格朗日法，因为后面提到的KKT条件是对拉格朗日乘子法的一种泛化。</p>
+<p>例如给定椭球:</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fp57aqv0gjj306802ewe9.jpg" alt=""></p>
 <p>　  　求这个椭球的内接长方体的最大体积。这个问题实际上就是条件极值问题，即在条件    <img src="https://images0.cnblogs.com/blog/571227/201411/231637406257888.png" alt="">  下，求<img src="https://images0.cnblogs.com/blog/571227/201411/231639439217452.png" alt="">的最大值。</p>
 <p>　　  当然这个问题实际可以先根据条件消去 z <strong>(消元法)</strong>，然后带入转化为无条件极值问题来处理。但是有时候这样做很困难，甚至是做不到的，这时候就需要用<strong>拉格朗日乘数法</strong>了。  </p>
 <p>　　  首先定义拉格朗日函数F(x)：</p>
 <p><img src="http://img.blog.csdn.net/20150609154103976?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvam9obm55Y29uc3RhbnRpbmU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">  （ 其中λk是各个约束条件的待定系数。）   </p>
 <p>然后解变量的偏导方程：</p>
 <p><img src="http://img.blog.csdn.net/20150609154208263?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvam9obm55Y29uc3RhbnRpbmU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">……<img src="http://img.blog.csdn.net/20150609154221648?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvam9obm55Y29uc3RhbnRpbmU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">,</p>
-<p>　　　如果有l个约束条件，就应该有l+1个方程。求出的方程组的解就可能是最优化值（高等数学中提到的极值），将结果带回原方程验证就可得到解。</p>
-<p>　　　回到上面的题目，通过拉格朗日乘数法将问题转化为<br><img src="https://images0.cnblogs.com/blog/571227/201411/231658574531311.png" alt=""></p>
-<p>　　　对<img src="https://images0.cnblogs.com/blog/571227/201411/231659273433944.png" alt="">求偏导得到</p>
-<p><img src="https://images0.cnblogs.com/blog/571227/201411/231705053906736.png" alt=""></p>
-<p>　　　联立前面三个方程得到<img src="https://images0.cnblogs.com/blog/571227/201411/231712092968762.png" alt="">和<img src="https://images0.cnblogs.com/blog/571227/201411/231712459683193.png" alt="">，带入第四个方程解之<br>　　　<br><img src="https://images0.cnblogs.com/blog/571227/201411/231716003591207.png" alt=""></p>
-<p>　　　带入解得最大体积为：</p>
-<p><img src="https://images0.cnblogs.com/blog/571227/201411/231718509061837.png" alt=""></p>
-<p>　　　至于为什么这么做可以求解最优化？维基百科上给出了一个比较好的直观解释。</p>
+<p>如果有l个约束条件，就应该有l+1个方程。求出的方程组的解就可能是最优化值（高等数学中提到的极值），将结果带回原方程验证就可得到解。</p>
+<p>回到上面的题目，通过拉格朗日乘数法将问题转化为<br><img src="https://images0.cnblogs.com/blog/571227/201411/231658574531311.png" alt=""></p>
+<p>对<img src="https://images0.cnblogs.com/blog/571227/201411/231659273433944.png" alt="">求偏导得到</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fp57d3eg4aj30bj07l746.jpg" alt=""></p>
+<p>联立前面三个方程得到<img src="https://images0.cnblogs.com/blog/571227/201411/231712092968762.png" alt="">和<img src="https://images0.cnblogs.com/blog/571227/201411/231712459683193.png" alt="">，带入第四个方程解之</p>
+<p><img src="https://images0.cnblogs.com/blog/571227/201411/231716003591207.png" alt=""></p>
+<p>带入解得最大体积为：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fp57drxninj30ca02rweb.jpg" alt=""></p>
+<p>至于为什么这么做可以求解最优化？维基百科上给出了一个比较好的直观解释。</p>
 <p>举个二维最优化的例子：</p>
-<p>  　　　　 min f(x,y)    </p>
-<p>  　　　　 s.t. g(x,y) = c</p>
+<p>  　 min f(x,y)    </p>
+<p>  　 s.t. g(x,y) = c</p>
 <p>这里画出z=f(x,y)的等高线（函数登高线定义见百度百科）：</p>
-<p><img src="https://pic002.cnblogs.com/images/2012/103496/2012101621500549.png" alt=""></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fp57e9cxqcj309u08374b.jpg" alt=""></p>
 <p>绿线标出的是约束g(x,y)=c的点的轨迹。蓝线是f(x,y)的等高线。箭头表示斜率，和等高线的法线平行。从梯度的方向上来看，显然有d1&gt;d2。绿色的线是约束，也就是说，只要正好落在这条绿线上的点才可能是满足要求的点。如果没有这条约束，f(x,y)的最小值应该会落在最小那圈等高线内部的某一点上。<strong>而现在加上了约束，最小值点应该在哪里呢？显然应该是在f(x,y)的等高线正好和约束线相切的位置，因为如果只是相交意味着肯定还存在其它的等高线在该条等高线的内部或者外部，使得新的等高线与目标函数的交点的值更大或者更小，只有到等高线与目标函数的曲线相切的时候，可能取得最优值。</strong></p>
 <p>　　如果我们对约束也求梯度∇g(x,y)，则其梯度如图中绿色箭头所示。<strong>很容易看出来，要想让目标函数f(x,y)的等高线和约束相切，则他们切点的梯度一定在一条直线上(f和g的斜率平行)。</strong></p>
 <p><strong>也即在最优化解的时候：$∇_f(x,y)=λ（∇_g(x,y)-C)$ </strong>   （其中∇为梯度算子; 即：f(x)的梯度 = λ* g(x)的梯度，λ是常数,可以是任何非0实数，表示左右两边同向。）</p>
