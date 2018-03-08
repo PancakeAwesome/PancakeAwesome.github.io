@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/深度神经网络（DNN）损失函数和激活函数的选择.html
 http://pancakeawesome.ink/深度神经网络(DNN)与反向传播算法-BP.html
 http://pancakeawesome.ink/深度神经网络(DNN)模型与前向传播算法(FP).html
 http://pancakeawesome.ink/主成分分析（PCA）原理总结.html
