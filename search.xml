@@ -149,7 +149,7 @@
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fp362x6u04j30fs068748.jpg" alt=""></p>
 <p>2）输出层的神经元也可以不止一个输出，可以有多个输出，这样模型可以灵活的应用于分类回归，以及其他的机器学习领域比如降维和聚类等。多个神经元输出的输出层对应的一个实例如下图，输出层现在有4个神经元了。</p>
 <p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fp3638heh7j30a007wq34.jpg" alt=""> </p>
-<p>3） 对激活函数做扩展，感知机的激活函数是sign(z)sign(z)sign(z),虽然简单但是处理能力有限，因此神经网络中一般使用的其他的激活函数，比如我们在逻辑回归里面使用过的Sigmoid函数，即：<br>$$<br>f(z)=\frac{1}{1+e^{-z}}<br>$$<br>还有后来出现的tanx, softmax,和ReLU等。通过使用不同的激活函数，神经网络的表达能力进一步增强。对于各种常用的激活函数，我们在后面再专门讲。</p>
+<p>3） 对激活函数做扩展，感知机的激活函数是$sign(z)$,虽然简单但是处理能力有限，因此神经网络中一般使用的其他的激活函数，比如我们在逻辑回归里面使用过的Sigmoid函数，即：<br>$$<br>f(z)=\frac{1}{1+e^{-z}}<br>$$<br>还有后来出现的tanx, softmax,和ReLU等。通过使用不同的激活函数，神经网络的表达能力进一步增强。对于各种常用的激活函数，我们在后面再专门讲。</p>
 <h3 id="2-DNN的基本结构"><a href="#2-DNN的基本结构" class="headerlink" title="2. DNN的基本结构"></a>2. DNN的基本结构</h3><p>上一节我们了解了神经网络基于感知机的扩展，而DNN可以理解为有很多隐藏层的神经网络。这个很多其实也没有什么度量标准, 多层神经网络和深度神经网络DNN其实也是指的一个东西，当然，DNN有时也叫做多层感知机（Multi-Layer perceptron,MLP）, 名字实在是多。后面我们讲到的神经网络都默认为DNN。</p>
 <p>从DNN按不同层的位置划分，DNN内部的神经网络层可以分为三类，输入层，隐藏层和输出层,如下图示例，一般来说第一层是输入层，最后一层是输出层，而中间的层数都是隐藏层。</p>
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fp363kxfogj30fv08sgn4.jpg" alt=""></p>
@@ -10312,9 +10312,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端框架 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 前端框架 </tag>
             
         </tags>
         
