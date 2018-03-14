@@ -3,16 +3,79 @@
   
     
     <entry>
-      <title><![CDATA[深度神经网络（DNN）损失函数和激活函数的选择]]></title>
+      <title><![CDATA[深度神经网络的正则化]]></title>
+      <url>/%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%AD%A3%E5%88%99%E5%8C%96.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)模型与前向传播算法(FP).html">深度神经网络和前向传播算法</a></li>
+</ul>
+<ul>
+<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)与反向传播算法(BP).html">深度神经网络和反向传播算法</a></li>
+</ul>
+<ul>
+<li><a href="http://pancakeawesome.ink/%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88DNN%EF%BC%89%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%92%8C%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%89%E6%8B%A9.html">深度神经网络的损失函数和激活函数</a></li>
+<li><a href="">深度神经网络的正则化</a></li>
+</ul>
+<p>和普通的机器学习算法一样，DNN也会遇到过拟合的问题，需要考虑泛化，这里我们就对DNN的正则化方法做一个总结。</p>
+<h2 id="深度神经网络（DNN）的正则化"><a href="#深度神经网络（DNN）的正则化" class="headerlink" title="深度神经网络（DNN）的正则化"></a>深度神经网络（DNN）的正则化</h2><h3 id="1-DNN的L1-amp-L2正则化"><a href="#1-DNN的L1-amp-L2正则化" class="headerlink" title="1. DNN的L1&amp;L2正则化"></a>1. DNN的L1&amp;L2正则化</h3><p>想到正则化，我们首先想到的就是L1正则化和L2正则化。L1正则化和L2正则化原理类似，这里重点讲述DNN的L2正则化。</p>
+<p>而DNN的L2正则化通常的做法是只针对与线性系数矩阵WWW,而不针对偏倚系数bbb。利用我们之前的机器学习的知识，我们很容易可以写出DNN的L2正则化的损失函数。</p>
+<p>假如我们的每个样本的损失函数是均方差损失函数,则所有的m个样本的损失函数为：<br>$$<br>J(W,b) = \frac{1}{2m}\sum\limits_{i=1}^{m}||a^L-y||_2^2<br>$$<br>则加上了L2正则化后的损失函数是：<br>$$<br>J(W,b) = \frac{1}{2m}\sum\limits_{i=1}^{m}||a^L-y||_2^2 + \frac{\lambda}{2m}\sum\limits_{l=2}^L||w||_2^2<br>$$<br>其中,$\lambda$即我们的正则化超参数，实际使用时需要调参。而$w$为所有权重矩阵$W$的所有列向量。</p>
+<p>如果使用上式的损失函数，进行反向传播算法时，流程和没有正则化的反向传播算法完全一样，区别仅仅在于进行梯度下降法时，$W$的更新公式。</p>
+<p>回想我们在<a href="http://www.cnblogs.com/pinard/p/6422831.html" target="_blank" rel="noopener">深度神经网络（DNN）反向传播算法(BP)</a> 中，WWW的梯度下降更新公式为：<br>$$<br>W^l = W^l -\alpha \sum\limits_{i=1}^m \delta^{i,l}(a^{x, l-1})^T<br>$$<br>则加入L2正则化以后，迭代更新公式变成：<br>$$<br>W^l = W^l -\alpha \sum\limits_{i=1}^m \delta^{i,l}(a^{i, l-1})^T -\alpha \lambda W^l<br>$$<br>注意到上式中的梯度计算中$\frac{1}{m}$我忽略了，因为$\alpha$是常数，而除以$m$也是常数，所以等同于用了新常数αα\alpha$来代替$\frac{\alpha}{m}v。进而简化表达式，但是不影响损失算法。</p>
+<p>类似的L2正则化方法可以用于交叉熵损失函数或者其他的DNN损失函数，这里就不累述了。</p>
+<h3 id="2-DNN通过集成学习的思路正则化"><a href="#2-DNN通过集成学习的思路正则化" class="headerlink" title="2. DNN通过集成学习的思路正则化"></a>2. DNN通过集成学习的思路正则化</h3><p>除了常见的L1&amp;L2正则化，DNN还可以通过集成学习的思路正则化。在<a href="http://www.cnblogs.com/pinard/p/6131423.html" target="_blank" rel="noopener">集成学习原理小结</a> (#ArchiveMonth1_Days_ctl00_Entries_TitleUrl_15 .entrylistItemTitle)中，我们讲到集成学习有Boosting和Bagging两种思路。而DNN可以用Bagging的思路来正则化。常用的机器学习Bagging算法中，随机森林是最流行的。它 通过随机采样构建若干个相互独立的弱决策树学习器，最后采用加权平均法或者投票法决定集成的输出。在DNN中，我们一样使用Bagging的思路。不过和随机森林不同的是，我们这里不是若干个决策树，而是若干个DNN的网络。</p>
+<p>首先我们要对原始的m个训练样本进行有放回随机采样，构建N组m个样本的数据集，然后分别用这N组数据集去训练我们的DNN。即采用我们的前向传播算法和反向传播算法得到N个DNN模型的W,bW,bW,b参数组合，最后对N个DNN模型的输出用加权平均法或者投票法决定最终输出。</p>
+<p>不过用集成学习Bagging的方法有一个问题，就是我们的DNN模型本来就比较复杂，参数很多。现在又变成了N个DNN模型，这样参数又增加了N倍，从而导致训练这样的网络要花更加多的时间和空间。因此一般N的个数不能太多，比如5-10个就可以了。</p>
+<h3 id="3-DNN通过dropout-正则化"><a href="#3-DNN通过dropout-正则化" class="headerlink" title="3. DNN通过dropout 正则化"></a>3. DNN通过dropout 正则化</h3><p>这里我们再讲一种和Bagging类似但是又不同的正则化方法：Dropout。</p>
+<p>所谓的Dropout指的是在用前向传播算法和反向传播算法训练DNN模型时，一批数据迭代时，随机的从全连接DNN网络中去掉一部分隐藏层的神经元。</p>
+<p>比如我们本来的DNN模型对应的结构是这样的：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fpcd7fgp80j308w09e749.jpg" alt=""></p>
+<p>在对训练集中的一批数据进行训练时，我们随机去掉一部分隐藏层的神经元，并用去掉隐藏层的神经元的网络来拟合我们的一批训练数据。如下图，去掉了一半的隐藏层神经元：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fpcd860nrsj309709ijrc.jpg" alt=""></p>
+<p>然后用这个去掉隐藏层的神经元的网络来进行一轮迭代，更新所有的$W,b$。这就是所谓的dropout。</p>
+<p>当然，dropout并不意味着这些神经元永远的消失了。在下一批数据迭代前，我们会把DNN模型恢复成最初的全连接模型，然后再用随机的方法去掉部分隐藏层的神经元，接着去迭代更新$W,b$。当然，这次用随机的方法去掉部分隐藏层后的残缺DNN网络和上次的残缺DNN网络并不相同。</p>
+<p>总结下dropout的方法： 每轮梯度下降迭代时，它需要将训练数据分成若干批，然后分批进行迭代，每批数据迭代时，需要将原始的DNN模型随机去掉部分隐藏层的神经元，用残缺的DNN模型来迭代更新$W,b$。每批数据迭代更新完毕后，要将残缺的DNN模型恢复成原始的DNN模型。</p>
+<p>从上面的描述可以看出dropout和Bagging的正则化思路还是很不相同的。dropout模型中的$W,b$是一套，共享的。所有的残缺DNN迭代时，更新的是同一组$W,b$；而Bagging正则化时每个DNN模型有自己独有的一套$W,b$参数，相互之间是独立的。当然他们每次使用基于原始数据集得到的分批的数据集来训练模型，这点是类似的。</p>
+<p>使用基于dropout的正则化比基于bagging的正则化简单，这显而易见，当然天下没有免费的午餐，由于dropout会将原始数据分批迭代，因此原始数据集最好较大，否则模型可能会欠拟合。</p>
+<h3 id="4-DNN通过增强数据集正则化"><a href="#4-DNN通过增强数据集正则化" class="headerlink" title="4. DNN通过增强数据集正则化"></a>4. DNN通过增强数据集正则化</h3><p>增强模型泛化能力最好的办法是有更多更多的训练数据，但是在实际应用中，更多的训练数据往往很难得到。有时候我们不得不去自己想办法能无中生有，来增加训练数据集，进而得到让模型泛化能力更强的目的。</p>
+<p>对于我们传统的机器学习分类回归方法，增强数据集还是很难的。你无中生有出一组特征输入，却很难知道对应的特征输出是什么。但是对于DNN擅长的领域，比如图像识别，语音识别等则是有办法的。以图像识别领域为例，对于原始的数据集中的图像，我们可以将原始图像稍微的平移或者旋转一点点，则得到了一个新的图像。虽然这是一个新的图像，即样本的特征是新的，但是我们知道对应的特征输出和之前未平移旋转的图像是一样的。</p>
+<p>举个例子，下面这个图像，我们的特征输出是5。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fpcd92gawaj30ev0b5mwy.jpg" alt=""></p>
+<p>我们将原始的图像旋转15度，得到了一副新的图像如下：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fpcd9c63alj30eu0b63yb.jpg" alt=""></p>
+<p>我们现在得到了一个新的训练样本，输入特征和之前的训练样本不同，但是特征输出是一样的，我们可以确定这是5.</p>
+<p>用类似的思路，我们可以对原始的数据集进行增强，进而得到增强DNN模型的泛化能力的目的。</p>
+<h3 id="5-其他DNN正则化方法"><a href="#5-其他DNN正则化方法" class="headerlink" title="5. 其他DNN正则化方法"></a>5. 其他DNN正则化方法</h3><p>DNN的正则化的方法是很多的，还是持续的研究中。在<a href="http://www.deeplearningbook.org/" target="_blank" rel="noopener">Deep Learning</a>这本书中，正则化是洋洋洒洒的一大章。里面提到的其他正则化方法有：Noise Robustness， Adversarial Training，Early Stopping等。如果大家对这些正则化方法感兴趣，可以去阅读<a href="http://www.deeplearningbook.org/" target="_blank" rel="noopener">Deep Learning</a>这本书中的第七章。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><p>1） <a href="http://neuralnetworksanddeeplearning.com/index.html" target="_blank" rel="noopener">Neural Networks and Deep Learning</a> by By Michael Nielsen</p>
+<p>2） <a href="http://www.deeplearningbook.org/" target="_blank" rel="noopener">Deep Learning</a>, book by Ian Goodfellow, Yoshua Bengio, and Aaron Courville</p>
+<p>3） <a href="http://ufldl.stanford.edu/tutorial/" target="_blank" rel="noopener">UFLDL Tutorial</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 深度学习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[深度神经网络的损失函数和激活函数]]></title>
       <url>/%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88DNN%EF%BC%89%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%92%8C%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%89%E6%8B%A9.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
-<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)模型与前向传播算法(FP).html">深度神经网络(DNN)模型与前向传播算法(FP)</a></li>
+<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)模型与前向传播算法(FP).html">深度神经网络和前向传播算法</a></li>
 </ul>
 <ul>
-<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)与反向传播算法(BP).html">深度神经网络（DNN）与反向传播算法(BP)</a></li>
+<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)与反向传播算法(BP).html">深度神经网络和反向传播算法</a></li>
 </ul>
 <ul>
-<li><a href="http://pancakeawesome.ink/%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88DNN%EF%BC%89%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%92%8C%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%89%E6%8B%A9.html">深度神经网络（DNN）损失函数和激活函数的选择</a></li>
+<li><a href="http://pancakeawesome.ink/%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88DNN%EF%BC%89%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%92%8C%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%89%E6%8B%A9.html">深度神经网络的损失函数和激活函数</a></li>
 </ul>
 <p>在<a href="http://pancakeawesome.ink/深度神经网络(DNN)与反向传播算法(BP).html">深度神经网络（DNN）反向传播算法(BP)</a> 中，我们对DNN的前向反向传播算法的使用做了总结。里面使用的损失函数是均方差，而激活函数是Sigmoid。实际上DNN可以使用的损失函数和激活函数不少。这些损失函数和激活函数如何选择呢？下面我们就对DNN损失函数和激活函数的选择做一个总结。</p>
 <h2 id="深度神经网络（DNN）损失函数和激活函数的选择"><a href="#深度神经网络（DNN）损失函数和激活函数的选择" class="headerlink" title="深度神经网络（DNN）损失函数和激活函数的选择"></a>深度神经网络（DNN）损失函数和激活函数的选择</h2><h3 id="1-均方差损失函数-Sigmoid激活函数的问题"><a href="#1-均方差损失函数-Sigmoid激活函数的问题" class="headerlink" title="1. 均方差损失函数+Sigmoid激活函数的问题"></a>1. 均方差损失函数+Sigmoid激活函数的问题</h3><p>在讲反向传播算法时，我们用均方差损失函数和Sigmoid激活函数做了实例，首先我们就来看看均方差+Sigmoid的组合有什么问题。</p>
@@ -70,13 +133,13 @@
     </entry>
     
     <entry>
-      <title><![CDATA[深度神经网络（DNN）与反向传播算法（BP）]]></title>
+      <title><![CDATA[深度神经网络和反向传播算法]]></title>
       <url>/%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C(DNN)%E4%B8%8E%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95(BP).html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
-<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)模型与前向传播算法(FP).html">深度神经网络(DNN)模型与前向传播算法(FP)</a></li>
+<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)模型与前向传播算法(FP).html">深度神经网络和前向传播算法</a></li>
 </ul>
 <ul>
-<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)与反向传播算法(BP).html">深度神经网络（DNN）与反向传播算法(BP)</a></li>
+<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)与反向传播算法(BP).html">深度神经网络和反向传播算法</a></li>
 </ul>
 <ul>
 <li><a href="http://pancakeawesome.ink/%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88DNN%EF%BC%89%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%92%8C%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%89%E6%8B%A9.html">深度神经网络（DNN）损失函数和激活函数的选择</a></li>
@@ -128,13 +191,13 @@
     </entry>
     
     <entry>
-      <title><![CDATA[深度神经网络（DNN）模型与前向传播算法（FP）]]></title>
+      <title><![CDATA[深度神经网络和前向传播算法]]></title>
       <url>/%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C(DNN)%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95(FP).html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
-<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)模型与前向传播算法(FP).html">深度神经网络(DNN)模型与前向传播算法(FP)</a></li>
+<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)模型与前向传播算法(FP).html">深度神经网络和前向传播算法</a></li>
 </ul>
 <ul>
-<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)与反向传播算法(BP).html">深度神经网络（DNN）与反向传播算法(BP)</a></li>
+<li><a href="http://pancakeawesome.ink/深度神经网络(DNN)与反向传播算法(BP).html">深度神经网络和反向传播算法</a></li>
 </ul>
 <ul>
 <li><a href="http://pancakeawesome.ink/%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88DNN%EF%BC%89%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%92%8C%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%89%E6%8B%A9.html">深度神经网络（DNN）损失函数和激活函数的选择</a></li>
@@ -7318,9 +7381,9 @@ fn();
         
         <tags>
             
-            <tag> 网络 </tag>
-            
             <tag> http协议 </tag>
+            
+            <tag> 网络 </tag>
             
         </tags>
         
