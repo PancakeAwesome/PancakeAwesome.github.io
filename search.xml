@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[论文笔记之Fully Convolutional Networks for Semantic Segmentation]]></title>
       <url>/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E4%B9%8BFully-Convolutional-Networks-for-Semantic-Segmentation.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="【论文信息】"><a href="#【论文信息】" class="headerlink" title="【论文信息】"></a>【论文信息】</h3><p>《Fully Convolutional Networks for Semantic Segmentation》<br>CVPR 2015 best paper<br>概览&amp;主要贡献<br>这篇论文是2015cvpr的best paper，可以说是在cnn上做图像语义分割的开山之作。<br>提出了一种end-to-end的做semantic segmentation的方法，简称FCN。<br>如下图所示，直接拿segmentation 的 ground truth作为监督信息，训练一个端到端的网络，让网络做pixelwise的prediction，直接预测label map。</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="【论文信息】"><a href="#【论文信息】" class="headerlink" title="【论文信息】"></a>【论文信息】</h3><p>《Fully Convolutional Networks for Semantic Segmentation》<br>CVPR 2015 best paper<br>原文<a href="https://arxiv.org/abs/1411.4038" target="_blank" rel="noopener">链接</a><br>概览&amp;主要贡献<br>这篇论文是2015cvpr的best paper，可以说是在cnn上做图像语义分割的开山之作。<br>提出了一种end-to-end的做semantic segmentation的方法，简称FCN。<br>如下图所示，直接拿segmentation 的 ground truth作为监督信息，训练一个端到端的网络，让网络做pixelwise的prediction，直接预测label map。</p>
 <p>(自己类比思想:faster rcnn中的rbn-&gt;(fc-&gt;region proposal) label map-&gt; fast-rcnn for fine tuning)</p>
 <h3 id="语义分割"><a href="#语义分割" class="headerlink" title="语义分割"></a>语义分割</h3><p>语义就是指物体的类别，即属于同一类别的物体都算作一类</p>
 <p>比如图像中的3个人算作一类，5辆汽车算作一类等，它们都属于同一类别，即“人类”、“汽车”</p>
@@ -19,7 +19,8 @@
 <blockquote>
 <p>线性插值法利用原图像中两个点计算像素值进行插值，双线性插值法利用原图像中四个点计算目标像素值进行插值</p>
 </blockquote>
-<h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fq53ycl3mlj30tv07hgma.jpg" alt=""><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fq6pl9lwu1j30ub0cpdhv.jpg" alt=""><br>如图所示<br>1）原始图像是500*500，为了使最后的输出为能够得到一个更大的feature图，便于deconvolution，因此人为的在原图上加了padding=100，（这样的做法略显粗糙，以后 改变stride+hole算法可以解决）</p>
+<h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fq53ycl3mlj30tv07hgma.jpg" alt=""></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fq6rwk265ij30u50ckdi4.jpg" alt=""><br>如图所示<br>1）原始图像是500*500，为了使最后的输出为能够得到一个更大的feature图，便于deconvolution，因此人为的在原图上加了padding=100，（这样的做法略显粗糙，以后 改变stride+hole算法可以解决）</p>
 <p>2.）pool5之前就是纯粹的vgg网络</p>
 <p>3）pool5之后将原来的两个4096的全连接层，改成1<em>1的卷积核生成的16</em>16*4096的map，channel数量为4096</p>
 <p>4）对于最后一个16<em>16</em>4096的在用一个1<em>1的卷积核去卷积，channel=21 得到16</em>16*21的map，称为coarse score map1</p>
@@ -5527,9 +5528,9 @@ export default class Hello extends Component {
         
         <tags>
             
-            <tag> 前端工具 </tag>
-            
             <tag> react </tag>
+            
+            <tag> 前端工具 </tag>
             
         </tags>
         
@@ -10235,9 +10236,9 @@ npm run dist
             
             <tag> 前端技术 </tag>
             
-            <tag> 前端工具 </tag>
-            
             <tag> react </tag>
+            
+            <tag> 前端工具 </tag>
             
         </tags>
         
@@ -11409,9 +11410,9 @@ class ImgFigure extends React.Component {
             
             <tag> 前端技术 </tag>
             
-            <tag> 前端工具 </tag>
-            
             <tag> react </tag>
+            
+            <tag> 前端工具 </tag>
             
         </tags>
         
