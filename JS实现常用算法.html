@@ -1,0 +1,528 @@
+<!DOCTYPE html><html style="display:none" lang="zh"><head><meta charset="utf-8"><script>window.materialVersion="1.5.0",window.oldVersion=["codestartv1","1.3.4","1.4.0","1.4.0b1"]</script><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://busuanzi.ibruce.info"><link rel="dns-prefetch" href="https://changyan.sohu.com"><title> JS实现常用算法 | Edward&#39;s Blog</title><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0097A7"><meta name="author" content="Edward Guan"><meta name="description" itemprop="description" content="用JavaScript实现常见的一些算法题"><meta name="keywords" content="前端,node,react,js,java,自学编程,学习分享,UESTC,算法思想,面试"><script>window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}},lsloader.removeLS=function(e){try{localStorage.removeItem(e)}catch(e){}},lsloader.setLS=function(e,t){try{localStorage.setItem(e,t)}catch(e){}},lsloader.getLS=function(e){var t="";try{t=localStorage.getItem(e)}catch(e){t=""}return t},versionString="/*"+(window.materialVersion||"unknownVersion")+"*/",lsloader.clean=function(){try{for(var e=[],t=0;t<localStorage.length;t++)e.push(localStorage.key(t));e.forEach(function(e){var t=lsloader.getLS(e);window.oldVersion&&window.oldVersion.reduce(function(e,n){return e||-1!==t.indexOf("/*"+n+"*/")},!1)&&lsloader.removeLS(e)})}catch(e){}},lsloader.clean(),lsloader.load=function(e,t,n,s){"boolean"==typeof n&&(s=n,n=void 0),s=s||!1,n=n||function(){};var a;if((a=this.getLS(e))&&-1===a.indexOf(versionString))return this.removeLS(e),void this.requestResource(e,t,n,s);if(a){if(a.split(versionString)[0]!=t)return console.log("reload:"+t),this.removeLS(e),void this.requestResource(e,t,n,s);a=a.split(versionString)[1],s?(this.jsRunSequence.push({name:e,code:a}),this.runjs(t,e,a)):(document.getElementById(e).appendChild(document.createTextNode(a)),n())}else this.requestResource(e,t,n,s)},lsloader.requestResource=function(e,t,n,s){var a=this;s?this.iojs(t,e,function(e,t,n){a.setLS(t,e+versionString+n),a.runjs(e,t,n)}):this.iocss(t,e,function(n){document.getElementById(e).appendChild(document.createTextNode(n)),a.setLS(e,t+versionString+n)},n)},lsloader.iojs=function(e,t,n){var s=this;s.jsRunSequence.push({name:t,code:""});try{var a=new XMLHttpRequest;a.open("get",e,!0),a.onreadystatechange=function(){if(4==a.readyState){if((a.status>=200&&a.status<300||304==a.status)&&""!=a.response)return void n(e,t,a.response);s.jsfallback(e,t)}},a.send(null)}catch(n){s.jsfallback(e,t)}},lsloader.iocss=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.iofonts=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.runjs=function(e,t,n){if(t&&n)for(var s in this.jsRunSequence)this.jsRunSequence[s].name==t&&(this.jsRunSequence[s].code=n);if(this.jsRunSequence[0]&&this.jsRunSequence[0].code&&"failed"!=this.jsRunSequence[0].status)(o=document.createElement("script")).appendChild(document.createTextNode(this.jsRunSequence[0].code)),o.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(o),this.jsRunSequence.shift(),this.jsRunSequence.length>0&&this.runjs();else if(this.jsRunSequence[0]&&"failed"==this.jsRunSequence[0].status){var a=this,o=document.createElement("script");o.src=this.jsRunSequence[0].path,o.type="text/javascript",this.jsRunSequence[0].status="loading",o.onload=function(){a.jsRunSequence.shift(),a.jsRunSequence.length>0&&a.runjs()},document.body.appendChild(o)}},lsloader.tagLoad=function(e,t){this.jsRunSequence.push({name:t,code:"",path:e,status:"failed"}),this.runjs()},lsloader.jsfallback=function(e,t){if(!this.jsnamemap[t]){this.jsnamemap[t]=t;for(var n in this.jsRunSequence)this.jsRunSequence[n].name==t&&(this.jsRunSequence[n].code="",this.jsRunSequence[n].status="failed",this.jsRunSequence[n].path=e);this.runjs()}},lsloader.cssfallback=function(e,t,n){if(!this.cssnamemap[t]){this.cssnamemap[t]=1;var s=document.createElement("link");s.type="text/css",s.href=e,s.rel="stylesheet",s.onload=s.onerror=n;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(s,a)}},lsloader.runInlineScript=function(e,t){var n=document.getElementById(t).innerText;this.jsRunSequence.push({name:e,code:n}),this.runjs()},lsloader.loadCombo=function(e){var t="",n={};for(var s in e){var a=this.getLS(e[s].name);if(a)var o=a.split(versionString)[0],i=a.split(versionString)[1];else o="";o==e[s].path?this.jsRunSequence.push({name:e[s].name,code:i,path:e[s].path}):(this.jsRunSequence.push({name:e[s].name,code:null,path:e[s].path,status:"comboloading"}),n[e[s].name]=!0,t+=(""==t?"":";")+e[s].path)}var u=this;if(t){var r=new XMLHttpRequest;r.open("get",combo+t,!0),r.onreadystatechange=function(){if(4==r.readyState)if(r.status>=200&&r.status<300||304==r.status){if(""!=r.response)return void u.runCombo(r.response,n)}else{for(var e in u.jsRunSequence)n[u.jsRunSequence[e].name]&&(u.jsRunSequence[e].status="failed");u.runjs()}},r.send(null)}this.runjs()},lsloader.runCombo=function(e,t){(e=e.split("/*combojs*/")).shift();for(var n in this.jsRunSequence)t[this.jsRunSequence[n].name]&&e[0]&&(this.jsRunSequence[n].status="comboJS",this.jsRunSequence[n].code=e[0],this.setLS(this.jsRunSequence[n].name,this.jsRunSequence[n].path+versionString+e[0]),e.shift());this.runjs()}</script><script>function Queue(){this.dataStore=[],this.offer=function(e){this.debug&&console.log("Offered a Queued Function."),"function"==typeof e?this.dataStore.push(e):console.log("You must offer a function.")},this.poll=function(){return this.debug&&console.log("Polled a Queued Function."),this.dataStore.shift()},this.execNext=function(){var e=this.poll();void 0!==e&&(this.debug&&console.log("Run a Queued Function."),e())},this.debug=!1,this.startDebug=function(){this.debug=!0}}var queue=new Queue</script><link rel="icon shortcut" type="image/ico" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="icon" sizes="192x192" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="apple-touch-icon" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="apple-mobile-web-app-title" content="Title"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="480"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Edward&#39;s Blog"> <!--[if lte IE 9]><link rel="stylesheet" href="/css/ie-blocker.css"><script src="/js/ie-blocker.zhCN.js"></script><![endif]--><style id="material_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="style_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="prettify_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="prettify_theme"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style>body,html{font-family:Roboto,"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;overflow-x:hidden!important}code{font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace}a{color:#00838f}#scheme-Paradox .hot_tags-count,#scheme-Paradox .sidebar-colored .sidebar-badge,#scheme-Paradox .sidebar-colored .sidebar-header,#scheme-Paradox .sidebar_archives-count,#search-form-label:after,#search-label,.mdl-card__media{background-color:#0097a7!important}#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus,#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover{color:#0097a7!important}#ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a,#post_entry-right-info,.sidebar-colored .sidebar-nav li:hover>a,.sidebar-colored .sidebar-nav li:hover>a i,.sidebar-colored .sidebar-nav li>a:focus i,.sidebar-colored .sidebar-nav li>a:hover,.sidebar-colored .sidebar-nav li>a:hover i,.sidebar-colored .sidebar-nav>.open>a,.sidebar-colored .sidebar-nav>.open>a:focus,.sidebar-colored .sidebar-nav>.open>a:hover{color:#0097a7!important}.toTop{background:#757575!important}.material-layout .material-index>.material-nav,.material-layout .material-post>.material-nav,.material-nav a{color:#757575}#scheme-Paradox .MD-burger-layer{background-color:#757575}#scheme-Paradox #post-toc-trigger-btn{color:#757575}.post-toc a:hover{color:#00838f;text-decoration:underline}</style><style>body{background-color:#f5f5f5}#scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{background-color:#fff}</style><style>.fade{transition:all .8s linear;-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0);opacity:1}.fade.out{opacity:0}</style><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==",!0)</script><meta property="og:url" content="http://pancakeawesome.ink"><meta property="og:type" content="blog"><meta property="og:title" content="JS实现常用算法 | Edward&#39;s Blog"><meta property="og:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta property="og:description" content="用JavaScript实现常见的一些算法题"><meta property="og:article:tag" content="算法思想"><meta property="og:article:tag" content="面试"><meta property="article:published_time" content="Tue Nov 28 2017 09:54:31 GMT+0800"><meta property="article:modified_time" content="Tue Nov 28 2017 10:22:09 GMT+0800"><meta name="twitter:title" content="JS实现常用算法 | Edward&#39;s Blog"><meta name="twitter:description" content="用JavaScript实现常见的一些算法题"><meta name="twitter:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:url" content="http://pancakeawesome.ink"><link rel="canonical" href="http://pancakeawesome.ink/JS实现常用算法.html"><script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://pancakeawesome.ink/JS实现常用算法.html",
+    "headline": "JS实现常用算法",
+    "datePublished": "Tue Nov 28 2017 09:54:31 GMT+0800",
+    "dateModified": "Tue Nov 28 2017 10:22:09 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Edward Guan",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/rip.jpeg"
+        },
+        "description": "你说人生艳丽我没有异议，你说人生忧郁我不言语"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Edward&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"
+        }
+    },
+    "keywords": ",算法思想,面试前端,node,react,js,java,自学编程,学习分享,UESTC",
+    "description": "用JavaScript实现常见的一些算法题",
+}
+</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?0c041dca6f79c4e40fb45d1283e327e7";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body id="scheme-Paradox" class="lazy"><div class="material-layout mdl-js-layout has-drawer is-upgraded"><main class="material-layout__content" id="main"><div id="top"></div> <button class="MD-burger-icon sidebar-toggle"><span class="MD-burger-layer"></span></button> <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon"> <i class="material-icons">format_list_numbered</i></button><ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh;overflow-y:scroll"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#队列、栈的实现"><span class="post-toc-number">2.</span> <span class="post-toc-text">队列、栈的实现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常见的时间复杂度的级别"><span class="post-toc-number">3.</span> <span class="post-toc-text">常见的时间复杂度的级别</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#案例研究-union-find算法"><span class="post-toc-number">4.</span> <span class="post-toc-text">案例研究:union-find算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#动态连通性问题"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">动态连通性问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">实现</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-number">5.</span> <span class="post-toc-text">后记</span></a></li></ol></ul><div class="material-post_container"><div class="material-post mdl-grid"><div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col"><div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50"><script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 30 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script><p class="article-headline-p"> JS实现常用算法</p></div><div class="mdl-color-text--grey-700 mdl-card__supporting-text meta"><div id="author-avatar"> <img src="/img/rip.jpeg" width="44px" height="44px" alt="Author Avatar"></div><div> <strong>Edward Guan</strong> <span>11月 28, 2017</span></div><div class="section-spacer"></div> <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">devices other</i> <span class="visuallyhidden">devices other</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button"><li class="mdl-menu__item">在其它设备中阅读本文章</li> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACWElEQVR42u3aS5KDMAwFwNz/0jMHSEGeLCNIqlmlUnzcXiDzrNffTx8vPDw8PDw8PDy8h/Fe8ZFc9eHBb2ce/W6NDQ8PD2+Elwzr6J/zO+SY5LnR2PDw8PAGeUcv3PNzkhd6wq4+Fw8PD+97eWvlJF9S4+Hh4f0qb1ec8dDCgIeHh9f44M8HnUcS+dAvz1rw8PDwYl7+Wp//Pbq/h4eHhxfwyi1NWwOFavNBuekKDw8P7wJe/vhz8FoDQacw4OHh4T2B1y8YnXj36KrkAwAPDw9vkrf2gl7bGEumY6144OHh4c3zOgNKFrv5Vckd8PDw8O7lJa/yK9oLdsUWeHh4ePO8fCGbNxxUi83506ulCA8PD+8uXj+MiJa/cflJJgsPDw9vkldtFKhGDHlpyRfuUesAHh4e3gW880VzHuyulZPqlEWfAXh4eHgjvOog+gPtTF+5XRUPDw9vKy8PAjrDSsKOajiy2BmBh4eH1+YlUWw1vNg7WXlMjIeHhzfJ29WEmjccJEvz6nYaHh4e3l28TiRRjR523Q0PDw9vnre2wV8ICOLAt3MmHh4e3jwvj2j7cW114gphMR4eHt5NvPzWHXASPSTFAA8PD2+SVz3yh60NtNNGgIeHhzfDW3sdJ4vj5A7nRaUa6eLh4eFN8pJikLcF7A0dNhQGPDw8vMt4ewfRmb686QoPDw/vW3jVMHfXkn3DBhgeHh7e43l5JFHdflvc38PDw8PbykuWvJ3otgpLFvF4eHh4d/E6EcBahNFpw/oQKOPh4eFdzPu9Aw8PDw8PDw8P7wHHP7bTSLTWF75+AAAAAElFTkSuQmCC"></ul> <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">bookmark</i> <span class="visuallyhidden">bookmark</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button"><li class="mdl-menu__item"> <a class="post_tag-link" href="/tags/算法思想/">算法思想</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/面试/">面试</a></li></ul> <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">share</i> <span class="visuallyhidden">share</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button"><a class="post_share-link" href="#"><li class="mdl-menu__item"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> &nbsp;浏览量</span></li></a><a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=JS实现常用算法&url=http://pancakeawesome.ink/JS实现常用算法.html&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank"><li class="mdl-menu__item"> 分享到微博</li></a><a class="post_share-link" href="https://twitter.com/intent/tweet?text=JS实现常用算法&url=http://pancakeawesome.ink/JS实现常用算法.html&via=Edward Guan" target="_blank"><li class="mdl-menu__item"> 分享到 Twitter</li></a><a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/JS实现常用算法.html" target="_blank"><li class="mdl-menu__item"> 分享到 Facebook</li></a><a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/JS实现常用算法.html" target="_blank"><li class="mdl-menu__item"> 分享到 Google+</li></a><a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/JS实现常用算法.html&title=JS实现常用算法" target="_blank"><li class="mdl-menu__item"> 分享到 LinkedIn</li></a><a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=JS实现常用算法&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/JS实现常用算法.html" target="_blank"><li class="mdl-menu__item"> 分享到 QQ</li></a></ul></div><div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目标：总结本书主要内容，相应算法使用js来模仿实现</p><blockquote><p>在计算机科学领域，我们用算法这个词来描述一种有限、确定、有效的并适合用计算机程序来实现的解决问题的方法。</p><p>我们关注的大多数算法都需要<code>适当地组织数据</code>，而为了组织数据就产生了<code>数据结构</code></p></blockquote><p><strong>原书所有代码是基于JAVA语法的，这里，我们使用js来实现所有算法逻辑</strong></p><h2 id="队列、栈的实现"><a href="#队列、栈的实现" class="headerlink" title="队列、栈的实现"></a>队列、栈的实现</h2><blockquote><p>队列是一种先进先出的集合类型，栈是一种先进后出的集合类型</p></blockquote><p>首先定义要实现的队列、栈的API<br><strong>Queue</strong>说明Queue()创建空队列enqueue(item)添加一个元素dequeue()删除最近添加的元素isEmpty()队列是否为空size（）队列中元素的数量iterator()返回一个可迭代对象</p><p><strong>Stack</strong>说明Stack()创建空栈push(item)添加一个元素pop()删除最近添加的元素isEmpty()栈是否为空size（）栈中元素的数量iterator()返回一个可迭代对象</p><p>Iterator说明hasNext()是否还有下一个元素next()返回下一个元素<br>由于JS语言的特殊性，采用数组的方式来实现队列、栈是非常容易的,js中数组本来就提供了从头部插入、删除元素，从尾部插入、删除元素的功能。这里只需要简单的封装一下(js的弱类型特点，不需要像JAVA那样采用泛型来声明可以储存任意类型的数据，同时，js中数组是不定长的，可以动态扩展)</p><p><strong>实现</strong></p><p>队列的数组方式实现，并模拟可迭代功能</p><pre><code>    function Queue() {
+    this.container = []
+}
+Queue.prototype.enqueue = function (ele) {
+    this.container.push(ele)
+}
+Queue.prototype.dequeue = function () {
+    return this.container.shift()
+}
+Queue.prototype.isEmpty = function () {
+    return !this.container.length
+}
+Queue.prototype.size = function () {
+    return this.container.length
+}
+
+Queue.prototype.iterator = function () {
+    var container = this.container
+    var current = 0
+    return {
+        hasNext: function () {
+            return current !== container.length
+        },
+        next: function () {
+            return container[current++]
+        }
+    }
+}
+
+用例:
+var Qu = new Queue()
+Qu.enqueue(&#39;to&#39;)
+Qu.enqueue(&#39;be&#39;)
+Qu.enqueue(&#39;or&#39;)
+Qu.enqueue(&#39;not&#39;)
+Qu.dequeue()
+var iterator = Qu.iterator()
+while (iterator.hasNext()) {
+    console.log(iterator.next())
+}
+输出:
+be
+or
+not
+</code></pre><p>栈的数组方式实现，并模拟可迭代功能</p><pre><code>class Stack {
+
+    constructor() {
+        this.container = []
+    }
+
+    push(ele) {
+        this.container.unshift(ele)
+    }
+
+    pop() {
+        return this.container.shift()
+    }
+
+    isEmpty() {
+        return !this.container.length
+    }
+    size() {
+        return this.container.length
+    }
+
+    iterator() {
+        const container = this.container
+        let current = 0
+        return {
+            hasNext: function () {
+                return current !== container.length
+            },
+            next: function () {
+                return container[current++]
+            }
+        }
+    }
+
+}
+用例:
+var St = new Stack()
+Stack.push(&#39;to&#39;)
+Stack.push(&#39;be&#39;)
+Stack.push(&#39;or&#39;)
+Stack.push(&#39;not&#39;)
+Stack.pop()
+var iterator = Stack.iterator()
+while (iterator.hasNext()) {
+    console.log(iterator.next())
+}
+输出:
+or
+be
+to
+</code></pre><blockquote><p>链表是一种递归的数据结构，它或者为空(null)，或者是指向一个结点(node)的引用，该结点含有一个泛型的元素和一个指向另一个链表的引用。</p></blockquote><p>在这个定义中，结点是一个可能含有任意类型数据的抽象实体，它所包含的指向结点的应用显示了它在构造链表之中的作用。</p><p>结点表示:</p><pre><code> function Node(){
+        this.item=null
+        this.next=null
+    }
+</code></pre><p>构造链表：</p><p><img src="https://img.funteas.com/ee445ad64319177f007f2a53102cbb29?imageView2/2/w/800" alt=""></p><p>在表头插入结点</p><pre><code>var oldFirst=first
+    first=new Node()
+    first.next=oldFirst
+</code></pre><p>从表头删除结点</p><pre><code>first=first.next
+</code></pre><p>从表尾插入结点</p><pre><code> var oldlast=last
+    lst=new Node()
+    oldlast.next=last
+</code></pre><blockquote><p>实现任意插入和删除操作的标准解决方案是双向链表，其中每个结点都含有两个链接，分别指向不同的方向</p></blockquote><pre><code>function Node(item) {
+    this.item = item
+    this.next = null
+}
+
+function Stack() {
+    this.count = 0 //元素数量
+    this.first = null //指向栈顶
+}
+
+Stack.prototype.isEmpty = function () {
+    return this.first == null
+}
+Stack.prototype.size = function () {
+    return this.count
+}
+Stack.prototype.push = function (ele) {
+    var oldfirst = this.first
+    var newnode = new Node(ele)
+    newnode.next = oldfirst
+    this.first = newnode
+    this.count++
+}
+Stack.prototype.pop = function () {
+    var ele = this.first.item
+    this.first = this.first.next
+    this.count--
+    return ele
+}
+Stack.prototype.iterator = function () {
+    var firstnode = this.first
+    var count = this.count
+    return {
+        hasNext: function () {
+            return  count
+        },
+        next: function () {
+            var ele=firstnode.item
+            firstnode=firstnode.next
+            count--
+            return ele
+        }
+    }
+}
+用例：
+var stack=new Stack()
+stack.push(&#39;to&#39;)
+stack.push(&#39;be&#39;)
+stack.push(&#39;or&#39;)
+stack.push(&#39;not&#39;)
+stack.push(&#39;to&#39;)
+stack.push(&#39;be&#39;)
+console.log(stack.size())
+var iterator=stack.iterator()
+while(iterator.hasNext()){
+    console.log(iterator.next())
+}
+输出：
+6
+be
+to
+not
+or
+be
+to
+</code></pre><blockquote><p>将链表表示为一条从最早插入的元素到最近插入的元素的链表，实例变量first指向队列的开头，last指向队列的结尾。这样，要讲一个元素入列，就将它添加到表尾，要将一个元素出列，就删除表头的结点.</p></blockquote><pre><code>function Node(item) {
+    this.item = item
+    this.next = null
+}
+
+class Queue {
+
+    constructor() {
+        this.first = null
+        this.last = null
+        this.count = 0
+    }
+
+    isEmpty() {
+        return this.first == null
+    }
+    size() {
+        return this.count
+    }
+    enqueue(item) {
+        const oldlast = this.last
+        const last = new Node(item)
+        this.last = last
+        if (this.isEmpty()) {
+            this.first = last
+        } else {
+            oldlast.next = last
+        }
+        this.count++
+    }
+    dequeue() {
+        const ele = this.first.item
+        this.first = this.first.next
+        if (this.isEmpty()) {
+            this.last = null
+        }
+        this.count--
+        return ele
+    }
+    iterator() {
+        let firstnode = this.first
+        let count = this.count
+        return {
+            hasNext: function () {
+                return count
+            },
+            next: function () {
+                var ele = firstnode.item
+                firstnode = firstnode.next
+                count--
+                return ele
+            }
+        }
+    }
+}
+用例:
+const queue=new Queue()
+queue.enqueue(&#39;to&#39;)
+queue.enqueue(&#39;be&#39;)
+queue.enqueue(&#39;or&#39;)
+queue.enqueue(&#39;not&#39;)
+queue.enqueue(&#39;to&#39;)
+queue.enqueue(&#39;be&#39;)
+queue.dequeue()
+console.log(queue.size())
+const iterator=queue.iterator()
+while(iterator.hasNext()){
+    console.log(iterator.next())
+}
+
+输出:
+5
+be
+or
+not 
+to
+be
+</code></pre><blockquote><p>在结构化存储数据集时，链表是数组的一种重要的替代方式，两者都非常基础，常常被称为顺序存储和链式存储。</p></blockquote><p><img src="https://img.funteas.com/70ac99ef5b679cc727dad3b2b4aa9f86?imageView2/2/w/800" alt=""></p><h2 id="常见的时间复杂度的级别"><a href="#常见的时间复杂度的级别" class="headerlink" title="常见的时间复杂度的级别"></a>常见的时间复杂度的级别</h2><p><img src="https://img.funteas.com/baa593fe9ffa490960a5c8acec7f70fa?imageView2/2/w/800" alt=""></p><p>问题描述：</p><blockquote><p>假设所有整数都不相同，统计一个数组中所有和为0的三整数元组的数量</p></blockquote><pre><code>function threesum(arr){
+    var N=arr.length
+    var count=0
+    for(var i=0;i&lt;N;i++){
+        for(var j=i+1;j&lt;N;j++){
+            for(var k=j+1;k&lt;N;k++){
+                if(arr[i]+arr[j]+arr[k]==0){
+                    count++
+                }
+            }
+        }
+    }
+    return count
+}
+</code></pre><p>分析：</p><p>执行最频繁的指令决定了程序执行的总时间，对上面的threesum算法，最频繁的部分就是if语句判断，它套在三个for循环内，对于给定的N，if语句执行次数为<code>N*(N-1)*(N-2)/6=N^3/6-N^2/2+N/3</code>,当N很大时，首项后的其他项都相对较小可以忽略，所以if语句的执行次数约等于<code>N^3/6</code>,表示为(~N^3/6)</p><p>所以暴力算法的threesum执行用时的增长数量级为<code>N^3</code></p><blockquote><p>学习程序的增长数量级的一个重要动力是为了帮助我们为同一个问题设计更快的算法</p></blockquote><p>改进后的算法的思路是：当且仅当-( a[i]+a[j] )在数组中( 不是a[i]也不是a[j] )时,整数对( a[i]和a[j] )为某个和为0的三元组的一部分。要解决这个问题，首先对数组进行排序(为二分查找做准备),然后对数组中的每个a[i]+a[j],使用二分查找算法对-(a[i]+a[j])进行二分查找，如果结果为k，且k&gt;j,则count加一。</p><p>下面中的代码会将数组排序并进行N*(N-1)/2次二分查找，每次查找所需的时间都和logN成正比，因此总的运行时间和N^2logN成正比。</p><pre><code>//二分查找
+function binarySearch(key, arr) {
+    var start = 0
+    var end = arr.length - 1
+    while (start &lt;= end) {
+        var mid = start + Math.floor((end - start) / 2)
+        if (key &lt; arr[mid]) {
+            end = mid - 1
+        } else if (key &gt; arr[mid]) {
+            start = mid + 1
+        } else {
+            return mid
+        }
+    }
+    return -1
+}
+
+function threesum(arr) {
+    var N = arr.length
+    var count = 0
+    arr = arr.sort(function (a, b) {
+        return a &gt; b ? 1 : -1
+    })
+    for (var i = 0; i &lt; N; i++) {
+        for (var j = i + 1; j &lt; N; j++) {
+            if (binarySearch(-arr[i] - arr[j], arr) &gt; j) {
+                count++
+            }
+        }
+    }
+    return count
+}
+</code></pre><p><img src="https://img.funteas.com/86e3c247a4e4a51fa7d20afcbac520b3?imageView2/2/w/800" alt=""></p><h2 id="案例研究-union-find算法"><a href="#案例研究-union-find算法" class="headerlink" title="案例研究:union-find算法"></a>案例研究:union-find算法</h2><h3 id="动态连通性问题"><a href="#动态连通性问题" class="headerlink" title="动态连通性问题"></a>动态连通性问题</h3><p>首先我们详细说明一下问题</p><blockquote><p>问题的输入是一列整数对，对于一对整数p,q,如果p,q不相连，则将p,q连接</p></blockquote><p>所谓的相连:</p><ul><li style="list-style:none"><input type="checkbox" checked="checked"> 自反性: p与p是相连的</li><li style="list-style:none"><input type="checkbox" checked="checked"> 对称性: 若p与q是相连的,则q与p是相连的</li><li style="list-style:none"><input type="checkbox" checked="checked"> 传递性: 若p与q是相连的,且q和r相连，则p与r是相连的</li></ul><p>我们假设相连的整数构成了一个“集合”,对于新的连接，就是在将新的元素加入“集合”来构成更大的“集合”,若判断p,q是否相连，只要判断p,q是否在同一个“集合”中即可。</p><p><img src="https://img.funteas.com/32b475d705dc8beb69db82db1c877b3c?imageView2/2/w/800" alt=""></p><blockquote><p>这里我们应用动态连通性来处理计算机网络中的主机之间的连通关系</p><p>输入中的整数表示的可能是一个大型计算机网络中的计算机，而整数对则表示网络中的连接，这个程序能够判定我们是否需要在p和q之间架设一条新的连接来通信，或是我们可以通过已有的连接在两者之间建立通信线路。</p></blockquote><p>这里我们使用网络方面的术语，将<code>输入的整数</code>称为<code>触点</code>，将形成的<code>集合</code>称为<code>连通分量</code></p><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>为了说明问题，我们设计一份API来封装所需的基本操作:初始化、连接两个触点、判断包含某个触点的分量、判断两个触点是否存在于同一个分量之中以及返回所有分量的数量<br>UF说明UF(N)以整数标识（0到N-1）初始化N个触点union(p,q)连接触点p、qfind§返回p所在分量的标识符connected(p,q)判断p,q是否存在于同一个连通分量中count()连通分量的数量<br><strong>我们看到，为解决动态连通性问题设计算法的任务转化成了实现这份API，所有的实现都应该</strong></p><p>[x] 定义一种数据结构表示已知的连接</p><p>[x] 基于此数据结构实现高效的union()、find()、connected()、count()</p><p><strong>我们用一个以触点为索引的数组id[]作为基本数据结构来表示所有分量，我们将使用分量中的某个触点的名称作为分量的标识符</strong></p><p>一开始，我们有N个分量，每个触点都构成了一个只含有自己的分量，因此我们将id[i]的值设为i。</p><pre><code>class UF {
+
+    /**
+     * 
+     * @param {number} N 
+     */
+    constructor(N) {
+        this.id = new Array(N).fill(0).map((x, index) =&gt; index)
+        this.count = 0
+    }
+
+    count(){
+        return this.count
+    }
+
+    /**
+     * 
+     * @param {number} p 
+     * @param {number} q 
+     */
+    connected(p,q){
+        return this.find(p)===this.find(q)
+    }
+
+    /** 
+     * @param {number} p 
+     */
+    find(p){
+
+    }
+    /**
+     * 
+     * @param {number} p 
+     * @param {number} q 
+     */
+    union(p,q){
+
+    }
+
+}
+</code></pre><pre><code>**find()和union()是实现的重点,我们将讨论三种不同的实现，它们均根据以触点为索引的id[]数组来确定两个触点是否存在于相同的连通分量中**
+</code></pre><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>思想是:保证当且仅当<code>id[p]==id[q]</code>时，p和q是连通的。换句话说，在同一个连通分量中的所有触点在id[]数组中的值都一样。</p><pre><code> /** 
+     * @param {number} p 
+     */
+    find(p){
+        return this.id[p]
+    }
+
+    /**
+     * 
+     * @param {number} p 
+     * @param {number} q 
+     */
+    union(p,q){
+        var pId=this.find(p)
+        var qId=this.find(q)
+        if(pId==qId) return
+        this.id.forEach(x=&gt;{
+            if(id[x]==pId){
+                id[x]==qId
+            }
+        })
+        this.count--
+    }
+</code></pre><p>复杂度分析:</p><p>find()操作很快，它只访问id[]数组一次,但union()会整个扫描id[]数组</p><p>在union()中,find p、q会访问2次数组，for循环及赋值操作会访问数组 N+1 ~ N+（N-1）次。</p><p>所以union()方法访问数组的次数在(2+N+1) ~(2+N+(N-1)) 即 N+3 ~ 2N+1 次之间</p><p>假设我们使用quick-union算法来解决动态连通性问题并最后只得到一个连通分量，则至少需要调用(N-1)次 union(),<br>即（N+3）<em>（N-1） ~（2N+1）</em>（N-1）次数组访问</p><p>所以此算法的时间复杂度是<code>平方级别的</code></p><p>此算法的重点是提高union()方法的速度，它也是基于相同的数据结构–以触点作为索引的id[]数组，但我们赋予这些值的意义不同，我们需要用他们来定义更加复杂的数据结构:</p><blockquote><p>每个触点所对应的id[]元素都是同一个分量中的另一个触点的名称（也可以说是它自己，即根触点）–我们将这种联系称为链接。</p></blockquote><pre><code> /** 
+     * 找到根触点，即分量的标识符
+     * @param {number} p 
+     */
+    find(p) {
+        while (p !== this.id[p]) p = this.id[p]
+        return p
+    }
+
+    /**
+     * 
+     * @param {number} p 
+     * @param {number} q 
+     */
+    union(p, q) {
+        let pRoot = this.find(p)
+        let qRoot = this.find(q)
+        if (pRoot == qRoot) return
+        id[pRoot] = qRoot
+        this.count--
+    }
+</code></pre><p><img src="https://img.funteas.com/1ac6aaeb8ea65151f887c2e9e8c7e55b?imageView2/2/w/800" alt=""></p><p>如图所示：id[]数组用父链接的形式表示了一片森林</p><p>复杂度分析：</p><blockquote><p>一棵树的大小是它的节点的数量，树中一个节点的深度是它到根节点路径上的链接数</p></blockquote><p>quick-union算法的分析依赖于输入的特点，find()访问数组的次数为1加上给定的触点所对应的节点的深度的2倍。</p><p>在最好的情况下，find()只需要访问数组1次就能够得到当前触点所在分量的标识符</p><p>在最坏的情况下，find()需要1 + 2*(N-1) 即 2N-1 次数组访问</p><p>如下图所示</p><p><img src="https://img.funteas.com/46d986d30409f03990188874ac65fef2?imageView2/2/w/800" alt=""></p><p>对最坏的情况，处理N对整数所需的所有find()操作访问数组的总次数为:</p><p>等差数列 (1+ 2N-1) *N /2 = N^2,即<code>在最差的情况下，quick-union算的复杂度为平方级的</code></p><p>union()访问数组的次数是两次find()操作，(如果union中给定的两个触点在不同的分量还要加1)</p><p>由此，我们构造了一个最佳情况的输入使得算法的运行时间是线性的，最差情况的输入使得算法的运行时间是平方级的。</p><ul><li>加权 quick-union算法 (控制树的深度)</li></ul><blockquote><p>与其在union()中随意将一颗树连接到另一棵树，我们现在会记录每一颗树的大小并总是将较小的树连接到较大的树上。</p></blockquote><p><img src="https://img.funteas.com/a8309189a668bb00186e3ff92c355c5e?imageView2/2/w/800" alt=""></p><pre><code>class UF {
+
+    /**
+     * 
+     * @param {number} N 
+     */
+    constructor(N) {
+        this.id = new Array(N).fill(0).map((x, index) =&gt; index)
+        //各个根节点所对应的分量的大小
+        this.sz = new Array(N).fill(1)
+        this.count = 0
+    }
+
+    count() {
+        return this.count
+    }
+
+    /**
+     * 
+     * @param {number} p 
+     * @param {number} q 
+     */
+    connected(p, q) {
+        return this.find(p) === this.find(q)
+    }
+
+    /** 
+     * 找到根触点，即分量的标识符
+     * @param {number} p 
+     */
+    find(p) {
+        while (p !== this.id[p]) p = this.id[p]
+        return p
+    }
+    /**
+     * 
+     * @param {number} p 
+     * @param {number} q 
+     */
+    union(p, q) {
+        let pRoot = this.find(p)
+        let qRoot = this.find(q)
+        if (pRoot == qRoot) return
+        //将小树连接到大树上
+        if (sz[pRoot] &lt; sz[qRoot]) {
+            id[p] = qRoot
+            sz[qRoot] += sz[pRoot]
+        } else {
+            id[q] = pRoot
+            sz[pRoot] += sz[qRoot]
+        }
+        this.count--
+    }
+
+}
+</code></pre><p>复杂度分析：</p><p><img src="https://img.funteas.com/5d818b417482f6348f82ce4ad6f9850c?imageView2/2/w/800" alt=""></p><p>如图所示，在最坏的情况下，其中将要被归并的树的大小总是相等的，它们均含有2^n个节点（树的高度为n）,当我们归并两个2^n个节点的树时，得到的树的高度增加到n+1。</p><p>对于加权quick-union算法和N个触点，在最坏的情况下，find() union()的运行时间的增长数量级为logN</p><blockquote><p>加权quick-union算法处理N个触点和M条连接时最多访问数组cMlgN次，这与quick-find需要MN形成了鲜明对比</p></blockquote><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>通过《算法》第一章我学习了</p><ul><li style="list-style:none"><input type="checkbox" checked="checked"> 基本的数据类型栈、队列</li><li style="list-style:none"><input type="checkbox" checked="checked"> 通过数组、链表来构造队列和栈</li><li style="list-style:none"><input type="checkbox" checked="checked"> 数组和链表是两种基本的数据结构</li><li style="list-style:none"><input type="checkbox" checked="checked"> 时间复杂度的分析和常见的复杂度增长数量级</li><li style="list-style:none"><input type="checkbox" checked="checked"> 二分查找算法</li><li style="list-style:none"><input type="checkbox" checked="checked"> 对一个问题寻求解决方案时，要确定好基本的数据结构，好的数据结构是构造高效算法的前提</li><li style="list-style:none"><input type="checkbox" checked="checked"> 动态连通性问题</li><li style="list-style:none"><input type="checkbox" checked="checked"> 动态连通性问题的解决方案，并不断优化算法</li></ul><blockquote style="margin:2em 0 0;padding:.5em 1em;border-left:3px solid #f44336;background-color:#f5f5f5;list-style:none"><p> <strong>This blog is under a <a href="https://pancakeawesome.ink/" target="_blank">CC BY-NC-SA 3.0 Unported License</a></strong><br> <strong>本文链接：</strong><a href="http://pancakeawesome.ink/JS实现常用算法.html">http://pancakeawesome.ink/JS实现常用算法.html</a></p></blockquote></div><div id="changyan-comment"><div id="SOHUCS" sid="JS实现常用算法.html"></div><script type="text/javascript">!function(){var t="da223e602e0abf03eded8d4c19e7d862";if((window.innerWidth||document.documentElement.clientWidth)<960)window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cytdf2o7Q&conf='+t+'"><\/script>');else{!function(t,e){var n=document.getElementsByTagName("head")[0]||document.head||document.documentElement,a=document.createElement("script");a.setAttribute("type","text/javascript"),a.setAttribute("charset","UTF-8"),a.setAttribute("src",t),"function"==typeof e&&(window.attachEvent?a.onreadystatechange=function(){var t=a.readyState;"loaded"!==t&&"complete"!==t||(a.onreadystatechange=null,e())}:a.onload=e),n.appendChild(a)}("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:"cytdf2o7Q",conf:t})})}}()</script></div><style>#changyan-comment{background-color:#eee;padding:2pc}</style></div><nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col"> <a href="/webpack构建react项目.html" id="post_nav-newer" class="prev-content"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation"> <i class="material-icons">arrow_back</i></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 新篇</a><div class="section-spacer"></div> <a href="/移动端-Web-开发踩坑之旅.html" id="post_nav-older" class="next-content">旧篇 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation"> <i class="material-icons">arrow_forward</i></button></a></nav></div></div><div class="sidebar-overlay"></div><aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation"><div id="sidebar-main"><div class="sidebar-header header-cover" style="background-image:url(/img/thumbnail/sidebar_header.jpg)"><div class="top-bar"></div> <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display:initial" data-upgraded=",MaterialButton,MaterialRipple"> <i class="material-icons">clear_all</i><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button><div class="sidebar-image"> <img src="/img/rip.jpeg" alt="Edward Guan's avatar"></div> <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">guanchao930908@163.com<b class="caret"></b></a></div><ul class="nav sidebar-nav"><li class="dropdown"><ul id="settings-dropdown" class="dropdown-menu"><li> <a href="mailto:guanchao930908@163.com" target="_blank" title="Email Me"><i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i> Email Me</a></li></ul></li><li id="sidebar-first-li"> <a href="/"><i class="material-icons sidebar-material-icons">home</i> 主页</a></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">timeline</i> 归档<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/02/">二月 2018<span class="sidebar_archives-count">16</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">13</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">20</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">10</span></a></li></ul></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">chrome_reader_mode</i> 分类<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/categories/blog/">blog<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/css/">css<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/es6/">es6<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/html/">html<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript/">javascript<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript设计模式/">javascript设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/node-js/">node.js<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/nodejs/">nodejs<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/react/">react<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/typescript/">typescript<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端优化/">前端优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端工具/">前端工具<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端技术/">前端技术<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端架构设计/">前端架构设计<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端框架/">前端框架<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据分析/">数据分析<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据可视化/">数据可视化<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/机器学习/">机器学习<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/categories/深度学习/">深度学习<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法思想/">算法思想<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/论文笔记/">论文笔记<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/软件开发/">软件开发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/面试/">面试<span class="sidebar_archives-count">1</span></a></li></ul></li><li> <a href="/tags" title="标签云"><i class="material-icons sidebar-material-icons">cloud_circle</i> 标签云</a></li><li class="divider"></li><li> <a href="/timeline" title="Timeline"><i class="material-icons sidebar-material-icons">send</i> Timeline</a></li><li> <a href="/gallery" title="Gallery"><i class="material-icons sidebar-material-icons">photo_library</i> Gallery</a></li><li> <a href="/aboutMe" title="About Me"><i class="material-icons sidebar-material-icons">person_pin</i> About Me</a></li><li class="divider"></li><li> <a href="/archives">文章总数 <span class="sidebar-badge">81</span></a></li></ul></div></aside><div id="back-to-top" class="toTop-wrap"> <a href="#top" class="toTop"><i class="material-icons footer_top-i">expand_less</i></a></div><footer class="mdl-mini-footer" id="bottom"><div class="mdl-mini-footer--left-section sns-list"> <a href="https://twitter.com/591153977" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter"> <span class="visuallyhidden">Twitter</span></button></a> <a href="https://www.facebook.com/profile.php?id=100011433530812" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook"> <span class="visuallyhidden">Facebook</span></button></a> <a href="https://www.instagram.com/edward930908/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-instagram"> <span class="visuallyhidden">Instagram</span></button></a> <a href="https://github.com/PancakeAwesome" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-github"> <span class="visuallyhidden">Github</span></button></a> <a href="https://www.linkedin.com/in/%E8%B6%85-%E7%AE%A1-89495a145/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin"> <span class="visuallyhidden">LinkedIn</span></button></a></div><div id="copyright"> Copyright&nbsp;©<script type="text/javascript">var fd=new Date;document.write("&nbsp;"+fd.getFullYear()+"&nbsp;")</script>Edward's Blog<br><p>Hosted by <a href="https://pages.coding.me" style="font-weight:700">Coding Pages</a></p></div><div class="mdl-mini-footer--right-section"><div><div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div><div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div></div></div></footer><script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==",!0)</script><script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==",!0)</script><script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==",!0)</script><script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytdf2o7Q"></script><script>var agent=navigator.userAgent.toLowerCase();agent.indexOf("ucbrowser")>0&&(document.write('<link rel="stylesheet" href="/css/uc.css">'),alert("由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。"))</script><script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==",!0)</script><script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script><script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script><script>!function(){for(var e=document.querySelectorAll('script[type="text/ls-javascript"]'),r=0;r<e.length;++r){var o=e[r];lsloader.runInlineScript(o.id,o.id)}}(),console.log("\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;")</script></main></div><script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>

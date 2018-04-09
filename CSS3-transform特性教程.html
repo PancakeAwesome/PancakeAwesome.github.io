@@ -1,0 +1,322 @@
+<!DOCTYPE html><html style="display:none" lang="zh"><head><meta charset="utf-8"><script>window.materialVersion="1.5.0",window.oldVersion=["codestartv1","1.3.4","1.4.0","1.4.0b1"]</script><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://busuanzi.ibruce.info"><link rel="dns-prefetch" href="https://changyan.sohu.com"><title> CSS3 transform特性教程 | Edward&#39;s Blog</title><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0097A7"><meta name="author" content="Edward Guan"><meta name="description" itemprop="description" content="CSS3 transform特性教程"><meta name="keywords" content="前端,node,react,js,java,自学编程,学习分享,UESTC,css,css3"><script>window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}},lsloader.removeLS=function(e){try{localStorage.removeItem(e)}catch(e){}},lsloader.setLS=function(e,t){try{localStorage.setItem(e,t)}catch(e){}},lsloader.getLS=function(e){var t="";try{t=localStorage.getItem(e)}catch(e){t=""}return t},versionString="/*"+(window.materialVersion||"unknownVersion")+"*/",lsloader.clean=function(){try{for(var e=[],t=0;t<localStorage.length;t++)e.push(localStorage.key(t));e.forEach(function(e){var t=lsloader.getLS(e);window.oldVersion&&window.oldVersion.reduce(function(e,n){return e||-1!==t.indexOf("/*"+n+"*/")},!1)&&lsloader.removeLS(e)})}catch(e){}},lsloader.clean(),lsloader.load=function(e,t,n,s){"boolean"==typeof n&&(s=n,n=void 0),s=s||!1,n=n||function(){};var a;if((a=this.getLS(e))&&-1===a.indexOf(versionString))return this.removeLS(e),void this.requestResource(e,t,n,s);if(a){if(a.split(versionString)[0]!=t)return console.log("reload:"+t),this.removeLS(e),void this.requestResource(e,t,n,s);a=a.split(versionString)[1],s?(this.jsRunSequence.push({name:e,code:a}),this.runjs(t,e,a)):(document.getElementById(e).appendChild(document.createTextNode(a)),n())}else this.requestResource(e,t,n,s)},lsloader.requestResource=function(e,t,n,s){var a=this;s?this.iojs(t,e,function(e,t,n){a.setLS(t,e+versionString+n),a.runjs(e,t,n)}):this.iocss(t,e,function(n){document.getElementById(e).appendChild(document.createTextNode(n)),a.setLS(e,t+versionString+n)},n)},lsloader.iojs=function(e,t,n){var s=this;s.jsRunSequence.push({name:t,code:""});try{var a=new XMLHttpRequest;a.open("get",e,!0),a.onreadystatechange=function(){if(4==a.readyState){if((a.status>=200&&a.status<300||304==a.status)&&""!=a.response)return void n(e,t,a.response);s.jsfallback(e,t)}},a.send(null)}catch(n){s.jsfallback(e,t)}},lsloader.iocss=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.iofonts=function(e,t,n,s){var a=this;try{var o=new XMLHttpRequest;o.open("get",e,!0),o.onreadystatechange=function(){if(4==o.readyState){if((o.status>=200&&o.status<300||304==o.status)&&""!=o.response)return n(o.response),void s();a.cssfallback(e,t,s)}},o.send(null)}catch(n){a.cssfallback(e,t,s)}},lsloader.runjs=function(e,t,n){if(t&&n)for(var s in this.jsRunSequence)this.jsRunSequence[s].name==t&&(this.jsRunSequence[s].code=n);if(this.jsRunSequence[0]&&this.jsRunSequence[0].code&&"failed"!=this.jsRunSequence[0].status)(o=document.createElement("script")).appendChild(document.createTextNode(this.jsRunSequence[0].code)),o.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(o),this.jsRunSequence.shift(),this.jsRunSequence.length>0&&this.runjs();else if(this.jsRunSequence[0]&&"failed"==this.jsRunSequence[0].status){var a=this,o=document.createElement("script");o.src=this.jsRunSequence[0].path,o.type="text/javascript",this.jsRunSequence[0].status="loading",o.onload=function(){a.jsRunSequence.shift(),a.jsRunSequence.length>0&&a.runjs()},document.body.appendChild(o)}},lsloader.tagLoad=function(e,t){this.jsRunSequence.push({name:t,code:"",path:e,status:"failed"}),this.runjs()},lsloader.jsfallback=function(e,t){if(!this.jsnamemap[t]){this.jsnamemap[t]=t;for(var n in this.jsRunSequence)this.jsRunSequence[n].name==t&&(this.jsRunSequence[n].code="",this.jsRunSequence[n].status="failed",this.jsRunSequence[n].path=e);this.runjs()}},lsloader.cssfallback=function(e,t,n){if(!this.cssnamemap[t]){this.cssnamemap[t]=1;var s=document.createElement("link");s.type="text/css",s.href=e,s.rel="stylesheet",s.onload=s.onerror=n;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(s,a)}},lsloader.runInlineScript=function(e,t){var n=document.getElementById(t).innerText;this.jsRunSequence.push({name:e,code:n}),this.runjs()},lsloader.loadCombo=function(e){var t="",n={};for(var s in e){var a=this.getLS(e[s].name);if(a)var o=a.split(versionString)[0],i=a.split(versionString)[1];else o="";o==e[s].path?this.jsRunSequence.push({name:e[s].name,code:i,path:e[s].path}):(this.jsRunSequence.push({name:e[s].name,code:null,path:e[s].path,status:"comboloading"}),n[e[s].name]=!0,t+=(""==t?"":";")+e[s].path)}var u=this;if(t){var r=new XMLHttpRequest;r.open("get",combo+t,!0),r.onreadystatechange=function(){if(4==r.readyState)if(r.status>=200&&r.status<300||304==r.status){if(""!=r.response)return void u.runCombo(r.response,n)}else{for(var e in u.jsRunSequence)n[u.jsRunSequence[e].name]&&(u.jsRunSequence[e].status="failed");u.runjs()}},r.send(null)}this.runjs()},lsloader.runCombo=function(e,t){(e=e.split("/*combojs*/")).shift();for(var n in this.jsRunSequence)t[this.jsRunSequence[n].name]&&e[0]&&(this.jsRunSequence[n].status="comboJS",this.jsRunSequence[n].code=e[0],this.setLS(this.jsRunSequence[n].name,this.jsRunSequence[n].path+versionString+e[0]),e.shift());this.runjs()}</script><script>function Queue(){this.dataStore=[],this.offer=function(e){this.debug&&console.log("Offered a Queued Function."),"function"==typeof e?this.dataStore.push(e):console.log("You must offer a function.")},this.poll=function(){return this.debug&&console.log("Polled a Queued Function."),this.dataStore.shift()},this.execNext=function(){var e=this.poll();void 0!==e&&(this.debug&&console.log("Run a Queued Function."),e())},this.debug=!1,this.startDebug=function(){this.debug=!0}}var queue=new Queue</script><link rel="icon shortcut" type="image/ico" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="icon" sizes="192x192" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><link rel="apple-touch-icon" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="apple-mobile-web-app-title" content="Title"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="480"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Edward&#39;s Blog"> <!--[if lte IE 9]><link rel="stylesheet" href="/css/ie-blocker.css"><script src="/js/ie-blocker.zhCN.js"></script><![endif]--><style id="material_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="style_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="prettify_css"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style id="prettify_theme"></style><script>void 0===window.lsLoadCSSMaxNums&&(window.lsLoadCSSMaxNums=0),window.lsLoadCSSMaxNums++,lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){void 0===window.lsLoadCSSNums&&(window.lsLoadCSSNums=0),window.lsLoadCSSNums++,window.lsLoadCSSNums==window.lsLoadCSSMaxNums&&(document.documentElement.style.display="")},!1)</script><style>body,html{font-family:Roboto,"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;overflow-x:hidden!important}code{font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace}a{color:#00838f}#scheme-Paradox .hot_tags-count,#scheme-Paradox .sidebar-colored .sidebar-badge,#scheme-Paradox .sidebar-colored .sidebar-header,#scheme-Paradox .sidebar_archives-count,#search-form-label:after,#search-label,.mdl-card__media{background-color:#0097a7!important}#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus,#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover{color:#0097a7!important}#ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a,#post_entry-right-info,.sidebar-colored .sidebar-nav li:hover>a,.sidebar-colored .sidebar-nav li:hover>a i,.sidebar-colored .sidebar-nav li>a:focus i,.sidebar-colored .sidebar-nav li>a:hover,.sidebar-colored .sidebar-nav li>a:hover i,.sidebar-colored .sidebar-nav>.open>a,.sidebar-colored .sidebar-nav>.open>a:focus,.sidebar-colored .sidebar-nav>.open>a:hover{color:#0097a7!important}.toTop{background:#757575!important}.material-layout .material-index>.material-nav,.material-layout .material-post>.material-nav,.material-nav a{color:#757575}#scheme-Paradox .MD-burger-layer{background-color:#757575}#scheme-Paradox #post-toc-trigger-btn{color:#757575}.post-toc a:hover{color:#00838f;text-decoration:underline}</style><style>body{background-color:#f5f5f5}#scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{background-color:#fff}</style><style>.fade{transition:all .8s linear;-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0);opacity:1}.fade.out{opacity:0}</style><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==",!0)</script><meta property="og:url" content="http://pancakeawesome.ink"><meta property="og:type" content="blog"><meta property="og:title" content="CSS3 transform特性教程 | Edward&#39;s Blog"><meta property="og:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta property="og:description" content="CSS3 transform特性教程"><meta property="og:article:tag" content="css"><meta property="og:article:tag" content="css3"><meta property="article:published_time" content="Wed Nov 01 2017 15:16:54 GMT+0800"><meta property="article:modified_time" content="Thu Nov 02 2017 17:30:55 GMT+0800"><meta name="twitter:title" content="CSS3 transform特性教程 | Edward&#39;s Blog"><meta name="twitter:description" content="CSS3 transform特性教程"><meta name="twitter:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:url" content="http://pancakeawesome.ink"><link rel="canonical" href="http://pancakeawesome.ink/CSS3-transform特性教程.html"><script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://pancakeawesome.ink/CSS3-transform特性教程.html",
+    "headline": "CSS3 transform特性教程",
+    "datePublished": "Wed Nov 01 2017 15:16:54 GMT+0800",
+    "dateModified": "Thu Nov 02 2017 17:30:55 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Edward Guan",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/rip.jpeg"
+        },
+        "description": "你说人生艳丽我没有异议，你说人生忧郁我不言语"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Edward&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"
+        }
+    },
+    "keywords": ",css,css3前端,node,react,js,java,自学编程,学习分享,UESTC",
+    "description": "CSS3 transform特性教程",
+}
+</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?0c041dca6f79c4e40fb45d1283e327e7";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body id="scheme-Paradox" class="lazy"><div class="material-layout mdl-js-layout has-drawer is-upgraded"><main class="material-layout__content" id="main"><div id="top"></div> <button class="MD-burger-icon sidebar-toggle"><span class="MD-burger-layer"></span></button> <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon"> <i class="material-icons">format_list_numbered</i></button><ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh;overflow-y:scroll"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CSS3-transform教程"><span class="post-toc-number">2.</span> <span class="post-toc-text">CSS3 transform教程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、旋转rotate"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">一、旋转rotate</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、移动translate"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">二、移动translate</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-number">3.</span> <span class="post-toc-text">后记</span></a></li></ol></ul><div class="material-post_container"><div class="material-post mdl-grid"><div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col"><div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50"><script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 30 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script><p class="article-headline-p"> CSS3 transform特性教程</p></div><div class="mdl-color-text--grey-700 mdl-card__supporting-text meta"><div id="author-avatar"> <img src="/img/rip.jpeg" width="44px" height="44px" alt="Author Avatar"></div><div> <strong>Edward Guan</strong> <span>11月 01, 2017</span></div><div class="section-spacer"></div> <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">devices other</i> <span class="visuallyhidden">devices other</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button"><li class="mdl-menu__item">在其它设备中阅读本文章</li> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACXUlEQVR42u3aUXLCMAwEUO5/6fYADOlKsk2gL18MCWlePmx1pcfPVx8PPDw8PDw8PDy8m/Ee8fH8q1ffvDr7fLfqr6Jnw8PDwzvC+2Opvbzm1dnkBfXu/MeLxsPDwzvIy5fv6wX6GpxsA71nw8PDw7szL1qgg1/h4eHh/TdeXkwXHg4PDw/vo3jJP/zzYnpemm/MWvDw8PBiXm8pP/P5aH8PDw8PL+CVR5rG7KRQXjZ0hYeHh7eBV21uVeOJtQFENHCAh4eHt5nXa1ZNYovqgEL5ZeHh4eEd5K0NCOaNtOTFFTYGPDw8vEW8Xrnca1mtjXSb/T08PDy8MS9H5mHrfNAqKaabYQQeHh7eUl6hbE3i1OIw1jU7acLh4eHhneElN71e4ifXV8vxZIvCw8PD282rLtPVkrp6ZW8zwMPDwzvJy0vneSSRbzzV4h4PDw/vDry8IJ58nwzFJnfAw8PDO8mrLuWT8GJSvo9myvDw8PCW8pLieHeRPT+Lh4eHd563Kiyobi2TEKSwMeDh4eFt4+VjT72lvBou5OU7Hh4e3nle8rnaiLr+K9UWV/7q8fDw8N7Fy4OJXvw6GRRoxrh4eHh423iTIYD8ReTFd7Xox8PDw9vNqx55O3/V41ZLfDw8PLzdvPlDVEOEVW2zZgMMDw8PbxGvuhnkEUbexMpjYjw8PLz78FaNTOVhRHXgIEHi4eHhfQpvHkzMw2U8PDy8O/PywnceeVS3Ijw8PLyTvN5w1XykoLep4OHh4b2XN4kAooAgbnTlpC39PTw8PLyA930HHh4eHh4eHh7eDY5ftmX3E7NYKQIAAAAASUVORK5CYII="></ul> <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">bookmark</i> <span class="visuallyhidden">bookmark</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button"><li class="mdl-menu__item"> <a class="post_tag-link" href="/tags/css/">css</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/css3/">css3</a></li></ul> <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"> <i class="material-icons" role="presentation">share</i> <span class="visuallyhidden">share</span></button><ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button"><a class="post_share-link" href="#"><li class="mdl-menu__item"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> &nbsp;浏览量</span></li></a><a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=CSS3 transform特性教程&url=http://pancakeawesome.ink/CSS3-transform特性教程.html&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank"><li class="mdl-menu__item"> 分享到微博</li></a><a class="post_share-link" href="https://twitter.com/intent/tweet?text=CSS3 transform特性教程&url=http://pancakeawesome.ink/CSS3-transform特性教程.html&via=Edward Guan" target="_blank"><li class="mdl-menu__item"> 分享到 Twitter</li></a><a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/CSS3-transform特性教程.html" target="_blank"><li class="mdl-menu__item"> 分享到 Facebook</li></a><a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/CSS3-transform特性教程.html" target="_blank"><li class="mdl-menu__item"> 分享到 Google+</li></a><a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/CSS3-transform特性教程.html&title=CSS3 transform特性教程" target="_blank"><li class="mdl-menu__item"> 分享到 LinkedIn</li></a><a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=CSS3 transform特性教程&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/CSS3-transform特性教程.html" target="_blank"><li class="mdl-menu__item"> 分享到 QQ</li></a></ul></div><div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要介绍的是css3新属性变形transform。</p><h2 id="CSS3-transform教程"><a href="#CSS3-transform教程" class="headerlink" title="CSS3 transform教程"></a>CSS3 transform教程</h2><p><a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="noopener">Transform</a> 字面上就是变形，改变的意思。在<a href="http://www.w3.org/TR/css3-roadmap/" target="_blank" rel="noopener">CSS3</a> 中<a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="noopener">transform</a> 主要包括以下几种：<strong>旋转rotate</strong>、<strong>扭曲skew</strong>、<strong>缩放scale</strong>和<strong>移动translate</strong>以及<strong>矩阵变形matrix</strong>。下面我们一起来看看CSS3中transform的旋转rotate、扭曲skew、缩放scale和移动translate具体如何实现，老样子，我们就从<a href="http://www.w3.org/TR/css3-2d-transforms/" target="_blank" rel="noopener">transform</a> 的语法开始吧。</p><p><strong>语法：</strong></p><pre><code>   transform ： none | &lt;transform-function&gt; [ &lt;transform-function&gt; ]* 
+   也就是：
+   transform: rotate | scale | skew | translate |matrix;
+</code></pre><p>none:表示不进么变换；<transform-function>表示一个或多个变换函数，以空格分开；换句话说就是我们同时对一个元素进行transform的多种属性操作，例如rotate、scale、translate三种，但这里需要提醒大家的，以往我们叠加效果都是用逗号（“，”）隔开，但transform中使用多个属性时却需要有空格隔开。大家记住了是空格隔开。</transform-function></p><p>取值：</p><p>transform属性实现了一些可用SVG实现的同样的功能。它可用于内联(inline)元素和块级(block)元素。它允许我们旋转、缩放和移动元素 ，他有几个属性值参数：rotate;translate;scale;skew;matrix。下面我们分别来介绍这几个属性值参数的具体使用方法：</p><h3 id="一、旋转rotate"><a href="#一、旋转rotate" class="headerlink" title="一、旋转rotate"></a><strong>一、旋转rotate</strong></h3><p>rotate(<angle>) ：通过指定的角度参数对原元素指定一个<a href="http://www.w3.org/TR/SVG/coords.html#RotationDefined" target="_blank" rel="noopener">2D rotation</a> （2D 旋转），需先有transform-origin属性的定义。transform-origin定义的是旋转的基点，其中angle是指旋转角度，如果设置的值为正数表示顺时针旋转，如果设置的值为负数，则表示逆时针旋转。如：transform:rotate(30deg):</angle></p><p><img src="http://www.w3cplus.com/sites/default/files/rotate.png" alt=""></p><h3 id="二、移动translate"><a href="#二、移动translate" class="headerlink" title="二、移动translate"></a><strong>二、移动translate</strong></h3><p>移动translate我们分为三种情况：translate(x,y)水平方向和垂直方向同时移动（也就是X轴和Y轴同时移动）；translateX(x)仅水平方向移动（X轴移动）；translateY(Y)仅垂直方向移动（Y轴移动），具体使用方法如下：</p><p>1、translate(<translation-value>[,<translation-value>]) ：通过矢量[tx, ty]指定一个<a href="http://www.w3.org/TR/SVG/coords.html#TranslationDefined" target="_blank" rel="noopener">2D translation</a> ，tx 是第一个过渡值参数，ty 是第二个过渡值参数选项。如果 未被提供，则ty以 0 作为其值。也就是translate(x,y),它表示对象进行平移，按照设定的x,y参数值,当值为负数时，反方向移动物体，其基点默认为元素 中心点，也可以根据transform-origin进行改变基点。如transform:translate(100px,20px):</translation-value></translation-value></p><p><img src="http://www.w3cplus.com/sites/default/files/translate-x-y.png" alt=""></p><p>2、translateX(<translation-value>) ： 通过给定一个X方向上的数目指定一个<a href="http://www.w3.org/TR/SVG/coords.html#TranslationDefined" target="_blank" rel="noopener">translation</a> 。只向x轴进行移动元素，同样其基点是元素中心点，也可以根据transform-origin改变基点位置。如：transform:translateX(100px):</translation-value></p><p><img src="http://www.w3cplus.com/sites/default/files/translate-x.png" alt=""></p><p>3、translateY(<translation-value>) ：通过给定Y方向的数目指定一个<a href="http://www.w3.org/TR/SVG/coords.html#TranslationDefined" target="_blank" rel="noopener">translation</a> 。只向Y轴进行移动，基点在元素心点，可以通过transform-origin改变基点位置。如：transform:translateY(20px):</translation-value></p><p><img src="http://www.w3cplus.com/sites/default/files/translate-y.png" alt=""></p><p><strong>三、缩放scale</strong></p><p>缩放scale和移动translate是极其相似，他也具有三种情况：scale(x,y)使元素水平方向和垂直方向同时缩放（也就是X轴和Y轴同时缩放）；scaleX(x)元素仅水平方向缩放（X轴缩放）；scaleY(y)元素仅垂直方向缩放（Y轴缩放），但它们具有相同的缩放中心点和基数，其中心点就是元素的中心位置，缩放基数为1，如果其值大于1元素就放大，反之其值小于1，元素缩小。下面我们具体来看看这三种情况具体使用方法：</p><p>1、scale(<number>[,<number>])：提供执行[sx,sy]缩放矢量的两个参数指定一个<a href="http://www.w3.org/TR/SVG/coords.html#ScalingDefined" target="_blank" rel="noopener">2D scale</a> （2D缩放）。如果第二个参数未提供，则取与第一个参数一样的值。scale(X,Y)是用于对元素进行缩放，可以通过transform-origin对元素的基点进行设置，同样基点在元素中心位置；基中X表示水平方向缩放的倍数，Y表示垂直方向的缩放倍数，而Y是一个可选参数，如果没有设置Y值，则表示X，Y两个方向的缩放倍数是一样的。并以X为准。如：transform:scale(2,1.5):</number></number></p><p><img src="http://www.w3cplus.com/sites/default/files/scale-x-y.png" alt=""></p><p>2、scaleX(<number>) ： 使用 [sx,1] 缩放矢量执行缩放操作，sx为所需参数。scaleX表示元素只在X轴(水平方向)缩放元素，他的默认值是(1,1)，其基点一样是在元素的中心位置，我们同样是通过transform-origin来改变元素的基点。如：transform:scaleX(2):</number></p><p><img src="http://www.w3cplus.com/sites/default/files/scale-x.png" alt=""></p><p>3、scaleY(<number>) ： 使用 [1,sy] 缩放矢量执行缩放操作，sy为所需参数。scaleY表示元素只在Y轴（垂直方向）缩放元素，其基点同样是在元素中心位置，可以通过transform-origin来改变元素的基点。如transform:scaleY(2):</number></p><p><img src="http://www.w3cplus.com/sites/default/files/scale-y.png" alt=""></p><p><strong>四、扭曲skew</strong></p><p>扭曲skew和translate、scale一样同样具有三种情况：skew(x,y)使元素在水平和垂直方向同时扭曲（X轴和Y轴同时按一定的角度值进行扭曲变形）；skewX(x)仅使元素在水平方向扭曲变形（X轴扭曲变形）；skewY(y)仅使元素在垂直方向扭曲变形（Y轴扭曲变形），具体使用如下：</p><p>1、skew(<angle> [,<angle>]) ：X轴Y轴上的<a href="http://www.w3.org/TR/SVG/coords.html#SkewXDefined" target="_blank" rel="noopener">skew transformation</a> （斜切变换）。第一个参数对应X轴，第二个参数对应Y轴。如果第二个参数未提供，则值为0，也就是Y轴方向上无斜切。skew是用来对元素进行扭曲变行，第一个参数是水平方向扭曲角度，第二个参数是垂直方向扭曲角度。其中第二个参数是可选参数，如果没有设置第二个参数，那么Y轴为0deg。同样是以元素中心为基点，我们也可以通过transform-origin来改变元素的基点位置。如：transform:skew(30deg,10deg):</angle></angle></p><p><img src="http://www.w3cplus.com/sites/default/files/skew-x-y.png" alt=""></p><p>2、skewX(<angle>) ： 按给定的角度沿X轴指定一个<a href="http://www.w3.org/TR/SVG/coords.html#SkewXDefined" target="_blank" rel="noopener">skew transformation</a> （斜切变换）。skewX是使元素以其中心为基点，并在水平方向（X轴）进行扭曲变行，同样可以通过transform-origin来改变元素的基点。如：transform:skewX(30deg)</angle></p><p><img src="http://www.w3cplus.com/sites/default/files/skew-x.png" alt=""></p><p>3、skewY(<angle>) ： 按给定的角度沿Y轴指定一个<a href="http://www.w3.org/TR/SVG/coords.html#SkewYDefined" target="_blank" rel="noopener">skew transformation</a> （斜切变换）。skewY是用来设置元素以其中心为基点并按给定的角度在垂直方向（Y轴）扭曲变形。同样我们可以通过transform-origin来改变元素的基点。如：transform:skewY（10deg）</angle></p><p><img src="http://www.w3cplus.com/sites/default/files/skew-y.png" alt=""></p><p><strong>五、矩阵matrix</strong></p><p>matrix(<number>,<number>,<number>,<number>,<number>,<number>) ： 以一个含六值的(a,b,c,d,e,f)<a href="http://www.w3.org/TR/SVG/coords.html#TransformMatrixDefined" target="_blank" rel="noopener">变换矩阵</a> 的形式指定一个2D变换，相当于直接应用一个[a b c d e f]变换矩阵。就是基于水平方向（X轴）和垂直方向（Y轴）重新定位元素,此属性值使用涉及到数学中的矩阵，我在这里只是简单的说一下CSS3中的transform有这么一个属性值，如果有感兴趣的朋友可以去了解更深层次的martix使用方法，这里就不多说了。</number></number></number></number></number></number></p><p><strong>改变元素基点transform-origin</strong></p><p>前面我们多次提到transform-origin这个东东，他的主要作用就是让我们在进行transform动作之前可以改变元素的基点位置，因为我们元素默认基点就是其中心位置，换句话说我们没有使用transform-origin改变元素基点位置的情况下，transform进行的rotate,translate,scale,skew,matrix等操作都是以元素自己中心位置进行变化的。但有时候我们需要在不同的位置对元素进行这些操作，那么我们就可以使用transform-origin来对元素进行基点位置改变，使元素基点不在是中心位置，以达到你需要的基点位置。下面我们主要来看看其使用规则：</p><p>transform-origin(X,Y):用来设置元素的运动的基点（参照点）。默认点是元素的中心点。其中X和Y的值可以是百分值,em,px，其中X也可以是字符参数值left,center,right；Y和X一样除了百分值外还可以设置字符值top,center,bottom，这个看上去有点像我们background-position设置一样；下面我列出他们相对应的写法：</p><p>1、top left | left top 等价于 0 0 | 0% 0%</p><p>2、top | top center | center top 等价于 50% 0</p><p>3、right top | top right 等价于 100% 0</p><p>4、left | left center | center left 等价于 0 50% | 0% 50%</p><p>5、center | center center 等价于 50% 50%（默认值）</p><p>6、right | right center | center right 等价于 100% 50%</p><p>7、bottom left | left bottom 等价于 0 100% | 0% 100%</p><p>8、bottom | bottom center | center bottom 等价于 50% 100%</p><p>9、bottom right | right bottom 等价于 100% 100%</p><p>其中 left,center right是水平方向取值，对应的百分值为left=0%;center=50%;right=100%而top center bottom是垂直方向的取值，其中top=0%;center=50%;bottom=100%;如果只取一个值，表示垂直方向值不变，我们分别来看看以下几个实例</p><p>(1)transform-origin:(left,top):</p><p><img src="http://www.w3cplus.com/sites/default/files/origin-x-y.png" alt=""></p><p>(2)transform-origin:right</p><p><img src="http://www.w3cplus.com/sites/default/files/origin-x.png" alt=""></p><p>(3)transform-origin(25%,75%)</p><p><img src="http://www.w3cplus.com/sites/default/files/origin-per.png" alt=""></p><p>更多的改变中心基点办法，大家可以在本地多测试一下，多体会一下，这里还要提醒大家一点的是，transform-origin并不是transform中的属性值，他具有自己的语法，前面我也说过了，说简单一点就是类似于我们的background-position的用法，但又有其不一样，因为我们background-position不需要区别浏览器内核不同的写法，但transform-origin跟其他的css3属性一样，我们需要在不同的浏览内核中加上相应的前缀，下面列出各种浏览器内核下的语法规则：</p><pre><code>//Mozilla内核浏览器：firefox3.5+
+  -moz-transform-origin: x y;
+  //Webkit内核浏览器：Safari and Chrome
+  -webkit-transform-origin: x y;
+  //Opera
+  -o-transform-origin: x y ;
+  //IE9
+  -ms-transform-origin: x y;
+  //W3C标准
+  transform-origin: x y ;
+</code></pre><p><strong>transform在不同浏览器内核下的书写规则</strong></p><pre><code>//Mozilla内核浏览器：firefox3.5+
+  -moz-transform: rotate | scale | skew | translate ;
+ //Webkit内核浏览器：Safari and Chrome
+  -webkit-transform: rotate | scale | skew | translate ;
+ //Opera
+  -o-transform: rotate | scale | skew | translate ;
+ //IE9
+  -ms-transform: rotate | scale | skew | translate ;
+ //W3C标准
+  transform: rotate | scale | skew | translate ;
+</code></pre><p>上面列出是不同浏览内核transform的书写规则，如果需要兼容各浏览器的话，以上写法都需要调用。</p><p><strong>支持transform浏览器</strong></p><p><img src="http://www.w3cplus.com/sites/default/files/transform-browers.png" alt=""></p><p>同样的transform在IE9下版本是无法兼容的，之所以有好多朋友说，IE用不了，搞这个做什么？个人认为，CSS3推出来了，他是一门相对前沿的技术，做为Web前端的开发者或者爱好者都有必要了解和掌握的一门新技术，如果要等到所有浏览器兼容，那我们只能对css3说NO，我用不你。因为IE老大是跟不上了，，，，纯属个人观点，不代表任何。还是那句话，感兴趣的朋友跟我一样，不去理会IE，我们继续看下去。</p><p>在上面我们详细介绍了CSS3中transform的各种属性值的设置以及其各自的参数，下面我们通过一个实例来看看每一种属性值的使用，为了节约空间和大家的时间，我们后面的实例都是在这个html基础上实现，主要是我们在下面的菜单中的a:hover中分别使用不同的transform的设置，换句话说，当你移动到链接上时，相应的每一个菜单项有不同的变化，因为我们在每个菜单中使用了transform。具体每一步我们可以看下面的实例：</p><p><strong>HTML Code:</strong></p><pre><code>&lt;divclass=&quot;menu&quot;&gt;
+    &lt;ulclass=&quot;clearfix&quot;&gt;
+        &lt;liclass=&quot;item translate&quot;&gt;
+            &lt;ahref=&quot;#&quot;&gt;Translate&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;liclass=&quot;item translate-x&quot;&gt;
+                    &lt;ahref=&quot;#&quot;&gt;TranslateX&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;liclass=&quot;item translate-y&quot;&gt;
+                            &lt;ahref=&quot;#&quot;&gt;TranslateY&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;liclass=&quot;item rotate&quot;&gt;
+                                    &lt;ahref=&quot;#&quot;&gt;Rotate&lt;/a&gt;
+                                        &lt;/li&gt;
+                                        &lt;liclass=&quot;item scale&quot;&gt;
+                                            &lt;ahref=&quot;#&quot;&gt;Scale&lt;/a&gt;
+                                                &lt;/li&gt;
+                                                &lt;liclass=&quot;item scale-x&quot;&gt;
+                                                    &lt;ahref=&quot;#&quot;&gt;ScaleX&lt;/a&gt;
+                                                        &lt;/li&gt;
+                                                        &lt;liclass=&quot;item scale-y&quot;&gt;
+                                                            &lt;ahref=&quot;#&quot;&gt;ScaleY&lt;/a&gt;
+                                                                &lt;/li&gt;
+                                                                &lt;liclass=&quot;item skew&quot;&gt;
+                                                                    &lt;ahref=&quot;#&quot;&gt;Skew&lt;/a&gt;
+                                                                        &lt;/li&gt;
+                                                                        &lt;liclass=&quot;item skew-x&quot;&gt;
+                                                                            &lt;ahref=&quot;#&quot;&gt;SkewX&lt;/a&gt;
+                                                                                &lt;/li&gt;
+                                                                                &lt;liclass=&quot;item skew-y&quot;&gt;
+                                                                                    &lt;ahref=&quot;#&quot;&gt;SkewY&lt;/a&gt;
+                                                                                        &lt;/li&gt;
+                                                                                        &lt;liclass=&quot;item matrix&quot;&gt;
+                                                                                            &lt;ahref=&quot;#&quot;&gt;Matrix&lt;/a&gt;
+                                                                                                &lt;/li&gt;
+                                                                                                &lt;/ul&gt;
+                                                                                                &lt;/div&gt;
+</code></pre><p>为了效果更好一点，我们给上面的导航菜单加上一点CSS样式：</p><pre><code>.menuul {
+    border-top: 15px solid black;
+    padding: 010px;
+}
+
+.menuullia {
+    color: #fff;
+    float: left;
+    margin: 05px;
+    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 65px;
+    padding: 10px 5px;
+    background: #151515;
+    -moz-border-radius: 005px 5px;
+    -webkit-border-radius: 005px 5px;
+    border-radius: 005px 5px;
+    -moz-box-shadow: 001px #ccc, inset 002px #fff;
+    -webkit-box-shadow: 001px #ccc, inset 002px #fff;
+    box-shadow: 001px #ccc, inset 002px #fff;
+    text-shadow: 01px 1px #686868;
+    text-decoration: none;
+}
+
+.menuulli.translatea {
+    background: #2EC7D2;
+}
+
+.menuulli.translate-xa {
+    background: #8FDD21;
+}
+
+.menuulli.translate-ya {
+    background: #F45917;
+}
+
+.menuulli.rotatea {
+    background: #D50E19;
+}
+
+.menuulli.scalea {
+    background: #cdddf2;
+}
+
+.menuulli.scale-xa {
+    background: #0fDD21;
+}
+
+.menuulli.scale-ya {
+    background: #cd5917;
+}
+
+.menuulli.skewa {
+    background: #519;
+}
+
+.menuulli.skew-xa {
+    background: #D50;
+}
+
+.menuulli.skew-ya {
+    background: #E19;
+}
+
+.menuulli.matrixa {
+    background: #919;
+}
+</code></pre><p>在这里我们使用了一些前面所进的CSS3的属性制作出来的导航，如果你跟着做的话，在你本地一定能看到一个非常靓丽的导航菜单，这里由于无法链接demo原页面，只好贴上缩略图，让大家有一个初步效果视觉初步的效果如下：</p><p><img src="http://www.w3cplus.com/sites/default/files/transform-menu-dome.png" alt=""> (style=undefined)</p><p>从效果图上我们可以清楚的看到菜单上我们分别对应的是transform中的Translate、TranslateX、TranslateY、Rotate、Scale、ScaleX、ScaleY、Skew、SkewX、SkewY和Matrix，下面我们就在相应的a:hover加上各自的效果：</p><p><strong>1、transform:translate(x,y):</strong></p><pre><code>.menuulli.translatea:hover {
+    -moz-transform: translate(-10px, -10px);
+    -webkit-transform: translate(-10px, -10px);
+    -o-transform: translate(-10px, -10px);
+    -ms-transform: translate(-10px, -10px);
+    transform: translate(-10px, -10px);
+}
+</code></pre><p>效果：</p><p><img src="http://www.w3cplus.com/sites/default/files/Transform-translate-xy.png" alt=""></p><p><strong>2、transform:translateX(x)</strong></p><pre><code>.menuulli.translate-xa:hover {
+    -moz-transform: translateX(-10px);
+    -webkit-transform: translateX(-10px);
+    -o-transform: translateX(-10px);
+    -ms-transform: translateX(-10px);
+    transform: translateX(-10px);
+}
+</code></pre><p>效果：</p><p><img src="http://www.w3cplus.com/sites/default/files/Transform-translatex.png" alt=""></p><p><strong>3、transform:translateY(y)</strong></p><pre><code>.menuulli.translate-ya:hover {
+    -moz-transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+}
+</code></pre><p>效果：</p><p><img src="http://www.w3cplus.com/sites/default/files/Transform-translatey.png" alt=""></p><p><strong>4、transform:rotate(角度值)</strong></p><pre><code>.menuulli.rotatea:hover {
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+</code></pre><p>效果：</p><p><img src="http://www.w3cplus.com/sites/default/files/Transform-rotate.png" alt=""></p><p><strong>5、transform:scale(x,y)</strong></p><pre><code>.menuulli.scalea:hover {
+    -moz-transform: scale(0.8, 0.8);
+    -webkit-transform: scale(0.8, 0.8);
+    -o-transform: scale(0.8, 0.8);
+    -ms-transform: scale(0.8, 0.8);
+    transform: scale(0.8, 0.8);
+}
+</code></pre><p>效果：</p><p><img src="http://www.w3cplus.com/sites/default/files/Transform-scalexy.png" alt=""> (style=undefined)</p><p><strong>6、transform:scaleX(x)</strong></p><pre><code>.menuulli.scale-xa:hover {
+    -moz-transform: scaleX(0.8);
+    -webkit-transform: scaleX(0.8);
+    -o-transform: scaleX(0.8);
+    -ms-transform: scaleX(0.8);
+    transform: scaleX(0.8);
+}
+</code></pre><p>效果：</p><p><img src="http://www.w3cplus.com/sites/default/files/Transform-scalex.png" alt=""></p><p><strong>7、transform:scaleY(y)</strong></p><pre><code>.menuulli.scale-ya:hover {
+    -moz-transform: scaleY(1.2);
+    -webkit-transform: scaleY(1.2);
+    -o-transform: scaleY(1.2);
+    -ms-transform: scaleY(1.2);
+    transform: scaleY(1.2);
+}
+</code></pre><p>效果：</p><p><img src="http://www.w3cplus.com/sites/default/files/Transform-scaley.png" alt=""></p><p><strong>8、transform:skew(x,y)</strong></p><pre><code>.menuulli.skewa:hover {
+    -moz-transform: skew(45deg, 15deg);
+    -webkit-transform: skew(45deg, 15deg);
+    -o-transform: skew(45deg, 15deg);
+    -ms-transform: skew(45deg, 15deg);
+    transform: skew(45deg, 15deg);
+}
+</code></pre><p>效果：</p><p><img src="http://www.w3cplus.com/sites/default/files/Transform-skewxy.png" alt=""></p><p><strong>9、transform:skewX(x)</strong></p><pre><code>.menuulli.skew-xa:hover {
+    -moz-transform: skewX(-30deg);
+    -webkit-transform: skewX(-30deg);
+    -o-transform: skewX(-30deg);
+    -ms-transform: skewX(-30deg);
+    transform: skewX(-30deg);
+}
+</code></pre><p>效果：</p><p><img src="http://www.w3cplus.com/sites/default/files/Transform-skewx.png" alt=""></p><p><strong>10、transform:skewY(y)</strong></p><pre><code>.menuulli.skew-ya:hover {
+    -moz-transform: skewY(30deg);
+    -webkit-transform: skewY(30deg);
+    -o-transform: skewY(30deg);
+    -ms-transform: skewY(30deg);
+    transform: skewY(30deg);
+}
+</code></pre><p>效果：</p><p><img src="http://www.w3cplus.com/sites/default/files/Transform-skewy.png" alt=""></p><p><strong>11、transform:matrix(a,b,c,d,e,f)</strong></p><pre><code>.menuulli.matrixa:hover {
+    -moz-transform: matrix(1, 1, -1, 0, 0, 0);
+    -webkit-transform: matrix(1, 1, -1, 0, 0, 0);
+    -o-transform: matrix(1, 1, -1, 0, 0, 0);
+    -ms-transform: matrix(1, 1, -1, 0, 0, 0);
+    transform: matrix(1, 1, -1, 0, 0, 0);
+}
+</code></pre><p>效果：</p><p><img src="http://www.w3cplus.com/sites/default/files/Transform-matrix.png" alt=""></p><p>transform中的matrix是相对的复杂，如果感兴趣的朋友可以点<a href="http://www.w3.org/TR/SVG/coords.html#TransformMatrixDefined" target="_blank" rel="noopener">这里</a> 进去学民更多有关于Matrix的用法，我在这里就不多说了，说了也讲不清楚。</p><p>下面我们来看看最终的效果图，如果你在本地跟着这个实例做了的话，那么你就能看到非常好的效果了。</p><p><img src="http://www.w3cplus.com/sites/default/files/transform-demo-hover.png" alt=""></p><p>上面的实例效果展示了有关于transform中各种风格效果，这里需要提醒大家，我们上面的效果都是以元素自身的中心点为基点的，下面我们来看一个改变元素基点的实例</p><p>我们在前面的实例基础改变一下所有a标签基点位置为left top（前面默认是center center）</p><pre><code>.menuulli.transform-origina {
+    -moz-transform-origin: left top;
+    -webkit-transform-origin: left top;
+    -o-transform-origin: left top;
+    -ms-transform-origin: left top;
+    transform-origin: left top;
+}
+</code></pre><p>大家一起看看改变了a标签基点后transform下各种效果有什么样的变化：</p><p><img src="http://www.w3cplus.com/sites/default/files/Transform-origin-demo-hover.png" alt=""></p><p>从效果图中大家可以明显的看出，改变元素的基点后。元素进行transform任何属性值的设置都会有影响，换句话说，我们transform进行任何动作变化都是以元素的中心为基点，同时我们可以通过transform-origin来改变任何元素的基点，从而达到不同的效果。感兴趣的朋友可以去了解更多有关这方面的知识。</p><p>最后我们再来看一个transform运用多个属性值的效果实例</p><pre><code>.demoa {
+    width: 100px;
+    padding: 5px;
+    background: red;
+    display: block;
+}
+
+.demoa:hover {
+    -moz-transform: rotate(45deg)scale(0.8, 1.2)skew(60deg, -30deg);
+    -webkit-transform: rotate(45deg)scale(0.8, 1.2)skew(60deg, -30deg);
+    -o-transform: rotate(45deg)scale(0.8, 1.2)skew(60deg, -30deg);
+    -ms-transform: rotate(45deg)scale(0.8, 1.2)skew(60deg, -30deg);
+    transform: rotate(45deg)scale(0.8, 1.2)skew(60deg, -30deg);
+}
+</code></pre><p>这里需要注意的是使用多个属性值时，其之间不能用逗号（“，”）分隔，必须使用空格分隔，记住了是空格分隔，如上面代码所示。</p><p>那么到这有关于CSS3的transform就介绍完了。</p><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><blockquote style="margin:2em 0 0;padding:.5em 1em;border-left:3px solid #f44336;background-color:#f5f5f5;list-style:none"><p> <strong>This blog is under a <a href="https://pancakeawesome.ink/" target="_blank">CC BY-NC-SA 3.0 Unported License</a></strong><br> <strong>本文链接：</strong><a href="http://pancakeawesome.ink/CSS3-transform特性教程.html">http://pancakeawesome.ink/CSS3-transform特性教程.html</a></p></blockquote></div><div id="changyan-comment"><div id="SOHUCS" sid="CSS3-transform特性教程.html"></div><script type="text/javascript">!function(){var t="da223e602e0abf03eded8d4c19e7d862";if((window.innerWidth||document.documentElement.clientWidth)<960)window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cytdf2o7Q&conf='+t+'"><\/script>');else{!function(t,e){var n=document.getElementsByTagName("head")[0]||document.head||document.documentElement,a=document.createElement("script");a.setAttribute("type","text/javascript"),a.setAttribute("charset","UTF-8"),a.setAttribute("src",t),"function"==typeof e&&(window.attachEvent?a.onreadystatechange=function(){var t=a.readyState;"loaded"!==t&&"complete"!==t||(a.onreadystatechange=null,e())}:a.onload=e),n.appendChild(a)}("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:"cytdf2o7Q",conf:t})})}}()</script></div><style>#changyan-comment{background-color:#eee;padding:2pc}</style></div><nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col"> <a href="/使用合适的设计模式一步步优化前端代码.html" id="post_nav-newer" class="prev-content"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation"> <i class="material-icons">arrow_back</i></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 新篇</a><div class="section-spacer"></div> <a href="/webpack简易配置入门.html" id="post_nav-older" class="next-content">旧篇 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation"> <i class="material-icons">arrow_forward</i></button></a></nav></div></div><div class="sidebar-overlay"></div><aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation"><div id="sidebar-main"><div class="sidebar-header header-cover" style="background-image:url(/img/thumbnail/sidebar_header.jpg)"><div class="top-bar"></div> <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display:initial" data-upgraded=",MaterialButton,MaterialRipple"> <i class="material-icons">clear_all</i><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button><div class="sidebar-image"> <img src="/img/rip.jpeg" alt="Edward Guan's avatar"></div> <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">guanchao930908@163.com<b class="caret"></b></a></div><ul class="nav sidebar-nav"><li class="dropdown"><ul id="settings-dropdown" class="dropdown-menu"><li> <a href="mailto:guanchao930908@163.com" target="_blank" title="Email Me"><i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i> Email Me</a></li></ul></li><li id="sidebar-first-li"> <a href="/"><i class="material-icons sidebar-material-icons">home</i> 主页</a></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">timeline</i> 归档<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/02/">二月 2018<span class="sidebar_archives-count">16</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">13</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">20</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">10</span></a></li></ul></li><li class="dropdown"> <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown"><i class="material-icons sidebar-material-icons">chrome_reader_mode</i> 分类<b class="caret"></b></a><ul class="dropdown-menu"><li> <a class="sidebar_archives-link" href="/categories/blog/">blog<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/css/">css<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/es6/">es6<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/html/">html<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript/">javascript<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript设计模式/">javascript设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/node-js/">node.js<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/nodejs/">nodejs<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/react/">react<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/typescript/">typescript<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端优化/">前端优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端工具/">前端工具<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端技术/">前端技术<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端架构设计/">前端架构设计<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端框架/">前端框架<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据分析/">数据分析<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据可视化/">数据可视化<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/机器学习/">机器学习<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/categories/深度学习/">深度学习<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法思想/">算法思想<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/论文笔记/">论文笔记<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/软件开发/">软件开发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/面试/">面试<span class="sidebar_archives-count">1</span></a></li></ul></li><li> <a href="/tags" title="标签云"><i class="material-icons sidebar-material-icons">cloud_circle</i> 标签云</a></li><li class="divider"></li><li> <a href="/timeline" title="Timeline"><i class="material-icons sidebar-material-icons">send</i> Timeline</a></li><li> <a href="/gallery" title="Gallery"><i class="material-icons sidebar-material-icons">photo_library</i> Gallery</a></li><li> <a href="/aboutMe" title="About Me"><i class="material-icons sidebar-material-icons">person_pin</i> About Me</a></li><li class="divider"></li><li> <a href="/archives">文章总数 <span class="sidebar-badge">81</span></a></li></ul></div></aside><div id="back-to-top" class="toTop-wrap"> <a href="#top" class="toTop"><i class="material-icons footer_top-i">expand_less</i></a></div><footer class="mdl-mini-footer" id="bottom"><div class="mdl-mini-footer--left-section sns-list"> <a href="https://twitter.com/591153977" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter"> <span class="visuallyhidden">Twitter</span></button></a> <a href="https://www.facebook.com/profile.php?id=100011433530812" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook"> <span class="visuallyhidden">Facebook</span></button></a> <a href="https://www.instagram.com/edward930908/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-instagram"> <span class="visuallyhidden">Instagram</span></button></a> <a href="https://github.com/PancakeAwesome" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-github"> <span class="visuallyhidden">Github</span></button></a> <a href="https://www.linkedin.com/in/%E8%B6%85-%E7%AE%A1-89495a145/" target="_blank"><button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin"> <span class="visuallyhidden">LinkedIn</span></button></a></div><div id="copyright"> Copyright&nbsp;©<script type="text/javascript">var fd=new Date;document.write("&nbsp;"+fd.getFullYear()+"&nbsp;")</script>Edward's Blog<br><p>Hosted by <a href="https://pages.coding.me" style="font-weight:700">Coding Pages</a></p></div><div class="mdl-mini-footer--right-section"><div><div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div><div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div></div></div></footer><script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==",!0)</script><script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==",!0)</script><script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==",!0)</script><script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytdf2o7Q"></script><script>var agent=navigator.userAgent.toLowerCase();agent.indexOf("ucbrowser")>0&&(document.write('<link rel="stylesheet" href="/css/uc.css">'),alert("由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。"))</script><script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==",!0)</script><script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script><script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script><script>!function(){for(var e=document.querySelectorAll('script[type="text/ls-javascript"]'),r=0;r<e.length;++r){var o=e[r];lsloader.runInlineScript(o.id,o.id)}}(),console.log("\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;","color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;")</script></main></div><script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
