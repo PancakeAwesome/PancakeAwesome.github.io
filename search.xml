@@ -45,8 +45,8 @@
 <p><img src="http://ww1.sinaimg.cn/large/8c2b2f6fjw1f9aba7bh2ig20az0chwjq.gif" alt=""></p>
 <blockquote>
 <p>这里反卷积的操作用到了<a href="https://blog.csdn.net/u011771047/article/details/72872742" target="_blank" rel="noopener">双线性插值的</a>技巧。</p>
-<h3 id="fusion-prediction"><a href="#fusion-prediction" class="headerlink" title="fusion prediction"></a>fusion prediction</h3><p>以上是对CNN的结果做处理，得到了dense prediction，而作者在试验中发现，得到的分割结果比较粗糙，所以考虑加入更多前层的细节信息，也就是把倒数第几层的输出和最后的输出做一个fusion，实际上也就是加和：<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fq66mciuvqj30lg094gm9.jpg" alt=""><br>这样就得到第二行和第三行的结果，实验表明，这样的分割结果更细致更准确。在逐层fusion的过程中，做到第三行再往下，结果又会变差，所以作者做到这里就停了。可以看到如上三行的对应的结果：</p>
 </blockquote>
+<h3 id="fusion-prediction"><a href="#fusion-prediction" class="headerlink" title="fusion prediction"></a>fusion prediction</h3><p>以上是对CNN的结果做处理，得到了dense prediction，而作者在试验中发现，得到的分割结果比较粗糙，所以考虑加入更多前层的细节信息，也就是把倒数第几层的输出和最后的输出做一个fusion，实际上也就是加和：<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fq66mciuvqj30lg094gm9.jpg" alt=""><br>这样就得到第二行和第三行的结果，实验表明，这样的分割结果更细致更准确。在逐层fusion的过程中，做到第三行再往下，结果又会变差，所以作者做到这里就停了。可以看到如上三行的对应的结果：</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fq53xsnvvoj30en067mxk.jpg" alt=""><br>问题&amp;解决办法</p>
 <p>1.如何做pixelwise的prediction？</p>
 <p>传统的网络是subsampling的，对应的输出尺寸会降低，要想做pixelwiseprediction，必须保证输出尺寸。<br>解决办法：<br>（1）对传统网络如AlexNet，VGG等的最后全连接层变成卷积层。<br>例如VGG16中第一个全连接层是25088x4096的，将之解释为512x7x7x4096的卷积核，则如果在一个更大的输入图像上进行卷积操作（上图的下半部分），原来输出4096维feature的节点处（上图的上半部分），就会输出一个coarsefeature map。<br>这样做的好处是，能够很好的利用已经训练好的supervisedpre-training的网络，不用像已有的方法那样，从头到尾训练，只需要fine-tuning即可，训练efficient。<br>（2）加In-network upsampling layer。<br>对中间得到的featuremap做bilinear上采样，就是反卷积层。实现把conv的前传和反传过程对调一下即可。</p>
@@ -7535,9 +7535,9 @@ fn();
         
         <tags>
             
-            <tag> http协议 </tag>
-            
             <tag> 网络 </tag>
+            
+            <tag> http协议 </tag>
             
         </tags>
         
