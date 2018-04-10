@@ -20,14 +20,14 @@
 <p>线性插值法利用原图像中两个点计算像素值进行插值，双线性插值法利用原图像中四个点计算目标像素值进行插值</p>
 </blockquote>
 <h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fq53ycl3mlj30tv07hgma.jpg" alt=""></p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fq6rwk265ij30u50ckdi4.jpg" alt=""><br>如图所示<br>1）原始图像是500*500，为了使最后的输出为能够得到一个更大的feature图，便于deconvolution，因此人为的在原图上加了padding=100，（这样的做法略显粗糙，以后 改变stride+hole算法可以解决）</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fq6rwk265ij30u50ckdi4.jpg" alt=""><br>如图所示<br>1）原始图像是$500*500$，为了使最后的输出为能够得到一个更大的feature图，便于deconvolution，因此人为的在原图上加了padding=100，（这样的做法略显粗糙，以后 改变stride+hole算法可以解决）</p>
 <p>2.）pool5之前就是纯粹的vgg网络</p>
-<p>3）pool5之后将原来的两个4096的全连接层，改成1<em>1的卷积核生成的16</em>16*4096的map，channel数量为4096</p>
-<p>4）对于最后一个16<em>16</em>4096的在用一个1<em>1的卷积核去卷积，channel=21 得到16</em>16*21的map，称为coarse score map1</p>
-<p>5）coarse score map1进行反卷积（bilinear插值上采样）得到34<em>34</em>21的map</p>
-<p>6）同时pool4层也通过1<em>1的卷积变成x4</em>x4<em>21的map再通过crop变成34</em>34*21的map，称为coarse score map2</p>
-<p>7）将第5步和第六步的map对应叠加，再进行反卷积（bilinear插值上采样）得到70<em>70</em>21的map<br>8）同理对pool3进行操作得到70<em>70</em>21的map与第七步的叠加，再进行反卷积（bilinear插值上采样）得到568<em>568</em>21的map</p>
-<p>9）最后对568<em>568</em>21的map进行crop，变成500<em>500的图片，然后进行peixl classification ，总共500</em>500个像素，每个像素有21个值分别表示为对应类别的概率，取至最大的概率对应的类别作为这个像素的类别即可</p>
+<p>3）pool5之后将原来的两个4096的全连接层，改成$1<em>1$的卷积核生成的$16</em>16*4096$的map，channel数量为4096</p>
+<p>4）对于最后一个$16<em>16</em>4096$的在用一个$1<em>1$的卷积核去卷积，channel=21 得到$16</em>16*21$的map，称为coarse score map1</p>
+<p>5）coarse score map1进行反卷积（bilinear插值上采样）得到$34<em>34</em>21$的map</p>
+<p>6）同时pool4层也通过$1<em>1$的卷积变成$x4</em>x4<em>21$的map再通过crop变成$34</em>34*21$的map，称为coarse score map2</p>
+<p>7）将第5步和第六步的map对应叠加，再进行反卷积（bilinear插值上采样）得到$70<em>70</em>21$的map<br>8）同理对pool3进行操作得到$70<em>70</em>21$的map与第七步的叠加，再进行反卷积（bilinear插值上采样）得到$568<em>568</em>21$的map</p>
+<p>9）最后对$568<em>568</em>21$的map进行crop，变成$500<em>500$的图片，然后进行peixl classification ，总共$500</em>500$个像素，每个像素有21个值分别表示为对应类别的概率，取至最大的概率对应的类别作为这个像素的类别即可</p>
 <h2 id="【细节记录】"><a href="#【细节记录】" class="headerlink" title="【细节记录】"></a>【细节记录】</h2><h3 id="dense-prediction"><a href="#dense-prediction" class="headerlink" title="dense prediction"></a>dense prediction</h3><p>这里通过upsampling得到dense prediction，作者研究过3种方案：</p>
 <ul>
 <li>shift-and-stitch：设原图与FCN所得输出图之间的降采样因子是f，那么对于原图的每个f<em>f的区域（不重叠），“shift the input x pixels to the right and y pixels down for every (x,y) ,0 &lt; x,y &lt; f.” 把这个f</em>f区域对应的output作为此时区域中心点像素对应的output，这样就对每个f*f的区域得到了$f^2$个output，也就是每个像素都能对应一个output，所以成为了dense prediction。</li>
@@ -10534,9 +10534,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> 前端框架 </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
