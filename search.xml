@@ -78,7 +78,7 @@
       <url>/CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在<a href="hhttp://pancakeawesome.ink/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84.html">卷积神经网络(CNN)模型结构</a> 中，我们对CNN的模型结构做了总结，这里我们就在CNN的模型基础上，看看CNN的前向传播算法是什么样子的。重点会和传统的DNN比较讨论。</p>
 <h2 id="卷积神经网络-CNN-前向传播算法"><a href="#卷积神经网络-CNN-前向传播算法" class="headerlink" title="卷积神经网络(CNN)前向传播算法"></a>卷积神经网络(CNN)前向传播算法</h2><h3 id="1-回顾CNN的结构"><a href="#1-回顾CNN的结构" class="headerlink" title="1. 回顾CNN的结构"></a>1. 回顾CNN的结构</h3><p>在上一篇里，我们已经讲到了CNN的结构，包括输出层，若干的卷积层+ReLU激活函数，若干的池化层，DNN全连接层，以及最后的用Softmax激活函数的输出层。这里我们用一个彩色的汽车样本的图像识别再从感官上回顾下CNN的结构。图中的CONV即为卷积层，POOL即为池化层，而FC即为DNN全连接层，包括了我们上面最后的用Softmax激活函数的输出层。</p>
-<p><img src="https://images2015.cnblogs.com/blog/1042406/201703/1042406-20170302112126673-1167058801.jpg" alt=""> </p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fq8ipvatsvj30yv0gpwgq.jpg" alt=""></p>
 <p>从上图可以看出，要理顺CNN的前向传播算法，重点是输入层的前向传播，卷积层的前向传播以及池化层的前向传播。而DNN全连接层和用Softmax激活函数的输出层的前向传播算法我们在讲DNN时已经讲到了。</p>
 <h3 id="2-CNN输入层前向传播到卷积层"><a href="#2-CNN输入层前向传播到卷积层" class="headerlink" title="2. CNN输入层前向传播到卷积层"></a>2. CNN输入层前向传播到卷积层</h3><p>输入层的前向传播是CNN前向传播算法的第一步。一般输入层对应的都是卷积层，因此我们标题是输入层前向传播到卷积层。</p>
 <p>我们这里还是以图像识别为例。</p>
@@ -2373,9 +2373,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -4875,9 +4875,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> react </tag>
             
@@ -5264,9 +5264,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
