@@ -23,7 +23,7 @@
 <p>我们概括下，对于张量$\delta^{l-1}$，我们有：<br>$$<br>\delta^{l-1} =  upsample(\delta^l) \odot \sigma^{‘}(z^{l-1})<br>$$</p>
 <h3 id="4-已知卷积层的-delta-l-，推导上一隐藏层的-delta-l-1"><a href="#4-已知卷积层的-delta-l-，推导上一隐藏层的-delta-l-1" class="headerlink" title="4. 已知卷积层的$\delta^l$，推导上一隐藏层的$\delta^{l-1} $"></a>4. 已知卷积层的$\delta^l$，推导上一隐藏层的$\delta^{l-1} $</h3><p>对于卷积层的反向传播，我们首先回忆下卷积层的前向传播公式：<br>$$<br>  a^l= \sigma(z^l) = \sigma(a^{l-1}*W^l +b^l)<br>$$<br>其中$n_in$为上一隐藏层的输入子矩阵个数。</p>
 <p>在DNN中，我们知道$\delta^{l-1}$和$\delta^{l}$的递推关系为：<br>$$<br>\delta^{l} = \frac{\partial J(W,b)}{\partial z^l} = \frac{\partial J(W,b)}{\partial z^{l+1}}\frac{\partial z^{l+1}}{\partial z^{l}} = \delta^{l+1}\frac{\partial z^{l+1}}{\partial z^{l}}<br>$$<br>因此要推导出$\delta^{l-1}$和$\delta^{l}$的递推关系，必须计算$\frac{\partial z^{l}}{\partial z^{l-1}}$的梯度表达式。</p>
-<p>注意到$z^{l}$和$z^{l-1}$的关系为：<br>$$<br>z^l = a^{l-1}<em>W^l +b^l =\sigma(z^{l-1})</em>W^l +b^l<br>$$</p>
+<p>注意到$z^{l}$和$z^{l-1}$的关系为：<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fq8jhcsescj30ai01la9u.jpg" alt=""></p>
 <p>因此我们有：<br>$$<br>\delta^{l-1} =  \delta^{l}\frac{\partial z^{l}}{\partial z^{l-1}} = \delta^{l}*rot180(W^{l}) \odot  \sigma^{‘}(z^{l-1})<br>$$</p>
 <p>这里的式子其实和DNN的类似，区别在于对于含有卷积的式子求导时，卷积核被旋转了180度。即式子中的$rot180()$，翻转180度的意思是上下翻转一次，接着左右翻转一次。在DNN中这里只是矩阵的转置。那么为什么呢？由于这里都是张量，直接推演参数太多了。我们以一个简单的例子说明为啥这里求导后卷积核要翻转。</p>
 <p>假设我们$l-1$层的输出$a^{l-1}$是一个3x3矩阵，第lll层的卷积核$W^l$是一个2x2矩阵，采用1像素的步幅，则输出$z^{l}$是一个2x2的矩阵。我们简化$b^l$都是0,则有<br>$$<br>a^{l-1}*W^l = z^{l}<br>$$</p>
