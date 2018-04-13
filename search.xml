@@ -44,23 +44,34 @@
 <p>输入：m个图片样本，CNN模型的层数L和所有隐藏层的类型，对于卷积层，要定义卷积核的大小K，卷积核子矩阵的维度F，填充大小P，步幅S。对于池化层，要定义池化区域大小k和池化标准（MAX或Average），对于全连接层，要定义全连接层的激活函数（输出层除外）和各层的神经元个数。梯度迭代参数迭代步长$\alpha$,最大迭代次数MAX与停止迭代阈值$\epsilon$</p>
 <p>输出：CNN模型各隐藏层与输出层的$W,b$</p>
 <p>1) 初始化各隐藏层与输出层的各$W,b$的值为一个随机值。</p>
-<p>   2）for iter to 1 to MAX：</p>
-<p>   2-1) for i =1 to m：</p>
-<p>　　a) 将CNN输入$a^1$设置为$x_i$对应的张量</p>
-<p>　　b) for $l$=2 to L-1，根据下面3种情况进行前向传播算法计算：</p>
-<p>　　b-1) 如果当前是全连接层：则有$a^{i,l} = \sigma(z^{i,l}) = \sigma(W^la^{i,l-1} + b^{l})$</p>
-<p>　　b-2) 如果当前是卷积层：则有$a^{i,l} = \sigma(z^{i,l}) = \sigma(W^l*a^{i,l-1} + b^{l})$</p>
-<p>　　b-3) 如果当前是池化层：则有$a^{i,l}= pool(a^{i,l-1})$, 这里的pool指按照池化区域大小k和池化标准将输入张量缩小的过程。</p>
-<p>　　c) 对于输出层第L层: $a^{i,L}= softmax(z^{i,L}) = softmax(W^{L}a^{i,L-1} +b^{L})$</p>
-<p>　　c) 通过损失函数计算输出层的$\delta^{i,L}$</p>
-<p>　　d) for $l$= L-1 to 2, 根据下面3种情况进行进行反向传播算法计算:</p>
-<p>　　   d-1)  如果当前是全连接层：$\delta^{i,l} =  (W^{l+1})^T\delta^{i,l+1}\odot \sigma^{‘}(z^{i,l})$</p>
-<p>　　   d-2) 如果当前是卷积层：$\delta^{i,l} = \delta^{i,l+1}*rot180(W^{l+1}) \odot  \sigma^{‘}(z^{i,l}) $</p>
-<p>　　   d-3) 如果当前是池化层：$\delta^{i,l} =  upsample(\delta^{i,l+1}) \odot \sigma^{‘}(z^{i,l})$</p>
-<p>2-2) for $l$ = 2 to L，根据下面2种情况更新第$l$层的$W^l,b^l$:</p>
-<p>   2-2-1) 如果当前是全连接层：$W^l = W^l -\alpha \sum\limits_{i=1}^m \delta^{i,l}(a^{i, l-1})^T ，b^l = b^l -\alpha \sum\limits_{i=1}^m \delta^{i,l}$</p>
-<p>　　2-2-2) 如果当前是卷积层，对于每一个卷积核有：$\delta^{i,l}*rot180(a^{i, l-1}) ， b^l = b^l -\alpha \sum\limits_{i=1}^m \sum\limits_{u,v}(\delta^{i,l})_{u,v}$</p>
-<p>   2-3) 如果所有$W，b$的变化值都小于停止迭代阈值$\epsilon$，则跳出迭代循环到步骤3。</p>
+<p>2）for iter to 1 to MAX：</p>
+<p>  2-1) for i =1 to m：</p>
+<pre><code>   a) 将CNN输入$a^1$设置为$x_i$对应的张量
+
+   b) for $l$=2 to L-1，根据下面3种情况进行前向传播算法计算：
+
+      b-1) 如果当前是全连接层：则有$a^{i,l} = \sigma(z^{i,l}) = \sigma(W^la^{i,l-1} + b^{l})$
+
+      b-2) 如果当前是卷积层：则有$a^{i,l} = \sigma(z^{i,l}) = \sigma(W^l*a^{i,l-1} + b^{l})$
+
+      b-3) 如果当前是池化层：则有$a^{i,l}= pool(a^{i,l-1})$, 这里的pool指按照池化区域大小k和池化标准将输入张量缩小的过程。
+
+   c) 对于输出层第L层: $a^{i,L}= softmax(z^{i,L}) = softmax(W^{L}a^{i,L-1} +b^{L})$
+
+   d) 通过损失函数计算输出层的$\delta^{i,L}$
+
+   e) for $l$= L-1 to 2, 根据下面3种情况进行进行反向传播算法计算:
+
+      e-1)  如果当前是全连接层：$\delta^{i,l} =  (W^{l+1})^T\delta^{i,l+1}\odot \sigma^{&#39;}(z^{i,l})$
+
+      e-2) 如果当前是卷积层：$\delta^{i,l} = \delta^{i,l+1}*rot180(W^{l+1}) \odot  \sigma^{&#39;}(z^{i,l}) $
+
+      e-3) 如果当前是池化层：$\delta^{i,l} =  upsample(\delta^{i,l+1}) \odot \sigma^{&#39;}(z^{i,l})$
+</code></pre><p>  2-2) for $l$ = 2 to L，根据下面2种情况更新第$l$层的$W^l,b^l$:</p>
+<pre><code>   2-2-1) 如果当前是全连接层：$W^l = W^l -\alpha \sum\limits_{i=1}^m \delta^{i,l}(a^{i, l-1})^T ，b^l = b^l -\alpha \sum\limits_{i=1}^m \delta^{i,l}$
+
+   2-2-2) 如果当前是卷积层，对于每一个卷积核有：$\delta^{i,l}*rot180(a^{i, l-1}) ， b^l = b^l -\alpha \sum\limits_{i=1}^m \sum\limits_{u,v}(\delta^{i,l})_{u,v}$
+</code></pre><p>  2-3) 如果所有$W，b$的变化值都小于停止迭代阈值$\epsilon$，则跳出迭代循环到步骤3。</p>
 <p>3） 输出各隐藏层与输出层的线性关系系数矩阵$W$和偏倚向量$b$。</p>
 <h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><p>1） <a href="http://neuralnetworksanddeeplearning.com/index.html" target="_blank" rel="noopener">Neural Networks and Deep Learning</a> by By Michael Nielsen</p>
 <p>2） <a href="http://www.deeplearningbook.org/" target="_blank" rel="noopener">Deep Learning</a>, book by Ian Goodfellow, Yoshua Bengio, and Aaron Courville</p>
