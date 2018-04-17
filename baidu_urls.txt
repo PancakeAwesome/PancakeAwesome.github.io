@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/RNN循环神经网络小结.html
 http://pancakeawesome.ink/最全优化方法总结比较（SGD，Adagrad，Adadelta，Adam，Adamax，Nadam）.html
 http://pancakeawesome.ink/CRNN-Convolutional-Recurrent-Neural-Network-论文笔记.html
 http://pancakeawesome.ink/CNN卷积神经网络反向传播算法.html
