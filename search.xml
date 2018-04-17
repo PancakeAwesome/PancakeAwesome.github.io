@@ -3,6 +3,92 @@
   
     
     <entry>
+      <title><![CDATA[最全优化方法总结比较（SGD，Adagrad，Adadelta，Adam，Adamax，Nadam）]]></title>
+      <url>/%E6%9C%80%E5%85%A8%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93%E6%AF%94%E8%BE%83%EF%BC%88SGD%EF%BC%8CAdagrad%EF%BC%8CAdadelta%EF%BC%8CAdam%EF%BC%8CAdamax%EF%BC%8CNadam%EF%BC%89.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>（标题不能再中二了）本文仅对一些常见的优化方法进行直观介绍和简单的比较，各种优化方法的详细内容及公式只好去认真啃论文了，在此我就不赘述了。</p>
+<h3 id="SGD"><a href="#SGD" class="headerlink" title="SGD"></a>SGD</h3><p>此处的SGD指mini-batch gradient descent，关于batch gradient descent, stochastic gradient descent, 以及 mini-batch gradient descent的具体区别就不细说了。现在的SGD一般都指mini-batch gradient descent。<br>SGD就是每一次迭代计算mini-batch的梯度，然后对参数进行更新，是最常见的优化方法了。即：<br>gt=∇θt−1f(θt−1)<br>Δθt=−η∗gt</p>
+<p>其中，<br>η<br>是学习率，<br>gt<br>是梯度<br>SGD完全依赖于当前batch的梯度，所以<br>η<br>可理解为允许当前batch的梯度多大程度影响参数更新<br>缺点：（正因为有这些缺点才让这么多大神发展出了后续的各种算法）<br>选择合适的learning rate比较困难<br>对所有的参数更新使用同样的learning rate。对于稀疏数据或者特征，有时我们可能想更新快一些对于不经常出现的特征，对于常出现的特征更新慢一些，这时候SGD就不太能满足要求了<br>SGD容易收敛到局部最优，在某些情况下可能被困在鞍点【但是在合适的初始化和学习率设置下，鞍点的影响其实没这么大】<br>Momentum</p>
+<p>momentum是模拟物理里动量的概念，积累之前的动量来替代真正的梯度。公式如下：<br>mt=μ∗mt−1+gt</p>
+<p>Δθt=−η∗mt</p>
+<p>其中，<br>μ<br>是动量因子<br>特点：<br>下降初期时，使用上一次参数更新，下降方向一致，乘上较大的<br>μ<br>能够进行很好的加速<br>下降中后期时，在局部最小值来回震荡的时候，<br>gradient→0<br>，<br>μ<br>使得更新幅度增大，跳出陷阱<br>在梯度改变方向的时候，<br>μ<br>能够减少更新<br>总而言之，momentum项能够在相关方向加速SGD，抑制振荡，从而加快收敛<br>Nesterov</p>
+<p>nesterov项在梯度更新时做一个校正，避免前进太快，同时提高灵敏度。<br> 将上一节中的公式展开可得：<br>Δθt=−η∗μ∗mt−1−η∗gt</p>
+<p> 可以看出，<br>mt−1<br>并没有直接改变当前梯度<br>gt<br>，所以Nesterov的改进就是让之前的动量直接影响当前的动量。即：<br>gt=∇θt−1f(θt−1−η∗μ∗mt−1)</p>
+<p>mt=μ∗mt−1+gt</p>
+<p>Δθt=−η∗mt</p>
+<p> 所以，加上nesterov项后，梯度在大的跳跃后，进行计算对当前梯度进行校正。如下图：</p>
+<p>momentum首先计算一个梯度(短的蓝色向量)，然后在加速更新梯度的方向进行一个大的跳跃(长的蓝色向量)，nesterov项首先在之前加速的梯度方向进行一个大的跳跃(棕色向量)，计算梯度然后进行校正(绿色梯向量)<br>其实，momentum项和nesterov项都是为了使梯度更新更加灵活，对不同情况有针对性。但是，人工设置一些学习率总还是有些生硬，接下来介绍几种自适应学习率的方法<br>Adagrad</p>
+<p>Adagrad其实是对学习率进行了一个约束。即：<br>nt=nt−1+g2t</p>
+<p>Δθt=−ηnt+ϵ‾‾‾‾‾‾√∗gt</p>
+<p>此处，对<br>gt<br>从<br>1<br>到<br>t<br>进行一个递推形成一个约束项regularizer，<br>−1∑tr=1(gr)2+ϵ√<br> ，<br>ϵ<br>用来保证分母非0<br>特点：<br>前期<br>gt<br>较小的时候， regularizer较大，能够放大梯度<br>后期<br>gt<br>较大的时候，regularizer较小，能够约束梯度<br>适合处理稀疏梯度<br>缺点：<br>由公式可以看出，仍依赖于人工设置一个全局学习率<br>η<br>设置过大的话，会使regularizer过于敏感，对梯度的调节太大<br>中后期，分母上梯度平方的累加将会越来越大，使<br>gradient→0<br>，使得训练提前结束<br>Adadelta</p>
+<p>Adadelta是对Adagrad的扩展，最初方案依然是对学习率进行自适应约束，但是进行了计算上的简化。<br>Adagrad会累加之前所有的梯度平方，而Adadelta只累加固定大小的项，并且也不直接存储这些项，仅仅是近似计算对应的平均值。即：<br>nt=ν∗nt−1+(1−ν)∗g2t</p>
+<p>Δθt=−ηnt+ϵ‾‾‾‾‾‾√∗gt<br>在此处Adadelta其实还是依赖于全局学习率的，但是作者做了一定处理，经过近似牛顿迭代法之后：<br>E|g2|t=ρ∗E|g2|t−1+(1−ρ)∗g2t</p>
+<p>Δxt=−∑t−1r=1Δxr‾‾‾‾‾‾‾‾‾√E|g2|t+ϵ‾‾‾‾‾‾‾‾‾‾√</p>
+<p>其中，<br>E<br>代表求期望。<br>此时，可以看出Adadelta已经不用依赖于全局学习率了。<br>特点：<br>训练初中期，加速效果不错，很快<br>训练后期，反复在局部最小值附近抖动<br>RMSprop</p>
+<p>RMSprop可以算作Adadelta的一个特例：<br>当<br>ρ=0.5<br>时，<br>E|g2|t=ρ∗E|g2|t−1+(1−ρ)∗g2t<br>就变为了求梯度平方和的平均数。<br>如果再求根的话，就变成了RMS(均方根)：<br>RMS|g|t=E|g2|t+ϵ‾‾‾‾‾‾‾‾‾‾√</p>
+<p>此时，这个RMS就可以作为学习率<br>η<br>的一个约束：<br>Δxt=−ηRMS|g|t∗gt<br>特点：<br>其实RMSprop依然依赖于全局学习率<br>RMSprop算是Adagrad的一种发展，和Adadelta的变体，效果趋于二者之间<br>适合处理非平稳目标<br>对于RNN效果很好<br>Adam</p>
+<p>Adam(Adaptive Moment Estimation)本质上是带有动量项的RMSprop，它利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。Adam的优点主要在于经过偏置校正后，每一次迭代学习率都有个确定范围，使得参数比较平稳。公式如下：<br>mt=μ∗mt−1+(1−μ)∗gt</p>
+<p>nt=ν∗nt−1+（1−ν）∗g2t</p>
+<p>mt^=mt1−μt</p>
+<p>nt^=nt1−νt</p>
+<p>Δθt=−mt^nt^‾‾√+ϵ∗η<br>Δθt=−mt^nt^+ϵ∗η</p>
+<p>其中，<br>mt<br>mt，<br>nt<br>nt分别是对梯度的一阶矩估计和二阶矩估计，可以看作对期望<br>E|gt|<br>E|gt|，<br>E|g2t|<br>E|gt2|的估计；<br>mt^<br>mt^，<br>nt^<br>nt^是对<br>mt<br>mt，<br>nt<br>nt的校正，这样可以近似为对期望的无偏估计。<br>可以看出，直接对梯度的矩估计对内存没有额外的要求，而且可以根据梯度进行动态调整，而<br>−mt^nt^√+ϵ<br>−mt^nt^+ϵ对学习率形成一个动态约束，而且有明确的范围。<br>特点：<br>结合了Adagrad善于处理稀疏梯度和RMSprop善于处理非平稳目标的优点<br>对内存需求较小<br>为不同的参数计算不同的自适应学习率<br>也适用于大多非凸优化<br>适用于大数据集和高维空间<br>Adamax</p>
+<p>Adamax是Adam的一种变体，此方法对学习率的上限提供了一个更简单的范围。公式上的变化如下：<br>nt=max(ν∗nt−1,|gt|)<br>nt=max(ν∗nt−1,|gt|)</p>
+<p>Δx=−mt^nt+ϵ∗η<br>Δx=−mt^nt+ϵ∗η</p>
+<p>可以看出，Adamax学习率的边界范围更简单<br>Nadam</p>
+<p>Nadam类似于带有Nesterov动量项的Adam。公式如下：<br>gt^=gt1−Πti=1μi<br>gt^=gt1−Πi=1tμi</p>
+<p>mt=μt∗mt−1+(1−μt)∗gt<br>mt=μt∗mt−1+(1−μt)∗gt</p>
+<p>mt^=mt1−Πt+1i=1μi<br>mt^=mt1−Πi=1t+1μi</p>
+<p>nt=ν∗nt−1+（1−ν）∗g2t<br>nt=ν∗nt−1+（1−ν）∗gt2</p>
+<p>nt^=nt1−νt<br>nt^=nt1−νt</p>
+<p>mt¯=(1−μt)∗gt^+μt+1∗mt^<br>mt¯=(1−μt)∗gt^+μt+1∗mt^</p>
+<p>Δθt=−η∗mt¯nt^‾‾√+ϵ<br>Δθt=−η∗mt¯nt^+ϵ</p>
+<p>可以看出，Nadam对学习率有了更强的约束，同时对梯度的更新也有更直接的影响。一般而言，在想使用带动量的RMSprop，或者Adam的地方，大多可以使用Nadam取得更好的效果。<br>经验之谈</p>
+<p>对于稀疏数据，尽量使用学习率可自适应的优化方法，不用手动调节，而且最好采用默认值<br>SGD通常训练时间更长，容易陷入鞍点，但是在好的初始化和学习率调度方案的情况下，结果更可靠<br>如果在意更快的收敛，并且需要训练较深较复杂的网络时，推荐使用学习率自适应的优化方法。<br>Adadelta，RMSprop，Adam是比较相近的算法，在相似的情况下表现差不多。<br>在想使用带动量的RMSprop，或者Adam的地方，大多可以使用Nadam取得更好的效果<br>最后展示两张可厉害的图，一切尽在图中啊，上面的都没啥用了… …</p>
+<p>损失平面等高线</p>
+<p>在鞍点处的比较<br>引用</p>
+<p>[1]Adagrad<br>[2]RMSprop[Lecture 6e]<br>[3]Adadelta<br>[4]Adam<br>[5]Nadam<br>[6]On the importance of initialization and momentum in deep learning<br>[7]Keras 中文文档<br>[8]Alec Radford(图)<br>[9]An overview of gradient descent optimization algorithms<br>[10]Gradient Descent Only Converges to Minimizers<br>[11]Deep Learning:Nature</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[论文笔记之CRNN(Convolutional Recurrent Neural Network)]]></title>
+      <url>/CRNN-Convolutional-Recurrent-Neural-Network-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="【论文信息】"><a href="#【论文信息】" class="headerlink" title="【论文信息】"></a>【论文信息】</h3><p>《Convolutional Recurrent Neural Network》2015</p>
+<p>该论文全称《An End-to-End Trainable Neural Network for Image-based Sequence Recognition and Its Application to Scene Text Recognition》，提出的CRNN模型，是目前比较经典的文字识别模型，主要记录以下几方面：</p>
+<ul>
+<li>概述</li>
+<li>网络结构</li>
+<li>实验相关</li>
+</ul>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>本文提出CRNN模型，即将CNN与RNN网络结合，共同训练，在一定程度上实现end-to-end文字检测和识别。说一定程度是因为虽然输入图像不需要精确给出每个字符的位置信息，但实际上还是需要对原始的图像进行前期的裁切工作。</p>
+<h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>CRNN的网络结构包括三个组成部分：卷积层、循环层和转录层。如下图所示： </p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fqffmslj6jj30jf0ly0ts.jpg" alt=""></p>
+<p>卷积层从输入图像中得到一组feature maps，再以feature sequence的形式输出，来作为循环层的输入。其中所有输入图像归一化至同一高度（本文实验为32 pixels），每个feature map的第i栏串联为feature sequence的第i个vector，即第i帧，每个vector对应一个纤维，代表了局部特征的深度。</p>
+<p>循环层中采用deep双向lstm模型，如下图所示。LSTM可以将误差差别反向传播到卷积层，从而实现在同一网络中对CNN和RNN的共同训练。并且RNN可以在任意长度的序列上进行学习，优于CNN模型的固定维度。Lstm解决了传统RNN梯度消失的问题，文章堆叠了两个双向lstm，效果更好。循环层的输出为预测的序列结果 $y=<y^1,y^2,...,y^t>$。<br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fqffnf630rj309w0a2weh.jpg" alt=""></y^1,y^2,...,y^t></p>
+<p>转录层是将预测结果转换成label序列，即找到最高概率分布的label序列。此处的概率函数采用CTC算法。实际上，有两个模式的转录层，一个是lexicon-free没有词典的，一个是lexicon-based有词典的。没有词典的转录层直接输出概率最高的label sequence；有词典的转录层需要在词典中查找最像的一个候选文本，采用BK-tree（模糊匹配算法）找到编辑距离（Levenshtein距离）A小于一定数值（本文设定δ=3）的文本作为候选文本，再一一比较编辑距离B（此处的B与前面提到的A不同，A为根据序列与tree的根结点比较的结果而得到的一个范围，B为序列与候选文本的直接编辑距离）找到最后的label sequence。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h3 id="实验相关"><a href="#实验相关" class="headerlink" title="实验相关"></a>实验相关</h3><p>训练过程的输入为图像及每个图像对应的label序列，采用随机梯度下降（SGD）法训练目标函数。优化算法采用<a href="">adadelta</a>而不是传统的momentum。实验过程中，采用VGG-veryDeep框架的卷积层，由于text的形状一般为长方形，在第3和第4个max pooling层，采用1*2的window代替原来的正方形window。在第5和第6个卷积层后加入batch nomalization层，使训练加速。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 论文笔记 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 论文笔记 </tag>
+            
+            <tag> OCR </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[CNN卷积神经网络的反向传播算法]]></title>
       <url>/CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
