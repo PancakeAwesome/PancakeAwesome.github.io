@@ -3,6 +3,64 @@
   
     
     <entry>
+      <title><![CDATA[LSTM模型小结]]></title>
+      <url>/LSTM%E6%A8%A1%E5%9E%8B%E5%B0%8F%E7%BB%93.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在<a href="http://pancakeawesome.ink/RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%B0%8F%E7%BB%93.html">循环神经网络(RNN)模型与前向反向传播算法</a>中，我们总结了对RNN模型做了总结。由于RNN也有梯度消失的问题，因此很难处理长序列的数据，大牛们对RNN做了改进，得到了RNN的特例LSTM（Long Short-Term Memory），它可以避免常规RNN的梯度消失，因此在工业界得到了广泛的应用。下面我们就对LSTM模型做一个总结。</p>
+<h2 id="LSTM模型小结"><a href="#LSTM模型小结" class="headerlink" title="LSTM模型小结"></a>LSTM模型小结</h2><h3 id="1-从RNN到LSTM"><a href="#1-从RNN到LSTM" class="headerlink" title="1. 从RNN到LSTM"></a>1. 从RNN到LSTM</h3><p>在RNN模型里，我们讲到了RNN具有如下的结构，每个序列索引位置t都有一个隐藏状态$h^{(t)}$。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fqfyodn6eqj30hw0bkwew.jpg" alt=""></p>
+<p>如果我们略去每层都有的$o^{(t)}, L^{(t)}, y^{(t)}$，则RNN的模型可以简化成如下图的形式：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqfyp7w4m2j30ld082dfw.jpg" alt=""></p>
+<p>图中可以很清晰看出在隐藏状态$h^{(t)}$由$x^{(t)}$和$h^{(t-1)}$得到。得到$h^{(t)}$后一方面用于当前层的模型损失计算，另一方面用于计算下一层的$h^{(t+1)}$。</p>
+<p>由于RNN梯度消失的问题，大牛们对于序列索引位置t的隐藏结构做了改进，可以说通过一些技巧让隐藏结构复杂了起来，来避免梯度消失的问题，这样的特殊RNN就是我们的LSTM。由于LSTM有很多的变种，这里我们以最常见的LSTM为例讲述。LSTM的结构如下图：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fqfypi8975j30l0082mxc.jpg" alt=""></p>
+<p>可以看到LSTM的结构要比RNN的复杂的多，真佩服牛人们怎么想出来这样的结构，然后这样居然就可以解决RNN梯度消失的问题？由于LSTM怎么可以解决梯度消失是一个比较难讲的问题，我也不是很熟悉，这里就不多说，重点回到LSTM的模型本身。</p>
+<h3 id="2-LSTM模型结构剖析"><a href="#2-LSTM模型结构剖析" class="headerlink" title="2. LSTM模型结构剖析"></a>2. LSTM模型结构剖析</h3><p>上面我们给出了LSTM的模型结构，下面我们就一点点的剖析LSTM模型在每个序列索引位置t时刻的内部结构。</p>
+<p>从上图中可以看出，在每个序列索引位置t时刻向前传播的除了和RNN一样的隐藏状态$h^{(t)}$，还多了另一个隐藏状态，如图中上面的长横线。这个隐藏状态我们一般称为细胞状态(Cell State)，记为$C^{(t)}$。如下图所示：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fqfypqwauqj30aj06ewec.jpg" alt=""></p>
+<p>除了细胞状态，LSTM图中还有了很多奇怪的结构，这些结构一般称之为门控结构(Gate)。LSTM在在每个序列索引位置t的门一般包括遗忘门，输入门和输出门三种。下面我们就来研究上图中LSTM的遗忘门，输入门和输出门以及细胞状态。</p>
+<h4 id="2-1-LSTM之遗忘门"><a href="#2-1-LSTM之遗忘门" class="headerlink" title="2.1 LSTM之遗忘门"></a>2.1 LSTM之遗忘门</h4><p>遗忘门（forget gate）顾名思义，是控制是否遗忘的，在LSTM中即以一定的概率控制是否遗忘上一层的隐藏细胞状态。遗忘门子结构如下图所示：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqfypvknjkj30aj06g0sl.jpg" alt=""></p>
+<p>图中输入的有上一序列的隐藏状态$h^{(t-1)}$和本序列数据$x^{(t)}$，通过一个激活函数，一般是sigmoid，得到遗忘门的输出$f^{(t)}$。由于sigmoid的输出$f^{(t)}$在[0,1]之间，因此这里的输出$f^{(t)}$代表了遗忘上一层隐藏细胞状态的概率。用数学表达式即为：<br>$$<br>f^{(t)} = \sigma(W_fh^{(t-1)} + U_fx^{(t)} + b_f)<br>$$<br>其中$W_f, U_f, b_f$为线性关系的系数和偏倚，和RNN中的类似。$\sigma$为sigmoid激活函数。</p>
+<h4 id="2-2-LSTM之输入门"><a href="#2-2-LSTM之输入门" class="headerlink" title="2.2 LSTM之输入门"></a>2.2 LSTM之输入门</h4><p>输入门（input gate）负责处理当前序列位置的输入，它的子结构如下图：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqfypznv7mj30ax06edfp.jpg" alt=""></p>
+<p>从图中可以看到输入门由两部分组成，第一部分使用了sigmoid激活函数，输出为$i^{(t)}$,第二部分使用了tanh激活函数，输出为$a^{(t)}$, 两者的结果后面会相乘再去更新细胞状态。用数学表达式即为：<br>$$<br>i^{(t)} = \sigma(W_ih^{(t-1)} + U_ix^{(t)} + b_i)<br>$$<br>$$<br>a^{(t)} =tanh(W_ah^{(t-1)} + U_ax^{(t)} + b_a)<br>$$<br>其中$W_i, U_i, b_i, W_a, U_a, b_a,$为线性关系的系数和偏倚，和RNN中的类似。$\sigma$为sigmoid激活函数。</p>
+<h4 id="2-3-LSTM之细胞状态更新"><a href="#2-3-LSTM之细胞状态更新" class="headerlink" title="2.3 LSTM之细胞状态更新"></a>2.3 LSTM之细胞状态更新</h4><p>在研究LSTM输出门之前，我们要先看看LSTM之细胞状态。前面的遗忘门和输入门的结果都会作用于细胞状态$C^{(t)}$。我们来看看从细胞状态$C^{(t-1)}$如何得到$C^{(t)}$。如下图所示：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fqfyqb4tzej30am06ct8l.jpg" alt=""></p>
+<p>细胞状态$C^{(t)}$由两部分组成，第一部分是$C^{(t-1)}$和遗忘门输出$f^{(t)}$的乘积，第二部分是输入门的$i^{(t)}$和$a^{(t)}$的乘积，即：<br>$$<br>C^{(t)} = C^{(t-1)} \odot f^{(t)} + i^{(t)} \odot a^{(t)}<br>$$<br>其中，$\odot$为Hadamard积，在DNN中也用到过。</p>
+<h4 id="2-4-LSTM之输出门"><a href="#2-4-LSTM之输出门" class="headerlink" title="2.4 LSTM之输出门"></a>2.4 LSTM之输出门</h4><p>有了新的隐藏细胞状态$C^{(t)}$，我们就可以来看输出门了，子结构如下：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqfyqkrzkxj30ao06q0sm.jpg" alt=""></p>
+<p>从图中可以看出，隐藏状态$h^{(t)}$的更新由两部分组成，第一部分是$o^{(t)}$, 它由上一序列的隐藏状态$h^{(t-1)}$和本序列数据$x^{(t)}$，以及激活函数sigmoid得到，第二部分由隐藏状态$C^{(t)}$和tanh激活函数组成, 即：<br>$$<br>o^{(t)} = \sigma(W_oh^{(t-1)} + U_ox^{(t)} + b_o)<br>$$<br>$$<br>h^{(t)} = o^{(t)} \odot tanh(C^{(t)})<br>$$<br>通过本节的剖析，相信大家对于LSTM的模型结构已经有了解了。当然，有些LSTM的结构和上面的LSTM图稍有不同，但是原理是完全一样的。</p>
+<h3 id="3-LSTM前向传播算法"><a href="#3-LSTM前向传播算法" class="headerlink" title="3. LSTM前向传播算法"></a>3. LSTM前向传播算法</h3><p>现在我们来总结下LSTM前向传播算法。LSTM模型有两个隐藏状态$h^{(t)}, C^{(t)}$，模型参数几乎是RNN的4倍，因为现在多了$W_f, U_f, b_f, W_a, U_a, b_a, W_i, U_i, b_i, W_o, U_o, b_o$这些参数。</p>
+<p>前向传播过程在每个序列索引位置的过程为：</p>
+<p>1）更新遗忘门输出：<br>$$<br>f^{(t)} = \sigma(W_fh^{(t-1)} + U_fx^{(t)} + b_f)<br>$$<br>2）更新输入门两部分输出：<br>$$<br>i^{(t)} = \sigma(W_ih^{(t-1)} + U_ix^{(t)} + b_i)<br>$$<br>$$<br>a^{(t)} = tanh(W_ah^{(t-1)} + U_ax^{(t)} + b_a)<br>$$<br>3）更新细胞状态：<br>$$<br>C^{(t)} = C^{(t-1)} \odot f^{(t)} + i^{(t)} \odot a^{(t)}<br>$$<br>4）更新输出门输出：<br>$$<br>o^{(t)} = \sigma(W_oh^{(t-1)} + U_ox^{(t)} + b_o)<br>$$<br>$$<br>h^{(t)} = o^{(t)} \odot tanh(C^{(t)})<br>$$<br>5）更新当前序列索引预测输出：<br>$$<br>\hat{y}^{(t)} = \sigma(Vh^{(t)} + c)<br>$$</p>
+<h3 id="4-LSTM反向传播算法推导关键点"><a href="#4-LSTM反向传播算法推导关键点" class="headerlink" title="4.  LSTM反向传播算法推导关键点"></a>4.  LSTM反向传播算法推导关键点</h3><p>有了LSTM前向传播算法，推导反向传播算法就很容易了， 思路和RNN的反向传播算法思路一致，也是通过梯度下降法迭代更新我们所有的参数，关键点在于计算所有参数基于损失函数的偏导数。</p>
+<p>在RNN中，为了反向传播误差，我们通过隐藏状态$h^{(t)}$的梯度$\delta^{(t)}$一步步向前传播。在LSTM这里也类似。只不过我们这里有两个隐藏状态$h^{(t)}和C^{(t)}$。这里我们定义两个$\delta$，即：<br>$$<br>\delta_h^{(t)} = \frac{\partial L}{\partial h^{(t)}}<br>$$<br>$$<br>\delta_C^{(t)} = \frac{\partial L}{\partial C^{(t)}}<br>$$<br>反向传播时只使用了$\delta_C^{(t)}$,变量$\delta_h^{(t)}$仅为帮助我们在某一层计算用，并没有参与反向传播，这里要注意。如下图所示：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqfyqwijijj30kq0s0aao.jpg" alt=""></p>
+<p>而在最后的序列索引位置$\tau$的$\delta_h^{(\tau)}$和 $\delta_C^{(\tau)}$ 为：<br>$$<br>\delta_h^{(\tau)} =\frac{\partial L}{\partial O^{(\tau)}} \frac{\partial O^{(\tau)}}{\partial h^{(\tau)}} = V^T(\hat{y}^{(\tau)} - y^{(\tau)})<br>$$<br>$$<br>\delta_C^{(\tau)} =\frac{\partial L}{\partial h^{(\tau)}} \frac{\partial h^{(\tau)}}{\partial C^{(\tau)}} = \delta_h^{(\tau)} \odot  o^{(\tau)} \odot (1 - tanh^2(C^{(\tau)}))<br>$$<br>接着我们由$\delta_C^{(t+1)}$反向推导$\delta_C^{(t)}$。</p>
+<p>$\delta_h^{(t)}$的梯度由本层的输出梯度误差决定，即：<br>$$<br>  \delta_h^{(t)} =\frac{\partial L}{\partial h^{(t)}}  = V^T(\hat{y}^{(t)} - y^{(t)})<br>$$<br>而$\delta_C^{(t)}$的反向梯度误差由前一层$\delta_C^{(t+1)}$的梯度误差和本层的从$h^{(t)}$传回来的梯度误差两部分组成，即：<br>$$<br>\delta_C^{(t)} =\frac{\partial L}{\partial C^{(t+1)}} \frac{\partial  C^{(t+1)}}{\partial C^{(t)}} + \frac{\partial L}{\partial h^{(t)}}\frac{\partial h^{(t)}}{\partial C^{(t)}} = \delta_C^{(t+1)}\odot f^{(t+1)} + \delta_h^{(t)} \odot  o^{(t)} \odot (1 - tanh^2(C^{(t)}))<br>$$<br>有了$\delta_h^{(t)}$和$\delta_C^{(t)}$， 计算这一大堆参数的梯度就很容易了，这里只给出WfWfW_f的梯度计算过程，其他的$U_f, b_f, W_a, U_a, b_a, W_i, U_i, b_i, W_o, U_o, b_o，V, c$的梯度大家只要照搬就可以了。<br>$$<br>\frac{\partial L}{\partial W_f} =  \sum\limits_{t=1}^{\tau}\frac{\partial L}{\partial C^{(t)}} \frac{\partial C^{(t)}}{\partial f^{(t)}} \frac{\partial f^{(t)}}{\partial W_f} =\sum\limits_{t=1}^{\tau} \delta_C^{(t)} \odot C^{(t-1)} \odot f^{(t)}(1-f^{(t)}) (h^{(t-1)})^T<br>$$</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h3 id="5-LSTM小结"><a href="#5-LSTM小结" class="headerlink" title="5. LSTM小结"></a>5. LSTM小结</h3><p>LSTM虽然结构复杂，但是只要理顺了里面的各个部分和之间的关系，进而理解前向反向传播算法是不难的。当然实际应用中LSTM的难点不在前向反向传播算法，这些有算法库帮你搞定，模型结构和一大堆参数的调参才是让人头痛的问题。不过，理解LSTM模型结构仍然是高效使用的前提。</p>
+<h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><p>1） <a href="http://neuralnetworksanddeeplearning.com/index.html" target="_blank" rel="noopener">Neural Networks and Deep Learning</a> by By Michael Nielsen</p>
+<p>2） <a href="http://www.deeplearningbook.org/" target="_blank" rel="noopener">Deep Learning</a>, book by Ian Goodfellow, Yoshua Bengio, and Aaron Courville</p>
+<p>3） <a href="http://ufldl.stanford.edu/tutorial/" target="_blank" rel="noopener">UFLDL Tutorial</a> </p>
+<p>4）<a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">Understanding-LSTMs</a> </p>
+]]></content>
+      
+        <categories>
+            
+            <category> 深度学习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[RNN循环神经网络小结]]></title>
       <url>/RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%B0%8F%E7%BB%93.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在前面我们讲到了DNN，以及DNN的特例CNN的模型和前向反向传播算法，这些算法都是前向反馈的，模型的输出和模型本身没有关联关系。今天我们就讨论另一类输出和模型间有反馈的神经网络：循环神经网络(Recurrent Neural Networks ，以下简称RNN)，它广泛的用于自然语言处理中的语音识别，手写书别以及机器翻译等领域。</p>
