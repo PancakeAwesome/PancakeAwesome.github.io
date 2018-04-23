@@ -10,7 +10,7 @@
 <p><strong>从图像识别的任务说起</strong><br>这里有一个图像任务：<br>既要把图中的物体识别出来，又要用方框框出它的位置。</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqmuuf41t7j30mt0aidih.jpg" alt=""></p>
 <p>上面的任务用专业的说法就是：图像识别+定位<br>图像识别（classification）：<br>输入：图片<br>输出：物体的类别<br>评估方法：准确率</p>
-<p><img src="https://images2015.cnblogs.com/blog/1093303/201705/1093303-20170504112606992-322746708.jpg" alt=""></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqmvsjox1wj30aj0473yd.jpg" alt=""></p>
 <p>定位（localization）：<br>输入：图片<br>输出：方框在图片中的位置（x,y,w,h）<br>评估方法：检测评价函数 intersection-over-union ( IOU ) </p>
 <p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqmuv6cqp7j30bk0650so.jpg" alt=""></p>
 <p>卷积神经网络CNN已经帮我们完成了图像识别（判定是猫还是狗）的任务了，我们只需要添加一些额外的功能来完成定位任务即可。</p>
@@ -114,12 +114,12 @@
 <p>Region CNN(RCNN)可以说是<strong>利用深度学习进行目标检测的开山之作</strong>。作者<a href="http://www.cs.berkeley.edu/~rbg/" target="_blank" rel="noopener">Ross Girshick</a> 多次在PASCAL VOC的目标检测竞赛中折桂，2010年更带领团队获得终身成就奖，如今供职于Facebook旗下的FAIR。 </p>
 <p>这篇文章思路简洁，在DPM方法多年平台期后，效果提高显著。包括本文在内的一系列目标检测算法：<a href="https://github.com/rbgirshick/rcnn" target="_blank" rel="noopener">RCNN</a> , <a href="https://github.com/rbgirshick/fast-rcnn" target="_blank" rel="noopener">Fast RCNN</a> , <a href="https://github.com/ShaoqingRen/faster_rcnn" target="_blank" rel="noopener">Faster RCNN</a> 代表当下目标检测的前沿水平，<strong>在github都给出了基于Caffe的源码</strong>。</p>
 <h2 id="思想-思想"><a href="#思想-思想" class="headerlink" title="思想 # (#思想)"></a>思想 # (#思想)</h2><p>本文解决了目标检测中的两个关键问题。</p>
-<h3 id="问题一：速度-问题一速度"><a href="#问题一：速度-问题一速度" class="headerlink" title="问题一：速度 ### (#问题一速度)"></a>问题一：速度 ### (#问题一速度)</h3><p>经典的目标检测算法使用滑动窗法依次判断所有可能的区域。本文则预先提取一系列较可能是物体的<strong>候选区域</strong>，之后仅在这些候选区域上提取特征，进行判断。</p>
-<h3 id="问题二：训练集-问题二训练集"><a href="#问题二：训练集-问题二训练集" class="headerlink" title="问题二：训练集 ### (#问题二训练集)"></a>问题二：训练集 ### (#问题二训练集)</h3><p>经典的目标检测算法在区域中提取人工设定的特征（Haar，HOG）。本文则需要训练深度网络进行<strong>特征提取</strong>。可供使用的有两个数据库： </p>
+<h3 id="问题一：速度"><a href="#问题一：速度" class="headerlink" title="问题一：速度"></a>问题一：速度</h3><p>经典的目标检测算法使用滑动窗法依次判断所有可能的区域。本文则预先提取一系列较可能是物体的<strong>候选区域</strong>，之后仅在这些候选区域上提取特征，进行判断。</p>
+<h3 id="问题二：训练集"><a href="#问题二：训练集" class="headerlink" title="问题二：训练集"></a>问题二：训练集</h3><p>经典的目标检测算法在区域中提取人工设定的特征（Haar，HOG）。本文则需要训练深度网络进行<strong>特征提取</strong>。可供使用的有两个数据库： </p>
 <p>一个较大的<strong>识别库</strong>（ImageNet ILSVC 2012）：标定每张图片中物体的类别。一千万图像，1000类。 </p>
 <p>一个较小的<strong>检测库</strong>（PASCAL VOC 2007）：标定每张图片中，物体的类别和位置。一万图像，20类。 </p>
 <p>本文使用识别库进行预训练，而后用检测库调优参数。最后在检测库上评测。</p>
-<h2 id="流程-流程"><a href="#流程-流程" class="headerlink" title="流程 ### (#流程)"></a>流程 ### (#流程)</h2><p>RCNN算法分为4个步骤 </p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>RCNN算法分为4个步骤 </p>
 <ul>
 <li><p>一张图像生成1K~2K个<strong>候选区域</strong></p>
 </li>
@@ -130,7 +130,7 @@
 <li><p>使用回归器<strong>精细修正</strong>候选框位置<br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqmuk2pczfj30k105pq3i.jpg" alt=""></p>
 </li>
 </ul>
-<h2 id="候选区域生成-候选区域生成"><a href="#候选区域生成-候选区域生成" class="headerlink" title="候选区域生成 # (#候选区域生成)"></a>候选区域生成 # (#候选区域生成)</h2><p>使用了Selective Search[1]方法从一张图像生成约2000-3000个候选区域。基本思路如下： </p>
+<h2 id="候选区域生成"><a href="#候选区域生成" class="headerlink" title="候选区域生成"></a>候选区域生成</h2><p>使用了Selective Search[1]方法从一张图像生成约2000-3000个候选区域。基本思路如下： </p>
 <ul>
 <li><p>使用一种过分割手段，将图像分割成小区域 </p>
 </li>
@@ -140,7 +140,7 @@
 </li>
 </ul>
 <p>候选区域生成和后续步骤相对独立，实际可以使用任意算法进行。</p>
-<h2 id="合并规则-合并规则"><a href="#合并规则-合并规则" class="headerlink" title="合并规则 ### (#合并规则)"></a>合并规则 ### (#合并规则)</h2><p>优先合并以下四种区域： </p>
+<h2 id="合并规则"><a href="#合并规则" class="headerlink" title="合并规则"></a>合并规则</h2><p>优先合并以下四种区域： </p>
 <ul>
 <li><p>颜色（颜色直方图）相近的 </p>
 </li>
@@ -161,32 +161,32 @@
 <p>例：左图适于合并，右图不适于合并。<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqmukvjts3j309e02xjr5.jpg" alt=""></p>
 </blockquote>
 <p>上述四条规则只涉及区域的颜色直方图、纹理直方图、面积和位置。合并后的区域特征可以直接由子区域特征计算而来，速度较快。</p>
-<h2 id="多样化与后处理-多样化与后处理"><a href="#多样化与后处理-多样化与后处理" class="headerlink" title="多样化与后处理 ### (#多样化与后处理)"></a>多样化与后处理 ### (#多样化与后处理)</h2><p>为尽可能不遗漏候选区域，上述操作在多个颜色空间中同时进行（RGB,HSV,Lab等）。在一个颜色空间中，使用上述四条规则的不同组合进行合并。所有颜色空间与所有规则的全部结果，在去除重复后，都作为候选区域输出。</p>
+<h2 id="多样化与后处理"><a href="#多样化与后处理" class="headerlink" title="多样化与后处理"></a>多样化与后处理</h2><p>为尽可能不遗漏候选区域，上述操作在多个颜色空间中同时进行（RGB,HSV,Lab等）。在一个颜色空间中，使用上述四条规则的不同组合进行合并。所有颜色空间与所有规则的全部结果，在去除重复后，都作为候选区域输出。</p>
 <p>作者提供了Selective Search的<a href="http://koen.me/research/selectivesearch/" target="_blank" rel="noopener">源码</a> ，内含较多.p文件和.mex文件，难以细查具体实现。</p>
-<h2 id="特征提取-特征提取"><a href="#特征提取-特征提取" class="headerlink" title="特征提取 # (#特征提取)"></a>特征提取 # (#特征提取)</h2><h3 id="预处理-预处理"><a href="#预处理-预处理" class="headerlink" title="预处理 ### (#预处理)"></a>预处理 ### (#预处理)</h3><p>使用深度网络提取特征之前，首先把候选区域归一化成同一尺寸227×227。 </p>
+<h2 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h2><h3 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h3><p>使用深度网络提取特征之前，首先把候选区域归一化成同一尺寸227×227。 </p>
 <p>此处有一些细节可做变化：外扩的尺寸大小，形变时是否保持原比例，对框外区域直接截取还是补灰。会轻微影响性能。</p>
-<h3 id="预训练-预训练"><a href="#预训练-预训练" class="headerlink" title="预训练 ### (#预训练)"></a>预训练 ### (#预训练)</h3><p><strong>网络结构</strong></p>
+<h3 id="预训练"><a href="#预训练" class="headerlink" title="预训练"></a>预训练</h3><p><strong>网络结构</strong></p>
 <p>基本借鉴Hinton 2012年在Image Net上的分类网络[2]，略作简化[3]。<br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqmuljhzk7j30i5055mx0.jpg" alt=""></p>
 <p>此网络提取的特征为4096维，之后送入一个4096-&gt;1000的全连接(fc)层进行分类。 </p>
 <p>学习率0.01。</p>
 <p><strong>训练数据</strong></p>
 <p>使用ILVCR 2012的全部数据进行训练，输入一张图片，输出1000维的类别标号。</p>
-<h3 id="调优训练-调优训练"><a href="#调优训练-调优训练" class="headerlink" title="调优训练 ### (#调优训练)"></a>调优训练 ### (#调优训练)</h3><p><strong>网络结构</strong></p>
+<h3 id="调优训练"><a href="#调优训练" class="headerlink" title="调优训练"></a>调优训练</h3><p><strong>网络结构</strong></p>
 <p>同样使用上述网络，最后一层换成4096-&gt;21的全连接网络。 </p>
 <p>学习率0.001，每一个batch包含32个正样本（属于20类）和96个背景。</p>
 <p><strong>训练数据</strong></p>
 <p>使用PASCAL VOC 2007的训练集，输入一张图片，输出21维的类别标号，表示20类+背景。 </p>
 <p>考察一个候选框和当前图像上所有标定框重叠面积最大的一个。如果重叠比例大于0.5，则认为此候选框为此标定的类别；否则认为此候选框为背景。</p>
-<h2 id="类别判断-类别判断"><a href="#类别判断-类别判断" class="headerlink" title="类别判断 # (#类别判断)"></a>类别判断 # (#类别判断)</h2><p><strong>分类器</strong></p>
+<h2 id="类别判断"><a href="#类别判断" class="headerlink" title="类别判断"></a>类别判断</h2><p><strong>分类器</strong></p>
 <p>对每一类目标，使用一个线性SVM二类分类器进行判别。输入为深度网络输出的4096维特征，输出是否属于此类。 </p>
 <p>由于负样本很多，使用hard negative mining方法。<br><strong>正样本</strong></p>
 <p>本类的真值标定框。<br><strong>负样本</strong></p>
 <p>考察每一个候选框，如果和本类所有标定框的重叠都小于0.3，认定其为负样本</p>
-<h2 id="位置精修-位置精修"><a href="#位置精修-位置精修" class="headerlink" title="位置精修 # (#位置精修)"></a>位置精修 # (#位置精修)</h2><p>目标检测问题的衡量标准是重叠面积：许多看似准确的检测结果，往往因为候选框不够准确，重叠面积很小。故需要一个位置精修步骤。<br><strong>回归器</strong></p>
+<h2 id="位置精修"><a href="#位置精修" class="headerlink" title="位置精修"></a>位置精修</h2><p>目标检测问题的衡量标准是重叠面积：许多看似准确的检测结果，往往因为候选框不够准确，重叠面积很小。故需要一个位置精修步骤。<br><strong>回归器</strong></p>
 <p>对每一类目标，使用一个线性脊回归器进行精修。正则项$\lambda=10000$。 </p>
 <p>输入为深度网络pool5层的4096维特征，输出为xy方向的缩放和平移。<br><strong>训练样本</strong></p>
 <p>判定为本类的候选框中，和真值重叠面积大于0.6的候选框。</p>
-<h2 id="结果-结果"><a href="#结果-结果" class="headerlink" title="结果 # (#结果)"></a>结果 # (#结果)</h2><p>论文发表的2014年，DPM已经进入瓶颈期，即使使用复杂的特征和结构得到的提升也十分有限。本文将深度学习引入检测领域，一举将PASCAL VOC上的检测率<strong>从35.1%提升到53.7%</strong>。 </p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>论文发表的2014年，DPM已经进入瓶颈期，即使使用复杂的特征和结构得到的提升也十分有限。本文将深度学习引入检测领域，一举将PASCAL VOC上的检测率<strong>从35.1%提升到53.7%</strong>。 </p>
 <p>本文的前两个步骤（候选区域提取+特征提取）与待检测类别无关，可以在不同类之间共用。这两步在GPU上约需13秒。 </p>
 <p>同时检测多类时，需要倍增的只有后两步骤（判别+精修），都是简单的线性运算，速度很快。这两步对于100K类别只需10秒。</p>
 <p>以本论文为基础，后续的fast RCNN[4]（参看<a href="">这篇博客</a> ）和faster RCNN[5]（参看<a href="">这篇博客</a> ）在速度上有突飞猛进的发展，基本解决了PASCAL VOC上的目标检测问题。</p>
