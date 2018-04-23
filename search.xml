@@ -3,6 +3,221 @@
   
     
     <entry>
+      <title><![CDATA[目标检测技术演进：RCNN、Fast RCNN、Faster RCNN]]></title>
+      <url>/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E6%BC%94%E8%BF%9B:RCNN%E3%80%81Fast%20RCNN%E3%80%81Faster%20RCNN.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="基于深度学习的目标检测技术演进：RCNN、Fast-RCNN、Faster-RCNN"><a href="#基于深度学习的目标检测技术演进：RCNN、Fast-RCNN、Faster-RCNN" class="headerlink" title="基于深度学习的目标检测技术演进：RCNN、Fast RCNN、Faster RCNN"></a>基于深度学习的目标检测技术演进：RCNN、Fast RCNN、Faster RCNN</h3><p>object detection我的理解，就是在给定的图片中精确找到物体所在位置，并标注出物体的类别。object detection要解决的问题就是物体在哪里，是什么这整个流程的问题。然而，这个问题可不是那么容易解决的，物体的尺寸变化范围很大，摆放物体的角度，姿态不定，而且可以出现在图片的任何地方，更何况物体还可以是多个类别。</p>
+<p>object detection技术的演进：<br>RCNN-&gt;SppNET-&gt;Fast-RCNN-&gt;Faster-RCNN</p>
+<p><strong>从图像识别的任务说起</strong><br>这里有一个图像任务：<br>既要把图中的物体识别出来，又要用方框框出它的位置。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqmuuf41t7j30mt0aidih.jpg" alt=""></p>
+<p>上面的任务用专业的说法就是：图像识别+定位<br>图像识别（classification）：<br>输入：图片<br>输出：物体的类别<br>评估方法：准确率</p>
+<p><img src="https://images2015.cnblogs.com/blog/1093303/201705/1093303-20170504112606992-322746708.jpg" alt=""></p>
+<p>定位（localization）：<br>输入：图片<br>输出：方框在图片中的位置（x,y,w,h）<br>评估方法：检测评价函数 intersection-over-union ( IOU ) </p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqmuv6cqp7j30bk0650so.jpg" alt=""></p>
+<p>卷积神经网络CNN已经帮我们完成了图像识别（判定是猫还是狗）的任务了，我们只需要添加一些额外的功能来完成定位任务即可。</p>
+<p>定位的问题的解决思路有哪些？<br><strong>思路一：看做回归问题</strong><br>看做回归问题，我们需要预测出（x,y,w,h）四个参数的值，从而得出方框的位置。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqmuvw8a6fj30qb0bp3z0.jpg" alt=""></p>
+<p>步骤1:<br>　　•    先解决简单问题， 搭一个识别图像的神经网络<br>　　•    在AlexNet VGG GoogleLenet上fine-tuning一下</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqmuw4wdq0j30qc08ldg5.jpg" alt=""></p>
+<p>步骤2:<br>　　•    在上述神经网络的尾部展开（也就说CNN前面保持不变，我们对CNN的结尾处作出改进：加了两个头：“分类头”和“回归头”）<br>　　•    成为classification + regression模式</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqmuwbapr8j30p109nt98.jpg" alt=""><br>步骤3:<br>　　•    Regression那个部分用欧氏距离损失<br>　　•    使用SGD训练</p>
+<p>步骤4:<br>　　•    预测阶段把2个头部拼上<br>　　•    完成不同的功能</p>
+<p>这里需要进行两次fine-tuning<br>第一次在ALexNet上做，第二次将头部改成regression head，前面不变，做一次fine-tuning</p>
+<p>Regression的部分加在哪？</p>
+<p>有两种处理方法：<br>　　•    加在最后一个卷积层后面（如VGG）<br>　　•    加在最后一个全连接层后面（如R-CNN）</p>
+<p>regression太难做了，应想方设法转换为classification问题。<br>regression的训练参数收敛的时间要长得多，所以上面的网络采取了用classification的网络来计算出网络共同部分的连接权值。</p>
+<p><strong>思路二：取图像窗口</strong><br>　　•    还是刚才的classification + regression思路<br>　　•    咱们取不同的大小的“框”<br>　　•    让框出现在不同的位置，得出这个框的判定得分<br>　　•    取得分最高的那个框</p>
+<p>左上角的黑框：得分0.5<br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqmuwgqi8aj30m40a4jrl.jpg" alt=""><br>右上角的黑框：得分0.75</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqmuwpd8j2j30m709kdg2.jpg" alt=""></p>
+<p>左下角的黑框：得分0.6<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqmuwwpe5lj30ly09fwep.jpg" alt=""><br>右下角的黑框：得分0.8</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqmux3dcmfj30lt09kmxe.jpg" alt=""></p>
+<p>根据得分的高低，我们选择了右下角的黑框作为目标位置的预测。<br>注：有的时候也会选择得分最高的两个框，然后取两框的交集作为最终的位置预测。</p>
+<p>疑惑：框要取多大？<br>取不同的框，依次从左上角扫到右下角。非常粗暴啊。</p>
+<p>总结一下思路：<br>对一张图片，用各种大小的框（遍历整张图片）将图片截取出来，输入到CNN，然后CNN会输出这个框的得分（classification）以及这个框图片对应的x,y,h,w（regression）。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqmuxu3rpxj30qk07jaap.jpg" alt=""></p>
+<p>这方法实在太耗时间了，做个优化。<br>原来网络是这样的：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqmuxzvrpij30io09ddg0.jpg" alt=""></p>
+<p>优化成这样：把全连接层改为卷积层，这样可以提提速。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqmuycjm12j30k007imxh.jpg" alt=""></p>
+<p><strong>物体检测（Object Detection）</strong><br>当图像有很多物体怎么办的？难度可是一下暴增啊。</p>
+<p>那任务就变成了：多物体识别+定位多个物体<br>那把这个任务看做分类问题？<br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqmuyjj8u6j30qk07jaal.jpg" alt=""></p>
+<p>看成分类问题有何不妥？<br>　　•    你需要找很多位置， 给很多个不同大小的框<br>　　•    你还需要对框内的图像分类<br>　　•    当然， 如果你的GPU很强大， 恩， 那加油做吧…</p>
+<p>看做classification， 有没有办法优化下？我可不想试那么多框那么多位置啊！<br>有人想到一个好方法：<br>找出可能含有物体的框（也就是候选框，比如选1000个候选框），这些框之间是可以互相重叠互相包含的，这样我们就可以避免暴力枚举的所有框了。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqmuz2dxrlj30jw063glz.jpg" alt=""></p>
+<p>大牛们发明好多选定候选框的方法，比如EdgeBoxes和Selective Search。<br>以下是各种选定候选框的方法的性能对比。 </p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqmuza8hvzj30qd09m0ti.jpg" alt=""></p>
+<p>有一个很大的疑惑，提取候选框用到的算法“选择性搜索”到底怎么选出这些候选框的呢？那个就得好好看看它的论文了，这里就不介绍了。</p>
+<h2 id="R-CNN横空出世"><a href="#R-CNN横空出世" class="headerlink" title="R-CNN横空出世"></a><strong>R-CNN横空出世</strong></h2><p>基于以上的思路，RCNN的出现了。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqmuzfm0qlj30i20cewf3.jpg" alt=""></p>
+<h3 id="步骤一：训练（或者下载）一个分类模型（比如AlexNet）"><a href="#步骤一：训练（或者下载）一个分类模型（比如AlexNet）" class="headerlink" title="步骤一：训练（或者下载）一个分类模型（比如AlexNet）"></a>步骤一：训练（或者下载）一个分类模型（比如AlexNet）</h3><p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqmuzl7b64j30q608dq38.jpg" alt=""></p>
+<h3 id="步骤二：对该模型做fine-tuning"><a href="#步骤二：对该模型做fine-tuning" class="headerlink" title="步骤二：对该模型做fine-tuning"></a>步骤二：对该模型做fine-tuning</h3><p>　　•    将分类数从1000改为20<br>　　•    去掉最后一个全连接层</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqmuzqn486j30pl07xq3b.jpg" alt=""></p>
+<h3 id="步骤三：特征提取"><a href="#步骤三：特征提取" class="headerlink" title="步骤三：特征提取"></a>步骤三：特征提取</h3><p>　　•    提取图像的所有候选框（选择性搜索）<br>　　•    对于每一个区域：修正区域大小以适合CNN的输入，做一次前向运算，将第五个池化层的输出（就是对候选框提取到的特征）存到硬盘</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqmv053309j30ql07zjru.jpg" alt=""></p>
+<h3 id="步骤四：训练一个SVM分类器（二分类）来判断这个候选框里物体的类别"><a href="#步骤四：训练一个SVM分类器（二分类）来判断这个候选框里物体的类别" class="headerlink" title="步骤四：训练一个SVM分类器（二分类）来判断这个候选框里物体的类别"></a>步骤四：训练一个SVM分类器（二分类）来判断这个候选框里物体的类别</h3><p>每个类别对应一个SVM，判断是不是属于这个类别，是就是positive，反之nagative<br>比如下图，就是狗分类的SVM</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqmv0fodgmj30qk0b3q3j.jpg" alt=""></p>
+<h3 id="步骤五：使用回归器精细修正候选框位置：对于每一个类，训练一个线性回归模型去判定这个框是否框得完美。"><a href="#步骤五：使用回归器精细修正候选框位置：对于每一个类，训练一个线性回归模型去判定这个框是否框得完美。" class="headerlink" title="步骤五：使用回归器精细修正候选框位置：对于每一个类，训练一个线性回归模型去判定这个框是否框得完美。"></a>步骤五：使用回归器精细修正候选框位置：对于每一个类，训练一个线性回归模型去判定这个框是否框得完美。</h3><p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqmv0o6jbhj30k8077dg5.jpg" alt=""></p>
+<p>RCNN的进化中SPP Net的思想对其贡献很大，这里也简单介绍一下SPP Net。</p>
+<h2 id="SPP-Net"><a href="#SPP-Net" class="headerlink" title="SPP Net"></a><strong>SPP Net</strong></h2><p>SPP：Spatial Pyramid Pooling（空间金字塔池化）<br>它的特点有两个:</p>
+<h3 id="1-结合空间金字塔方法实现CNNs的对尺度输入。"><a href="#1-结合空间金字塔方法实现CNNs的对尺度输入。" class="headerlink" title="1.结合空间金字塔方法实现CNNs的对尺度输入。"></a>1.结合空间金字塔方法实现CNNs的对尺度输入。</h3><p>一般CNN后接全连接层或者分类器，他们都需要固定的输入尺寸，因此不得不对输入数据进行crop或者warp，这些预处理会造成数据的丢失或几何的失真。SPP Net的第一个贡献就是将金字塔思想加入到CNN，实现了数据的多尺度输入。</p>
+<p>如下图所示，在卷积层和全连接层之间加入了SPP layer。此时网络的输入可以是任意尺度的，在SPP layer中每一个pooling的filter会根据输入调整大小，而SPP的输出尺度始终是固定的。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqmv0vx1wtj30al075t8u.jpg" alt=""></p>
+<h3 id="2-只对原图提取一次卷积特征"><a href="#2-只对原图提取一次卷积特征" class="headerlink" title="2.只对原图提取一次卷积特征"></a>2.只对原图提取一次卷积特征</h3><p>在R-CNN中，每个候选框先resize到统一大小，然后分别作为CNN的输入，这样是很低效的。<br>所以SPP Net根据这个缺点做了优化：只对原图进行一次卷积得到整张图的feature map，然后找到每个候选框zaifeature map上的映射patch，将此patch作为每个候选框的卷积特征输入到SPP layer和之后的层。节省了大量的计算时间，比R-CNN有一百倍左右的提速。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqmv14uw7aj30bn069dfx.jpg" alt=""></p>
+<h2 id="Fast-R-CNN"><a href="#Fast-R-CNN" class="headerlink" title="Fast R-CNN"></a><strong>Fast R-CNN</strong></h2><p>SPP Net真是个好方法，R-CNN的进阶版Fast R-CNN就是在RCNN的基础上采纳了SPP Net方法，对RCNN作了改进，使得性能进一步提高。</p>
+<p>R-CNN与Fast RCNN的区别有哪些呢？<br>先说RCNN的缺点：即使使用了selective search等预处理步骤来提取潜在的bounding box作为输入，但是RCNN仍会有严重的速度瓶颈，原因也很明显，就是计算机对所有region进行特征提取时会有重复计算，Fast-RCNN正是为了解决这个问题诞生的。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqmv1h6887j30in097jss.jpg" alt=""></p>
+<p>大牛提出了一个可以看做单层sppnet的网络层，叫做ROI Pooling，这个网络层可以把不同大小的输入映射到一个固定尺度的特征向量，而我们知道，conv、pooling、relu等操作都不需要固定size的输入，因此，在原始图片上执行这些操作后，虽然输入图片size不同导致得到的feature map尺寸也不同，不能直接接到一个全连接层进行分类，但是可以加入这个神奇的ROI Pooling层，对每个region都提取一个固定维度的特征表示，再通过正常的softmax进行类型识别。另外，之前RCNN的处理流程是先提proposal，然后CNN提取特征，之后用SVM分类器，最后再做bbox regression，而在Fast-RCNN中，作者巧妙的把bbox regression放进了神经网络内部，与region分类和并成为了一个multi-task模型，实际实验也证明，这两个任务能够共享卷积特征，并相互促进。Fast-RCNN很重要的一个贡献是成功的让人们看到了Region Proposal+CNN这一框架实时检测的希望，原来多类检测真的可以在保证准确率的同时提升处理速度，也为后来的Faster-RCNN做下了铺垫。</p>
+<p>画一画重点：<br>R-CNN有一些相当大的缺点（把这些缺点都改掉了，就成了Fast R-CNN）。<br>大缺点：由于每一个候选框都要独自经过CNN，这使得花费的时间非常多。<br>解决：共享卷积层，现在不是每一个候选框都当做输入进入CNN了，而是输入一张完整的图片，在第五个卷积层再得到每个候选框的特征</p>
+<p>原来的方法：许多候选框（比如两千个）–&gt;CNN–&gt;得到每个候选框的特征–&gt;分类+回归<br>现在的方法：一张完整图片–&gt;CNN–&gt;得到每张候选框的特征–&gt;分类+回归</p>
+<p>所以容易看见，Fast RCNN相对于RCNN的提速原因就在于：不过不像RCNN把每个候选区域给深度网络提特征，而是整张图提一次特征，再把候选框映射到conv5上，而SPP只需要计算一次特征，剩下的只需要在conv5层上操作就可以了。</p>
+<p>在性能上提升也是相当明显的：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqmv1mhslyj30ja08074e.jpg" alt=""></p>
+<h2 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a><strong>Faster R-CNN</strong></h2><p>Fast R-CNN存在的问题：存在瓶颈：选择性搜索，找出所有的候选框，这个也非常耗时。那我们能不能找出一个更加高效的方法来求出这些候选框呢？<br>解决：加入一个提取边缘的神经网络，也就说找到候选框的工作也交给神经网络来做了。<br>做这样的任务的神经网络叫做Region Proposal Network(RPN)。</p>
+<p>具体做法：<br>　　•    将RPN放在最后一个卷积层的后面<br>　　•    RPN直接训练得到候选区域</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqmv1syt7ij30cp0c2gls.jpg" alt=""></p>
+<p>RPN简介：<br>　　•    在feature map上滑动窗口<br>　　•    建一个神经网络用于物体分类+框位置的回归<br>　　•    滑动窗口的位置提供了物体的大体位置信息<br>　　•    框的回归提供了框更精确的位置</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqmv1y77v9j30bp0aajrj.jpg" alt=""></p>
+<p>一种网络，四个损失函数;<br>　　•    RPN calssification(anchor good.bad)<br>　　•    RPN regression(anchor-&gt;propoasal)<br>　　•    Fast R-CNN classification(over classes)<br>　　•    Fast R-CNN regression(proposal -&gt;box)</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqmv2578zoj30at09sdfu.jpg" alt=""></p>
+<p>速度对比</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqmv2b1cyfj30jp06e0sx.jpg" alt=""></p>
+<p>Faster R-CNN的主要贡献是设计了提取候选区域的网络RPN，代替了费时的选择性搜索，使得检测速度大幅提高。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p><strong>最后总结一下各大算法的步骤：</strong><br>RCNN<br>　　1.    在图像中确定约1000-2000个候选框 (使用选择性搜索)<br>　　2.    每个候选框内图像块缩放至相同大小，并输入到CNN内进行特征提取<br>　　3.    对候选框中提取出的特征，使用分类器判别是否属于一个特定类<br>　　4.    对于属于某一特征的候选框，用回归器进一步调整其位置 </p>
+<p>Fast RCNN<br>　　1.    在图像中确定约1000-2000个候选框 (使用选择性搜索)<br>　　2.    对整张图片输进CNN，得到feature map<br>　　3.    找到每个候选框在feature map上的映射patch，将此patch作为每个候选框的卷积特征输入到SPP layer和之后的层<br>　　4.    对候选框中提取出的特征，使用分类器判别是否属于一个特定类<br>　　5.    对于属于某一特征的候选框，用回归器进一步调整其位置 </p>
+<p>Faster RCNN<br>　　1.    对整张图片输进CNN，得到feature map<br>　　2.    卷积特征输入到RPN，得到候选框的特征信息<br>　　3.    对候选框中提取出的特征，使用分类器判别是否属于一个特定类<br>　　4.    对于属于某一特征的候选框，用回归器进一步调整其位置</p>
+<p>总的来说，从R-CNN, SPP-NET, Fast R-CNN, Faster R-CNN一路走来，基于深度学习目标检测的流程变得越来越精简，精度越来越高，速度也越来越快。可以说基于region proposal的R-CNN系列目标检测方法是当前目标检测技术领域最主要的一个分支。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 目标检测 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> 目标检测 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[论文笔记之RCNN]]></title>
+      <url>/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E4%B9%8BRCNN.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>Girshick, Ross, et al. “Rich feature hierarchies for accurate object detection and semantic segmentation.” Proceedings of the IEEE conference on computer vision and pattern recognition. 2014.</p>
+</blockquote>
+<p>Region CNN(RCNN)可以说是<strong>利用深度学习进行目标检测的开山之作</strong>。作者<a href="http://www.cs.berkeley.edu/~rbg/" target="_blank" rel="noopener">Ross Girshick</a> 多次在PASCAL VOC的目标检测竞赛中折桂，2010年更带领团队获得终身成就奖，如今供职于Facebook旗下的FAIR。 </p>
+<p>这篇文章思路简洁，在DPM方法多年平台期后，效果提高显著。包括本文在内的一系列目标检测算法：<a href="https://github.com/rbgirshick/rcnn" target="_blank" rel="noopener">RCNN</a> , <a href="https://github.com/rbgirshick/fast-rcnn" target="_blank" rel="noopener">Fast RCNN</a> , <a href="https://github.com/ShaoqingRen/faster_rcnn" target="_blank" rel="noopener">Faster RCNN</a> 代表当下目标检测的前沿水平，<strong>在github都给出了基于Caffe的源码</strong>。</p>
+<h2 id="思想-思想"><a href="#思想-思想" class="headerlink" title="思想 # (#思想)"></a>思想 # (#思想)</h2><p>本文解决了目标检测中的两个关键问题。</p>
+<h3 id="问题一：速度-问题一速度"><a href="#问题一：速度-问题一速度" class="headerlink" title="问题一：速度 ### (#问题一速度)"></a>问题一：速度 ### (#问题一速度)</h3><p>经典的目标检测算法使用滑动窗法依次判断所有可能的区域。本文则预先提取一系列较可能是物体的<strong>候选区域</strong>，之后仅在这些候选区域上提取特征，进行判断。</p>
+<h3 id="问题二：训练集-问题二训练集"><a href="#问题二：训练集-问题二训练集" class="headerlink" title="问题二：训练集 ### (#问题二训练集)"></a>问题二：训练集 ### (#问题二训练集)</h3><p>经典的目标检测算法在区域中提取人工设定的特征（Haar，HOG）。本文则需要训练深度网络进行<strong>特征提取</strong>。可供使用的有两个数据库： </p>
+<p>一个较大的<strong>识别库</strong>（ImageNet ILSVC 2012）：标定每张图片中物体的类别。一千万图像，1000类。 </p>
+<p>一个较小的<strong>检测库</strong>（PASCAL VOC 2007）：标定每张图片中，物体的类别和位置。一万图像，20类。 </p>
+<p>本文使用识别库进行预训练，而后用检测库调优参数。最后在检测库上评测。</p>
+<h2 id="流程-流程"><a href="#流程-流程" class="headerlink" title="流程 ### (#流程)"></a>流程 ### (#流程)</h2><p>RCNN算法分为4个步骤 </p>
+<ul>
+<li><p>一张图像生成1K~2K个<strong>候选区域</strong></p>
+</li>
+<li><p>对每个候选区域，使用深度网络<strong>提取特征</strong></p>
+</li>
+<li><p>特征送入每一类的SVM <strong>分类器</strong>，判别是否属于该类 </p>
+</li>
+<li><p>使用回归器<strong>精细修正</strong>候选框位置<br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqmuk2pczfj30k105pq3i.jpg" alt=""></p>
+</li>
+</ul>
+<h2 id="候选区域生成-候选区域生成"><a href="#候选区域生成-候选区域生成" class="headerlink" title="候选区域生成 # (#候选区域生成)"></a>候选区域生成 # (#候选区域生成)</h2><p>使用了Selective Search[1]方法从一张图像生成约2000-3000个候选区域。基本思路如下： </p>
+<ul>
+<li><p>使用一种过分割手段，将图像分割成小区域 </p>
+</li>
+<li><p>查看现有小区域，合并<strong>可能性最高</strong>的两个区域。重复直到整张图像合并成一个区域位置 </p>
+</li>
+<li><p>输出所有曾经存在过的区域，所谓候选区域</p>
+</li>
+</ul>
+<p>候选区域生成和后续步骤相对独立，实际可以使用任意算法进行。</p>
+<h2 id="合并规则-合并规则"><a href="#合并规则-合并规则" class="headerlink" title="合并规则 ### (#合并规则)"></a>合并规则 ### (#合并规则)</h2><p>优先合并以下四种区域： </p>
+<ul>
+<li><p>颜色（颜色直方图）相近的 </p>
+</li>
+<li><p>纹理（梯度直方图）相近的 </p>
+</li>
+<li><p>合并后总面积小的 </p>
+</li>
+<li><p>合并后，总面积在其BBOX中所占比例大的</p>
+</li>
+</ul>
+<p>第三条，保证合并操作的尺度较为均匀，避免一个大区域陆续“吃掉”其他小区域。</p>
+<blockquote>
+<p>例：设有区域a-b-c-d-e-f-g-h。较好的合并方式是：ab-cd-ef-gh -&gt; abcd-efgh -&gt; abcdefgh。 </p>
+<p>  不好的合并方法是：ab-c-d-e-f-g-h -&gt;abcd-e-f-g-h -&gt;abcdef-gh -&gt; abcdefgh。</p>
+</blockquote>
+<p>第四条，保证合并后形状规则。</p>
+<blockquote>
+<p>例：左图适于合并，右图不适于合并。<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqmukvjts3j309e02xjr5.jpg" alt=""></p>
+</blockquote>
+<p>上述四条规则只涉及区域的颜色直方图、纹理直方图、面积和位置。合并后的区域特征可以直接由子区域特征计算而来，速度较快。</p>
+<h2 id="多样化与后处理-多样化与后处理"><a href="#多样化与后处理-多样化与后处理" class="headerlink" title="多样化与后处理 ### (#多样化与后处理)"></a>多样化与后处理 ### (#多样化与后处理)</h2><p>为尽可能不遗漏候选区域，上述操作在多个颜色空间中同时进行（RGB,HSV,Lab等）。在一个颜色空间中，使用上述四条规则的不同组合进行合并。所有颜色空间与所有规则的全部结果，在去除重复后，都作为候选区域输出。</p>
+<p>作者提供了Selective Search的<a href="http://koen.me/research/selectivesearch/" target="_blank" rel="noopener">源码</a> ，内含较多.p文件和.mex文件，难以细查具体实现。</p>
+<h2 id="特征提取-特征提取"><a href="#特征提取-特征提取" class="headerlink" title="特征提取 # (#特征提取)"></a>特征提取 # (#特征提取)</h2><h3 id="预处理-预处理"><a href="#预处理-预处理" class="headerlink" title="预处理 ### (#预处理)"></a>预处理 ### (#预处理)</h3><p>使用深度网络提取特征之前，首先把候选区域归一化成同一尺寸227×227。 </p>
+<p>此处有一些细节可做变化：外扩的尺寸大小，形变时是否保持原比例，对框外区域直接截取还是补灰。会轻微影响性能。</p>
+<h3 id="预训练-预训练"><a href="#预训练-预训练" class="headerlink" title="预训练 ### (#预训练)"></a>预训练 ### (#预训练)</h3><p><strong>网络结构</strong></p>
+<p>基本借鉴Hinton 2012年在Image Net上的分类网络[2]，略作简化[3]。<br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqmuljhzk7j30i5055mx0.jpg" alt=""></p>
+<p>此网络提取的特征为4096维，之后送入一个4096-&gt;1000的全连接(fc)层进行分类。 </p>
+<p>学习率0.01。</p>
+<p><strong>训练数据</strong></p>
+<p>使用ILVCR 2012的全部数据进行训练，输入一张图片，输出1000维的类别标号。</p>
+<h3 id="调优训练-调优训练"><a href="#调优训练-调优训练" class="headerlink" title="调优训练 ### (#调优训练)"></a>调优训练 ### (#调优训练)</h3><p><strong>网络结构</strong></p>
+<p>同样使用上述网络，最后一层换成4096-&gt;21的全连接网络。 </p>
+<p>学习率0.001，每一个batch包含32个正样本（属于20类）和96个背景。</p>
+<p><strong>训练数据</strong></p>
+<p>使用PASCAL VOC 2007的训练集，输入一张图片，输出21维的类别标号，表示20类+背景。 </p>
+<p>考察一个候选框和当前图像上所有标定框重叠面积最大的一个。如果重叠比例大于0.5，则认为此候选框为此标定的类别；否则认为此候选框为背景。</p>
+<h2 id="类别判断-类别判断"><a href="#类别判断-类别判断" class="headerlink" title="类别判断 # (#类别判断)"></a>类别判断 # (#类别判断)</h2><p><strong>分类器</strong></p>
+<p>对每一类目标，使用一个线性SVM二类分类器进行判别。输入为深度网络输出的4096维特征，输出是否属于此类。 </p>
+<p>由于负样本很多，使用hard negative mining方法。<br><strong>正样本</strong></p>
+<p>本类的真值标定框。<br><strong>负样本</strong></p>
+<p>考察每一个候选框，如果和本类所有标定框的重叠都小于0.3，认定其为负样本</p>
+<h2 id="位置精修-位置精修"><a href="#位置精修-位置精修" class="headerlink" title="位置精修 # (#位置精修)"></a>位置精修 # (#位置精修)</h2><p>目标检测问题的衡量标准是重叠面积：许多看似准确的检测结果，往往因为候选框不够准确，重叠面积很小。故需要一个位置精修步骤。<br><strong>回归器</strong></p>
+<p>对每一类目标，使用一个线性脊回归器进行精修。正则项$\lambda=10000$。 </p>
+<p>输入为深度网络pool5层的4096维特征，输出为xy方向的缩放和平移。<br><strong>训练样本</strong></p>
+<p>判定为本类的候选框中，和真值重叠面积大于0.6的候选框。</p>
+<h2 id="结果-结果"><a href="#结果-结果" class="headerlink" title="结果 # (#结果)"></a>结果 # (#结果)</h2><p>论文发表的2014年，DPM已经进入瓶颈期，即使使用复杂的特征和结构得到的提升也十分有限。本文将深度学习引入检测领域，一举将PASCAL VOC上的检测率<strong>从35.1%提升到53.7%</strong>。 </p>
+<p>本文的前两个步骤（候选区域提取+特征提取）与待检测类别无关，可以在不同类之间共用。这两步在GPU上约需13秒。 </p>
+<p>同时检测多类时，需要倍增的只有后两步骤（判别+精修），都是简单的线性运算，速度很快。这两步对于100K类别只需10秒。</p>
+<p>以本论文为基础，后续的fast RCNN[4]（参看<a href="">这篇博客</a> ）和faster RCNN[5]（参看<a href="">这篇博客</a> ）在速度上有突飞猛进的发展，基本解决了PASCAL VOC上的目标检测问题。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><hr>
+<ol>
+<li>J. Uijlings, K. van de Sande, T. Gevers, and A. Smeulders. Selective search for object recognition. IJCV, 2013. </li>
+<li>A. Krizhevsky, I. Sutskever, and G. Hinton. ImageNet classification with deep convolutional neural networks. In NIPS, 2012 </li>
+<li>所有层都是串行的。relu层为in-place操作，偏左绘制。 </li>
+<li>Girshick, Ross. “Fast r-cnn.” Proceedings of the IEEE International Conference on Computer Vision. 2015. </li>
+<li>Ren, Shaoqing, et al. “Faster R-CNN: Towards real-time object detection with region proposal networks.” Advances in Neural Information Processing Systems. 2015. </li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> 论文笔记 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> 论文笔记 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[最优化方法总结]]></title>
       <url>/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文仅对一些常见的优化方法进行直观介绍和简单的比较，各种优化方法的详细内容及公式只好去认真啃论文了，在此我就不赘述了。</p>
