@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/最优化方法总结.html
 http://pancakeawesome.ink/LSTM模型小结.html
 http://pancakeawesome.ink/RNN循环神经网络小结.html
 http://pancakeawesome.ink/最全优化方法总结比较（SGD，Adagrad，Adadelta，Adam，Adamax，Nadam）.html
