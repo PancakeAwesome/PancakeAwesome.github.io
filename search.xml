@@ -405,13 +405,10 @@ def _RNN(_X,batch_size, _W, _b,num_layers,_nsteps):
     # 5.LSTM的最终输出 (_O) and 状态 (_S)
     #    Both _O and _S consist of &#39;batchsize&#39; elements
     with tf.variable_scope(_name):
-        lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(dimhidden, \
-                                         forget_bias=1.0)
-        lstm_cell = tf.nn.rnn_cell.MultiRNNCell([lstm_cell]*num_layers,\
-                                         state_is_tuple=True)
-        state     = lstm_cell.zero_state(batch_size,dtype=tf.float32)
-        _LSTM_O, _LSTM_S = tf.nn.rnn(lstm_cell, _Hsplit, \
-                                         initial_state=state)
+        lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(dimhidden, forget_bias=1.0)
+        lstm_cell = tf.nn.rnn_cell.MultiRNNCell([lstm_cell]*num_layers, state_is_tuple=True)
+        state = lstm_cell.zero_state(batch_size,dtype=tf.float32)
+        _LSTM_O, _LSTM_S = tf.nn.rnn(lstm_cell, _Hsplit, initial_state=state)
 </code></pre><p>这里的batchsize 就是一个batch的大小，nsteps就是rnn的time step ,diminput就是单个rnn单元输入的数据维度。很显然 nsteps* diminput 就是单个mnist的数据维度。 上述代码的示意图：</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqnv71pz2oj30fe09wdg5.jpg" alt=""></p>
 <h3 id="4-LSTM前向传播算法"><a href="#4-LSTM前向传播算法" class="headerlink" title="4. LSTM前向传播算法"></a>4. LSTM前向传播算法</h3><p>现在我们来总结下LSTM前向传播算法。LSTM模型有两个隐藏状态$h^{(t)}, C^{(t)}$，模型参数几乎是RNN的4倍，因为现在多了$W_f, U_f, b_f, W_a, U_a, b_a, W_i, U_i, b_i, W_o, U_o, b_o$这些参数。</p>
@@ -6258,9 +6255,9 @@ export default class Hello extends Component {
         
         <tags>
             
-            <tag> react </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
@@ -10966,9 +10963,9 @@ npm run dist
             
             <tag> 前端技术 </tag>
             
-            <tag> react </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
@@ -11264,9 +11261,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端框架 </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> 前端框架 </tag>
             
         </tags>
         
@@ -11328,9 +11325,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 数据可视化 </tag>
-            
             <tag> 读书笔记 </tag>
+            
+            <tag> 数据可视化 </tag>
             
         </tags>
         
@@ -12140,9 +12137,9 @@ class ImgFigure extends React.Component {
             
             <tag> 前端技术 </tag>
             
-            <tag> react </tag>
-            
             <tag> 前端工具 </tag>
+            
+            <tag> react </tag>
             
         </tags>
         
