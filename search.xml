@@ -387,15 +387,42 @@
 <h4 id="2-4-LSTM之输出门"><a href="#2-4-LSTM之输出门" class="headerlink" title="2.4 LSTM之输出门"></a>2.4 LSTM之输出门</h4><p>有了新的隐藏细胞状态$C^{(t)}$，我们就可以来看输出门了，子结构如下：</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqfyqkrzkxj30ao06q0sm.jpg" alt=""></p>
 <p>从图中可以看出，隐藏状态$h^{(t)}$的更新由两部分组成，第一部分是$o^{(t)}$, 它由上一序列的隐藏状态$h^{(t-1)}$和本序列数据$x^{(t)}$，以及激活函数sigmoid得到，第二部分由隐藏状态$C^{(t)}$和tanh激活函数组成, 即：<br>$$<br>o^{(t)} = \sigma(W_oh^{(t-1)} + U_ox^{(t)} + b_o)<br>$$<br>$$<br>h^{(t)} = o^{(t)} \odot tanh(C^{(t)})<br>$$<br>通过本节的剖析，相信大家对于LSTM的模型结构已经有了解了。当然，有些LSTM的结构和上面的LSTM图稍有不同，但是原理是完全一样的。</p>
-<h3 id="3-LSTM前向传播算法"><a href="#3-LSTM前向传播算法" class="headerlink" title="3. LSTM前向传播算法"></a>3. LSTM前向传播算法</h3><p>现在我们来总结下LSTM前向传播算法。LSTM模型有两个隐藏状态$h^{(t)}, C^{(t)}$，模型参数几乎是RNN的4倍，因为现在多了$W_f, U_f, b_f, W_a, U_a, b_a, W_i, U_i, b_i, W_o, U_o, b_o$这些参数。</p>
+<h3 id="3-LSTM重要分析"><a href="#3-LSTM重要分析" class="headerlink" title="3. LSTM重要分析"></a>3. LSTM重要分析</h3><p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fqfypi8975j30l0082mxc.jpg" alt=""></p>
+<p>我们再来仔细观察这张图。<br>可以看到中间的 <strong>cell 里面有四个黄色小框</strong>，你如果理解了那个代表的含义一切就明白了，<strong>每一个小黄框代表一个前馈网络层</strong>，对，就是经典的神经网络的结构，<strong>num_units就是这个层的隐藏神经元个数</strong>，就这么简单。其中1、2、4的激活函数是 sigmoid，第三个的激活函数是 tanh。</p>
+<p>另外几个需要注意的地方：<br>1、 <strong>cell 的状态是一个向量，是有多个值的</strong>。。。一开始没有理解这点的时候怎么都想不明白<br>2、 <strong>上一次的状态 h(t-1)是怎么和下一次的输入 x(t) 结合（concat）起来的</strong>，这也是很多资料没有明白讲的地方，也很简单，<strong>concat， 直白的说就是把二者直接拼起来</strong>，比如 x是28位的向量，h(t-1)是128位的，那么拼起来就是156位的向量，就是这么简单。。<br>3、 <strong>cell 的权重是共享的</strong>，这是什么意思呢？这是指这张图片上有三个绿色的大框，代表三个 cell 对吧，但是实际上，它<strong>只是代表了一个 cell 在不同时序时候的状态</strong>，所有的数据只会通过一个 cell，然后不断更新它的权重。<br>4、那么一层的 LSTM 的参数有多少个？根据第 3 点的说明，我们知道参数的数量是由 cell 的数量决定的，这里只有一个 cell，所以参数的数量就是这个 cell 里面用到的参数个数。假设 num_units 是128，输入是28位的，那么根据上面的第 2 点，可以得到，四个小黄框的参数一共有 （128+28）<em>（128 </em> 4），也就是156 <em> 512，可以看看 TensorFlow 的最简单的 LSTM 的案例，中间层的参数就是这样，不过还要加上输出的时候的激活函数的参数，假设是10个类的话，就是128</em>10的 W 参数和10个bias 参数<br>5、cell 最上面的一条线的状态即 s(t) 代表了长时记忆，而下面的 h(t)则代表了工作记忆或短时记忆。</p>
+<p>我们来举个栗子🌰：<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqnv62ctdhj30k00e53yz.jpg" alt=""></p>
+<p>将一个28*28的mnist数据集图片按行送入RNN,从而实现手写体数字识别。上图这里按行切了28行（一般按列来做切片,_H为128 是因为RNN单元有128个LSTM Cell,所以需要一次线性转换）,使用tensorflow也能取得还算是不错的效果。不过tensorflow的CTC模块可以更好的处理变长验证码的识别。</p>
+<pre><code>
+def _RNN(_X,batch_size, _W, _b,num_layers,_nsteps):
+    # 1.将输入从[batchsize, nsteps, diminput]变成[nsteps, batchsize, diminput]
+    _X = tf.transpose(_X, [1, 0, 2])
+    # 2.再次转换成[nsteps*batchsize, diminput]
+    _X = tf.reshape(_X, [-1, diminput])
+    # 3.从输入层进入隐层：一个线性变换
+    _H = tf.matmul(_X, _W[&#39;hidden&#39;]) + _b[&#39;hidden&#39;]
+    # 4.使用这种RNN输入方式，tensorflow的rnn定义稍微简单点
+    _Hsplit = tf.split(0, _nsteps, _H)
+    # 5.LSTM的最终输出 (_O) and 状态 (_S)
+    #    Both _O and _S consist of &#39;batchsize&#39; elements
+    with tf.variable_scope(_name):
+        lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(dimhidden, \
+                                         forget_bias=1.0)
+        lstm_cell = tf.nn.rnn_cell.MultiRNNCell([lstm_cell]*num_layers,\
+                                         state_is_tuple=True)
+        state     = lstm_cell.zero_state(batch_size,dtype=tf.float32)
+        _LSTM_O, _LSTM_S = tf.nn.rnn(lstm_cell, _Hsplit, \
+                                         initial_state=state)
+</code></pre><p>这里的batchsize 就是一个batch的大小，nsteps就是rnn的time step ,diminput就是单个rnn单元输入的数据维度。很显然 nsteps* diminput 就是单个mnist的数据维度。 上述代码的示意图：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqnv71pz2oj30fe09wdg5.jpg" alt=""></p>
+<h3 id="4-LSTM前向传播算法"><a href="#4-LSTM前向传播算法" class="headerlink" title="4. LSTM前向传播算法"></a>4. LSTM前向传播算法</h3><p>现在我们来总结下LSTM前向传播算法。LSTM模型有两个隐藏状态$h^{(t)}, C^{(t)}$，模型参数几乎是RNN的4倍，因为现在多了$W_f, U_f, b_f, W_a, U_a, b_a, W_i, U_i, b_i, W_o, U_o, b_o$这些参数。</p>
 <p>前向传播过程在每个序列索引位置的过程为：</p>
 <p>1）更新遗忘门输出：<br>$$<br>f^{(t)} = \sigma(W_fh^{(t-1)} + U_fx^{(t)} + b_f)<br>$$<br>2）更新输入门两部分输出：<br>$$<br>i^{(t)} = \sigma(W_ih^{(t-1)} + U_ix^{(t)} + b_i)<br>$$<br>$$<br>a^{(t)} = tanh(W_ah^{(t-1)} + U_ax^{(t)} + b_a)<br>$$<br>3）更新细胞状态：<br>$$<br>C^{(t)} = C^{(t-1)} \odot f^{(t)} + i^{(t)} \odot a^{(t)}<br>$$<br>4）更新输出门输出：<br>$$<br>o^{(t)} = \sigma(W_oh^{(t-1)} + U_ox^{(t)} + b_o)<br>$$<br>$$<br>h^{(t)} = o^{(t)} \odot tanh(C^{(t)})<br>$$<br>5）更新当前序列索引预测输出：<br>$$<br>\hat{y}^{(t)} = \sigma(Vh^{(t)} + c)<br>$$</p>
-<h3 id="4-LSTM反向传播算法推导关键点"><a href="#4-LSTM反向传播算法推导关键点" class="headerlink" title="4.  LSTM反向传播算法推导关键点"></a>4.  LSTM反向传播算法推导关键点</h3><p>有了LSTM前向传播算法，推导反向传播算法就很容易了， 思路和RNN的反向传播算法思路一致，也是通过梯度下降法迭代更新我们所有的参数，关键点在于计算所有参数基于损失函数的偏导数。</p>
+<h3 id="5-LSTM反向传播算法推导关键点"><a href="#5-LSTM反向传播算法推导关键点" class="headerlink" title="5.  LSTM反向传播算法推导关键点"></a>5.  LSTM反向传播算法推导关键点</h3><p>有了LSTM前向传播算法，推导反向传播算法就很容易了， 思路和RNN的反向传播算法思路一致，也是通过梯度下降法迭代更新我们所有的参数，关键点在于计算所有参数基于损失函数的偏导数。</p>
 <p>在RNN中，为了反向传播误差，我们通过隐藏状态$h^{(t)}$的梯度$\delta^{(t)}$一步步向前传播。在LSTM这里也类似。只不过我们这里有两个隐藏状态$h^{(t)}和C^{(t)}$。这里我们定义两个$\delta$，即：<br>$$<br>\delta_h^{(t)} = \frac{\partial L}{\partial h^{(t)}}<br>$$<br>$$<br>\delta_C^{(t)} = \frac{\partial L}{\partial C^{(t)}}<br>$$<br>反向传播时只使用了$\delta_C^{(t)}$,变量$\delta_h^{(t)}$仅为帮助我们在某一层计算用，并没有参与反向传播，这里要注意。如下图所示：</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqfyqwijijj30kq0s0aao.jpg" alt=""></p>
 <p>而在最后的序列索引位置$\tau$的$\delta_h^{(\tau)}$和 $\delta_C^{(\tau)}$ 为：<br>$$<br>\delta_h^{(\tau)} =\frac{\partial L}{\partial O^{(\tau)}} \frac{\partial O^{(\tau)}}{\partial h^{(\tau)}} = V^T(\hat{y}^{(\tau)} - y^{(\tau)})<br>$$<br>$$<br>\delta_C^{(\tau)} =\frac{\partial L}{\partial h^{(\tau)}} \frac{\partial h^{(\tau)}}{\partial C^{(\tau)}} = \delta_h^{(\tau)} \odot  o^{(\tau)} \odot (1 - tanh^2(C^{(\tau)}))<br>$$<br>接着我们由$\delta_C^{(t+1)}$反向推导$\delta_C^{(t)}$。</p>
 <p>$\delta_h^{(t)}$的梯度由本层的输出梯度误差决定，即：<br>$$<br>  \delta_h^{(t)} =\frac{\partial L}{\partial h^{(t)}}  = V^T(\hat{y}^{(t)} - y^{(t)})<br>$$<br>而$\delta_C^{(t)}$的反向梯度误差由前一层$\delta_C^{(t+1)}$的梯度误差和本层的从$h^{(t)}$传回来的梯度误差两部分组成，即：<br>$$<br>\delta_C^{(t)} =\frac{\partial L}{\partial C^{(t+1)}} \frac{\partial  C^{(t+1)}}{\partial C^{(t)}} + \frac{\partial L}{\partial h^{(t)}}\frac{\partial h^{(t)}}{\partial C^{(t)}} = \delta_C^{(t+1)}\odot f^{(t+1)} + \delta_h^{(t)} \odot  o^{(t)} \odot (1 - tanh^2(C^{(t)}))<br>$$<br>有了$\delta_h^{(t)}$和$\delta_C^{(t)}$， 计算这一大堆参数的梯度就很容易了，这里只给出WfWfW_f的梯度计算过程，其他的$U_f, b_f, W_a, U_a, b_a, W_i, U_i, b_i, W_o, U_o, b_o，V, c$的梯度大家只要照搬就可以了。<br>$$<br>\frac{\partial L}{\partial W_f} =  \sum\limits_{t=1}^{\tau}\frac{\partial L}{\partial C^{(t)}} \frac{\partial C^{(t)}}{\partial f^{(t)}} \frac{\partial f^{(t)}}{\partial W_f} =\sum\limits_{t=1}^{\tau} \delta_C^{(t)} \odot C^{(t-1)} \odot f^{(t)}(1-f^{(t)}) (h^{(t-1)})^T<br>$$</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h3 id="5-LSTM小结"><a href="#5-LSTM小结" class="headerlink" title="5. LSTM小结"></a>5. LSTM小结</h3><p>LSTM虽然结构复杂，但是只要理顺了里面的各个部分和之间的关系，进而理解前向反向传播算法是不难的。当然实际应用中LSTM的难点不在前向反向传播算法，这些有算法库帮你搞定，模型结构和一大堆参数的调参才是让人头痛的问题。不过，理解LSTM模型结构仍然是高效使用的前提。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h3 id="6-LSTM小结"><a href="#6-LSTM小结" class="headerlink" title="6. LSTM小结"></a>6. LSTM小结</h3><p>LSTM虽然结构复杂，但是只要理顺了里面的各个部分和之间的关系，进而理解前向反向传播算法是不难的。当然实际应用中LSTM的难点不在前向反向传播算法，这些有算法库帮你搞定，模型结构和一大堆参数的调参才是让人头痛的问题。不过，理解LSTM模型结构仍然是高效使用的前提。</p>
 <h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><p>1） <a href="http://neuralnetworksanddeeplearning.com/index.html" target="_blank" rel="noopener">Neural Networks and Deep Learning</a> by By Michael Nielsen</p>
 <p>2） <a href="http://www.deeplearningbook.org/" target="_blank" rel="noopener">Deep Learning</a>, book by Ian Goodfellow, Yoshua Bengio, and Aaron Courville</p>
 <p>3） <a href="http://ufldl.stanford.edu/tutorial/" target="_blank" rel="noopener">UFLDL Tutorial</a> </p>
@@ -11301,9 +11328,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 读书笔记 </tag>
-            
             <tag> 数据可视化 </tag>
+            
+            <tag> 读书笔记 </tag>
             
         </tags>
         
