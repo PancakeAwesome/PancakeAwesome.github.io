@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/CTC算法小结.html
 http://pancakeawesome.ink/目标检测技术演进:RCNN、Fast RCNN、Faster RCNN.html
 http://pancakeawesome.ink/论文笔记之RCNN.html
 http://pancakeawesome.ink/最优化方法总结.html
