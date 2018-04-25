@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.0 -->
+    <script>
+        window.materialVersion = "1.5.0"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+    <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+
+
+    <link rel="dns-prefetch" href="https://changyan.sohu.com"/>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Title -->
+    
+    <title>
+        
+            弄懂CNN卷积神经网络？看这一篇就够了！ | 
+        
+        Edward&#39;s Blog
+    </title>
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Edward Guan">
+    <meta name="description" itemprop="description" content="弄懂CNN卷积神经网络？看这一篇就够了！">
+    <meta name="keywords" content="前端,node,react,js,java,自学编程,学习分享,UESTC,深度学习,CNN">
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(window.oldVersion){var remove=window.oldVersion.reduce(function(p,c){return p||data.indexOf("/*"+c+"*/")!==-1},false);if(remove){lsloader.removeLS(key)}}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload,isJs){if(typeof cssonload==="boolean"){isJs=cssonload;cssonload=undefined}isJs=isJs||false;cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}code=code.split(versionString)[1];if(isJs){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload,isJs)}};lsloader.requestResource=function(name,path,cssonload,isJs){var that=this;if(isJs){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else{this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
+    <link rel="icon" sizes="192x192" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
+    <link rel="apple-touch-icon" href="http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Edward&#39;s Blog">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icon -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://pancakeawesome.ink">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="弄懂CNN卷积神经网络？看这一篇就够了！ | Edward&#39;s Blog">
+    <meta property="og:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg" />
+    <meta property="og:description" content="弄懂CNN卷积神经网络？看这一篇就够了！">
+    <meta property="og:article:tag" content="深度学习"> <meta property="og:article:tag" content="CNN"> 
+
+    
+        <meta property="article:published_time" content="Wed Apr 25 2018 22:52:49 GMT+0800" />
+        <meta property="article:modified_time" content="Wed Apr 25 2018 23:23:43 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="弄懂CNN卷积神经网络？看这一篇就够了！ | Edward&#39;s Blog">
+    <meta name="twitter:description" content="弄懂CNN卷积神经网络？看这一篇就够了！">
+    <meta name="twitter:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="http://pancakeawesome.ink" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://pancakeawesome.ink/弄懂CNN卷积神经网络" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://pancakeawesome.ink/弄懂CNN卷积神经网络",
+    "headline": "弄懂CNN卷积神经网络？看这一篇就够了！",
+    "datePublished": "Wed Apr 25 2018 22:52:49 GMT+0800",
+    "dateModified": "Wed Apr 25 2018 23:23:43 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Edward Guan",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/rip.jpeg"
+        },
+        "description": "你说人生艳丽我没有异议，你说人生忧郁我不言语"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Edward&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "http://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg"
+        }
+    },
+    "keywords": ",深度学习,CNN前端,node,react,js,java,自学编程,学习分享,UESTC",
+    "description": "弄懂CNN卷积神经网络？看这一篇就够了！",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+        <script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?0c041dca6f79c4e40fb45d1283e327e7';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    
+    
+
+    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是卷积神经网络？又为什么很重要？"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">什么是卷积神经网络？又为什么很重要？</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#LeNet架构-1990年代）"><span class="post-toc-number">2.</span> <span class="post-toc-text">LeNet架构(1990年代）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#图片是像素值的矩阵"><span class="post-toc-number">3.</span> <span class="post-toc-text">图片是像素值的矩阵</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#卷积"><span class="post-toc-number">4.</span> <span class="post-toc-text">卷积</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#非线性"><span class="post-toc-number">5.</span> <span class="post-toc-text">非线性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#池化"><span class="post-toc-number">6.</span> <span class="post-toc-text">池化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#全连接层"><span class="post-toc-number">7.</span> <span class="post-toc-text">全连接层</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#联合起来——反向传播训练"><span class="post-toc-number">8.</span> <span class="post-toc-text">联合起来——反向传播训练</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#可视化卷积神经网络"><span class="post-toc-number">9.</span> <span class="post-toc-text">可视化卷积神经网络</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他卷积网络架构"><span class="post-toc-number">10.</span> <span class="post-toc-text">其他卷积网络架构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-number">11.</span> <span class="post-toc-text">后记</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 30 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                弄懂CNN卷积神经网络？看这一篇就够了！
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/rip.jpeg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Edward Guan</strong>
+        <span>4月 25, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACb0lEQVR42u3aQW6DQBAEQP//08k1h4C7B3aNrOKELAxTHJZVz7x+vvp44eHh4eHh4eHhPYz3io+/1x/d4Z+HxXc7v3NSGx4eHt5O3pul9rSgo6LPf2nxSW14eHh4+3ntx+D8M3BeUPuU4l94eHh4D+Ml1+flnr8aPDw8vO/gJbD8E9Ke4+Hh4T2N15aYb5pn2/QPZC14eHh4MW/WANtz/rH+Hh4eHt4Brx5pKiODvD02+wi9GbrCw8PDW8DLW/55WysZC8iD3bxaPDw8vD28WQwxC2dbajsai4eHh7ef126O8612u9DPtuZ4eHh4e3jJUj7DtAMKt70yPDw8vC28hJG39u8d2Mqvx8PDw9vDuxLp5tvc5IW2H6HD6/Hw8PAW8/JPwl0xaxvytmOseHh4eDt5Vwae8nhitlEeNsDw8PDwtvCS5T6PZWfDBLPNOh4eHt4eXhK2njPyEKG9fwLGw8PD+xSvjSHypld7nvwyTKnx8PDwbuLN4oBZSNHGwcMK8fDw8Lbw2uLyj0c+xnr+3CT4wMPDw9vPy1tTSeDbltjGE4ebbzw8PLzFvLzo2TBBHt0mm+kIjIeHh7eFFw0zle382e/Xgwk8PDy81bxk2W0b/G3429ZQjA7g4eHhLeDNNsrJg+uyLsQfeHh4eDt515tb+VjVlYHUJNrAw8PD28nLA9lkGz1rYuXRRhHj4uHh4S3m5RHDLLCYvYh29AoPDw/vabxkcU/aZvnAQTKOgIeHh/d8Xk5qjyvDCnh4eHj7ee1ivaK51QYWN2cteHh4eIt769db/m1AHA034OHh4S3mfd+Bh4eHh4eHh4f3gOMXVBZ8uCXphb8AAAAASUVORK5CYII=">
+    
+</ul>
+
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/CNN/">CNN</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/深度学习/">深度学习</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=弄懂CNN卷积神经网络？看这一篇就够了！&url=http://pancakeawesome.ink/弄懂CNN卷积神经网络&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=弄懂CNN卷积神经网络？看这一篇就够了！&url=http://pancakeawesome.ink/弄懂CNN卷积神经网络&via=Edward Guan" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/弄懂CNN卷积神经网络" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/弄懂CNN卷积神经网络" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/弄懂CNN卷积神经网络&title=弄懂CNN卷积神经网络？看这一篇就够了！" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=弄懂CNN卷积神经网络？看这一篇就够了！&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/弄懂CNN卷积神经网络" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="什么是卷积神经网络？又为什么很重要？"><a href="#什么是卷积神经网络？又为什么很重要？" class="headerlink" title="什么是卷积神经网络？又为什么很重要？"></a>什么是卷积神经网络？又为什么很重要？</h3><p>卷积神经网络(Convolutional Neural Networks, ConvNets or CNNs)是一种在图像识别与分类领域被证明特别有效的神经网络。卷积网络已经成功地识别人脸、物体、交通标志，应用在机器人和无人车等载具。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqpaoct8mtj30zk0dhgo5.jpg" alt="图1"></p>
+<p>在上面的<strong>图1</strong>当中，卷积网络能够识别场景而系统可以自动推荐相关标签如“桥”、“铁路”、“网球”等。<strong>图2</strong>则展示了卷积网络识别日常事物如人、动物的例子。最近，卷积网络也已经在自然语言处理上显示出了威力（比如句子分类）。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqpaoxt3zdj30zk0d9wgu.jpg" alt="图2"><br>卷积网络，在今天的绝大多数机器学习应用中都是极重要的工具。但是，理解卷积网络并首次学着使用，这体验有时并不友好。本文的主旨在于帮助读者理解，卷积神经网络是如何作用于图片的。</p>
+<p>如果你对神经网络还是完全陌生的，可以阅读一些CNN的基础博客来掌握一些基本概念。</p>
+<ul>
+<li><a href="http://pancakeawesome.ink/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84.html">CNN卷积神经网络的模型结构</a></li>
+<li><a href="http://pancakeawesome.ink/CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95.html">CNN卷积神经网络的前向传播算法</a></li>
+<li><a href="http://pancakeawesome.ink/CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95.html">CNN卷积神经网络的反向传播算法</a></li>
+</ul>
+<p>在本文，多层感知机(Multi-Layer Perceptrons, MLP)也被记作全连接层(Fully Connected Layers)。</p>
+<h2 id="LeNet架构-1990年代）"><a href="#LeNet架构-1990年代）" class="headerlink" title="LeNet架构(1990年代）"></a>LeNet架构(1990年代）</h2><p>LeNet是最早用于深度学习了领域的卷积神经网络之一。Yann LeCun的这一杰作<code>LeNet5</code>得名于他自1988年以来的系列成功迭代。彼时LeNet架构还主要被用于识别邮政编码等任务。</p>
+<p>下面我们将直观地感受一下，LeNet是如何学习识别图像的。近几年已经出现了很多建立在LeNet之上的新架构，但是基本概念还是来自于LeNet，并且理解了LeNet再学其他的也会更简单。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqpaqhnu3vj30zk08ht9a.jpg" alt="图3：简单的ConvNet"><br><strong>图3</strong>的卷积神经网络与LeNet的原始架构十分接近，把图片分入四个类别：狗，猫，船，鸟（LeNet最早主要就是用来做这些）。如上图所示，当获得一张船图作为输入的时候，网络正确的给船的分类赋予了最高的概率(0.94)。输出层的各个概率相加应为1.</p>
+<p><strong>图3</strong>的卷积神经网络主要执行了四个操作：</p>
+<ol>
+<li>卷积</li>
+<li>非线性(ReLU)</li>
+<li>池化或下采样</li>
+<li>分类（全连接层）</li>
+</ol>
+<p>这些操作也是所有卷积神经网络的基石，所以理解好这些工作对于理解整个神经网络至关重要。接下来我们将尝试最直观地理解以上操作。</p>
+<h2 id="图片是像素值的矩阵"><a href="#图片是像素值的矩阵" class="headerlink" title="图片是像素值的矩阵"></a>图片是像素值的矩阵</h2><p>本质上来讲，每个图片都可以表示为像素值组成的矩阵</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqparr0hvpj30ho06674o.jpg" alt="图4：像素值矩阵"></p>
+<p><code>通道</code>是代指图片特定成分的习语。常见数码相机拍出来的照片有三个通道——红、绿、蓝-可以想象为是三个2d矩阵（每种颜色对应一个）叠在一起，每个矩阵的值都在0-255之间。</p>
+<p>另一方面，<code>灰度</code>图像只有单通道。本文为简单起见只考虑灰度图像，这样就是一个2d矩阵。矩阵中的每个像素值还是0到255——0表示黑，255表示白。</p>
+<hr>
+<h2 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h2><p>卷积网络是因为<code>“卷积”操作</code>而得名的。卷积的根本目的是从输入图片中提取特征。卷积用一个小方阵的数据学习图像特征，可以保留像素之间的空间关系。这里不深入探讨卷积的数学原理，重在理解工作过程。</p>
+<p>如上所述，每个图片都是像素值矩阵。考虑一个5x5的图像，其像素值为0和1，下面的绿色矩阵是灰度图的特例（常规灰度图的像素值取值0-255），同时考虑如下的3x3矩阵：</p>
+<p> <img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqpaxtpnk3j30lc090glr.jpg" alt=""></p>
+<p>然后，5x5图像和3x3矩阵之间的卷积计算，可由下图的动画所表示：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqpay58vuog307g05g3yx.gif" alt="图5：卷积操作。输出矩阵叫卷积特征或特征映射">图5：卷积操作。输出矩阵叫卷积特征或特征映射</p>
+<p>想一想以上操作是如何完成的，我们在原始图片（绿色）上1像素、1像素地滑动橙色矩阵（也称’stride’），并且在每个位置上，我们都对两个矩阵的对应元素相乘后求和得到一个整数，这就是输出矩阵（粉色）的元素。注意，3x3矩阵每次只“看见”输入图片的一部分。</p>
+<p>3x3矩阵也叫“<strong>滤波器</strong>”、“核”或“特征探测器”，在原图上滑动滤波器、点乘矩阵所得的矩阵称为“卷积特征”、“激励映射”或“<strong>特征映射</strong>”。这里的重点就是，理解滤波器对于原输入图片来说，是个特征探测器。</p>
+<p>对于同一张照片，不同的滤波器将会产生不同的特征映射。</p>
+<p>下表可见各种不同卷积核对于上图的效果。只需调整滤波器的数值，我们就可以执行诸如边缘检测、锐化、模糊等效果——这说明不同的滤波器会从图片中探测到不同的特征，比如边缘、曲线等。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqpb22t76uj30ia0u23zt.jpg" alt=""></p>
+<p>另一种对卷积操作很好的理解方式就是观察<strong>图6</strong>的动画：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqpb2p6wlqg30dc07ku0y.gif" alt="图6：卷积操作"></p>
+<p>一个滤波器（红框）在图片上滑动（卷积）产生特征映射。在同一个图片上，另一个滤波器（绿框）的卷积产生了不同的特征映射。须知，卷积操作捕捉的是原图的局部依赖性。另外，注意观察两个不同的滤波器怎样产生不同的特征映射。其实不管是图片，还是两个滤波器，本质上都不过是我们刚才看过的数值矩阵而已。</p>
+<p>在实践当中，卷积神经网络在训练过程中学习滤波器的值，当然我们还是要在训练之前需要指定一些参数：滤波器的个数，滤波器尺寸、网络架构等等。滤波器越多，从图像中提取的特征就越多，模式识别能力就越强。</p>
+<p>特征映射的尺寸由三个参数控制，我们需要在卷积步骤之前就设定好：</p>
+<ul>
+<li>深度(Depth)： 深度就是卷积操作中用到的滤波器个数。如<strong>图7</strong>所示，我们对原始的船图用了三个不同的滤波器，从而产生了三个特征映射。你可以认为这三个特征映射也是堆叠的2d矩阵，所以这里特征映射的“深度”就是3。</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqpb3w7rdjj30ma0b6mxg.jpg" alt="图7"></p>
+<ul>
+<li><p>步幅(Stride)：步幅是每次滑过的像素数。当<code>Stride=1</code>的时候就是逐个像素地滑动。当<code>Stride=2</code>的时候每次就会滑过2个像素。步幅越大，特征映射越小。</p>
+</li>
+<li><p>补零(Zero-padding)：有时候在输入矩阵的边缘填补一圈0会很方便，这样我们就可以对图像矩阵的边缘像素也施加滤波器。补零的好处是让我们可以控制特征映射的尺寸。补零也叫宽卷积，不补零就叫窄卷积。</p>
+</li>
+</ul>
+<h2 id="非线性"><a href="#非线性" class="headerlink" title="非线性"></a>非线性</h2><p>如<strong>图3</strong>所示，每个卷积操作之后，都有一个叫<strong>ReLU</strong>的附加操作。ReLU的全称是纠正线性单元(Rectified Linear Unit)，是一种非线性操作，其输出如下：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqpb4bs3u1j30tr09cweg.jpg" alt="图8:ReLU"></p>
+<p>ReLU是以像素为单位生效的，其将所有负值像素替换为0。ReLU的目的是向卷积网络中引入非线性，因为真实世界里大多数需要学习的问题都是非线性的（单纯的卷积操作时线性的——矩阵相乘、相加，所以才需要额外的计算引入非线性）。</p>
+<p>图9可以帮助我们清晰地理解，ReLU应用在<strong>图6</strong>得到的特征映射上，输出的新特征映射也叫“纠正”特征映射。（黑色被抹成了灰色）</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqpb4mswgnj30zk0dbgmq.jpg" alt="图9:ReLU"></p>
+<p>其他非线性方程比如<strong>tanh</strong>或<strong>sigmoid</strong>也可以替代ReLU，但多数情况下ReLU的表现更好。</p>
+<h2 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h2><p>空间池化（也叫亚采样或下采样）降低了每个特征映射的维度，但是保留了最重要的信息。空间池化可以有很多种形式：最大(Max)，平均(Average)，求和(Sum)等等。</p>
+<p>以最大池化为例，我们定义了空间上的邻域（2x2的窗）并且从纠正特征映射中取出窗里最大的元素。除了取最大值以额外，我们也可以取平均值（平均池化）或者把窗里所有元素加起来。实际上，最大池化已经显示了最好的成效。</p>
+<p><strong>图10</strong>显示了对纠正特征映射的最大池化操作（在卷积+ReLU之后），使用的是2x2的窗。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqpb53x88tj30rg0neaaq.jpg" alt="图10:最大池化"></p>
+<p>我们以2格的步幅(Stride)滑动2x2的窗，并且取每个区域的最大值。<strong>图10</strong>同样显示了池化可以减少特征映射的维度。</p>
+<p>在<strong>图11</strong>所示的网络中，池化操作分别应用于每个特征映射（注意正因如此，我们从三个输入映射得到了三个输出映射）。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqpb5e1jqaj30ma0c7t92.jpg" alt="图11:对纠正特征映射应用池化"></p>
+<p><strong>图12</strong>即为池化操作施加在<strong>图9</strong>所得纠正特征映射上的效果。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqpb5q2zcvj30z20eywfj.jpg" alt="图12:池化"></p>
+<p>池化的功能室逐步减少输入表征的空间尺寸。特别地，池化</p>
+<ul>
+<li>使输入表征（特征维度）更小而易操作</li>
+<li>减少网络中的参数与计算数量，从而遏制过拟合</li>
+<li>增强网络对输入图像中的小变形、扭曲、平移的鲁棒性（输入里的微小扭曲不会改变池化输出——因为我们在局部邻域已经取了最大值/平均值）。</li>
+<li>帮助我们获得不因尺寸而改变的等效图片表征。这非常有用，因为这样我们就可以探测到图片里的物体，不论那个物体在哪。</li>
+</ul>
+<p>截至目前：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqpb624vq1j30zk08gmxr.jpg" alt="图13"></p>
+<hr>
+<p>至此我们已经了解了卷积、ReLU和池化是如何运转的，这些层对于所有的卷积神经网络都是最基础的单元。如<strong>图13</strong>所示，我们有两组“卷积+ReLU+池化”层——其中第二组对第一组的输出施加了六个滤波器，产生了六个特征映射。ReLU分别作用域这六个特征映射，再对生成的纠正特征映射使用最大池化。</p>
+<p>这些层合力提取出有用的特征，为网络引入了非线性并降低了维度，还使特征对尺寸和平移保持不变性。</p>
+<p>第二个池化层的输出相当于全连接层的输入，我们将在下一节继续探讨。</p>
+<h2 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h2><p>全连接层(Fully Connected layer)就是使用了softmax激励函数作为输出层的多层感知机(Multi-Layer Perceptron)，其他很多分类器如支持向量机也使用了softmax。“全连接”表示上一层的每一个神经元，都和下一层的每一个神经元是相互连接的。</p>
+<p>卷积层和池化层呢个的输出代表了输入图像的高级特征，全连接层的目的就是用这些特征进行分类，类别基于训练集。比如<strong>图14</strong>所示的图像分类任务，有四种可能的类别。（注意，图14没有显示出所有的神经元节点）</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqpb6k5d5bj30qw08f74j.jpg" alt="图14:全连接层——每个节点都与相邻层的所有节点相连"></p>
+<p>除了分类以外，加入全连接层也是学习特征之间非线性组合的有效办法。卷积层和池化层提取出来的特征很好，但是如果考虑这些特征之间的组合，就更好了。</p>
+<p>全连接层的输出概率之和为1，这是由激励函数<code>Softmax</code>保证的。Softmax函数把任意实值的向量转变成元素取之0-1且和为1的向量。</p>
+<h2 id="联合起来——反向传播训练"><a href="#联合起来——反向传播训练" class="headerlink" title="联合起来——反向传播训练"></a>联合起来——反向传播训练</h2><p>综上，卷积+池化是特征提取器，全连接层是分类器。</p>
+<p>注意<strong>图15</strong>，因为输入图片是条船，所以目标概率对船是1，其他类别是0.</p>
+<ul>
+<li>输入图像 = 船</li>
+<li>目标向量 = [0, 0, 1 ,0]</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqpb71ou4nj30zk0ciwf8.jpg" alt="图15:训练卷积神经网络"></p>
+<p>卷积网络的训练过程可以概括如下：</p>
+<ul>
+<li><strong>Step 1:</strong> 用随机数初始化所有的滤波器和参数/权重</li>
+<li><p><strong>Step 2:</strong> 网络将训练图片作为输入，执行前向步骤（卷积，ReLU，池化以及全连接层的前向传播）并计算每个类别的对应输出概率。</p>
+</li>
+<li><p>假设船图的输出概率是<code>[0.2, 0.4, 0.1, 0.3]</code></p>
+</li>
+<li><p>因为第一个训练样本的权重都是随机的，所以这个输出概率也跟随机的差不多</p>
+</li>
+<li><p><strong>Step 3:</strong> 计算输出层的总误差（4类别之和）</p>
+</li>
+<li><p>$总误差 = \sum \frac{1}{2} (目标概率 - 输出概率)^2 *$</p>
+</li>
+<li><p><strong>Step 4:</strong> 反向传播算法计算误差相对于所有权重的梯度，并用<em>梯度下降法</em>更新所有的滤波器/权重和参数的值，以使输出误差最小化。</p>
+</li>
+<li><p>权重的调整程度与其对总误差的贡献成正比。</p>
+</li>
+<li>当同一图像再次被输入，这次的输出概率可能是<code>[0.1, 0.1, 0.7, 0.1]</code>，与目标<code>[0, 0, 1, 0]</code>更接近了。</li>
+<li>这说明我们的神经网络已经学习着分类特定图片了，学习的方式是调整权重/滤波器以降低输出误差。</li>
+<li>如滤波器个数、滤波器尺寸、网络架构这些参数，是在Step 1之前就已经固定的，且不会在训练过程中改变——只有滤波矩阵和神经元突触权重会更新。</li>
+</ul>
+<p>以上步骤<em>训练</em>了卷积网络——本质上就是优化所有的权重和参数，使其能够正确地分类训练集里的图片。</p>
+<p>当一个新的（前所未见的）的图片输入至卷积网络，网络会执行前向传播步骤并输出每个类别的概率（对于新图像，输出概率用的也是训练过的权重值）。如果我们的训练集足够大，网络就有望正确分类新图片，获得良好的泛化(generalization)能力。</p>
+<p><strong>注意 1:</strong> 以上步骤已被极大简化，且数学细节均以忽略，这是为了让训练过程更直观。</p>
+<p><strong>注意 2:</strong> 上例中，我们用了两组卷积+池化层，其实这些操作可以在一个卷积网络内重复无数次。如今有些表现出众的卷积网络，都有数以十计的卷积+池化层！并且，不是每个卷积层后面都要跟个池化层。由<strong>图16</strong>可见，我们可以有连续多组卷积+ReLU层，后面再加一个池化层。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqpb8h2zyjj30xo0gcac0.jpg" alt="图16"></p>
+<h2 id="可视化卷积神经网络"><a href="#可视化卷积神经网络" class="headerlink" title="可视化卷积神经网络"></a>可视化卷积神经网络</h2><p>一般来说，卷积层越多，能学会的特征也就越复杂。比如在图像分类中，一个卷积神经网络的第一层学会了探测像素中的边缘，然后第二层用这些边缘再去探测简单的形状，其他层再用形状去探测高级特征，比如脸型，如<strong>图17</strong>所示——这些特征是<a href="http://web.eecs.umich.edu/~honglak/icml09-ConvolutionalDeepBeliefNetworks.pdf" target="_blank" rel="noopener">Convolutional Deep Belief Network</a>学得的。这里只是一个简单的例子，实际上卷积滤波器可能会探测出一些没有意义的特征。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqpb8o6b5xj30dg0e60t4.jpg" alt="图17:Convolutional Deep Belief Network学习的特征"></p>
+<hr>
+<p>Adam Harley做了一个非常惊艳的卷积神经网络可视化，这个网络是用MNIST手写数字数据库训练而来的。我强烈推荐大家<a href="http://scs.ryerson.ca/~aharley/vis/conv/flat.html" target="_blank" rel="noopener">玩一玩</a>，以便更深地理解卷积神经网络的细节。</p>
+<p>如下我们将看到网络是如何识别输入数字”8”的。注意，<strong>图18</strong>没有把ReLU过程单独显示出来。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqpb9eoz7oj30zk0k5ac4.jpg" alt="图18:可视化卷积神经网络"></p>
+<p>输入图像有1024个像素（32x32图片），第一个卷积层(Convolution Layer 1)有六个不同的5x5滤波器(Stride = 1)。由图可见，六个不同的滤波器产生了深度为6的特征映射。</p>
+<p>Convolutional Layer 1 后面跟着Pooling Layer 1, 对六个特征映射分别进行2x2的最大池化（Stride = 2）。你可以在动态网页中的每个像素上活动鼠标指针，观察其在前一个卷积层里对应的4x4网格（如<strong>图19</strong>）。不难发现，每个4x4网格里的最亮的像素（对应最大值）构成了池化层。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqpb9x585wj30zk08iq48.jpg" alt="图19：可视化池化操作"></p>
+<p>之后我们有三个全连接(FC)层：</p>
+<ul>
+<li><strong>FC 1:</strong> 120神经元</li>
+<li><strong>FC 2:</strong> 100神经元</li>
+<li><strong>FC 3:</strong> 10神经元，对应10个数字——也即输出层</li>
+</ul>
+<p>在<strong>图20</strong>，输出层10个节点中的每一个，都与第二个全连接层的100个节点相连（所以叫“全连接”）。</p>
+<p>注意输出层里的唯一的亮点对应着<code>8</code>——这说明网络正确的识别了手写数字（越亮的节点代表越高的概率，比如这里8就拥有最高的概率）。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqpbab640ej30zk07d0sw.jpg" alt="图20：可视化全连接层"></p>
+<p>该可视化的3D版可见于<a href="http://scs.ryerson.ca/~aharley/vis/conv/" target="_blank" rel="noopener">这里</a> 。</p>
+<hr>
+<h2 id="其他卷积网络架构"><a href="#其他卷积网络架构" class="headerlink" title="其他卷积网络架构"></a>其他卷积网络架构</h2><p>卷积神经网络始自1990年代起，我们已经认识了最早的LeNet，其他一些很有影响力的架构列举如下：</p>
+<ul>
+<li><p>1990s至2012：从90年代到2010年代早期，卷积神经网络都处于孵化阶段。随着数据量增大和计算能力提高，卷积神经网络能搞定的问题也越来越有意思了。</p>
+</li>
+<li><p>AlexNet(2012)：2012年，Alex Krizhevsky发布了<a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf" target="_blank" rel="noopener">AlexNet</a> ，是LeNet的更深、更宽版本，并且大比分赢得了当年的ImageNet大规模图像识别挑战赛(ILSVRC)。这是一次非常重要的大突破，现在普及的卷积神经网络应用都要感谢这一壮举。</p>
+</li>
+<li><p>ZF Net(2013)：2013年的ILSVRC赢家是Matthew Zeiler和Rob Fergus的卷积网络，被称作<a href="http://arxiv.org/abs/1311.2901" target="_blank" rel="noopener">ZF Net</a> ，这是调整过架构超参数的AlexNet改进型。</p>
+</li>
+<li><p>GoogleNet(2014)：2014的ILSVRC胜者是来自Google的<a href="http://arxiv.org/abs/1409.4842" target="_blank" rel="noopener">Szegedy et al.</a> 。其主要贡献是研发了<em>Inception Module</em>，它大幅减少了网络中的参数数量（四百万，相比AlexNet的六千万）。</p>
+</li>
+<li><p>VGGNet(2014)：当年的ILSVRC亚军是<a href="http://www.robots.ox.ac.uk/~vgg/research/very_deep/" target="_blank" rel="noopener">VGGNet</a> ，突出贡献是展示了网络的深度（层次数量）是良好表现的关键因素。</p>
+</li>
+<li><p>ResNet(2015)： Kaiming He研发的<a href="http://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">Residual Network</a> 是2015年的ILSVRC冠军，也代表了卷积神经网络的最高水平，同时还是实践的默认选择（2016年5月）。</p>
+</li>
+<li><p>DenseNet（2016年8月）： 由Gao Huang发表，<a href="http://arxiv.org/abs/1608.06993" target="_blank" rel="noopener">Densely Connected Convolutional Network</a> 的每一层都直接与其他各层前向连接。DenseNet已经在五个高难度的物体识别基础集上，显式出非凡的进步。</p>
+</li>
+</ul>
+<hr>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这里有一些关于卷积神经网络的博客。</p>
+<ul>
+<li><a href="http://pancakeawesome.ink/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84.html">CNN卷积神经网络的模型结构</a></li>
+<li><a href="http://pancakeawesome.ink/CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95.html">CNN卷积神经网络的前向传播算法</a></li>
+<li><a href="http://pancakeawesome.ink/CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95.html">CNN卷积神经网络的反向传播算法</a></li>
+</ul>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            This blog is under a <a href="https://pancakeawesome.ink/" target="_blank">CC BY-NC-SA 3.0 Unported License</a>
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="http://pancakeawesome.ink/弄懂CNN卷积神经网络?看这一篇就够了!.html">http://pancakeawesome.ink/弄懂CNN卷积神经网络?看这一篇就够了!.html</a>
+                    </p>
+                </blockquote>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="弄懂CNN卷积神经网络?看这一篇就够了!.html"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cytdf2o7Q';
+var conf = 'da223e602e0abf03eded8d4c19e7d862';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/CTC算法小结.html" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/thumbnail/sidebar_header.jpg);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/rip.jpeg" alt="Edward Guan's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        guanchao930908@163.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:guanchao930908@163.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/02/">二月 2018<span class="sidebar_archives-count">16</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">13</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">20</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">10</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/OCR/">OCR<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/blog/">blog<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/css/">css<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/es6/">es6<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/html/">html<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript/">javascript<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/javascript设计模式/">javascript设计模式<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/node-js/">node.js<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/nodejs/">nodejs<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/react/">react<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/typescript/">typescript<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/优化算法/">优化算法<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端优化/">前端优化<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端工具/">前端工具<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端技术/">前端技术<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端架构设计/">前端架构设计<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端框架/">前端框架<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据分析/">数据分析<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据可视化/">数据可视化<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/机器学习/">机器学习<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/categories/深度学习/">深度学习<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/categories/目标检测/">目标检测<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/算法思想/">算法思想<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/网络/">网络<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/论文笔记/">论文笔记<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/软件开发/">软件开发<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/面试/">面试<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">cloud_circle</i>
+                
+                标签云
+            </a>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
+        <li>
+            <a href="/timeline" title="Timeline">
+                
+                    <i class="material-icons sidebar-material-icons">send</i>
+                
+                Timeline
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/gallery" title="Gallery">
+                
+                    <i class="material-icons sidebar-material-icons">photo_library</i>
+                
+                Gallery
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/aboutMe" title="About Me">
+                
+                    <i class="material-icons sidebar-material-icons">person_pin</i>
+                
+                About Me
+            </a>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">91</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/591153977" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/profile.php?id=100011433530812" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+        <a href="https://www.instagram.com/edward930908/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-instagram">
+                <span class="visuallyhidden">Instagram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/PancakeAwesome" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+        <a href="https://www.linkedin.com/in/%E8%B6%85-%E7%AE%A1-89495a145/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-linkedin">
+                <span class="visuallyhidden">LinkedIn</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Edward's Blog
+            
+                <br>
+                
+                    <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+                
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+   <!-- 畅言公共 js 代码 start -->
+<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytdf2o7Q">
+</script>
+<!-- 畅言公共 js 代码 end -->
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+    
+</html>

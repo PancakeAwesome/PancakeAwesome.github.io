@@ -3,6 +3,190 @@
   
     
     <entry>
+      <title><![CDATA[弄懂CNN卷积神经网络？看这一篇就够了！]]></title>
+      <url>/%E5%BC%84%E6%87%82CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C?%E7%9C%8B%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86!.html</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="什么是卷积神经网络？又为什么很重要？"><a href="#什么是卷积神经网络？又为什么很重要？" class="headerlink" title="什么是卷积神经网络？又为什么很重要？"></a>什么是卷积神经网络？又为什么很重要？</h3><p>卷积神经网络(Convolutional Neural Networks, ConvNets or CNNs)是一种在图像识别与分类领域被证明特别有效的神经网络。卷积网络已经成功地识别人脸、物体、交通标志，应用在机器人和无人车等载具。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqpaoct8mtj30zk0dhgo5.jpg" alt="图1"></p>
+<p>在上面的<strong>图1</strong>当中，卷积网络能够识别场景而系统可以自动推荐相关标签如“桥”、“铁路”、“网球”等。<strong>图2</strong>则展示了卷积网络识别日常事物如人、动物的例子。最近，卷积网络也已经在自然语言处理上显示出了威力（比如句子分类）。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqpaoxt3zdj30zk0d9wgu.jpg" alt="图2"><br>卷积网络，在今天的绝大多数机器学习应用中都是极重要的工具。但是，理解卷积网络并首次学着使用，这体验有时并不友好。本文的主旨在于帮助读者理解，卷积神经网络是如何作用于图片的。</p>
+<p>如果你对神经网络还是完全陌生的，可以阅读一些CNN的基础博客来掌握一些基本概念。</p>
+<ul>
+<li><a href="http://pancakeawesome.ink/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84.html">CNN卷积神经网络的模型结构</a></li>
+<li><a href="http://pancakeawesome.ink/CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95.html">CNN卷积神经网络的前向传播算法</a></li>
+<li><a href="http://pancakeawesome.ink/CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95.html">CNN卷积神经网络的反向传播算法</a></li>
+</ul>
+<p>在本文，多层感知机(Multi-Layer Perceptrons, MLP)也被记作全连接层(Fully Connected Layers)。</p>
+<h2 id="LeNet架构-1990年代）"><a href="#LeNet架构-1990年代）" class="headerlink" title="LeNet架构(1990年代）"></a>LeNet架构(1990年代）</h2><p>LeNet是最早用于深度学习了领域的卷积神经网络之一。Yann LeCun的这一杰作<code>LeNet5</code>得名于他自1988年以来的系列成功迭代。彼时LeNet架构还主要被用于识别邮政编码等任务。</p>
+<p>下面我们将直观地感受一下，LeNet是如何学习识别图像的。近几年已经出现了很多建立在LeNet之上的新架构，但是基本概念还是来自于LeNet，并且理解了LeNet再学其他的也会更简单。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqpaqhnu3vj30zk08ht9a.jpg" alt="图3：简单的ConvNet"><br><strong>图3</strong>的卷积神经网络与LeNet的原始架构十分接近，把图片分入四个类别：狗，猫，船，鸟（LeNet最早主要就是用来做这些）。如上图所示，当获得一张船图作为输入的时候，网络正确的给船的分类赋予了最高的概率(0.94)。输出层的各个概率相加应为1.</p>
+<p><strong>图3</strong>的卷积神经网络主要执行了四个操作：</p>
+<ol>
+<li>卷积</li>
+<li>非线性(ReLU)</li>
+<li>池化或下采样</li>
+<li>分类（全连接层）</li>
+</ol>
+<p>这些操作也是所有卷积神经网络的基石，所以理解好这些工作对于理解整个神经网络至关重要。接下来我们将尝试最直观地理解以上操作。</p>
+<h2 id="图片是像素值的矩阵"><a href="#图片是像素值的矩阵" class="headerlink" title="图片是像素值的矩阵"></a>图片是像素值的矩阵</h2><p>本质上来讲，每个图片都可以表示为像素值组成的矩阵</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqparr0hvpj30ho06674o.jpg" alt="图4：像素值矩阵"></p>
+<p><code>通道</code>是代指图片特定成分的习语。常见数码相机拍出来的照片有三个通道——红、绿、蓝-可以想象为是三个2d矩阵（每种颜色对应一个）叠在一起，每个矩阵的值都在0-255之间。</p>
+<p>另一方面，<code>灰度</code>图像只有单通道。本文为简单起见只考虑灰度图像，这样就是一个2d矩阵。矩阵中的每个像素值还是0到255——0表示黑，255表示白。</p>
+<hr>
+<h2 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h2><p>卷积网络是因为<code>“卷积”操作</code>而得名的。卷积的根本目的是从输入图片中提取特征。卷积用一个小方阵的数据学习图像特征，可以保留像素之间的空间关系。这里不深入探讨卷积的数学原理，重在理解工作过程。</p>
+<p>如上所述，每个图片都是像素值矩阵。考虑一个5x5的图像，其像素值为0和1，下面的绿色矩阵是灰度图的特例（常规灰度图的像素值取值0-255），同时考虑如下的3x3矩阵：</p>
+<p> <img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqpaxtpnk3j30lc090glr.jpg" alt=""></p>
+<p>然后，5x5图像和3x3矩阵之间的卷积计算，可由下图的动画所表示：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqpay58vuog307g05g3yx.gif" alt="图5：卷积操作。输出矩阵叫卷积特征或特征映射">图5：卷积操作。输出矩阵叫卷积特征或特征映射</p>
+<p>想一想以上操作是如何完成的，我们在原始图片（绿色）上1像素、1像素地滑动橙色矩阵（也称’stride’），并且在每个位置上，我们都对两个矩阵的对应元素相乘后求和得到一个整数，这就是输出矩阵（粉色）的元素。注意，3x3矩阵每次只“看见”输入图片的一部分。</p>
+<p>3x3矩阵也叫“<strong>滤波器</strong>”、“核”或“特征探测器”，在原图上滑动滤波器、点乘矩阵所得的矩阵称为“卷积特征”、“激励映射”或“<strong>特征映射</strong>”。这里的重点就是，理解滤波器对于原输入图片来说，是个特征探测器。</p>
+<p>对于同一张照片，不同的滤波器将会产生不同的特征映射。</p>
+<p>下表可见各种不同卷积核对于上图的效果。只需调整滤波器的数值，我们就可以执行诸如边缘检测、锐化、模糊等效果——这说明不同的滤波器会从图片中探测到不同的特征，比如边缘、曲线等。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqpb22t76uj30ia0u23zt.jpg" alt=""></p>
+<p>另一种对卷积操作很好的理解方式就是观察<strong>图6</strong>的动画：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqpb2p6wlqg30dc07ku0y.gif" alt="图6：卷积操作"></p>
+<p>一个滤波器（红框）在图片上滑动（卷积）产生特征映射。在同一个图片上，另一个滤波器（绿框）的卷积产生了不同的特征映射。须知，卷积操作捕捉的是原图的局部依赖性。另外，注意观察两个不同的滤波器怎样产生不同的特征映射。其实不管是图片，还是两个滤波器，本质上都不过是我们刚才看过的数值矩阵而已。</p>
+<p>在实践当中，卷积神经网络在训练过程中学习滤波器的值，当然我们还是要在训练之前需要指定一些参数：滤波器的个数，滤波器尺寸、网络架构等等。滤波器越多，从图像中提取的特征就越多，模式识别能力就越强。</p>
+<p>特征映射的尺寸由三个参数控制，我们需要在卷积步骤之前就设定好：</p>
+<ul>
+<li>深度(Depth)： 深度就是卷积操作中用到的滤波器个数。如<strong>图7</strong>所示，我们对原始的船图用了三个不同的滤波器，从而产生了三个特征映射。你可以认为这三个特征映射也是堆叠的2d矩阵，所以这里特征映射的“深度”就是3。</li>
+</ul>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqpb3w7rdjj30ma0b6mxg.jpg" alt="图7"></p>
+<ul>
+<li><p>步幅(Stride)：步幅是每次滑过的像素数。当<code>Stride=1</code>的时候就是逐个像素地滑动。当<code>Stride=2</code>的时候每次就会滑过2个像素。步幅越大，特征映射越小。</p>
+</li>
+<li><p>补零(Zero-padding)：有时候在输入矩阵的边缘填补一圈0会很方便，这样我们就可以对图像矩阵的边缘像素也施加滤波器。补零的好处是让我们可以控制特征映射的尺寸。补零也叫宽卷积，不补零就叫窄卷积。</p>
+</li>
+</ul>
+<h2 id="非线性"><a href="#非线性" class="headerlink" title="非线性"></a>非线性</h2><p>如<strong>图3</strong>所示，每个卷积操作之后，都有一个叫<strong>ReLU</strong>的附加操作。ReLU的全称是纠正线性单元(Rectified Linear Unit)，是一种非线性操作，其输出如下：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqpb4bs3u1j30tr09cweg.jpg" alt="图8:ReLU"></p>
+<p>ReLU是以像素为单位生效的，其将所有负值像素替换为0。ReLU的目的是向卷积网络中引入非线性，因为真实世界里大多数需要学习的问题都是非线性的（单纯的卷积操作时线性的——矩阵相乘、相加，所以才需要额外的计算引入非线性）。</p>
+<p>图9可以帮助我们清晰地理解，ReLU应用在<strong>图6</strong>得到的特征映射上，输出的新特征映射也叫“纠正”特征映射。（黑色被抹成了灰色）</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqpb4mswgnj30zk0dbgmq.jpg" alt="图9:ReLU"></p>
+<p>其他非线性方程比如<strong>tanh</strong>或<strong>sigmoid</strong>也可以替代ReLU，但多数情况下ReLU的表现更好。</p>
+<h2 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h2><p>空间池化（也叫亚采样或下采样）降低了每个特征映射的维度，但是保留了最重要的信息。空间池化可以有很多种形式：最大(Max)，平均(Average)，求和(Sum)等等。</p>
+<p>以最大池化为例，我们定义了空间上的邻域（2x2的窗）并且从纠正特征映射中取出窗里最大的元素。除了取最大值以额外，我们也可以取平均值（平均池化）或者把窗里所有元素加起来。实际上，最大池化已经显示了最好的成效。</p>
+<p><strong>图10</strong>显示了对纠正特征映射的最大池化操作（在卷积+ReLU之后），使用的是2x2的窗。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqpb53x88tj30rg0neaaq.jpg" alt="图10:最大池化"></p>
+<p>我们以2格的步幅(Stride)滑动2x2的窗，并且取每个区域的最大值。<strong>图10</strong>同样显示了池化可以减少特征映射的维度。</p>
+<p>在<strong>图11</strong>所示的网络中，池化操作分别应用于每个特征映射（注意正因如此，我们从三个输入映射得到了三个输出映射）。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqpb5e1jqaj30ma0c7t92.jpg" alt="图11:对纠正特征映射应用池化"></p>
+<p><strong>图12</strong>即为池化操作施加在<strong>图9</strong>所得纠正特征映射上的效果。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqpb5q2zcvj30z20eywfj.jpg" alt="图12:池化"></p>
+<p>池化的功能室逐步减少输入表征的空间尺寸。特别地，池化</p>
+<ul>
+<li>使输入表征（特征维度）更小而易操作</li>
+<li>减少网络中的参数与计算数量，从而遏制过拟合</li>
+<li>增强网络对输入图像中的小变形、扭曲、平移的鲁棒性（输入里的微小扭曲不会改变池化输出——因为我们在局部邻域已经取了最大值/平均值）。</li>
+<li>帮助我们获得不因尺寸而改变的等效图片表征。这非常有用，因为这样我们就可以探测到图片里的物体，不论那个物体在哪。</li>
+</ul>
+<p>截至目前：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqpb624vq1j30zk08gmxr.jpg" alt="图13"></p>
+<hr>
+<p>至此我们已经了解了卷积、ReLU和池化是如何运转的，这些层对于所有的卷积神经网络都是最基础的单元。如<strong>图13</strong>所示，我们有两组“卷积+ReLU+池化”层——其中第二组对第一组的输出施加了六个滤波器，产生了六个特征映射。ReLU分别作用域这六个特征映射，再对生成的纠正特征映射使用最大池化。</p>
+<p>这些层合力提取出有用的特征，为网络引入了非线性并降低了维度，还使特征对尺寸和平移保持不变性。</p>
+<p>第二个池化层的输出相当于全连接层的输入，我们将在下一节继续探讨。</p>
+<h2 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h2><p>全连接层(Fully Connected layer)就是使用了softmax激励函数作为输出层的多层感知机(Multi-Layer Perceptron)，其他很多分类器如支持向量机也使用了softmax。“全连接”表示上一层的每一个神经元，都和下一层的每一个神经元是相互连接的。</p>
+<p>卷积层和池化层呢个的输出代表了输入图像的高级特征，全连接层的目的就是用这些特征进行分类，类别基于训练集。比如<strong>图14</strong>所示的图像分类任务，有四种可能的类别。（注意，图14没有显示出所有的神经元节点）</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqpb6k5d5bj30qw08f74j.jpg" alt="图14:全连接层——每个节点都与相邻层的所有节点相连"></p>
+<p>除了分类以外，加入全连接层也是学习特征之间非线性组合的有效办法。卷积层和池化层提取出来的特征很好，但是如果考虑这些特征之间的组合，就更好了。</p>
+<p>全连接层的输出概率之和为1，这是由激励函数<code>Softmax</code>保证的。Softmax函数把任意实值的向量转变成元素取之0-1且和为1的向量。</p>
+<h2 id="联合起来——反向传播训练"><a href="#联合起来——反向传播训练" class="headerlink" title="联合起来——反向传播训练"></a>联合起来——反向传播训练</h2><p>综上，卷积+池化是特征提取器，全连接层是分类器。</p>
+<p>注意<strong>图15</strong>，因为输入图片是条船，所以目标概率对船是1，其他类别是0.</p>
+<ul>
+<li>输入图像 = 船</li>
+<li>目标向量 = [0, 0, 1 ,0]</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqpb71ou4nj30zk0ciwf8.jpg" alt="图15:训练卷积神经网络"></p>
+<p>卷积网络的训练过程可以概括如下：</p>
+<ul>
+<li><strong>Step 1:</strong> 用随机数初始化所有的滤波器和参数/权重</li>
+<li><p><strong>Step 2:</strong> 网络将训练图片作为输入，执行前向步骤（卷积，ReLU，池化以及全连接层的前向传播）并计算每个类别的对应输出概率。</p>
+</li>
+<li><p>假设船图的输出概率是<code>[0.2, 0.4, 0.1, 0.3]</code></p>
+</li>
+<li><p>因为第一个训练样本的权重都是随机的，所以这个输出概率也跟随机的差不多</p>
+</li>
+<li><p><strong>Step 3:</strong> 计算输出层的总误差（4类别之和）</p>
+</li>
+<li><p>$总误差 = \sum \frac{1}{2} (目标概率 - 输出概率)^2 *$</p>
+</li>
+<li><p><strong>Step 4:</strong> 反向传播算法计算误差相对于所有权重的梯度，并用<em>梯度下降法</em>更新所有的滤波器/权重和参数的值，以使输出误差最小化。</p>
+</li>
+<li><p>权重的调整程度与其对总误差的贡献成正比。</p>
+</li>
+<li>当同一图像再次被输入，这次的输出概率可能是<code>[0.1, 0.1, 0.7, 0.1]</code>，与目标<code>[0, 0, 1, 0]</code>更接近了。</li>
+<li>这说明我们的神经网络已经学习着分类特定图片了，学习的方式是调整权重/滤波器以降低输出误差。</li>
+<li>如滤波器个数、滤波器尺寸、网络架构这些参数，是在Step 1之前就已经固定的，且不会在训练过程中改变——只有滤波矩阵和神经元突触权重会更新。</li>
+</ul>
+<p>以上步骤<em>训练</em>了卷积网络——本质上就是优化所有的权重和参数，使其能够正确地分类训练集里的图片。</p>
+<p>当一个新的（前所未见的）的图片输入至卷积网络，网络会执行前向传播步骤并输出每个类别的概率（对于新图像，输出概率用的也是训练过的权重值）。如果我们的训练集足够大，网络就有望正确分类新图片，获得良好的泛化(generalization)能力。</p>
+<p><strong>注意 1:</strong> 以上步骤已被极大简化，且数学细节均以忽略，这是为了让训练过程更直观。</p>
+<p><strong>注意 2:</strong> 上例中，我们用了两组卷积+池化层，其实这些操作可以在一个卷积网络内重复无数次。如今有些表现出众的卷积网络，都有数以十计的卷积+池化层！并且，不是每个卷积层后面都要跟个池化层。由<strong>图16</strong>可见，我们可以有连续多组卷积+ReLU层，后面再加一个池化层。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqpb8h2zyjj30xo0gcac0.jpg" alt="图16"></p>
+<h2 id="可视化卷积神经网络"><a href="#可视化卷积神经网络" class="headerlink" title="可视化卷积神经网络"></a>可视化卷积神经网络</h2><p>一般来说，卷积层越多，能学会的特征也就越复杂。比如在图像分类中，一个卷积神经网络的第一层学会了探测像素中的边缘，然后第二层用这些边缘再去探测简单的形状，其他层再用形状去探测高级特征，比如脸型，如<strong>图17</strong>所示——这些特征是<a href="http://web.eecs.umich.edu/~honglak/icml09-ConvolutionalDeepBeliefNetworks.pdf" target="_blank" rel="noopener">Convolutional Deep Belief Network</a>学得的。这里只是一个简单的例子，实际上卷积滤波器可能会探测出一些没有意义的特征。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqpb8o6b5xj30dg0e60t4.jpg" alt="图17:Convolutional Deep Belief Network学习的特征"></p>
+<hr>
+<p>Adam Harley做了一个非常惊艳的卷积神经网络可视化，这个网络是用MNIST手写数字数据库训练而来的。我强烈推荐大家<a href="http://scs.ryerson.ca/~aharley/vis/conv/flat.html" target="_blank" rel="noopener">玩一玩</a>，以便更深地理解卷积神经网络的细节。</p>
+<p>如下我们将看到网络是如何识别输入数字”8”的。注意，<strong>图18</strong>没有把ReLU过程单独显示出来。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqpb9eoz7oj30zk0k5ac4.jpg" alt="图18:可视化卷积神经网络"></p>
+<p>输入图像有1024个像素（32x32图片），第一个卷积层(Convolution Layer 1)有六个不同的5x5滤波器(Stride = 1)。由图可见，六个不同的滤波器产生了深度为6的特征映射。</p>
+<p>Convolutional Layer 1 后面跟着Pooling Layer 1, 对六个特征映射分别进行2x2的最大池化（Stride = 2）。你可以在动态网页中的每个像素上活动鼠标指针，观察其在前一个卷积层里对应的4x4网格（如<strong>图19</strong>）。不难发现，每个4x4网格里的最亮的像素（对应最大值）构成了池化层。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqpb9x585wj30zk08iq48.jpg" alt="图19：可视化池化操作"></p>
+<p>之后我们有三个全连接(FC)层：</p>
+<ul>
+<li><strong>FC 1:</strong> 120神经元</li>
+<li><strong>FC 2:</strong> 100神经元</li>
+<li><strong>FC 3:</strong> 10神经元，对应10个数字——也即输出层</li>
+</ul>
+<p>在<strong>图20</strong>，输出层10个节点中的每一个，都与第二个全连接层的100个节点相连（所以叫“全连接”）。</p>
+<p>注意输出层里的唯一的亮点对应着<code>8</code>——这说明网络正确的识别了手写数字（越亮的节点代表越高的概率，比如这里8就拥有最高的概率）。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqpbab640ej30zk07d0sw.jpg" alt="图20：可视化全连接层"></p>
+<p>该可视化的3D版可见于<a href="http://scs.ryerson.ca/~aharley/vis/conv/" target="_blank" rel="noopener">这里</a> 。</p>
+<hr>
+<h2 id="其他卷积网络架构"><a href="#其他卷积网络架构" class="headerlink" title="其他卷积网络架构"></a>其他卷积网络架构</h2><p>卷积神经网络始自1990年代起，我们已经认识了最早的LeNet，其他一些很有影响力的架构列举如下：</p>
+<ul>
+<li><p>1990s至2012：从90年代到2010年代早期，卷积神经网络都处于孵化阶段。随着数据量增大和计算能力提高，卷积神经网络能搞定的问题也越来越有意思了。</p>
+</li>
+<li><p>AlexNet(2012)：2012年，Alex Krizhevsky发布了<a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf" target="_blank" rel="noopener">AlexNet</a> ，是LeNet的更深、更宽版本，并且大比分赢得了当年的ImageNet大规模图像识别挑战赛(ILSVRC)。这是一次非常重要的大突破，现在普及的卷积神经网络应用都要感谢这一壮举。</p>
+</li>
+<li><p>ZF Net(2013)：2013年的ILSVRC赢家是Matthew Zeiler和Rob Fergus的卷积网络，被称作<a href="http://arxiv.org/abs/1311.2901" target="_blank" rel="noopener">ZF Net</a> ，这是调整过架构超参数的AlexNet改进型。</p>
+</li>
+<li><p>GoogleNet(2014)：2014的ILSVRC胜者是来自Google的<a href="http://arxiv.org/abs/1409.4842" target="_blank" rel="noopener">Szegedy et al.</a> 。其主要贡献是研发了<em>Inception Module</em>，它大幅减少了网络中的参数数量（四百万，相比AlexNet的六千万）。</p>
+</li>
+<li><p>VGGNet(2014)：当年的ILSVRC亚军是<a href="http://www.robots.ox.ac.uk/~vgg/research/very_deep/" target="_blank" rel="noopener">VGGNet</a> ，突出贡献是展示了网络的深度（层次数量）是良好表现的关键因素。</p>
+</li>
+<li><p>ResNet(2015)： Kaiming He研发的<a href="http://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">Residual Network</a> 是2015年的ILSVRC冠军，也代表了卷积神经网络的最高水平，同时还是实践的默认选择（2016年5月）。</p>
+</li>
+<li><p>DenseNet（2016年8月）： 由Gao Huang发表，<a href="http://arxiv.org/abs/1608.06993" target="_blank" rel="noopener">Densely Connected Convolutional Network</a> 的每一层都直接与其他各层前向连接。DenseNet已经在五个高难度的物体识别基础集上，显式出非凡的进步。</p>
+</li>
+</ul>
+<hr>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这里有一些关于卷积神经网络的博客。</p>
+<ul>
+<li><a href="http://pancakeawesome.ink/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84.html">CNN卷积神经网络的模型结构</a></li>
+<li><a href="http://pancakeawesome.ink/CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95.html">CNN卷积神经网络的前向传播算法</a></li>
+<li><a href="http://pancakeawesome.ink/CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95.html">CNN卷积神经网络的反向传播算法</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 深度学习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> CNN </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[CTC算法小结]]></title>
       <url>/CTC%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93.html</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>  最近在做OCR相关的项目，看RCNN的时候碰到了CTC转录层，对其算法不适很了解，便整理了一下有关于CTC loss的一些定义和推导。由于个人水平有限，如果文章有错误，还恳请各位指出，万分感谢~ </p>
@@ -3034,9 +3218,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -5536,9 +5720,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> react </tag>
             
@@ -5925,9 +6109,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -6323,9 +6507,9 @@ export default class Hello extends Component {
         
         <tags>
             
-            <tag> 前端工具 </tag>
-            
             <tag> react </tag>
+            
+            <tag> 前端工具 </tag>
             
         </tags>
         
@@ -11031,9 +11215,9 @@ npm run dist
             
             <tag> 前端技术 </tag>
             
-            <tag> 前端工具 </tag>
-            
             <tag> react </tag>
+            
+            <tag> 前端工具 </tag>
             
         </tags>
         
@@ -11329,9 +11513,9 @@ so that &lt;some reason&gt;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> 前端框架 </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -12205,9 +12389,9 @@ class ImgFigure extends React.Component {
             
             <tag> 前端技术 </tag>
             
-            <tag> 前端工具 </tag>
-            
             <tag> react </tag>
+            
+            <tag> 前端工具 </tag>
             
         </tags>
         
