@@ -3565,9 +3565,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -3823,9 +3823,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -5104,9 +5104,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -5406,9 +5406,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -7510,7 +7510,7 @@ $(&#39;.scroller&#39;).on(&#39;touchmove&#39;,&#39;.btn&#39;,function(e){
       
         <categories>
             
-            <category> 前端优化 </category>
+            <category> 前端技术 </category>
             
         </categories>
         
@@ -7639,7 +7639,7 @@ $(&#39;.scroller&#39;).on(&#39;touchmove&#39;,&#39;.btn&#39;,function(e){
       
         <categories>
             
-            <category> 前端优化 </category>
+            <category> 前端技术 </category>
             
         </categories>
         
@@ -8507,7 +8507,7 @@ fn();
       
         <categories>
             
-            <category> 网络 </category>
+            <category> 计算机网络 </category>
             
         </categories>
         
@@ -11395,7 +11395,7 @@ export default Enhance(MyComponent); // Enhanced component
       
         <categories>
             
-            <category> 前端框架 </category>
+            <category> 前端技术 </category>
             
         </categories>
         
@@ -11494,28 +11494,6 @@ so that &lt;some reason&gt;
         <tags>
             
             <tag> 软件开发 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[浅析react]]></title>
-      <url>/%E6%B5%85%E6%9E%90react.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>]]></content>
-      
-        <categories>
-            
-            <category> 前端框架 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 前端框架 </tag>
-            
-            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -11818,7 +11796,7 @@ GET /employees?offset=20&amp;limit=10
       
         <categories>
             
-            <category> 前端架构设计 </category>
+            <category> 前端技术 </category>
             
         </categories>
         
@@ -12419,9 +12397,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -13412,9 +13390,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 前端工具 </tag>
             
@@ -14386,9 +14364,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
@@ -14635,9 +14613,9 @@ write style.css.map
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> css </tag>
+            
+            <tag> 前端技术 </tag>
             
         </tags>
         
