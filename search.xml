@@ -8,7 +8,7 @@
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Faster RCNN github : <a href="https://github.com/rbgirshick/py-faster-rcnn" target="_blank" rel="noopener">https://github.com/rbgirshick/py-faster-rcnn</a> </p>
 <p>Faster RCNN paper : <a href="https://arxiv.org/abs/1506.01497" target="_blank" rel="noopener">https://arxiv.org/abs/1506.01497</a></p>
 <p>Bound box regression详解 : <a href="http://download.csdn.NET/download/zy1034092330/9940097" target="_blank" rel="noopener">http://download.csdn.NET/download/zy1034092330/9940097</a></p>
-<p>该部分内容适合对Faster RCNN已经有了一个全局的了解，想要深入了解细节的时候很好的教程。关于全局认识可以参考: <a href="http://pancakeawesome.ink/%E5%BC%84%E6%87%82CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C?%E7%9C%8B%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86!.html">传送门</a> 。</p>
+<p>该部分内容适合对Faster RCNN已经有了一个全局的了解，想要深入了解细节的时候很好的教程。关于全局认识可以参考: <a href="http://pancakeawesome.ink/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E6%BC%94%E8%BF%9B:RCNN%E3%80%81Fast%20RCNN%E3%80%81Faster%20RCNN.html">传送门</a> 。<br>faster R-CNN<a href="https://app.yinxiang.com/shard/s34/nl/7496329/887c2a74-49e0-47f6-8b2f-28b76b1cada2/" target="_blank" rel="noopener">笔记</a></p>
 <p>缩进经过RCNN和Fast RCNN的积淀，Ross B. Girshick在2016年提出了新的Faster RCNN，在结构上，Faster RCN已经将特征抽取(feature extraction)，proposal提取，bounding box regression(rect refine)，classification都整合在了一个网络中，使得综合性能有较大提高，在检测速度方面尤为明显。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqz2gzdt8lj30bc0bbmxa.jpg" alt=""></p>
 <p><em>图1 Faster CNN基本结构（来自原论文）</em></p>
@@ -38,7 +38,7 @@
 <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqz2ieboofj30nf063dg1.jpg" alt=""></p>
 <p><em>图4 RPN网络结构</em></p>
 <p>上图4展示了RPN网络的具体结构。可以看到RPN网络实际分为2条线，上面一条通过softmax分类anchors获得foreground和background（检测目标是foreground），下面一条用于计算对于anchors的bounding box regression偏移量，以获得精确的proposal。而最后的Proposal层则负责综合foreground<br> anchors和bounding box regression偏移量获取proposals，同时剔除太小和超出边界的proposals。其实整个网络到了Proposal Layer这里，就完成了相当于目标定位的功能。</p>
-<h3 id="2-1-多通道图像卷积基础知识介绍"><a href="#2-1-多通道图像卷积基础知识介绍" class="headerlink" title="2.1 多通道图像卷积基础知识介绍"></a>2.1 多通道图像卷积基础知识介绍</h3><p>缩进在介绍RPN前，还要多解释几句基础知识，已经懂的看官老爷跳过就好。</p>
+<h3 id="2-1-多通道图像卷积基础知识介绍"><a href="#2-1-多通道图像卷积基础知识介绍" class="headerlink" title="2.1 多通道图像卷积基础知识介绍"></a>2.1 多通道图像卷积基础知识介绍</h3><p>缩进在介绍RPN前，还要多解释几句基础知识，已经懂的看官老爷跳过就好。<br>对CNN卷积神经网络不是很懂的，可以看这篇blog，<a href="http://pancakeawesome.ink/%E5%BC%84%E6%87%82CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C?%E7%9C%8B%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86!.html">传送门</a></p>
 <ol>
 <li>对于单通道图像+单卷积核做卷积，第一章中的图3已经展示了；</li>
 <li>对于多通道图像+多卷积核做卷积，计算方式如下：</li>
@@ -873,7 +873,7 @@
 <p>$$<br>\bar{m_t}=(1-\mu_t)<em>\hat{g_t}+\mu_{t+1}</em>\hat{m_t}<br>$$</p>
 <p>$$<br>\Delta{\theta_t}=-\eta*\frac{\bar{m_t}}{\sqrt{\hat{n_t}}+\epsilon}<br>$$</p>
 <p>可以看出，Nadam对学习率有了更强的约束，同时对梯度的更新也有更直接的影响。一般而言，在想使用带动量的RMSprop，或者Adam的地方，大多可以使用Nadam取得更好的效果。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h3 id="经验之谈-经验之谈"><a href="#经验之谈-经验之谈" class="headerlink" title="经验之谈 # (#经验之谈)"></a>经验之谈 # (#经验之谈)</h3><ul>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><h3 id="经验之谈"><a href="#经验之谈" class="headerlink" title="经验之谈"></a>经验之谈</h3><ul>
 <li>对于稀疏数据，尽量使用学习率可自适应的优化方法，不用手动调节，而且最好采用默认值</li>
 <li>SGD通常训练时间更长，容易陷入鞍点，但是在好的初始化和学习率调度方案的情况下，结果更可靠</li>
 <li>如果在意更快的收敛，并且需要训练较深较复杂的网络时，推荐使用学习率自适应的优化方法。</li>
@@ -3493,9 +3493,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -3840,9 +3840,9 @@ filter:drop-shadow(5px 5px 10px black)
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -4098,9 +4098,9 @@ h2[data-text]::after {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -5379,9 +5379,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -5681,9 +5681,9 @@ const Page = () =&gt; {
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -5995,9 +5995,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> react </tag>
             
@@ -6384,9 +6384,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -8456,9 +8456,9 @@ io.on(&#39;connection&#39;, function(socket) {
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> node.js </tag>
+            
+            <tag> javascript </tag>
             
         </tags>
         
@@ -12672,9 +12672,9 @@ $logo-layout: smart;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -13665,9 +13665,9 @@ screen.css文件中:
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
             <tag> 前端工具 </tag>
             
@@ -14639,9 +14639,9 @@ $btn-primary-border : darken($btn-primary-bg, 5%) !default;
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
@@ -14888,9 +14888,9 @@ write style.css.map
         
         <tags>
             
-            <tag> css </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> css </tag>
             
         </tags>
         
