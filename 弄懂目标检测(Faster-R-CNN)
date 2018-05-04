@@ -41,7 +41,7 @@
     
     <title>
         
-            弄懂目标检测（Fast R-CNN）？看这篇就够了！ | 
+            弄懂目标检测（Faster R-CNN）？看这篇就够了！ | 
         
         Edward&#39;s Blog
     </title>
@@ -240,18 +240,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://pancakeawesome.ink">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="弄懂目标检测（Fast R-CNN）？看这篇就够了！ | Edward&#39;s Blog">
+    <meta property="og:title" content="弄懂目标检测（Faster R-CNN）？看这篇就够了！ | Edward&#39;s Blog">
     <meta property="og:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg" />
     <meta property="og:description" content="Faster R-CNN基于代码实现的细节">
     <meta property="og:article:tag" content="深度学习"> <meta property="og:article:tag" content="论文笔记"> <meta property="og:article:tag" content="深度好文"> <meta property="og:article:tag" content="目标检测"> 
 
     
         <meta property="article:published_time" content="Fri May 04 2018 09:40:49 GMT+0800" />
-        <meta property="article:modified_time" content="Fri May 04 2018 10:25:40 GMT+0800" />
+        <meta property="article:modified_time" content="Fri May 04 2018 10:35:42 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="弄懂目标检测（Fast R-CNN）？看这篇就够了！ | Edward&#39;s Blog">
+    <meta name="twitter:title" content="弄懂目标检测（Faster R-CNN）？看这篇就够了！ | Edward&#39;s Blog">
     <meta name="twitter:description" content="Faster R-CNN基于代码实现的细节">
     <meta name="twitter:image" content="http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg">
     <meta name="twitter:card" content="summary_large_image" />
@@ -259,7 +259,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://pancakeawesome.ink/弄懂目标检测(Fast-R-CNN)" />
+        <link rel="canonical" href="http://pancakeawesome.ink/弄懂目标检测(Faster-R-CNN)" />
     
 
     <!-- Structured-data for SEO -->
@@ -271,10 +271,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "http://pancakeawesome.ink/弄懂目标检测(Fast-R-CNN)",
-    "headline": "弄懂目标检测（Fast R-CNN）？看这篇就够了！",
+    "mainEntityOfPage": "http://pancakeawesome.ink/弄懂目标检测(Faster-R-CNN)",
+    "headline": "弄懂目标检测（Faster R-CNN）？看这篇就够了！",
     "datePublished": "Fri May 04 2018 09:40:49 GMT+0800",
-    "dateModified": "Fri May 04 2018 10:25:40 GMT+0800",
+    "dateModified": "Fri May 04 2018 10:35:42 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Edward Guan",
@@ -399,7 +399,7 @@
         
     
             <p class="article-headline-p">
-                弄懂目标检测（Fast R-CNN）？看这篇就够了！
+                弄懂目标检测（Faster R-CNN）？看这篇就够了！
             </p>
         </div>
 
@@ -440,7 +440,7 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
     <li class="mdl-menu__item">在其它设备中阅读本文章</li>
     
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACaElEQVR42u3aQWrFMAwFwNz/0u22EJr/JDlO+IxXJTWJxwVZlXX8fPU48PDw8PDw8PDwXsY74nGe//fJ+Z3/feU85zy/tzY8PDy8nbwPoTZY1jXyekHJd/M5eHh4eDt514dBPmce7kffxcPDw3sZrxe+o4COh4eH96W868JE8jx/goeHh/d+XjWIX6fL83c+UGvBw8PDi3mTAsHdPz9wv4eHh4d3yZuMPHXOU/BeaQMPDw9vJy/52IdAHLRn5clxsmWjpis8PDy8MW9SeJ2kxZOrLzw8PLxneUmLQH7p1WsmuD5UqscMHh4e3h5etRCQp7+90D8pXuDh4eHt5+VJcHJs9LZg0iyLh4eHt4dXDd/5oVJddL5Bzf8Y8PDw8JbykuA7b8zKk+nkGMDDw8Pbz0uuwZJCbR7KVzUTRCk1Hh4e3g28eRF2HuKP4hide3h4eHiLeL2yafWCqrzQYoMXHh4e3n5e73XVksGqpoHywYCHh4e3iJen0UnDQW9rkjaFPL3Gw8PDu5vXC8eTckN+eOSbiIeHh7efVwi7xauvvACRF4ubZVw8PDy8pbx8cZP5vXJt/ls8PDy8/bxkVFupqgnx5EjAw8PD28lbdRhUC8F5cr+gGIGHh4e3iFcd1auvSXpdbTjAw8PD28PrheOkmJu3CPRaEPDw8PCe5c3LrNUrtEkK3my6wsPDw7uBNwnQ1SJvdZvy7cDDw8N7P29+SZa/eZRS4+Hh4T3Ey6+vJoXdfFV4eHh4z/Iml1KFwF3crHwOHh4e3k7eqguwvIUrv0JL/gB4eHh4O3nfN/Dw8PDw8PDw8F4wfgEbjAw342KucgAAAABJRU5ErkJggg==">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACaElEQVR42u3aQW7jMBAEQP//08l1ASPc7qFEGUbpZChKzNKBw/TM6+errxceHh4eHh4eHt6H8V7x9e/zf/1ucv/9mfefztaGh4eHd5L3n612+cXrZ9bg9nujteHh4eEd5CUbeo5sN/310vO14eHh4X0aL/+83tbzZ/Dw8PC+ibeODGZlYBZ84OHh4T3FazfoPFDIY4uHsxY8PDy8mLfTALv788P9PTw8PLw3Xj3SVL6I5JD9c+mFh4eHdzdv1nyqN+uNgar6L+Ph4eHdzJtt1u1237a78igEDw8P7zzvqpg1aWtdO4aFh4eH9xTv2qGB9StLjul5A6yIcfHw8PAu5eWDUPkz+QE6eRHJfTw8PLzzvB3qTvFItvt6zAsPDw/vOK9ddN7oyjGzEBkPDw/vDG8Hth/R7pclPDw8vPO8drhqFivkAW77ovHw8PDO89bH1qQk7De0ZlEFHh4e3rO89VJmLa48UGjbZsPJCDw8PLyDvP32/84xvS5geHh4eDfz8oGnvGDMykN++C4KAx4eHt5tvLaF34YO+wOvRWCBh4eHdzPvqrAgHyDIj+zDleDh4eE9ymtLSL6U/H4+XoCHh4d3hteGsG1Y0EYY7Qsq/mPAw8PDu4g3a/lHG/Qo5G0D3GHdw8PDw9vgveJrP2LIy8asOYeHh4d3kndVMHFVOcljYjw8PLxneW1QmzPyo3ZeourCgIeHh/cQr40h2pcyCyDw8PDwPp+XFIxoKcGLa+NgPDw8vJO8timVRAY7AwrtgR4PDw/vJK9tgM2GrpLoYY2PSgseHh7ezbzvu/Dw8PDw8PDw8D7g+gUXCDATGXQAXwAAAABJRU5ErkJggg==">
     
 </ul>
 
@@ -481,7 +481,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=弄懂目标检测（Fast R-CNN）？看这篇就够了！&url=http://pancakeawesome.ink/弄懂目标检测(Fast-R-CNN)&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=弄懂目标检测（Faster R-CNN）？看这篇就够了！&url=http://pancakeawesome.ink/弄懂目标检测(Faster-R-CNN)&pic=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -490,7 +490,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=弄懂目标检测（Fast R-CNN）？看这篇就够了！&url=http://pancakeawesome.ink/弄懂目标检测(Fast-R-CNN)&via=Edward Guan" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=弄懂目标检测（Faster R-CNN）？看这篇就够了！&url=http://pancakeawesome.ink/弄懂目标检测(Faster-R-CNN)&via=Edward Guan" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -499,7 +499,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/弄懂目标检测(Fast-R-CNN)" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://pancakeawesome.ink/弄懂目标检测(Faster-R-CNN)" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -508,7 +508,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/弄懂目标检测(Fast-R-CNN)" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://pancakeawesome.ink/弄懂目标检测(Faster-R-CNN)" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -517,7 +517,7 @@
 
     <!-- Share LinkedIn -->
     
-        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/弄懂目标检测(Fast-R-CNN)&title=弄懂目标检测（Fast R-CNN）？看这篇就够了！" target="_blank">
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=http://pancakeawesome.ink/弄懂目标检测(Faster-R-CNN)&title=弄懂目标检测（Faster R-CNN）？看这篇就够了！" target="_blank">
             <li class="mdl-menu__item">
                 分享到 LinkedIn
             </li>
@@ -526,7 +526,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=弄懂目标检测（Fast R-CNN）？看这篇就够了！&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/弄懂目标检测(Fast-R-CNN)" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Edward&#39;s Blog&title=弄懂目标检测（Faster R-CNN）？看这篇就够了！&summary=技术分享,学习笔记&pics=http://pancakeawesome.inkhttp://ornavpdfn.bkt.clouddn.com/blogCDN/icon-crown.svg&url=http://pancakeawesome.ink/弄懂目标检测(Faster-R-CNN)" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -799,7 +799,7 @@
                             This blog is under a <a href="https://pancakeawesome.ink/" target="_blank">CC BY-NC-SA 3.0 Unported License</a>
                         </strong>
                         <br>
-                        <strong>本文链接：</strong><a href="http://pancakeawesome.ink/弄懂目标检测(Fast-R-CNN)?看这篇就够了!.html">http://pancakeawesome.ink/弄懂目标检测(Fast-R-CNN)?看这篇就够了!.html</a>
+                        <strong>本文链接：</strong><a href="http://pancakeawesome.ink/弄懂目标检测(Faster-R-CNN)?看这篇就够了!.html">http://pancakeawesome.ink/弄懂目标检测(Faster-R-CNN)?看这篇就够了!.html</a>
                     </p>
                 </blockquote>
         
@@ -817,7 +817,7 @@
     <!-- 使用 changyan -->
 <div id="changyan-comment">
     <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="弄懂目标检测(Fast-R-CNN)?看这篇就够了!.html"  ></div>
+<div id="SOHUCS" sid="弄懂目标检测(Faster-R-CNN)?看这篇就够了!.html"  ></div>
 <script type="text/javascript">
 (function(){
 var appid = 'cytdf2o7Q';

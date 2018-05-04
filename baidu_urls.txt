@@ -1,4 +1,4 @@
-http://pancakeawesome.ink/弄懂目标检测(Fast-R-CNN)?看这篇就够了!.html
+http://pancakeawesome.ink/弄懂目标检测(Faster-R-CNN)?看这篇就够了!.html
 http://pancakeawesome.ink/弄懂CNN卷积神经网络?看这一篇就够了!.html
 http://pancakeawesome.ink/CTC算法小结.html
 http://pancakeawesome.ink/目标检测技术演进:RCNN、Fast RCNN、Faster RCNN.html
