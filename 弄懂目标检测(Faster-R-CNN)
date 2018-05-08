@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Fri May 04 2018 09:40:49 GMT+0800" />
-        <meta property="article:modified_time" content="Fri May 04 2018 11:12:02 GMT+0800" />
+        <meta property="article:modified_time" content="Tue May 08 2018 21:50:51 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
@@ -274,7 +274,7 @@
     "mainEntityOfPage": "http://pancakeawesome.ink/弄懂目标检测(Faster-R-CNN)",
     "headline": "弄懂目标检测（Faster R-CNN）？看这篇就够了！",
     "datePublished": "Fri May 04 2018 09:40:49 GMT+0800",
-    "dateModified": "Fri May 04 2018 11:12:02 GMT+0800",
+    "dateModified": "Tue May 08 2018 21:50:51 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Edward Guan",
@@ -367,7 +367,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-Conv-layers"><span class="post-toc-number">2.</span> <span class="post-toc-text">1 Conv layers</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-Region-Proposal-Networks-RPN"><span class="post-toc-number">3.</span> <span class="post-toc-text">2 Region Proposal Networks(RPN)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-多通道图像卷积基础知识介绍"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">2.1 多通道图像卷积基础知识介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-anchors"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2.2 anchors</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-3-softmax判定foreground与background"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">2.3 softmax判定foreground与background</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-4-bounding-box-regression原理"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">2.4 bounding box regression原理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-5-对proposals进行bounding-box-regression"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">2.5 对proposals进行bounding box regression</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-6-Proposal-Layer"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">2.6 Proposal Layer</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-RoI-pooling"><span class="post-toc-number">4.</span> <span class="post-toc-text">3 RoI pooling</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-为何需要RoI-Pooling"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">3.1 为何需要RoI Pooling</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-RoI-Pooling原理"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">3.2 RoI Pooling原理</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-Classification"><span class="post-toc-number">5.</span> <span class="post-toc-text">4 Classification</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-Faster-RCNN训练"><span class="post-toc-number">6.</span> <span class="post-toc-text">5 Faster RCNN训练</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-训练RPN网络"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">5.1 训练RPN网络</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-2-通过训练好的RPN网络收集proposals"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">5.2 通过训练好的RPN网络收集proposals</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-3-训练Fast-RCNN网络"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">5.3 训练Fast RCNN网络</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-number">7.</span> <span class="post-toc-text">后记</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-Conv-layers"><span class="post-toc-number">2.</span> <span class="post-toc-text">1 Conv layers</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-Region-Proposal-Networks-RPN"><span class="post-toc-number">3.</span> <span class="post-toc-text">2 Region Proposal Networks(RPN)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-多通道图像卷积基础知识介绍"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">2.1 多通道图像卷积基础知识介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-anchors"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2.2 anchors</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-3-softmax判定foreground与background"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">2.3 softmax判定foreground与background</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-4-bounding-box-regression原理"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">2.4 bounding box regression原理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-5-对proposals进行bounding-box-regression"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">2.5 对proposals进行bounding box regression</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-6-Proposal-Layer"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">2.6 Proposal Layer</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-RoI-pooling"><span class="post-toc-number">4.</span> <span class="post-toc-text">3 RoI pooling</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-为何需要RoI-Pooling"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">3.1 为何需要RoI Pooling</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-RoI-Pooling原理"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">3.2 RoI Pooling原理</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-Classification"><span class="post-toc-number">5.</span> <span class="post-toc-text">4 Classification</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-Faster-RCNN训练"><span class="post-toc-number">6.</span> <span class="post-toc-text">5 Faster RCNN训练</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-训练RPN网络"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">5.1 训练RPN网络</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-2-通过训练好的RPN网络收集proposals"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">5.2 通过训练好的RPN网络收集proposals</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-3-训练Faster-RCNN网络"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">5.3 训练Faster RCNN网络</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-number">7.</span> <span class="post-toc-text">后记</span></a></li></ol>
     </ul>
     
 
@@ -745,10 +745,10 @@
 <ol>
 <li>在已经训练好的model上，训练RPN网络，对应stage1_rpn_train.pt</li>
 <li>利用步骤1中训练好的RPN网络，收集proposals，对应rpn_test.pt</li>
-<li>第一次训练Fast RCNN网络，对应stage1_fast_rcnn_train.pt</li>
+<li>第一次训练Faster RCNN网络，对应stage1_fast_rcnn_train.pt</li>
 <li>第二训练RPN网络，对应stage2_rpn_train.pt</li>
 <li>再次利用步骤4中训练好的RPN网络，收集proposals，对应rpn_test.pt</li>
-<li>第二次训练Fast RCNN网络，对应stage2_fast_rcnn_train.pt</li>
+<li>第二次训练Faster RCNN网络，对应stage2_fast_rcnn_train.pt</li>
 </ol>
 <p>可以看到训练过程类似于一种“迭代”的过程，不过只循环了2次。至于只循环了2次的原因是应为作者提到：”A similar alternating training can be run for more iterations, but we have observed negligible improvements”，即循环更多次没有提升了。接下来本章以上述6个步骤讲解训练过程。</p>
 <h3 id="5-1-训练RPN网络"><a href="#5-1-训练RPN网络" class="headerlink" title="5.1 训练RPN网络"></a>5.1 训练RPN网络</h3><p>缩进在该步骤中，首先读取RBG提供的预训练好的model（本文使用VGG），开始迭代训练。来看看stage1_rpn_train.pt网络结构，如图17。</p>
@@ -777,7 +777,7 @@
 <h3 id="5-2-通过训练好的RPN网络收集proposals"><a href="#5-2-通过训练好的RPN网络收集proposals" class="headerlink" title="5.2 通过训练好的RPN网络收集proposals"></a>5.2 通过训练好的RPN网络收集proposals</h3><p>缩进在该步骤中，利用之前的RPN网络，获取proposal rois，同时获取foreground softmax probability，如图18，然后将获取的信息保存在python pickle文件中。该网络本质上和检测中的RPN网络一样，没有什么区别。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqz3e15d3ij30b00k6jri.jpg" alt=""></p>
 <p><em>图18 rpn_test.pt</em></p>
-<h3 id="5-3-训练Fast-RCNN网络"><a href="#5-3-训练Fast-RCNN网络" class="headerlink" title="5.3 训练Fast RCNN网络"></a>5.3 训练Fast RCNN网络</h3><p>缩进读取之前保存的pickle文件，获取proposals与foreground probability。从data层输入网络。然后：</p>
+<h3 id="5-3-训练Faster-RCNN网络"><a href="#5-3-训练Faster-RCNN网络" class="headerlink" title="5.3 训练Faster RCNN网络"></a>5.3 训练Faster RCNN网络</h3><p>缩进读取之前保存的pickle文件，获取proposals与foreground probability。从data层输入网络。然后：</p>
 <ol>
 <li>将提取的proposals作为rois传入网络，如图19蓝框</li>
 <li>将foreground probability作为bbox_inside_weights传入网络，如图19绿框</li>
@@ -785,7 +785,7 @@
 </ol>
 <p>这样就可以训练最后的识别softmax与最终的bounding regression了，如图19。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqz2yol9dsj30yo0osab4.jpg" alt=""></p>
-<p><em>图19 stage1_fast_rcnn_train.pt</em></p>
+<p><em>图19 stage1_faster_rcnn_train.pt</em></p>
 <p>之后的训练都是大同小异，不再赘述了。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>Faster RCNN还有一种end-to-end的训练方式，可以一次完成train，有兴趣请自己看作者GitHub吧。</p>
 <p>PS：我知道你们想问，画图工具：<a href="http://ethereon.github.io/netscope/#/editor" target="_blank" rel="noopener">http://ethereon.github.io/netscope/#/editor</a></p>

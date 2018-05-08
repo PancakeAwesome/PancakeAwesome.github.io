@@ -206,10 +206,10 @@
 <ol>
 <li>在已经训练好的model上，训练RPN网络，对应stage1_rpn_train.pt</li>
 <li>利用步骤1中训练好的RPN网络，收集proposals，对应rpn_test.pt</li>
-<li>第一次训练Fast RCNN网络，对应stage1_fast_rcnn_train.pt</li>
+<li>第一次训练Faster RCNN网络，对应stage1_fast_rcnn_train.pt</li>
 <li>第二训练RPN网络，对应stage2_rpn_train.pt</li>
 <li>再次利用步骤4中训练好的RPN网络，收集proposals，对应rpn_test.pt</li>
-<li>第二次训练Fast RCNN网络，对应stage2_fast_rcnn_train.pt</li>
+<li>第二次训练Faster RCNN网络，对应stage2_fast_rcnn_train.pt</li>
 </ol>
 <p>可以看到训练过程类似于一种“迭代”的过程，不过只循环了2次。至于只循环了2次的原因是应为作者提到：”A similar alternating training can be run for more iterations, but we have observed negligible improvements”，即循环更多次没有提升了。接下来本章以上述6个步骤讲解训练过程。</p>
 <h3 id="5-1-训练RPN网络"><a href="#5-1-训练RPN网络" class="headerlink" title="5.1 训练RPN网络"></a>5.1 训练RPN网络</h3><p>缩进在该步骤中，首先读取RBG提供的预训练好的model（本文使用VGG），开始迭代训练。来看看stage1_rpn_train.pt网络结构，如图17。</p>
@@ -238,7 +238,7 @@
 <h3 id="5-2-通过训练好的RPN网络收集proposals"><a href="#5-2-通过训练好的RPN网络收集proposals" class="headerlink" title="5.2 通过训练好的RPN网络收集proposals"></a>5.2 通过训练好的RPN网络收集proposals</h3><p>缩进在该步骤中，利用之前的RPN网络，获取proposal rois，同时获取foreground softmax probability，如图18，然后将获取的信息保存在python pickle文件中。该网络本质上和检测中的RPN网络一样，没有什么区别。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqz3e15d3ij30b00k6jri.jpg" alt=""></p>
 <p><em>图18 rpn_test.pt</em></p>
-<h3 id="5-3-训练Fast-RCNN网络"><a href="#5-3-训练Fast-RCNN网络" class="headerlink" title="5.3 训练Fast RCNN网络"></a>5.3 训练Fast RCNN网络</h3><p>缩进读取之前保存的pickle文件，获取proposals与foreground probability。从data层输入网络。然后：</p>
+<h3 id="5-3-训练Faster-RCNN网络"><a href="#5-3-训练Faster-RCNN网络" class="headerlink" title="5.3 训练Faster RCNN网络"></a>5.3 训练Faster RCNN网络</h3><p>缩进读取之前保存的pickle文件，获取proposals与foreground probability。从data层输入网络。然后：</p>
 <ol>
 <li>将提取的proposals作为rois传入网络，如图19蓝框</li>
 <li>将foreground probability作为bbox_inside_weights传入网络，如图19绿框</li>
@@ -246,7 +246,7 @@
 </ol>
 <p>这样就可以训练最后的识别softmax与最终的bounding regression了，如图19。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqz2yol9dsj30yo0osab4.jpg" alt=""></p>
-<p><em>图19 stage1_fast_rcnn_train.pt</em></p>
+<p><em>图19 stage1_faster_rcnn_train.pt</em></p>
 <p>之后的训练都是大同小异，不再赘述了。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>Faster RCNN还有一种end-to-end的训练方式，可以一次完成train，有兴趣请自己看作者GitHub吧。</p>
 <p>PS：我知道你们想问，画图工具：<a href="http://ethereon.github.io/netscope/#/editor" target="_blank" rel="noopener">http://ethereon.github.io/netscope/#/editor</a></p>
@@ -3492,9 +3492,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -5994,9 +5994,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> react </tag>
             
@@ -6383,9 +6383,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
