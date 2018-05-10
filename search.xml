@@ -5,10 +5,18 @@
     <entry>
       <title><![CDATA[弄懂目标检测（Faster R-CNN）？看这篇就够了！]]></title>
       <url>/%E5%BC%84%E6%87%82%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B(Faster-R-CNN)?%E7%9C%8B%E8%BF%99%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86!.html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Faster RCNN github : <a href="https://github.com/rbgirshick/py-faster-rcnn" target="_blank" rel="noopener">https://github.com/rbgirshick/py-faster-rcnn</a> </p>
-<p>Faster RCNN paper : <a href="https://arxiv.org/abs/1506.01497" target="_blank" rel="noopener">https://arxiv.org/abs/1506.01497</a></p>
-<p>Bound box regression详解 : <a href="http://download.csdn.NET/download/zy1034092330/9940097" target="_blank" rel="noopener">http://download.csdn.NET/download/zy1034092330/9940097</a></p>
-<p>该部分内容适合对Faster RCNN已经有了一个全局的了解，想要深入了解细节的时候很好的教程。关于全局认识可以参考: <a href="http://pancakeawesome.ink/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E6%BC%94%E8%BF%9B:RCNN%E3%80%81Fast%20RCNN%E3%80%81Faster%20RCNN.html">传送门</a> 。<br>faster R-CNN<a href="https://app.yinxiang.com/shard/s34/nl/7496329/887c2a74-49e0-47f6-8b2f-28b76b1cada2/" target="_blank" rel="noopener">笔记</a></p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li><p>Faster RCNN github : <a href="https://github.com/rbgirshick/py-faster-rcnn" target="_blank" rel="noopener">https://github.com/rbgirshick/py-faster-rcnn</a> </p>
+</li>
+<li><p>Faster RCNN paper : <a href="https://arxiv.org/abs/1506.01497" target="_blank" rel="noopener">https://arxiv.org/abs/1506.01497</a></p>
+</li>
+<li><p>Bound box regression详解 : <a href="http://download.csdn.NET/download/zy1034092330/9940097" target="_blank" rel="noopener">http://download.csdn.NET/download/zy1034092330/9940097</a></p>
+</li>
+<li><p>该部分内容适合对Faster RCNN已经有了一个全局的了解，想要深入了解细节的时候很好的教程。关于全局认识可以参考: <a href="http://pancakeawesome.ink/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF%E6%BC%94%E8%BF%9B:RCNN%E3%80%81Fast%20RCNN%E3%80%81Faster%20RCNN.html">传送门</a> 。</p>
+</li>
+<li>faster R-CNN<a href="https://app.yinxiang.com/shard/s34/nl/7496329/887c2a74-49e0-47f6-8b2f-28b76b1cada2/" target="_blank" rel="noopener">笔记</a></li>
+<li>我对faster R-CNN(Tensorflow版本)做了代码解析，都放到了我的git上，可以对照着这篇文章看，效果会很好。<a href="https://github.com/PancakeAwesome/faster-R-CNN" target="_blank" rel="noopener">传送门</a></li>
+</ul>
 <p>缩进经过RCNN和Fast RCNN的积淀，Ross B. Girshick在2016年提出了新的Faster RCNN，在结构上，Faster RCN已经将特征抽取(feature extraction)，proposal提取，bounding box regression(rect refine)，classification都整合在了一个网络中，使得综合性能有较大提高，在检测速度方面尤为明显。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqz2gzdt8lj30bc0bbmxa.jpg" alt=""></p>
 <p><em>图1 Faster CNN基本结构（来自原论文）</em></p>
@@ -226,6 +234,7 @@
 <p>缩进由于在实际过程中，Ncls和Nreg差距过大，用参数λ平衡二者（如Ncls=256，Nreg=2400时设置λ=10），使总的网络Loss计算过程中能够均匀考虑2种Loss。这里比较重要是Lreg使用的soomth L1 loss，计算公式如下：</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqz2xjm8frj30hq036dfq.jpg" alt=""></p>
 <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqz2xtdc6rj30cu02nt8k.jpg" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fr6h372xqdj30sr0490ss.jpg" alt=""></p>
 <p>缩进了解数学原理后，反过来看图17：</p>
 <ol>
 <li><p>在RPN训练阶段，rpn-data（python AnchorTargetLayer）层会按照和test阶段Proposal层完全一样的方式生成Anchors用于训练</p>
@@ -3492,9 +3501,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -5994,9 +6003,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> react </tag>
             
@@ -6383,9 +6392,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
