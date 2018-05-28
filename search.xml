@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[论文笔记之CTPN(Detecting Text in Natural Image with Connectionist Text Proposal Network)]]></title>
       <url>/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E4%B9%8BCTPN(Detecting%20Text%20in%20Natural%20Image%20with%20Connectionist%20Text%20Proposal%20Network).html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CTPN是适用于场景文本检测的一篇重要论文，对宇场景文本识别相关的知识，请移步这篇<a href="http://pancakeawesome.ink/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E4%B9%8BCRNN(Convolutional%20Recurrent%20Neural%20Network\">博客</a>.html)</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CTPN是适用于场景文本检测的一篇重要论文，对宇场景文本识别相关的知识，请移步这篇<a href="http://pancakeawesome.ink/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E4%B9%8BCRNN(Convolutional%20Recurrent%20Neural%20Network).html">博客</a></p>
 <ul>
 <li>论文<a href="https://arxiv.org/abs/1609.03605" target="_blank" rel="noopener">地址</a></li>
 <li>项目<a href="https://github.com/PancakeAwesome/ctpn_tensorflow_notes" target="_blank" rel="noopener">地址</a></li>
@@ -1180,7 +1180,8 @@ def _RNN(_X,batch_size, _W, _b,num_layers,_nsteps):
     <entry>
       <title><![CDATA[论文笔记之CRNN(Convolutional Recurrent Neural Network)]]></title>
       <url>/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E4%B9%8BCRNN(Convolutional%20Recurrent%20Neural%20Network).html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CRNN是适用于场景文本检测的一篇重要论文，对宇场景文本识别相关的知识，请移步这篇<a href="http://pancakeawesome.ink/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E4%B9%8BCTPN(Detecting%20Text%20in%20Natural%20Image%20with%20Connectionist%20Text%20Proposal%20Network\">博客</a>.html)<br>本篇博客还会对RNN,LSTM相关的难点进行解惑（相信你现在还是对RNN有或多或少的疑惑=，=）</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CRNN是适用于场景文本检测的一篇重要论文，对宇场景文本识别相关的知识，请移步这篇<a href="http://pancakeawesome.ink/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E4%B9%8BCTPN(Detecting%20Text%20in%20Natural%20Image%20with%20Connectionist%20Text%20Proposal%20Network).html">博客</a></p>
+<p>本篇博客还会对RNN,LSTM相关的难点进行解惑（相信你现在还是对RNN有或多或少的疑惑=，=）</p>
 <ul>
 <li>论文<a href="https://arxiv.org/abs/1507.05717" target="_blank" rel="noopener">地址</a></li>
 <li>项目<a href="https://github.com/PancakeAwesome/CRNN_tensorflow" target="_blank" rel="noopener">地址</a><h3 id="【论文信息】"><a href="#【论文信息】" class="headerlink" title="【论文信息】"></a>【论文信息】</h3>《Convolutional Recurrent Neural Network》2015</li>
