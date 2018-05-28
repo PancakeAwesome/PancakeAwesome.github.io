@@ -5,18 +5,20 @@
     <entry>
       <title><![CDATA[论文笔记之CTPN(Detecting Text in Natural Image with Connectionist Text Proposal Network)]]></title>
       <url>/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E4%B9%8BCTPN(Detecting%20Text%20in%20Natural%20Image%20with%20Connectionist%20Text%20Proposal%20Network).html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CTPN是适用于场景文本识别的一篇重要论文，对宇场景文本检测相关的知识，请移步这篇<a href="http://pancakeawesome.ink/CRNN-Convolutional-Recurrent-Neural-Network-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0.html">博客</a></p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CTPN是适用于场景文本检测的一篇重要论文，对宇场景文本识别相关的知识，请移步这篇<a href="http://pancakeawesome.ink/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E4%B9%8BCRNN(Convolutional%20Recurrent%20Neural%20Network\">博客</a>.html)</p>
 <ul>
 <li>论文<a href="https://arxiv.org/abs/1609.03605" target="_blank" rel="noopener">地址</a></li>
-<li>项目<a href="https://github.com/PancakeAwesome/ctpn_tensorflow_notes" target="_blank" rel="noopener">地址</a><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3></li>
+<li>项目<a href="https://github.com/PancakeAwesome/ctpn_tensorflow_notes" target="_blank" rel="noopener">地址</a></li>
+<li><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3>本文工作基于faster RCNN , 区别在于</li>
 </ul>
-<p>本文工作基于faster RCNN , 区别在于</p>
-<pre><code>1. 改进了rpn，anchor产生的window的宽度固定为3。
-2. rpn后面不是直接接全连接+分类/回归，而是再通过一个LSTM，再接全连接层。
-3. 坐标仅仅回归一个y，而不是x1, y1, x2, y2
-4. 添加 side-refinement offsets（对proposals精调）
-</code></pre><h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><ol>
-<li>文字目标的特殊性，一个很大的先验是，文字总是水平排列的。</li>
+<ol>
+<li>改进了rpn，anchor产生的window的宽度固定为3。</li>
+<li>rpn后面不是直接接全连接+分类/回归，而是再通过一个LSTM，再接全连接层。</li>
+<li>坐标仅仅回归一个y，而不是x1, y1, x2, y2</li>
+<li><p>添加 side-refinement offsets（对proposals精调）</p>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3></li>
+<li><p>文字目标的特殊性，一个很大的先验是，文字总是水平排列的。</p>
+</li>
 <li>文字的特征总感觉体现在edge上。</li>
 <li>自然场景文字检测的难点在于：小目标，遮挡，仿射畸变。本文使用VGG16，只使用conv5，可能对小文字的检测效果不好。<br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1frqvtvqjl8j30gj05uglp.jpg" alt=""><h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3></li>
 </ol>
@@ -1178,7 +1180,7 @@ def _RNN(_X,batch_size, _W, _b,num_layers,_nsteps):
     <entry>
       <title><![CDATA[论文笔记之CRNN(Convolutional Recurrent Neural Network)]]></title>
       <url>/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E4%B9%8BCRNN(Convolutional%20Recurrent%20Neural%20Network).html</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CRNN是适用于场景文本检测的一篇重要论文，对宇场景文本识别相关的知识，请移步这篇<a href="http://pancakeawesome.ink/CRNN-Convolutional-Recurrent-Neural-Network-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0.html">博客</a><br>本篇博客还会对RNN,LSTM相关的难点进行解惑（相信你现在还是对RNN有或多或少的疑惑=，=）</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>CRNN是适用于场景文本检测的一篇重要论文，对宇场景文本识别相关的知识，请移步这篇<a href="http://pancakeawesome.ink/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E4%B9%8BCTPN(Detecting%20Text%20in%20Natural%20Image%20with%20Connectionist%20Text%20Proposal%20Network\">博客</a>.html)<br>本篇博客还会对RNN,LSTM相关的难点进行解惑（相信你现在还是对RNN有或多或少的疑惑=，=）</p>
 <ul>
 <li>论文<a href="https://arxiv.org/abs/1507.05717" target="_blank" rel="noopener">地址</a></li>
 <li>项目<a href="https://github.com/PancakeAwesome/CRNN_tensorflow" target="_blank" rel="noopener">地址</a><h3 id="【论文信息】"><a href="#【论文信息】" class="headerlink" title="【论文信息】"></a>【论文信息】</h3>《Convolutional Recurrent Neural Network》2015</li>
@@ -1196,7 +1198,7 @@ def _RNN(_X,batch_size, _W, _b,num_layers,_nsteps):
 <p>循环层中采用deep双向lstm模型，如下图所示。LSTM可以将误差差别反向传播到卷积层，从而实现在同一网络中对CNN和RNN的共同训练。并且RNN可以在任意长度的序列上进行学习，优于CNN模型的固定维度。Lstm解决了传统RNN梯度消失的问题，文章堆叠了两个双向lstm，效果更好。循环层的输出为预测的序列结果 $y=<y^1,y^2,...,y^t>$。<br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fqffnf630rj309w0a2weh.jpg" alt=""></y^1,y^2,...,y^t></p>
 <p>转录层是将预测结果转换成label序列，即找到最高概率分布的label序列。此处的概率函数采用CTC算法。实际上，有两个模式的转录层，一个是lexicon-free没有词典的，一个是lexicon-based有词典的。没有词典的转录层直接输出概率最高的label sequence；有词典的转录层需要在词典中查找最像的一个候选文本，采用BK-tree（模糊匹配算法）找到编辑距离（Levenshtein距离）A小于一定数值（本文设定δ=3）的文本作为候选文本，再一一比较编辑距离B（此处的B与前面提到的A不同，A为根据序列与tree的根结点比较的结果而得到的一个范围，B为序列与候选文本的直接编辑距离）找到最后的label sequence。</p>
 <blockquote>
-<p>CTC算法算是本篇论文的一个keypoint，需要钻研一下。<br>具体关于CTC算法的流程，可以看这篇<a href="https://blog.csdn.net/xmdxcsj/article/details/51807600" target="_blank" rel="noopener">文章</a></p>
+<p>CTC算法算是本篇论文的一个keypoint，需要钻研一下。<br>具体关于CTC算法的流程，可以看这篇<a href="https://blog.csdn.net/xmdxcsj/article/details/51807600" target="_blank" rel="noopener">文章</a><br>还有一篇我的<a href="http://pancakeawesome.ink/CTC%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93.html">博客</a></p>
 </blockquote>
 <h3 id="pipe-line"><a href="#pipe-line" class="headerlink" title="pipe line"></a>pipe line</h3><h4 id="tf-nn-ctc-loss"><a href="#tf-nn-ctc-loss" class="headerlink" title="tf.nn.ctc_loss"></a>tf.nn.ctc_loss</h4><p>先从TF自带的tf.nn.ctc_loss说起，官方给的定义如下，因此我们需要做的就是将图片的label（需要OCR出的结果），图片，以及图片的长度转换为label，input，和sequence_length。</p>
 <pre><code>ctc_loss(
@@ -3671,9 +3673,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -6173,9 +6175,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> react </tag>
             
@@ -6562,9 +6564,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
