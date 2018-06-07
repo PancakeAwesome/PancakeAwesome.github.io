@@ -21,17 +21,20 @@
 <li>优点：轨迹受限的采样策略的考虑了人类动作时间上的连续性，这对于处理动作的改变问题非常有效；</li>
 <li>缺点：手工制作的描述符缺乏动作的区分性；<br>(2)深度特征：<br>TwoStream ConvNets [24] 是目前最优秀的架构，尤其在加强轨迹上。它由两个神经网络组成，分别是空间网络和时间网络；<br>空间网络主要用于捕捉对于动作理解具有强区分性的特征，时间网络旨在学习有效的动作特征；<br>当前大部分基于动作识别的深度学习方法都忽略了时间域和空间域之间的内在差异，只是在调整ConvNets模型时把时间维度作为特征的通道；然而TDDs方法旨在结合手工特征和深度特征的优点，为了实现这一目标,我们的方法集成了两个成功的视频表示网络中的关键因素,即改进的轨迹 [31]和双向ConvNets  [24];<br>我们利用深度架构学习多尺度的卷积特征层，介绍轨迹受限的采样和池化策略，来把深度特征编码成有效的描述符。<br>(3)具体做法：<br>首先，在相对很大的数据集上(有监督的)训练双向的ConvNets，然后把学习完的ConvNets作为特征提取器，使用它们获得每个训练样本（video）的多重特层(feature  map);与此同时利用提高轨迹的方法检测一系列点的轨迹。基于卷积特征层和提高轨迹的方法，我们将局部的ConvNet响应放置在轨迹的（时间和空间的）中心位置，产生的结果描述符叫做TDD；最后，我们选择费舍尔向量表示把整个视频的局部TDDs聚合成一个全局的超向量，并且使用线性SVM作为分类器进行动作的识别。<br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fs1h1wiiw6j30uw0bq78r.jpg" alt=""><blockquote>
 <p>Figure 2. Pipeline of TDD.  提取TDD的过程包括三个步骤：（i）提取轨迹,(ii)  提取多尺度卷积特征层，(iii) 计算TDD；我们有效地利用两个有效的视频表示,即改进的轨迹和ConvNets。基于它们，我们进行轨迹受限的采样和池化卷积特征层，获取轨迹池化的深度卷积描述符。</p>
-<h2 id="Improved-Trajectories-Revisited"><a href="#Improved-Trajectories-Revisited" class="headerlink" title="Improved Trajectories Revisited"></a>Improved Trajectories Revisited</h2><p>改进的轨迹从密集的轨迹扩展而来，计算密集的轨迹，第一步：在5个像素步长的网格上以8个空间尺度采样一系列的点；通过为他们的自相关矩阵更小的特征值设置一个阈值，就能够消除均匀区域的点；然后这些采样点被深度光流的中值滤波器标记。<br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fs1h26g4jjj30ed01f3ye.jpg" alt=""><br>Wt = (ut, vt)是密度光流区域的第t个窗口；M是中值滤波器的核；<br>最后随着运动信息的丢失，这些静态的轨迹也将被移除，其次那些移动幅度过大的点也被忽略。（明显是由不正确的光流产生的）。<br>Improved trajectories将机变信息考虑进去从而能够提高识别性能；通过homography矩阵，移除相机的机变重新计算光流，称作warped flow；<br>给定一个video V，获得一系列的轨迹；<img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fs1h2dtniwj307d0123yb.jpg" alt=""><br>Tk表示原始空间尺度下的第k条轨迹；<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fs1h2l7tuaj30cy018a9w.jpg" alt=""><br>(xk p, yp k, zp k) 表示像素坐标；z是vedio上的第几帧，p是第几个轨迹点。</p>
 </blockquote>
 </li>
 </ul>
+<h2 id="Improved-Trajectories-Revisited"><a href="#Improved-Trajectories-Revisited" class="headerlink" title="Improved Trajectories Revisited"></a>Improved Trajectories Revisited</h2><p>改进的轨迹从密集的轨迹扩展而来，计算密集的轨迹，第一步：在5个像素步长的网格上以8个空间尺度采样一系列的点；通过为他们的自相关矩阵更小的特征值设置一个阈值，就能够消除均匀区域的点；然后这些采样点被深度光流的中值滤波器标记。<br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fs1h26g4jjj30ed01f3ye.jpg" alt=""></p>
+<blockquote>
+<p>Wt = (ut, vt)是密度光流区域的第t个窗口；M是中值滤波器的核；<br>最后随着运动信息的丢失，这些静态的轨迹也将被移除，其次那些移动幅度过大的点也被忽略。（明显是由不正确的光流产生的）。<br>Improved trajectories将机变信息考虑进去从而能够提高识别性能；通过homography矩阵，移除相机的机变重新计算光流，称作warped flow；<br>给定一个video V，获得一系列的轨迹；<img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fs1h2dtniwj307d0123yb.jpg" alt=""><br>Tk表示原始空间尺度下的第k条轨迹；<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fs1h2l7tuaj30cy018a9w.jpg" alt=""><br>(xk p, yp k, zp k) 表示像素坐标；z是vedio上的第几帧，p是第几个轨迹点。</p>
+</blockquote>
 <h2 id="Deep-Convolutional-Descriptors"><a href="#Deep-Convolutional-Descriptors" class="headerlink" title="Deep Convolutional Descriptors"></a>Deep Convolutional Descriptors</h2><p>TTD的构造过程的具体介绍：</p>
 <h3 id="Convolutional-networks"><a href="#Convolutional-networks" class="headerlink" title="Convolutional networks"></a>Convolutional networks</h3><p>我们采用双向的ConvNets,包括一个空间网络和一个时间网络。空间网络用用于捕获静态的外在线索，例如一些单个窗口里的图像；时间网络旨在描述动态的运动信息，比如输入是一些堆积的光流；ConvNet架构的网络具体的设计见下表；<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fs1h2ye2j4j30up04o3z0.jpg" alt=""></p>
 <h3 id="Convolutional-feature-maps"><a href="#Convolutional-feature-maps" class="headerlink" title="Convolutional feature maps"></a>Convolutional feature maps</h3><p>通常，对于每个video，我们通过分别逐帧，逐块的方式获得空间和时间网络的特征层（feature map）；<br>经过简单的修改，空间和时间网络的输出将变成卷积特征层（feature map），进而用于提取TDD的特征；<br>给定一个video，获得一系列的卷积特征层（feature map）：<br> <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fs1h34f2b6j30bi0160sk.jpg" alt=""></p>
 <blockquote>
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fs1h3a5abuj306d00ydfn.jpg" alt="">表示第m个空间网络的特征层的feature map，Hm是它的长度，Wm是宽度，L是video的时长（帧数newlength），Nm是通道的数量；</p>
-<h3 id="Trajectory-pooled-descriptors"><a href="#Trajectory-pooled-descriptors" class="headerlink" title="Trajectory-pooled descriptors"></a>Trajectory-pooled descriptors</h3><p>TDD的提取包括两步：特征层的归一化和轨迹的池化；</p>
 </blockquote>
+<h3 id="Trajectory-pooled-descriptors"><a href="#Trajectory-pooled-descriptors" class="headerlink" title="Trajectory-pooled descriptors"></a>Trajectory-pooled descriptors</h3><p>TDD的提取包括两步：特征层的归一化和轨迹的池化；</p>
 <p>两种标准化方法：</p>
 <ul>
 <li>(1) Spatiotemporal Normalization</li>
@@ -449,9 +452,9 @@
             
             <tag> 深度好文 </tag>
             
-            <tag> 论文笔记 </tag>
-            
             <tag> 目标检测 </tag>
+            
+            <tag> 论文笔记 </tag>
             
         </tags>
         
@@ -3734,9 +3737,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -6236,9 +6239,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> react </tag>
             
@@ -6625,9 +6628,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
