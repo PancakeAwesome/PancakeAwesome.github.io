@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/论文笔记之TwoStream（Two-Stream-Convolutional-Networks-for-Action-Recognition-in-Videos）.html
 http://pancakeawesome.ink/论文笔记之TDDs（Action-Recognition-with-Trajectory-Pooled-Deep-Convolutional-Descriptors）.html
 http://pancakeawesome.ink/论文笔记之CTPN(Detecting Text in Natural Image with Connectionist Text Proposal Network).html
 http://pancakeawesome.ink/弄懂目标检测(Faster-R-CNN)?看这篇就够了!.html
