@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/集成学习之Adaboost算法原理小结.html
 http://pancakeawesome.ink/集成学习原理小结.html
 http://pancakeawesome.ink/论文笔记之TwoStream（Two-Stream-Convolutional-Networks-for-Action-Recognition-in-Videos）.html
 http://pancakeawesome.ink/论文笔记之TDDs（Action-Recognition-with-Trajectory-Pooled-Deep-Convolutional-Descriptors）.html
