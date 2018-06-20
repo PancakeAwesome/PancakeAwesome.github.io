@@ -162,7 +162,7 @@
 <p>2）判断样本是否为同一类输出$D_i$，如果是则返回单节点树T。标记类别为$D_i$</p>
 <p>3) 判断特征是否为空，如果是则返回单节点树T，标记类别为样本中输出类别D实例数最多的类别。</p>
 <p>4）计算A中的各个特征（一共n个）对输出D的信息增益，选择信息增益最大的特征$A_g$</p>
-<p>5) 如果AgAgA_g的信息增益小于阈值$\epsilon$，则返回单节点树T，标记类别为样本中输出类别D实例数最多的类别。</p>
+<p>5) 如果$A_g$的信息增益小于阈值$\epsilon$，则返回单节点树T，标记类别为样本中输出类别D实例数最多的类别。</p>
 <p>6）否则，按特征$A_g$的不同取值$A_{gi}$将对应的样本输出D分成不同的类别$D_i$。每个类别产生一个子节点。对应特征值为$A_{gi}$。返回增加了节点的数T。</p>
 <p>7）对于所有的子节点，令$D=D_i,  A= A-{A_g}$递归调用2-6步，得到子树$T_i$并返回。</p>
 <h2 id="3-决策树ID3算法的不足"><a href="#3-决策树ID3算法的不足" class="headerlink" title="3. 决策树ID3算法的不足"></a>3. 决策树ID3算法的不足</h2><p>ID3算法虽然提出了新思路，但是还是有很多值得改进的地方。　　</p>
@@ -4161,9 +4161,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -6663,9 +6663,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> react </tag>
             
@@ -7052,9 +7052,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> 前端技术 </tag>
-            
             <tag> javascript </tag>
+            
+            <tag> 前端技术 </tag>
             
             <tag> 面试 </tag>
             
@@ -9457,9 +9457,9 @@ fn();
         
         <tags>
             
-            <tag> 网络 </tag>
-            
             <tag> http协议 </tag>
+            
+            <tag> 网络 </tag>
             
         </tags>
         
