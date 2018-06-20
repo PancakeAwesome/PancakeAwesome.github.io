@@ -1,3 +1,4 @@
+http://pancakeawesome.ink/决策树算法原理-上.html
 http://pancakeawesome.ink/梯度提升树-GBDT-原理小结.html
 http://pancakeawesome.ink/集成学习之Adaboost算法原理小结.html
 http://pancakeawesome.ink/集成学习原理小结.html
