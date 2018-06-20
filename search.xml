@@ -188,7 +188,7 @@
 <p>3)C4.5只能用于分类，如果能将决策树用于回归的话可以扩大它的使用范围。</p>
 <p>4)C4.5由于使用了熵模型，里面有大量的耗时的对数运算,如果是连续值还有大量的排序运算。如果能够加以模型简化可以减少运算强度但又不牺牲太多准确性的话，那就更好了。</p>
 <p>这4个问题在CART树里面部分加以了改进。所以目前如果不考虑集成学习话，在普通的决策树算法里，CART算法算是比较优的算法了。scikit-learn的决策树使用的也是CART算法。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>在下篇里我们会重点聊下CART算法的主要改进思路，上篇就到这里。下篇请看<a href="http://www.cnblogs.com/pinard/p/6053344.html" target="_blank" rel="noopener">决策树算法原理(下)</a> 。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>在下篇里我们会重点聊下CART算法的主要改进思路，上篇就到这里。下篇请看<a href="http://pancakeawesome.ink/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86-%E4%B8%8B.html">决策树算法原理(下)</a> 。</p>
 ]]></content>
       
         <categories>
@@ -4161,9 +4161,9 @@ console.log(...fibs2(6))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
@@ -6663,9 +6663,9 @@ var Greeting = createReactClass({
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> react </tag>
             
@@ -7052,9 +7052,9 @@ console.log(firstLoad(20))
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端技术 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 面试 </tag>
             
