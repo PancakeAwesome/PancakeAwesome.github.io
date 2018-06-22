@@ -2598,7 +2598,7 @@ def _RNN(_X,batch_size, _W, _b,num_layers,_nsteps):
 <p>1) 从数据集D中随机选择k个样本作为初始的k个质心向量： ${\mu_1,\mu_2,…,\mu_k}$</p>
 <p>2）对于n=1,2,…,N</p>
 <p>　　a) 将簇划分C初始化为$C_t = \varnothing \;\; t =1,2…k$</p>
-<p>　　b) 对于i=1,2…m,计算样本xixix_i和各个质心向量$\mu_j(j=1,2,…k)$的距离：$d_{ij} = ||x_i - \mu_j||_2^2$，将$x_i$标记最小的为$d_{ij}$所对应的类别$\lambda_i$。此时更新$C_{\lambda_i} = C_{\lambda_i} \cup {x_i}$</p>
+<p>　　b) 对于i=1,2…m,计算样本$x_i$和各个质心向量$\mu_j(j=1,2,…k)$的距离：$d_{ij} = ||x_i - \mu_j||_2^2$，将$x_i$标记最小的为$d_{ij}$所对应的类别$\lambda_i$。此时更新$C_{\lambda_i} = C_{\lambda_i} \cup {x_i}$</p>
 <p>　　c) 对于j=1,2,…,k,对$C_j$中所有的样本点重新计算新的质心$\mu_j = \frac{1}{|C_j|}\sum\limits_{x \in C_j}x$</p>
 <p>　　e) 如果所有的k个质心向量都没有发生变化，则转到步骤3）</p>
 <p>3） 输出簇划分$C={C_1,C_2,…C_k}$</p>
@@ -9611,9 +9611,9 @@ fn();
         
         <tags>
             
-            <tag> http协议 </tag>
-            
             <tag> 网络 </tag>
+            
+            <tag> http协议 </tag>
             
         </tags>
         
