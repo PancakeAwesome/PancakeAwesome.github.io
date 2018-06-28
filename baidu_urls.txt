@@ -1,10 +1,5 @@
-http://pancakeawesome.ink/Bagging与随机森林算法原理小结.html
 http://pancakeawesome.ink/K近邻法-KNN-原理小结.html
-http://pancakeawesome.ink/决策树算法原理-下.html
-http://pancakeawesome.ink/决策树算法原理-上.html
-http://pancakeawesome.ink/梯度提升树-GBDT-原理小结.html
 http://pancakeawesome.ink/集成学习之Adaboost算法原理小结.html
-http://pancakeawesome.ink/集成学习原理小结.html
 http://pancakeawesome.ink/论文笔记之TwoStream（Two-Stream-Convolutional-Networks-for-Action-Recognition-in-Videos）.html
 http://pancakeawesome.ink/论文笔记之TDDs（Action-Recognition-with-Trajectory-Pooled-Deep-Convolutional-Descriptors）.html
 http://pancakeawesome.ink/论文笔记之CTPN(Detecting Text in Natural Image with Connectionist Text Proposal Network).html
@@ -14,12 +9,14 @@ http://pancakeawesome.ink/CTC算法小结.html
 http://pancakeawesome.ink/目标检测技术演进:RCNN、Fast RCNN、Faster RCNN.html
 http://pancakeawesome.ink/论文笔记之RCNN.html
 http://pancakeawesome.ink/最优化方法总结.html
+http://pancakeawesome.ink/梯度提升树-GBDT-原理小结.html
 http://pancakeawesome.ink/LSTM模型小结.html
 http://pancakeawesome.ink/RNN循环神经网络小结.html
 http://pancakeawesome.ink/论文笔记之CRNN(Convolutional Recurrent Neural Network).html
 http://pancakeawesome.ink/CNN卷积神经网络反向传播算法.html
 http://pancakeawesome.ink/CNN卷积神经网络前向传播算法.html
 http://pancakeawesome.ink/论文笔记之Fully-Convolutional-Networks-for-Semantic-Segmentation.html
+http://pancakeawesome.ink/Bagging与随机森林算法原理小结.html
 http://pancakeawesome.ink/卷积神经网络模型结构.html
 http://pancakeawesome.ink/深度神经网络的正则化.html
 http://pancakeawesome.ink/深度神经网络损失函数和激活函数的选择.html
@@ -32,8 +29,11 @@ http://pancakeawesome.ink/支持向量机原理-四-SMO算法原理.html
 http://pancakeawesome.ink/支持向量机原理-三-线性不可分支持向量机与核函数.html
 http://pancakeawesome.ink/支持向量机原理-二-线性支持向量机的软间隔最大化模型.html
 http://pancakeawesome.ink/支持向量机原理-一-线性支持向量机.html
+http://pancakeawesome.ink/决策树算法原理-下.html
+http://pancakeawesome.ink/决策树算法原理-上.html
 http://pancakeawesome.ink/感知机原理小结.html
 http://pancakeawesome.ink/精确率与召回率，RoC曲线与PR曲线.html
+http://pancakeawesome.ink/集成学习原理小结.html
 http://pancakeawesome.ink/逻辑回归原理小结.html
 http://pancakeawesome.ink/线性回归原理小结.html
 http://pancakeawesome.ink/交叉验证-Cross-Validation-原理小结.html
