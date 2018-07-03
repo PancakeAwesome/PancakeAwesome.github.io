@@ -16,7 +16,7 @@
 <p>和two-stream一样，TSN也是由空间流卷积网络和时间流卷积网络构成。但不同于two-stream采用单帧或者单堆帧，TSN使用从<strong>整个视频</strong>中稀疏地采样一系列短片段，每个片段都将给出其本身对于行为类别的初步预测，从这些片段的“共识”来得到视频级的预测结果。在学习过程中，通过迭代更新模型参数来优化视频级预测的损失值（loss value）。</p>
 <p>TSN网络示意图如下：</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fswgz3g1afj30o208s759.jpg" alt=""><br><strong>图1 TSN网络示意图</strong></p>
-<p>由上图所示，一个输入视频被分为 KKK 段（segment），一个片段（snippet）从它对应的段中随机采样得到。不同片段的类别得分采用段共识函数（The segmental consensus function）进行融合来产生段共识（segmental consensus），这是一个视频级的预测。然后对所有模式的预测融合产生最终的预测结果。</p>
+<p>由上图所示，一个输入视频被分为 $K$ 段（segment），一个片段（snippet）从它对应的段中随机采样得到。不同片段的类别得分采用段共识函数（The segmental consensus function）进行融合来产生段共识（segmental consensus），这是一个视频级的预测。然后对所有模式的预测融合产生最终的预测结果。</p>
 <blockquote>
 <p><strong>注意：接下来“片段”代表文章中“snippet”，“段”代表文章中“segment”</strong></p>
 </blockquote>
